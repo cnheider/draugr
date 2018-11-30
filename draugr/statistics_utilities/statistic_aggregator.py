@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 from warnings import warn
 
+from draugr.statistics_utilities.statistics import save_statistic
+
 __author__ = 'cnheider'
 import statistics as S
-import utilities as U
 
 
 class StatisticAggregator(object):
@@ -154,7 +155,7 @@ class StatisticAggregator(object):
     return self._running_value
 
   def save(self, file_name, **kwargs):
-    U.save_statistic(self._values, file_name, **kwargs)
+    save_statistic(self._values, file_name, **kwargs)
 
 
 if __name__ == '__main__':

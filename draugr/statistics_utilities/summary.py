@@ -4,7 +4,7 @@
 __author__ = 'cnheider'
 import numpy as np
 
-from utilities import S
+import statistics as S
 
 
 class Summary:
