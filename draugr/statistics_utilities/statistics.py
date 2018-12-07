@@ -7,11 +7,11 @@ import datetime
 import os
 
 
-def save_statistic(statistic, name, log_directory='logs', project='', config_name='', **kwargs) -> bool:
+def save_statistic(statistic, *, stat_name, project_name, config_name, directory='logs') -> bool:
   if statistic:
     _file_date = datetime.datetime.now()
-    _file_name = f'{project}-{config_name.replace(".", "_")}-{_file_date.strftime("%y%m%d%H%M")}.{name}.csv'
-    _file_path = os.path.join(log_directory, _file_name)
+    _file_name = f'{project_name}-{config_name.replace(".", "_")}-{_file_date.strftime("%y%m%d%H%M")}.{stat_name}.csv'
+    _file_path = os.path.join(directory, _file_name)
 
     stat = [[s] for s in statistic]
     with open(_file_path, 'w') as f:

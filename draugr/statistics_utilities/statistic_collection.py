@@ -7,10 +7,11 @@ import statistics as S
 from draugr.statistics_utilities import StatisticAggregator
 
 
-class StatisticCollection(object):
+class StatisticCollection(dict):
 
   def __init__(self, stats=('signal', 'length'), measures=S.__all__[1:],
                keep_measure_history=True):
+    super().__init__()
     self._statistics = {}
     self._measures = measures
     self._keep_measure_history = keep_measure_history
@@ -57,12 +58,21 @@ class StatisticCollection(object):
   def __iter__(self):
     return self.statistics
 
+  def __getitem__(self, item):
+    return self.statistics[item]
+
+  def keys(self):
+    return self.statistics.keys()
+
+  def __contains__(self, item):
+    return item in self.statistics
+
   def items(self):
     return self.statistics.items()
 
   def save(self, **kwargs):
     for key, value in self._statistics.items():
-      value.save(key, **kwargs)
+      value.save(stat_name=key, **kwargs)
 
 
 if __name__ == '__main__':

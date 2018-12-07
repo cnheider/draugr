@@ -154,8 +154,17 @@ class StatisticAggregator(object):
 
     return self._running_value
 
-  def save(self, file_name, **kwargs):
-    save_statistic(self._values, file_name, **kwargs)
+  def save(self,
+           *,
+           stat_name,
+           project_name='non',
+           config_name='non',
+           directory='logs'):
+    save_statistic(self._values,
+                   stat_name=stat_name,
+                   project_name=project_name,
+                   config_name=config_name,
+                   directory=directory)
 
 
 if __name__ == '__main__':
