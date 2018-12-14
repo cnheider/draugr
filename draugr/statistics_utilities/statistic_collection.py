@@ -10,16 +10,18 @@ from draugr.statistics_utilities import StatisticAggregator
 class StatisticCollection(dict):
 
   def __init__(self, stats=('signal', 'length'), measures=S.__all__[1:],
-               keep_measure_history=True):
+               keep_measure_history=True, use_disk_cache=True):
     super().__init__()
     self._statistics = {}
     self._measures = measures
     self._keep_measure_history = keep_measure_history
+    self._use_disk_cache = use_disk_cache
 
     for stat in stats:
       self._statistics[stat] = StatisticAggregator(
           measures=self._measures,
-          keep_measure_history=self._keep_measure_history)
+          keep_measure_history=self._keep_measure_history,
+          use_disk_cache=self._use_disk_cache)
 
   def add_statistic(self, stat_name):
     self._statistics[stat_name] = StatisticAggregator(

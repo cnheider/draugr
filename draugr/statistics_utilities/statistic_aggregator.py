@@ -10,7 +10,7 @@ import statistics as S
 
 class StatisticAggregator(object):
 
-  def __init__(self, measures=S.__all__[1:], keep_measure_history=False):
+  def __init__(self, measures=S.__all__[1:], keep_measure_history=False, use_disk_cache=True):
     self._values = []
     self._length = 0
 
