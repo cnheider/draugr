@@ -11,6 +11,7 @@ import os
 import struct
 import termios
 import numpy as np
+import warg
 
 sys.stdout.write(style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
 
@@ -131,7 +132,9 @@ def get_terminal_size():
   except:
     rc = (os.getenv('LINES', 25), os.getenv('COLUMNS', 80))
 
-  return rc
+  rows,columns = rc
+
+  return warg.NamedOrderedDictionary.dict_of(rows,columns)
 
 
 def styled_terminal_plot_stats_shared_x(stats, *, styles=None, **kwargs):
