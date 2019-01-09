@@ -1,16 +1,12 @@
 language: python
-
 python:
-  - "3.6"
-  
+- '3.6'
 install:
-  - pip install -r requirements.txt
-  
+- pip install -r requirements.txt
 script:
-  - pytest
-  
+- pytest
 deploy:
   provider: pypi
   user: cnheider
   password:
-    secure: a
+    secure: eigxVYOFfEX1d/kAI8MfPDUiXp6FPkWQoBgxAB80y1OKFo/Yp9F0mywvL78Eyw14qq4UiaSl0L0Zw07CLFLQDupWx17EggNEnSb87Zl7PDUGy4FZlQbBrCxBO7AEBFY2URWM3XaDlV8VD4e4+Sl/VueT7wCqfqmBZm5utYNCQCWX2KFQjh+kiASlVUFrSm08UPneueRgMpGS+RaxM0e0VV40M9RCeBOsohrlEai0g7KGfvSBhzO91FgwK0V8+4qhoWpZyviyqM+aKQacXXM64vkcVTnJIcH5cxrkuvDY44Zje1K9y1S5nvQ4//1QcQfQIAlI2Ha2i3jVlf13eYKkIRLmbu0sAzevhhSi+AgEnpwubLm68OmeNrwwCKzKcgs96wfUEY44pB6zbAtqK5xrlprG+W5AP6pB3gaMaMi8s84JFb2icCiPaubzXTsxjsx8T/fn00MqSQHDqjUNnKwEHJ9jc1GoUkI1owQl+W613YLLgX9Kb+U8IpzfL8mYv3lVwUiJ2xW77HM9pAxrWYv8rsStkiXahNX86Pjz78C/OqQSo8kjKrClQ1kBjG2C85IpNd16ct+4DDOxPqj8SI/geWyZgPX2c8t0y3SibivaiOeATYbQgHoLoXF6neyC1Ty/UcH3OIwlFtKpkz9RlDHA1GTJdECnzsPbLgTVjE8qV6Q=
