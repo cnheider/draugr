@@ -37,6 +37,7 @@ if __name__ == '__main__':
       download_url=pkg.download_url,
       install_requires=pkg.requirements,
       extras_require=pkg.extras,
+      setup_requires=pkg.setup_dependencies,
       entry_points=pkg.entry_points,
       classifiers=pkg.classifiers,
       long_description_content_type=pkg.readme_type,

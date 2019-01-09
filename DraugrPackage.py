@@ -11,6 +11,12 @@ class DraugrPackage:
       'pytest',
       'mock'
       ]
+   
+  @property
+  def test_dependencies(self) -> list:
+    return [
+      'pytest-runner'
+      ]
 
   @property
   def package_name(self) -> str:
@@ -21,11 +27,11 @@ class DraugrPackage:
     return 'https://github.com/cnheider/draugr'
 
   @property
-  def download_url(self):
+  def download_url(self) -> str:
     return self.url + '/releases'
 
   @property
-  def readme_type(self):
+  def readme_type(self) -> str:
     return 'text/markdown'
 
   @property
