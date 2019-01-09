@@ -13,7 +13,7 @@ class DraugrPackage:
       ]
    
   @property
-  def test_dependencies(self) -> list:
+  def setup_dependencies(self) -> list:
     return [
       'pytest-runner'
       ]
