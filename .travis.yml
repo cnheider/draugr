@@ -5,8 +5,3 @@ install:
 - pip install -r requirements.txt
 script:
 - pytest
-deploy:
-  provider: pypi
-  user: cnheider
-  password:
-    secure: Va6rGeh4uRJ91xdItvwGWCSXQPiBaVopQiS3b4kbxBbTu/GTfvf6Lsf5bup74T0dLU3MywAIlxxTS1vo7sBG7qogxMUbq3LBrrxyV2iHP9GMNDyzsP5YnT/MciCFdcX9KlQeIPUsuFpFPxvDZSoHoQ0kvwuMAMyrWwtocLiDSJJ3viZEJHxxeFf9qVZPAkoRybdCBfQdw65BbCX9pRgULJpsJj1Q5g/RzYIEqK0/uDWAaWA/NGU7zXHI+ZA/W9aXADz+R30io5E+DB//LH/3rFMi+3pu/VP6nDTdIGVG5fMmvZdd6vks0F451H+fudlh87PhE+HItPIge13JAMUzjRdCLeYA8my+a2V94g6yf8G13h+zGLK7XO7Qn5/ndNvLaRbS78sZiHq2GMxYOV+xieWNGmgqywEFU0nkPwfPn842kr6ypX9C74m0Xe9K6CKEcOxByGugHWJNqN4aAZe9EBuTGB4PND/pTCwmnffl6ExBejMKQtCzta249gVk3PzFdVQnjB7QPUd+CVivauy0Hbs7CSLOPcgbcVOrcj2hFsXlHqGijhw+zI8R7x4v53/MHbF9BMCZ+UNkLHNQPGDEhtmc8PBM05UNHkbUYE9zUz+3/PQQ4gbk2ToTH3iavpN4tj5zZplZ++ERSideVifBw3ZHvzRRSyE8H+dltP58KY0=
