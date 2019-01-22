@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import os
+import numpy as np
+import warg
 
 __author__ = 'cnheider'
 
@@ -34,7 +37,6 @@ DECORATIONS = dict(
     overline='53',
     hyperlink='8;;'
     )
-
 
 def generate_style(obj=None, *,
                    color='white',
@@ -73,6 +75,46 @@ def generate_style(obj=None, *,
     return print_style(obj)
   else:
     return print_style
+
+def sprint(obj, **kwargs):
+  '''
+Stylised print.
+Valid colors: gray, red, green, yellow, blue, magenta, cyan, white, crimson
+'''
+
+  string = generate_style(obj, **kwargs)
+
+  print(string)
+
+
+def scale(x, length):
+  '''
+Scale points in 'x', such that distance between
+max(x) and min(x) equals to 'length'. min(x)
+will be moved to 0.
+'''
+  if type(x) is list:
+    s = float(length) / (max(x) - min(x)) if x and max(x) - min(x) != 0 else length
+  # elif type(x) is range:
+  #  s = length
+  else:
+    s = float(length) / (np.max(x) - np.min(x)) if len(x) and np.max(x) - np.min(x) != 0 else length
+
+  return [int((i - min(x)) * s) for i in x]
+
+
+
+
+def get_terminal_size():
+  try:
+    with open(os.ctermid(), 'r') as fd:
+      rows, columns = os.get_terminal_size()
+  except:
+    rows, columns = (os.getenv('LINES', 25), os.getenv('COLUMNS', 80))
+
+  rows,columns= int(rows),int(columns)
+
+  return warg.NamedOrderedDictionary.dict_of(rows, columns)
 
 
 class PrintStyle(object):

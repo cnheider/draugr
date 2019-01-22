@@ -3,3 +3,5 @@
 
 __author__ = 'cnheider'
 
+from .statistics_utilities import *
+from .style_utilities import *

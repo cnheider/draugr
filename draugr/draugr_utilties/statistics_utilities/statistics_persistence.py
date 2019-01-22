@@ -6,7 +6,6 @@ import csv
 import datetime
 import os
 
-
 def save_statistic(statistic, *, stat_name, project_name, config_name, directory='logs') -> bool:
   if statistic:
     _file_date = datetime.datetime.now()

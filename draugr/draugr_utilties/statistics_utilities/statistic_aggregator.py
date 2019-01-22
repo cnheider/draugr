@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from warnings import warn
-
-from draugr.draugr_utilties.statistics_utilities import save_statistic
+from .statistics_persistence import save_statistic
 
 __author__ = 'cnheider'
 import statistics as S

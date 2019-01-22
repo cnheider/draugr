@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr_utilties.style_utilities import generate_style,PrintStyle,COLORS
+from .draugr_utilties import (COLORS, PrintStyle, generate_style, get_terminal_size, scale)
 
 __author__ = 'cnheider'
 
-import sys
 from typing import Sized
 
-import os
 import numpy as np
-import warg
 
-sys.stdout.write(generate_style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
+
+# sys.stdout.write(generate_style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
 
 
 def terminal_plot(y: Sized,
@@ -39,8 +37,7 @@ def terminal_plot(y: Sized,
 
   if x:
     if len(x) != num_y:
-      raise ValueError(f'x argument must match the length of y, got x:{len(x)} and '
-                       f'y:{num_y}')
+      raise ValueError(f'x argument must match the length of y, got x:{len(x)} and y:{num_y}')
   else:
     x = range(num_y)
 
@@ -49,9 +46,9 @@ def terminal_plot(y: Sized,
   border_size = (1, 1)
 
   if not rows or not columns:
-    rows, columns = get_terminal_size().as_list()
+    terminal_size = get_terminal_size()
     if percent_size:
-      columns, rows = int(columns * percent_size[0]), int(rows * percent_size[1])
+      columns, rows = int(terminal_size.columns * percent_size[0]), int(terminal_size.rows * percent_size[1])
 
     actual_columns = columns - sum(x_offsets) - sum(border_size)
     actual_rows = rows - sum(y_offsets) - sum(border_size)
@@ -96,47 +93,6 @@ def terminal_plot(y: Sized,
       printer(summary)
 
 
-def sprint(obj, **kwargs):
-  '''
-Stylised print.
-Valid colors: gray, red, green, yellow, blue, magenta, cyan, white, crimson
-'''
-
-  string = generate_style(obj, **kwargs)
-
-  print(string)
-
-
-def scale(x, length):
-  '''
-Scale points in 'x', such that distance between
-max(x) and min(x) equals to 'length'. min(x)
-will be moved to 0.
-'''
-  if type(x) is list:
-    s = float(length) / (max(x) - min(x)) if x and max(x) - min(x) != 0 else length
-  # elif type(x) is range:
-  #  s = length
-  else:
-    s = float(length) / (np.max(x) - np.min(x)) if len(x) and np.max(x) - np.min(x) != 0 else length
-
-  return [int((i - min(x)) * s) for i in x]
-
-
-def get_terminal_size():
-  try:
-    with open(os.ctermid(), 'r') as fd:
-      # import fcntl
-      # rows, columns = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
-      rows, columns = os.get_terminal_size()
-  except:
-    rows, columns = (os.getenv('LINES', 25), os.getenv('COLUMNS', 80))
-
-  rows,columns= int(rows),int(columns)
-
-  return warg.NamedOrderedDictionary.dict_of(rows, columns)
-
-
 def styled_terminal_plot_stats_shared_x(stats, *, styles=None, **kwargs):
   if styles is None:
     styles = [generate_style(color=color, highlight=True) for color, _ in zip(COLORS.keys(),
@@ -172,6 +128,7 @@ def terminal_plot_stats_shared_x(stats,
         percent_size=(1, y_size),
         print_summary=summary
         )
+
 
 if __name__ == '__main__':
   terminal_plot(np.tile(range(9), 4), plot_character='o')

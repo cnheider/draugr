@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6c33b90-86f2-4d2f-be72-ed51f80c5a2c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/draugr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/draugr.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draugr/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/draugr/draugr.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/statistics_utilities/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/statistics_utilities/episode_statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/episode_statistics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/statistics_utilities/statistic_aggregator.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_aggregator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/statistics_utilities/statistic_collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_collection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/statistics_utilities/statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistics_persistence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/statistics_utilities/style_utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/statistics_utilities/summary.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/summary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draugr/draugr_utilties/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_aggregator.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_aggregator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_collection.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_collection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistics_persistence.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistics_persistence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../nisse/.idea/nisse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../nisse/.idea/nisse.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../warg/.idea/warg.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../warg/.idea/warg.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,25 +26,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_aggregator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="814">
-              <caret line="178" column="20" selection-start-line="178" selection-start-column="20" selection-end-line="178" selection-end-column="20" />
+            <state relative-caret-position="51">
+              <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
               <folding>
                 <element signature="e#47#72#0" expanded="true" />
+                <element signature="e#4189#4387#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_collection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/summary.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#72#90#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/episode_statistics.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+              <folding>
+                <element signature="e#1488#1646#0" expanded="true" />
+                <element signature="e#1673#2096#0" expanded="true" />
+                <element signature="e#1466#1737#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py">
+        <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistics_persistence.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            <state relative-caret-position="102">
+              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <folding>
+                <element signature="e#72#82#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -50,11 +86,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/draugr/draugr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
+            <state relative-caret-position="-1039">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
-                <element signature="e#793#2629#0" expanded="true" />
-                <element signature="e#2661#2819#0" expanded="true" />
+                <element signature="e#854#2681#0" expanded="true" />
                 <element signature="e#3759#4038#0" expanded="true" />
               </folding>
             </state>
@@ -65,32 +100,9 @@
         <entry file="file://$PROJECT_DIR$/draugr/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build_and_upload_package.sh">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setup.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/version.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DraugrPackage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
               <folding>
-                <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#73#94#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,10 +111,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="102">
+              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+              <folding>
+                <element signature="e#73#108#0" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+              <folding>
+                <element signature="e#72#105#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/episode_statistics.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -134,9 +166,13 @@
         <option value="$PROJECT_DIR$/../warg/warg/named_ordered_dictionary.py" />
         <option value="$PROJECT_DIR$/draugr/statistics_utilities/__init__.py" />
         <option value="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/__init__.py" />
-        <option value="$PROJECT_DIR$/draugr/draugr_utilties/__init__.py" />
-        <option value="$PROJECT_DIR$/draugr/draugr.py" />
+        <option value="$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py" />
         <option value="$PROJECT_DIR$/draugr/__init__.py" />
+        <option value="$PROJECT_DIR$/draugr/draugr_utilties/__init__.py" />
+        <option value="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistics_persistence.py" />
+        <option value="$PROJECT_DIR$/draugr/draugr.py" />
+        <option value="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_aggregator.py" />
+        <option value="$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_collection.py" />
       </list>
     </option>
   </component>
@@ -189,34 +225,6 @@
               <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
               <item name="warg" type="462c0819:PsiDirectoryNode" />
               <item name="warg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.7 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -375,12 +383,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547116072388</updated>
       <workItem from="1547116074040" duration="647000" />
-      <workItem from="1548169748554" duration="4723000" />
+      <workItem from="1548169748554" duration="8231000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5370000" />
+    <option name="totallyTimeSpent" value="8878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="25" y="25" width="1896" height="1030" extended-state="6" />
@@ -471,6 +479,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build_and_upload_package.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/version.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DraugrPackage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/draugr/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#73#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+          <folding>
+            <element signature="e#1488#1646#0" expanded="true" />
+            <element signature="e#1673#2096#0" expanded="true" />
+            <element signature="e#1466#1737#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding>
+            <element signature="e#73#108#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_import_hook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding>
+            <element signature="e#485#1190#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -481,12 +550,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_import_hook.py">
+    <entry file="file://$PROJECT_DIR$/draugr/draugr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="-1039">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#854#2681#0" expanded="true" />
+            <element signature="e#3759#4038#0" expanded="true" />
+          </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_aggregator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+          <folding>
+            <element signature="e#47#72#0" expanded="true" />
+            <element signature="e#4189#4387#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/episode_statistics.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/summary.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -500,8 +587,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistics_persistence.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="102">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
           <folding>
             <element signature="e#72#82#0" expanded="true" />
           </folding>
@@ -510,75 +597,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_collection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding>
-            <element signature="e#72#94#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/episode_statistics.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/statistics_utilities/statistic_aggregator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="178" column="20" selection-start-line="178" selection-start-column="20" selection-end-line="178" selection-end-column="20" />
-          <folding>
-            <element signature="e#47#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draugr/draugr_utilties/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draugr/draugr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
-          <folding>
-            <element signature="e#793#2629#0" expanded="true" />
-            <element signature="e#2661#2819#0" expanded="true" />
-            <element signature="e#3759#4038#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draugr/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build_and_upload_package.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/version.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DraugrPackage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
         </state>
       </provider>
     </entry>

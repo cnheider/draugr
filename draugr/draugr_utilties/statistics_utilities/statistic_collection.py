@@ -4,7 +4,7 @@
 __author__ = 'cnheider'
 import statistics as S
 
-from draugr.draugr_utilties.statistics_utilities import StatisticAggregator
+from .statistic_aggregator import StatisticAggregator
 
 MEASURES = S.__all__[1:]
 
