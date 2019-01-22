@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from warnings import warn
 
-from draugr.statistics_utilities.statistics import save_statistic
+from draugr.draugr_utilties.statistics_utilities import save_statistic
 
 __author__ = 'cnheider'
 import statistics as S

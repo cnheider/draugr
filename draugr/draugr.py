@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from statistics_utilities.style_utilities import generate_style, PrintStyle, COLORS
+from draugr_utilties.style_utilities import generate_style,PrintStyle,COLORS
 
 __author__ = 'cnheider'
 
