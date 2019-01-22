@@ -3,10 +3,9 @@
 
 __author__ = 'cnheider'
 
-import numpy
 import six
 
-Colors = dict(
+COLORS = dict(
     # gray='30', #Black
     red='31',
     green='32',
@@ -18,7 +17,7 @@ Colors = dict(
     crimson='38'
     )
 
-Decorations = dict(
+DECORATIONS = dict(
     end='0',
     bold='1',
     dim='2',
@@ -37,21 +36,18 @@ Decorations = dict(
     )
 
 
-
-
-
-def style(obj=None, *,
-          color='white',
-          bold=False,
-          highlight=False,
-          underline=False,
-          italic=False):
+def generate_style(obj=None, *,
+                   color='white',
+                   bold=False,
+                   highlight=False,
+                   underline=False,
+                   italic=False):
   attributes = []
 
-  if color in Colors:
-    num = int(Colors[color])
+  if color in COLORS:
+    num = int(COLORS[color])
   else:
-    num = int(Colors['white'])
+    num = int(COLORS['white'])
 
   if highlight:
     num += 10
@@ -59,15 +55,15 @@ def style(obj=None, *,
   attributes.append(six.u(f'{num}'))
 
   if bold:
-    attributes.append(six.u(f'{Decorations["bold"]}'))
+    attributes.append(six.u(f'{DECORATIONS["bold"]}'))
 
   if underline:
-    attributes.append(six.u(f'{Decorations["underline"]}'))
+    attributes.append(six.u(f'{DECORATIONS["underline"]}'))
 
   if italic:
-    attributes.append(six.u(f'{Decorations["italic"]}'))
+    attributes.append(six.u(f'{DECORATIONS["italic"]}'))
 
-  end = Decorations['end']
+  end = DECORATIONS['end']
 
   attributes_joined = six.u(';').join(attributes)
 
@@ -89,6 +85,3 @@ class PrintStyle(object):
     string = six.u(intermediate_repr)
     return string
 
-
-if __name__ == '__main__':
-  sprint(f'\n{numpy.zeros(4)},\n it works!\n', color="green", underline=True, bold=True, italic=True)

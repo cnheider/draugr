@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/term_plot.iml" filepath="$PROJECT_DIR$/.idea/term_plot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/draugr.iml" filepath="$PROJECT_DIR$/.idea/draugr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nisse/.idea/nisse.iml" filepath="$PROJECT_DIR$/../nisse/.idea/nisse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../warg/.idea/warg.iml" filepath="$PROJECT_DIR$/../warg/.idea/warg.iml" />
     </modules>
   </component>
 </project>

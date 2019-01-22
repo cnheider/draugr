@@ -6,11 +6,15 @@ import statistics as S
 
 from draugr.statistics_utilities import StatisticAggregator
 
+MEASURES = S.__all__[1:]
 
 class StatisticCollection(dict):
 
-  def __init__(self, stats=('signal', 'length'), measures=S.__all__[1:],
-               keep_measure_history=True, use_disk_cache=True):
+  def __init__(self,
+               stats=('signal', 'length'),
+               measures=MEASURES,
+               keep_measure_history=True,
+               use_disk_cache=True):
     super().__init__()
     self._statistics = {}
     self._measures = measures

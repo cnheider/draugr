@@ -7,7 +7,6 @@ from draugr.statistics_utilities.statistics import save_statistic
 __author__ = 'cnheider'
 import statistics as S
 
-
 class StatisticAggregator(object):
 
   def __init__(self, measures=S.__all__[1:], keep_measure_history=False, use_disk_cache=True):

@@ -1,36 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from .draugr_utilities import style, Colors, PrintStyle
+from statistics_utilities.style_utilities import generate_style, PrintStyle, COLORS
 
 __author__ = 'cnheider'
 
 import sys
 from typing import Sized
-import fcntl
+
 import os
-import struct
-import termios
 import numpy as np
 import warg
 
-sys.stdout.write(style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
+sys.stdout.write(generate_style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
 
 
-def terminal_plot(
-    y: Sized,
-    *,
-    x=None,
-    title='',
-    rows=None,
-    columns=None,
-    percent_size=(.80, .80),
-    x_offsets=(1, 1),
-    y_offsets=(1, 1),
-    printer=print,
-    print_summary=True,
-    plot_character=u'\u2981',
-    print_style: PrintStyle = None
-    ):
+def terminal_plot(y: Sized,
+                  *,
+                  x=None,
+                  title='',
+                  rows=None,
+                  columns=None,
+                  percent_size=(.80, .80),
+                  x_offsets=(1, 1),
+                  y_offsets=(1, 1),
+                  printer=print,
+                  print_summary=True,
+                  plot_character=u'\u2981',
+                  print_style: PrintStyle = None
+                  ):
   '''
   x, y list of values on x- and y-axis
   plot those values within canvas size (rows and columns)
@@ -52,7 +49,7 @@ def terminal_plot(
   border_size = (1, 1)
 
   if not rows or not columns:
-    rows, columns = get_terminal_size()
+    rows, columns = get_terminal_size().as_list()
     if percent_size:
       columns, rows = int(columns * percent_size[0]), int(rows * percent_size[1])
 
@@ -98,13 +95,14 @@ def terminal_plot(
     else:
       printer(summary)
 
+
 def sprint(obj, **kwargs):
   '''
 Stylised print.
 Valid colors: gray, red, green, yellow, blue, magenta, cyan, white, crimson
 '''
 
-  string = style(obj, **kwargs)
+  string = generate_style(obj, **kwargs)
 
   print(string)
 
@@ -128,23 +126,31 @@ will be moved to 0.
 def get_terminal_size():
   try:
     with open(os.ctermid(), 'r') as fd:
-      rc = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
+      # import fcntl
+      # rows, columns = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
+      rows, columns = os.get_terminal_size()
   except:
-    rc = (os.getenv('LINES', 25), os.getenv('COLUMNS', 80))
+    rows, columns = (os.getenv('LINES', 25), os.getenv('COLUMNS', 80))
 
-  rows,columns = rc
+  rows,columns= int(rows),int(columns)
 
-  return warg.NamedOrderedDictionary.dict_of(rows,columns)
+  return warg.NamedOrderedDictionary.dict_of(rows, columns)
 
 
 def styled_terminal_plot_stats_shared_x(stats, *, styles=None, **kwargs):
   if styles is None:
-    styles = [style(color=color, highlight=True) for color, _ in zip(Colors.keys(),
-                                                                     range(len(stats)))]
+    styles = [generate_style(color=color, highlight=True) for color, _ in zip(COLORS.keys(),
+                                                                              range(len(stats)))]
   return terminal_plot_stats_shared_x(stats, styles=styles, **kwargs)
 
 
-def terminal_plot_stats_shared_x(stats, *, x=None, styles=None, printer=print, margin=.25, summary=True):
+def terminal_plot_stats_shared_x(stats,
+                                 *,
+                                 x=None,
+                                 styles=None,
+                                 printer=print,
+                                 margin=.25,
+                                 summary=True):
   num_stats = len(stats)
 
   y_size = (1 - margin) / num_stats
@@ -167,7 +173,5 @@ def terminal_plot_stats_shared_x(stats, *, x=None, styles=None, printer=print, m
         print_summary=summary
         )
 
-
 if __name__ == '__main__':
-
   terminal_plot(np.tile(range(9), 4), plot_character='o')
