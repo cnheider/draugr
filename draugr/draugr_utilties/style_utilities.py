@@ -108,7 +108,8 @@ will be moved to 0.
 
 def get_terminal_size():
   try:
-    rows, columns = shutil.get_terminal_size()
+    size = shutil.get_terminal_size()
+    columns, rows = size.columns,size.lines
   except:
     rows, columns = (os.getenv('LINES', 25), os.getenv('COLUMNS', 80))
 

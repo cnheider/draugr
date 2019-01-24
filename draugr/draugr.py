@@ -15,7 +15,7 @@ import numpy as np
 def terminal_plot(y: Sized,
                   *,
                   x=None,
-                  title='',
+                  title='Values',
                   rows=None,
                   columns=None,
                   percent_size=(.80, .80),
@@ -24,7 +24,8 @@ def terminal_plot(y: Sized,
                   printer=print,
                   print_summary=True,
                   plot_character=u'\u2981',
-                  print_style: PrintStyle = None
+                  print_style: PrintStyle = None,
+                  border_size=1
                   ):
   '''
   x, y list of values on x- and y-axis
@@ -41,21 +42,20 @@ def terminal_plot(y: Sized,
   else:
     x = range(num_y)
 
-  actual_columns = columns
-  actual_rows = rows
-  border_size = (1, 1)
-
   if not rows or not columns:
     terminal_size = get_terminal_size()
-    if percent_size:
-      columns, rows = int(terminal_size.columns * percent_size[0]), int(terminal_size.rows * percent_size[1])
+    columns = terminal_size.columns
+    rows=terminal_size.rows
 
-    actual_columns = columns - sum(x_offsets) - sum(border_size)
-    actual_rows = rows - sum(y_offsets) - sum(border_size)
+  if percent_size:
+    columns, rows = int(columns * percent_size[0]), int(rows * percent_size[1])
 
   # Scale points such that they fit on canvas
-  x_scaled = scale(x, actual_columns)
-  y_scaled = scale(y, actual_rows)
+  drawable_columns = columns - sum(x_offsets) - border_size*2
+  drawable_rows = rows - sum(y_offsets) - border_size*2
+
+  x_scaled = scale(x, drawable_columns)
+  y_scaled = scale(y, drawable_rows)
 
   # Create empty canvas
   canvas = [[' ' for _ in range(columns)] for _ in range(rows)]
@@ -67,14 +67,19 @@ def terminal_plot(y: Sized,
   for ix in range(1, columns - 1):
     canvas[0][ix] = u'\u2500'
     canvas[rows - 1][ix] = u'\u2500'
+
   canvas[0][0] = u'\u250c'
   canvas[0][columns - 1] = u'\u2510'
   canvas[rows - 1][0] = u'\u2514'
   canvas[rows - 1][columns - 1] = u'\u2518'
 
   # Add scaled points to canvas
+  y_offsets_start=border_size + y_offsets[0]
+  x_offsets_start = border_size + x_offsets[0]
   for ix, iy in zip(x_scaled, y_scaled):
-    canvas[1 + y_offsets[0] + (actual_rows - iy)][1 + x_offsets[0] + ix] = plot_character
+    y_ = y_offsets_start + (drawable_rows - iy)
+    x_ = x_offsets_start + ix
+    canvas[y_][x_] = plot_character
 
   print('\n')
   # Print rows of canvas
@@ -119,8 +124,7 @@ def terminal_plot_stats_shared_x(stats,
     styles = [None for _ in range(num_stats)]
 
   for (key, stat), sty in zip(stats.items(), styles):
-    terminal_plot(
-        stat.running_value,
+    terminal_plot(        stat.running_value,
         title=key,
         x=x,
         printer=printer,
