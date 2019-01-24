@@ -1,42 +1,44 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os
+import shutil
+
 import numpy as np
+
 import warg
 
 __author__ = 'cnheider'
 
 import six
 
-COLORS = dict(
-    # gray='30', #Black
-    red='31',
-    green='32',
-    yellow='33',
-    blue='34',
-    magenta='35',
-    cyan='36',
-    white='37',
-    crimson='38'
-    )
+COLORS = warg.NOD(red='31',
+                  green='32',
+                  yellow='33',
+                  # gray='30', #Black,
+                  blue='34',
+                  magenta='35',
+                  cyan='36',
+                  white='37',
+                  crimson='38'
+                  )
 
-DECORATIONS = dict(
-    end='0',
-    bold='1',
-    dim='2',
-    italic='3',
-    underline='4',
-    underline_end='24',  # '4:0',
-    double_underline='21',  # '4:2'
-    # double_underline_end='24',  # '4:0'
-    curly_underline='4:3',
-    blink='5',
-    reverse_colors='7',
-    invisible='8',  # still copyable
-    strikethrough='9',
-    overline='53',
-    hyperlink='8;;'
-    )
+DECORATIONS = warg.NOD(end='0',
+                       bold='1',
+                       dim='2',
+                       italic='3',
+                       underline='4',
+                       underline_end='24',  # '4:0',
+                       double_underline='21',  # '4:2'
+                       # double_underline_end='24',  # '4:0'
+                       curly_underline='4:3',
+                       blink='5',
+                       reverse_colors='7',
+                       invisible='8',  # still copyable
+                       strikethrough='9',
+                       overline='53',
+                       hyperlink='8;;'
+                       )
+
 
 def generate_style(obj=None, *,
                    color='white',
@@ -76,6 +78,7 @@ def generate_style(obj=None, *,
   else:
     return print_style
 
+
 def sprint(obj, **kwargs):
   '''
 Stylised print.
@@ -103,16 +106,13 @@ will be moved to 0.
   return [int((i - min(x)) * s) for i in x]
 
 
-
-
 def get_terminal_size():
   try:
-    with open(os.ctermid(), 'r') as fd:
-      rows, columns = os.get_terminal_size()
+    rows, columns = shutil.get_terminal_size()
   except:
     rows, columns = (os.getenv('LINES', 25), os.getenv('COLUMNS', 80))
 
-  rows,columns= int(rows),int(columns)
+  rows, columns = int(rows), int(columns)
 
   return warg.NamedOrderedDictionary.dict_of(rows, columns)
 
@@ -127,3 +127,6 @@ class PrintStyle(object):
     string = six.u(intermediate_repr)
     return string
 
+
+if __name__ == '__main__':
+  print(get_terminal_size())
