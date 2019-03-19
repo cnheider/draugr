@@ -10,6 +10,7 @@ parts
 __pycache__/
 .idea/
 #*.py[cod]
+*.orig
 
 venv/
 *.db
