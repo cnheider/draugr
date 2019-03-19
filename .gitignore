@@ -8,6 +8,7 @@ eggs
 parts
 *.egg-info
 __pycache__/
+.idea/
 #*.py[cod]
 
 venv/

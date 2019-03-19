@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d6c33b90-86f2-4d2f-be72-ed51f80c5a2c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/draugr.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/draugr/draugr_utilties/style_utilities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_sanity.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_sanity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../nisse/.idea/nisse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../nisse/.idea/nisse.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/draugr/draugr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="92" column="19" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
+            <state relative-caret-position="459">
+              <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -181,6 +178,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -195,33 +193,6 @@
             </path>
             <path>
               <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="draugr" type="462c0819:PsiDirectoryNode" />
-              <item name="draugr" type="462c0819:PsiDirectoryNode" />
-              <item name="draugr_utilties" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="draugr" type="462c0819:PsiDirectoryNode" />
-              <item name="draugr" type="462c0819:PsiDirectoryNode" />
-              <item name="draugr_utilties" type="462c0819:PsiDirectoryNode" />
-              <item name="statistics_utilities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="draugr" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="warg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
-              <item name="warg" type="462c0819:PsiDirectoryNode" />
-              <item name="warg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="draugr" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
@@ -233,7 +204,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -377,6 +347,9 @@
       <module name="draugr" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -422,16 +395,19 @@
       <workItem from="1547116074040" duration="647000" />
       <workItem from="1548169748554" duration="9493000" />
       <workItem from="1548315695583" duration="2854000" />
-      <workItem from="1548320879849" duration="900000" />
+      <workItem from="1548320879849" duration="2169000" />
+      <workItem from="1548352156609" duration="604000" />
+      <workItem from="1548957931067" duration="1207000" />
+      <workItem from="1549354497339" duration="1608000" />
+      <workItem from="1549393679062" duration="599000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13894000" />
+    <option name="totallyTimeSpent" value="19181000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="25" width="1870" height="1030" extended-state="6" />
-    <editor active="true" />
+    <frame x="25" y="0" width="1870" height="1059" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5582822" visible="true" weight="0.100219056" />
       <window_info id="Structure" order="1" sideWeight="0.49643221" side_tool="true" weight="0.24853334" />
@@ -450,13 +426,13 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Python Console" order="3" sideWeight="0.5899795" visible="true" weight="0.42716318" />
+      <window_info active="true" anchor="right" id="Python Console" order="3" sideWeight="0.82924336" visible="true" weight="0.4890471" />
       <window_info anchor="right" id="Database" order="4" sideWeight="0.49643221" weight="0.32950193" />
       <window_info anchor="right" id="Data View" order="5" />
       <window_info anchor="right" id="Inspection Results" order="6" sideWeight="0.48046875" weight="0.29226667" />
       <window_info anchor="right" id="Debug" order="7" sideWeight="0.7280164" weight="0.3203724" />
       <window_info anchor="right" id="Run" order="8" sideWeight="0.6806785" weight="0.2675599" />
-      <window_info anchor="right" x="0" y="0" width="417" height="830" id="Documentation" order="9" sideWeight="0.41002044" side_tool="true" visible="true" weight="0.42716318" />
+      <window_info anchor="right" x="0" y="0" width="417" height="830" id="Documentation" order="9" sideWeight="0.17075665" side_tool="true" visible="true" weight="0.4890471" />
       <window_info anchor="right" id="SciView" order="10" sideWeight="0.51083815" weight="0.2866423" />
       <window_info anchor="right" id="Terminal" order="11" sideWeight="0.40899795" side_tool="true" weight="0.42716318" />
       <window_info anchor="right" id="Event Log" order="12" sideWeight="0.5010225" side_tool="true" weight="0.3790497" />
@@ -628,8 +604,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/draugr/draugr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="92" column="19" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
+        <state relative-caret-position="459">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,10 @@
-from draugr import terminal_plot
-import numpy as np
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+__author__ = 'cnheider'
+
+import sys
+
 
 def test_sanity():
     assert True
@@ -7,9 +12,15 @@ def test_sanity():
     answer_to_everything = str(42)
     assert str(42) == answer_to_everything
 
-def test_plot():
-  terminal_plot(np.tile(range(9), 4), plot_character='o')
-  assert True
 
-if __name__ == '__main__':
-    test_plot()
+
+def test_print(capsys):
+  """Correct my_name argument prints"""
+  text = "hello"
+  err = "world"
+  print(text)
+  sys.stderr.write("world")
+  captured = capsys.readouterr()
+  assert text in captured.out
+  assert err in captured.err
+
