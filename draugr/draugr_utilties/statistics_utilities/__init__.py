@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-__author__ = 'cnheider'
+__author__ = "cnheider"
 
 from .episode_statistics import *
 from .statistic_aggregator import *
