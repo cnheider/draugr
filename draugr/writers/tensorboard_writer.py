@@ -8,7 +8,6 @@ __author__ = "cnheider"
 __doc__ = ""
 
 from tensorboardX import SummaryWriter
-from torch import nn as nn, Tensor
 
 
 class TensorBoardWriter(Writer):
@@ -24,7 +23,7 @@ class TensorBoardWriter(Writer):
     def _scalar(self, tag: str, value: float, step: int):
         self.writer.add_scalar(tag, value, step)
 
-    def _graph(self, model: nn.Module, input_to_model: Tensor):
+    def _graph(self, model, input_to_model):
         self.writer.add_graph(model, input_to_model)
 
 
