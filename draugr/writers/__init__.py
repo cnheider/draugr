@@ -4,10 +4,9 @@
 __author__ = "cnheider"
 __doc__ = ""
 
-
-from .tensorboard_writer import TensorBoardWriter
+from .console_writer import ConsoleWriter
 from .csv_writer import CSVWriter
+from .draugr_writer import DraugrWriter
 from .log_writer import LogWriter
 from .mock_writer import MockWriter
-from .console_writer import ConsoleWriter
-from .draugr_writer import DraugrWriter
+from .tensorboard_writer import TensorBoardWriter

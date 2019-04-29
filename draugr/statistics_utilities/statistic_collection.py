@@ -59,7 +59,7 @@ class StatisticCollection(dict):
             raise AttributeError
 
     def __repr__(self):
-        return f"<StatisticCollection> { self._statistics } </StatisticCollection>"
+        return f"<StatisticCollection> {self._statistics} </StatisticCollection>"
 
     def __str__(self):
         return self.__repr__()

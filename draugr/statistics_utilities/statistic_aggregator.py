@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from warnings import warn
+
 from .statistics_persistence import save_statistic
 
 __author__ = "cnheider"
@@ -122,7 +123,7 @@ class StatisticAggregator(object):
     #  return self._values
 
     def __repr__(self):
-        return f"<StatisticAggregator> values: { self._values }, measures: {self.measures} </StatisticAggregator>"
+        return f"<StatisticAggregator> values: {self._values}, measures: {self.measures} </StatisticAggregator>"
 
     def __str__(self):
         return str(self._values)

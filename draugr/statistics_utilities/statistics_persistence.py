@@ -12,7 +12,10 @@ def save_statistic(
 ) -> bool:
     if statistic:
         _file_date = datetime.datetime.now()
-        _file_name = f'{project_name}-{config_name.replace(".", "_")}-{_file_date.strftime("%y%m%d%H%M")}.{stat_name}.csv'
+        _file_name = (
+            f'{project_name}-{config_name.replace(".", "_")}-'
+            f'{_file_date.strftime("%y%m%d%H%M")}.{stat_name}.csv'
+        )
         _file_path = os.path.join(directory, _file_name)
 
         stat = [[s] for s in statistic]

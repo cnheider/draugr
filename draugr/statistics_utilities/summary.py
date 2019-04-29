@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "cnheider"
-import numpy as np
-
 import statistics as S
+
+import numpy as np
 
 
 class Summary:

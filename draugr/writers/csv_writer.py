@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import csv
+import pathlib
 
 from draugr.writers.utilities import create_folders_if_necessary
 from draugr.writers.writer import Writer
-import pathlib
 
 __author__ = "cnheider"
 __doc__ = ""

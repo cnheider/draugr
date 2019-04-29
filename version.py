@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
-import time
 from warnings import warn
 
 __author__ = "cnheider"

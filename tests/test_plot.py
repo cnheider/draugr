@@ -3,8 +3,9 @@
 
 __author__ = "cnheider"
 
-from draugr import terminal_plot
 import numpy as np
+
+from draugr import terminal_plot
 
 
 def test_plot():
