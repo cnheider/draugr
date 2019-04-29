@@ -20,7 +20,9 @@ def get_version():
         # never desirable for artifact repositories, so we strip the
         # leading 'v' if it's present.
         version = (
-            version[1:] if type(version) is str and version.startswith("v") else version
+            version[1:]
+            if isinstance(version, str) and version.startswith("v")
+            else version
         )
     else:
         # Default version is an ISO8601 compiliant datetime. PyPI doesn't allow

@@ -35,9 +35,9 @@ def terminal_plot(
     border_size=1,
 ):
     """
-  x, y list of values on x- and y-axis
-  plot those values within canvas size (rows and columns)
-  """
+x, y list of values on x- and y-axis
+plot those values within canvas size (rows and columns)
+"""
 
     num_y = len(y)
     if num_y == 0:
