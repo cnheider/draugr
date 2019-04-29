@@ -2,3 +2,4 @@ warg
 numpy
 six
 pytest
+tensorboardX
