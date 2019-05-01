@@ -6,6 +6,11 @@ from warnings import warn
 
 __author__ = "cnheider"
 __version__ = "0.0.1"
+__doc__ = """
+Created on 27/04/2019
+
+@author: cnheider
+"""
 
 
 def get_version():
