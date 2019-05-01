@@ -5,14 +5,14 @@ import os
 from warnings import warn
 
 __author__ = "cnheider"
-__version__ = 0.1
+__version__ = "0.0.1"
 
 
 def get_version():
 
     version = __version__
     if not version:
-        version = os.getenv("VERSION", "0.0")
+        version = os.getenv("VERSION", "0.0.0")
         now = datetime.datetime.utcnow()
         date_version = now.strftime("%Y%m%d%H%M%S")
         # date_version = time.time()
