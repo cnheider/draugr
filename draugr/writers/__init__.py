@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "cnheider"
-__doc__ = ""
+__doc__ = """
+Created on 27/04/2019
+
+@author: cnheider
+"""
 
 from .console_writer import ConsoleWriter
 from .csv_writer import CSVWriter

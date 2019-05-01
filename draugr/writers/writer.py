@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "cnheider"
-__doc__ = ""
+__doc__ = """
+Created on 27/04/2019
+
+@author: cnheider
+"""
 
 from abc import ABCMeta, abstractmethod
 from collections import Counter

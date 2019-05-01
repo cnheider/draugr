@@ -6,7 +6,11 @@ import threading
 from matplotlib import animation
 
 __author__ = "cnheider"
-__doc__ = ""
+__doc__ = """
+Created on 27/04/2019
+
+@author: cnheider
+"""
 
 import matplotlib.pyplot as plt
 

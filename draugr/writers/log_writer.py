@@ -8,7 +8,11 @@ from draugr.writers.utilities import create_folders_if_necessary
 from draugr.writers.writer import Writer
 
 __author__ = "cnheider"
-__doc__ = ""
+__doc__ = """
+Created on 27/04/2019
+
+@author: cnheider
+"""
 
 
 class LogWriter(Writer):

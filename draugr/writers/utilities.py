@@ -6,7 +6,11 @@ import os
 import numpy
 
 __author__ = "cnheider"
-__doc__ = ""
+__doc__ = """
+Created on 27/04/2019
+
+@author: cnheider
+"""
 
 
 def create_folders_if_necessary(path):

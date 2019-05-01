@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "cnheider"
-__doc__ = ""
+__doc__ = """
+Created on 27/04/2019
+
+@author: cnheider
+"""
 
 
 def correlation_matrix_plot(cor, labels=None, title=""):
@@ -53,7 +57,7 @@ produces a pca projection and plot the 2 most significant component score and th
 
     def pca2_plot(scores, coefficients, skew_label=1.08):
         """
-  # Call the function. Use only the 2 PCs.
+# Call the function. Use only the 2 PCs.
 
 :param scores:
 :param coefficients:
