@@ -12,12 +12,17 @@ Created on 27/04/2019
 @author: cnheider
 """
 
+RELEASE = False
+DEBUG = False
 
-def get_version():
+
+def get_version(append_time=False):
 
     version = __version__
     if not version:
         version = os.getenv("VERSION", "0.0.0")
+
+    if append_time or not RELEASE:
         now = datetime.datetime.utcnow()
         date_version = now.strftime("%Y%m%d%H%M%S")
         # date_version = time.time()
@@ -56,9 +61,7 @@ def get_version():
 if __version__ is None:
     __version__ = get_version()
 
-_debug = False
-
 
 @property
 def debug():
-    return _debug
+    return DEBUG
