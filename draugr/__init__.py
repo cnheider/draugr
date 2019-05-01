@@ -3,6 +3,7 @@
 
 __author__ = "cnheider"
 
-from .draugr import *
-from .draugr_utilties import *
+from draugr.visualisation.terminal_plot import *
+from .visualisation import *
 from .writers import *
+from .statistics_utilities import *
