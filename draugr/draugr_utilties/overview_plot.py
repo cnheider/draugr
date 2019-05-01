@@ -5,31 +5,22 @@ __author__ = "cnheider"
 __doc__ = ""
 
 
-def correlation_matrix_plot(
-    cor,  # pairwise correlation
-    labels=(
-        "Sex",
-        "Length",
-        "Diam",
-        "Height",
-        "Whole",
-        "Shucked",
-        "Viscera",
-        "Shell",
-        "Rings",
-    ),
-    title="Abalone Feature Correlation",
-):
+def correlation_matrix_plot(cor, labels=None, title=""):
     from matplotlib import pyplot as plt
-    from matplotlib import cm as cm
     import numpy as np
+
+    if labels is None:
+        labels = [f"P{i}" for i in range(len(cor))]
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
-    cmap = cm.get_cmap("jet", 30)
-    cax = ax1.imshow(cor, interpolation="nearest", cmap=cmap)
+
+    cax = ax1.matshow(cor)
     ax1.grid(True)
     plt.title(title)
+
+    ax1.set_xticks(range(len(cor)))
+    ax1.set_yticks(range(len(cor)))
 
     ax1.set_xticklabels(labels, fontsize=6)
     ax1.set_yticklabels(labels, fontsize=6)
@@ -60,7 +51,7 @@ def biplot(X, y, labels=None):
     pca = PCA()
     x_new = pca.fit_transform(X)
 
-    def pca2_plot(scores, coefficients):
+    def pca2_plot(scores, coefficients, skew_label=1.08):
         """
       # Call the function. Use only the 2 PCs.
 
@@ -114,13 +105,13 @@ def biplot(X, y, labels=None):
                 0, 0, coefficients[i, 0], coefficients[i, 1], color="r", alpha=0.5
             )
 
-            label = f"P{i + 1}"
+            label = f"P{i}"
             if labels is not None:
                 label = labels[i]
 
             ax2.text(
-                coefficients[i, 0] * 1.05,
-                coefficients[i, 1] * 1.05,
+                coefficients[i, 0] * skew_label,
+                coefficients[i, 1] * skew_label,
                 label,
                 color="g",
                 ha="center",
@@ -150,7 +141,7 @@ if __name__ == "__main__":
     df = pd.read_csv(my_csv, index_col=0)
     cor = df.corr()
 
-    correlation_matrix_plot(cor)
+    correlation_matrix_plot(cor, labels=df.columns)
     plt.show()
 
     from sklearn import datasets

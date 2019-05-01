@@ -13,7 +13,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def scroll_plot(vector_provider, delta=1 / 60, window_length=None, labels=None):
+def scroll_plot(
+    vector_provider,
+    delta=1 / 24,
+    window_length=None,
+    labels=None,
+    title="",
+    x_label="Time",
+    y_label="Action Index",
+):
     d = vector_provider()
     num_actions = len(d)
     if not window_length:
@@ -46,9 +54,9 @@ def scroll_plot(vector_provider, delta=1 / 60, window_length=None, labels=None):
         labels = np.arange(0, num_actions, 1)
     plt.yticks(b, labels, rotation=45)
 
-    plt.xlabel("Time")
-    plt.ylabel("Action Index")
-    plt.title("Action History Window")
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(title)
     plt.tight_layout()
 
     anim = animation.FuncAnimation(
