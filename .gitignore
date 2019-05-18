@@ -11,6 +11,8 @@ __pycache__/
 .idea/
 #*.py[cod]
 *.orig
+classification_report.pdf
+classification_report.html
 
 venv/
 *.db

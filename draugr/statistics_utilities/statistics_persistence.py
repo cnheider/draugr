@@ -16,7 +16,7 @@ def save_statistic(
             f'{project_name}-{config_name.replace(".", "_")}-'
             f'{_file_date.strftime("%y%m%d%H%M")}.{stat_name}.csv'
         )
-        _file_path = os.path.join(directory, _file_name)
+        _file_path = pathlib.Path.joinpath(directory, _file_name)
 
         stat = [[s] for s in statistic]
         with open(_file_path, "w") as f:

@@ -8,11 +8,30 @@ Created on 27/04/2019
 @author: cnheider
 """
 
+from itertools import cycle
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from scipy import interp
+from sklearn import svm
+from sklearn.datasets import make_classification
+from sklearn.decomposition import PCA
+from sklearn.metrics import (
+    auc,
+    average_precision_score,
+    confusion_matrix,
+    precision_recall_curve,
+    roc_curve,
+)
+from sklearn.model_selection import train_test_split
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler, label_binarize
+from sklearn.utils.multiclass import unique_labels
+
 
 def correlation_matrix_plot(cor, labels=None, title=""):
-    from matplotlib import pyplot as plt
-    import numpy as np
-
     if labels is None:
         labels = [f"P{i}" for i in range(len(cor))]
 
@@ -41,12 +60,6 @@ produces a pca projection and plot the 2 most significant component score and th
 :param labels:
 :return:
 """
-
-    import numpy as np
-    import matplotlib.pyplot as plt
-
-    from sklearn.decomposition import PCA
-    from sklearn.preprocessing import StandardScaler
 
     scaler = StandardScaler()
     scaler.fit(X)
@@ -125,23 +138,202 @@ produces a pca projection and plot the 2 most significant component score and th
     pca2_plot(x_new[:, 0:2], np.transpose(pca.components_[0:2, :]))
 
 
-def a():
-    import numpy as np
+def precision_recall_plt2():
+    iris = datasets.load_iris()
+    X = iris.data
+    y = iris.target
 
-    x1 = np.arange(10)
-    y1 = x1 ** 2
-    x2 = np.arange(100, 200)
-    y2 = x2
+    # Use label_binarize to be multi-label like settings
+    Y = label_binarize(y, classes=[0, 1, 2])
+    n_classes = Y.shape[1]
+
+    # Split into training and test
+    X_train, X_test, Y_train, Y_test = train_test_split(
+        X, Y, test_size=0.5, random_state=random_state
+    )
+
+    # Run classifier
+    classifier = OneVsRestClassifier(svm.LinearSVC(random_state=random_state))
+    classifier.fit(X_train, Y_train)
+    y_score = classifier.decision_function(X_test)
+
+    # For each class
+    precision = dict()
+    recall = dict()
+    average_precision = dict()
+    for i in range(n_classes):
+        precision[i], recall[i], _ = precision_recall_curve(Y_test[:, i], y_score[:, i])
+        average_precision[i] = average_precision_score(Y_test[:, i], y_score[:, i])
+
+    # A "micro-average": quantifying score on all classes jointly
+    precision["micro"], recall["micro"], _ = precision_recall_curve(
+        Y_test.ravel(), y_score.ravel()
+    )
+    average_precision["micro"] = average_precision_score(
+        Y_test, y_score, average="micro"
+    )
+    print(
+        "Average precision score, micro-averaged over all classes: {0:0.2f}".format(
+            average_precision["micro"]
+        )
+    )
+
+    from itertools import cycle
+
+    # setup plot details
+    colors = cycle(["navy", "turquoise", "darkorange", "cornflowerblue", "teal"])
+
+    plt.figure(figsize=(7, 8))
+    f_scores = np.linspace(0.2, 0.8, num=4)
+    lines = []
+    labels = []
+    l = None
+    for f_score in f_scores:
+        x = np.linspace(0.01, 1)
+        y = f_score * x / (2 * x - f_score)
+        l, = plt.plot(x[y >= 0], y[y >= 0], color="gray", alpha=0.2)
+        plt.annotate("f1={0:0.1f}".format(f_score), xy=(0.9, y[45] + 0.02))
+
+    lines.append(l)
+    labels.append("iso-f1 curves")
+    l, = plt.plot(recall["micro"], precision["micro"], color="gold", lw=2)
+    lines.append(l)
+    labels.append(
+        "micro-average Precision-recall (area = {0:0.2f})"
+        "".format(average_precision["micro"])
+    )
+
+    for i, color in zip(range(n_classes), colors):
+        l, = plt.plot(recall[i], precision[i], color=color, lw=2)
+        lines.append(l)
+        labels.append(
+            "Precision-recall for class {0} (area = {1:0.2f})"
+            "".format(i, average_precision[i])
+        )
+
+    fig = plt.gcf()
+    fig.subplots_adjust(bottom=0.25)
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel("Recall")
+    plt.ylabel("Precision")
+    plt.title("Extension of Precision-Recall curve to multi-class")
+    plt.legend(lines, labels, loc=(0, -0.38), prop=dict(size=14))
+
+    plt.show()
 
 
-def plot_cf(y_pred, y_test, class_names, size=(8, 8), decimals=3):
-    import numpy as np
-    import matplotlib.pyplot as plt
+def precision_recall_plt(y, yhat, n_classes=2):
+    # generate 2 class dataset
+    X, y = make_classification(
+        n_samples=1000, n_classes=2, weights=[1, 1], random_state=1
+    )
+    # split into train/test sets
+    trainX, testX, trainy, testy = train_test_split(X, y, test_size=0.5, random_state=2)
+    # fit a model
+    model = KNeighborsClassifier(n_neighbors=3)
+    model.fit(trainX, trainy)
 
-    from sklearn.metrics import confusion_matrix
-    from sklearn.utils.multiclass import unique_labels
+    # predict probabilities
+    probs = model.predict_proba(testX)
 
-    def plot_confusion_matrix(
+    # keep probabilities for the positive outcome only
+    probs = probs[:, 1]
+
+    # calculate precision-recall curve
+    precision, recall, thresholds = precision_recall_curve(testy, probs)
+
+    # calculate precision-recall AUC
+    auc = auc(recall, precision)
+
+    # plot no skill
+    plt.plot([0, 1], [0.5, 0.5], linestyle="--")
+    # plot the precision-recall curve for the model
+    plt.plot(recall, precision, marker=".")
+
+    for p, r, t in zip(precision, recall, thresholds):
+        plt.annotate(f"{t:.2f}", (r, p))
+
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.45, 1.05])
+    plt.xlabel("Precision")
+    plt.ylabel("Recall")
+    plt.title(f"Multi-class extension Precision Recall {auc} (Varying threshold)")
+    plt.legend(loc="lower right")
+
+
+def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
+    fpr = dict()
+    tpr = dict()
+    roc_auc = dict()
+    for i in range(n_classes):
+        fpr[i], tpr[i], _ = roc_curve(y_test[:, i], y_pred[:, i])
+        roc_auc[i] = auc(fpr[i], tpr[i])
+
+    # Compute micro-average ROC curve and ROC area
+    fpr["micro"], tpr["micro"], _ = roc_curve(y_test.ravel(), y_pred.ravel())
+    roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
+
+    # Compute macro-average ROC curve and ROC area
+
+    # First aggregate all false positive rates
+    all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))
+
+    # Then interpolate all ROC curves at this points
+    mean_tpr = np.zeros_like(all_fpr)
+    for i in range(n_classes):
+        mean_tpr += interp(all_fpr, fpr[i], tpr[i])
+
+    # Finally average it and compute AUC
+    mean_tpr /= n_classes
+
+    fpr["macro"] = all_fpr
+    tpr["macro"] = mean_tpr
+    roc_auc["macro"] = auc(fpr["macro"], tpr["macro"])
+
+    # Plot all ROC curves
+    plt.figure(figsize=size)
+    lw = 1
+    plt.plot([0, 1], [0, 1], "k--", lw=lw)
+
+    plt.plot(
+        fpr["micro"],
+        tpr["micro"],
+        label=f'micro-average ROC curve (area = {roc_auc["micro"]:0.2f})',
+        color="deeppink",
+        linestyle=":",
+        linewidth=lw,
+    )
+
+    plt.plot(
+        fpr["macro"],
+        tpr["macro"],
+        label=f'macro-average ROC curve (area = {roc_auc["macro"]:0.2f})',
+        color="navy",
+        linestyle=":",
+        linewidth=lw,
+    )
+
+    colors = cycle(["aqua", "darkorange", "cornflowerblue", "red", "green", "teal"])
+    for i, color in zip(range(n_classes), colors):
+        plt.plot(
+            fpr[i],
+            tpr[i],
+            color=color,
+            lw=lw,
+            label=f"ROC curve of class {i} (area = {roc_auc[i]:0.2f})",
+        )
+
+    plt.xlim([-0.05, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("multi-class extension Receiver operating characteristic")
+    plt.legend(loc="lower right")
+
+
+def plot_confusion_matrix(y_test, y_pred, class_names, size=(8, 8), decimals=3):
+    def confusion_matrix_figure(
         y_true, y_pred, classes, normalize=False, title=None, cmap=plt.cm.Blues
     ):
         """
@@ -199,7 +391,7 @@ Normalization can be applied by setting `normalize=True`.
     np.set_printoptions(precision=decimals)
 
     # Plot normalized confusion matrix
-    plot_confusion_matrix(
+    confusion_matrix_figure(
         y_test,
         y_pred,
         classes=class_names,
@@ -209,9 +401,6 @@ Normalization can be applied by setting `normalize=True`.
 
 
 if __name__ == "__main__":
-
-    import pandas as pd
-    import matplotlib.pyplot as plt
 
     my_csv = "/home/heider/Data/Datasets/DecisionSupportSystems/Boston.csv"
 
@@ -230,4 +419,31 @@ if __name__ == "__main__":
     biplot(X, y)
     plt.show()
 
-    a()
+    # Binarise the output
+    y = label_binarize(y, classes=[0, 1, 2])
+    n_classes = y.shape[1]
+
+    # Add noisy features to make the problem harder
+    random_state = np.random.RandomState(0)
+    n_samples, n_features = X.shape
+    X = np.c_[X, random_state.randn(n_samples, 200 * n_features)]
+
+    # shuffle and split training and test sets
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.5, random_state=0
+    )
+
+    # Learn to predict each class against the other
+    classifier = OneVsRestClassifier(
+        svm.SVC(kernel="linear", probability=True, random_state=random_state)
+    )
+    y_score = classifier.fit(X_train, y_train).decision_function(X_test)
+
+    # plot_cf(,y,class_names=df.columns)
+    # plt.show()
+
+    # roc_plot(np.argmax(y_score, axis=-1), y_test, n_classes)
+    # plt.show()
+
+    precision_recall_plt(y_score, y_test, n_classes)
+    plt.show()
