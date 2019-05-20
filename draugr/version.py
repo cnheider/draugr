@@ -8,7 +8,7 @@ import pkg_resources
 
 
 __author__ = "cnheider"
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __doc__ = """
 Created on 27/04/2019
 
