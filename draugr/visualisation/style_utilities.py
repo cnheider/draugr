@@ -5,13 +5,13 @@ import shutil
 
 import numpy as np
 
-import warg
+from warg.named_ordered_dictionary import NOD
 
 __author__ = "cnheider"
 
 import six
 
-COLORS = warg.NOD(
+COLORS = NOD(
     red="31",
     green="32",
     yellow="33",
@@ -23,7 +23,7 @@ COLORS = warg.NOD(
     crimson="38",
 )
 
-DECORATIONS = warg.NOD(
+DECORATIONS = NOD(
     end="0",
     bold="1",
     dim="2",
@@ -124,7 +124,7 @@ def get_terminal_size():
 
     rows, columns = int(rows), int(columns)
 
-    return warg.NamedOrderedDictionary.dict_of(rows, columns)
+    return NOD.dict_of(rows, columns)
 
 
 class PrintStyle(object):

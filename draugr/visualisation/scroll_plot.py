@@ -102,14 +102,16 @@ class scroll_plot_class(object):
     def move_figure(figure: plt.Figure, x=0, y=0):
         """Move figure's upper left corner to pixel (x, y)"""
         backend = matplotlib.get_backend()
-        if backend == "TkAgg":
-            figure.canvas.manager.window.wm_geometry("+%d+%d" % (x, y))
-        elif backend == "WXAgg":
-            figure.canvas.manager.window.SetPosition((x, y))
-        else:
-            # This works for QT and GTK
-            # You can also use window.setGeometry
-            figure.canvas.manager.window.move(x, y)
+        if hasattr(figure.canvas.manager, "window"):
+            window = figure.canvas.manager.window
+            if backend == "TkAgg":
+                window.wm_geometry("+%d+%d" % (x, y))
+            elif backend == "WXAgg":
+                window.SetPosition((x, y))
+            else:
+                # This works for QT and GTK
+                # You can also use window.setGeometry
+                window.move(x, y)
 
     def __enter__(self):
         return self
