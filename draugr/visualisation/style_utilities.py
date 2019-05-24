@@ -124,7 +124,7 @@ def get_terminal_size():
 
     rows, columns = int(rows), int(columns)
 
-    return NOD.dict_of(rows, columns)
+    return NOD.nod_of(rows, columns)
 
 
 class PrintStyle(object):
