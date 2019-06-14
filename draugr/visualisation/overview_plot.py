@@ -356,7 +356,7 @@ Normalization can be applied by setting `normalize=True`.
 
         fig, ax = plt.subplots(figsize=size)
         im = ax.imshow(cm, interpolation="nearest", cmap=cmap)
-        ax.figure.colorbar(im, ax=ax)
+        ax.barh.colorbar(im, ax=ax)
         # We want to show all ticks...
         ax.set(
             xticks=np.arange(cm.shape[1]),

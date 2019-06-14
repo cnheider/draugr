@@ -14,9 +14,9 @@ Blue nodes are the Variables that require grad,
 Orange are Tensors saved for backward in torch.autograd.Function
 
 Args:
-    var: output Variable
-    params: dict of (name, Variable) to add names to node that
-        require grad
+  var: output Variable
+  params: dict of (name, Variable) to add names to node that
+      require grad
 """
     param_map = {id(v): k for k, v in params.items()}
     print(param_map)

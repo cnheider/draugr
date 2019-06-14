@@ -6,7 +6,7 @@ __author__ = "cnheider"
 __doc__ = ""
 
 
-def add_early_stopping_key_combination(callback, has_x_server=True):
+def add_early_stopping_key_combination(callback, has_x_server=True, verbose=False):
     if not has_x_server:
         return
 
@@ -25,13 +25,13 @@ def add_early_stopping_key_combination(callback, has_x_server=True):
 
     # keyboard.add_hotkey(key, callback)
     CALLBACKS.append(callback)
-    draugr.sprint(
-        f"\n\nPress any of:\n{COMBINATIONS}\n for early stopping\n",
-        color="red",
-        bold=True,
-        highlight=True,
-    )
-    print("")
+    if verbose:
+        draugr.sprint(
+            f"\n\nPress any of:\n{COMBINATIONS}\n for early stopping\n",
+            color="red",
+            bold=True,
+            highlight=True,
+        )
 
     def on_press(key):
         if any([key in COMBO for COMBO in COMBINATIONS]):

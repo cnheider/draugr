@@ -98,10 +98,10 @@ if __name__ == "__main__":
     # ma_plot(_file_name_1, 'NoCur')
     # ma_plot(_file_name_2, 'Cur')
     # simple_plot(_latest_model)
-    a = [0, 92, 3, 2, 5, 644, 34, 36, 423, 421]
+    LATEST_GPU_STATS = [0, 92, 3, 2, 5, 644, 34, 36, 423, 421]
     b = [215, 92, 6, 1, 5, 644, 328, 32, 413, 221]
     c = [62, 68, 8, 25, 7, 611, 29, 38, 421, 425]
-    d = np.array(zip([a, b, c]))
+    d = np.array(zip([LATEST_GPU_STATS, b, c]))
     error_plot(d)
 
     plt.show()
