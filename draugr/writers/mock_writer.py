@@ -11,5 +11,16 @@ Created on 27/04/2019
 
 
 class MockWriter(Writer):
-    def _scalar(self, tag: str, value: float, step: int):
+    def _close(self, exc_type, exc_val, exc_tb):
         pass
+
+    def _open(self):
+        return self
+
+    def _scalar(self, *args, **kwargs):
+        pass
+
+
+if __name__ == "__main__":
+    with MockWriter() as w:
+        w.scalar("a", 2)

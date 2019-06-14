@@ -58,12 +58,12 @@ class scroll_plot_class(object):
             extent = [num_actions, 0, 0, -window_length]
 
         """
-    fig_manager = plt.get_current_fig_manager()
-    geom = fig_manager.window.geometry()
-    x, y, dx, dy = geom.getRect()
-    fig_manager.window.setGeometry(*placement, dx, dy)
-    fig_manager.window.SetPosition((500, 0))
-    """
+fig_manager = plt.get_current_fig_manager()
+geom = fig_manager.window.geometry()
+x, y, dx, dy = geom.getRect()
+fig_manager.window.setGeometry(*placement, dx, dy)
+fig_manager.window.SetPosition((500, 0))
+"""
         self.placement = placement
 
         if vertical:
@@ -123,10 +123,10 @@ class scroll_plot_class(object):
     def draw(self, data, delta=1 / 120):
         """
 
-    :param data:
-    :param delta: 1 / 60 for 60fps
-    :return:
-    """
+:param data:
+:param delta: 1 / 60 for 60fps
+:return:
+"""
 
         array = self.im.get_array()
 
@@ -307,5 +307,5 @@ if __name__ == "__main__":
     delta = 1 / 60
 
     s = scroll_plot_class(3)
-    for a in range(100):
+    for LATEST_GPU_STATS in range(100):
         s.draw(numpy.random.rand(3))

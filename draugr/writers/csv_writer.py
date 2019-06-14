@@ -3,7 +3,7 @@
 import csv
 import pathlib
 
-from draugr.writers.utilities import create_folders_if_necessary
+from draugr.writers.writer_utilities import create_folders_if_necessary
 from draugr.writers.writer import Writer
 
 __author__ = "cnheider"
@@ -19,7 +19,7 @@ class CSVWriter(Writer):
     def get_csv_writer(path=pathlib.Path.home() / "Models"):
         csv_path = path / "log.csv"
         create_folders_if_necessary(csv_path)
-        csv_file = open(csv_path, "a")
+        csv_file = open(str(csv_path), "a")
         return csv_file, csv.writer(csv_file)
 
     def _scalar(self, tag: str, value: float, step: int):
@@ -31,11 +31,11 @@ class CSVWriter(Writer):
         self.f = None
         self.writer = None
 
-    def __enter__(self):
+    def _open(self):
         self.f, self.writer = self.get_csv_writer(self.path)
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def _close(self, exc_type, exc_val, exc_tb):
         self.f.close()
 
     def _write(self, *d):

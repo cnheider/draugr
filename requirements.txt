@@ -6,3 +6,4 @@ tensorboardX
 matplotlib
 pandas
 scikit-learn
+torch

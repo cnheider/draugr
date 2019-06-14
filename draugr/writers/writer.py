@@ -24,10 +24,10 @@ class Writer(metaclass=ABCMeta):
         return is_in_filters and at_interval
 
     def __enter__(self):
-        return self
+        return self._open()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
+        self._close(exc_type, exc_val, exc_tb)
 
     def scalar(self, tag: str, value: float, step_i: int = None):
         if step_i:
@@ -42,3 +42,11 @@ class Writer(metaclass=ABCMeta):
     @abstractmethod
     def _scalar(self, tag: str, value: float, step: int):
         raise NotImplementedError
+
+    @abstractmethod
+    def _close(self, exc_type, exc_val, exc_tb):
+        raise NotImplementedError
+
+    @abstractmethod
+    def _open(self):
+        return self

@@ -11,6 +11,12 @@ Created on 27/04/2019
 
 
 class ConsoleWriter(Writer):
+    def _close(self, exc_type, exc_val, exc_tb):
+        pass
+
+    def _open(self):
+        return self
+
     def _scalar(self, tag: str, value: float, step: int):
         print(f"{step} [{tag}] {value}")
 

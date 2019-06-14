@@ -13,4 +13,4 @@ from .csv_writer import CSVWriter
 from .draugr_writer import DraugrWriter
 from .log_writer import LogWriter
 from .mock_writer import MockWriter
-from .tensorboard_writer import TensorBoardWriter
+from draugr.writers.tensorboards.tensorboard_x_writer import TensorBoardXWriter
