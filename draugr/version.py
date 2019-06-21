@@ -7,7 +7,7 @@ from pip._internal.utils.misc import dist_is_editable
 import pkg_resources
 
 __author__ = "cnheider"
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 __doc__ = """
 Created on 27/04/2019
 
