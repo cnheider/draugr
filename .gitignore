@@ -1,4 +1,4 @@
-build/
+docs/build/
 dist/
 .vscode
 .installed.cfg
@@ -8,19 +8,15 @@ eggs
 parts
 *.egg-info
 __pycache__/
-.idea/
 #*.py[cod]
+.idea/
+.pytest_cache
 *.orig
-classification_report.pdf
-classification_report.html
 
 venv/
 *.db
 
-environments/
 *.log
-#.idea
-
 # Byte-compiled / optimized / DLL files
 *$py.class
 
@@ -122,6 +118,12 @@ ENV/
 .pyre
 logs/*.csv
 
-build
-exclude/
+*[Ee]xcluded.*
+*[Ee]xclude.*
+*[Ee]xcluded*
+*[Ee]xclude*
 
+
+pip-wheel-metadata
+.pytest_cache
+build/

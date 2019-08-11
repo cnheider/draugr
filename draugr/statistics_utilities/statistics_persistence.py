@@ -4,7 +4,6 @@ __author__ = "cnheider"
 
 import csv
 import datetime
-import os
 
 
 def save_statistic(
