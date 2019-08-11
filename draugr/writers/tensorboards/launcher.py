@@ -5,9 +5,10 @@ __author__ = "cnheider"
 __doc__ = ""
 
 
-def launch_tensorboard(log_dir):
+def launch_tensorboard(log_dir, port=6006):
     from tensorboard import program
 
     tb = program.TensorBoard()
-    tb.configure(argv=[None, "--logdir", log_dir])
+    # tb.configure(argv=['', '--logdir', log_dir, '--port', port])
+    tb.configure(logdir=log_dir, port=port)
     return tb.launch()

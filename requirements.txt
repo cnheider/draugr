@@ -1,9 +1,5 @@
+apppath
 warg
 numpy
 six
 pytest
-tensorboardX
-matplotlib
-pandas
-scikit-learn
-torch

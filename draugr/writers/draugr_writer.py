@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import pathlib
 
 from tqdm import tqdm
 
@@ -83,19 +82,19 @@ if __name__ == "__main__":
         **kwargs,
     ) -> TR:
         """
-      :param _environment:
-      :type _environment:,0
-      :param rollouts:
-      :type rollouts:
-      :param render:
-      :type render:
-      :param render_frequency:
-      :type render_frequency:
-      :param stat_frequency:
-      :type stat_frequency:
-      :return:
-      :rtype:
-    """
+  :param _environment:
+  :type _environment:,0
+  :param rollouts:
+  :type rollouts:
+  :param render:
+  :type render:
+  :param render_frequency:
+  :type render_frequency:
+  :param stat_frequency:
+  :type stat_frequency:
+  :return:
+  :rtype:
+"""
 
         stats = draugr.StatisticCollection(
             stats=("signal", "duration", "td_error", "epsilon")

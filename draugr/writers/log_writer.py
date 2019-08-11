@@ -4,8 +4,8 @@ import logging
 import pathlib
 import sys
 
-from draugr.writers.writer_utilities import create_folders_if_necessary
 from draugr.writers.writer import Writer
+from draugr.writers.writer_utilities import create_folders_if_necessary
 
 __author__ = "cnheider"
 __doc__ = """
