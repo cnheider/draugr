@@ -2,15 +2,18 @@
 # -*- coding: utf-8 -*-
 from warnings import warn
 
-from .statistics_persistence import save_statistic
+from .metric_persistence import save_metric
 
 __author__ = "cnheider"
-import statistics as S
+import statistics as stats
 
 
-class StatisticAggregator(object):
+class MetricAggregator(object):
     def __init__(
-        self, measures=S.__all__[1:], keep_measure_history=False, use_disk_cache=True
+        self,
+        measures=stats.__all__[1:],
+        keep_measure_history=False,
+        use_disk_cache=True,
     ):
         self._values = []
         self._length = 0
@@ -49,8 +52,8 @@ class StatisticAggregator(object):
             out = {}
             for key in self._stat_measure_keys:
                 try:
-                    val = getattr(S, key)(self._values)
-                except S.StatisticsError as e:
+                    val = getattr(stats, key)(self._values)
+                except stats.StatisticsError as e:
                     # TODO: warn(f'{e}')
                     val = None
                 out[key] = val
@@ -72,15 +75,15 @@ class StatisticAggregator(object):
             for key in self._stat_measure_keys:
                 if self._length > 1:
                     try:
-                        val = getattr(S, key)(self._values)
+                        val = getattr(stats, key)(self._values)
                     except:
                         val = None
                     self._measures[key].append(val)
                 else:
                     # warn(f'Length of statistical values are <=1, measure "{key}" maybe ill-defined')
                     try:
-                        val = getattr(S, key)(self._values)
-                    except S.StatisticsError as e:
+                        val = getattr(stats, key)(self._values)
+                    except stats.StatisticsError as e:
                         # TODO: warn(f'{e}')
                         val = None
                     self._measures[key].append(val)
@@ -101,8 +104,8 @@ class StatisticAggregator(object):
                     return self._measures[item]
                 else:
                     try:
-                        return getattr(S, item)(self._values)
-                    except S.StatisticsError as e:
+                        return getattr(stats, item)(self._values)
+                    except stats.StatisticsError as e:
                         warn(f"{e}")
                         return None
             else:
@@ -110,8 +113,8 @@ class StatisticAggregator(object):
                     f'Length of statistical values are <=1, measure "{item}" maybe ill-defined'
                 )
                 try:
-                    return getattr(S, item)(self._values)
-                except S.StatisticsError as e:
+                    return getattr(stats, item)(self._values)
+                except stats.StatisticsError as e:
                     warn(f"{e}")
                     return None
         elif item == self._running_value_key:
@@ -133,9 +136,9 @@ class StatisticAggregator(object):
 
     def calc_moving_average(self, window_size=100):
         if self._length >= window_size:
-            return S.mean(self._values[-window_size:])
+            return stats.mean(self._values[-window_size:])
         elif self._length > 0:
-            return S.mean(self._values)
+            return stats.mean(self._values)
         else:
             return 0
 
@@ -160,9 +163,9 @@ class StatisticAggregator(object):
     def save(
         self, *, stat_name, project_name="non", config_name="non", directory="logs"
     ):
-        save_statistic(
+        save_metric(
             self._values,
-            stat_name=stat_name,
+            metric_name=stat_name,
             project_name=project_name,
             config_name=config_name,
             directory=directory,
@@ -170,7 +173,7 @@ class StatisticAggregator(object):
 
 
 if __name__ == "__main__":
-    signals = StatisticAggregator(keep_measure_history=False)
+    signals = MetricAggregator(keep_measure_history=False)
 
     for i in range(10):
         signals.append(i)

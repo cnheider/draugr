@@ -3,7 +3,7 @@
 __author__ = "cnheider"
 
 from .episode_statistics import *
-from .statistic_aggregator import *
-from .statistic_collection import *
-from .statistics_persistence import *
+from .metric_aggregator import *
+from .metric_collection import *
+from .metric_persistence import *
 from .summary import *

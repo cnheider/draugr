@@ -3,3 +3,5 @@ warg
 numpy
 six
 pytest
+pandas
+sklearn

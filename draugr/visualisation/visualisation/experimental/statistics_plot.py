@@ -12,7 +12,7 @@ import csv
 
 import matplotlib.pyplot as plt
 
-from agent import utilities as U
+from neodroidagent import utilities as U
 
 # set up matplotlib
 is_ipython = "inline" in matplotlib.get_backend()
@@ -90,7 +90,7 @@ def plot_durations(episode_durations):
 
 if __name__ == "__main__":
 
-    import agent.configs.base_config as C
+    import neodroidagent.configs.base_config as C
 
     _list_of_files = list(C.LOG_DIRECTORY.glob("*.csv"))
     _latest_model = max(_list_of_files, key=os.path.getctime)

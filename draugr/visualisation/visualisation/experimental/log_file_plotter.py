@@ -7,7 +7,7 @@ import csv
 
 import matplotlib.pyplot as plt
 
-from agent import utilities as U
+from neodroidagent import utilities as U
 
 # print(plt.style.available)
 plot_style = "fivethirtyeight"
