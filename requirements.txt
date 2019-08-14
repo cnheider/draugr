@@ -5,3 +5,4 @@ six
 pytest
 pandas
 sklearn
+pynput

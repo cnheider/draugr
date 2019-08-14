@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
+from logging import warn, warning
 
 import pkg_resources
 from pip._internal.utils.misc import dist_is_editable
@@ -9,7 +10,7 @@ from pip._internal.utils.misc import dist_is_editable
 from apppath import AppPath
 
 __author__ = "cnheider"
-__version__ = "0.2.5"
+__version__ = "0.2.6"
 __doc__ = """
 Created on 27/04/2019
 
@@ -71,7 +72,7 @@ def get_version(append_time=DEVELOP):
             #
             # Publications using datetime versions should only be made from master
             # to represent the HEAD moving forward.
-            warn(
+            warning(
                 f"Environment variable VERSION is not set, only using datetime: {date_version}"
             )
 
