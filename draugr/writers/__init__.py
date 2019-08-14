@@ -8,7 +8,7 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-from draugr.writers.tensorboards.tensorboard_x_writer import TensorBoardXWriter
+from .tensorboards import *
 from .console_writer import ConsoleWriter
 from .csv_writer import CSVWriter
 from .draugr_writer import DraugrWriter

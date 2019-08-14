@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import datetime
+import os
 
 import pkg_resources
 from pip._internal.utils.misc import dist_is_editable
@@ -7,7 +9,7 @@ from pip._internal.utils.misc import dist_is_editable
 from apppath import AppPath
 
 __author__ = "cnheider"
-__version__ = "0.2.3"
+__version__ = "0.2.4"
 __doc__ = """
 Created on 27/04/2019
 
@@ -84,7 +86,3 @@ if __version__ is None:
     __version__ = get_version(append_time=True)
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
-
-from .visualisation import *
-from .writers import *
-from .statistics_utilities import *

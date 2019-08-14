@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import draugr
+from draugr.visualisation import sprint
 
 __author__ = "cnheider"
 __doc__ = ""
@@ -26,7 +26,7 @@ def add_early_stopping_key_combination(callback, has_x_server=True, verbose=Fals
     # keyboard.add_hotkey(key, callback)
     CALLBACKS.append(callback)
     if verbose:
-        draugr.sprint(
+        sprint(
             f"\n\nPress any of:\n{COMBINATIONS}\n for early stopping\n",
             color="red",
             bold=True,

@@ -5,6 +5,7 @@ import pathlib
 import matplotlib.pyplot as plt
 import numpy
 
+
 from draugr.writers.writer import Writer
 
 __author__ = "cnheider"
@@ -14,11 +15,11 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-from tensorboardX import SummaryWriter
-
 
 class TensorBoardXWriter(Writer):
     def _open(self):
+        from torch.utils.tensorboard import SummaryWriter
+
         self.writer = SummaryWriter(str(self._log_dir), self._comment)
         return self
 
