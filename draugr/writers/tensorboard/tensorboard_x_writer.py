@@ -72,5 +72,5 @@ class TensorBoardXWriter(Writer):
 
 if __name__ == "__main__":
 
-    with TensorBoardXWriter(pathlib.Path.home() / "Models") as w:
+    with TensorBoardPytorchWriter(pathlib.Path.home() / "Models") as w:
         w.scalar("What", 4)
