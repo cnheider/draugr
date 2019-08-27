@@ -5,5 +5,4 @@ __author__ = "cnheider"
 from .episode_statistics import *
 from .metric_aggregator import *
 from .metric_collection import *
-from .metric_persistence import *
 from .summary import *

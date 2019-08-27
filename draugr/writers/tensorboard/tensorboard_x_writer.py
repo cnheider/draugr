@@ -5,7 +5,7 @@ import pathlib
 import matplotlib.pyplot as plt
 import numpy
 
-
+from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
 
 __author__ = "cnheider"
@@ -27,14 +27,11 @@ class TensorBoardXWriter(Writer):
         self.writer.close()
 
     def __init__(
-        self,
-        log_dir=pathlib.Path.home() / "Models",
-        comment: str = "",
-        interval: int = 1,
+        self, path=pathlib.Path.home() / "Models", comment: str = "", **kwargs
     ):
-        super().__init__(interval)
+        super().__init__(**kwargs)
 
-        self._log_dir = log_dir
+        self._log_dir = path
         self._comment = comment
 
     def _scalar(self, tag: str, value: float, step: int):
@@ -72,5 +69,5 @@ class TensorBoardXWriter(Writer):
 
 if __name__ == "__main__":
 
-    with TensorBoardPytorchWriter(pathlib.Path.home() / "Models") as w:
+    with TensorBoardXWriter(PROJECT_APP_PATH.user_log / "test") as w:
         w.scalar("What", 4)

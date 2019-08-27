@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from draugr.visualisation import scroll_plot, terminal_plot
 
 __author__ = "cnheider"
 
-import numpy as np
-
-from draugr import scroll_plot, terminal_plot
+import numpy
 
 
 def test_scroll_plot():
@@ -36,10 +35,11 @@ def test_scroll_plot():
     assert True
 
 
-def test_plot():
-    terminal_plot(np.tile(range(9), 4), plot_character="o")
+def test_terminal_plot():
+    terminal_plot(numpy.tile(range(9), 4), plot_character="o")
     assert True
 
 
 if __name__ == "__main__":
-    test_plot()
+    test_terminal_plot()
+    test_scroll_plot()

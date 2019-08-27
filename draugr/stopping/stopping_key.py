@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import MutableSequence
+
 from draugr.visualisation import sprint
 
 __author__ = "cnheider"
 __doc__ = ""
 
 
-def add_early_stopping_key_combination(callback, has_x_server=True, verbose=False):
+def add_early_stopping_key_combination(
+    callback: callable, has_x_server: bool = True, verbose: bool = False
+):
     if not has_x_server:
         return
 
@@ -19,7 +23,7 @@ def add_early_stopping_key_combination(callback, has_x_server=True, verbose=Fals
         {keyboard.Key.shift, keyboard.Key.alt, keyboard.KeyCode(char="S")},
     ]
 
-    CALLBACKS = []
+    CALLBACKS: MutableSequence = []
     # The currently active modifiers
     current = set()
 

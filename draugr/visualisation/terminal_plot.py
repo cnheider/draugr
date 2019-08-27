@@ -12,7 +12,7 @@ __author__ = "cnheider"
 
 from typing import Sized
 
-import numpy as np
+import numpy
 
 
 # sys.stdout.write(generate_style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
@@ -147,4 +147,4 @@ def terminal_plot_stats_shared_x(
 
 
 if __name__ == "__main__":
-    terminal_plot(np.tile(range(9), 4), plot_character="o")
+    terminal_plot(numpy.tile(range(9), 4), plot_character="o")

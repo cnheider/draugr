@@ -4,7 +4,7 @@
 __author__ = "cnheider"
 import statistics as S
 
-import numpy as np
+import numpy
 
 
 class Summary:
@@ -41,7 +41,7 @@ Computes new running mean and variances.
 :return: New mean and variance values.
 """
         mean, var, steps = self.running_mean, self.running_variance, self.length
-        current_x = np.mean(data, axis=0)
+        current_x = numpy.mean(data, axis=0)
 
         new_mean = mean + (current_x - mean) / (steps + 1)
         new_variance = var + (current_x - new_mean) * (current_x - mean)
@@ -51,3 +51,7 @@ Computes new running mean and variances.
 
     def __len__(self):
         return len(self._values)
+
+
+if __name__ == "__main__":
+    Summary()

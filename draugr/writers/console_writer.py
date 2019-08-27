@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 from draugr.writers.writer import Writer
 
 __author__ = "cnheider"

@@ -77,7 +77,7 @@ class DraugrPackage:
     def packages(self):
         return find_packages(
             exclude=[
-                # 'neodroid/environments'
+                # 'Path/To/Exclude'
             ]
         )
 
@@ -99,14 +99,10 @@ class DraugrPackage:
 
     @property
     def package_data(self):
-        # data = glob.glob('environments/mab/**', recursive=True)
+        # data = glob.glob('data/', recursive=True)
         return {
-            # 'neodroid':[
+            # 'PackageName':[
             # *data
-            # 'environments/mab/**',
-            # 'environments/mab/**_Data/*',
-            # 'environments/mab/windows/*'
-            # 'environments/mab/windows/*_Data/*'
             #  ]
         }
 

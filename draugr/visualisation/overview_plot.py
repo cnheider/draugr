@@ -11,7 +11,7 @@ Created on 27/04/2019
 from itertools import cycle
 
 import matplotlib.pyplot as plt
-import numpy as np
+import numpy
 import pandas as pd
 from scipy import interp
 from sklearn import svm
@@ -48,7 +48,7 @@ def correlation_matrix_plot(cor, labels=None, title=""):
     ax1.set_xticklabels(labels, fontsize=6)
     ax1.set_yticklabels(labels, fontsize=6)
 
-    fig.colorbar(cax, ticks=np.arange(-1.1, 1.1, 0.1))
+    fig.colorbar(cax, ticks=numpy.arange(-1.1, 1.1, 0.1))
 
 
 def biplot(X, y, labels=None):
@@ -135,7 +135,7 @@ produces a pca projection and plot the 2 most significant component score and th
                 va="center",
             )
 
-    pca2_plot(x_new[:, 0:2], np.transpose(pca.components_[0:2, :]))
+    pca2_plot(x_new[:, 0:2], numpy.transpose(pca.components_[0:2, :]))
 
 
 def precision_recall_plt2():
@@ -184,12 +184,12 @@ def precision_recall_plt2():
     colors = cycle(["navy", "turquoise", "darkorange", "cornflowerblue", "teal"])
 
     plt.figure(figsize=(7, 8))
-    f_scores = np.linspace(0.2, 0.8, num=4)
+    f_scores = numpy.linspace(0.2, 0.8, num=4)
     lines = []
     labels = []
     l = None
     for f_score in f_scores:
-        x = np.linspace(0.01, 1)
+        x = numpy.linspace(0.01, 1)
         y = f_score * x / (2 * x - f_score)
         l, = plt.plot(x[y >= 0], y[y >= 0], color="gray", alpha=0.2)
         plt.annotate("f1={0:0.1f}".format(f_score), xy=(0.9, y[45] + 0.02))
@@ -277,10 +277,10 @@ def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
     # Compute macro-average ROC curve and ROC area
 
     # First aggregate all false positive rates
-    all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))
+    all_fpr = numpy.unique(numpy.concatenate([fpr[i] for i in range(n_classes)]))
 
     # Then interpolate all ROC curves at this points
-    mean_tpr = np.zeros_like(all_fpr)
+    mean_tpr = numpy.zeros_like(all_fpr)
     for i in range(n_classes):
         mean_tpr += interp(all_fpr, fpr[i], tpr[i])
 
@@ -352,15 +352,15 @@ Normalization can be applied by setting `normalize=True`.
         unique = unique_labels(y_true, y_pred)
         classes = classes[unique]
         if normalize:
-            cm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
+            cm = cm.astype("float") / cm.sum(axis=1)[:, numpy.newaxis]
 
         fig, ax = plt.subplots(figsize=size)
         im = ax.imshow(cm, interpolation="nearest", cmap=cmap)
         ax.barh.colorbar(im, ax=ax)
         # We want to show all ticks...
         ax.set(
-            xticks=np.arange(cm.shape[1]),
-            yticks=np.arange(cm.shape[0]),
+            xticks=numpy.arange(cm.shape[1]),
+            yticks=numpy.arange(cm.shape[0]),
             # ... and label them with the respective list entries
             xticklabels=classes,
             yticklabels=classes,
@@ -388,7 +388,7 @@ Normalization can be applied by setting `normalize=True`.
         fig.tight_layout()
         return ax
 
-    np.set_printoptions(precision=decimals)
+    numpy.set_printoptions(precision=decimals)
 
     # Plot normalized confusion matrix
     confusion_matrix_figure(
@@ -424,9 +424,9 @@ if __name__ == "__main__":
     n_classes = y.shape[1]
 
     # Add noisy features to make the problem harder
-    random_state = np.random.RandomState(0)
+    random_state = numpy.random.RandomState(0)
     n_samples, n_features = X.shape
-    X = np.c_[X, random_state.randn(n_samples, 200 * n_features)]
+    X = numpy.c_[X, random_state.randn(n_samples, 200 * n_features)]
 
     # shuffle and split training and test sets
     X_train, X_test, y_train, y_test = train_test_split(
@@ -442,7 +442,7 @@ if __name__ == "__main__":
     # plot_cf(,y,class_names=df.columns)
     # plt.show()
 
-    # roc_plot(np.argmax(y_score, axis=-1), y_test, n_classes)
+    # roc_plot(numpy.argmax(y_score, axis=-1), y_test, n_classes)
     # plt.show()
 
     precision_recall_plt(y_score, y_test, n_classes)

@@ -2,7 +2,6 @@ apppath
 warg
 numpy
 six
-pytest
 pandas
 sklearn
 pynput

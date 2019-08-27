@@ -4,7 +4,6 @@ import queue
 import threading
 
 import matplotlib
-import numpy
 from matplotlib import animation
 
 __author__ = "cnheider"
@@ -16,7 +15,7 @@ Created on 27/04/2019
 
 import matplotlib.pyplot as plt
 
-import numpy as np
+import numpy
 
 
 class scroll_plot_class(object):
@@ -42,7 +41,7 @@ class scroll_plot_class(object):
         if not window_length:
             window_length = num_actions * 20
 
-        array = np.zeros((window_length, num_actions))
+        array = numpy.zeros((window_length, num_actions))
 
         self.vertical = vertical
         self.overwrite = overwrite
@@ -79,9 +78,9 @@ fig_manager.window.SetPosition((500, 0))
             extent=extent,
         )
 
-        b = np.arange(0.5, num_actions + 0.5, 1)
+        b = numpy.arange(0.5, num_actions + 0.5, 1)
         if not labels:
-            labels = np.arange(0, num_actions, 1)
+            labels = numpy.arange(0, num_actions, 1)
 
         if vertical:
             plt.yticks(b, labels, rotation=45)
@@ -135,11 +134,11 @@ fig_manager.window.SetPosition((500, 0))
 
         if not self.overwrite:
             if not self.reverse:
-                striped = np.delete(array, 0, 0)
-                array = np.vstack((striped, data))
+                striped = numpy.delete(array, 0, 0)
+                array = numpy.vstack((striped, data))
             else:
-                striped = np.delete(array, -1, 0)
-                array = np.vstack((data, striped))
+                striped = numpy.delete(array, -1, 0)
+                array = numpy.vstack((data, striped))
         else:
             array[self.n % self.window_length] = data
 
@@ -173,13 +172,13 @@ def scroll_plot(
         window_length = num_actions * 20
 
     if not overwrite:
-        array = np.zeros((window_length - 1, num_actions))
+        array = numpy.zeros((window_length - 1, num_actions))
         if not reverse:
-            array = np.vstack((array, d))
+            array = numpy.vstack((array, d))
         else:
-            array = np.vstack((d, array))
+            array = numpy.vstack((d, array))
     else:
-        array = np.zeros((window_length, num_actions))
+        array = numpy.zeros((window_length, num_actions))
         if not reverse:
             array[0] = d
         else:
@@ -194,11 +193,11 @@ def scroll_plot(
 
         if not overwrite:
             if not reverse:
-                striped = np.delete(array, 0, 0)
-                array = np.vstack((striped, data))
+                striped = numpy.delete(array, 0, 0)
+                array = numpy.vstack((striped, data))
             else:
-                striped = np.delete(array, -1, 0)
-                array = np.vstack((data, striped))
+                striped = numpy.delete(array, -1, 0)
+                array = numpy.vstack((data, striped))
         else:
             array[n % window_length] = data
 
@@ -229,9 +228,9 @@ def scroll_plot(
         extent=extent,
     )
 
-    b = np.arange(0.5, num_actions + 0.5, 1)
+    b = numpy.arange(0.5, num_actions + 0.5, 1)
     if not labels:
-        labels = np.arange(0, num_actions, 1)
+        labels = numpy.arange(0, num_actions, 1)
 
     if vertical:
         plt.yticks(b, labels, rotation=45)
@@ -275,8 +274,8 @@ def ma():
             return data.get()
 
     def get_sample(num_actions=3):
-        a = np.zeros(num_actions)
-        a[np.random.randint(0, num_actions)] = 1.0
+        a = numpy.zeros(num_actions)
+        a[numpy.random.randint(0, num_actions)] = 1.0
         return a
 
     class MyDataFetchClass(threading.Thread):

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from pathlib import Path
+from typing import List
 from warnings import warn
-
-from .metric_persistence import save_metric
 
 __author__ = "cnheider"
 import statistics as stats
@@ -170,6 +170,35 @@ class MetricAggregator(object):
             config_name=config_name,
             directory=directory,
         )
+
+
+def save_metric(
+    metric: List[MetricAggregator],
+    *,
+    metric_name,
+    project_name,
+    config_name,
+    directory=Path("logs"),
+) -> bool:
+    import csv
+    import datetime
+
+    if metric:
+        _file_date = datetime.datetime.now()
+        _file_name = (
+            f'{project_name}-{config_name.replace(".", "_")}-'
+            f'{_file_date.strftime("%y%m%d%H%M")}.{metric_name}.csv'
+        )
+        _file_path = directory / _file_name
+
+        stat = [[s] for s in metric]
+        with open(_file_path, "w") as f:
+            w = csv.writer(f)
+            w.writerows(stat)
+        print(f"Saved metric at {_file_path}")
+
+        return True
+    return False
 
 
 if __name__ == "__main__":
