@@ -6,7 +6,7 @@ import matplotlib
 import numpy
 import torch
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 import csv
 

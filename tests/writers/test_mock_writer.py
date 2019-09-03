@@ -4,7 +4,7 @@ import pytest
 
 from draugr.writers import MockWriter
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = r"""
            """
 

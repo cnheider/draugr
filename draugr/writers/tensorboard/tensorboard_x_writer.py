@@ -8,7 +8,7 @@ import numpy
 from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = """
 Created on 27/04/2019
 

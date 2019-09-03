@@ -8,7 +8,7 @@ from .style_utilities import (
     scale,
 )
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 from typing import Sized
 

@@ -5,7 +5,7 @@ from typing import Iterable, Sequence, Union
 import numpy
 import torch
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 

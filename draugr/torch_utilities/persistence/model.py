@@ -4,7 +4,7 @@ import pathlib
 
 from warg.named_ordered_dictionary import NOD
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 import datetime
 import os
 import shutil

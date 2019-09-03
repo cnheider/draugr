@@ -7,7 +7,7 @@ from draugr.metrics import MetricCollection
 from draugr.visualisation import styled_terminal_plot_stats_shared_x
 from draugr.writers.writer import Writer
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = """
 Created on 27/04/2019
 

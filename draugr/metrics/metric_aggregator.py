@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List
 from warnings import warn
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 import statistics as stats
 
 

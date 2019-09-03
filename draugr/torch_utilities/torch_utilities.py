@@ -9,7 +9,7 @@ from torch.utils.data import Dataset
 
 from draugr.torch_utilities import to_tensor
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 
 def seed(s):

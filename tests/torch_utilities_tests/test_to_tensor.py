@@ -5,7 +5,7 @@ import torch
 
 from draugr.torch_utilities.to_tensor import to_tensor
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 

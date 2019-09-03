@@ -6,7 +6,7 @@ import threading
 import matplotlib
 from matplotlib import animation
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = """
 Created on 27/04/2019
 
@@ -18,10 +18,9 @@ import matplotlib.pyplot as plt
 import numpy
 
 
-class scroll_plot_class(object):
+class TimeseriesScrollPlot(object):
     def __init__(
         self,
-        num_actions,
         window_length=None,
         labels=None,
         title="",
@@ -36,12 +35,11 @@ class scroll_plot_class(object):
         self.fig = None
         if not render:
             return
-        self._num_actions = num_actions
 
         if not window_length:
-            window_length = num_actions * 20
+            window_length = 20
 
-        array = numpy.zeros((window_length, num_actions))
+        array = numpy.zeros((window_length))
 
         self.vertical = vertical
         self.overwrite = overwrite
@@ -51,18 +49,11 @@ class scroll_plot_class(object):
 
         if vertical:
             self.fig = plt.figure(figsize=(window_length / 10, 2))
-            extent = [-window_length, 0, 0, num_actions]
+            extent = [-window_length, 0, 0, 10]
         else:
             self.fig = plt.figure(figsize=(2, window_length / 10))
-            extent = [num_actions, 0, 0, -window_length]
+            extent = [10, 0, 0, -window_length]
 
-        """
-fig_manager = plt.get_current_fig_manager()
-geom = fig_manager.window.geometry()
-x, y, dx, dy = geom.getRect()
-fig_manager.window.setGeometry(*placement, dx, dy)
-fig_manager.window.SetPosition((500, 0))
-"""
         self.placement = placement
 
         if vertical:
@@ -78,9 +69,9 @@ fig_manager.window.SetPosition((500, 0))
             extent=extent,
         )
 
-        b = numpy.arange(0.5, num_actions + 0.5, 1)
+        b = numpy.arange(0.5, 10 + 0.5, 1)
         if not labels:
-            labels = numpy.arange(0, num_actions, 1)
+            labels = numpy.arange(0, 10, 1)
 
         if vertical:
             plt.yticks(b, labels, rotation=45)
@@ -154,7 +145,7 @@ fig_manager.window.SetPosition((500, 0))
             plt.pause(delta)
 
 
-def scroll_plot(
+def timeseries_scroll_plot(
     vector_provider,
     delta=1 / 60,
     window_length=None,
@@ -254,57 +245,78 @@ def scroll_plot(
     return anim
 
 
-def ma():
-    data = queue.Queue(100)
-
-    class QueueGen:
-        def __iter__(self):
-            return self
-
-        def __next__(self):
-            return self.get()
-
-        def __call__(self, *args, **kwargs):
-            return self.__next__()
-
-        def add(self, a):
-            return data.put(a)
-
-        def get(self):
-            return data.get()
-
-    def get_sample(num_actions=3):
-        a = numpy.zeros(num_actions)
-        a[numpy.random.randint(0, num_actions)] = 1.0
-        return a
-
-    class MyDataFetchClass(threading.Thread):
-        def __init__(self, data):
-
-            threading.Thread.__init__(self)
-
-            self._data = data
-
-        def run(self):
-
-            while True:
-                self._data.add(get_sample())
-
-    d = QueueGen()
-
-    MyDataFetchClass(d).start()
-
-    anim = scroll_plot(iter(d), labels=("a", "b", "c"))
-
-    try:
-        plt.show()
-    except:
-        print("Plot Closed")
-
-
 if __name__ == "__main__":
+
+    def ma():
+        data = queue.Queue(100)
+
+        class QueueGen:
+            def __iter__(self):
+                return self
+
+            def __next__(self):
+                return self.get()
+
+            def __call__(self, *args, **kwargs):
+                return self.__next__()
+
+            def add(self, a):
+                return data.put(a)
+
+            def get(self):
+                return data.get()
+
+        def get_sample(num_actions=3):
+            a = numpy.zeros(num_actions)
+            a[numpy.random.randint(0, num_actions)] = 1.0
+            return a
+
+        class MyDataFetchClass(threading.Thread):
+            def __init__(self, data):
+
+                threading.Thread.__init__(self)
+
+                self._data = data
+
+            def run(self):
+
+                while True:
+                    self._data.add(get_sample())
+
+        d = QueueGen()
+
+        MyDataFetchClass(d).start()
+
+        anim = timeseries_scroll_plot(iter(d), labels=("a", "b", "c"))
+
+        try:
+            plt.show()
+        except:
+            print("Plot Closed")
+
     delta = 1 / 60
 
-    s = scroll_plot_class(3)
-    for LATEST_GPU_STATS in range(100):
-        s.draw(numpy.random.rand(3))
+    # s = TimeseriesScrollPlot(3)
+    # for LATEST_GPU_STATS in range(100):
+    #  s.draw(numpy.random.rand(3))
+
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
+
+    x = np.arange(100)
+    y = np.random.rand(100)
+    df = pd.DataFrame({"x": x, "y": y})
+    df2 = df[0:0]
+
+    plt.ion()
+    fig, ax = plt.subplots()
+    i = 0
+    while i < len(df):
+        df2 = df2.append(df[i : i + 1])
+        ax.clear()
+        df2.plot(x="x", y="y", ax=ax)
+        plt.draw()
+        plt.pause(0.2)
+        i += 1
+    plt.show()

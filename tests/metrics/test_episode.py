@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from draugr.metrics import EpisodeStatistics
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = r"""
            """
 

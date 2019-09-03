@@ -4,7 +4,7 @@ import torch
 
 from draugr.torch_utilities.initialisation.ortho_weight_init import ortho_weights
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 import numpy
 

@@ -4,7 +4,7 @@ from typing import MutableSequence
 
 from draugr.visualisation import sprint
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 
