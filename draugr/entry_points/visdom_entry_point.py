@@ -9,7 +9,7 @@ __author__ = "Christian Heider Nielsen"
 
 def run_visdom_server():
     """
-
+  Will start a visdom server
 """
     server.main()
 

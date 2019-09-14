@@ -116,19 +116,25 @@ class DraugrPackage:
 
     @property
     def extras(self):
-
-        path = pathlib.Path(__file__).parent
-        requirements_writers = []
-        with open(path / "requirements_writers.txt") as f:
-            requirements = f.readlines()
-
-            for requirement in requirements:
-                requirements_writers.append(requirement.strip())
-
         these_extras = {
-            # 'ExtraGroupName':['package-name; platform_system == "System(Linux,Windows)"'
-            "writers": requirements_writers
+            # 'ExtraName':['package-name; platform_system == "System(Linux,Windows)"'
         }
+
+        path: pathlib.Path = pathlib.Path(__file__).parent
+
+        for file in path.iterdir():
+            if file.name.startswith("requirements_"):
+
+                requirements_group = []
+                with open(str(file.absolute())) as f:
+                    requirements = f.readlines()
+
+                    for requirement in requirements:
+                        requirements_group.append(requirement.strip())
+
+                group_name_ = "_".join(file.name.strip(".txt").split("_")[1:])
+
+                these_extras[group_name_] = requirements_group
 
         all_dependencies = []
 

@@ -15,7 +15,7 @@ Created on 27/04/2019
 """
 
 
-class DraugrWriter(Writer):
+class TerminalPlotWriter(Writer):
     def _open(self):
         self.E = tqdm()
 
@@ -57,7 +57,7 @@ class DraugrWriter(Writer):
 
 if __name__ == "__main__":
 
-    with DraugrWriter() as w:
+    with TerminalPlotWriter() as w:
         w.scalar("What", 4)
 
     '''

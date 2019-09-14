@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pathlib
+from contextlib import suppress
 
 import matplotlib.pyplot as plt
 import numpy
@@ -18,10 +19,11 @@ Created on 27/04/2019
 
 class TensorBoardWriter(Writer):
     def _open(self):
-        from torch.utils.tensorboard import SummaryWriter
+        with suppress(FutureWarning):
+            from torch.utils.tensorboard import SummaryWriter
 
-        self.writer = SummaryWriter(str(self._log_dir), self._comment)
-        return self
+            self.writer = SummaryWriter(str(self._log_dir), self._comment)
+            return self
 
     def _close(self, exc_type, exc_val, exc_tb):
         self.writer.close()

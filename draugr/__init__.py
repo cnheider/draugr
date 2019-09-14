@@ -11,7 +11,7 @@ from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 __doc__ = """
 Created on 27/04/2019
 
@@ -88,3 +88,9 @@ if __version__ is None:
     __version__ = get_version(append_time=True)
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
+
+from .visualisation import *
+from .writers import *
+from .metrics import *
+from .stopping import *
+from .torch_utilities import *

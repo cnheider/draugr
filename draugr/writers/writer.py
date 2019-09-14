@@ -39,12 +39,19 @@ class Writer(metaclass=ABCMeta):
                 self._scalar(tag, value, self._counter[tag])
             self._counter[tag] += 1
 
+    def close(self):
+        self._close()
+
+    def open(self):
+
+        self._open()
+
     @abstractmethod
     def _scalar(self, tag: str, value: float, step: int):
         raise NotImplementedError
 
     @abstractmethod
-    def _close(self, exc_type, exc_val, exc_tb):
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
         raise NotImplementedError
 
     @abstractmethod
