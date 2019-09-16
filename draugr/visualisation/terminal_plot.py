@@ -10,7 +10,7 @@ from .style_utilities import (
 
 __author__ = "Christian Heider Nielsen"
 
-from typing import Sized
+from typing import Sized, Sequence, Dict
 
 import numpy
 
@@ -19,10 +19,10 @@ import numpy
 
 
 def terminal_plot(
-    y: Sized,
+    y: Sequence,
     *,
-    x=None,
-    title="Values",
+    x: Sequence = None,
+    title: str = "Values",
     rows=None,
     columns=None,
     percent_size=(0.80, 0.80),
@@ -119,7 +119,13 @@ def styled_terminal_plot_stats_shared_x(stats, *, styles=None, **kwargs):
 
 
 def terminal_plot_stats_shared_x(
-    stats, *, x=None, styles=None, printer=print, margin=0.25, summary=True
+    stats: Dict,
+    *,
+    x: Sequence = None,
+    styles=None,
+    printer=print,
+    margin=0.25,
+    summary=True,
 ):
     num_stats = len(stats)
 

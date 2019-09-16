@@ -10,9 +10,8 @@ Created on 27/04/2019
 
 from itertools import cycle
 
-import matplotlib.pyplot as plt
+from matplotlib import pyplot
 import numpy
-import pandas as pd
 from scipy import interp
 from sklearn import svm
 from sklearn.datasets import make_classification
@@ -35,12 +34,12 @@ def correlation_matrix_plot(cor, labels=None, title=""):
     if labels is None:
         labels = [f"P{i}" for i in range(len(cor))]
 
-    fig = plt.figure()
+    fig = pyplot.figure()
     ax1 = fig.add_subplot(111)
 
     cax = ax1.matshow(cor)
     ax1.grid(True)
-    plt.title(title)
+    pyplot.title(title)
 
     ax1.set_xticks(range(len(cor)))
     ax1.set_yticks(range(len(cor)))
@@ -49,6 +48,99 @@ def correlation_matrix_plot(cor, labels=None, title=""):
     ax1.set_yticklabels(labels, fontsize=6)
 
     fig.colorbar(cax, ticks=numpy.arange(-1.1, 1.1, 0.1))
+
+
+def hplot(images, columns=4, figsize=(20, 10)):
+    """Small helper function for creating horizontal subplots with pyplot"""
+    pyplot.figure(figsize=figsize)
+    for i, image in enumerate(images):
+        pyplot.subplot(len(images) / columns + 1, columns, i + 1)
+        pyplot.imshow(image)
+
+
+def draw_vector(label, v0, v1, ax=None):
+    """Small helper function for annotating pyplots with endpoint arrows"""
+    ax = ax or pyplot.gca()
+    ax.annotate(
+        label,
+        v0,
+        v1,
+        weight="heavy",
+        fontsize="large",
+        arrowprops=dict(
+            arrowstyle="<-", linewidth=2, color="black", shrinkA=0, shrinkB=0
+        ),
+    )
+
+
+def plot_2d_principal_components(
+    scores, coefficients, y, labels, label_multiplier=1.06
+):
+    """
+  # Call the function. Use only the 2 PCs.
+
+  :param scores:
+  :param coefficients:
+  :param labels:
+  :return:
+  """
+    assert label_multiplier >= 1.0
+
+    fig = pyplot.figure()
+
+    ax1 = fig.add_axes([0.12, 0.1, 0.76, 0.8], label="ax1")
+    ax2 = fig.add_axes([0.12, 0.1, 0.76, 0.8], label="ax2", frameon=False)
+
+    ax1.yaxis.tick_left()
+    ax1.xaxis.tick_bottom()
+
+    ax2.yaxis.tick_right()
+    ax2.yaxis.set_label_position("right")
+    ax2.yaxis.set_offset_position("right")
+    ax2.xaxis.tick_top()
+    ax2.xaxis.set_label_position("top")
+
+    ax1.spines["right"].set_color("red")
+    ax1.spines["top"].set_color("red")
+
+    ax2.tick_params(color="red")
+
+    for ylabel, xlabel in zip(ax2.get_yticklabels(), ax2.get_xticklabels()):
+        ylabel.set_color("red")
+        xlabel.set_color("red")
+
+    ax1.set_xlabel("$Score_{PC1}$")
+    ax1.set_ylabel("$Score_{PC2}$")
+
+    ax2.set_xlabel("$Coefficient_{PC1}$", color="red")
+    ax2.set_ylabel("$Coefficient_{PC2}$", color="red")
+
+    ax2.set_xlim(-label_multiplier, label_multiplier)
+    ax2.set_ylim(-label_multiplier, label_multiplier)
+
+    xs = scores[:, 0]
+    ys = scores[:, 1]
+    n = coefficients.shape[0]
+    scale_x = 1.0 / (xs.max() - xs.min())
+    scale_y = 1.0 / (ys.max() - ys.min())
+    ax1.scatter(xs * scale_x, ys * scale_y, c=y)
+    # pyplot.colorbar(ax=ax1)
+
+    for i in range(n):
+        ax2.arrow(0, 0, coefficients[i, 0], coefficients[i, 1], color="r", alpha=0.5)
+
+        label = f"$x_{i}$"
+        if labels is not None:
+            label = labels[i]
+
+        ax2.text(
+            coefficients[i, 0] * label_multiplier,
+            coefficients[i, 1] * label_multiplier,
+            label,
+            color="g",
+            ha="center",
+            va="center",
+        )
 
 
 def biplot(X, y, labels=None):
@@ -68,74 +160,9 @@ produces a pca projection and plot the 2 most significant component score and th
     pca = PCA()
     x_new = pca.fit_transform(X)
 
-    def pca2_plot(scores, coefficients, skew_label=1.08):
-        """
-# Call the function. Use only the 2 PCs.
-
-:param scores:
-:param coefficients:
-:param labels:
-:return:
-"""
-
-        fig = plt.figure()
-
-        ax1 = fig.add_axes([0.12, 0.1, 0.76, 0.8], label="ax1")
-        ax2 = fig.add_axes([0.12, 0.1, 0.76, 0.8], label="ax2", frameon=False)
-
-        ax1.yaxis.tick_left()
-        ax1.xaxis.tick_bottom()
-
-        ax2.yaxis.tick_right()
-        ax2.yaxis.set_label_position("right")
-        ax2.yaxis.set_offset_position("right")
-        ax2.xaxis.tick_top()
-        ax2.xaxis.set_label_position("top")
-
-        ax1.spines["right"].set_color("red")
-        ax1.spines["top"].set_color("red")
-
-        ax2.tick_params(color="red")
-
-        for ylabel, xlabel in zip(ax2.get_yticklabels(), ax2.get_xticklabels()):
-            ylabel.set_color("red")
-            xlabel.set_color("red")
-
-        ax1.set_xlabel("ScorePCA1")
-        ax1.set_ylabel("ScorePCA2")
-
-        ax2.set_xlabel("CoefficientPCA1", color="red")
-        ax2.set_ylabel("CoefficientPCA2", color="red")
-
-        ax2.set_xlim(-1, 1)
-        ax2.set_ylim(-1, 1)
-
-        xs = scores[:, 0]
-        ys = scores[:, 1]
-        n = coefficients.shape[0]
-        scale_x = 1.0 / (xs.max() - xs.min())
-        scale_y = 1.0 / (ys.max() - ys.min())
-        ax1.scatter(xs * scale_x, ys * scale_y, c=y)
-
-        for i in range(n):
-            ax2.arrow(
-                0, 0, coefficients[i, 0], coefficients[i, 1], color="r", alpha=0.5
-            )
-
-            label = f"P{i}"
-            if labels is not None:
-                label = labels[i]
-
-            ax2.text(
-                coefficients[i, 0] * skew_label,
-                coefficients[i, 1] * skew_label,
-                label,
-                color="g",
-                ha="center",
-                va="center",
-            )
-
-    pca2_plot(x_new[:, 0:2], numpy.transpose(pca.components_[0:2, :]))
+    plot_2d_principal_components(
+        x_new[:, 0:2], numpy.transpose(pca.components_[0:2, :]), y, labels
+    )
 
 
 def precision_recall_plt2():
@@ -183,7 +210,7 @@ def precision_recall_plt2():
     # setup plot details
     colors = cycle(["navy", "turquoise", "darkorange", "cornflowerblue", "teal"])
 
-    plt.figure(figsize=(7, 8))
+    pyplot.figure(figsize=(7, 8))
     f_scores = numpy.linspace(0.2, 0.8, num=4)
     lines = []
     labels = []
@@ -191,12 +218,12 @@ def precision_recall_plt2():
     for f_score in f_scores:
         x = numpy.linspace(0.01, 1)
         y = f_score * x / (2 * x - f_score)
-        l, = plt.plot(x[y >= 0], y[y >= 0], color="gray", alpha=0.2)
-        plt.annotate("f1={0:0.1f}".format(f_score), xy=(0.9, y[45] + 0.02))
+        l, = pyplot.plot(x[y >= 0], y[y >= 0], color="gray", alpha=0.2)
+        pyplot.annotate("f1={0:0.1f}".format(f_score), xy=(0.9, y[45] + 0.02))
 
     lines.append(l)
     labels.append("iso-f1 curves")
-    l, = plt.plot(recall["micro"], precision["micro"], color="gold", lw=2)
+    l, = pyplot.plot(recall["micro"], precision["micro"], color="gold", lw=2)
     lines.append(l)
     labels.append(
         "micro-average Precision-recall (area = {0:0.2f})"
@@ -204,23 +231,23 @@ def precision_recall_plt2():
     )
 
     for i, color in zip(range(n_classes), colors):
-        l, = plt.plot(recall[i], precision[i], color=color, lw=2)
+        l, = pyplot.plot(recall[i], precision[i], color=color, lw=2)
         lines.append(l)
         labels.append(
             "Precision-recall for class {0} (area = {1:0.2f})"
             "".format(i, average_precision[i])
         )
 
-    fig = plt.gcf()
+    fig = pyplot.gcf()
     fig.subplots_adjust(bottom=0.25)
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.0, 1.05])
-    plt.xlabel("Recall")
-    plt.ylabel("Precision")
-    plt.title("Extension of Precision-Recall curve to multi-class")
-    plt.legend(lines, labels, loc=(0, -0.38), prop=dict(size=14))
+    pyplot.xlim([0.0, 1.0])
+    pyplot.ylim([0.0, 1.05])
+    pyplot.xlabel("Recall")
+    pyplot.ylabel("Precision")
+    pyplot.title("Extension of Precision-Recall curve to multi-class")
+    pyplot.legend(lines, labels, loc=(0, -0.38), prop=dict(size=14))
 
-    plt.show()
+    pyplot.show()
 
 
 def precision_recall_plt(y, yhat, n_classes=2):
@@ -244,22 +271,22 @@ def precision_recall_plt(y, yhat, n_classes=2):
     precision, recall, thresholds = precision_recall_curve(testy, probs)
 
     # calculate precision-recall AUC
-    auc = auc(recall, precision)
+    auc_v = auc(recall, precision)
 
     # plot no skill
-    plt.plot([0, 1], [0.5, 0.5], linestyle="--")
+    pyplot.plot([0, 1], [0.5, 0.5], linestyle="--")
     # plot the precision-recall curve for the model
-    plt.plot(recall, precision, marker=".")
+    pyplot.plot(recall, precision, marker=".")
 
     for p, r, t in zip(precision, recall, thresholds):
-        plt.annotate(f"{t:.2f}", (r, p))
+        pyplot.annotate(f"{t:.2f}", (r, p))
 
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.45, 1.05])
-    plt.xlabel("Precision")
-    plt.ylabel("Recall")
-    plt.title(f"Multi-class extension Precision Recall {auc} (Varying threshold)")
-    plt.legend(loc="lower right")
+    pyplot.xlim([0.0, 1.0])
+    pyplot.ylim([0.45, 1.05])
+    pyplot.xlabel("Precision")
+    pyplot.ylabel("Recall")
+    pyplot.title(f"Multi-class extension Precision Recall {auc_v} (Varying threshold)")
+    pyplot.legend(loc="lower right")
 
 
 def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
@@ -292,11 +319,11 @@ def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
     roc_auc["macro"] = auc(fpr["macro"], tpr["macro"])
 
     # Plot all ROC curves
-    plt.figure(figsize=size)
+    pyplot.figure(figsize=size)
     lw = 1
-    plt.plot([0, 1], [0, 1], "k--", lw=lw)
+    pyplot.plot([0, 1], [0, 1], "k--", lw=lw)
 
-    plt.plot(
+    pyplot.plot(
         fpr["micro"],
         tpr["micro"],
         label=f'micro-average ROC curve (area = {roc_auc["micro"]:0.2f})',
@@ -305,7 +332,7 @@ def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
         linewidth=lw,
     )
 
-    plt.plot(
+    pyplot.plot(
         fpr["macro"],
         tpr["macro"],
         label=f'macro-average ROC curve (area = {roc_auc["macro"]:0.2f})',
@@ -316,7 +343,7 @@ def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
 
     colors = cycle(["aqua", "darkorange", "cornflowerblue", "red", "green", "teal"])
     for i, color in zip(range(n_classes), colors):
-        plt.plot(
+        pyplot.plot(
             fpr[i],
             tpr[i],
             color=color,
@@ -324,17 +351,17 @@ def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
             label=f"ROC curve of class {i} (area = {roc_auc[i]:0.2f})",
         )
 
-    plt.xlim([-0.05, 1.0])
-    plt.ylim([0.0, 1.05])
-    plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate")
-    plt.title("multi-class extension Receiver operating characteristic")
-    plt.legend(loc="lower right")
+    pyplot.xlim([-0.05, 1.0])
+    pyplot.ylim([0.0, 1.05])
+    pyplot.xlabel("False Positive Rate")
+    pyplot.ylabel("True Positive Rate")
+    pyplot.title("multi-class extension Receiver operating characteristic")
+    pyplot.legend(loc="lower right")
 
 
 def plot_confusion_matrix(y_test, y_pred, class_names, size=(8, 8), decimals=3):
     def confusion_matrix_figure(
-        y_true, y_pred, classes, normalize=False, title=None, cmap=plt.cm.Blues
+        y_true, y_pred, classes, normalize=False, title=None, cmap=pyplot.cm.Blues
     ):
         """
 This function prints and plots the confusion matrix.
@@ -354,7 +381,7 @@ Normalization can be applied by setting `normalize=True`.
         if normalize:
             cm = cm.astype("float") / cm.sum(axis=1)[:, numpy.newaxis]
 
-        fig, ax = plt.subplots(figsize=size)
+        fig, ax = pyplot.subplots(figsize=size)
         im = ax.imshow(cm, interpolation="nearest", cmap=cmap)
         ax.barh.colorbar(im, ax=ax)
         # We want to show all ticks...
@@ -370,7 +397,9 @@ Normalization can be applied by setting `normalize=True`.
         )
 
         # Rotate the tick labels and set their alignment.
-        plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+        pyplot.setp(
+            ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor"
+        )
 
         # Loop over data dimensions and create text annotations.
         fmt = ".2f" if normalize else "d"
@@ -402,13 +431,11 @@ Normalization can be applied by setting `normalize=True`.
 
 if __name__ == "__main__":
 
-    my_csv = "/home/heider/Data/Datasets/DecisionSupportSystems/Boston.csv"
+    # df = pd.read_csv(my_csv, index_col=0)
+    # cor = df.corr()
 
-    df = pd.read_csv(my_csv, index_col=0)
-    cor = df.corr()
-
-    correlation_matrix_plot(cor, labels=df.columns)
-    plt.show()
+    # correlation_matrix_plot(cor, labels=df.columns)
+    # pyplot.show()
 
     from sklearn import datasets
 
@@ -417,7 +444,7 @@ if __name__ == "__main__":
     y = iris.target
 
     biplot(X, y)
-    plt.show()
+    pyplot.show()
 
     # Binarise the output
     y = label_binarize(y, classes=[0, 1, 2])
@@ -440,10 +467,10 @@ if __name__ == "__main__":
     y_score = classifier.fit(X_train, y_train).decision_function(X_test)
 
     # plot_cf(,y,class_names=df.columns)
-    # plt.show()
+    # pyplot.show()
 
     # roc_plot(numpy.argmax(y_score, axis=-1), y_test, n_classes)
-    # plt.show()
+    # pyplot.show()
 
     precision_recall_plt(y_score, y_test, n_classes)
-    plt.show()
+    pyplot.show()
