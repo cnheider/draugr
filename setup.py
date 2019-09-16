@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 
-def python_version_check():
+def python_version_check(major=3, minor=6):
     import sys
 
-    assert sys.version_info.major == 3 and sys.version_info.minor >= 6, (
-        f"This project is utilises language features only present Python 3.6 and greater. "
+    assert sys.version_info.major == major and sys.version_info.minor >= minor, (
+        f"This project is utilises language features only present Python {major}.{minor} and greater. "
         f"You are running {sys.version_info}."
     )
 
@@ -21,15 +21,14 @@ from setuptools import find_packages, setup
 with open(
     pathlib.Path(__file__).parent / "draugr" / "__init__.py", "r"
 ) as project_init_file:
-    content = project_init_file.read()
-    # get version string from module
+    content = project_init_file.read()  # get strings from module
     version = re.search(r"__version__ = ['\"]([^'\"]*)['\"]", content, re.M).group(1)
+    project_name = re.search(r"__project__ = ['\"]([^'\"]*)['\"]", content, re.M).group(
+        1
+    )
+    author = re.search(r"__author__ = ['\"]([^'\"]*)['\"]", content, re.M).group(1)
 
-    project_name = re.search(
-        r"PROJECT_NAME = ['\"]([^'\"]*)['\"]", content, re.M
-    ).group(1)
-
-__author__ = "cnheider"
+__author__ = author
 
 
 class DraugrPackage:
@@ -77,13 +76,13 @@ class DraugrPackage:
     def packages(self):
         return find_packages(
             exclude=[
-                # 'neodroid/environments'
+                # 'Path/To/Exclude'
             ]
         )
 
     @property
     def author_name(self):
-        return "Christian Heider Nielsen"
+        return author
 
     @property
     def author_email(self):
@@ -99,14 +98,10 @@ class DraugrPackage:
 
     @property
     def package_data(self):
-        # data = glob.glob('environments/mab/**', recursive=True)
+        # data = glob.glob('data/', recursive=True)
         return {
-            # 'neodroid':[
+            # 'PackageName':[
             # *data
-            # 'environments/mab/**',
-            # 'environments/mab/**_Data/*',
-            # 'environments/mab/windows/*'
-            # 'environments/mab/windows/*_Data/*'
             #  ]
         }
 
@@ -115,24 +110,31 @@ class DraugrPackage:
         return {
             "console_scripts": [
                 # "name_of_executable = module.with:function_to_execute"
+                "draugr-tb = draugr.entry_points.tensorboard_entry_point:main"
             ]
         }
 
     @property
     def extras(self):
-
-        path = pathlib.Path(__file__).parent
-        requirements_writers = []
-        with open(path / "requirements_writers.txt") as f:
-            requirements = f.readlines()
-
-            for requirement in requirements:
-                requirements_writers.append(requirement.strip())
-
         these_extras = {
-            # 'ExtraGroupName':['package-name; platform_system == "System(Linux,Windows)"'
-            "writers": requirements_writers
+            # 'ExtraName':['package-name; platform_system == "System(Linux,Windows)"'
         }
+
+        path: pathlib.Path = pathlib.Path(__file__).parent
+
+        for file in path.iterdir():
+            if file.name.startswith("requirements_"):
+
+                requirements_group = []
+                with open(str(file.absolute())) as f:
+                    requirements = f.readlines()
+
+                    for requirement in requirements:
+                        requirements_group.append(requirement.strip())
+
+                group_name_ = "_".join(file.name.strip(".txt").split("_")[1:])
+
+                these_extras[group_name_] = requirements_group
 
         all_dependencies = []
 

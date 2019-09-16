@@ -3,11 +3,11 @@
 import os
 import shutil
 
-import numpy as np
+import numpy
 
 from warg.named_ordered_dictionary import NOD
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 import six
 
@@ -107,8 +107,8 @@ will be moved to 0.
     #  s = length
     else:
         s = (
-            float(length) / (np.max(x) - np.min(x))
-            if len(x) and np.max(x) - np.min(x) != 0
+            float(length) / (numpy.max(x) - numpy.min(x))
+            if len(x) and numpy.max(x) - numpy.min(x) != 0
             else length
         )
 

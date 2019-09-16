@@ -8,21 +8,21 @@ from .style_utilities import (
     scale,
 )
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
-from typing import Sized
+from typing import Sized, Sequence, Dict
 
-import numpy as np
+import numpy
 
 
 # sys.stdout.write(generate_style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
 
 
 def terminal_plot(
-    y: Sized,
+    y: Sequence,
     *,
-    x=None,
-    title="Values",
+    x: Sequence = None,
+    title: str = "Values",
     rows=None,
     columns=None,
     percent_size=(0.80, 0.80),
@@ -119,7 +119,13 @@ def styled_terminal_plot_stats_shared_x(stats, *, styles=None, **kwargs):
 
 
 def terminal_plot_stats_shared_x(
-    stats, *, x=None, styles=None, printer=print, margin=0.25, summary=True
+    stats: Dict,
+    *,
+    x: Sequence = None,
+    styles=None,
+    printer=print,
+    margin=0.25,
+    summary=True,
 ):
     num_stats = len(stats)
 
@@ -147,4 +153,4 @@ def terminal_plot_stats_shared_x(
 
 
 if __name__ == "__main__":
-    terminal_plot(np.tile(range(9), 4), plot_character="o")
+    terminal_plot(numpy.tile(range(9), 4), plot_character="o")

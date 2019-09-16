@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import datetime
+import os
+from logging import warning
 
 import pkg_resources
 from pip._internal.utils.misc import dist_is_editable
 
 from apppath import AppPath
 
-__author__ = "cnheider"
-__version__ = "0.2.2"
+__project__ = "Draugr"
+__author__ = "Christian Heider Nielsen"
+__version__ = "0.3.1"
 __doc__ = """
 Created on 27/04/2019
 
@@ -27,8 +31,8 @@ def dist_is_editable(dist):
     return False
 '''
 
-PROJECT_NAME = "draugr"
-PROJECT_AUTHOR = __author__
+PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
+PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
 
 distributions = {v.key: v for v in pkg_resources.working_set}
@@ -69,7 +73,7 @@ def get_version(append_time=DEVELOP):
             #
             # Publications using datetime versions should only be made from master
             # to represent the HEAD moving forward.
-            warn(
+            warning(
                 f"Environment variable VERSION is not set, only using datetime: {date_version}"
             )
 
@@ -87,4 +91,6 @@ __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
 from .visualisation import *
 from .writers import *
-from .statistics_utilities import *
+from .metrics import *
+from .stopping import *
+from .torch_utilities import *

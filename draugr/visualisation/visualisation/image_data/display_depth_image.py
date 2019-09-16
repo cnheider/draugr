@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
@@ -11,7 +11,7 @@ def main():
     file_name = "10.png"
 
     # img = Image.open(data_set_directory + file_name).convert('LA')
-    # img_array = np.asarray(img)
+    # img_array =numpy.asarray(img)
     # print(img_array.shape)
 
     img = mpimg.imread(data_set_directory + file_name)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 import torch
 from graphviz import Digraph
@@ -16,7 +16,7 @@ Orange are Tensors saved for backward in torch.autograd.Function
 Args:
 var: output Variable
 params: dict of (name, Variable) to add names to node that
-    require grad
+  require grad
 """
     param_map = {id(v): k for k, v in params.items()}
     print(param_map)

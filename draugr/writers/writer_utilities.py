@@ -5,7 +5,7 @@ import os
 
 import numpy
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = """
 Created on 27/04/2019
 

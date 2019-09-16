@@ -3,16 +3,16 @@
 import os
 
 import matplotlib
-import numpy as np
+import numpy
 import torch
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 
 import csv
 
 import matplotlib.pyplot as plt
 
-from agent import utilities as U
+from neodroidagent import utilities as U
 
 # set up matplotlib
 is_ipython = "inline" in matplotlib.get_backend()
@@ -54,11 +54,11 @@ def simple_plot(file_name, name="Statistic Name"):
 
 
 def error_plot(results, interval=1, file_name=""):
-    # if results is not np.ndarray:
-    # results = np.ndarray(results)
+    # if results is notnumpy.ndarray:
+    # results =numpy.ndarray(results)
 
-    y = np.mean(results, axis=0)
-    error = np.std(results, axis=0)
+    y = numpy.mean(results, axis=0)
+    error = numpy.std(results, axis=0)
 
     x = range(0, results.shape[1] * interval, interval)
     fig, ax = plt.subplots(1, 1, figsize=(6, 5))
@@ -71,7 +71,7 @@ def error_plot(results, interval=1, file_name=""):
 def plot_durations(episode_durations):
     plt.figure(2)
     plt.clf()
-    durations_t = U.to_tensor(episode_durations)
+    durations_t = to_tensor(episode_durations)
     plt.title("Training...")
     plt.xlabel("Episode")
     plt.ylabel("Duration")
@@ -90,7 +90,7 @@ def plot_durations(episode_durations):
 
 if __name__ == "__main__":
 
-    import agent.configs.base_config as C
+    import neodroidagent.configs.base_config as C
 
     _list_of_files = list(C.LOG_DIRECTORY.glob("*.csv"))
     _latest_model = max(_list_of_files, key=os.path.getctime)
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     LATEST_GPU_STATS = [0, 92, 3, 2, 5, 644, 34, 36, 423, 421]
     b = [215, 92, 6, 1, 5, 644, 328, 32, 413, 221]
     c = [62, 68, 8, 25, 7, 611, 29, 38, 421, 425]
-    d = np.array(zip([LATEST_GPU_STATS, b, c]))
+    d = numpy.array(zip([LATEST_GPU_STATS, b, c]))
     error_plot(d)
 
     plt.show()

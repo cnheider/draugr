@@ -4,10 +4,11 @@ import logging
 import pathlib
 import sys
 
+from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
 from draugr.writers.writer_utilities import create_folders_if_necessary
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = """
 Created on 27/04/2019
 
@@ -17,7 +18,7 @@ Created on 27/04/2019
 
 class LogWriter(Writer):
     def _scalar(self, tag: str, value: float, step: int):
-        w.info(f"{step} [{tag}] {value}")
+        self.writer.info(f"{step} [{tag}] {value}")
 
     @staticmethod
     def get_logger(path=pathlib.Path.home() / "Models"):
@@ -35,8 +36,8 @@ class LogWriter(Writer):
 
         return logging.getLogger()
 
-    def __init__(self, path):
-        super().__init__()
+    def __init__(self, path, **kwargs):
+        super().__init__(**kwargs)
         self.path = path
         self.f = None
         self.writer = None
@@ -54,5 +55,5 @@ class LogWriter(Writer):
 
 if __name__ == "__main__":
 
-    with LogWriter(pathlib.Path.home() / "Models") as w:
+    with LogWriter(PROJECT_APP_PATH.user_log / "test") as w:
         w.scalar("What", 4)

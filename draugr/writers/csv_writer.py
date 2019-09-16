@@ -3,10 +3,11 @@
 import csv
 import pathlib
 
+from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
 from draugr.writers.writer_utilities import create_folders_if_necessary
 
-__author__ = "cnheider"
+__author__ = "Christian Heider Nielsen"
 __doc__ = """
 Created on 27/04/2019
 
@@ -25,8 +26,8 @@ class CSVWriter(Writer):
     def _scalar(self, tag: str, value: float, step: int):
         self._write(step, tag, value)
 
-    def __init__(self, path):
-        super().__init__()
+    def __init__(self, path, **kwargs):
+        super().__init__(**kwargs)
         self.path = path
         self.f = None
         self.writer = None
@@ -44,7 +45,5 @@ class CSVWriter(Writer):
 
 if __name__ == "__main__":
 
-    model_dir = pathlib.Path.home() / "Models"
-
-    with CSVWriter(model_dir) as p:
+    with CSVWriter(PROJECT_APP_PATH.user_log / "test") as p:
         p.scalar("s", 2)
