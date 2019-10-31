@@ -1,24 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pathlib
-
-from warg.named_ordered_dictionary import NOD
-
-__author__ = "Christian Heider Nielsen"
 import datetime
 import os
 import shutil
 import sys
-
 import torch
+from torch.nn.modules.module import Module
+
+from warg import passes_kws_to
+
+__author__ = "Christian Heider Nielsen"
+
+model_file_ending = ".model"
+config_file_ending = ".py"
 
 
 def load_latest_model(model_directory, **kwargs):
-    _list_of_files = model_directory.glob("*")
-    _latest_model = max(_list_of_files, key=os.path.getctime)
-    print("loading previous model: " + _latest_model)
+    list_of_files = list(model_directory.glob(f"**/*{model_file_ending}"))
+    if len(list_of_files) == 0:
+        return
+    latest_model = max(list_of_files, key=os.path.getctime)
+    print(f"loading previous model: {latest_model}")
 
-    return torch.load(_latest_model)
+    return torch.load(str(latest_model))
 
 
 def ensure_directory_exist(model_path: pathlib.Path):
@@ -26,64 +31,88 @@ def ensure_directory_exist(model_path: pathlib.Path):
         model_path.mkdir(parents=True)
 
 
-def save_model(model, *, name="", **kwargs):
-    kwargs = NOD(kwargs)
+def save_config(config_save_path: pathlib.Path, config_file_path: pathlib.Path):
+    shutil.copyfile(str(config_file_path), str(config_save_path))
 
+
+@passes_kws_to(save_config)
+def save_model_and_configuration(
+    *,
+    model: Module,
+    model_save_path: pathlib.Path,
+    config_save_path: pathlib.Path,
+    config_file_path: pathlib.Path,
+):
+    torch.save(model.state_dict(), str(model_save_path))
+    save_config(config_save_path, config_file_path)
+
+
+@passes_kws_to(save_model_and_configuration)
+def save_model(
+    model: Module,
+    *,
+    save_directory: pathlib.Path,
+    project_name,
+    config_name,
+    config_file_path,
+    model_name: str = "",
+    **kwargs,
+):
     model_date = datetime.datetime.now()
     prepend = ""
-    if len(name) > 0:
-        prepend = f"{name}-"
-    model_name = (
-        f"{prepend}{kwargs.project_name}-"
-        f'{kwargs.config_name.replace(".", "_")}-'
-        f'{model_date.strftime("%y%m%d%H%M")}.model'
+    if len(model_name) > 0:
+        prepend = f"{model_name}-"
+    model_name = f'{prepend}{project_name}-{config_name.replace(".", "_")}'
+
+    model_time_rep = model_date.strftime("%y%m%d%H%M")
+    model_save_path = (
+        save_directory / model_name / f"{model_time_rep}{model_file_ending}"
     )
+    config_save_path = (
+        save_directory / model_name / f"{model_time_rep}{config_file_ending}"
+    )
+    ensure_directory_exist(model_save_path.parent)
 
-    ensure_directory_exist(kwargs.model_directory)
-    model_path = kwargs.model_directory / model_name
-
-    ensure_directory_exist(kwargs.config_directory)
-    config_path = pathlib.Path(kwargs.config_directory) / model_name
+    saved = False
     try:
         save_model_and_configuration(
-            model=model, model_path=model_path, config_path=config_path, **kwargs
+            model=model,
+            model_save_path=model_save_path,
+            config_file_path=config_file_path,
+            config_save_path=config_save_path,
         )
-        print(f"Successfully saved model at {model_path}")
+        saved = True
     except FileNotFoundError as e:
         print(e)
-        saved = False
         while not saved:
             file_path = input("Enter another file path: ")
-            model_path = pathlib.Path(file_path) / model_name
+            model_save_path = pathlib.Path(file_path).expanduser().resolve()
+            parent = model_save_path.parent
+            ensure_directory_exist(parent)
+            config_save_path = parent / f"{model_save_path.name}{config_file_ending}"
             try:
-                saved = save_model_and_configuration(
+                save_model_and_configuration(
                     model=model,
-                    model_path=model_path,
-                    config_path=config_path,
-                    **kwargs,
+                    model_save_path=model_save_path,
+                    config_file_path=config_file_path,
+                    config_save_path=config_save_path,
                 )
+                saved = True
             except FileNotFoundError as e:
                 print(e)
                 saved = False
 
-
-def save_model_and_configuration(*, model, model_path, config_path, **kwargs):
-    if model and model_path:
-        torch.save(model.state_dict(), model_path)
-        save_config(config_path, **kwargs)
-        return True
-    return False
-
-
-def save_config(new_path, config_file, **kwargs):
-    config_path = pathlib.Path(config_file).absolute().parent / config_file
-
-    shutil.copyfile(str(config_path), str(new_path) + ".py")
+    if saved:
+        print(
+            f"Successfully saved model and configuration respectively at {model_save_path} and {config_save_path}"
+        )
+    else:
+        print(f"Was unsuccesful at saving model or configuration")
 
 
 def convert_to_cpu(path=""):
     model = torch.load(path, map_location=lambda storage, loc: storage)
-    torch.save(model, path + ".cpu")
+    torch.save(model, f"{path}.cpu{model_file_ending}")
 
 
 if __name__ == "__main__":

@@ -5,3 +5,4 @@ six
 pandas
 sklearn
 pynput
+matplotlib

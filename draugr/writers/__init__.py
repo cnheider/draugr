@@ -8,8 +8,9 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-from draugr.writers.console.console_writer import ConsoleWriter
-from .csv_writer import CSVWriter
-from .log_writer import LogWriter
-from .mock_writer import MockWriter
+from .csv_writer import *
+from .log_writer import *
+from .mock_writer import *
 from .tensorboard import *
+from .visdom import *
+from .terminal import *

@@ -2,5 +2,5 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
-__doc__ = r"""
-           """
+from .display_3d_depth_image import *
+from .display_depth_image import *

@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 import queue
 import threading
-
+import numpy
 import matplotlib
 from matplotlib import animation
+from matplotlib import pyplot
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -12,10 +13,6 @@ Created on 27/04/2019
 
 @author: cnheider
 """
-
-import matplotlib.pyplot as plt
-
-import numpy
 
 
 class ActivationScrollPlot(object):
@@ -50,14 +47,14 @@ class ActivationScrollPlot(object):
         self.n = 0
 
         if vertical:
-            self.fig = plt.figure(figsize=(window_length / 10, 2))
+            self.fig = pyplot.figure(figsize=(window_length / 10, 2))
             extent = [-window_length, 0, 0, num_actions]
         else:
-            self.fig = plt.figure(figsize=(2, window_length / 10))
+            self.fig = pyplot.figure(figsize=(2, window_length / 10))
             extent = [num_actions, 0, 0, -window_length]
 
         """
-fig_manager = plt.get_current_fig_manager()
+fig_manager = pyplot.get_current_fig_manager()
 geom = fig_manager.window.geometry()
 x, y, dx, dy = geom.getRect()
 fig_manager.window.setGeometry(*placement, dx, dy)
@@ -68,7 +65,7 @@ fig_manager.window.SetPosition((500, 0))
         if vertical:
             array = array.T
 
-        self.im = plt.imshow(
+        self.im = pyplot.imshow(
             array,
             cmap="gray",
             aspect="auto",
@@ -83,22 +80,22 @@ fig_manager.window.SetPosition((500, 0))
             labels = numpy.arange(0, num_actions, 1)
 
         if vertical:
-            plt.yticks(b, labels, rotation=45)
+            pyplot.yticks(b, labels, rotation=45)
         else:
-            plt.xticks(b, labels, rotation=45)
+            pyplot.xticks(b, labels, rotation=45)
 
         if vertical:
-            plt.xlabel(time_label)
-            plt.ylabel(data_label)
+            pyplot.xlabel(time_label)
+            pyplot.ylabel(data_label)
         else:
-            plt.xlabel(data_label)
-            plt.ylabel(time_label)
+            pyplot.xlabel(data_label)
+            pyplot.ylabel(time_label)
 
-        plt.title(title)
-        plt.tight_layout()
+        pyplot.title(title)
+        pyplot.tight_layout()
 
     @staticmethod
-    def move_figure(figure: plt.Figure, x=0, y=0):
+    def move_figure(figure: pyplot.Figure, x=0, y=0):
         """Move figure's upper left corner to pixel (x, y)"""
         backend = matplotlib.get_backend()
         if hasattr(figure.canvas.manager, "window"):
@@ -117,7 +114,7 @@ fig_manager.window.SetPosition((500, 0))
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self.fig:
-            plt.close(self.fig)
+            pyplot.close(self.fig)
 
     def draw(self, data, delta=1 / 120):
         """
@@ -146,12 +143,12 @@ fig_manager.window.SetPosition((500, 0))
             array = array.T
 
         self.im.set_array(array)
-        plt.draw()
+        pyplot.draw()
         if self.n <= 1:
             self.move_figure(self.fig, *self.placement)
         self.n += 1
         if delta:
-            plt.pause(delta)
+            pyplot.pause(delta)
 
 
 def activation_scroll_plot(
@@ -209,16 +206,16 @@ def activation_scroll_plot(
         return im
 
     if vertical:
-        fig = plt.figure(figsize=(window_length / 10, 2))
+        fig = pyplot.figure(figsize=(window_length / 10, 2))
         extent = [-window_length, 0, 0, num_actions]
     else:
-        fig = plt.figure(figsize=(2, window_length / 10))
+        fig = pyplot.figure(figsize=(2, window_length / 10))
         extent = [num_actions, 0, 0, -window_length]
 
     if vertical:
         array = array.T
 
-    im = plt.imshow(
+    im = pyplot.imshow(
         array,
         cmap="gray",
         aspect="auto",
@@ -233,19 +230,19 @@ def activation_scroll_plot(
         labels = numpy.arange(0, num_actions, 1)
 
     if vertical:
-        plt.yticks(b, labels, rotation=45)
+        pyplot.yticks(b, labels, rotation=45)
     else:
-        plt.xticks(b, labels, rotation=45)
+        pyplot.xticks(b, labels, rotation=45)
 
     if vertical:
-        plt.xlabel(time_label)
-        plt.ylabel(data_label)
+        pyplot.xlabel(time_label)
+        pyplot.ylabel(data_label)
     else:
-        plt.xlabel(data_label)
-        plt.ylabel(time_label)
+        pyplot.xlabel(data_label)
+        pyplot.ylabel(time_label)
 
-    plt.title(title)
-    plt.tight_layout()
+    pyplot.title(title)
+    pyplot.tight_layout()
 
     anim = animation.FuncAnimation(
         fig, update_fig, blit=False, fargs=(), interval=delta
@@ -299,7 +296,7 @@ if __name__ == "__main__":
         anim = activation_scroll_plot(iter(d), labels=("a", "b", "c"))
 
         try:
-            plt.show()
+            pyplot.show()
         except:
             print("Plot Closed")
 

@@ -3,7 +3,7 @@
 import pathlib
 from contextlib import suppress
 
-import matplotlib.pyplot as plt
+from matplotlib import pyplot
 import numpy
 
 from draugr import PROJECT_APP_PATH
@@ -55,16 +55,16 @@ class TensorBoardXWriter(Writer):
         y_label="Probs",
         title="Action Categorical Distribution",
     ):
-        fig = plt.figure()
+        fig = pyplot.figure()
         ind = numpy.arange(len(values))
-        plt.bar(ind, values, yerr=yerr)
+        pyplot.bar(ind, values, yerr=yerr)
         if x_labels:
-            plt.xticks(ind, labels=x_labels)
+            pyplot.xticks(ind, labels=x_labels)
         else:
-            plt.xticks(ind)
+            pyplot.xticks(ind)
 
-        plt.ylabel(y_label)
-        plt.title(title)
+        pyplot.ylabel(y_label)
+        pyplot.title(title)
 
         self.writer.add_figure(tag, fig, global_step=step, close=True)
 

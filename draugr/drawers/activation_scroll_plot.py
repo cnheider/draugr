@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import queue
 import threading
+from typing import Sequence, Tuple, Iterable, Generator
 
 import matplotlib
 from matplotlib import animation
@@ -18,28 +19,30 @@ from matplotlib import pyplot
 import numpy
 
 
-class TimeseriesScrollPlot(object):
+class ActivationScrollPlot(object):
     def __init__(
         self,
-        window_length=None,
-        labels=None,
-        title="",
-        time_label="Time",
-        data_label="Action Index",
-        vertical=True,
-        reverse=True,
-        overwrite=False,
-        placement=(0, 0),
-        render=True,
+        num_actions: int,
+        window_length: int = None,
+        labels: Sequence = None,
+        title: str = "",
+        time_label: str = "Time",
+        data_label: str = "Action Index",
+        vertical: bool = True,
+        reverse: bool = True,
+        overwrite: bool = False,
+        placement: Tuple = (0, 0),
+        render: bool = True,
     ):
         self.fig = None
         if not render:
             return
+        self._num_actions = num_actions
 
         if not window_length:
-            window_length = 20
+            window_length = num_actions * 20
 
-        array = numpy.zeros((window_length))
+        array = numpy.zeros((window_length, num_actions))
 
         self.vertical = vertical
         self.overwrite = overwrite
@@ -49,11 +52,18 @@ class TimeseriesScrollPlot(object):
 
         if vertical:
             self.fig = pyplot.figure(figsize=(window_length / 10, 2))
-            extent = [-window_length, 0, 0, 10]
+            extent = [-window_length, 0, 0, num_actions]
         else:
             self.fig = pyplot.figure(figsize=(2, window_length / 10))
-            extent = [10, 0, 0, -window_length]
+            extent = [num_actions, 0, 0, -window_length]
 
+        """
+fig_manager = pyplot.get_current_fig_manager()
+geom = fig_manager.window.geometry()
+x, y, dx, dy = geom.getRect()
+fig_manager.window.setGeometry(*placement, dx, dy)
+fig_manager.window.SetPosition((500, 0))
+"""
         self.placement = placement
 
         if vertical:
@@ -69,9 +79,9 @@ class TimeseriesScrollPlot(object):
             extent=extent,
         )
 
-        b = numpy.arange(0.5, 10 + 0.5, 1)
+        b = numpy.arange(0.5, num_actions + 0.5, 1)
         if not labels:
-            labels = numpy.arange(0, 10, 1)
+            labels = numpy.arange(0, num_actions, 1)
 
         if vertical:
             pyplot.yticks(b, labels, rotation=45)
@@ -89,7 +99,7 @@ class TimeseriesScrollPlot(object):
         pyplot.tight_layout()
 
     @staticmethod
-    def move_figure(figure: pyplot.Figure, x=0, y=0):
+    def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0):
         """Move figure's upper left corner to pixel (x, y)"""
         backend = matplotlib.get_backend()
         if hasattr(figure.canvas.manager, "window"):
@@ -110,7 +120,7 @@ class TimeseriesScrollPlot(object):
         if self.fig:
             pyplot.close(self.fig)
 
-    def draw(self, data, delta=1 / 120):
+    def draw(self, data: Sequence, delta: float = 1 / 120):
         """
 
 :param data:
@@ -145,17 +155,17 @@ class TimeseriesScrollPlot(object):
             pyplot.pause(delta)
 
 
-def timeseries_scroll_plot(
-    vector_provider,
-    delta=1 / 60,
-    window_length=None,
-    labels=None,
-    title="",
-    time_label="Time",
-    data_label="Action Index",
-    vertical=True,
-    reverse=True,
-    overwrite=False,
+def activation_scroll_plot(
+    vector_provider: Generator,
+    delta: float = 1 / 60,
+    window_length: int = None,
+    labels: Sequence = None,
+    title: str = "",
+    time_label: str = "Time",
+    data_label: str = "Action Index",
+    vertical: bool = True,
+    reverse: bool = True,
+    overwrite: bool = False,
 ):
     d = vector_provider.__next__()
     num_actions = len(d)
@@ -287,7 +297,7 @@ if __name__ == "__main__":
 
         MyDataFetchClass(d).start()
 
-        anim = timeseries_scroll_plot(iter(d), labels=("a", "b", "c"))
+        anim = activation_scroll_plot(iter(d), labels=("a", "b", "c"))
 
         try:
             pyplot.show()
@@ -296,27 +306,6 @@ if __name__ == "__main__":
 
     delta = 1 / 60
 
-    # s = TimeseriesScrollPlot(3)
-    # for LATEST_GPU_STATS in range(100):
-    #  s.draw(numpy.random.rand(3))
-
-    from matplotlib import pyplot
-    import numpy as np
-    import pandas as pd
-
-    x = np.arange(100)
-    y = np.random.rand(100)
-    df = pd.DataFrame({"x": x, "y": y})
-    df2 = df[0:0]
-
-    pyplot.ion()
-    fig, ax = pyplot.subplots()
-    i = 0
-    while i < len(df):
-        df2 = df2.append(df[i : i + 1])
-        ax.clear()
-        df2.plot(x="x", y="y", ax=ax)
-        pyplot.draw()
-        pyplot.pause(0.2)
-        i += 1
-    pyplot.show()
+    s = ActivationScrollPlot(3)
+    for LATEST_GPU_STATS in range(100):
+        s.draw(numpy.random.rand(3))

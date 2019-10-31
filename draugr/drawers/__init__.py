@@ -2,5 +2,6 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
-__doc__ = r"""
-           """
+
+from .overview_plot import *
+from .activation_scroll_plot import *

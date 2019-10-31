@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+from typing import Sequence, Iterable, Tuple
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -9,7 +9,7 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-from matplotlib.pyplot import annotate, matshow, imshow
+from matplotlib.pyplot import matshow, imshow
 from itertools import cycle
 from warg import passes_kws_to
 from matplotlib import pyplot
@@ -54,7 +54,7 @@ def correlation_matrix_plot(cor, labels=None, title="", **kwargs):
 
 
 @passes_kws_to(imshow)
-def horizontal_imshow(images, columns=4, figsize=(20, 10), **kwargs):
+def horizontal_imshow(images: Sequence, columns=4, figsize=(20, 10), **kwargs):
     """Small helper function for creating horizontal subplots with pyplot"""
     pyplot.figure(figsize=figsize)
     for i, image in enumerate(images):
@@ -62,34 +62,23 @@ def horizontal_imshow(images, columns=4, figsize=(20, 10), **kwargs):
         pyplot.imshow(image, **kwargs)
 
 
-@passes_kws_to(annotate)
-def draw_vector(label, v0, v1, ax=None, weight="heavy", fontsize="large", **kwargs):
-    """Small helper function for annotating pyplots with endpoint arrows"""
-    ax = ax or pyplot.gca()
-    ax.annotate(
-        label,
-        v0,
-        v1,
-        weight=weight,
-        fontsize=fontsize,
-        arrowprops=dict(
-            arrowstyle="<-", linewidth=2, color="gray", shrinkA=0, shrinkB=0
-        ),
-        **kwargs,
-    )
-
-
-def plot_2d_principal_components(
-    scores, coefficients, category=None, labels=None, label_multiplier=1.06
+def biplot(
+    scores: Sequence,
+    coefficients: numpy.ndarray,
+    categories: Sequence = None,
+    labels: Sequence = None,
+    label_multiplier: float = 1.06,
 ):
     """
-# Call the function. Use only the 2 PCs.
+  # Call the function. Use only the 2 PCs.
 
-:param scores:
-:param coefficients:
-:param labels:
-:return:
-"""
+  :param label_multiplier:
+  :param categories:
+  :param scores:
+  :param coefficients:
+  :param labels:
+  :return:
+  """
     assert label_multiplier >= 1.0
 
     fig = pyplot.figure()
@@ -129,7 +118,7 @@ def plot_2d_principal_components(
     n = coefficients.shape[0]
     scale_x = 1.0 / (xs.max() - xs.min())
     scale_y = 1.0 / (ys.max() - ys.min())
-    ax1.scatter(xs * scale_x, ys * scale_y, c=category)
+    ax1.scatter(xs * scale_x, ys * scale_y, c=categories)
     # pyplot.colorbar(ax=ax1)
 
     for i in range(n):
@@ -149,7 +138,7 @@ def plot_2d_principal_components(
         )
 
 
-def biplot(X, y, labels=None):
+def pca_biplot(X, y, labels=None):
     """
 produces a pca projection and plot the 2 most significant component score and the component coefficients.
 
@@ -166,9 +155,7 @@ produces a pca projection and plot the 2 most significant component score and th
     pca = PCA()
     x_new = pca.fit_transform(X)
 
-    plot_2d_principal_components(
-        x_new[:, 0:2], numpy.transpose(pca.components_[0:2, :]), y, labels
-    )
+    biplot(x_new[:, 0:2], numpy.transpose(pca.components_[0:2, :]), y, labels)
 
 
 def precision_recall_plt2():
@@ -449,7 +436,7 @@ if __name__ == "__main__":
     X = iris.data
     y = iris.target
 
-    biplot(X, y)
+    pca_biplot(X, y)
     pyplot.show()
 
     # Binarise the output

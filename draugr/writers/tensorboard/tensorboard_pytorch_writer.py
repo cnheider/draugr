@@ -9,6 +9,7 @@ import numpy
 import torch
 from PIL import Image
 
+from draugr.writers.tensorboard.image_writer import ImageWriter
 from warg import passes_kws_to
 from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
@@ -24,9 +25,12 @@ Created on 27/04/2019
 """
 
 
-class TensorBoardPytorchWriter(Writer):
+class TensorBoardPytorchWriter(ImageWriter):
     def __init__(
-        self, path=pathlib.Path.home() / "Models", comment: str = "", **kwargs
+        self,
+        path: pathlib.Path = pathlib.Path.home() / "Models",
+        comment: str = "",
+        **kwargs
     ):
         super().__init__(**kwargs)
 
@@ -55,7 +59,6 @@ class TensorBoardPytorchWriter(Writer):
         self.writer.add_image(tag, data, step, dataformats=dataformats, **kwargs)
 
     def _open(self):
-
         self.writer = SummaryWriter(str(self._log_dir), self._comment)
         return self
 

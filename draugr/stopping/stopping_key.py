@@ -2,15 +2,22 @@
 # -*- coding: utf-8 -*-
 from typing import MutableSequence
 
-from draugr.visualisation import sprint
+from draugr.writers.terminal import sprint
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 
 def add_early_stopping_key_combination(
-    callback: callable, has_x_server: bool = True, verbose: bool = False
+    callback: callable, has_x_server: bool = True, verbose: bool = False, **kwargs
 ):
+    """
+
+  :param callback:
+  :param has_x_server:
+  :param verbose:
+  :return:
+  """
     if not has_x_server:
         return
 
