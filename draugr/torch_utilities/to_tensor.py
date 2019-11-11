@@ -17,12 +17,12 @@ def to_tensor(
     **kwargs
 ):
     if torch.is_tensor(obj):
-        return obj.to(dtype=torch.float, **kwargs)
+        return obj.to(dtype=dtype, **kwargs)
 
     if isinstance(obj, numpy.ndarray):
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:
-            return torch.stack(obj.tolist())
-        return torch.from_numpy(obj).to(dtype=torch.float, **kwargs)
+            return torch.stack(obj.tolist()).to(dtype=dtype, **kwargs)
+        return torch.from_numpy(obj).to(dtype=dtype, **kwargs)
 
     if not isinstance(obj, Sequence):
         obj = [obj]
@@ -31,9 +31,9 @@ def to_tensor(
 
     if isinstance(obj, list):
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:
-            return torch.stack(obj)
+            return torch.stack(obj).to(dtype=dtype, **kwargs)
 
-    return torch.tensor(obj, dtype=torch.float, **kwargs)
+    return torch.tensor(obj, dtype=dtype, **kwargs)
 
 
 if __name__ == "__main__":

@@ -4,8 +4,6 @@
 from logging import warning
 
 import pkg_resources
-import sys
-from pathlib import Path
 
 from apppath import AppPath
 

@@ -27,7 +27,7 @@ def torch_seed(s):
 device = None
 
 
-def get_torch_device(prefer_cuda=True):
+def get_global_torch_device(prefer_cuda=True):
     global device
     if not device:
         device = torch.device(
