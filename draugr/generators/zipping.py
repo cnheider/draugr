@@ -16,39 +16,6 @@ def unzipper(iterable: Iterable):
     return
 
 
-def yield_and_map(iterable: Iterable, level=0, func: callable = print):
-    if level == 0:
-        for a in iterable:
-            func(a)
-            yield a
-    elif level == 1:
-        for a in iterable:
-            for b in a:
-                func(b)
-                yield b
-    elif level == 2:
-        for a in iterable:
-            for b in a:
-                for c in b:
-                    func(c)
-                    yield c
-
-
-def inner_map(func: callable, iterable: Iterable, aggregate_yield=True):
-    if aggregate_yield:
-        for a in iterable:
-            yield [func(b) for b in a]
-    else:
-        for a in iterable:
-            for b in a:
-                yield func(b)
-
-
-def kw_map(func: callable, kw: str, iterable: Iterable):
-    for a in iterable:
-        yield func(**{kw: a})
-
-
 if __name__ == "__main__":
     for i in yield_and_map([0, 1, 2, 3]):
         print(2 ** i)

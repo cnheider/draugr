@@ -11,3 +11,4 @@ from .to_tensor_generator import *
 from .batching import *
 from .recycling import *
 from .zipping import *
+from .mapping import *
