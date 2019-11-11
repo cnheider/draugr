@@ -4,6 +4,8 @@ from typing import Iterable, Sequence, Union
 
 import numpy
 import torch
+
+from draugr.torch_utilities.initialisation.seeding import get_global_torch_device
 from warg import passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
@@ -14,15 +16,16 @@ __doc__ = ""
 def to_tensor(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, int, float],
     dtype=torch.float,
+    device=get_global_torch_device(),
     **kwargs
 ):
     if torch.is_tensor(obj):
-        return obj.to(dtype=dtype, **kwargs)
+        return obj.to(dtype=dtype, device=device, **kwargs)
 
     if isinstance(obj, numpy.ndarray):
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:
-            return torch.stack(obj.tolist()).to(dtype=dtype, **kwargs)
-        return torch.from_numpy(obj).to(dtype=dtype, **kwargs)
+            return torch.stack(obj.tolist()).to(dtype=dtype, device=device, **kwargs)
+        return torch.from_numpy(obj).to(dtype=dtype, device=device, **kwargs)
 
     if not isinstance(obj, Sequence):
         obj = [obj]
@@ -31,9 +34,9 @@ def to_tensor(
 
     if isinstance(obj, list):
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:
-            return torch.stack(obj).to(dtype=dtype, **kwargs)
+            return torch.stack(obj).to(dtype=dtype, device=device, **kwargs)
 
-    return torch.tensor(obj, dtype=dtype, **kwargs)
+    return torch.tensor(obj, dtype=dtype, device=device, **kwargs)
 
 
 if __name__ == "__main__":

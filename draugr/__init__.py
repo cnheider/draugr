@@ -9,7 +9,7 @@ from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 __doc__ = """
 Created on 27/04/2019
 

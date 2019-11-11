@@ -6,7 +6,7 @@ from contextlib import suppress
 from matplotlib import pyplot
 import numpy
 
-from draugr import PROJECT_APP_PATH
+from draugr import PROJECT_APP_PATH, passes_kws_to
 from draugr.writers.writer import Writer
 
 __author__ = "Christian Heider Nielsen"
@@ -25,9 +25,10 @@ class TensorBoardXWriter(Writer):
             self.writer = SummaryWriter(str(self._log_dir), self._comment)
             return self
 
-    def _close(self, exc_type, exc_val, exc_tb):
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
         self.writer.close()
 
+    @passes_kws_to(Writer.__init__)
     def __init__(
         self, path=pathlib.Path.home() / "Models", comment: str = "", **kwargs
     ):

@@ -26,6 +26,7 @@ Created on 27/04/2019
 
 
 class TensorBoardPytorchWriter(ImageWriter):
+    @passes_kws_to(ImageWriter.__init__)
     def __init__(
         self,
         path: pathlib.Path = pathlib.Path.home() / "Models",
@@ -43,8 +44,8 @@ class TensorBoardPytorchWriter(ImageWriter):
     def graph(self, model, input_to_model):
         self.writer.add_graph(model, input_to_model)
 
-    def _close(self, exc_type, exc_val, exc_tb):
-        self.writer.close()
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
+        self._writer.close()
 
     @passes_kws_to(SummaryWriter.add_image)
     def image(
@@ -58,8 +59,14 @@ class TensorBoardPytorchWriter(ImageWriter):
     ):
         self.writer.add_image(tag, data, step, dataformats=dataformats, **kwargs)
 
+    @property
+    def writer(self):
+        if not hasattr(self, "_writer") or not self._writer:
+            self._writer = SummaryWriter(str(self._log_dir), self._comment)
+        return self._writer
+
     def _open(self):
-        self.writer = SummaryWriter(str(self._log_dir), self._comment)
+
         return self
 
 
