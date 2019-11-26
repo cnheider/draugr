@@ -9,6 +9,8 @@ Created on 27/04/2019
 @author: cnheider
 """
 
+__all__ = ["MockWriter"]
+
 
 class MockWriter(Writer):
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):

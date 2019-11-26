@@ -13,11 +13,11 @@ def add_early_stopping_key_combination(
 ):
     """
 
-  :param callback:
-  :param has_x_server:
-  :param verbose:
-  :return:
-  """
+:param callback:
+:param has_x_server:
+:param verbose:
+:return:
+"""
     if not has_x_server:
         return
 

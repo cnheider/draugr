@@ -14,6 +14,7 @@ __doc__ = r"""
 
            Created on 09/10/2019
            """
+__all__ = ["ImageWriter"]
 
 
 class ImageWriter(Writer, ABC):

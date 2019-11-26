@@ -11,6 +11,17 @@ __author__ = "Christian Heider Nielsen"
 
 import six
 
+__all__ = [
+    "COLORS",
+    "DECORATIONS",
+    "generate_style",
+    "sprint",
+    "PrintStyle",
+    "scale",
+    "get_terminal_size",
+]
+
+
 COLORS = NOD(
     red="31",
     green="32",
@@ -124,7 +135,7 @@ def get_terminal_size():
 
     rows, columns = int(rows), int(columns)
 
-    return NOD.nod_of(rows, columns)
+    return NOD(rows=rows, columns=columns)
 
 
 class PrintStyle(object):

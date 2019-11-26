@@ -9,6 +9,7 @@ import torch
 from torch.nn.modules.module import Module
 
 from warg import passes_kws_to
+from warg.kw_passing import drop_unused_kws
 
 __author__ = "Christian Heider Nielsen"
 
@@ -16,9 +17,11 @@ model_file_ending = ".model"
 config_file_ending = ".py"
 
 
-def load_latest_model(model_directory, **kwargs):
-    list_of_files = list(model_directory.glob(f"**/*{model_file_ending}"))
+@drop_unused_kws
+def load_latest_model(model_directory: pathlib.Path, model_name: str):
+    list_of_files = list(model_directory.glob(f"{model_name}/*{model_file_ending}"))
     if len(list_of_files) == 0:
+        print(f"Found no previous model in subtrees of: {model_directory}")
         return
     latest_model = max(list_of_files, key=os.path.getctime)
     print(f"loading previous model: {latest_model}")
@@ -41,30 +44,20 @@ def save_model_and_configuration(
     model: Module,
     model_save_path: pathlib.Path,
     config_save_path: pathlib.Path,
-    config_file_path: pathlib.Path,
+    loaded_config_file_path: pathlib.Path,
 ):
     torch.save(model.state_dict(), str(model_save_path))
-    save_config(config_save_path, config_file_path)
+    save_config(config_save_path, loaded_config_file_path)
 
 
-@passes_kws_to(save_model_and_configuration)
+@drop_unused_kws
 def save_model(
-    model: Module,
-    *,
-    save_directory: pathlib.Path,
-    project_name,
-    config_name,
-    config_file_path,
-    model_name: str = "",
-    **kwargs,
+    model: Module, *, save_directory: pathlib.Path, config_file_path, model_name: str
 ):
     model_date = datetime.datetime.now()
-    prepend = ""
-    if len(model_name) > 0:
-        prepend = f"{model_name}-"
-    model_name = f'{prepend}{project_name}-{config_name.replace(".", "_")}'
+    # config_name = config_name.replace(".", "_")
 
-    model_time_rep = model_date.strftime("%y%m%d%H%M")
+    model_time_rep = model_date.strftime("%Y%m%d%H%M%S")
     model_save_path = (
         save_directory / model_name / f"{model_time_rep}{model_file_ending}"
     )
@@ -78,7 +71,7 @@ def save_model(
         save_model_and_configuration(
             model=model,
             model_save_path=model_save_path,
-            config_file_path=config_file_path,
+            loaded_config_file_path=config_file_path,
             config_save_path=config_save_path,
         )
         saved = True
@@ -94,7 +87,7 @@ def save_model(
                 save_model_and_configuration(
                     model=model,
                     model_save_path=model_save_path,
-                    config_file_path=config_file_path,
+                    loaded_config_file_path=config_file_path,
                     config_save_path=config_save_path,
                 )
                 saved = True
@@ -110,10 +103,10 @@ def save_model(
         print(f"Was unsuccesful at saving model or configuration")
 
 
-def convert_to_cpu(path=""):
+def convert_to_cpu(path: pathlib.Path):
     model = torch.load(path, map_location=lambda storage, loc: storage)
     torch.save(model, f"{path}.cpu{model_file_ending}")
 
 
 if __name__ == "__main__":
-    convert_to_cpu(sys.argv[1])
+    convert_to_cpu(pathlib.Path(sys.argv[1]))

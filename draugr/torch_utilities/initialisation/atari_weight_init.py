@@ -9,7 +9,7 @@ __author__ = "Christian Heider Nielsen"
 import numpy
 
 
-def atari_initializer(module):
+def atari_initializer(module: torch.nn.Module):
     """ Parameter initializer for Atari models
 
 Initializes Linear, Conv2d, and LSTM weights.
@@ -38,7 +38,7 @@ Initializes Linear, Conv2d, and LSTM weights.
                 param.data.zero_()
 
 
-def initialize_parameters(m):
+def initialize_parameters(m: torch.nn.Module):
     classname = m.__class__.__name__
     if classname.find("Linear") != -1:
         m.weight.data.normal_(0, 1)

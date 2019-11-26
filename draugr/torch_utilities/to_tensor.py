@@ -5,18 +5,17 @@ from typing import Iterable, Sequence, Union
 import numpy
 import torch
 
-from draugr.torch_utilities.initialisation.seeding import get_global_torch_device
-from warg import passes_kws_to
+from draugr.torch_utilities.initialisation.device import global_torch_device
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
-
+__all__ = ["to_tensor"]
 
 # @passes_kws_to(torch.Tensor.to)
 def to_tensor(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, int, float],
     dtype=torch.float,
-    device=get_global_torch_device(),
+    device=global_torch_device(),
     **kwargs
 ):
     if torch.is_tensor(obj):

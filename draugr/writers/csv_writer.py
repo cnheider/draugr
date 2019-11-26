@@ -15,6 +15,9 @@ Created on 27/04/2019
 """
 
 
+__all__ = ["CSVWriter"]
+
+
 class CSVWriter(Writer):
     @staticmethod
     def get_csv_writer(path=pathlib.Path.home() / "Models"):

@@ -17,6 +17,8 @@ import numpy
 
 # sys.stdout.write(generate_style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
 
+__all__ = ["terminal_plot"]
+
 
 def terminal_plot(
     y: Sequence,

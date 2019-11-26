@@ -13,7 +13,7 @@ __doc__ = r"""
            """
 
 
-def torch_seed(s):
+def torch_seed(s: int):
     """seeding for reproducibility"""
     random.seed(s)
     os.environ["PYTHONHASHSEED"] = str(torch_seed)
@@ -22,15 +22,3 @@ def torch_seed(s):
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(s)
         torch.backends.cudnn.deterministic = True
-
-
-device = None
-
-
-def get_global_torch_device(prefer_cuda=True):
-    global device
-    if not device:
-        device = torch.device(
-            "cuda" if torch.cuda.is_available() and prefer_cuda else "cpu"
-        )
-    return device

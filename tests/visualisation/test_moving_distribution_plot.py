@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from draugr import discrete_scroll_plot
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
            Created on 9/2/19
            """
-
-from draugr.visualisation import activation_scroll_plot
 
 
 def test_moving_distribution_plot():
@@ -34,7 +33,7 @@ def test_moving_distribution_plot():
             [0, 1, 0],
         ]
     )
-    activation_scroll_plot(data_generator, labels=("a", "b", "c"))
+    discrete_scroll_plot(data_generator, labels=("a", "b", "c"))
     assert True
 
 

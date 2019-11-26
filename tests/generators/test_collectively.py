@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import time
 
+import pytest
+
 from draugr import to_tensor_generator, batched_recycle, numpy, torch
 
 __author__ = "Christian Heider Nielsen"
@@ -11,6 +13,7 @@ __doc__ = r"""
            """
 
 
+@pytest.mark.skip
 def test_d1():
     channels_in = 3
     channels_out = 3

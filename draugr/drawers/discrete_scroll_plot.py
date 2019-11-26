@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 import queue
 import threading
+from typing import Sequence, Tuple, Generator, Sized
 
 import matplotlib
-import numpy
 from matplotlib import animation
+
+from draugr.drawers.drawer import Drawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -14,25 +16,27 @@ Created on 27/04/2019
 @author: cnheider
 """
 
+__all__ = ["DiscreteScrollPlot", "discrete_scroll_plot"]
+
 from matplotlib import pyplot
 
 import numpy
 
 
-class scroll_plot_class(object):
+class DiscreteScrollPlot(Drawer):
     def __init__(
         self,
-        num_actions,
-        window_length=None,
-        labels=None,
-        title="",
-        time_label="Time",
-        data_label="Action Index",
-        vertical=True,
-        reverse=True,
-        overwrite=False,
-        placement=(0, 0),
-        render=True,
+        num_actions: int,
+        window_length: int = None,
+        labels: Sequence = None,
+        title: str = "",
+        time_label: str = "Time",
+        data_label: str = "Action Index",
+        vertical: bool = True,
+        reverse: bool = True,
+        overwrite: bool = False,
+        placement: Tuple = (0, 0),
+        render: bool = True,
     ):
         self.fig = None
         if not render:
@@ -99,7 +103,7 @@ fig_manager.window.SetPosition((500, 0))
         pyplot.tight_layout()
 
     @staticmethod
-    def move_figure(figure: pyplot.Figure, x=0, y=0):
+    def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0):
         """Move figure's upper left corner to pixel (x, y)"""
         backend = matplotlib.get_backend()
         if hasattr(figure.canvas.manager, "window"):
@@ -120,7 +124,7 @@ fig_manager.window.SetPosition((500, 0))
         if self.fig:
             pyplot.close(self.fig)
 
-    def draw(self, data, delta=1 / 120):
+    def draw(self, data: Sized, delta: float = 1 / 120):
         """
 
 :param data:
@@ -155,17 +159,17 @@ fig_manager.window.SetPosition((500, 0))
             pyplot.pause(delta)
 
 
-def scroll_plot(
-    vector_provider,
-    delta=1 / 60,
-    window_length=None,
-    labels=None,
-    title="",
-    time_label="Time",
-    data_label="Action Index",
-    vertical=True,
-    reverse=True,
-    overwrite=False,
+def discrete_scroll_plot(
+    vector_provider: Generator,
+    delta: float = 1 / 60,
+    window_length: int = None,
+    labels: Sequence = None,
+    title: str = "",
+    time_label: str = "Time",
+    data_label: str = "Action Index",
+    vertical: bool = True,
+    reverse: bool = True,
+    overwrite: bool = False,
 ):
     d = vector_provider.__next__()
     num_actions = len(d)
@@ -255,57 +259,57 @@ def scroll_plot(
     return anim
 
 
-def ma():
-    data = queue.Queue(100)
-
-    class QueueGen:
-        def __iter__(self):
-            return self
-
-        def __next__(self):
-            return self.get()
-
-        def __call__(self, *args, **kwargs):
-            return self.__next__()
-
-        def add(self, a):
-            return data.put(a)
-
-        def get(self):
-            return data.get()
-
-    def get_sample(num_actions=3):
-        a = numpy.zeros(num_actions)
-        a[numpy.random.randint(0, num_actions)] = 1.0
-        return a
-
-    class MyDataFetchClass(threading.Thread):
-        def __init__(self, data):
-
-            threading.Thread.__init__(self)
-
-            self._data = data
-
-        def run(self):
-
-            while True:
-                self._data.add(get_sample())
-
-    d = QueueGen()
-
-    MyDataFetchClass(d).start()
-
-    anim = scroll_plot(iter(d), labels=("a", "b", "c"))
-
-    try:
-        pyplot.show()
-    except:
-        print("Plot Closed")
-
-
 if __name__ == "__main__":
+
+    def ma():
+        data = queue.Queue(100)
+
+        class QueueGen:
+            def __iter__(self):
+                return self
+
+            def __next__(self):
+                return self.get()
+
+            def __call__(self, *args, **kwargs):
+                return self.__next__()
+
+            def add(self, a):
+                return data.put(a)
+
+            def get(self):
+                return data.get()
+
+        def get_sample(num_actions=3):
+            a = numpy.zeros(num_actions)
+            a[numpy.random.randint(0, num_actions)] = 1.0
+            return a
+
+        class MyDataFetchClass(threading.Thread):
+            def __init__(self, data):
+
+                threading.Thread.__init__(self)
+
+                self._data = data
+
+            def run(self):
+
+                while True:
+                    self._data.add(get_sample())
+
+        d = QueueGen()
+
+        MyDataFetchClass(d).start()
+
+        anim = discrete_scroll_plot(iter(d), labels=("a", "b", "c"))
+
+        try:
+            pyplot.show()
+        except:
+            print("Plot Closed")
+
     delta = 1 / 60
 
-    s = scroll_plot_class(3)
+    s = DiscreteScrollPlot(3)
     for LATEST_GPU_STATS in range(100):
         s.draw(numpy.random.rand(3))

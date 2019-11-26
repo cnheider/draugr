@@ -23,6 +23,7 @@ Created on 27/04/2019
 
 @author: cnheider
 """
+__all__ = ["TensorBoardPytorchWriter"]
 
 
 class TensorBoardPytorchWriter(ImageWriter):
@@ -45,7 +46,9 @@ class TensorBoardPytorchWriter(ImageWriter):
         self.writer.add_graph(model, input_to_model)
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
-        self._writer.close()
+        if hasattr(self, "_writer"):
+            self._writer.close()
+            delattr(self, "_writer")
 
     @passes_kws_to(SummaryWriter.add_image)
     def image(

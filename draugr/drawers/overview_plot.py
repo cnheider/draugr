@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import math
 from typing import Sequence, Iterable, Tuple
 
 __author__ = "Christian Heider Nielsen"
@@ -54,12 +55,29 @@ def correlation_matrix_plot(cor, labels=None, title="", **kwargs):
 
 
 @passes_kws_to(imshow)
-def horizontal_imshow(images: Sequence, columns=4, figsize=(20, 10), **kwargs):
+def horizontal_imshow(
+    images: Sequence, titles: Sequence = None, columns: int = 4, **kwargs
+):
     """Small helper function for creating horizontal subplots with pyplot"""
-    pyplot.figure(figsize=figsize)
+    sadasf = len(images) / columns
+    ssa = math.floor(sadasf)
+    if ssa != sadasf:
+        ssa += 1
+
+    if titles is None:
+        titles = [f"fig{a}" for a in range(len(images))]
+    fig, axes = pyplot.subplots(
+        ssa, columns, squeeze=False, sharex="all", sharey="all", constrained_layout=True
+    )
+    faxes = []
+    for a in axes:
+        faxes.extend(a)
     for i, image in enumerate(images):
-        pyplot.subplot(len(images) / columns + 1, columns, i + 1)
-        pyplot.imshow(image, **kwargs)
+        ax = faxes[i]
+        if titles:
+            ax.set_title(titles[i])
+        ax.imshow(image, **kwargs)
+    return fig
 
 
 def biplot(
@@ -70,15 +88,15 @@ def biplot(
     label_multiplier: float = 1.06,
 ):
     """
-  # Call the function. Use only the 2 PCs.
+# Call the function. Use only the 2 PCs.
 
-  :param label_multiplier:
-  :param categories:
-  :param scores:
-  :param coefficients:
-  :param labels:
-  :return:
-  """
+:param label_multiplier:
+:param categories:
+:param scores:
+:param coefficients:
+:param labels:
+:return:
+"""
     assert label_multiplier >= 1.0
 
     fig = pyplot.figure()
@@ -282,7 +300,9 @@ def precision_recall_plt(y, yhat, n_classes=2):
     pyplot.legend(loc="lower right")
 
 
-def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
+def roc_plot(
+    y_test, y_pred, n_classes: int, size: Tuple[int, int] = (8, 8), decimals: int = 3
+):
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -352,7 +372,9 @@ def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
     pyplot.legend(loc="lower right")
 
 
-def plot_confusion_matrix(y_test, y_pred, class_names, size=(8, 8), decimals=3):
+def plot_confusion_matrix(
+    y_test, y_pred, class_names, size: Tuple[int, int] = (8, 8), decimals: int = 3
+):
     def confusion_matrix_figure(
         y_true, y_pred, classes, normalize=False, title=None, cmap=pyplot.cm.Blues
     ):

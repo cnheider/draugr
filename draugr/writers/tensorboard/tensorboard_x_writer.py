@@ -15,6 +15,7 @@ Created on 27/04/2019
 
 @author: cnheider
 """
+__all__ = ["TensorBoardXWriter"]
 
 
 class TensorBoardXWriter(Writer):

@@ -5,7 +5,6 @@ __author__ = "Christian Heider Nielsen"
 
 from .initialisation import *
 from .persistence import *
-from .misc import *
 from .updates import *
 from .images import *
 from .datasets import *

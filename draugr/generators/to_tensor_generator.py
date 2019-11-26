@@ -16,11 +16,11 @@ __doc__ = r"""
 def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs):
     """
 
-  :param iterable:
-  :param preload_next:
-  :param kwargs:
-  :return:
-  """
+:param iterable:
+:param preload_next:
+:param kwargs:
+:return:
+"""
     if preload_next:
         iterable_iter = iter(iterable)
         current = to_tensor(next(iterable_iter), **kwargs)

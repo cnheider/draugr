@@ -18,7 +18,6 @@ def test_batch_generator1():
 
 
 def test_batch_with_label():
-
     import numpy
     from draugr.generators.recycling import batched_recycle
 

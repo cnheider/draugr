@@ -12,8 +12,8 @@ __doc__ = r"""
 
 class NonSequentialDataset(Dataset):
     """
- * ``N`` - number of parallel environments
- * ``T`` - number of time steps explored in environments
+* ``N`` - number of parallel environments
+* ``T`` - number of time steps explored in environments
 
 Dataset that flattens ``N*T*...`` arrays into ``B*...`` (where ``B`` is equal to ``N*T``) and returns
 such rows

@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from draugr.writers import PROJECT_APP_PATH, TensorBoardPytorchWriter
+from draugr import PROJECT_APP_PATH
+from draugr.writers import TensorBoardPytorchWriter
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
