@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr import discrete_scroll_plot
+import numpy
+
+from draugr.drawers.moving_distribution_plot import MovingDistributionPlot
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -33,7 +35,12 @@ def test_moving_distribution_plot():
             [0, 1, 0],
         ]
     )
-    discrete_scroll_plot(data_generator, labels=("a", "b", "c"))
+    # moving_distribution_plot(data_generator, labels=("a", "b", "c"))
+    delta = 1.0 / 60.0
+
+    s = MovingDistributionPlot()
+    for LATEST_GPU_STATS in range(100):
+        s.draw(numpy.random.sample(), delta)
     assert True
 
 

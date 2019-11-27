@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import queue
 import threading
-from typing import Sequence, Tuple, Generator, Sized
+from typing import Sequence, Tuple, Generator, Sized, Iterator
 
 import matplotlib
 from matplotlib import animation
@@ -160,7 +160,7 @@ fig_manager.window.SetPosition((500, 0))
 
 
 def discrete_scroll_plot(
-    vector_provider: Generator,
+    vector_provider: Iterator,
     delta: float = 1 / 60,
     window_length: int = None,
     labels: Sequence = None,

@@ -38,4 +38,4 @@ def test_series_scroll_plot():
 
 
 if __name__ == "__main__":
-    test_timeseries_scroll_plot()
+    test_series_scroll_plot()
