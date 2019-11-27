@@ -9,6 +9,7 @@ import numpy
 import torch
 from PIL import Image
 
+from draugr.writers.tensorboard.image_writer import ImageWriter
 from warg import passes_kws_to
 from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
@@ -22,11 +23,16 @@ Created on 27/04/2019
 
 @author: cnheider
 """
+__all__ = ["TensorBoardPytorchWriter"]
 
 
-class TensorBoardPytorchWriter(Writer):
+class TensorBoardPytorchWriter(ImageWriter):
+    @passes_kws_to(ImageWriter.__init__)
     def __init__(
-        self, path=pathlib.Path.home() / "Models", comment: str = "", **kwargs
+        self,
+        path: pathlib.Path = pathlib.Path.home() / "Models",
+        comment: str = "",
+        **kwargs
     ):
         super().__init__(**kwargs)
 
@@ -39,8 +45,10 @@ class TensorBoardPytorchWriter(Writer):
     def graph(self, model, input_to_model):
         self.writer.add_graph(model, input_to_model)
 
-    def _close(self, exc_type, exc_val, exc_tb):
-        self.writer.close()
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
+        if hasattr(self, "_writer"):
+            self._writer.close()
+            delattr(self, "_writer")
 
     @passes_kws_to(SummaryWriter.add_image)
     def image(
@@ -54,9 +62,14 @@ class TensorBoardPytorchWriter(Writer):
     ):
         self.writer.add_image(tag, data, step, dataformats=dataformats, **kwargs)
 
+    @property
+    def writer(self):
+        if not hasattr(self, "_writer") or not self._writer:
+            self._writer = SummaryWriter(str(self._log_dir), self._comment)
+        return self._writer
+
     def _open(self):
 
-        self.writer = SummaryWriter(str(self._log_dir), self._comment)
         return self
 
 

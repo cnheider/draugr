@@ -8,6 +8,8 @@ __doc__ = r"""
            Created on 9/14/19
            """
 
+__all__ = ["VisdomWriter"]
+
 
 class VisdomWriter(Writer):
     def _scalar(self, tag: str, value: float, step: int):

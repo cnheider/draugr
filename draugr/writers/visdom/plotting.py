@@ -7,6 +7,8 @@ import visdom
 
 vis = visdom.Visdom()
 
+__all__ = ["plot_episode_stats"]
+
 
 def plot_episode_stats(stats):
     # Plot the mean of last 100 episode rewards over time.

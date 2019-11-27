@@ -7,6 +7,8 @@ Author: Christian Heider Nielsen
 """
 import numpy
 
+__all__ = ["update_visualiser"]
+
 
 def update_visualiser(
     visualiser,

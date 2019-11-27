@@ -3,10 +3,10 @@
 import pathlib
 from contextlib import suppress
 
-import matplotlib.pyplot as plt
+from matplotlib import pyplot
 import numpy
 
-from draugr import PROJECT_APP_PATH
+from draugr import PROJECT_APP_PATH, passes_kws_to
 from draugr.writers.writer import Writer
 
 __author__ = "Christian Heider Nielsen"
@@ -15,6 +15,7 @@ Created on 27/04/2019
 
 @author: cnheider
 """
+__all__ = ["TensorBoardWriter"]
 
 
 class TensorBoardWriter(Writer):
@@ -25,9 +26,10 @@ class TensorBoardWriter(Writer):
             self.writer = SummaryWriter(str(self._log_dir), self._comment)
             return self
 
-    def _close(self, exc_type, exc_val, exc_tb):
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
         self.writer.close()
 
+    @passes_kws_to(Writer.__init__)
     def __init__(
         self, path=pathlib.Path.home() / "Models", comment: str = "", **kwargs
     ):
@@ -55,16 +57,16 @@ class TensorBoardWriter(Writer):
         y_label="Probs",
         title="Action Categorical Distribution",
     ):
-        fig = plt.figure()
+        fig = pyplot.figure()
         ind = numpy.arange(len(values))
-        plt.bar(ind, values, yerr=yerr)
+        pyplot.bar(ind, values, yerr=yerr)
         if x_labels:
-            plt.xticks(ind, labels=x_labels)
+            pyplot.xticks(ind, labels=x_labels)
         else:
-            plt.xticks(ind)
+            pyplot.xticks(ind)
 
-        plt.ylabel(y_label)
-        plt.title(title)
+        pyplot.ylabel(y_label)
+        pyplot.title(title)
 
         self.writer.add_figure(tag, fig, global_step=step, close=True)
 

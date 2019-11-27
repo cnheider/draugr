@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pytest
-
-from draugr.writers import LogWriter, PROJECT_APP_PATH
+from draugr import PROJECT_APP_PATH
+from draugr.writers import LogWriter
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

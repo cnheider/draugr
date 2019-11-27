@@ -4,7 +4,6 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
-
 import warnings
 
 warnings.filterwarnings(

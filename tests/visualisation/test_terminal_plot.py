@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr.visualisation import activation_scroll_plot, terminal_plot
+from draugr import terminal_plot
 
 __author__ = "Christian Heider Nielsen"
 

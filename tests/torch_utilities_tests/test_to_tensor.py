@@ -35,37 +35,37 @@ def test_to_tensor_empty_tuple():
 
 def test_to_tensor_list():
     ref = [0]
-    tensor = to_tensor(ref)
+    tensor = to_tensor(ref, device="cpu")
     assert tensor.equal(torch.FloatTensor([0]))
 
 
 def test_to_tensor_multi_list():
     ref = [[0], [1]]
-    tensor = to_tensor(ref)
+    tensor = to_tensor(ref, device="cpu")
     assert tensor.equal(torch.FloatTensor([[0], [1]]))
 
 
 def test_to_tensor_tuple():
     ref = (0,)
-    tensor = to_tensor(ref)
+    tensor = to_tensor(ref, device="cpu")
     assert tensor.equal(torch.FloatTensor([0]))
 
 
 def test_to_tensor_multi_tuple():
     ref = ([0], [1])
-    tensor = to_tensor(ref)
+    tensor = to_tensor(ref, device="cpu")
     assert tensor.equal(torch.FloatTensor([[0], [1]]))
 
 
 def test_to_tensor_from_numpy_tensor():
     ref = torch.from_numpy(numpy.random.sample((1, 2)))
-    tensor = to_tensor(ref, dtype=torch.double)
+    tensor = to_tensor(ref, dtype=torch.double, device="cpu")
     assert tensor.equal(ref)
 
 
 def test_to_tensor_float_tensor():
     ref = torch.FloatTensor([0])
-    tensor = to_tensor(ref)
+    tensor = to_tensor(ref, device="cpu")
     assert tensor.equal(ref)
 
 

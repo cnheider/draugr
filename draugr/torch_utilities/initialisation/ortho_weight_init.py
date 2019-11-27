@@ -6,7 +6,7 @@ import numpy
 import torch
 
 
-def ortho_weights(shape, scale=1.0):
+def ortho_weights(shape, scale: float = 1.0):
     """ PyTorch port of ortho_init from baselines.a2c.utils """
     shape = tuple(shape)
 

@@ -11,6 +11,8 @@ Created on 27/04/2019
 from abc import ABCMeta, abstractmethod
 from collections import Counter
 
+__all__ = ["Writer"]
+
 
 class Writer(metaclass=ABCMeta):
     def __init__(self, *, interval: int = 1, filters=None, **kwargs):
