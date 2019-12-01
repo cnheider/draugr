@@ -6,6 +6,8 @@ import matplotlib
 import numpy
 import torch
 
+from draugr import to_tensor
+
 __author__ = "Christian Heider Nielsen"
 
 import csv
