@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 from .to_tensor_generator import *
-from .batching import *
-from .recycling import *
-from .zipping import *
-from .mapping import *
+from .batching_generator import *
+from .recycling_generator import *
+from .zipping_generator import *
+from .mapping_generator import *

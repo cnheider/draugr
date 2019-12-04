@@ -7,7 +7,7 @@ import statistics as S
 import numpy
 
 
-class Summary:
+class MetricSummary:
     """
 
 """
@@ -54,4 +54,4 @@ Computes new running mean and variances.
 
 
 if __name__ == "__main__":
-    Summary()
+    MetricSummary()

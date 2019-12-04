@@ -33,7 +33,7 @@ require grad
     seen = set()
 
     def size_to_str(size):
-        return "(" + (", ").join(["%d" % v for v in size]) + ")"
+        return f"({(', ').join(['%d' % v for v in size])})"
 
     def add_nodes(var):
         if var not in seen:

@@ -7,6 +7,7 @@ import csv
 
 from matplotlib import pyplot
 
+from draugr import MetricAggregator
 from neodroidagent import utilities as U
 
 # print(pyplot.style.available)
@@ -35,7 +36,7 @@ pyplot.ion()
 
 def simple_plot(file_path, name="Statistic Name"):
     with open(file_path, "r") as f:
-        agg = U.StatisticAggregator()
+        agg = MetricAggregator()
 
         reader = csv.reader(f, delimiter=" ", quotechar="|")
         for line in reader:

@@ -21,7 +21,6 @@ __all__ = [
     "get_terminal_size",
 ]
 
-
 COLORS = NOD(
     red="31",
     green="32",
