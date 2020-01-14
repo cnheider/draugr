@@ -10,6 +10,8 @@ __doc__ = r"""
            Created on 01/12/2019
            """
 
+__all__ = ["resize_image_cv"]
+
 
 def resize_image_cv(x, target_size: tuple, interpolation=cv2.INTER_LINEAR):
     """

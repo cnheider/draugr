@@ -12,12 +12,8 @@ __doc__ = r"""
 
            Created on 09/10/2019
            """
-__all__ = ["torch_pi", "identity"]
+__all__ = ["torch_pi"]
 
 
 def torch_pi(device: Union[str, torch.device] = "cpu"):
     return to_tensor([numpy.math.pi], device=device)
-
-
-def identity(x):
-    return x

@@ -30,7 +30,7 @@ class TensorBoardPytorchWriter(ImageWriter):
     @passes_kws_to(ImageWriter.__init__)
     def __init__(
         self,
-        path: pathlib.Path = pathlib.Path.home() / "Models",
+        path: Union[str, pathlib.Path] = pathlib.Path.home() / "Models",
         comment: str = "",
         **kwargs
     ):

@@ -7,9 +7,12 @@ from draugr.writers.terminal import sprint
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
+from warg import drop_unused_kws
 
+
+@drop_unused_kws
 def add_early_stopping_key_combination(
-    callback: callable, has_x_server: bool = True, verbose: bool = False, **kwargs
+    callback: callable, has_x_server: bool = True, verbose: bool = False
 ):
     """
 
@@ -48,8 +51,8 @@ def add_early_stopping_key_combination(
         if any([key in COMBO for COMBO in COMBINATIONS]):
             current.add(key)
             if any(all(k in current for k in COMBO) for COMBO in COMBINATIONS):
-                for callback in CALLBACKS:
-                    callback()
+                for clbck in CALLBACKS:
+                    clbck()
 
     def on_release(key):
         if any([key in COMBO for COMBO in COMBINATIONS]):

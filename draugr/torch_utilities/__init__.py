@@ -11,4 +11,3 @@ from .datasets import *
 from .distributions import *
 from .constants import *
 from .to_tensor import *
-from .resize import *
