@@ -67,3 +67,53 @@ if __name__ == "__main__":
     print(to_tensor({(torch.zeros((2, 2))), (torch.zeros((2, 2)))}).shape)
     print(to_tensor(((torch.zeros((2, 2))), (torch.zeros((2, 2))))).shape)
     print(to_tensor([[[[torch.zeros((2, 2))]], [[torch.zeros((2, 2))]]]]).shape)
+
+    print(
+        to_tensor(
+            (
+                numpy.zeros((2, 2)),
+                numpy.zeros((2, 2)),
+                numpy.zeros((2, 2)),
+                numpy.zeros((2, 2)),
+            )
+        )
+    )
+
+    print(
+        (
+            *[
+                to_tensor(a, device="cpu")
+                for a in [
+                    numpy.zeros((2, 2)),
+                    numpy.zeros((2, 2)),
+                    numpy.zeros((2, 2)),
+                    numpy.zeros((2, 2)),
+                ]
+            ],
+        )
+    )
+
+    print(
+        to_tensor(
+            [
+                to_tensor(numpy.zeros((2, 2))),
+                to_tensor(numpy.zeros((2, 2))),
+                to_tensor(numpy.zeros((2, 2))),
+                to_tensor(numpy.zeros((2, 2))),
+            ]
+        )
+    )
+
+    print(
+        (
+            *[
+                to_tensor(a, device="cpu")
+                for a in [
+                    to_tensor(numpy.zeros((2, 2))),
+                    to_tensor(numpy.zeros((2, 2))),
+                    to_tensor(numpy.zeros((2, 2))),
+                    to_tensor(numpy.zeros((2, 2))),
+                ]
+            ],
+        )
+    )

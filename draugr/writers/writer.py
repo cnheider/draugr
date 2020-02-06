@@ -31,7 +31,7 @@ class Writer(metaclass=ABCMeta):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._close(exc_type, exc_val, exc_tb)
 
-    def scalar(self, tag: str, value: float, step_i: int = None):
+    def scalar(self, tag: str, value: float, step_i: int = None) -> None:
         if step_i:
             if self.filter(tag):
                 self._scalar(tag, value, self._counter[tag])
@@ -41,11 +41,20 @@ class Writer(metaclass=ABCMeta):
                 self._scalar(tag, value, self._counter[tag])
             self._counter[tag] += 1
 
+    def blip(self, tag: str, step_i: int = None) -> None:
+        if step_i:
+            self.scalar(tag, 0, step_i - 1)
+            self.scalar(tag, 1, step_i)
+            self.scalar(tag, 0, step_i + 1)
+        else:
+            self.scalar(tag, 0)
+            self.scalar(tag, 1)
+            self.scalar(tag, 0)
+
     def close(self):
         self._close()
 
     def open(self):
-
         self._open()
 
     @abstractmethod
