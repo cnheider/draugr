@@ -11,6 +11,8 @@ __doc__ = r"""
            Created on 09/10/2019
            """
 
+__all__ = ["RandomDataset"]
+
 
 class RandomDataset(Dataset):
     def __init__(self, size: Sized, length: int):

@@ -9,7 +9,6 @@ __doc__ = r"""
            Created on 21/09/2019
            """
 
-
 __all__ = ["Drawer", "MockDrawer"]
 
 

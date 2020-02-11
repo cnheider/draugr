@@ -6,7 +6,7 @@ __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 
-def main(keep_alive=True):
+def main(keep_alive: bool = True):
     from draugr.writers.tensorboard.launcher import launch_tensorboard
     from contextlib import suppress
     from time import sleep

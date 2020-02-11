@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
+
 import statistics as S
 
 import numpy
+
+__all__ = ["MetricSummary"]
 
 
 class MetricSummary:

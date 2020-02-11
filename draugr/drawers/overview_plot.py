@@ -12,10 +12,12 @@ Created on 27/04/2019
 
 from matplotlib.pyplot import matshow, imshow
 from itertools import cycle
+
+from numpy import interp
+
 from warg import passes_kws_to
 from matplotlib import pyplot
 import numpy
-from scipy import interp
 from sklearn import svm
 from sklearn.datasets import make_classification
 from sklearn.decomposition import PCA
@@ -31,6 +33,17 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler, label_binarize
 from sklearn.utils.multiclass import unique_labels
+
+__all__ = [
+    "correlation_matrix_plot",
+    "horizontal_imshow",
+    "biplot",
+    "plot_confusion_matrix",
+    "precision_recall_plt2",
+    "pca_biplot",
+    "roc_plot",
+    "precision_recall_plt",
+]
 
 
 @passes_kws_to(matshow)

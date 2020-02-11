@@ -5,7 +5,10 @@ from typing import List
 from warnings import warn
 
 __author__ = "Christian Heider Nielsen"
+
 import statistics as stats
+
+__all__ = ["MetricAggregator", "save_metric"]
 
 
 class MetricAggregator(object):

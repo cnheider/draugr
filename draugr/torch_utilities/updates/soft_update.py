@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
+
 import torch
+
+__all__ = ["soft_update"]
 
 
 def soft_update(

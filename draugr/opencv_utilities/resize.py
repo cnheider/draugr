@@ -16,7 +16,7 @@ __all__ = ["resize_image_cv"]
 def resize_image_cv(x, target_size: tuple, interpolation=cv2.INTER_LINEAR):
     """
 
-  :param interpolation:
+:param interpolation:
 :param x:
 :param target_size: proper (width, height) shape, no cv craziness
 :return:

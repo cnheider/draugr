@@ -31,6 +31,13 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler, label_binarize
 from sklearn.utils.multiclass import unique_labels
 
+__all__ = [
+    "draw_vector",
+    "correlation_matrix_plot",
+    "plot_2d_principal_components",
+    "biplot",
+]
+
 
 @passes_kws_to(matshow)
 def correlation_matrix_plot(cor, labels=None, title="", **kwargs):

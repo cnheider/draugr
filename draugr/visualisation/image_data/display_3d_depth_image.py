@@ -7,17 +7,18 @@ from matplotlib import pyplot
 import numpy
 import scipy.misc
 
+__all__ = ["display_depth_map_3d"]
 
-def main():
+
+def display_depth_map_3d(
+    data_set_directory="/home/heider/Datasets/neodroid/depth/80.png"
+):
     # lena = scipy.misc.ascent()
 
     # downscaling has a 'smoothing' effect
     # lena = scipy.misc.imresize(lena, 0.15, interp='cubic')
 
-    data_set_directory = "/home/heider/Datasets/neodroid/depth/"
-    file_name = "80.png"
-
-    img = mpimg.imread(data_set_directory + file_name)
+    img = mpimg.imread(data_set_directory)
     img = img[:, :, 0]
 
     # def ivas(x, cam_ang):
@@ -47,4 +48,4 @@ def main():
 
 
 if __name__ is "__main__":
-    main()
+    display_depth_map_3d()

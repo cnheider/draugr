@@ -33,6 +33,8 @@ if is_ipython:
 
 pyplot.ion()
 
+__all__ = ["simple_plot"]
+
 
 def simple_plot(file_path, name="Statistic Name"):
     with open(file_path, "r") as f:

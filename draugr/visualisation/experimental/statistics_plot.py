@@ -24,6 +24,8 @@ if is_ipython:
 
 pyplot.ion()
 
+__all__ = ["ma_plot", "simple_plot", "error_plot", "plot_durations"]
+
 
 def ma_plot(file_name, name):
     with open(file_name, "r") as f:

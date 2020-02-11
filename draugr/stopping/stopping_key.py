@@ -9,6 +9,8 @@ __doc__ = ""
 
 from warg import drop_unused_kws
 
+__all__ = ["add_early_stopping_key_combination"]
+
 
 @drop_unused_kws
 def add_early_stopping_key_combination(

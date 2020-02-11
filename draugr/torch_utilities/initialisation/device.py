@@ -10,6 +10,8 @@ __doc__ = r"""
 
 device = None
 
+__all__ = ["global_torch_device"]
+
 
 def global_torch_device(prefer_cuda: bool = True):
     global device

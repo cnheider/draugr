@@ -11,6 +11,8 @@ import gym
 from IPython.display import display
 from matplotlib import animation, pyplot
 
+__all__ = ["replay_frames"]
+
 
 def replay_frames(frames, interval=100):
     """
@@ -37,7 +39,7 @@ if __name__ == "__main__":
     frames = []
     done = False
     while not done:
-        frames.append(env.render(mode="rgb_array"))
+        frames.append(env.render())
 
         state, reward, done, info = env.step(env.action_space.sample())
     env.close()
