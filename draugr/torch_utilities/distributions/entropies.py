@@ -11,6 +11,13 @@ __doc__ = r"""
 
            Created on 09/10/2019
            """
+__all__ = [
+    "shannon_entropy",
+    "log_shannon_entropy",
+    "normal_entropy",
+    "differential_entropy_gaussian",
+    "normal_log_density",
+]
 
 
 def shannon_entropy(prob: torch.Tensor):

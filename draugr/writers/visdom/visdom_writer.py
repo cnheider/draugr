@@ -10,6 +10,14 @@ __doc__ = r"""
 
 __all__ = ["VisdomWriter"]
 
+# Visualisation
+USE_VISDOM = False
+START_VISDOM_SERVER = False
+VISDOM_SERVER = "http://localhost"
+if not START_VISDOM_SERVER:
+    # noinspection PyRedeclaration
+    VISDOM_SERVER = "http://visdom.ml"
+
 
 class VisdomWriter(Writer):
     def _scalar(self, tag: str, value: float, step: int):

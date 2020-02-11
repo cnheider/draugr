@@ -8,6 +8,8 @@ __doc__ = r"""
            Created on 20/10/2019
            """
 
+__all__ = ["init_weights"]
+
 
 def init_weights(m):
     if isinstance(m, nn.Linear):

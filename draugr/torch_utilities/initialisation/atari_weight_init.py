@@ -8,6 +8,8 @@ __author__ = "Christian Heider Nielsen"
 
 import numpy
 
+__all__ = ["atari_initializer", "initialize_parameters"]
+
 
 def atari_initializer(module: torch.nn.Module):
     """ Parameter initializer for Atari models

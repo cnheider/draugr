@@ -6,3 +6,4 @@ pandas
 sklearn
 pynput
 matplotlib
+opencv-python

@@ -6,7 +6,7 @@ from contextlib import suppress
 from matplotlib import pyplot
 import numpy
 
-from draugr import PROJECT_APP_PATH, passes_kws_to
+from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
 
 __author__ = "Christian Heider Nielsen"
@@ -16,6 +16,8 @@ Created on 27/04/2019
 @author: cnheider
 """
 __all__ = ["TensorBoardXWriter"]
+
+from warg import passes_kws_to
 
 
 class TensorBoardXWriter(Writer):

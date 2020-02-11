@@ -5,6 +5,8 @@ import datetime
 import os
 import shutil
 import sys
+from typing import Union
+
 import torch
 from torch.nn.modules.module import Module
 
@@ -16,25 +18,53 @@ __author__ = "Christian Heider Nielsen"
 model_file_ending = ".model"
 config_file_ending = ".py"
 
+__all__ = [
+    "load_latest_model",
+    "ensure_directory_exist",
+    "save_config",
+    "save_model_and_configuration",
+    "save_model",
+    "convert_to_cpu",
+]
+
 
 @drop_unused_kws
-def load_latest_model(model_directory: pathlib.Path, model_name: str):
+def load_latest_model(
+    model_directory: pathlib.Path, model_name: str
+) -> Union[torch.nn.Module, None]:
+    """
+
+:param model_directory:
+:param model_name:
+:return:
+"""
     list_of_files = list(model_directory.glob(f"{model_name}/*{model_file_ending}"))
     if len(list_of_files) == 0:
         print(f"Found no previous model in subtrees of: {model_directory}")
-        return
+        return None
     latest_model = max(list_of_files, key=os.path.getctime)
     print(f"loading previous model: {latest_model}")
 
     return torch.load(str(latest_model))
 
 
-def ensure_directory_exist(model_path: pathlib.Path):
+def ensure_directory_exist(model_path: pathlib.Path) -> None:
+    """
+
+:param model_path:
+:return:
+"""
     if not model_path.exists():
         model_path.mkdir(parents=True)
 
 
-def save_config(config_save_path: pathlib.Path, config_file_path: pathlib.Path):
+def save_config(config_save_path: pathlib.Path, config_file_path: pathlib.Path) -> None:
+    """
+
+:param config_save_path:
+:param config_file_path:
+:return:
+"""
     shutil.copyfile(str(config_file_path), str(config_save_path))
 
 
@@ -45,15 +75,35 @@ def save_model_and_configuration(
     model_save_path: pathlib.Path,
     config_save_path: pathlib.Path,
     loaded_config_file_path: pathlib.Path,
-):
+) -> None:
+    """
+
+:param model:
+:param model_save_path:
+:param config_save_path:
+:param loaded_config_file_path:
+:return:
+"""
     torch.save(model.state_dict(), str(model_save_path))
     save_config(config_save_path, loaded_config_file_path)
 
 
 @drop_unused_kws
 def save_model(
-    model: Module, *, save_directory: pathlib.Path, config_file_path, model_name: str
-):
+    model: Module,
+    *,
+    save_directory: pathlib.Path,
+    config_file_path: pathlib.Path,
+    model_name: str,
+) -> None:
+    """
+
+:param model:
+:param save_directory:
+:param config_file_path:
+:param model_name:
+:return:
+"""
     model_date = datetime.datetime.now()
     # config_name = config_name.replace(".", "_")
 
@@ -103,7 +153,12 @@ def save_model(
         print(f"Was unsuccesful at saving model or configuration")
 
 
-def convert_to_cpu(path: pathlib.Path):
+def convert_to_cpu(path: pathlib.Path) -> None:
+    """
+
+:param path:
+:return:
+"""
     model = torch.load(path, map_location=lambda storage, loc: storage)
     torch.save(model, f"{path}.cpu{model_file_ending}")
 

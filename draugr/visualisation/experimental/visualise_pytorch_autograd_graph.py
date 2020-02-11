@@ -6,6 +6,8 @@ import torch
 from graphviz import Digraph
 from torch.autograd import Variable
 
+__all__ = ["make_dot"]
+
 
 def make_dot(var, params):
     """ Produces Graphviz representation of PyTorch autograd graph
@@ -33,7 +35,7 @@ require grad
     seen = set()
 
     def size_to_str(size):
-        return "(" + (", ").join(["%d" % v for v in size]) + ")"
+        return f"({(', ').join(['%d' % v for v in size])})"
 
     def add_nodes(var):
         if var not in seen:

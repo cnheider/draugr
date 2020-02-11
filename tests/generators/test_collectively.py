@@ -4,7 +4,8 @@ import time
 
 import pytest
 
-from draugr import to_tensor_generator, batched_recycle, numpy, torch
+import numpy, torch
+from draugr import to_tensor_generator, batched_recycle
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

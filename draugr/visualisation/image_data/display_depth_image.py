@@ -5,16 +5,16 @@ __author__ = "Christian Heider Nielsen"
 import matplotlib.image as mpimg
 from matplotlib import pyplot
 
+__all__ = ["display_depth_map"]
 
-def main():
-    data_set_directory = "/home/heider/Datasets/neodroid/"
-    file_name = "10.png"
+
+def display_depth_map(data_set_directory="/home/heider/Datasets/neodroid/10.png"):
 
     # img = Image.open(data_set_directory + file_name).convert('LA')
     # img_array =numpy.asarray(img)
     # print(img_array.shape)
 
-    img = mpimg.imread(data_set_directory + file_name)
+    img = mpimg.imread(data_set_directory)
     img = img[:, :, 0]
     img = img / 255
 
@@ -23,4 +23,4 @@ def main():
 
 
 if __name__ is "__main__":
-    main()
+    display_depth_map()

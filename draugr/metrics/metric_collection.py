@@ -2,11 +2,14 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
+
 import statistics as S
 
 from .metric_aggregator import MetricAggregator
 
 MEASURES = S.__all__[1:]
+
+__all__ = ["MetricCollection"]
 
 
 class MetricCollection(dict):

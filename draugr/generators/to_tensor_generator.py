@@ -10,6 +10,7 @@ __doc__ = r"""
 
            Created on 28/10/2019
            """
+__all__ = ["to_tensor_generator"]
 
 
 @passes_kws_to(to_tensor)

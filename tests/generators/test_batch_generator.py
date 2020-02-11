@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr import recycle, batched_recycle, to_tensor_generator
+from draugr import batched_recycle, to_tensor_generator
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -19,7 +19,6 @@ def test_batch_generator1():
 
 def test_batch_with_label():
     import numpy
-    from draugr.generators.recycling import batched_recycle
 
     channels_in = 3
     batches = 3

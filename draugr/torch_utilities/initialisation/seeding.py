@@ -11,6 +11,7 @@ __doc__ = r"""
 
            Created on 09/10/2019
            """
+__all__ = ["torch_seed"]
 
 
 def torch_seed(s: int):

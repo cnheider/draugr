@@ -5,6 +5,8 @@ __author__ = "Christian Heider Nielsen"
 import numpy
 import torch
 
+__all__ = ["ortho_weights"]
+
 
 def ortho_weights(shape, scale: float = 1.0):
     """ PyTorch port of ortho_init from baselines.a2c.utils """

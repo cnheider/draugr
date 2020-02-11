@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import math
-from typing import Sequence, Iterable, Tuple
+
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -10,14 +9,12 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-from matplotlib.pyplot import matshow, imshow
+from matplotlib.pyplot import annotate, matshow, imshow
 from itertools import cycle
-
-from numpy import interp
-
 from warg import passes_kws_to
 from matplotlib import pyplot
 import numpy
+from scipy import interp
 from sklearn import svm
 from sklearn.datasets import make_classification
 from sklearn.decomposition import PCA
@@ -35,14 +32,10 @@ from sklearn.preprocessing import StandardScaler, label_binarize
 from sklearn.utils.multiclass import unique_labels
 
 __all__ = [
+    "draw_vector",
     "correlation_matrix_plot",
-    "horizontal_imshow",
+    "plot_2d_principal_components",
     "biplot",
-    "plot_confusion_matrix",
-    "precision_recall_plt2",
-    "pca_biplot",
-    "roc_plot",
-    "precision_recall_plt",
 ]
 
 
@@ -67,44 +60,29 @@ def correlation_matrix_plot(cor, labels=None, title="", **kwargs):
     fig.colorbar(cax, ticks=numpy.arange(-1.1, 1.1, 0.1))
 
 
-@passes_kws_to(imshow)
-def horizontal_imshow(
-    images: Sequence, titles: Sequence = None, columns: int = 4, **kwargs
-):
-    """Small helper function for creating horizontal subplots with pyplot"""
-    sadasf = len(images) / columns
-    ssa = math.floor(sadasf)
-    if ssa != sadasf:
-        ssa += 1
-
-    if titles is None:
-        titles = [f"fig{a}" for a in range(len(images))]
-    fig, axes = pyplot.subplots(
-        ssa, columns, squeeze=False, sharex="all", sharey="all", constrained_layout=True
+@passes_kws_to(annotate)
+def draw_vector(label, v0, v1, ax=None, weight="heavy", fontsize="large", **kwargs):
+    """Small helper function for annotating pyplots with endpoint arrows"""
+    ax = ax or pyplot.gca()
+    ax.annotate(
+        label,
+        v0,
+        v1,
+        weight=weight,
+        fontsize=fontsize,
+        arrowprops=dict(
+            arrowstyle="<-", linewidth=2, color="gray", shrinkA=0, shrinkB=0
+        ),
+        **kwargs,
     )
-    faxes = []
-    for a in axes:
-        faxes.extend(a)
-    for i, image in enumerate(images):
-        ax = faxes[i]
-        if titles:
-            ax.set_title(titles[i])
-        ax.imshow(image, **kwargs)
-    return fig
 
 
-def biplot(
-    scores: Sequence,
-    coefficients: numpy.ndarray,
-    categories: Sequence = None,
-    labels: Sequence = None,
-    label_multiplier: float = 1.06,
+def plot_2d_principal_components(
+    scores, coefficients, category=None, labels=None, label_multiplier=1.06
 ):
     """
 # Call the function. Use only the 2 PCs.
 
-:param label_multiplier:
-:param categories:
 :param scores:
 :param coefficients:
 :param labels:
@@ -149,7 +127,7 @@ def biplot(
     n = coefficients.shape[0]
     scale_x = 1.0 / (xs.max() - xs.min())
     scale_y = 1.0 / (ys.max() - ys.min())
-    ax1.scatter(xs * scale_x, ys * scale_y, c=categories)
+    ax1.scatter(xs * scale_x, ys * scale_y, c=category)
     # pyplot.colorbar(ax=ax1)
 
     for i in range(n):
@@ -169,7 +147,7 @@ def biplot(
         )
 
 
-def pca_biplot(X, y, labels=None):
+def biplot(X, y, labels=None):
     """
 produces a pca projection and plot the 2 most significant component score and the component coefficients.
 
@@ -186,7 +164,9 @@ produces a pca projection and plot the 2 most significant component score and th
     pca = PCA()
     x_new = pca.fit_transform(X)
 
-    biplot(x_new[:, 0:2], numpy.transpose(pca.components_[0:2, :]), y, labels)
+    plot_2d_principal_components(
+        x_new[:, 0:2], numpy.transpose(pca.components_[0:2, :]), y, labels
+    )
 
 
 def precision_recall_plt2():
@@ -313,9 +293,7 @@ def precision_recall_plt(y, yhat, n_classes=2):
     pyplot.legend(loc="lower right")
 
 
-def roc_plot(
-    y_test, y_pred, n_classes: int, size: Tuple[int, int] = (8, 8), decimals: int = 3
-):
+def roc_plot(y_test, y_pred, n_classes, size=(8, 8), decimals=3):
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -385,9 +363,7 @@ def roc_plot(
     pyplot.legend(loc="lower right")
 
 
-def plot_confusion_matrix(
-    y_test, y_pred, class_names, size: Tuple[int, int] = (8, 8), decimals: int = 3
-):
+def plot_confusion_matrix(y_test, y_pred, class_names, size=(8, 8), decimals=3):
     def confusion_matrix_figure(
         y_true, y_pred, classes, normalize=False, title=None, cmap=pyplot.cm.Blues
     ):
@@ -471,7 +447,7 @@ if __name__ == "__main__":
     X = iris.data
     y = iris.target
 
-    pca_biplot(X, y)
+    biplot(X, y)
     pyplot.show()
 
     # Binarise the output

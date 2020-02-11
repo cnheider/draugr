@@ -2,12 +2,15 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
+
 import statistics as S
 
 import numpy
 
+__all__ = ["MetricSummary"]
 
-class Summary:
+
+class MetricSummary:
     """
 
 """
@@ -54,4 +57,4 @@ Computes new running mean and variances.
 
 
 if __name__ == "__main__":
-    Summary()
+    MetricSummary()

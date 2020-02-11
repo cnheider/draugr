@@ -9,7 +9,7 @@ from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.4.3"
+__version__ = "0.4.9"
 __doc__ = """
 Created on 27/04/2019
 
@@ -95,3 +95,6 @@ from .metrics import *
 from .stopping import *
 from .torch_utilities import *
 from .generators import *
+from .python_utilities import *
+from .opencv_utilities import *
+from .visualisation import *

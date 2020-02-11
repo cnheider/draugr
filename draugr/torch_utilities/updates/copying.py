@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
+
 import torch
+
+__all__ = ["copy_parameters", "copy_state"]
 
 
 def copy_parameters(

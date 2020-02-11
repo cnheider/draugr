@@ -8,8 +8,10 @@ __doc__ = r"""
            Created on 11/11/2019
            """
 
+__all__ = ["yield_and_map", "inner_map", "kw_map"]
 
-def yield_and_map(iterable: Iterable, level=0, func: callable = print):
+
+def yield_and_map(iterable: Iterable, level: int = 0, func: callable = print):
     if level == 0:
         for a in iterable:
             func(a)
@@ -40,3 +42,8 @@ def inner_map(func: callable, iterable: Iterable, aggregate_yield=True):
 def kw_map(func: callable, kw: str, iterable: Iterable):
     for a in iterable:
         yield func(**{kw: a})
+
+
+if __name__ == "__main__":
+    a = (2, 3)
+    # TODO

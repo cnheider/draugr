@@ -6,6 +6,9 @@ import matplotlib
 import numpy
 import torch
 
+from apppath import AppPath
+from draugr import to_tensor, MetricAggregator
+
 __author__ = "Christian Heider Nielsen"
 
 import csv
@@ -21,11 +24,13 @@ if is_ipython:
 
 pyplot.ion()
 
+__all__ = ["ma_plot", "simple_plot", "error_plot", "plot_durations"]
+
 
 def ma_plot(file_name, name):
     with open(file_name, "r") as f:
-        agg = U.StatisticAggregator()
-        agg_ma = U.StatisticAggregator()
+        agg = MetricAggregator()
+        agg_ma = MetricAggregator()
 
         reader = csv.reader(f, delimiter=" ", quotechar="|")
         for line in reader:
@@ -40,7 +45,7 @@ def ma_plot(file_name, name):
 
 def simple_plot(file_name, name="Statistic Name"):
     with open(file_name, "r") as f:
-        agg = U.StatisticAggregator()
+        agg = MetricAggregator()
 
         reader = csv.reader(f, delimiter=" ", quotechar="|")
         for line in reader:
@@ -89,10 +94,7 @@ def plot_durations(episode_durations):
 
 
 if __name__ == "__main__":
-
-    import neodroidagent.configs.base_config as C
-
-    _list_of_files = list(C.LOG_DIRECTORY.glob("*.csv"))
+    _list_of_files = list(AppPath("NeodroidAgent").user_log.glob("*.csv"))
     _latest_model = max(_list_of_files, key=os.path.getctime)
 
     # ma_plot(_file_name_1, 'NoCur')

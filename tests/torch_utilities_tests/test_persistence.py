@@ -10,7 +10,8 @@ __doc__ = r"""
 
 
 def test_resolve_expand_path():
-    file_path = input("Enter another file path: ")
+    # file_path = input("Enter another file path: ")
+    file_path = pathlib.Path.home()
     model_save_path = pathlib.Path(file_path).expanduser().resolve()
     print(model_save_path)
 
