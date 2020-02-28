@@ -145,16 +145,16 @@ class MetricAggregator(object):
         else:
             return 0
 
-    def calc_running_value(self, new_val=None, *, lamdb=0.99):
+    def calc_running_value(self, new_val=None, *, lambd=0.99):
         if new_val is None:
             return self._running_value
 
         if new_val is list:
             for nw in new_val:
-                self.calc_running_value(nw, lamdb=lamdb)
+                self.calc_running_value(nw, lambd=lambd)
 
         if self._running_value:
-            self._running_value = self._running_value * lamdb + new_val * (1 - lamdb)
+            self._running_value = self._running_value * lambd + new_val * (1 - lambd)
         else:
             self._running_value = new_val
 

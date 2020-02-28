@@ -19,6 +19,16 @@ def to_tensor(
     device=global_torch_device(),
     **kwargs
 ):
+    """
+
+    :param obj:
+    :param dtype:
+    :param device:
+    :param kwargs:
+    :return:
+    """
+
+    # torch.as_tensor()
     if torch.is_tensor(obj):
         return obj.to(dtype=dtype, device=device, **kwargs)
 

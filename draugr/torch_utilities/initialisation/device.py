@@ -13,9 +13,11 @@ device = None
 __all__ = ["global_torch_device"]
 
 
-def global_torch_device(prefer_cuda: bool = True):
+def global_torch_device(prefer_cuda: bool = True, override: torch.device = None):
     global device
-    if not device:
+    if override is not None:
+        device = override
+    elif not device:
         device = torch.device(
             "cuda" if torch.cuda.is_available() and prefer_cuda else "cpu"
         )

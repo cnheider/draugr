@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from typing import Iterable
 
-from draugr import to_tensor
+from draugr.torch_utilities import to_tensor
 from warg import passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
@@ -39,7 +39,7 @@ def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs
 if __name__ == "__main__":
     from torchvision.transforms import transforms
     import numpy
-    from draugr.generators.recycling import batched_recycle
+    from draugr.generators.recycling_generator import batched_recycle
     from draugr import inner_map
 
     a_transform = transforms.Compose(
