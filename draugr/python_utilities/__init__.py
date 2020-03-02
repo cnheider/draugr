@@ -8,3 +8,4 @@ __doc__ = r"""
            """
 
 from .functions import *
+from .exceptions import *
