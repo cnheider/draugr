@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 __author__ = "Christian Heider Nielsen"
 
+from pathlib import Path
+
 import matplotlib.image as mpimg
 from matplotlib import pyplot
 import numpy
@@ -11,7 +13,7 @@ __all__ = ["display_depth_map_3d"]
 
 
 def display_depth_map_3d(
-    data_set_directory="/home/heider/Datasets/neodroid/depth/80.png"
+    data_set_directory=Path.home() / "Datasets" / "neodroid" / "depth" / "80.png"
 ):
     # lena = scipy.misc.ascent()
 
@@ -47,5 +49,5 @@ def display_depth_map_3d(
     pyplot.show()
 
 
-if __name__ is "__main__":
+if __name__ == "__main__":
     display_depth_map_3d()
