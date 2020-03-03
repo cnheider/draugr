@@ -2,13 +2,17 @@
 # -*- coding: utf-8 -*-
 __author__ = "Christian Heider Nielsen"
 
+from pathlib import Path
+
 import matplotlib.image as mpimg
 from matplotlib import pyplot
 
 __all__ = ["display_depth_map"]
 
 
-def display_depth_map(data_set_directory="/home/heider/Datasets/neodroid/10.png"):
+def display_depth_map(
+    data_set_directory=Path.home() / "Datasets" / "neodroid" / "depth" / "80.png"
+):
 
     # img = Image.open(data_set_directory + file_name).convert('LA')
     # img_array =numpy.asarray(img)
@@ -22,5 +26,5 @@ def display_depth_map(data_set_directory="/home/heider/Datasets/neodroid/10.png"
     pyplot.show()
 
 
-if __name__ is "__main__":
+if __name__ == "__main__":
     display_depth_map()
