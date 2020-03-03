@@ -1,6 +1,13 @@
 # Draugr
 
-A package for plotting directly in your terminal
+![valknut](.github/images/valknut.svg)
+
+![Python package](https://github.com/cnheider/draugr/workflows/Python%20package/badge.svg)
+
+A utility package for...
+ - pytorch stuff
+ - visualisations
+ - plotting directly in your terminal
 
 https://en.wikipedia.org/wiki/Draugr
 
@@ -8,7 +15,7 @@ https://en.wikipedia.org/wiki/Draugr
 pip install draugr
 ```
 
-OR 
+OR
 
 ```bash
 pip install "draugr[writers]"
