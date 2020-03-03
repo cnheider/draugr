@@ -4,8 +4,5 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 14/01/2020
+           Created on 21/02/2020
            """
-
-from .functions import *
-from .exceptions import *

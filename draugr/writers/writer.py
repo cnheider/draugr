@@ -13,10 +13,14 @@ from collections import Counter
 
 __all__ = ["Writer"]
 
+from itertools import cycle
+
 
 class Writer(metaclass=ABCMeta):
     def __init__(self, *, interval: int = 1, filters=None, **kwargs):
         self._counter = Counter()
+        self._blip_values = iter(cycle([-2.0, 1.0, -1.0, 2.0, 0.0]))
+        # self._blip_values = iter(cycle([-1.0,1.0]))
         self._interval = interval
         self.filters = filters
 
@@ -43,13 +47,9 @@ class Writer(metaclass=ABCMeta):
 
     def blip(self, tag: str, step_i: int = None) -> None:
         if step_i:
-            self.scalar(tag, 0, step_i - 1)
-            self.scalar(tag, 1, step_i)
-            self.scalar(tag, 0, step_i + 1)
+            self.scalar(tag, next(self._blip_values), step_i)
         else:
-            self.scalar(tag, 0)
-            self.scalar(tag, 1)
-            self.scalar(tag, 0)
+            self.scalar(tag, next(self._blip_values))
 
     def close(self):
         self._close()
