@@ -36,11 +36,24 @@ def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs
     return
 
 
+def to_device_tensor_iterator_shitty(data_iterator, device):
+    while True:
+        yield (to_tensor(i, device=device) for i in next(data_iterator))
+
+
 if __name__ == "__main__":
     from torchvision.transforms import transforms
     import numpy
     from draugr.generators.recycling_generator import batched_recycle
     from draugr import inner_map
+
+    def s():
+
+        a = iter(numpy.random.sample((5, 5, 5)))
+        for a in to_device_tensor_iterator_shitty(a, "cpu"):
+            d, *_ = a
+            print(d)
+            print(type(d))
 
     a_transform = transforms.Compose(
         [

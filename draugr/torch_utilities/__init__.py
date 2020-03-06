@@ -12,3 +12,4 @@ from .distributions import *
 from .constants import *
 from .to_tensor import *
 from .optimisation import *
+from .freezing import *
