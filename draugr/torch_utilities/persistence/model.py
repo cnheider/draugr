@@ -11,7 +11,7 @@ import torch
 from torch.nn.modules.module import Module
 
 from warg import passes_kws_to
-from warg.kw_passing import drop_unused_kws
+from warg.decorators.kw_passing import drop_unused_kws
 
 __author__ = "Christian Heider Nielsen"
 
