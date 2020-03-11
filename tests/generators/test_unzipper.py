@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr import recycle, batched_recycle
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

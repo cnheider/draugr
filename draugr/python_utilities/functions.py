@@ -7,15 +7,7 @@ __doc__ = r"""
            Created on 14/01/2020
            """
 
-__all__ = [
-    "identity",
-    "sink",
-    "prod",
-    "evaluate_context",
-    "mkdir",
-    "collate_batch_fn",
-    "kw_identity",
-]
+__all__ = ["identity", "sink", "prod", "mkdir", "collate_batch_fn", "kw_identity"]
 
 import errno
 import os
@@ -86,37 +78,3 @@ Calculate the product of the a Iterable of int or floats
 :return:
 """
     return reduce(operator.mul, iterable, 1)
-
-
-def evaluate_context(x: Any, *args, **kwargs) -> Any:
-    """
-
-:param x:
-:param args:
-:param kwargs:
-:return:
-"""
-    a_r = [evaluate_context(a) for a in args]
-    kw_r = {k: evaluate_context(v) for k, v in kwargs.items()}
-    if isinstance(x, Callable):
-        x = x(*args, **kwargs)
-    return a_r, kw_r, x, type(x)
-
-
-if __name__ == "__main__":
-
-    print(evaluate_context(identity, "str"))
-    print(evaluate_context(identity, 2))
-    print(evaluate_context(identity, 2.2))
-
-    print(evaluate_context(prod, (2, 2)))
-
-    print(evaluate_context(prod, (2.2, 2.2)))
-
-    print(evaluate_context(prod, (2, 2.2)))
-
-    print(evaluate_context(prod, (2.2, 2)))
-
-    print(evaluate_context(sink, (2, 2), face=(2.2, 2)))
-
-    print(evaluate_context(2, 2))
