@@ -4,9 +4,5 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 28/10/2019
+           Created on 09/03/2020
            """
-
-
-def test_unzipper_generator1():
-    pass

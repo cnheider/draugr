@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+__author__ = "Christian Heider Nielsen"
+__doc__ = r"""
+
+           Created on 09/03/2020
+           """
+
+__all__ = ["evaluate_context"]
+
+from typing import Any, Callable
+
+
+def evaluate_context(x: Any, *args, **kwargs) -> Any:
+    """
+
+:param x:
+:param args:
+:param kwargs:
+:return:
+"""
+    a_r = [evaluate_context(a) for a in args]
+    kw_r = {k: evaluate_context(v) for k, v in kwargs.items()}
+    if isinstance(x, Callable):
+        x = x(*args, **kwargs)
+    return a_r, kw_r, x, type(x)
+
+
+if __name__ == "__main__":
+
+    print(evaluate_context(2, 2))
