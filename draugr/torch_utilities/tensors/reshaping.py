@@ -11,7 +11,7 @@ __all__ = ["flatten_tn_dim"]
 
 import torch
 
-from draugr import prod
+from draugr.python_utilities import prod
 
 
 def flatten_tn_dim(_tensor: torch.tensor) -> torch.tensor:

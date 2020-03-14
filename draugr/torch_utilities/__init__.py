@@ -10,6 +10,7 @@ from .images import *
 from .datasets import *
 from .distributions import *
 from .constants import *
-from .to_tensor import *
 from .optimisation import *
 from .freezing import *
+from .device import *
+from .tensors import *

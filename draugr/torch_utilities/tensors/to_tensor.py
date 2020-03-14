@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, Sequence, Union, Set
+from typing import Iterable, Sequence, Union
 
 import numpy
 import torch
 
-from draugr.torch_utilities.initialisation.device import global_torch_device
+from draugr.torch_utilities.device import global_torch_device
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""

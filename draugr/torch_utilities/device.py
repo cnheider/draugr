@@ -19,6 +19,15 @@ __all__ = [
 
 
 def global_torch_device(prefer_cuda: bool = True, override: torch.device = None):
+    """
+
+    :param prefer_cuda:
+    :type prefer_cuda:
+    :param override:
+    :type override:
+    :return:
+    :rtype:
+    """
     global device
     if override is not None:
         device = override
@@ -30,6 +39,13 @@ def global_torch_device(prefer_cuda: bool = True, override: torch.device = None)
 
 
 def select_cuda_device(gpuidx: int) -> torch.device:
+    """
+
+    :param gpuidx:
+    :type gpuidx:
+    :return:
+    :rtype:
+    """
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
     assert gpuidx < num_cuda_device
@@ -38,6 +54,11 @@ def select_cuda_device(gpuidx: int) -> torch.device:
 
 
 def get_gpu_usage_mb():
+    """
+
+    :return:
+    :rtype:
+    """
 
     import subprocess
 
