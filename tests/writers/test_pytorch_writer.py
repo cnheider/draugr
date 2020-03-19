@@ -3,7 +3,7 @@
 import pytest
 
 from draugr import PROJECT_APP_PATH
-from draugr.writers import TensorBoardPytorchWriter
+from draugr.torch_utilities import TensorBoardPytorchWriter
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

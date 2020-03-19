@@ -316,5 +316,5 @@ if __name__ == "__main__":
     delta = 1 / 60
 
     s = DiscreteScrollPlot(3)
-    for LATEST_GPU_STATS in range(100):
+    for GPU_STATS in range(100):
         s.draw(numpy.random.rand(3))

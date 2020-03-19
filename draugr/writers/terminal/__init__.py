@@ -8,6 +8,5 @@ __doc__ = r"""
            """
 
 from .terminal_writer import *
-from .style_utilities import *
 from .terminal_plot_writer import *
 from .terminal_plot import *

@@ -17,6 +17,8 @@ Created on 27/04/2019
 @author: cnheider
 """
 
+__all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
+
 
 def dist_is_editable(dist):
     """
@@ -33,6 +35,8 @@ Return True if given Distribution is an editable install.
 
 
 PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
+PROJECT_VERSION = __version__
+PROJECT_YEAR = 2018
 PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
 
@@ -90,12 +94,12 @@ if __version__ is None:
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
-from .drawers import *
-from .writers import *
+# from .drawers import *
+# from .writers import *
+# from .opencv_utilities import *
+# from .torch_utilities import *
 from .metrics import *
 from .stopping import *
-from .torch_utilities import *
 from .generators import *
 from .python_utilities import *
-from .opencv_utilities import *
 from .visualisation import *

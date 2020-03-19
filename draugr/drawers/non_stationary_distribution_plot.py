@@ -111,5 +111,5 @@ if __name__ == "__main__":
     delta = 1.0 / 60.0
 
     s = NonStationaryDistributionPlot()
-    for LATEST_GPU_STATS in range(100):
+    for GPU_STATS in range(100):
         s.draw(numpy.random.sample(), delta)

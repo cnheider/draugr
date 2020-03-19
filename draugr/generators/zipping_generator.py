@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from typing import Iterable
 
-import torch
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

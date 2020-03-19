@@ -7,7 +7,8 @@ import numpy
 import torch
 
 from apppath import AppPath
-from draugr import to_tensor, MetricAggregator
+from draugr.torch_utilities import to_tensor
+from draugr import MetricAggregator
 
 __author__ = "Christian Heider Nielsen"
 
@@ -100,10 +101,10 @@ if __name__ == "__main__":
     # ma_plot(_file_name_1, 'NoCur')
     # ma_plot(_file_name_2, 'Cur')
     # simple_plot(_latest_model)
-    LATEST_GPU_STATS = [0, 92, 3, 2, 5, 644, 34, 36, 423, 421]
+    GPU_STATS = [0, 92, 3, 2, 5, 644, 34, 36, 423, 421]
     b = [215, 92, 6, 1, 5, 644, 328, 32, 413, 221]
     c = [62, 68, 8, 25, 7, 611, 29, 38, 421, 425]
-    d = numpy.array(zip([LATEST_GPU_STATS, b, c]))
+    d = numpy.array(zip([GPU_STATS, b, c]))
     error_plot(d)
 
     pyplot.show()

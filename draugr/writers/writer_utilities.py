@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import collections
-import os
 
 import numpy
 
@@ -12,13 +11,7 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-__all__ = ["create_folders_if_necessary", "metrics"]
-
-
-def create_folders_if_necessary(path):
-    dirname = os.path.dirname(path)
-    if not os.path.isdir(dirname):
-        os.makedirs(dirname)
+__all__ = ["metrics"]
 
 
 def metrics(array):

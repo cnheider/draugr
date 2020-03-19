@@ -5,3 +5,4 @@ __author__ = "Christian Heider Nielsen"
 from .metric_aggregator import *
 from .metric_collection import *
 from .metric_summary import *
+from .accumulation import *

@@ -2,8 +2,7 @@ apppath
 warg
 numpy
 six
-pandas
 sklearn
 pynput
 matplotlib
-opencv-python
+
