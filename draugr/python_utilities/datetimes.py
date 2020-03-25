@@ -6,6 +6,7 @@ __doc__ = r"""
 
            Created on 18/03/2020
            """
+
 import datetime
 
 __all__ = ["default_datetime_repr"]

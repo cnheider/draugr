@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import numpy
-
 import cv2
+import numpy
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

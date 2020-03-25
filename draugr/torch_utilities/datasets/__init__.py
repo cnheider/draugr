@@ -6,3 +6,6 @@ __doc__ = r"""
 
            Created on 09/10/2019
            """
+
+from .non_sequential_dataset import *
+from .random_dataset import *

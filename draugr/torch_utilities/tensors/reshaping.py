@@ -8,7 +8,6 @@ __doc__ = r"""
            """
 __all__ = ["flatten_tn_dim"]
 
-
 import torch
 
 from draugr.python_utilities import prod
@@ -17,9 +16,9 @@ from draugr.python_utilities import prod
 def flatten_tn_dim(_tensor: torch.tensor) -> torch.tensor:
     """
 
-  :param _tensor:
-  :return:
-  """
+:param _tensor:
+:return:
+"""
     T, N, *r = _tensor.size()
     return _tensor.view(T * N, *r)
 

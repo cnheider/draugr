@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import queue
 import threading
-from typing import Sequence, Tuple, Generator, Sized, Iterator
+from typing import Iterator, Sized, Tuple
 
 import matplotlib
 from matplotlib import animation
@@ -20,14 +20,12 @@ __all__ = ["SpectrumPlot", "spectrum_plot"]
 
 from matplotlib import pyplot
 
-import numpy
-
 
 class SpectrumPlot(Drawer):
     """
-    Waterfall plot
+  Waterfall plot
 
-    """
+  """
 
     def __init__(
         self,

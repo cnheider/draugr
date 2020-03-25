@@ -13,7 +13,7 @@ def get_host_ip():
     """Get host ip.
 
 Returns:
-    str: The obtained ip. UNKNOWN if failed.
+  str: The obtained ip. UNKNOWN if failed.
 """
     import socket
 

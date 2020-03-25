@@ -9,9 +9,9 @@ import numpy
 import torch
 from PIL import Image
 
+from draugr import PROJECT_APP_PATH
 from draugr.torch_utilities.writers.tensorboard.image_writer import ImageWriter
 from warg import passes_kws_to
-from draugr import PROJECT_APP_PATH
 
 with suppress(FutureWarning):
     from torch.utils.tensorboard import SummaryWriter

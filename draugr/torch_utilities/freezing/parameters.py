@@ -9,32 +9,31 @@ __doc__ = r"""
 
 __all__ = ["frozen_parameters", "freeze_parameters", "freeze_model", "frozen_model"]
 
-from typing import Iterator
-
-
-from torch.nn import Module, Parameter
 from contextlib import contextmanager
 from itertools import tee
+from typing import Iterator
+
+from torch.nn import Module, Parameter
 
 
 def freeze_model(model: Module, value: bool = None, recurse: bool = True) -> None:
     """
 
-  :param recurse:
-  :param params:
-  :param value:
-  :return:
-  """
+:param recurse:
+:param params:
+:param value:
+:return:
+"""
     freeze_parameters(model.parameters(recurse), value)
 
 
 def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
     """
 
-  :param params:
-  :param value:
-  :return:
-  """
+:param params:
+:param value:
+:return:
+"""
     if isinstance(value, bool):
         for p in params:
             p.requires_grad = not value
@@ -47,10 +46,10 @@ def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
 def frozen_model(model: Module, recurse: bool = True, enabled=True) -> None:
     """
 
-  :param model:
-  :param recurse:
-  :return:
-  """
+:param model:
+:param recurse:
+:return:
+"""
     params_1, params_2 = tee(model.parameters(recurse))
     if enabled:
         freeze_parameters(params_1, True)
@@ -63,9 +62,9 @@ def frozen_model(model: Module, recurse: bool = True, enabled=True) -> None:
 def frozen_parameters(params: Iterator[Parameter], enabled=True) -> None:
     """
 
-  :param params:
-  :return:
-  """
+:param params:
+:return:
+"""
     params_1, params_2 = tee(params)
     if enabled:
         freeze_parameters(params_1, True)

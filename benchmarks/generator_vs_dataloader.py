@@ -6,8 +6,8 @@ import numpy
 import torch
 from torch.utils.data import Dataset
 
-from draugr.torch_utilities import to_tensor_generator
 from draugr import batched_recycle
+from draugr.torch_utilities import to_tensor_generator
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

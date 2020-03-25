@@ -63,3 +63,13 @@ Calculate the product of the a Iterable of int or floats
 :return:
 """
     return reduce(operator.mul, iterable, 1)
+
+
+def RGB(R: int, G: int, B: int) -> Tuple[int, int, int]:
+    assert 0 <= R <= 255 and 0 <= G <= 255 and 0 <= B <= 255
+    return R, G, B
+
+
+def RGBA(R: int, G: int, B: int, A: int) -> Tuple[int, int, int, int]:
+    assert 0 <= R <= 255 and 0 <= G <= 255 and 0 <= B <= 255 and 0 <= A <= 255
+    return R, G, B, A

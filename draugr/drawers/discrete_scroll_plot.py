@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import queue
 import threading
-from typing import Sequence, Tuple, Generator, Sized, Iterator
+from typing import Iterator, Sequence, Sized, Tuple
 
 import matplotlib
 from matplotlib import animation
@@ -25,9 +25,9 @@ import numpy
 
 class DiscreteScrollPlot(Drawer):
     """
-    Waterfall plot
+  Waterfall plot
 
-    """
+  """
 
     def __init__(
         self,

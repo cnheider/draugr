@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 import time
 
-import pytest
-
 import numpy
+import pytest
 import torch
-from draugr.torch_utilities import to_tensor_generator
+
 from draugr import batched_recycle
+from draugr.torch_utilities import to_tensor_generator
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

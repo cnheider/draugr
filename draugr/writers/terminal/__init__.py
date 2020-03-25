@@ -7,6 +7,6 @@ __doc__ = r"""
            Created on 9/14/19
            """
 
-from .terminal_writer import *
-from .terminal_plot_writer import *
 from .terminal_plot import *
+from .terminal_plot_writer import *
+from .terminal_writer import *

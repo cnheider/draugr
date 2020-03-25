@@ -3,8 +3,8 @@
 import pathlib
 from contextlib import suppress
 
-from matplotlib import pyplot
 import numpy
+from matplotlib import pyplot
 
 from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer

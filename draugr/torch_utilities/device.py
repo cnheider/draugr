@@ -18,16 +18,18 @@ __all__ = [
 ]
 
 
-def global_torch_device(prefer_cuda: bool = True, override: torch.device = None):
+def global_torch_device(
+    prefer_cuda: bool = True, override: torch.device = None
+) -> torch.device:
     """
 
-    :param prefer_cuda:
-    :type prefer_cuda:
-    :param override:
-    :type override:
-    :return:
-    :rtype:
-    """
+  :param prefer_cuda:
+  :type prefer_cuda:
+  :param override:
+  :type override:
+  :return:
+  :rtype:
+  """
     global device
     if override is not None:
         device = override
@@ -41,11 +43,11 @@ def global_torch_device(prefer_cuda: bool = True, override: torch.device = None)
 def select_cuda_device(gpuidx: int) -> torch.device:
     """
 
-    :param gpuidx:
-    :type gpuidx:
-    :return:
-    :rtype:
-    """
+  :param gpuidx:
+  :type gpuidx:
+  :return:
+  :rtype:
+  """
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
     assert gpuidx < num_cuda_device
@@ -56,20 +58,20 @@ def select_cuda_device(gpuidx: int) -> torch.device:
 def get_gpu_usage_mb():
     """
 
-    :return:
-    :rtype:
-    """
+  :return:
+  :rtype:
+  """
 
     import subprocess
 
     """Get the current gpu usage.
 
-  Returns
-  -------
-  usage: dict
-      Keys are device ids as integers.
-      Values are memory usage as integers in MB.
-  """
+Returns
+-------
+usage: dict
+    Keys are device ids as integers.
+    Values are memory usage as integers in MB.
+"""
     result = subprocess.check_output(
         ["nvidia-smi", "--query-gpu=memory.used", "--format=csv,nounits,noheader"]
     ).decode("utf-8")
@@ -84,25 +86,25 @@ def auto_select_available_cuda_device(
 ) -> torch.device:
     r"""
 
-  :param expected_memory_usage_mb:
-  :type expected_memory_usage_mb:
-  :return:
-  :rtype:
-  """
+:param expected_memory_usage_mb:
+:type expected_memory_usage_mb:
+:return:
+:rtype:
+"""
 
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
     """
-      print(torch.cuda.cudart())
-      print(torch.cuda.memory_snapshot())
-      torch.cuda.memory_cached(dev_idx),
-      torch.cuda.memory_allocated(dev_idx),
-      torch.cuda.max_memory_allocated(dev_idx),
-      torch.cuda.max_memory_cached(dev_idx),
-      torch.cuda.get_device_name(dev_idx),
-      torch.cuda.get_device_properties(dev_idx),
-      torch.cuda.memory_stats(dev_idx)
-  """
+    print(torch.cuda.cudart())
+    print(torch.cuda.memory_snapshot())
+    torch.cuda.memory_cached(dev_idx),
+    torch.cuda.memory_allocated(dev_idx),
+    torch.cuda.max_memory_allocated(dev_idx),
+    torch.cuda.max_memory_cached(dev_idx),
+    torch.cuda.get_device_name(dev_idx),
+    torch.cuda.get_device_properties(dev_idx),
+    torch.cuda.memory_stats(dev_idx)
+"""
     preferred_idx = None
     highest_capab = 0
     for dev_idx, usage in enumerate(get_gpu_usage_mb().values()):

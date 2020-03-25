@@ -3,8 +3,8 @@
 
 __author__ = "Christian Heider Nielsen"
 
+from .discrete_scroll_plot import *
 from .drawer import *
 from .overview_plot import *
-from .discrete_scroll_plot import *
-from .series_scroll_plot import *
 from .overview_plot import *
+from .series_scroll_plot import *

@@ -3,16 +3,18 @@
 
 __author__ = "Christian Heider Nielsen"
 
-from .initialisation import *
-from .persistence import *
-from .updates import *
-from .images import *
-from .datasets import *
-from .distributions import *
 from .constants import *
-from .optimisation import *
-from .freezing import *
+from .datasets import *
 from .device import *
-from .tensors import *
+from .distributions import *
+from .freezing import *
 from .generators import *
+from .images import *
+from .initialisation import *
+from .optimisation import *
+from .persistence import *
+from .tensors import *
+from .updates import *
 from .writers import *
+from .sessions import *
+from .boxes_2d import *

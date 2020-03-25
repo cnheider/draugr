@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pytest
+
 from draugr import PROJECT_APP_PATH
 from draugr.writers import LogWriter
 

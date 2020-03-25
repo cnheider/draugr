@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 21/02/2020
            """
 
-from .to_tensor import *
-from .reshaping import *
-from .normalise import *
 from .mixins import *
+from .normalise import *
+from .reshaping import *
+from .to_tensor import *
