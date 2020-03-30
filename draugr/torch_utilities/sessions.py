@@ -11,14 +11,23 @@ import torch
 
 from draugr.torch_utilities import global_torch_device
 
-__all__ = ["TorchCacheSession", "TorchEvalSession", "TorchTrainSession"]
+__all__ = [
+    "TorchCacheSession",
+    "TorchEvalSession",
+    "TorchTrainSession",
+    "TorchCudaSession",
+    "TorchCpuSession",
+]
+
+from warg.decorators.kw_passing import AlsoDecorator
 
 
-class TorchCacheSession:
+class TorchCacheSession(AlsoDecorator):
     """
-  # speed up evaluating after training finished
+# speed up evaluating after training finished
+# NOTE: HAS THE SIDE EFFECT OF CLEARING CACHE, NON RECOVERABLE
 
-  """
+"""
 
     def __init__(self, using_cuda: bool = global_torch_device().type == "cuda"):
         self.using_cuda = using_cuda
@@ -26,7 +35,6 @@ class TorchCacheSession:
     def __enter__(self):
         if self.using_cuda:
             torch.cuda.empty_cache()
-
         return True
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -34,14 +42,17 @@ class TorchCacheSession:
             torch.cuda.empty_cache()
 
 
-class TorchEvalSession:
+class TorchEvalSession(AlsoDecorator):
     """
-  # speed up evaluating after training finished
+# speed up evaluating after training finished
 
-  """
+"""
 
-    def __init__(self, model: torch.nn.Module):
+    def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model
+        self._no_side_effect = no_side_effect
+        if no_side_effect:
+            self.prev_state = model.training
 
     def __enter__(self):
         # self.model.eval()
@@ -49,24 +60,77 @@ class TorchEvalSession:
         return True
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.model.train(True)
+        if self._no_side_effect:
+            self.model.train(self.prev_state)
+        else:
+            self.model.train(True)
 
 
-class TorchTrainSession:
+class TorchTrainSession(AlsoDecorator):
     """
-  # speed up evaluating after training finished
+# speed up evaluating after training finished
 
-  """
+"""
 
-    def __init__(self, model: torch.nn.Module):
+    def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model
+        self._no_side_effect = no_side_effect
+        if no_side_effect:
+            self.prev_state = model.training
 
     def __enter__(self):
         self.model.train(True)
         return True
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.model.train(False)
+        if self._no_side_effect:
+            self.model.train(self.prev_state)
+        else:
+            self.model.train(False)
+
+
+class TorchCudaSession(AlsoDecorator):
+    """
+
+
+"""
+
+    def __init__(self, no_side_effect: bool = True):
+        self._no_side_effect = no_side_effect
+        if no_side_effect:
+            self.prev_dev = global_torch_device()
+
+    def __enter__(self):
+        global_torch_device(override=torch.device("cuda"))
+        return True
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self._no_side_effect:
+            global_torch_device(override=self.prev_dev)
+        else:
+            global_torch_device(override=torch.device("cpu"))
+
+
+class TorchCpuSession(AlsoDecorator):
+    """
+
+
+"""
+
+    def __init__(self, no_side_effect: bool = True):
+        self._no_side_effect = no_side_effect
+        if no_side_effect:
+            self.prev_dev = global_torch_device()
+
+    def __enter__(self):
+        global_torch_device(override=torch.device("cpu"))
+        return True
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self._no_side_effect:
+            global_torch_device(override=self.prev_dev)
+        else:
+            global_torch_device(override=torch.device("cuda"))
 
 
 if __name__ == "__main__":
@@ -93,6 +157,24 @@ if __name__ == "__main__":
             print(model.training)
         print(model.training)
 
-    a()
-    b()
-    c()
+    def d():
+        print(
+            global_torch_device(override=global_torch_device(cuda_if_available=False))
+        )
+        print(global_torch_device())
+        with TorchCudaSession():
+            print(global_torch_device())
+        print(global_torch_device())
+
+    def e():
+        print(global_torch_device(override=global_torch_device(cuda_if_available=True)))
+        print(global_torch_device())
+        with TorchCpuSession():
+            print(global_torch_device())
+        print(global_torch_device())
+
+    # a()
+    # b()
+    # c()
+    d()
+    e()

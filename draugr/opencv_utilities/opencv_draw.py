@@ -14,7 +14,7 @@ import numpy
 from PIL import Image
 
 from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
-from draugr.python_utilities.functions import RGB
+from draugr.python_utilities.colors import RGB
 
 __all__ = ["find_contours", "draw_masks"]
 

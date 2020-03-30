@@ -9,10 +9,10 @@ __doc__ = r"""
            Created on 01/12/2019
            """
 
-__all__ = ["resize_image_cv"]
+__all__ = ["cv2_resize"]
 
 
-def resize_image_cv(x, target_size: tuple, interpolation=cv2.INTER_LINEAR):
+def cv2_resize(x, target_size: tuple, interpolation=cv2.INTER_LINEAR):
     """
 
 :param interpolation:
@@ -27,5 +27,5 @@ def resize_image_cv(x, target_size: tuple, interpolation=cv2.INTER_LINEAR):
 
 if __name__ == "__main__":
     a = numpy.zeros((50, 50))
-    a = resize_image_cv(numpy.zeros((100, 100)), a.shape)
+    a = cv2_resize(numpy.zeros((100, 100)), a.shape)
     print(a.shape)

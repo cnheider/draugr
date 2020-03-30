@@ -15,7 +15,7 @@ import numpy
 from PIL import Image
 
 from draugr.opencv_utilities.opencv_draw import draw_masks
-from draugr.python_utilities.functions import RGB
+from draugr.python_utilities.colors import RGB
 from .colors import compute_color_for_labels
 
 __all__ = ["draw_bouding_boxes"]

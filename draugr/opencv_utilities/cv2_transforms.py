@@ -12,26 +12,26 @@ __all__ = [
     "intersect",
     "jaccard_numpy",
     "remove_empty_boxes",
-    "Compose",
+    "CV2Compose",
     "Lambda",
     "ConvertFromInts",
     "SubtractMeans",
-    "ToAbsoluteCoords",
-    "ToPercentCoords",
-    "Resize",
-    "RandomSaturation",
-    "RandomHue",
-    "RandomLightingNoise",
-    "ConvertColor",
-    "RandomContrast",
-    "RandomBrightness",
-    "ToCV2Image",
-    "ToTensor",
-    "RandomSampleCrop",
-    "Expand",
-    "RandomMirror",
-    "SwapChannels",
-    "PhotometricDistort",
+    "CV2ToAbsoluteCoords",
+    "CV2ToPercentCoords",
+    "CV2Resize",
+    "CV2RandomSaturation",
+    "CV2RandomHue",
+    "CV2RandomLightingNoise",
+    "CV2ConvertColor",
+    "CV2RandomContrast",
+    "CV2RandomBrightness",
+    "CV2ToImage",
+    "CV2ToTensor",
+    "CV2RandomSampleCrop",
+    "CV2Expand",
+    "CV2RandomMirror",
+    "CV2SwapChannels",
+    "CV2PhotometricDistort",
 ]
 
 
@@ -80,7 +80,7 @@ Returns:
     return np.delete(boxes, del_boxes, 0), np.delete(labels, del_boxes)
 
 
-class Compose(object):
+class CV2Compose(object):
     """Composes several augmentations together.
 Args:
     transforms (List[Transform]): list of transforms to compose.
@@ -128,7 +128,7 @@ class SubtractMeans(object):
         return image.astype(np.float32), boxes, labels
 
 
-class ToAbsoluteCoords(object):
+class CV2ToAbsoluteCoords(object):
     def __call__(self, image, boxes=None, labels=None):
         height, width, channels = image.shape
         boxes[:, 0] *= width
@@ -139,7 +139,7 @@ class ToAbsoluteCoords(object):
         return image, boxes, labels
 
 
-class ToPercentCoords(object):
+class CV2ToPercentCoords(object):
     def __call__(self, image, boxes=None, labels=None):
         height, width, channels = image.shape
         boxes[:, 0] /= width
@@ -150,7 +150,7 @@ class ToPercentCoords(object):
         return image, boxes, labels
 
 
-class Resize(object):
+class CV2Resize(object):
     def __init__(self, size=300):
         self.size = size
 
@@ -159,7 +159,7 @@ class Resize(object):
         return image, boxes, labels
 
 
-class RandomSaturation(object):
+class CV2RandomSaturation(object):
     def __init__(self, lower=0.5, upper=1.5):
         self.lower = lower
         self.upper = upper
@@ -173,7 +173,7 @@ class RandomSaturation(object):
         return image, boxes, labels
 
 
-class RandomHue(object):
+class CV2RandomHue(object):
     def __init__(self, delta=18.0):
         assert delta >= 0.0 and delta <= 360.0
         self.delta = delta
@@ -186,19 +186,19 @@ class RandomHue(object):
         return image, boxes, labels
 
 
-class RandomLightingNoise(object):
+class CV2RandomLightingNoise(object):
     def __init__(self):
         self.perms = ((0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0))
 
     def __call__(self, image, boxes=None, labels=None):
         if random.randint(2):
             swap = self.perms[random.randint(len(self.perms))]
-            shuffle = SwapChannels(swap)  # shuffle channels
+            shuffle = CV2SwapChannels(swap)  # shuffle channels
             image = shuffle(image)
         return image, boxes, labels
 
 
-class ConvertColor(object):
+class CV2ConvertColor(object):
     def __init__(self, current, transform):
         self.transform = transform
         self.current = current
@@ -219,7 +219,7 @@ class ConvertColor(object):
         return image, boxes, labels
 
 
-class RandomContrast(object):
+class CV2RandomContrast(object):
     def __init__(self, lower=0.5, upper=1.5):
         self.lower = lower
         self.upper = upper
@@ -234,7 +234,7 @@ class RandomContrast(object):
         return image, boxes, labels
 
 
-class RandomBrightness(object):
+class CV2RandomBrightness(object):
     def __init__(self, delta=32):
         assert delta >= 0.0
         assert delta <= 255.0
@@ -247,7 +247,7 @@ class RandomBrightness(object):
         return image, boxes, labels
 
 
-class ToCV2Image(object):
+class CV2ToImage(object):
     def __call__(self, tensor, boxes=None, labels=None):
         return (
             tensor.cpu().numpy().astype(np.float32).transpose((1, 2, 0)),
@@ -256,7 +256,7 @@ class ToCV2Image(object):
         )
 
 
-class ToTensor(object):
+class CV2ToTensor(object):
     def __call__(self, cvimage, boxes=None, labels=None):
         return (
             torch.from_numpy(cvimage.astype(np.float32)).permute(2, 0, 1),
@@ -265,7 +265,7 @@ class ToTensor(object):
         )
 
 
-class RandomSampleCrop(object):
+class CV2RandomSampleCrop(object):
     """Crop
 Arguments:
     img (Image): the image being input during training
@@ -370,7 +370,7 @@ Return:
                 return current_image, current_boxes, current_labels
 
 
-class Expand(object):
+class CV2Expand(object):
     def __init__(self, mean):
         self.mean = mean
 
@@ -399,7 +399,7 @@ class Expand(object):
         return image, boxes, labels
 
 
-class RandomMirror(object):
+class CV2RandomMirror(object):
     def __call__(self, image, boxes, classes):
         _, width, _ = image.shape
         if random.randint(2):
@@ -409,7 +409,7 @@ class RandomMirror(object):
         return image, boxes, classes
 
 
-class SwapChannels(object):
+class CV2SwapChannels(object):
     """Transforms a tensorized image by swapping the channels in the order
  specified in the swap tuple.
 Args:
@@ -435,25 +435,25 @@ Return:
         return image
 
 
-class PhotometricDistort(object):
+class CV2PhotometricDistort(object):
     def __init__(self):
         self.pd = [
-            RandomContrast(),  # RGB
-            ConvertColor(current="RGB", transform="HSV"),  # HSV
-            RandomSaturation(),  # HSV
-            RandomHue(),  # HSV
-            ConvertColor(current="HSV", transform="RGB"),  # RGB
-            RandomContrast(),  # RGB
+            CV2RandomContrast(),  # RGB
+            CV2ConvertColor(current="RGB", transform="HSV"),  # HSV
+            CV2RandomSaturation(),  # HSV
+            CV2RandomHue(),  # HSV
+            CV2ConvertColor(current="HSV", transform="RGB"),  # RGB
+            CV2RandomContrast(),  # RGB
         ]
-        self.rand_brightness = RandomBrightness()
-        self.rand_light_noise = RandomLightingNoise()
+        self.rand_brightness = CV2RandomBrightness()
+        self.rand_light_noise = CV2RandomLightingNoise()
 
     def __call__(self, image, boxes, labels):
         im = image.copy()
         im, boxes, labels = self.rand_brightness(im, boxes, labels)
         if random.randint(2):
-            distort = Compose(self.pd[:-1])
+            distort = CV2Compose(self.pd[:-1])
         else:
-            distort = Compose(self.pd[1:])
+            distort = CV2Compose(self.pd[1:])
         im, boxes, labels = distort(im, boxes, labels)
         return self.rand_light_noise(im, boxes, labels)
