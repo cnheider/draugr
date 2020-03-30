@@ -16,12 +16,12 @@ __all__ = ["recycle", "batched_recycle"]
 
 def recycle(iterable: Iterable):
     """
-    loops an iterable like itertools.cycle, but in a random order (Permutation) everytime the iterable is
-    exhausted
+  loops an iterable like itertools.cycle, but in a random order (Permutation) everytime the iterable is
+  exhausted
 
-    :param iterable:
-    :return:
-    """
+  :param iterable:
+  :return:
+  """
     if not isinstance(iterable, Sized):
         iterable = list(iterable)
     while True:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr import batched_recycle, to_tensor_generator
+from draugr import batched_recycle
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

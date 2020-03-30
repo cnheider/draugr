@@ -9,6 +9,8 @@ __doc__ = r"""
 
 import torch
 
+__all__ = ["standardise"]
+
 
 def normalise(x: torch.tensor, eps=1e-6) -> torch.tensor:
     return
@@ -17,9 +19,9 @@ def normalise(x: torch.tensor, eps=1e-6) -> torch.tensor:
 def standardise(x: torch.tensor, eps=1e-6) -> torch.tensor:
     """
 
-  :param x:
-  :return:
-  """
+:param x:
+:return:
+"""
     x -= x.mean()
     x /= x.std() + eps
     return x

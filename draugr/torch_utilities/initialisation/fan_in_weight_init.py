@@ -4,8 +4,8 @@
 __author__ = "Christian Heider Nielsen"
 
 import numpy
-from torch.nn import Module, Conv2d, Linear
-from torch.nn.init import uniform_, constant_, calculate_gain, xavier_uniform_
+from torch.nn import Conv2d, Linear, Module
+from torch.nn.init import calculate_gain, constant_, uniform_, xavier_uniform_
 
 __all__ = ["fan_in_init", "xavier_init", "constant_init"]
 

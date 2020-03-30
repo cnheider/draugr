@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import queue
 import threading
-from typing import Sequence, Tuple, Generator, Sized, Iterator
+from typing import Iterator, Sequence, Sized, Tuple
 
 import matplotlib
 from matplotlib import animation
@@ -24,6 +24,11 @@ import numpy
 
 
 class DiscreteScrollPlot(Drawer):
+    """
+  Waterfall plot
+
+  """
+
     def __init__(
         self,
         num_actions: int,
@@ -311,5 +316,5 @@ if __name__ == "__main__":
     delta = 1 / 60
 
     s = DiscreteScrollPlot(3)
-    for LATEST_GPU_STATS in range(100):
+    for GPU_STATS in range(100):
         s.draw(numpy.random.rand(3))

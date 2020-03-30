@@ -7,8 +7,7 @@ __doc__ = r"""
            Created on 21/10/2019
            """
 
-from .to_tensor_generator import *
 from .batching_generator import *
+from .mapping_generator import *
 from .recycling_generator import *
 from .zipping_generator import *
-from .mapping_generator import *

@@ -7,13 +7,11 @@ __doc__ = r"""
            Created on 14/01/2020
            """
 
-__all__ = ["identity", "sink", "prod", "mkdir", "collate_batch_fn", "kw_identity"]
+__all__ = ["identity", "sink", "prod", "collate_batch_fn", "kw_identity"]
 
-import errno
-import os
-from typing import Iterable, Union, Any, Callable, Tuple, Dict
 import operator
 from functools import reduce
+from typing import Any, Dict, Iterable, Tuple, Union
 
 from warg import drop_unused_kws
 
@@ -21,53 +19,40 @@ from warg import drop_unused_kws
 @drop_unused_kws
 def identity(*args) -> Any:
     """
-  Returns args without any modification what so ever. Drops kws
-  :param x:
-  :return:
-  """
+Returns args without any modification what so ever. Drops kws
+:param x:
+:return:
+"""
     return args
 
 
 def kw_identity(*args, **kwargs) -> Tuple[Tuple[Any], Dict[str, Any]]:
     """
 
-  :param args:
-  :param kwargs:
-  :return:
-  """
+:param args:
+:param kwargs:
+:return:
+"""
     return args, kwargs
-
-
-def mkdir(path):
-    """
-
-  :param path:
-  :return:
-  """
-    try:
-        os.makedirs(path)
-    except OSError as e:
-        if e.errno != errno.EEXIST:
-            raise
 
 
 def collate_batch_fn(batch: Iterable) -> tuple:
     """
 
-  :param batch:
-  :return:
-  """
+:param batch:
+:return:
+"""
     return tuple(zip(*batch))
 
 
 def sink(*args, **kwargs):
     """
-  Returns None, but accepts everthing
+Returns None, but accepts everthing
 
-  :param args:
-  :param kwargs:
-  :return:
-  """
+:param args:
+:param kwargs:
+:return:
+"""
     pass
 
 

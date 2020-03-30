@@ -7,4 +7,9 @@ __doc__ = r"""
            Created on 14/01/2020
            """
 
+from .bounding_boxes import *
+from .frames import *
+from .opencv_draw import *
 from .resize import *
+from .color_space import *
+from .cv2_transforms import *

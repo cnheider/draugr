@@ -3,6 +3,5 @@
 
 __author__ = "Christian Heider Nielsen"
 
-from .experimental import *
 from .image_data import *
 from .strings import *

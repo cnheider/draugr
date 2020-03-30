@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 from typing import Iterable
 
-import torch
-
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
@@ -15,11 +13,11 @@ __all__ = ["unzipper"]
 
 def unzipper(iterable: Iterable):
     """
-  Unzips an iterable
+Unzips an iterable
 
-  :param iterable:
-  :return:
-  """
+:param iterable:
+:return:
+"""
 
     for a in iterable:
         yield list(zip(*a))

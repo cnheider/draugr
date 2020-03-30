@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from typing import MutableSequence
 
-from draugr.writers.terminal import sprint
+from draugr.python_utilities.styling import sprint
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""

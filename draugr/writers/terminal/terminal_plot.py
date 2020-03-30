@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr.writers.terminal.style_utilities import (
+from draugr.python_utilities.styling import (
     COLORS,
     PrintStyle,
     generate_style,

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import Sized, Iterable, Sequence
+from typing import Iterable, Sequence, Sized
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -10,18 +10,8 @@ __doc__ = r"""
            """
 
 import numpy
-from torch.utils.data import DataLoader, Dataset
 
-from draugr.torch_utilities.datasets.non_sequential_dataset import NonSequentialDataset
-from warg import passes_kws_to
-
-__all__ = [
-    "sized_batch",
-    "shuffled_batches",
-    "random_batches",
-    "batch_generator_torch",
-    "generator_batch",
-]
+__all__ = ["sized_batch", "shuffled_batches", "random_batches", "generator_batch"]
 
 
 def sized_batch(sized: Iterable, n: int = 32, drop_not_full: bool = True):
@@ -53,25 +43,6 @@ def shuffled_batches(*args, size, batch_size) -> Sequence:
     for i in range(r):
         perm = permutation[i * batch_size : (i + 1) * batch_size]
         yield [a[perm] for a in args]
-
-
-@passes_kws_to(DataLoader)
-def batch_generator_torch(
-    sized: Sized, mini_batches: int = 10, shuffle: bool = True, **kwargs
-) -> DataLoader:
-    """
-
-:param dataset:
-:param mini_batches:
-:param shuffle:
-:param kwargs:
-:return:
-"""
-
-    dataset = NonSequentialDataset(sized)
-    return DataLoader(
-        dataset, batch_size=len(dataset) // mini_batches, shuffle=shuffle, **kwargs
-    )
 
 
 def generator_batch(iterable: Iterable, n: int = 32, drop_not_full: bool = True):

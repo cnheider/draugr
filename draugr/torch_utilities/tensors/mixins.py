@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import math
 
 import torch
 
-from draugr.torch_utilities.to_tensor import to_tensor
+from draugr.torch_utilities.tensors.to_tensor import to_tensor
 
 __author__ = "Christian Heider Nielsen"
 __all__ = ["TensoriseMixin"]

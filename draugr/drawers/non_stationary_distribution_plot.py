@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Sequence, Tuple, Sized
+from typing import Sized, Tuple
 
 import matplotlib
 
@@ -18,10 +18,10 @@ from matplotlib import pyplot
 
 import numpy
 
-__all__ = ["MovingDistributionPlot"]
+__all__ = ["NonStationaryDistributionPlot"]
 
 
-class MovingDistributionPlot(Drawer):
+class NonStationaryDistributionPlot(Drawer):
     @passes_kws_to(pyplot.hist)
     def __init__(
         self,
@@ -110,6 +110,6 @@ class MovingDistributionPlot(Drawer):
 if __name__ == "__main__":
     delta = 1.0 / 60.0
 
-    s = MovingDistributionPlot()
-    for LATEST_GPU_STATS in range(100):
+    s = NonStationaryDistributionPlot()
+    for GPU_STATS in range(100):
         s.draw(numpy.random.sample(), delta)

@@ -9,7 +9,7 @@ __doc__ = r"""
 
 import math
 
-__all__ = ["lambda_accumulator"]
+__all__ = ["lambda_accumulator", "mean_accumulator", "total_accumulator"]
 
 
 def lambda_accumulator(start_value=None, lambd=0.99):

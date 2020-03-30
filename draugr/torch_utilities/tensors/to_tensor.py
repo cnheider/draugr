@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, Sequence, Union, Set
+from typing import Iterable, Sequence, Union
 
 import numpy
 import torch
+from PIL.Image import Image
+from torchvision.transforms import functional
 
-from draugr.torch_utilities.initialisation.device import global_torch_device
+from draugr.torch_utilities.device import global_torch_device
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
@@ -16,21 +18,24 @@ __all__ = ["to_tensor"]
 def to_tensor(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, int, float],
     dtype=torch.float,
-    device=global_torch_device(),
+    device="cpu",
     **kwargs
 ):
     """
 
-    :param obj:
-    :param dtype:
-    :param device:
-    :param kwargs:
-    :return:
-    """
+  :param obj:
+  :param dtype:
+  :param device:
+  :param kwargs:
+  :return:
+  """
 
     # torch.as_tensor()
     if torch.is_tensor(obj):
         return obj.to(dtype=dtype, device=device, **kwargs)
+
+    if isinstance(obj, Image):
+        return functional.to_tensor(obj)
 
     if isinstance(obj, numpy.ndarray):
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:

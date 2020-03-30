@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable
+from typing import Iterable, Sized
 
-from draugr.torch_utilities import to_tensor
+from torch.utils.data import DataLoader
+
+from draugr.torch_utilities.tensors import to_tensor
+from draugr.torch_utilities.datasets import NonSequentialDataset
 from warg import passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
@@ -10,7 +13,11 @@ __doc__ = r"""
 
            Created on 28/10/2019
            """
-__all__ = ["to_tensor_generator"]
+__all__ = [
+    "to_tensor_generator",
+    "batch_generator_torch",
+    "to_device_tensor_iterator_shitty",
+]
 
 
 @passes_kws_to(to_tensor)
@@ -39,6 +46,25 @@ def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs
 def to_device_tensor_iterator_shitty(data_iterator, device):
     while True:
         yield (to_tensor(i, device=device) for i in next(data_iterator))
+
+
+@passes_kws_to(DataLoader)
+def batch_generator_torch(
+    sized: Sized, mini_batches: int = 10, shuffle: bool = True, **kwargs
+) -> DataLoader:
+    """
+
+:param dataset:
+:param mini_batches:
+:param shuffle:
+:param kwargs:
+:return:
+"""
+
+    dataset = NonSequentialDataset(sized)
+    return DataLoader(
+        dataset, batch_size=len(dataset) // mini_batches, shuffle=shuffle, **kwargs
+    )
 
 
 if __name__ == "__main__":

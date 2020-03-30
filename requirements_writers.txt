@@ -1,6 +1,4 @@
 matplotlib
 pandas
 scikit-learn
-torch
-tensorboardX
-tensorboard
+numpy

@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 import numpy
 
-from draugr.drawers.moving_distribution_plot import MovingDistributionPlot
+from draugr.drawers.non_stationary_distribution_plot import (
+    NonStationaryDistributionPlot,
+)
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -38,7 +40,7 @@ def test_moving_distribution_plot():
     # moving_distribution_plot(data_generator, labels=("a", "b", "c"))
     delta = 1.0 / 60.0
 
-    s = MovingDistributionPlot()
+    s = NonStationaryDistributionPlot()
     for LATEST_GPU_STATS in range(100):
         s.draw(numpy.random.sample(), delta)
     assert True

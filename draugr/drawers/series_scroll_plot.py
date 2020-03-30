@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Sequence, Tuple, Sized
+from typing import Sized, Tuple
 
 import matplotlib
 
@@ -140,8 +140,10 @@ class SeriesScrollPlot(Drawer):
 
 
 if __name__ == "__main__":
-    delta = 1.0 / 60.0
 
-    s = SeriesScrollPlot(100, reverse=False, overwrite=False)
-    for LATEST_GPU_STATS in range(1000):
-        s.draw(LATEST_GPU_STATS % 10, delta)
+    def main():
+        s = SeriesScrollPlot(100, reverse=False, overwrite=False)
+        for LATEST_GPU_STATS in range(1000):
+            s.draw(LATEST_GPU_STATS % 10, 1.0 / 60.0)
+
+    main()

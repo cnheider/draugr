@@ -5,9 +5,9 @@ __author__ = "Christian Heider Nielsen"
 from pathlib import Path
 
 import matplotlib.image as mpimg
-from matplotlib import pyplot
 import numpy
 import scipy.misc
+from matplotlib import pyplot
 
 __all__ = ["display_depth_map_3d"]
 

@@ -8,11 +8,9 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-from .writer import *
 from .csv_writer import *
 from .log_writer import *
 from .mock_writer import *
-from .tensorboard import *
-from .visdom import *
 from .terminal import *
+from .visdom import *
 from .writer import *
