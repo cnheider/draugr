@@ -11,6 +11,8 @@ from typing import Iterable
 
 import cv2
 
+__all__ = ["frame_generator"]
+
 
 def frame_generator(video: cv2.VideoCapture) -> Iterable:
     while video.isOpened():
