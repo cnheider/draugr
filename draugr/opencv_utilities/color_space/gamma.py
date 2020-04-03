@@ -9,6 +9,14 @@ __doc__ = r"""
 
 import numpy
 
+__all__ = [
+    "gamma_correct_byte",
+    "gamma_correct_fast_to_byte",
+    "gamma_correct_float_to_byte",
+    "linear_correct_byte",
+    "linear_correct_float_to_byte",
+]
+
 
 def gamma_correct_fast_to_byte(image):
     return ((image ** 0.454545) * 255).astype(numpy.uint8)

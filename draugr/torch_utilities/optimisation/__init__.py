@@ -6,3 +6,6 @@ __doc__ = r"""
 
            Created on 15/02/2020
            """
+
+from .lr_scheduler import *
+from .schedulers import *

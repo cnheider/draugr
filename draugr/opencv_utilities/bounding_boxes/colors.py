@@ -9,8 +9,14 @@ __doc__ = r"""
 
 __all__ = ["compute_color_for_labels"]
 
+from typing import Tuple
 
-def compute_color_for_labels(label, palette=(2 ** 11 - 1, 2 ** 15 - 1, 2 ** 20 - 1)):
+Triple = Tuple[float, float, float]
+
+
+def compute_color_for_labels(
+    label: int, palette: Triple = (2 ** 11 - 1, 2 ** 15 - 1, 2 ** 20 - 1)
+) -> Tuple:
     """
 Simple function that adds fixed color depending on the class
 """
