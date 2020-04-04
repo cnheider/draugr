@@ -6,3 +6,4 @@ from .accumulation import *
 from .metric_aggregator import *
 from .metric_collection import *
 from .metric_summary import *
+from .plotting import *

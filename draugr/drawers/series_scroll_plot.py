@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from math import sin, cos
-from typing import Sized, Tuple, Union, Sequence
+from math import cos, sin
+from typing import Sequence, Sized, Tuple, Union
 
 import matplotlib
 
@@ -72,7 +72,7 @@ class SeriesScrollPlot(Drawer):
         if hasattr(figure.canvas.manager, "window"):
             window = figure.canvas.manager.window
             if backend == "TkAgg":
-                window.wm_geometry("+%d+%d" % (x, y))
+                window.wm_geometry(f"+{x:d}+{y:d}")
             elif backend == "WXAgg":
                 window.SetPosition((x, y))
             else:
