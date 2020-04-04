@@ -18,10 +18,10 @@ from matplotlib import pyplot
 
 import numpy
 
-__all__ = ["NonStationaryDistributionPlot"]
+__all__ = ["DistributionPlot"]
 
 
-class NonStationaryDistributionPlot(Drawer):
+class DistributionPlot(Drawer):
     @passes_kws_to(pyplot.hist)
     def __init__(
         self,
@@ -32,7 +32,7 @@ class NonStationaryDistributionPlot(Drawer):
         overwrite: bool = False,
         placement: Tuple = (0, 0),
         render: bool = True,
-        **kwargs
+        **kwargs,
     ):
         self.fig = None
 
@@ -68,7 +68,7 @@ class NonStationaryDistributionPlot(Drawer):
         if hasattr(figure.canvas.manager, "window"):
             window = figure.canvas.manager.window
             if backend == "TkAgg":
-                window.wm_geometry("+%d+%d" % (x, y))
+                window.wm_geometry(f"+{x:d}+{y:d}")
             elif backend == "WXAgg":
                 window.SetPosition((x, y))
             else:
@@ -110,6 +110,6 @@ class NonStationaryDistributionPlot(Drawer):
 if __name__ == "__main__":
     delta = 1.0 / 60.0
 
-    s = NonStationaryDistributionPlot()
-    for GPU_STATS in range(100):
+    s = DistributionPlot()
+    for _ in range(100):
         s.draw(numpy.random.sample(), delta)

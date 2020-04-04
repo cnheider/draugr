@@ -16,8 +16,8 @@ __all__ = ["torch_seed"]
 
 def torch_seed(s: int):
     """
-  seeding for reproducibility
-  """
+seeding for reproducibility
+"""
     random.seed(s)
     os.environ["PYTHONHASHSEED"] = str(torch_seed)
     numpy.random.seed(s)

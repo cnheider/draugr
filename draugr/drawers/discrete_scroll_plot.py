@@ -25,9 +25,9 @@ import numpy
 
 class DiscreteScrollPlot(Drawer):
     """
-  Waterfall plot
+Waterfall plot
 
-  """
+"""
 
     def __init__(
         self,
@@ -114,7 +114,7 @@ fig_manager.window.SetPosition((500, 0))
         if hasattr(figure.canvas.manager, "window"):
             window = figure.canvas.manager.window
             if backend == "TkAgg":
-                window.wm_geometry("+%d+%d" % (x, y))
+                window.wm_geometry(f"+{x:d}+{y:d}")
             elif backend == "WXAgg":
                 window.SetPosition((x, y))
             else:
@@ -144,11 +144,9 @@ fig_manager.window.SetPosition((500, 0))
 
         if not self.overwrite:
             if not self.reverse:
-                striped = numpy.delete(array, 0, 0)
-                array = numpy.vstack((striped, data))
+                array = numpy.vstack((array[1:], data))
             else:
-                striped = numpy.delete(array, -1, 0)
-                array = numpy.vstack((data, striped))
+                array = numpy.vstack((data, array[:-1]))
         else:
             array[self.n % self.window_length] = data
 
@@ -203,11 +201,9 @@ def discrete_scroll_plot(
 
         if not overwrite:
             if not reverse:
-                striped = numpy.delete(array, 0, 0)
-                array = numpy.vstack((striped, data))
+                array = numpy.vstack((array[1:], data))
             else:
-                striped = numpy.delete(array, -1, 0)
-                array = numpy.vstack((data, striped))
+                array = numpy.vstack((data, array[:-1]))
         else:
             array[n % window_length] = data
 
@@ -316,5 +312,5 @@ if __name__ == "__main__":
     delta = 1 / 60
 
     s = DiscreteScrollPlot(3)
-    for GPU_STATS in range(100):
+    for _ in range(100):
         s.draw(numpy.random.rand(3))

@@ -23,7 +23,7 @@ def global_torch_device(
 ) -> torch.device:
     """
 
-  first time call stores to device for global reference, later call must manually override
+first time call stores to device for global reference, later call must manually override
 
 :param cuda_if_available:
 :type cuda_if_available:
@@ -80,8 +80,8 @@ def get_gpu_usage_mb():
 Returns
 -------
 usage: dict
-  Keys are device ids as integers.
-  Values are memory usage as integers in MB.
+Keys are device ids as integers.
+Values are memory usage as integers in MB.
 """
     result = subprocess.check_output(
         ["nvidia-smi", "--query-gpu=memory.used", "--format=csv,nounits,noheader"]
@@ -106,15 +106,15 @@ def auto_select_available_cuda_device(
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
     """
-  print(torch.cuda.cudart())
-  print(torch.cuda.memory_snapshot())
-  torch.cuda.memory_cached(dev_idx),
-  torch.cuda.memory_allocated(dev_idx),
-  torch.cuda.max_memory_allocated(dev_idx),
-  torch.cuda.max_memory_cached(dev_idx),
-  torch.cuda.get_device_name(dev_idx),
-  torch.cuda.get_device_properties(dev_idx),
-  torch.cuda.memory_stats(dev_idx)
+print(torch.cuda.cudart())
+print(torch.cuda.memory_snapshot())
+torch.cuda.memory_cached(dev_idx),
+torch.cuda.memory_allocated(dev_idx),
+torch.cuda.max_memory_allocated(dev_idx),
+torch.cuda.max_memory_cached(dev_idx),
+torch.cuda.get_device_name(dev_idx),
+torch.cuda.get_device_properties(dev_idx),
+torch.cuda.memory_stats(dev_idx)
 """
     preferred_idx = None
     highest_capab = 0

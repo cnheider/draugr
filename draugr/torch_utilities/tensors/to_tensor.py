@@ -7,8 +7,6 @@ import torch
 from PIL.Image import Image
 from torchvision.transforms import functional
 
-from draugr.torch_utilities.device import global_torch_device
-
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 __all__ = ["to_tensor"]
@@ -23,12 +21,12 @@ def to_tensor(
 ):
     """
 
-  :param obj:
-  :param dtype:
-  :param device:
-  :param kwargs:
-  :return:
-  """
+:param obj:
+:param dtype:
+:param device:
+:param kwargs:
+:return:
+"""
 
     # torch.as_tensor()
     if torch.is_tensor(obj):

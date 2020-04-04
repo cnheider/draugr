@@ -11,7 +11,6 @@ from typing import Tuple
 
 __all__ = ["xywh_to_minmax", "minmax_to_xywh"]
 
-
 Quadruple = Tuple[float, float, float, float]
 
 

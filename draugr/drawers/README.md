@@ -6,7 +6,7 @@ Utilities for drawing real time data stream figures using matplotlib and also so
 
 - [Multi]-series scroll plot
 - Discrete waterfall plot
-- Non-Stationary Distribution plot
+- Distribution plot
 - FFT scroll plot
 
 ## Evaluation

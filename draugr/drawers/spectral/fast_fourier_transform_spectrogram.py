@@ -17,14 +17,14 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-__all__ = ["FastFourierTransformPlot"]
+__all__ = ["FastFourierTransformSpectrogramPlot"]
 
 from matplotlib import pyplot
 
 
-class FastFourierTransformPlot(Drawer):
+class FastFourierTransformSpectrogramPlot(Drawer):
     """
-Waterfall plot
+  TODO: CENTER Align fft maybe?
 
 """
 
@@ -76,35 +76,31 @@ Waterfall plot
         self.raw_ax.set_xlim([time_s[0], time_s[-1]])
         self.raw_ax.set_ylabel("Signal [Magnitude]")
 
+        max_freq = numpy.max(numpy.fft.fftfreq(self.n_fft, 1 / sampling_rate))
         self.dft_angle_img = self.angle_ax.imshow(
             zeroes_img,
             vmin=-math.pi,
             vmax=math.pi,
             interpolation="hanning",
             aspect="auto",
-            extent=[time_s[0], time_s[-1], 0, self.n_fft],
+            extent=[time_s[0], time_s[-1], max_freq, 0],
         )
         self.angle_ax.set_ylabel("Phase [Hz]")
         _ = self.fig.colorbar(self.dft_angle_img, cax=self.angle_cbar_ax)
         self.angle_cbar_ax.set_ylabel("Angle (Radians)", rotation=90)
 
-        self.dft_db_img = self.spec_ax.imshow(
+        self.dft_mag_img = self.spec_ax.imshow(
             zeroes_img,
             vmin=0,
             vmax=1,
             interpolation="hanning",
             aspect="auto",
-            extent=[
-                time_s[0],
-                time_s[-1],
-                numpy.max(numpy.fft.fftfreq(self.n_fft, 1 / sampling_rate)),
-                0,
-            ],
+            extent=[time_s[0], time_s[-1], max_freq, 0],
         )
         self.spec_ax.set_ylabel("Frequency [Hz]")
         self.spec_ax.set_xlabel("Time [Sec]")
-        _ = self.fig.colorbar(self.dft_db_img, cax=self.spec_cbar_ax)
-        self.spec_cbar_ax.set_ylabel("Magnitude (dB)", rotation=90)
+        _ = self.fig.colorbar(self.dft_mag_img, cax=self.spec_cbar_ax)
+        self.spec_cbar_ax.set_ylabel("Magnitude (Linear)", rotation=90)
 
         self.vertical = vertical
         self.reverse = reverse
@@ -123,7 +119,7 @@ Waterfall plot
         if hasattr(figure.canvas.manager, "window"):
             window = figure.canvas.manager.window
             if backend == "TkAgg":
-                window.wm_geometry("+%d+%d" % (x, y))
+                window.wm_geometry(f"+{x:d}+{y:d}")
             elif backend == "WXAgg":
                 window.SetPosition((x, y))
             else:
@@ -148,10 +144,10 @@ Waterfall plot
         y_data = self.raw_line2d.get_ydata()
 
         if not self.reverse:
-            y_data = numpy.hstack((numpy.delete(y_data, 0), signal_sample))
+            y_data = numpy.hstack((y_data[1:], signal_sample))
             f_coef = numpy.fft.fft(y_data[-self.n_fft :], n=self.n_fft)
         else:
-            y_data = numpy.hstack((signal_sample, numpy.delete(y_data, -1)))
+            y_data = numpy.hstack((signal_sample, y_data[:-1]))
             f_coef = numpy.fft.fft(y_data[: self.n_fft], n=self.n_fft)
         f_coef = f_coef[: self.abs_n_fft].reshape(-1, 1)
 
@@ -178,7 +174,7 @@ Waterfall plot
 
         self.dft_angle_img.set_array(phase_data)
 
-        magnitude_data = self.dft_db_img.get_array()
+        magnitude_data = self.dft_mag_img.get_array()
         new_mag_lin = numpy.abs(f_coef) ** 2
         # new_mag_db = 10 * numpy.log10(+numpy.finfo(float).eps)
         new_mag = new_mag_lin
@@ -193,10 +189,10 @@ Waterfall plot
                 axis=-1,
             )
 
-        self.dft_db_img.set_clim(
+        self.dft_mag_img.set_clim(
             vmin=numpy.min(magnitude_data), vmax=numpy.max(magnitude_data)
         )
-        self.dft_db_img.set_array(magnitude_data)
+        self.dft_mag_img.set_array(magnitude_data)
         # self.spec_cbar_ax.set_ylabel('Magnitude (dB)', rotation=90)
         self.spec_cbar_ax.set_ylabel("Magnitude (Linear)", rotation=90)
 
@@ -213,11 +209,11 @@ if __name__ == "__main__":
     def a():
         duration_sec = 4
         mul = 1000
-        sampling_Hz = 44
-        sampling_rate = sampling_Hz * mul  # Hz
+        sampling_Hz = 44.1
+        sampling_rate = int(sampling_Hz * mul)  # Hz
         delta = 1 / sampling_rate
-        n_fft = 64
-        s = FastFourierTransformPlot(
+        n_fft = 128  # 1024
+        s = FastFourierTransformSpectrogramPlot(
             n_fft=n_fft,
             sampling_rate=sampling_rate,
             buffer_size_sec=delta * n_fft * 4,
