@@ -9,18 +9,24 @@ __doc__ = r"""
 
 from typing import Tuple
 
+COLOR_RGB = Tuple[int, int, int]
+COLOR_RGBA = Tuple[int, int, int, int]
+COLOR_INT = Tuple[int, ...]
 
-def RGB(R: int, G: int, B: int) -> Tuple[int, int, int]:
+__all__ = ["RGB", "RGBA", "color_to_str", "color_from_str"]
+
+
+def RGB(R: int, G: int, B: int) -> COLOR_RGB:
     assert 0 <= R <= 255 and 0 <= G <= 255 and 0 <= B <= 255
     return R, G, B
 
 
-def RGBA(R: int, G: int, B: int, A: int) -> Tuple[int, int, int, int]:
+def RGBA(R: int, G: int, B: int, A: int) -> COLOR_RGBA:
     assert 0 <= R <= 255 and 0 <= G <= 255 and 0 <= B <= 255 and 0 <= A <= 255
     return R, G, B, A
 
 
-def color_from_str(s: str, seperator=" ") -> Tuple[int, ...]:
+def color_from_str(s: str, seperator: str = " ") -> COLOR_INT:
     components = s.split(seperator)
     n = len(components)
     if n == 3:
@@ -30,7 +36,7 @@ def color_from_str(s: str, seperator=" ") -> Tuple[int, ...]:
     raise NotImplementedError("Color space not recognised")
 
 
-def color_to_str(t: Tuple[int, ...], seperator=" ") -> str:
+def color_to_str(t: COLOR_INT, seperator: str = " ") -> str:
     return seperator.join([str(c) for c in t])
 
 

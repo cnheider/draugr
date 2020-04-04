@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Sized, Tuple
+from math import cos, sin
+from typing import Sequence, Sized, Tuple, Union
 
 import matplotlib
 
@@ -50,11 +51,12 @@ class SeriesScrollPlot(Drawer):
 
         self.placement = placement
 
-        self.im, = pyplot.plot([], [])
+        self.im = pyplot.plot([], [])
 
         if window_length:
-            self.im.set_xdata(range(window_length))
-            self.im.set_ydata([numpy.nan] * window_length)
+            for i in range(len(self.im)):
+                self.im[i].set_xdata(range(window_length))
+                self.im[i].set_ydata([numpy.nan] * window_length)
             pyplot.xlim(0, window_length)
 
         pyplot.xlabel(time_label)
@@ -70,7 +72,7 @@ class SeriesScrollPlot(Drawer):
         if hasattr(figure.canvas.manager, "window"):
             window = figure.canvas.manager.window
             if backend == "TkAgg":
-                window.wm_geometry("+%d+%d" % (x, y))
+                window.wm_geometry(f"+{x:d}+{y:d}")
             elif backend == "WXAgg":
                 window.SetPosition((x, y))
             else:
@@ -85,49 +87,71 @@ class SeriesScrollPlot(Drawer):
         if self.fig:
             pyplot.close(self.fig)
 
-    def draw(self, data: Sized, delta: float = 1.0 / 120.0):
+    def draw(self, data: Union[Sized, int, float, complex], delta: float = 1.0 / 120.0):
         """
 
 :param data:
 :param delta: 1 / 60 for 60fps
 :return:
 """
-        if not isinstance(data, Sized):
+        if not isinstance(data, Sequence):
             data = [data]
 
-        ts = self.im.get_xdata()
-        array = self.im.get_ydata()
+        num_figures = len(self.im)
+        num_series = len(data)
 
-        if self.window_length:
-            if not self.overwrite:
-                if not self.reverse:
-                    array = numpy.concatenate((array[1:], data))
+        min_min, max_max = None, None
+
+        if num_figures != num_series:
+            # print('Reinstantiating figures')
+            self.im = pyplot.plot(*[[] for _ in range(num_series)] * 2)
+            if self.window_length:
+                for i in range(len(self.im)):
+                    self.im[i].set_xdata(range(self.window_length))
+                    self.im[i].set_ydata([numpy.nan] * self.window_length)
+
+        for i in range(num_figures):
+            time_points = self.im[i].get_xdata()
+            data_points = self.im[i].get_ydata()
+
+            if self.window_length:
+                if not self.overwrite:
+                    if not self.reverse:
+                        data_points = numpy.concatenate(
+                            (data_points[1:], [data[i]]), axis=0
+                        )
+                    else:
+                        data_points = numpy.concatenate(
+                            ([data[i]], data_points[:-1]), axis=0
+                        )
                 else:
-                    array = numpy.concatenate((data, array[:-1]))
+                    if not self.reverse:
+                        data_points[self.n % self.window_length] = data[i]
+                    else:
+                        data_points[
+                            self.window_length - 1 - self.n % self.window_length
+                        ] = data[i]
             else:
                 if not self.reverse:
-                    array[self.n % self.window_length] = data[0]
+                    time_points = numpy.concatenate((time_points, [self.n]), axis=0)
+                    data_points = numpy.concatenate((data_points, [data[i]]), axis=0)
                 else:
-                    array[self.window_length - 1 - self.n % self.window_length] = data[
-                        0
-                    ]
-        else:
-            if not self.reverse:
-                ts = numpy.concatenate((ts, [self.n]))
-                array = numpy.concatenate((array, data))
-            else:
-                ts = numpy.concatenate(([self.n], ts))
-                array = numpy.concatenate((data, array))
-            pyplot.xlim(0, self.n + 1)
+                    time_points = numpy.concatenate(([self.n], time_points), axis=0)
+                    data_points = numpy.concatenate(([data[i]], data_points), axis=0)
+                pyplot.xlim(0, self.n + 1)
 
-        self.im.set_xdata(ts)
-        self.im.set_ydata(array)
-        min_, max_ = numpy.nanmin(array), numpy.nanmax(array)
+            self.im[i].set_xdata(time_points)
+            self.im[i].set_ydata(data_points)
+            min_, max_ = numpy.nanmin(data_points), numpy.nanmax(data_points)
+            if min_min is None or min_ < min_min:
+                min_min = min_
+            if max_max is None or max_ > max_max:
+                max_max = max_
 
-        if min_ == max_:
-            max_ += 1
+        if min_min == max_max:
+            max_max += 1
 
-        pyplot.ylim(min_, max_)
+        pyplot.ylim(min_min, max_max)
 
         pyplot.draw()
 
@@ -141,9 +165,24 @@ class SeriesScrollPlot(Drawer):
 
 if __name__ == "__main__":
 
-    def main():
-        s = SeriesScrollPlot(100, reverse=False, overwrite=False)
-        for LATEST_GPU_STATS in range(1000):
-            s.draw(LATEST_GPU_STATS % 10, 1.0 / 60.0)
+    def multi_series():
+        s = SeriesScrollPlot(200, reverse=False, overwrite=False)
+        for i in range(1000):
+            s.draw([sin(i / 100) * 2, cos(i / 10)], 1.0 / 60.0)
 
-    main()
+    def single_series():
+        s = SeriesScrollPlot(200, reverse=False, overwrite=False)
+        for i in range(1000):
+            s.draw([sin(i / 20)], 1.0 / 60.0)
+
+    def single_series_no_wrap():
+        s = SeriesScrollPlot(200, reverse=True, overwrite=False)
+        for i in range(1000):
+            s.draw(sin(i / 20), 1.0 / 60.0)
+
+    def single_series_no_wrap_rescale():
+        s = SeriesScrollPlot(100, reverse=True, overwrite=False)
+        for i in range(1000):
+            s.draw(sin(i / 100), 1.0 / 60.0)
+
+    multi_series()

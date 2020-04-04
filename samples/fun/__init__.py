@@ -4,8 +4,5 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 15/02/2020
+           Created on 03/04/2020
            """
-
-from .lr_scheduler import *
-from .schedulers import *

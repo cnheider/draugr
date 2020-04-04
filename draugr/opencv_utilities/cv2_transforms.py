@@ -46,12 +46,12 @@ def jaccard_numpy(box_a, box_b) -> numpy.ndarray:
     """Compute the jaccard overlap of two sets of boxes.  The jaccard overlap
 is simply the intersection over union of two boxes.
 E.g.:
-    A ∩ B / A ∪ B = A ∩ B / (area(A) + area(B) - A ∩ B)
+  A ∩ B / A ∪ B = A ∩ B / (area(A) + area(B) - A ∩ B)
 Args:
-    box_a: Multiple bounding boxes, Shape: [num_boxes,4]
-    box_b: Single bounding box, Shape: [4]
+  box_a: Multiple bounding boxes, Shape: [num_boxes,4]
+  box_b: Single bounding box, Shape: [4]
 Return:
-    jaccard overlap: Shape: [box_a.shape[0], box_a.shape[1]]
+  jaccard overlap: Shape: [box_a.shape[0], box_a.shape[1]]
 """
     inter = intersect(box_a, box_b)
     area_a = (box_a[:, 2] - box_a[:, 0]) * (box_a[:, 3] - box_a[:, 1])  # [A,B]
@@ -64,13 +64,13 @@ def remove_empty_boxes(boxes, labels) -> Tuple[numpy.ndarray, numpy.ndarray]:
     """Removes bounding boxes of W or H equal to 0 and its labels
 
 Args:
-    boxes   (ndarray): NP Array with bounding boxes as lines
-                       * BBOX[x1, y1, x2, y2]
-    labels  (labels): Corresponding labels with boxes
+  boxes   (ndarray): NP Array with bounding boxes as lines
+                     * BBOX[x1, y1, x2, y2]
+  labels  (labels): Corresponding labels with boxes
 
 Returns:
-    ndarray: Valid bounding boxes
-    ndarray: Corresponding labels
+  ndarray: Valid bounding boxes
+  ndarray: Corresponding labels
 """
     del_boxes = []
     for idx, box in enumerate(boxes):
@@ -83,12 +83,12 @@ Returns:
 class CV2Compose(object):
     """Composes several augmentations together.
 Args:
-    transforms (List[Transform]): list of transforms to compose.
+  transforms (List[Transform]): list of transforms to compose.
 Example:
-    >>> augmentations.Compose([
-    >>>     transforms.CenterCrop(10),
-    >>>     transforms.ToTensor(),
-    >>> ])
+  >>> augmentations.Compose([
+  >>>     transforms.CenterCrop(10),
+  >>>     transforms.ToTensor(),
+  >>> ])
 """
 
     def __init__(self, transforms):
@@ -268,15 +268,15 @@ class CV2ToTensor(object):
 class CV2RandomSampleCrop(object):
     """Crop
 Arguments:
-    img (Image): the image being input during training
-    boxes (Tensor): the original bounding boxes in pt form
-    labels (Tensor): the class labels for each bbox
-    mode (float tuple): the min and max jaccard overlaps
+  img (Image): the image being input during training
+  boxes (Tensor): the original bounding boxes in pt form
+  labels (Tensor): the class labels for each bbox
+  mode (float tuple): the min and max jaccard overlaps
 Return:
-    (img, boxes, classes)
-        img (Image): the cropped image
-        boxes (Tensor): the adjusted bounding boxes in pt form
-        labels (Tensor): the class labels for each bbox
+  (img, boxes, classes)
+      img (Image): the cropped image
+      boxes (Tensor): the adjusted bounding boxes in pt form
+      labels (Tensor): the class labels for each bbox
 """
 
     def __init__(self):
@@ -411,10 +411,10 @@ class CV2RandomMirror(object):
 
 class CV2SwapChannels(object):
     """Transforms a tensorized image by swapping the channels in the order
- specified in the swap tuple.
+specified in the swap tuple.
 Args:
-    swaps (int triple): final order of channels
-        eg: (2, 1, 0)
+  swaps (int triple): final order of channels
+      eg: (2, 1, 0)
 """
 
     def __init__(self, swaps):
@@ -423,9 +423,9 @@ Args:
     def __call__(self, image):
         """
 Args:
-    image (Tensor): image tensor to be transformed
+image (Tensor): image tensor to be transformed
 Return:
-    a tensor with channels swapped according to swap
+a tensor with channels swapped according to swap
 """
         # if torch.is_tensor(image):
         #     image = image.data.cpu().numpy()

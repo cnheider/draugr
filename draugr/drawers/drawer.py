@@ -14,10 +14,10 @@ __all__ = ["Drawer", "MockDrawer"]
 
 class Drawer:
     @abstractmethod
-    def draw(self, data: Sized, delta: float = 1 / 120):
+    def draw(self, data: Sized, delta: float = 1 / 120) -> None:
         raise NotImplementedError
 
 
 class MockDrawer(Drawer):
-    def draw(self, data: Sized, delta: float = 1 / 120):
+    def draw(self, data: Sized, delta: float = 1 / 120) -> None:
         pass

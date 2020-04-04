@@ -87,18 +87,18 @@ def draw_bouding_boxes(
 ) -> numpy.ndarray:
     """Draw bboxes(labels, scores) on image
 Args:
-    image: numpy array image, shape should be (height, width, channel)
-    boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax)
-    labels: labels, shape: (N, )
-    scores: label scores, shape: (N, )
-    class_name_map: list or dict, map class id to class name for visualization.
-    width: box width
-    alpha: text background alpha
-    fill: fill box or not
-    font: text font
-    score_format: score format
+  image: numpy array image, shape should be (height, width, channel)
+  boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax)
+  labels: labels, shape: (N, )
+  scores: label scores, shape: (N, )
+  class_name_map: list or dict, map class id to class name for visualization.
+  width: box width
+  alpha: text background alpha
+  fill: fill box or not
+  font: text font
+  score_format: score format
 Returns:
-    An image with information drawn on it.
+  An image with information drawn on it.
 """
     boxes = numpy.array(boxes)
     num_boxes = boxes.shape[0]
@@ -112,6 +112,7 @@ Returns:
     for i in range(num_boxes):
         display_str = ""
         color = (0, 255, 0)
+
         if labels is not None:
             this_class = labels[i]
             color = compute_color_for_labels(this_class)
@@ -120,14 +121,11 @@ Returns:
                 if class_name_map is not None
                 else str(this_class)
             )
-            display_str = class_name
+            display_str += class_name
 
         if scores is not None:
             prob = scores[i]
-            if display_str:
-                display_str += score_format.format(prob)
-            else:
-                display_str += f"score{score_format.format(prob)}"
+            display_str += f"score{score_format.format(prob)}"
 
         draw_image = draw_single_box(
             image=draw_image,
