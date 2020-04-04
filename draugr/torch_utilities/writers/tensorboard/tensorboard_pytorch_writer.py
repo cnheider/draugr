@@ -26,6 +26,10 @@ __all__ = ["TensorBoardPytorchWriter"]
 
 
 class TensorBoardPytorchWriter(ImageWriter):
+    """
+
+    """
+
     @passes_kws_to(ImageWriter.__init__)
     def __init__(
         self,
@@ -42,6 +46,13 @@ class TensorBoardPytorchWriter(ImageWriter):
         self.writer.add_scalar(tag, value, step)
 
     def graph(self, model, input_to_model):
+        """
+
+        :param model:
+        :type model:
+        :param input_to_model:
+        :type input_to_model:
+        """
         self.writer.add_graph(model, input_to_model)
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
@@ -59,10 +70,28 @@ class TensorBoardPytorchWriter(ImageWriter):
         dataformats="NCHW",
         **kwargs
     ):
+        """
+
+        :param tag:
+        :type tag:
+        :param data:
+        :type data:
+        :param step:
+        :type step:
+        :param dataformats:
+        :type dataformats:
+        :param kwargs:
+        :type kwargs:
+        """
         self.writer.add_image(tag, data, step, dataformats=dataformats, **kwargs)
 
     @property
     def writer(self):
+        """
+
+        :return:
+        :rtype:
+        """
         if not hasattr(self, "_writer") or not self._writer:
             self._writer = SummaryWriter(str(self._log_dir), self._comment)
         return self._writer

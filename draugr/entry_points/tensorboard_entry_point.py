@@ -6,7 +6,7 @@ __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 
-def main(keep_alive: bool = True):
+def main(keep_alive: bool = True) -> str:
     from draugr.torch_utilities.writers.tensorboard.launcher import launch_tensorboard
     from contextlib import suppress
     from time import sleep
@@ -32,14 +32,14 @@ def main(keep_alive: bool = True):
 
     PROJECT_APP_PATH = AppPath(args.APP_NAME)
 
-    log_dir = str(PROJECT_APP_PATH.user_log)
+    log_dir = PROJECT_APP_PATH.user_log
 
     if args.clean:
-        print(f"Wiping {PROJECT_APP_PATH.user_log}")
-        if PROJECT_APP_PATH.user_log.exists():
-            rmtree(log_dir)
+        print(f"Wiping {log_dir}")
+        if log_dir.exists():
+            rmtree(str(log_dir))
         else:
-            PROJECT_APP_PATH.user_log.mkdir()
+            log_dir.mkdir()
 
     address = launch_tensorboard(log_dir, args.port)
 
@@ -47,9 +47,9 @@ def main(keep_alive: bool = True):
         print(f"tensorboard address: {address} for log_dir {log_dir}")
         with suppress(KeyboardInterrupt):
             while True:
-                sleep(100)
-    else:
-        return address
+                sleep(10)
+
+    return address
 
 
 if __name__ == "__main__":
