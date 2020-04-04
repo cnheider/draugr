@@ -21,6 +21,10 @@ from warg import passes_kws_to
 
 
 class TensorBoardXWriter(Writer):
+    """
+
+    """
+
     def _open(self):
         with suppress(FutureWarning):
             from torch.utils.tensorboard import SummaryWriter
@@ -47,6 +51,15 @@ class TensorBoardXWriter(Writer):
         self.writer.add_graph(model, input_to_model)
 
     def histogram(self, tag: str, values: list, step: int):
+        """
+
+        :param tag:
+        :type tag:
+        :param values:
+        :type values:
+        :param step:
+        :type step:
+        """
         self.writer.add_histogram(tag, values, step, bins="auto")
 
     def bar(
@@ -59,6 +72,23 @@ class TensorBoardXWriter(Writer):
         y_label="Probs",
         title="Action Categorical Distribution",
     ):
+        """
+
+        :param tag:
+        :type tag:
+        :param values:
+        :type values:
+        :param step:
+        :type step:
+        :param yerr:
+        :type yerr:
+        :param x_labels:
+        :type x_labels:
+        :param y_label:
+        :type y_label:
+        :param title:
+        :type title:
+        """
         fig = pyplot.figure()
         ind = numpy.arange(len(values))
         pyplot.bar(ind, values, yerr=yerr)
