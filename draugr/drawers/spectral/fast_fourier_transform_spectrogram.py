@@ -221,9 +221,9 @@ if __name__ == "__main__":
         )
         for t in numpy.arange(0, duration_sec, delta):
             ts = 2 * numpy.pi * t
-            s1 = numpy.sin(ts * sampling_Hz / 2 ** 4 * mul)
-            s2 = numpy.sin(ts * sampling_Hz / 2 ** 3 * mul + 0.33 * numpy.pi)
-            s3 = numpy.sin(ts * sampling_Hz / 2 ** 2 * mul + 0.66 * numpy.pi)
+            s1 = numpy.sin(ts * 1 * sampling_Hz / 2 ** 4 * mul)
+            s2 = numpy.sin(ts * 3 * sampling_Hz / 2 ** 3 * mul + 0.33 * numpy.pi)
+            s3 = numpy.sin(ts * 5 * sampling_Hz / 2 ** 2 * mul + 0.66 * numpy.pi)
             signal = s1 + s2 + s3
             signal /= 3
             # signal += (numpy.random.random() - 0.5) * 2 * 1 / 2  # Noise
