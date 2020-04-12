@@ -15,5 +15,13 @@ __doc__ = r"""
 __all__ = ["torch_pi"]
 
 
-def torch_pi(device: Union[str, torch.device] = "cpu"):
+def torch_pi(device: Union[str, torch.device] = "cpu") -> torch.tensor:
+    """
+    Returns numpy.pi as a tensor
+
+    :param device:
+    :type device:
+    :return:
+    :rtype:
+    """
     return to_tensor([numpy.math.pi], device=device)

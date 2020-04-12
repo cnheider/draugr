@@ -13,11 +13,35 @@ __all__ = ["Drawer", "MockDrawer"]
 
 
 class Drawer:
+    """
+    Real time plotting base class
+
+    """
+
     @abstractmethod
     def draw(self, data: Sized, delta: float = 1 / 120) -> None:
+        """
+
+        :param data:
+        :type data:
+        :param delta:
+        :type delta:
+        """
         raise NotImplementedError
 
 
 class MockDrawer(Drawer):
+    """
+    Mock for drawer, accepts data but draws nothing
+
+    """
+
     def draw(self, data: Sized, delta: float = 1 / 120) -> None:
+        """
+
+        :param data:
+        :type data:
+        :param delta:
+        :type delta:
+        """
         pass

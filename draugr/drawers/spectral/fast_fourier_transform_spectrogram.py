@@ -24,7 +24,7 @@ from matplotlib import pyplot
 
 class FastFourierTransformSpectrogramPlot(Drawer):
     """
-  TODO: CENTER Align fft maybe?
+TODO: CENTER Align fft maybe, to mimick librosa stft
 
 """
 
@@ -38,8 +38,32 @@ class FastFourierTransformSpectrogramPlot(Drawer):
         reverse: bool = False,
         placement: Tuple = (0, 0),
         fig_size=(9, 9),
+        cmap="viridis",
+        # window_function:callable=numpy.hanning, # NOT supported yet because fft is not calculated from center.
+        # log_scale:bool = True,
         render: bool = True,
     ):
+        """
+
+    :param n_fft:
+    :type n_fft:
+    :param sampling_rate:
+    :type sampling_rate:
+    :param buffer_size_sec:
+    :type buffer_size_sec:
+    :param title:
+    :type title:
+    :param vertical:
+    :type vertical:
+    :param reverse:
+    :type reverse:
+    :param placement:
+    :type placement:
+    :param fig_size:
+    :type fig_size:
+    :param render:
+    :type render:
+    """
         self.fig = None
         if not render:
             return
@@ -52,6 +76,7 @@ class FastFourierTransformSpectrogramPlot(Drawer):
         else:
             self.buffer_size_sec = self.n_fft / sampling_rate * 2
 
+        # self.window_function = window_function(self.n_fft)
         self.buffer_array_size = int(sampling_rate * self.buffer_size_sec)
         assert self.buffer_array_size >= self.n_fft
         time_s = numpy.linspace(
@@ -84,6 +109,7 @@ class FastFourierTransformSpectrogramPlot(Drawer):
             interpolation="hanning",
             aspect="auto",
             extent=[time_s[0], time_s[-1], max_freq, 0],
+            cmap=cmap,
         )
         self.angle_ax.set_ylabel("Phase [Hz]")
         _ = self.fig.colorbar(self.dft_angle_img, cax=self.angle_cbar_ax)
@@ -96,11 +122,12 @@ class FastFourierTransformSpectrogramPlot(Drawer):
             interpolation="hanning",
             aspect="auto",
             extent=[time_s[0], time_s[-1], max_freq, 0],
+            cmap=cmap,
         )
         self.spec_ax.set_ylabel("Frequency [Hz]")
         self.spec_ax.set_xlabel("Time [Sec]")
         _ = self.fig.colorbar(self.dft_mag_img, cax=self.spec_cbar_ax)
-        self.spec_cbar_ax.set_ylabel("Magnitude (Linear)", rotation=90)
+        self.spec_cbar_ax.set_ylabel("Magnitude (dB)", rotation=90)
 
         self.vertical = vertical
         self.reverse = reverse
@@ -145,17 +172,23 @@ class FastFourierTransformSpectrogramPlot(Drawer):
 
         if not self.reverse:
             y_data = numpy.hstack((y_data[1:], signal_sample))
-            f_coef = numpy.fft.fft(y_data[-self.n_fft :], n=self.n_fft)
+            y_data_view = y_data[-self.n_fft :]
         else:
             y_data = numpy.hstack((signal_sample, y_data[:-1]))
-            f_coef = numpy.fft.fft(y_data[: self.n_fft], n=self.n_fft)
-        f_coef = f_coef[: self.abs_n_fft].reshape(-1, 1)
+            y_data_view = y_data[: self.n_fft]
 
         self.raw_line2d.set_ydata(y_data)
         cur_lim = self.raw_ax.get_ylim()
         self.raw_ax.set_ylim(
             [min(cur_lim[0], signal_sample), max(cur_lim[1], signal_sample)]
         )
+
+        # if self.window_function is not None:
+        #   y_data_view *= self.window_function
+
+        f_coef = numpy.fft.fft(y_data_view, n=self.n_fft)[: self.abs_n_fft].reshape(
+            -1, 1
+        )  # Only select the positive frequencies
 
         phase_data = self.dft_angle_img.get_array()
         # sin_, cos = f_coef.imag,f_coef.real
@@ -176,8 +209,8 @@ class FastFourierTransformSpectrogramPlot(Drawer):
 
         magnitude_data = self.dft_mag_img.get_array()
         new_mag_lin = numpy.abs(f_coef) ** 2
-        # new_mag_db = 10 * numpy.log10(+numpy.finfo(float).eps)
-        new_mag = new_mag_lin
+        new_mag_db = 10 * numpy.log10(new_mag_lin + numpy.finfo(float).eps)
+        new_mag = new_mag_db
         if not self.reverse:
             magnitude_data = numpy.concatenate(
                 (magnitude_data[:, 1 : -self.n_fft], new_mag, self.zeroes_padding),
@@ -193,8 +226,8 @@ class FastFourierTransformSpectrogramPlot(Drawer):
             vmin=numpy.min(magnitude_data), vmax=numpy.max(magnitude_data)
         )
         self.dft_mag_img.set_array(magnitude_data)
-        # self.spec_cbar_ax.set_ylabel('Magnitude (dB)', rotation=90)
-        self.spec_cbar_ax.set_ylabel("Magnitude (Linear)", rotation=90)
+        # self.spec_cbar_ax.set_ylabel("Magnitude (Linear)", rotation=90)
+        self.spec_cbar_ax.set_ylabel("Magnitude (dB)", rotation=90)
 
         pyplot.draw()
         if self.n <= 1:
@@ -214,10 +247,7 @@ if __name__ == "__main__":
         delta = 1 / sampling_rate
         n_fft = 128  # 1024
         s = FastFourierTransformSpectrogramPlot(
-            n_fft=n_fft,
-            sampling_rate=sampling_rate,
-            buffer_size_sec=delta * n_fft * 4,
-            reverse=False,
+            n_fft=n_fft, sampling_rate=sampling_rate, buffer_size_sec=delta * n_fft * 4
         )
         for t in numpy.arange(0, duration_sec, delta):
             ts = 2 * numpy.pi * t

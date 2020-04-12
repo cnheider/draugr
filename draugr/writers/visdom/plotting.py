@@ -11,7 +11,13 @@ __all__ = ["plot_episode_stats"]
 
 
 def plot_episode_stats(stats):
-    # Plot the mean of last 100 episode rewards over time.
+    """
+
+    :param stats:
+    :type stats:
+    :return:
+    :rtype:
+    """
     vis.line(
         X=numpy.arange(len(stats.signal_mas)),
         Y=numpy.array(stats.signal_mas),
@@ -21,9 +27,8 @@ def plot_episode_stats(stats):
             ylabel="MEAN REWARD (100 episodes)",
             xlabel="Episode",
         ),
-    )
+    )  #    Plot the mean of last 100 episode rewards over time.
 
-    # Plot time steps and episode number.
     vis.line(
         X=numpy.cumsum(stats.episode_lengths),
         Y=numpy.arange(len(stats.episode_lengths)),
@@ -31,4 +36,4 @@ def plot_episode_stats(stats):
         opts=dict(
             title=("DDPG Episode per time step"), ylabel="Episode", xlabel="Time Steps"
         ),
-    )
+    )  # Plot time steps and episode number.

@@ -22,6 +22,10 @@ __all__ = ["SeriesScrollPlot"]
 
 
 class SeriesScrollPlot(Drawer):
+    """
+
+    """
+
     def __init__(
         self,
         window_length: int = None,
@@ -166,21 +170,33 @@ class SeriesScrollPlot(Drawer):
 if __name__ == "__main__":
 
     def multi_series():
+        """
+
+        """
         s = SeriesScrollPlot(200, reverse=False, overwrite=False)
         for i in range(1000):
             s.draw([sin(i / 100) * 2, cos(i / 10)], 1.0 / 60.0)
 
     def single_series():
+        """
+
+        """
         s = SeriesScrollPlot(200, reverse=False, overwrite=False)
         for i in range(1000):
             s.draw([sin(i / 20)], 1.0 / 60.0)
 
     def single_series_no_wrap():
+        """
+
+        """
         s = SeriesScrollPlot(200, reverse=True, overwrite=False)
         for i in range(1000):
             s.draw(sin(i / 20), 1.0 / 60.0)
 
     def single_series_no_wrap_rescale():
+        """
+
+        """
         s = SeriesScrollPlot(100, reverse=True, overwrite=False)
         for i in range(1000):
             s.draw(sin(i / 100), 1.0 / 60.0)

@@ -11,6 +11,15 @@ __all__ = ["add_indent"]
 
 
 def add_indent(input_str: str, indent_spaces_num: int = 2):
+    """
+
+    :param input_str:
+    :type input_str:
+    :param indent_spaces_num:
+    :type indent_spaces_num:
+    :return:
+    :rtype:
+    """
     s = input_str.split("\n")
     if len(s) == 1:  # don't do anything for single-line stuff
         return input_str

@@ -17,6 +17,10 @@ __all__ = ["TerminalPlotWriter"]
 
 
 class TerminalPlotWriter(Writer):
+    """
+
+    """
+
     def _open(self):
         self.E = tqdm()
 

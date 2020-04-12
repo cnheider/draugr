@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, Sized
+from typing import Iterable
 
 from torch.utils.data import DataLoader
 
 from draugr.torch_utilities.datasets import NonSequentialDataset
 from draugr.torch_utilities.tensors import to_tensor
 from warg import passes_kws_to
+import numpy
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -50,7 +51,7 @@ def to_device_tensor_iterator_shitty(data_iterator, device):
 
 @passes_kws_to(DataLoader)
 def batch_generator_torch(
-    sized: Sized, mini_batches: int = 10, shuffle: bool = True, **kwargs
+    sized: numpy.ndarray, mini_batches: int = 10, shuffle: bool = True, **kwargs
 ) -> DataLoader:
     """
 

@@ -11,7 +11,12 @@ __doc__ = r"""
 __all__ = ["init_weights"]
 
 
-def init_weights(m):
+def init_weights(m) -> None:
+    """
+
+    :param m:
+    :type m:
+    """
     if isinstance(m, nn.Linear):
         nn.init.normal_(m.weight, mean=0.0, std=0.1)
         nn.init.constant_(m.bias, 0.1)

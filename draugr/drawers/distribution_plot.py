@@ -22,6 +22,10 @@ __all__ = ["DistributionPlot"]
 
 
 class DistributionPlot(Drawer):
+    """
+
+    """
+
     @passes_kws_to(pyplot.hist)
     def __init__(
         self,

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr import Writer
+from draugr.writers.writer import Writer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -20,6 +20,10 @@ if not START_VISDOM_SERVER:
 
 
 class VisdomWriter(Writer):
+    """
+
+    """
+
     def _scalar(self, tag: str, value: float, step: int):
         pass
 

@@ -11,5 +11,12 @@ import torch
 
 
 def minmax_to_xywh_torch(boxes: torch.tensor) -> torch.tensor:
+    """
+
+    :param boxes:
+    :type boxes:
+    :return:
+    :rtype:
+    """
     xmin, ymin, xmax, ymax = boxes.unbind(1)
     return torch.stack((xmin, ymin, xmax - xmin, ymax - ymin), dim=1)

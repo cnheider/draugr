@@ -14,7 +14,14 @@ Created on 27/04/2019
 __all__ = ["metrics"]
 
 
-def metrics(array):
+def metrics(array) -> collections.OrderedDict:
+    """
+
+    :param array:
+    :type array:
+    :return:
+    :rtype:
+    """
     d = collections.OrderedDict()
     d["mean"] = numpy.mean(array)
     d["std"] = numpy.std(array)

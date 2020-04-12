@@ -1,9 +1,9 @@
 import types
-from typing import Tuple
+from typing import Tuple, Sized
 
 import cv2
 import numpy
-import numpy as np
+import numpy
 import torch
 from numpy import random
 from torchvision import transforms
@@ -35,10 +35,19 @@ __all__ = [
 ]
 
 
-def intersect(box_a, box_b) -> numpy.ndarray:
-    max_xy = np.minimum(box_a[:, 2:], box_b[2:])
-    min_xy = np.maximum(box_a[:, :2], box_b[:2])
-    inter = np.clip((max_xy - min_xy), a_min=0, a_max=np.inf)
+def intersect(box_a: Sized, box_b: Sized) -> numpy.ndarray:
+    """
+
+    :param box_a:
+    :type box_a:
+    :param box_b:
+    :type box_b:
+    :return:
+    :rtype:
+    """
+    max_xy = numpy.minimum(box_a[:, 2:], box_b[2:])
+    min_xy = numpy.maximum(box_a[:, :2], box_b[:2])
+    inter = numpy.clip((max_xy - min_xy), a_min=0, a_max=numpy.inf)
     return inter[:, 0] * inter[:, 1]
 
 
@@ -77,7 +86,7 @@ Returns:
         if box[0] == box[2] or box[1] == box[3]:
             del_boxes.append(idx)
 
-    return np.delete(boxes, del_boxes, 0), np.delete(labels, del_boxes)
+    return numpy.delete(boxes, del_boxes, 0), numpy.delete(labels, del_boxes)
 
 
 class CV2Compose(object):
@@ -115,17 +124,17 @@ class Lambda(object):
 
 class ConvertFromInts(object):
     def __call__(self, image, boxes=None, labels=None):
-        return image.astype(np.float32), boxes, labels
+        return image.astype(numpy.float32), boxes, labels
 
 
 class SubtractMeans(object):
     def __init__(self, mean):
-        self.mean = np.array(mean, dtype=np.float32)
+        self.mean = numpy.array(mean, dtype=numpy.float32)
 
     def __call__(self, image, boxes=None, labels=None):
-        image = image.astype(np.float32)
+        image = image.astype(numpy.float32)
         image -= self.mean
-        return image.astype(np.float32), boxes, labels
+        return image.astype(numpy.float32), boxes, labels
 
 
 class CV2ToAbsoluteCoords(object):
@@ -250,7 +259,7 @@ class CV2RandomBrightness(object):
 class CV2ToImage(object):
     def __call__(self, tensor, boxes=None, labels=None):
         return (
-            tensor.cpu().numpy().astype(np.float32).transpose((1, 2, 0)),
+            tensor.cpu().numpy().astype(numpy.float32).transpose((1, 2, 0)),
             boxes,
             labels,
         )
@@ -259,7 +268,7 @@ class CV2ToImage(object):
 class CV2ToTensor(object):
     def __call__(self, cvimage, boxes=None, labels=None):
         return (
-            torch.from_numpy(cvimage.astype(np.float32)).permute(2, 0, 1),
+            torch.from_numpy(cvimage.astype(numpy.float32)).permute(2, 0, 1),
             boxes,
             labels,
         )
@@ -324,7 +333,7 @@ Return:
                 top = random.uniform(height - h)
 
                 # convert to integer rect x1,y1,x2,y2
-                rect = np.array([int(left), int(top), int(left + w), int(top + h)])
+                rect = numpy.array([int(left), int(top), int(left + w), int(top + h)])
 
                 # calculate IoU (jaccard overlap) b/t the cropped and gt boxes
                 overlap = jaccard_numpy(boxes, rect)
@@ -359,11 +368,11 @@ Return:
                 current_labels = labels[mask]
 
                 # should we use the box left and top corner or the crop's
-                current_boxes[:, :2] = np.maximum(current_boxes[:, :2], rect[:2])
+                current_boxes[:, :2] = numpy.maximum(current_boxes[:, :2], rect[:2])
                 # adjust to crop (by substracting crop's left,top)
                 current_boxes[:, :2] -= rect[:2]
 
-                current_boxes[:, 2:] = np.minimum(current_boxes[:, 2:], rect[2:])
+                current_boxes[:, 2:] = numpy.minimum(current_boxes[:, 2:], rect[2:])
                 # adjust to crop (by substracting crop's left,top)
                 current_boxes[:, 2:] -= rect[:2]
 
@@ -383,7 +392,7 @@ class CV2Expand(object):
         left = random.uniform(0, width * ratio - width)
         top = random.uniform(0, height * ratio - height)
 
-        expand_image = np.zeros(
+        expand_image = numpy.zeros(
             (int(height * ratio), int(width * ratio), depth), dtype=image.dtype
         )
         expand_image[:, :, :] = self.mean
@@ -430,7 +439,7 @@ a tensor with channels swapped according to swap
         # if torch.is_tensor(image):
         #     image = image.data.cpu().numpy()
         # else:
-        #     image = np.array(image)
+        #     image = numpy.array(image)
         image = image[:, :, self.swaps]
         return image
 

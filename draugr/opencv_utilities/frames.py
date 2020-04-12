@@ -15,6 +15,11 @@ __all__ = ["frame_generator"]
 
 
 def frame_generator(video: cv2.VideoCapture) -> Iterable:
+    """
+
+    :param video:
+    :type video:
+    """
     while video.isOpened():
         success, frame = video.read()
         if success:

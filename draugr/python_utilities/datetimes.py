@@ -13,4 +13,13 @@ __all__ = ["default_datetime_repr"]
 
 
 def default_datetime_repr(date: datetime, format: str = "%Y-%m-%d %H:%M:%S") -> str:
+    """
+
+    :param date:
+    :type date:
+    :param format:
+    :type format:
+    :return:
+    :rtype:
+    """
     return date.strftime(format)

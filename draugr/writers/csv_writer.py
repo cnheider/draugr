@@ -18,8 +18,19 @@ __all__ = ["CSVWriter"]
 
 
 class CSVWriter(Writer):
+    """
+
+    """
+
     @staticmethod
     def get_csv_writer(path=pathlib.Path.home() / "Models"):
+        """
+
+        :param path:
+        :type path:
+        :return:
+        :rtype:
+        """
         csv_path = path / "log.csv"
         ensure_existence(csv_path)
         csv_file = open(str(csv_path), "a")

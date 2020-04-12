@@ -6,6 +6,10 @@ __all__ = ["WarmupMultiStepLR"]
 
 
 class WarmupMultiStepLR(_LRScheduler):
+    """
+
+    """
+
     def __init__(
         self,
         optimizer,
@@ -28,6 +32,11 @@ class WarmupMultiStepLR(_LRScheduler):
         super().__init__(optimizer, last_epoch)
 
     def get_lr(self):
+        """
+
+        :return:
+        :rtype:
+        """
         warmup_factor = 1
         if self.last_epoch < self.warmup_iters:
             alpha = float(self.last_epoch) / self.warmup_iters

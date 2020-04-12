@@ -10,6 +10,10 @@ __all__ = ["TensoriseMixin"]
 
 
 class TensoriseMixin(object):
+    """
+    Tensorise attributes at set
+    """
+
     device = "cpu"
     dtype = torch.float
 

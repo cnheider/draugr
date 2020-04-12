@@ -7,8 +7,8 @@ __doc__ = r"""
            Created on 04/04/2020
            """
 
-import matplotlib.pyplot as plt
-import numpy as np
+from matplotlib import pyplot
+import numpy
 
 with plt.xkcd():
     fig = plt.figure()
@@ -19,8 +19,8 @@ with plt.xkcd():
     ax.set_yticks([])
     ax.set_ylim([-30, 10])
 
-    data = np.ones(100)
-    data[70:] -= np.arange(30)
+    data = numpy.ones(100)
+    data[70:] -= numpy.arange(30)
 
     ax.annotate(
         r"""THE DAY I REALIZED

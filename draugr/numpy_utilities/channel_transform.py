@@ -23,18 +23,41 @@ __all__ = [
 
 
 def hwc_to_chw(inp: numpy.ndarray) -> numpy.ndarray:
+    """
+
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:
+    """
     return inp.transpose((2, 0, 1))
 
 
 def chw_to_hwc(inp: numpy.ndarray) -> numpy.ndarray:
+    """
+
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:
+    """
     return inp.transpose((1, 2, 0))
 
 
 def uint_hwc_to_chw_float(
     inp: numpy.ndarray, *, normalise: bool = True
 ) -> numpy.ndarray:
+    """
+
+    :param inp:
+    :type inp:
+    :param normalise:
+    :type normalise:
+    :return:
+    :rtype:
+    """
     if normalise:
-        inp = inp / 255.0
+        inp /= 255.0
         inp = numpy.clip(inp, 0, 1)
     return hwc_to_chw(inp)
 
@@ -42,22 +65,52 @@ def uint_hwc_to_chw_float(
 def float_chw_to_hwc_uint(
     inp: numpy.ndarray, *, unnormalise: bool = True
 ) -> numpy.ndarray:
+    """
+
+    :param inp:
+    :type inp:
+    :param unnormalise:
+    :type unnormalise:
+    :return:
+    :rtype:
+    """
     inp = chw_to_hwc(inp)
     if unnormalise:
-        inp = inp * 255.0
+        inp *= 255.0
         inp = numpy.clip(inp, 0, 255)
     return inp.astype(numpy.uint8)
 
 
 def rgb_drop_alpha_hwc(inp: Sized) -> Sized:
+    """
+
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:
+    """
     return inp[:, :, :3]
 
 
 def rgb_drop_alpha_batch_nhwc(inp: Sized) -> Sized:
+    """
+
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:
+    """
     return inp[:, :, :, :3]
 
 
 def torch_vision_normalize_batch_nchw(inp: Sized) -> Sized:
+    """
+
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:
+    """
     mean = [0.485, 0.456, 0.406]
     std = [0.229, 0.224, 0.225]
 
@@ -69,6 +122,13 @@ def torch_vision_normalize_batch_nchw(inp: Sized) -> Sized:
 
 
 def reverse_torch_vision_normalize_batch_nchw(inp: Sized) -> Sized:
+    """
+
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:
+    """
     mean = [0.485, 0.456, 0.406]
     std = [0.229, 0.224, 0.225]
 

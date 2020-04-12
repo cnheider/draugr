@@ -19,6 +19,8 @@ from torch.nn import Module, Parameter
 def freeze_model(model: Module, value: bool = None, recurse: bool = True) -> None:
     """
 
+  :param model:
+  :type model:
 :param recurse:
 :param params:
 :param value:

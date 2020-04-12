@@ -14,7 +14,7 @@ __doc__ = r"""
 __all__ = ["torch_seed"]
 
 
-def torch_seed(s: int):
+def torch_seed(s: int) -> None:
     """
 seeding for reproducibility
 """

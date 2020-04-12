@@ -8,7 +8,7 @@ import torch
 __all__ = ["ortho_weights"]
 
 
-def ortho_weights(shape, scale: float = 1.0):
+def ortho_weights(shape, scale: float = 1.0) -> torch.tensor:
     """ PyTorch port of ortho_init from baselines.a2c.utils """
     shape = tuple(shape)
 

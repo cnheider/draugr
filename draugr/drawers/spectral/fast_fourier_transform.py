@@ -36,6 +36,21 @@ class FastFourierTransformPlot(Drawer):
         fig_size=(9, 9),
         render: bool = True,
     ):
+        """
+
+    :param n_fft:
+    :type n_fft:
+    :param sampling_rate:
+    :type sampling_rate:
+    :param title:
+    :type title:
+    :param placement:
+    :type placement:
+    :param fig_size:
+    :type fig_size:
+    :param render:
+    :type render:
+    """
         self.fig = None
         if not render:
             return

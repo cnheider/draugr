@@ -31,9 +31,23 @@ Not inherit dict due to `default_collate` will change dict's subclass to dict.
         return self
 
     def to(self, *args, **kwargs):
+        """
+
+        :param args:
+        :type args:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         return self._call("to", *args, **kwargs)
 
     def numpy(self):
+        """
+
+        :return:
+        :rtype:
+        """
         return self._call("numpy")
 
     def __repr__(self):

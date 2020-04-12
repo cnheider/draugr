@@ -33,15 +33,19 @@ Displays a list of frames as a gif, with controls
 
 if __name__ == "__main__":
 
-    env = gym.make("Pendulum-v0")
-    state = env.reset()
+    def main():
 
-    frames = []
-    done = False
-    while not done:
-        frames.append(env.render())
+        env = gym.make("Pendulum-v0")
+        state = env.reset()
 
-        state, reward, done, info = env.step(env.action_space.sample())
-    env.close()
+        frames = []
+        done = False
+        while not done:
+            frames.append(env.render())
 
-    replay_frames(frames)
+            state, reward, done, info = env.step(env.action_space.sample())
+        env.close()
+
+        replay_frames(frames)
+
+    main()

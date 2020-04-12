@@ -40,7 +40,12 @@ Initializes Linear, Conv2d, and LSTM weights.
                 param.data.zero_()
 
 
-def initialize_parameters(m: torch.nn.Module):
+def initialize_parameters(m: torch.nn.Module) -> None:
+    """
+
+    :param m:
+    :type m:
+    """
     classname = m.__class__.__name__
     if classname.find("Linear") != -1:
         m.weight.data.normal_(0, 1)

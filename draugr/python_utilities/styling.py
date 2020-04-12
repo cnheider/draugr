@@ -61,6 +61,23 @@ def generate_style(
     underline: bool = False,
     italic: bool = False,
 ):
+    """
+
+    :param obj:
+    :type obj:
+    :param color:
+    :type color:
+    :param bold:
+    :type bold:
+    :param highlight:
+    :type highlight:
+    :param underline:
+    :type underline:
+    :param italic:
+    :type italic:
+    :return:
+    :rtype:
+    """
     attributes = []
 
     if color in COLORS:

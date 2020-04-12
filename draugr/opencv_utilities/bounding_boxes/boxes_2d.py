@@ -15,11 +15,25 @@ Quadruple = Tuple[float, float, float, float]
 
 
 def xywh_to_minmax(box: Quadruple) -> Quadruple:
+    """
+
+    :param box:
+    :type box:
+    :return:
+    :rtype:
+    """
     x1, y1, w, h = box
     return x1, y1, x1 + w, y1 + h
 
 
 def minmax_to_xywh(boxes: Quadruple) -> Quadruple:
+    """
+
+    :param boxes:
+    :type boxes:
+    :return:
+    :rtype:
+    """
     xmin, ymin, xmax, ymax = boxes
     return xmin, ymin, xmax - xmin, ymax - ymin
 

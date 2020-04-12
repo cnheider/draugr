@@ -18,7 +18,11 @@ __all__ = ["LogWriter"]
 
 
 class LogWriter(Writer):
-    def _scalar(self, tag: str, value: float, step: int):
+    """
+
+    """
+
+    def _scalar(self, tag: str, value: float, step: int) -> None:
         self.logger.info(f"{step} [{tag}] {value}")
 
     @staticmethod
@@ -26,6 +30,15 @@ class LogWriter(Writer):
         path: pathlib.Path = pathlib.Path.cwd() / "0.log",
         write_to_std_out: bool = False,
     ) -> logging.Logger:
+        """
+
+        :param path:
+        :type path:
+        :param write_to_std_out:
+        :type write_to_std_out:
+        :return:
+        :rtype:
+        """
         ensure_existence(path)
 
         handlers = [logging.FileHandler(filename=str(path))]

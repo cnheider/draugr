@@ -15,6 +15,10 @@ __all__ = ["RandomDataset"]
 
 
 class RandomDataset(Dataset):
+    """
+
+    """
+
     def __init__(self, size: Sized, length: int):
         self.len = length
         self.data = torch.randn((length, *size))
