@@ -13,6 +13,12 @@ import torch
 from torch import nn
 from torch.nn import Module
 
+__all__ = [
+    "set_all_parameter_requires_grad",
+    "set_first_n_parameter_requires_grad",
+    "get_trainable_parameters",
+]
+
 
 def set_all_parameter_requires_grad(model: nn.Module, bo: bool = False) -> None:
     """

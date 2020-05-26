@@ -9,6 +9,8 @@ __doc__ = r"""
 
 import torch
 
+__all__ = ["minmax_to_xywh_torch"]
+
 
 def minmax_to_xywh_torch(boxes: torch.tensor) -> torch.tensor:
     """

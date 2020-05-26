@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 import os
 import shutil
+from typing import Any, Union
 
 import numpy
 
-from warg import NOD
+from warg import NOD, passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
 
@@ -52,15 +53,30 @@ DECORATIONS = NOD(
 )
 
 
+class PrintStyle(object):
+    """
+
+  """
+
+    def __init__(self, attributes_joined, end):
+        self._attributes_joined = attributes_joined
+        self._end = end
+
+    def __call__(self, obj, *args, **kwargs):
+        intermediate_repr = f"\x1b[{self._attributes_joined}m{obj}\x1b[{self._end}m"
+        string = six.u(intermediate_repr)
+        return string
+
+
 def generate_style(
-    obj=None,
+    obj: Any = None,
     *,
     color: str = "white",
     bold: bool = False,
     highlight: bool = False,
     underline: bool = False,
     italic: bool = False,
-):
+) -> Union[str, PrintStyle]:
     """
 
     :param obj:
@@ -111,7 +127,8 @@ def generate_style(
         return print_style
 
 
-def sprint(obj, **kwargs):
+@passes_kws_to(generate_style)
+def sprint(obj: Any, **kwargs) -> None:
     """
 Stylised print.
 Valid colors: gray, red, green, yellow, blue, magenta, cyan, white, crimson
@@ -143,6 +160,11 @@ will be moved to 0.
 
 
 def get_terminal_size():
+    """
+
+    :return:
+    :rtype:
+    """
     try:
         size = shutil.get_terminal_size()
         columns, rows = size.columns, size.lines
@@ -152,17 +174,6 @@ def get_terminal_size():
     rows, columns = int(rows), int(columns)
 
     return NOD(rows=rows, columns=columns)
-
-
-class PrintStyle(object):
-    def __init__(self, attributes_joined, end):
-        self._attributes_joined = attributes_joined
-        self._end = end
-
-    def __call__(self, obj, *args, **kwargs):
-        intermediate_repr = f"\x1b[{self._attributes_joined}m{obj}\x1b[{self._end}m"
-        string = six.u(intermediate_repr)
-        return string
 
 
 if __name__ == "__main__":

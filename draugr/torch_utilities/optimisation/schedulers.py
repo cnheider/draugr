@@ -9,6 +9,8 @@ __doc__ = r"""
 
 import torch
 
+__all__ = ["warmup_lr_scheduler"]
+
 
 def warmup_lr_scheduler(optimizer, warmup_iters, warmup_factor):
     """

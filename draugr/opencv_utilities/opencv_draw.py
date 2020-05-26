@@ -23,7 +23,7 @@ def find_contours(*args, **kwargs):
     """
 Wraps cv2.findContours to maintain compatibility between versions 3 and 4
 Returns:
-  contours, hierarchy
+contours, hierarchy
 """
     if cv2.__version__.startswith("4"):
         contours, hierarchy = cv2.findContours(*args, **kwargs)
@@ -46,16 +46,16 @@ def draw_masks(
 ) -> numpy.ndarray:
     """
 Args:
-  image: numpy array image, shape should be (height, width, channel)
-  masks: (N, 1, Height, Width)
-  labels: mask label
-  border: draw border on mask
-  border_width: border width
-  border_color: border color
-  alpha: mask alpha
-  color: mask color
+image: numpy array image, shape should be (height, width, channel)
+masks: (N, 1, Height, Width)
+labels: mask label
+border: draw border on mask
+border_width: border width
+border_color: border color
+alpha: mask alpha
+color: mask color
 Returns:
-  numpy.ndarray
+numpy.ndarray
 """
     if isinstance(image, Image.Image):
         image = numpy.array(image)
@@ -82,6 +82,4 @@ Returns:
                 thickness=border_width,
                 lineType=cv2.LINE_AA,
             )
-
-    image = image.astype(numpy.uint8)
-    return image
+    return image.astype(numpy.uint8)

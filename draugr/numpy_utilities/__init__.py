@@ -8,3 +8,4 @@ __doc__ = r"""
            """
 
 from .channel_transform import *
+from .torch_channel_transform import *

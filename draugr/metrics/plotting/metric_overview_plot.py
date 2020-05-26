@@ -384,6 +384,22 @@ def roc_plot(
 def plot_confusion_matrix(
     y_test, y_pred, class_names, size: Tuple[int, int] = (8, 8), decimals: int = 3
 ):
+    """
+
+  :param y_test:
+  :type y_test:
+  :param y_pred:
+  :type y_pred:
+  :param class_names:
+  :type class_names:
+  :param size:
+  :type size:
+  :param decimals:
+  :type decimals:
+  :return:
+  :rtype:
+  """
+
     def confusion_matrix_figure(
         y_true, y_pred, classes, normalize=False, title=None, cmap=pyplot.cm.Blues
     ):
@@ -407,8 +423,8 @@ Normalization can be applied by setting `normalize=True`.
 
         fig, ax = pyplot.subplots(figsize=size)
         im = ax.imshow(cm, interpolation="nearest", cmap=cmap)
-        ax.barh.colorbar(im, ax=ax)
-        # We want to show all ticks...
+        pyplot.colorbar(im, ax=ax)
+
         ax.set(
             xticks=numpy.arange(cm.shape[1]),
             yticks=numpy.arange(cm.shape[0]),
@@ -418,12 +434,11 @@ Normalization can be applied by setting `normalize=True`.
             title=title,
             ylabel="True label",
             xlabel="Predicted label",
-        )
+        )  # Show all ticks
 
-        # Rotate the tick labels and set their alignment.
         pyplot.setp(
             ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor"
-        )
+        )  # Rotate the tick labels and set their alignment.
 
         # Loop over data dimensions and create text annotations.
         fmt = ".2f" if normalize else "d"

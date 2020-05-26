@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import Any
+
 import cv2
 import numpy
 
@@ -12,7 +14,7 @@ __doc__ = r"""
 __all__ = ["cv2_resize"]
 
 
-def cv2_resize(x, target_size: tuple, interpolation=cv2.INTER_LINEAR):
+def cv2_resize(x: Any, target_size: tuple, interpolation=cv2.INTER_LINEAR):
     """
 
 :param interpolation:
