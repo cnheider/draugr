@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr import discrete_scroll_plot
+from draugr.drawers import discrete_scroll_plot
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

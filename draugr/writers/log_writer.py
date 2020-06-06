@@ -39,7 +39,7 @@ class LogWriter(Writer):
         :return:
         :rtype:
         """
-        ensure_existence(path)
+        ensure_existence(path, declare_file=True, overwrite_on_wrong_type=True)
 
         handlers = [logging.FileHandler(filename=str(path))]
 
@@ -52,11 +52,11 @@ class LogWriter(Writer):
 
     def __init__(self, path, **kwargs):
         super().__init__(**kwargs)
-        self.path = path
+        self.log_path = path
         self.logger: logging.Logger = None
 
     def _open(self):
-        self.logger = self.get_logger(self.path)
+        self.logger = self.get_logger(self.log_path)
         return self
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
