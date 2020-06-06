@@ -1,4 +1,4 @@
-# Python Utilies
+# Python Utilities
 
 General utilities for Python
 
