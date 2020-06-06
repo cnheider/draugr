@@ -8,12 +8,13 @@ __doc__ = r"""
            """
 
 from pathlib import Path
-from typing import List, Sequence, Tuple
+from typing import Sequence, Tuple
 
 import PIL.ImageDraw as ImageDraw
 import PIL.ImageFont as ImageFont
 import numpy
 from PIL import Image
+
 from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.opencv_utilities.opencv_draw import draw_masks
 from draugr.python_utilities.colors import RGB
@@ -96,7 +97,7 @@ def draw_bouding_boxes(
     """Draw bounding boxes(labels, scores) on image
 Args:
 image: numpy array image, shape should be (height, width, channel)
-boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax)
+boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax), NOT NORMALISED!
 labels: labels, shape: (N, )
 scores: label scores, shape: (N, )
 class_name_map: list or dict, map class id to class name for visualization.
@@ -148,24 +149,52 @@ An image with information drawn on it.
 
 
 if __name__ == "__main__":
-    from matplotlib import pyplot
-    import pickle
-    from neodroidvision.data.datasets.supervised.detection.coco import COCODataset
 
-    name = "000000308476"
-    data_root = Path.home() / "Data" / "Coco"
-    with open(str(data_root / f"{name}.pickle"), "rb") as f:
-        data = pickle.load(f)
+    def a():
+        from matplotlib import pyplot
+        import pickle
+        from neodroidvision.data.datasets.supervised.detection.coco import COCODataset
 
-    img = Image.open(str(data_root / f"{name}.jpg"))
-    img = draw_masks(img, data.masks, data.labels)
-    img = draw_bouding_boxes(
-        img,
-        boxes=data.boxes,
-        labels=data.labels,
-        scores=data.scores,
-        categories=COCODataset.categories,
-        score_format=": {:.4f}",
-    )
-    pyplot.imshow(img)
-    pyplot.show()
+        name = "000000308476"
+        data_root = Path.home() / "Data" / "Coco"
+        with open(str(data_root / f"{name}.pickle"), "rb") as f:
+            data = pickle.load(f)
+
+        img = Image.open(str(data_root / f"{name}.jpg"))
+        img = draw_masks(img, data.masks, data.labels)
+        img = draw_bouding_boxes(
+            img,
+            boxes=data.boxes,
+            labels=data.labels,
+            scores=data.scores,
+            categories=COCODataset.categories,
+            score_format=": {:.2f}",
+        )
+        pyplot.imshow(img)
+        pyplot.show()
+
+    def b():
+        from matplotlib import pyplot
+
+        data_root = Path.home() / "Pictures"
+
+        img = Image.open(str(data_root / f"0.jpeg"))
+        img_width, _ = img.size
+        img = draw_bouding_boxes(
+            img,
+            boxes=(
+                (0 * img_width, 0 * img_width, 0.2 * img_width, 0.2 * img_width),
+                (0.3 * img_width, 0.3 * img_width, 0.5 * img_width, 0.5 * img_width),
+                (0.1 * img_width, 0.1 * img_width, 0.7 * img_width, 0.7 * img_width),
+            ),
+            labels=(0, 55, 78),
+            scores=(0.2, 1.0, 0.4),
+            categories=(*[f"cat{i}" for i in range(99)],),
+            score_format=": {:.2f}",
+            outline_width=5,
+            score_color_fill=False,
+        )
+        pyplot.imshow(img)
+        pyplot.show()
+
+    b()
