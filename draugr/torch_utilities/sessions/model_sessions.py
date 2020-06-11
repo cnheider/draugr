@@ -9,7 +9,7 @@ __doc__ = r"""
 
 import torch
 
-from warg.decorators.kw_passing import AlsoDecorator
+from warg import AlsoDecorator
 
 __all__ = ["TorchEvalSession", "TorchTrainSession"]
 

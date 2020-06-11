@@ -11,7 +11,7 @@ import torch
 from torch.nn import Module
 
 from draugr.torch_utilities import global_torch_device
-from warg.decorators.kw_passing import AlsoDecorator
+from warg import AlsoDecorator
 
 __all__ = ["TorchCpuSession", "TorchCudaSession", "TorchDeviceSession"]
 

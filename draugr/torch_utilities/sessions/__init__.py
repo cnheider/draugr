@@ -10,3 +10,4 @@ __doc__ = r"""
 from .device_sessions import *
 from .model_sessions import *
 from .cache_sessions import *
+from .jit_session import *

@@ -23,7 +23,7 @@ from draugr.torch_utilities.sessions.model_sessions import (
     TorchTrainSession,
 )
 
-from warg.decorators.kw_passing import AlsoDecorator
+from warg import AlsoDecorator
 
 
 class TorchCacheSession(AlsoDecorator):
