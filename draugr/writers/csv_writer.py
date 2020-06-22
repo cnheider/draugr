@@ -20,20 +20,25 @@ __all__ = ["CSVWriter"]
 class CSVWriter(Writer):
     """
 
-    """
+  """
 
     @staticmethod
     def get_csv_writer(path=pathlib.Path.home() / "Models"):
         """
 
-        :param path:
-        :type path:
-        :return:
-        :rtype:
-        """
-        csv_path = path / "log.csv"
-        ensure_existence(csv_path)
-        csv_file = open(str(csv_path), "a")
+    :param path:
+    :type path:
+    :return:
+    :rtype:
+    """
+        if path.is_dir() or path.suffix != ".csv":
+            path /= "log.csv"
+        csv_file = open(
+            str(
+                ensure_existence(path, overwrite_on_wrong_type=True, declare_file=True)
+            ),
+            mode="a",
+        )
         return csv_file, csv.writer(csv_file)
 
     def _scalar(self, tag: str, value: float, step: int):

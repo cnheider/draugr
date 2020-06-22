@@ -16,7 +16,7 @@ __doc__ = r"""
     ids=["signal_first", "signal_second", "signal_sixth"],
 )
 def test_valid_scalars(tag, val, step):
-    with LogWriter(path=PROJECT_APP_PATH.user_log) as w:
+    with LogWriter(path=PROJECT_APP_PATH.user_log / "log_writer") as w:
         w.scalar(tag, val, step)
 
 
@@ -27,7 +27,7 @@ def test_valid_scalars(tag, val, step):
 )
 def test_invalid_val_type_scalars(tag, val, step):
     try:
-        with LogWriter(path=PROJECT_APP_PATH.user_log) as w:
+        with LogWriter(path=PROJECT_APP_PATH.user_log / "log_writer") as w:
             w.scalar(tag, val, step)
         assert False
     except Exception as e:
@@ -41,7 +41,7 @@ def test_invalid_val_type_scalars(tag, val, step):
 )
 def test_invalid_tag_scalars(tag, val, step):
     try:
-        with LogWriter(path=PROJECT_APP_PATH.user_log) as w:
+        with LogWriter(path=PROJECT_APP_PATH.user_log / "log_writer") as w:
             w.scalar(tag, val, step)
         assert False
     except Exception as e:
@@ -56,7 +56,7 @@ def test_invalid_tag_scalars(tag, val, step):
 )
 def test_invalid_step_type_scalars(tag, val, step):
     try:
-        with LogWriter(path=PROJECT_APP_PATH.user_log) as w:
+        with LogWriter(path=PROJECT_APP_PATH.user_log / "log_writer") as w:
             w.scalar(tag, val, step)
         assert False
     except Exception as e:
@@ -71,7 +71,7 @@ def test_invalid_step_type_scalars(tag, val, step):
 )
 def test_interval(tag, val, step):
     try:
-        with LogWriter(path=PROJECT_APP_PATH.user_log) as w:
+        with LogWriter(path=PROJECT_APP_PATH.user_log / "log_writer") as w:
             w.scalar(tag, val, step)
         assert False
     except Exception as e:
