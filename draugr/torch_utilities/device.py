@@ -8,13 +8,14 @@ __doc__ = r"""
            Created on 15/11/2019
            """
 
-device = None
+DEVICE = None
 
 __all__ = [
     "global_torch_device",
     "select_cuda_device",
     "get_gpu_usage_mb",
     "auto_select_available_cuda_device",
+    "set_global_torch_device",
 ]
 
 
@@ -25,6 +26,8 @@ def global_torch_device(
 
 first time call stores to device for global reference, later call must manually override
 
+  :param verbose:
+  :type verbose:
 :param cuda_if_available:
 :type cuda_if_available:
 :param override:
@@ -32,23 +35,28 @@ first time call stores to device for global reference, later call must manually 
 :return:
 :rtype:
 """
-    global device
+    global DEVICE
 
     if override is not None:
-        device = override
+        DEVICE = override
         if verbose:
             print(f"Overriding global torch device to {override}")
     elif cuda_if_available is not None:
         d = torch.device(
             "cuda" if torch.cuda.is_available() and cuda_if_available else "cpu"
         )
-        if device is None:
-            device = d
+        if DEVICE is None:
+            DEVICE = d
         return d
-    elif device is None:
-        device = torch.device("cuda" if torch.cuda.is_available() and True else "cpu")
+    elif DEVICE is None:
+        DEVICE = torch.device("cuda" if torch.cuda.is_available() and True else "cpu")
 
-    return device
+    return DEVICE
+
+
+def set_global_torch_device(device: torch.device) -> None:
+    global DEVICE
+    DEVICE = device
 
 
 def select_cuda_device(gpuidx: int) -> torch.device:

@@ -12,6 +12,8 @@ from torch import jit
 
 from warg import AlsoDecorator
 
+__all__ = ["TorchJitSession", "TorchIgnoreJitSession"]
+
 
 class TorchIgnoreJitSession(AlsoDecorator):
     """
@@ -26,6 +28,29 @@ class TorchIgnoreJitSession(AlsoDecorator):
 
     def __enter__(self):
         jit._enabled = False
+        return True
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self._no_side_effect:
+            jit._enabled = self.prev_state
+        else:
+            jit._enabled = True
+
+
+class TorchJitSession(AlsoDecorator):
+    """
+# Disable torch jit tracing
+
+"""
+
+    def __init__(self, enabled=False, no_side_effect: bool = True):
+        self._no_side_effect = no_side_effect
+        self._effect = enabled
+        if no_side_effect:
+            self.prev_state = jit._enabled
+
+    def __enter__(self):
+        jit._enabled = self._effect
         return True
 
     def __exit__(self, exc_type, exc_val, exc_tb):
