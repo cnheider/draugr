@@ -23,7 +23,7 @@ def display_depth_map(
     # print(img_array.shape)
 
     img = mpimg.imread(data_set_directory)
-    img = img[:, :, 0]
+    img = img[..., 0]
     img = img / 255
 
     pyplot.imshow(img, cmap=pyplot.get_cmap("gray"))

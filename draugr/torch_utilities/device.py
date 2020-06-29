@@ -100,6 +100,16 @@ Values are memory usage as integers in MB.
     return gpu_memory_map
 
 
+def destroy() -> None:
+    r"""**Destroy cuda state by emptying cache and collecting IPC.**
+
+   Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`.
+  """
+
+    torch.cuda.empty_cache()
+    torch.cuda.ipc_collect()
+
+
 def auto_select_available_cuda_device(
     expected_memory_usage_mb: int = 1024
 ) -> torch.device:

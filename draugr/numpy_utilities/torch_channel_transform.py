@@ -26,7 +26,7 @@ def rgb_drop_alpha_hwc(inp: Sequence) -> Sequence:
     :return:
     :rtype:
     """
-    return inp[:, :, :3]
+    return inp[..., :3]
 
 
 def rgb_drop_alpha_batch_nhwc(inp: Sequence) -> Sequence:
@@ -37,7 +37,7 @@ def rgb_drop_alpha_batch_nhwc(inp: Sequence) -> Sequence:
     :return:
     :rtype:
     """
-    return inp[:, :, :, :3]
+    return inp[..., :3]
 
 
 def torch_vision_normalize_batch_nchw(inp: Sequence) -> Sequence:

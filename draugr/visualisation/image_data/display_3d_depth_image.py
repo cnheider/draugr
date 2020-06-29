@@ -26,7 +26,7 @@ def display_depth_map_3d(
     # lena = scipy.misc.imresize(lena, 0.15, interp='cubic')
 
     img = mpimg.imread(data_set_directory)
-    img = img[:, :, 0]
+    img = img[..., 0]
 
     # def ivas(x, cam_ang):
     #  return x * math.cos(math.radians(90 - cam_ang))

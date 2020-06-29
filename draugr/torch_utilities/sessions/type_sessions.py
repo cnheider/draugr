@@ -7,6 +7,7 @@ __doc__ = r"""
            Created on 15/06/2020
            """
 
+
 import torch
 
 from warg import AlsoDecorator
@@ -37,3 +38,7 @@ class DefaultTypeSession(AlsoDecorator):
             torch.set_default_dtype(self.prev_state)
         else:
             torch.set_default_dtype(torch.float32)
+
+
+if __name__ == "__main__":
+    pass

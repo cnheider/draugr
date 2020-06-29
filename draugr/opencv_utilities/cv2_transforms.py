@@ -140,7 +140,7 @@ class CV2RandomSaturation(object):
         labels: numpy.ndarray = None,
     ) -> Tuple:
         if random.randint(2):
-            image[:, :, 1] *= random.uniform(self.lower, self.upper)
+            image[..., 1] *= random.uniform(self.lower, self.upper)
 
         return image, boxes, labels
 
@@ -157,9 +157,9 @@ class CV2RandomHue(object):
         labels: numpy.ndarray = None,
     ) -> Tuple:
         if random.randint(2):
-            image[:, :, 0] += random.uniform(-self.delta, self.delta)
-            image[:, :, 0][image[:, :, 0] > 360.0] -= 360.0
-            image[:, :, 0][image[:, :, 0] < 0.0] += 360.0
+            image[..., 0] += random.uniform(-self.delta, self.delta)
+            image[..., 0][image[..., 0] > 360.0] -= 360.0
+            image[..., 0][image[..., 0] < 0.0] += 360.0
         return image, boxes, labels
 
 
@@ -400,7 +400,7 @@ class CV2Expand(object):
         expand_image = numpy.zeros(
             (int(height * ratio), int(width * ratio), depth), dtype=image.dtype
         )
-        expand_image[:, :, :] = self.mean
+        expand_image[..., :] = self.mean
         expand_image[
             int(top) : int(top + height), int(left) : int(left + width)
         ] = image
@@ -447,7 +447,7 @@ a tensor with channels swapped according to swap
         #     image = image.data.cpu().numpy()
         # else:
         #     image = numpy.array(image)
-        image = image[:, :, self.swaps]
+        image = image[..., self.swaps]
         return image
 
 

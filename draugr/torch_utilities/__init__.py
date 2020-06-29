@@ -8,7 +8,7 @@ from .constants import *
 from .datasets import *
 from .device import *
 from .distributions import *
-from .freezing import *
+from .parameters import *
 from .generators import *
 from .images import *
 from .initialisation import *

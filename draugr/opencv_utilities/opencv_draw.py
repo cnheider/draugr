@@ -62,7 +62,7 @@ numpy.ndarray
     assert isinstance(image, numpy.ndarray)
     masks = numpy.array(masks)
     for i, mask in enumerate(masks):
-        mask = mask.squeeze()[:, :, None].astype(numpy.bool)
+        mask = mask.squeeze()[..., None].astype(numpy.bool)
 
         label = labels[i] if labels is not None else 1
         _color = compute_color_for_labels(label) if color is None else tuple(color)
