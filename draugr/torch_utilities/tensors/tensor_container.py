@@ -1,7 +1,7 @@
-__all__ = ["TensorTuple"]
+__all__ = ["NamedTensorTuple"]
 
 
-class TensorTuple:
+class NamedTensorTuple:
     """
 Help class for manage boxes, labels, etc...
 Not inherit dict due to `default_collate` will change dict's subclass to dict.

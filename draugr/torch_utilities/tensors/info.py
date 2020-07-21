@@ -15,8 +15,10 @@ import typing
 
 import torch
 
+__all__ = ["size_of_tensor", "system_info", "cuda_info"]
 
-def sizeof(obj) -> int:
+
+def size_of_tensor(obj) -> int:
     r"""**Get size in bytes of Tensor, torch.nn.Module or standard object.**
 
   Specific routines are defined for torch.tensor objects and torch.nn.Module
@@ -43,7 +45,7 @@ def sizeof(obj) -> int:
 
     elif isinstance(obj, torch.nn.Module):
         return sum(
-            sizeof(tensor)
+            size_of_tensor(tensor)
             for tensor in itertools.chain(obj.buffers(), obj.parameters())
         )
     else:
@@ -123,7 +125,7 @@ if __name__ == "__main__":
     module = torch.nn.Linear(20, 20)
     bias = 20 * 4  # in bytes
     weights = 20 * 20 * 4  # in bytes
-    assert sizeof(module) == bias + weights
+    assert size_of_tensor(module) == bias + weights
 
     print(system_info())
     print(cuda_info())

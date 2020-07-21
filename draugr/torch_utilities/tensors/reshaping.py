@@ -6,7 +6,7 @@ __doc__ = r"""
 
            Created on 23/02/2020
            """
-__all__ = ["flatten_tn_dim"]
+__all__ = ["flatten_tn_dim", "flatten_keep_batch", "safe_concat"]
 
 import torch
 
@@ -21,6 +21,16 @@ def flatten_tn_dim(_tensor: torch.tensor) -> torch.tensor:
 """
     T, N, *r = _tensor.size()
     return _tensor.view(T * N, *r)
+
+
+def flatten_keep_batch(t):
+    return t.reshape(t.shape[0], -1)
+
+
+def safe_concat(arr, el, dim=0):
+    if arr is None:
+        return el
+    return torch.cat((arr, el), dim=dim)
 
 
 if __name__ == "__main__":

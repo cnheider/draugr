@@ -14,3 +14,4 @@ from .exceptions import *
 from .functions import *
 from .sockets import *
 from .styling import *
+from .torch_channel_transform import *

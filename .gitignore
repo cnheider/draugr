@@ -12,6 +12,7 @@ __pycache__/
 .idea/
 .pytest_cache
 *.orig
+*.out
 
 venv/
 *.db

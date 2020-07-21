@@ -4,8 +4,8 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 18/03/2020
+           Created on 10/07/2020
            """
 
-from .tensorboard import *
-from .torch_module_writer import *
+from .module_writer_hook import *
+from .module_writer_parameters import *

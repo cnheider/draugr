@@ -17,7 +17,7 @@ from warg import drop_unused_kws
 
 
 @drop_unused_kws
-def identity(*args) -> Any:
+def identity(*args) -> Tuple[Any, ...]:
     """
 Returns args without any modification what so ever. Drops kws
 :param x:
@@ -45,7 +45,7 @@ def collate_batch_fn(batch: Iterable) -> tuple:
     return tuple(zip(*batch))
 
 
-def sink(*args, **kwargs):
+def sink(*args, **kwargs) -> None:
     """
 Returns None, but accepts everthing
 
@@ -53,7 +53,7 @@ Returns None, but accepts everthing
 :param kwargs:
 :return:
 """
-    pass
+    return None
 
 
 def prod(iterable: Iterable[Union[int, float]]) -> Union[int, float]:

@@ -37,6 +37,7 @@ from sklearn.utils.multiclass import unique_labels
 __all__ = [
     "correlation_matrix_plot",
     "horizontal_imshow",
+    "horizontal_imshow2",
     "biplot",
     "plot_confusion_matrix",
     "precision_recall_plt2",
@@ -67,26 +68,39 @@ def correlation_matrix_plot(cor, labels=None, title="", **kwargs):
     fig.colorbar(cax, ticks=numpy.arange(-1.1, 1.1, 0.1))
 
 
+def horizontal_imshow2(images, columns=4, figsize=(20, 10), **kwargs):
+    """Small helper function for creating horizontal subplots with pyplot"""
+    pyplot.figure(figsize=figsize)
+    for i, image in enumerate(images):
+        pyplot.subplot(len(images) / columns + 1, columns, i + 1)
+        pyplot.imshow(image, **kwargs)
+
+
 @passes_kws_to(imshow)
 def horizontal_imshow(
     images: Sequence, titles: Sequence = None, columns: int = 4, **kwargs
 ):
     """Small helper function for creating horizontal subplots with pyplot"""
-    sadasf = len(images) / columns
-    ssa = math.floor(sadasf)
-    if ssa != sadasf:
-        ssa += 1
+    num_d = len(images) / columns
+    num_d_f = math.floor(num_d)
+    if num_d_f != num_d:
+        num_d_f += 1
 
     if titles is None:
         titles = [f"fig{a}" for a in range(len(images))]
     fig, axes = pyplot.subplots(
-        ssa, columns, squeeze=False, sharex="all", sharey="all", constrained_layout=True
+        num_d_f,
+        columns,
+        squeeze=False,
+        sharex="all",
+        sharey="all",
+        constrained_layout=True,
     )
-    faxes = []
+    figure_axes = []
     for a in axes:
-        faxes.extend(a)
+        figure_axes.extend(a)
     for i, image in enumerate(images):
-        ax = faxes[i]
+        ax = figure_axes[i]
         if titles:
             ax.set_title(titles[i])
         ax.imshow(image, **kwargs)

@@ -59,19 +59,19 @@ def set_global_torch_device(device: torch.device) -> None:
     DEVICE = device
 
 
-def select_cuda_device(gpuidx: int) -> torch.device:
+def select_cuda_device(cuda_device_idx: int) -> torch.device:
     """
 
-:param gpuidx:
-:type gpuidx:
+:param cuda_device_idx:
+:type cuda_device_idx:
 :return:
 :rtype:
 """
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
-    assert gpuidx < num_cuda_device
-    if 0 <= gpuidx < num_cuda_device:
-        return torch.device(f"cuda:{gpuidx}")
+    assert cuda_device_idx < num_cuda_device
+    if 0 <= cuda_device_idx < num_cuda_device:
+        return torch.device(f"cuda:{cuda_device_idx}")
 
 
 def get_gpu_usage_mb():
@@ -114,6 +114,7 @@ def auto_select_available_cuda_device(
     expected_memory_usage_mb: int = 1024
 ) -> torch.device:
     r"""
+    Auto selects the device with highest compute capability and with the requested memory available
 
 :param expected_memory_usage_mb:
 :type expected_memory_usage_mb:

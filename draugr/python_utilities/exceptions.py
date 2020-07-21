@@ -15,7 +15,7 @@ class NoData(Exception):
 
 """
 
-    def __init__(self, msg="No Data Available"):
+    def __init__(self, msg: str = "No Data Available"):
         Exception.__init__(self, msg)
 
 

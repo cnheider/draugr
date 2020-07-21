@@ -25,6 +25,7 @@ from matplotlib import pyplot
 class FastFourierTransformSpectrogramPlot(Drawer):
     """
 TODO: CENTER Align fft maybe, to mimick librosa stft
+Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_fft, and no window function ( TODO: Hanning Smoothing)
 
 """
 
@@ -69,7 +70,7 @@ TODO: CENTER Align fft maybe, to mimick librosa stft
             return
 
         self.n_fft = n_fft
-        self.abs_n_fft = (self.n_fft + 1) // 2
+        self.n_positive_fft = (self.n_fft + 1) // 2
         self.sampling_rate = sampling_rate
         if buffer_size_sec is not None:
             self.buffer_size_sec = buffer_size_sec
@@ -83,8 +84,8 @@ TODO: CENTER Align fft maybe, to mimick librosa stft
             0, self.buffer_size_sec, self.buffer_array_size, endpoint=False
         )
         raw_array = numpy.zeros(self.buffer_array_size, dtype="complex")
-        zeroes_img = numpy.zeros((self.abs_n_fft, self.buffer_array_size - n_fft))
-        self.zeroes_padding = numpy.zeros((self.abs_n_fft, n_fft))
+        zeroes_img = numpy.zeros((self.n_positive_fft, self.buffer_array_size - n_fft))
+        self.zeroes_padding = numpy.zeros((self.n_positive_fft, n_fft))
 
         self.fig = pyplot.figure(figsize=fig_size)
         gs = GridSpec(3, 2, width_ratios=[100, 2])
@@ -186,7 +187,9 @@ TODO: CENTER Align fft maybe, to mimick librosa stft
         # if self.window_function is not None:
         #   y_data_view *= self.window_function
 
-        f_coef = numpy.fft.fft(y_data_view, n=self.n_fft)[: self.abs_n_fft].reshape(
+        f_coef = numpy.fft.fft(y_data_view, n=self.n_fft)[
+            : self.n_positive_fft
+        ].reshape(
             -1, 1
         )  # Only select the positive frequencies
 

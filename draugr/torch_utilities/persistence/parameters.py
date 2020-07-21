@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+__author__ = "Christian Heider Nielsen"
+__doc__ = r"""
+
+           Created on 20/07/2020
+           """
+
 import datetime
 import os
 import pathlib
-import sys
 from typing import Union
 
 import torch
@@ -16,23 +22,20 @@ from draugr.torch_utilities.persistence.config import (
 from warg import passes_kws_to
 from warg.decorators.kw_passing import drop_unused_kws
 
-__author__ = "Christian Heider Nielsen"
-
-model_file_ending = ".model"
+model_file_ending = ".parameters"
 config_file_ending = ".py"
 
 __all__ = [
-    "load_model",
-    "load_latest_model",
-    "save_model_and_configuration",
-    "save_model",
-    "convert_saved_model_to_cpu",
+    "load_model_parameters",
+    "load_latest_model_parameters",
+    "save_parameters_and_configuration",
+    "save_model_parameters",
 ]
 
 
 @drop_unused_kws
-def load_latest_model(
-    *, model_name: str, model_directory: pathlib.Path
+def load_latest_model_parameters(
+    model, *, model_name: str, model_directory: pathlib.Path
 ) -> Union[torch.nn.Module, None]:
     """
 
@@ -47,14 +50,15 @@ def load_latest_model(
     latest_model = max(list_of_files, key=os.path.getctime)
     print(f"loading previous model: {latest_model}")
 
-    return torch.load(str(latest_model))
+    model.load_state_dict(torch.load(str(latest_model)))
+    return model
 
 
-load_model = load_latest_model
+load_model_parameters = load_latest_model_parameters
 
 
 @passes_kws_to(save_config)
-def save_model_and_configuration(
+def save_parameters_and_configuration(
     *,
     model: Module,
     model_save_path: pathlib.Path,
@@ -69,13 +73,13 @@ def save_model_and_configuration(
 :param loaded_config_file_path:
 :return:
 """
-    torch.save(model, str(model_save_path))
+    torch.save(model.state_dict(), str(model_save_path))
     if loaded_config_file_path:
         save_config(config_save_path, loaded_config_file_path)
 
 
 @drop_unused_kws
-def save_model(
+def save_model_parameters(
     model: Module,
     *,
     model_name: str,
@@ -104,7 +108,7 @@ def save_model(
 
     saved = False
     try:
-        save_model_and_configuration(
+        save_parameters_and_configuration(
             model=model,
             model_save_path=model_save_path,
             loaded_config_file_path=config_file_path,
@@ -120,7 +124,7 @@ def save_model(
             ensure_directory_exist(parent)
             config_save_path = parent / f"{model_save_path.name}{config_file_ending}"
             try:
-                save_model_and_configuration(
+                save_parameters_and_configuration(
                     model=model,
                     model_save_path=model_save_path,
                     loaded_config_file_path=config_file_path,
@@ -137,17 +141,3 @@ def save_model(
         )
     else:
         print(f"Was unsuccesful at saving model or configuration")
-
-
-def convert_saved_model_to_cpu(path: pathlib.Path) -> None:
-    """
-
-:param path:
-:return:
-"""
-    model = torch.load(path, map_location=lambda storage, loc: storage)
-    torch.save(model, f"{path}.cpu{model_file_ending}")
-
-
-if __name__ == "__main__":
-    convert_saved_model_to_cpu(pathlib.Path(sys.argv[1]))

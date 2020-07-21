@@ -15,7 +15,12 @@ import torch
 from draugr.torch_utilities import freeze_parameters
 from warg import AlsoDecorator
 
-__all__ = ["TorchEvalSession", "TorchTrainSession"]
+__all__ = [
+    "TorchEvalSession",
+    "TorchTrainSession",
+    "TorchFrozenModelSession",
+    "TorchTrainingSession",
+]
 
 
 class TorchEvalSession(AlsoDecorator):
@@ -65,10 +70,13 @@ class TorchTrainSession(AlsoDecorator):
             self.model.train(False)
 
 
+TorchTrainingSession = TorchTrainSession
+
+
 class TorchFrozenModelSession(AlsoDecorator):
     """
 
-  """
+"""
 
     def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model

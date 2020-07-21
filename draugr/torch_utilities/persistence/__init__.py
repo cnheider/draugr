@@ -3,3 +3,5 @@
 __author__ = "Christian Heider Nielsen"
 
 from .model import *
+from .parameters import *
+from .config import *

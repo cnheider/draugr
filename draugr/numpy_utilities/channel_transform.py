@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+# import numba
 import numpy
 
 __author__ = "Christian Heider Nielsen"
@@ -11,7 +11,7 @@ __doc__ = r"""
 
 __all__ = ["hwc_to_chw", "chw_to_hwc", "uint_hwc_to_chw_float", "float_chw_to_hwc_uint"]
 
-
+# @numba.njit()
 def hwc_to_chw(inp: numpy.ndarray) -> numpy.ndarray:
     """
 
@@ -23,6 +23,7 @@ def hwc_to_chw(inp: numpy.ndarray) -> numpy.ndarray:
     return inp.transpose((2, 0, 1))
 
 
+# @numba.njit()
 def chw_to_hwc(inp: numpy.ndarray) -> numpy.ndarray:
     """
 
@@ -34,6 +35,7 @@ def chw_to_hwc(inp: numpy.ndarray) -> numpy.ndarray:
     return inp.transpose((1, 2, 0))
 
 
+# @numba.njit()
 def uint_hwc_to_chw_float(
     inp: numpy.ndarray, *, normalise: bool = True
 ) -> numpy.ndarray:
@@ -52,6 +54,7 @@ def uint_hwc_to_chw_float(
     return hwc_to_chw(inp)
 
 
+# @numba.njit()
 def float_chw_to_hwc_uint(
     inp: numpy.ndarray, *, unnormalise: bool = True
 ) -> numpy.ndarray:

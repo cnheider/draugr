@@ -9,6 +9,8 @@ __doc__ = r"""
            Created on 10/10/2019
            """
 
+__all__ = ["draw_cube", "draw_axis", "cube_3d_matrix"]
+
 
 def draw_axis(img, corners, rot_vecs, trans_vecs, camera_mtx, dist_coef, size=1):
     """
@@ -99,3 +101,7 @@ def draw_cube(img, rot_vecs, trans_vecs, camera_mtx, dist_coef, size=6):
     img = cv2.drawContours(img, [imgpts[4:]], -1, (0, 0, 255), 3)
 
     return img
+
+
+if __name__ == "__main__":
+    draw_cube()

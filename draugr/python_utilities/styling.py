@@ -71,7 +71,7 @@ class PrintStyle(object):
 def generate_style(
     obj: Any = None,
     *,
-    color: str = "white",
+    color: Union[str, int] = "white",
     bold: bool = False,
     highlight: bool = False,
     underline: bool = False,
@@ -98,6 +98,10 @@ def generate_style(
 
     if color in COLORS:
         num = int(COLORS[color])
+    elif color in COLORS.values():
+        num = int(color)
+    elif isinstance(color, int) and color < 39:
+        num = color
     else:
         num = int(COLORS["white"])
 

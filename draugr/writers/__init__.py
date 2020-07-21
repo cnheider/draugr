@@ -14,3 +14,4 @@ from .mock_writer import *
 from .terminal import *
 from .visdom import *
 from .writer import *
+from .mixins import *

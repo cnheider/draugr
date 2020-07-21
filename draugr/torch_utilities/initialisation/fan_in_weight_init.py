@@ -4,6 +4,7 @@
 __author__ = "Christian Heider Nielsen"
 
 import numpy
+import torch
 from torch.nn import Conv2d, Linear, Module
 from torch.nn.init import calculate_gain, constant_, uniform_, xavier_uniform_
 
@@ -51,6 +52,20 @@ def constant_init(model: Module, constant: float = 1):
         if isinstance(m, (Conv2d, Linear)):
             constant_(m.weight, constant)
             constant_(m.bias, constant)
+
+
+def normal_init(model: Module, mean: float = 0, std: float = 1.0):
+    """
+
+  :param model:
+  :type model:
+  :param constant:
+  :type constant:
+  """
+    for m in model.modules():
+        if isinstance(m, (Conv2d, Linear)):
+            torch.nn.init.normal_(m.weight, mean, std)
+            torch.nn.init.normal_(m.bias, mean, std)
 
 
 if __name__ == "__main__":
