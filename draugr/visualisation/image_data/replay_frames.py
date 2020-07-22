@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 10/12/2019
            """
 
-import gym
+
 from IPython.display import display
 from matplotlib import animation, pyplot
 
@@ -34,6 +34,7 @@ Displays a list of frames as a gif, with controls
 if __name__ == "__main__":
 
     def main():
+        import gym
 
         env = gym.make("Pendulum-v0")
         state = env.reset()
