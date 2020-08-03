@@ -88,10 +88,12 @@ class CaptureEarlyStop(contextlib.AbstractContextManager):
         self.listener = add_early_stopping_key_combination(*args, **kwargs)
 
     def __enter__(self):
-        self.listener.start()
+        if self.listener:
+            self.listener.start()
 
     def __exit__(self, exc_type, exc_value, traceback):
-        self.listener.stop()
+        if self.listener:
+            self.listener.stop()
         return False
 
 

@@ -7,14 +7,14 @@ __doc__ = r"""
            Created on 10/12/2019
            """
 
+from typing import Sequence
 
-from IPython.display import display
 from matplotlib import animation, pyplot
 
 __all__ = ["replay_frames"]
 
 
-def replay_frames(frames, interval=100):
+def replay_frames(frames: Sequence, interval: int = 100, Ipython: bool = False):
     """
 Displays a list of frames as a gif, with controls
 """
@@ -28,7 +28,12 @@ Displays a list of frames as a gif, with controls
     anim = animation.FuncAnimation(
         pyplot.gcf(), animate, frames=len(frames), interval=interval
     )
-    display(anim)
+    if Ipython:
+        from IPython.display import display
+
+        display(anim)
+    else:
+        pyplot.show()
 
 
 if __name__ == "__main__":

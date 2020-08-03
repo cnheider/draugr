@@ -7,31 +7,40 @@ __doc__ = r"""
            Created on 09/10/2019
            """
 
-__all__ = ["add_indent"]
+__all__ = ["indent_lines"]
 
 
-def add_indent(input_str: str, indent_spaces_num: int = 2):
+def indent_lines(
+    input_str: str, indent_spaces_num: int = 2, ignore_single_lines: bool = False
+):
     """
 
-    :param input_str:
-    :type input_str:
-    :param indent_spaces_num:
-    :type indent_spaces_num:
-    :return:
-    :rtype:
-    """
+  :param ignore_single_lines:
+  :type ignore_single_lines:
+  :param input_str:
+  :type input_str:
+  :param indent_spaces_num:
+  :type indent_spaces_num:
+  :return:
+  :rtype:
+  """
+    if not isinstance(input_str, str):
+        input_str = str(input_str)
     s = input_str.split("\n")
-    if len(s) == 1:  # don't do anything for single-line stuff
-        return input_str
+    indent_s = indent_spaces_num * " "
+    if len(s) == 1:
+        if ignore_single_lines:
+            return input_str
+        else:
+            return f"{indent_s}{input_str}"
     first = s.pop(0)
-    indent = indent_spaces_num * " "
-    s = [indent + line for line in s]
+    s = [f"{indent_s}{line}" for line in s]
     s = "\n".join(s)
-    s = indent + first + "\n" + s
+    s = f"{indent_s}{first}\n{s}"
     return s
 
 
 if __name__ == "__main__":
     a = "slasc\nsaffasd\n2dasf"
     print(a)
-    print(add_indent(a))
+    print(indent_lines(a))

@@ -13,3 +13,4 @@ from .cv2_transforms import *
 from .frames import *
 from .opencv_draw import *
 from .resize import *
+from .opencv_drawing_utilities import *

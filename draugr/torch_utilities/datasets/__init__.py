@@ -9,3 +9,4 @@ __doc__ = r"""
 
 from .non_sequential_dataset import *
 from .random_dataset import *
+from .supervised import *

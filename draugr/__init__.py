@@ -10,7 +10,7 @@ from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.7.0"
+__version__ = "0.8.1"
 __doc__ = """
 Created on 27/04/2019
 
@@ -95,8 +95,8 @@ if __version__ is None:
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
+
 # from .drawers import *
-# from .writers import *
 # from .opencv_utilities import *
 # from .torch_utilities import *
 from .metrics import *
@@ -105,3 +105,4 @@ from .generators import *
 from .python_utilities import *
 from .visualisation import *
 from .numpy_utilities import *
+from .writers import *

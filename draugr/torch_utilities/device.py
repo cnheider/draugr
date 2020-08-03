@@ -8,7 +8,7 @@ __doc__ = r"""
            Created on 15/11/2019
            """
 
-DEVICE = None
+GLOBAL_DEVICE = None
 
 __all__ = [
     "global_torch_device",
@@ -16,6 +16,7 @@ __all__ = [
     "get_gpu_usage_mb",
     "auto_select_available_cuda_device",
     "set_global_torch_device",
+    "destroy_cuda_state",
 ]
 
 
@@ -35,28 +36,30 @@ first time call stores to device for global reference, later call must manually 
 :return:
 :rtype:
 """
-    global DEVICE
+    global GLOBAL_DEVICE
 
     if override is not None:
-        DEVICE = override
+        GLOBAL_DEVICE = override
         if verbose:
             print(f"Overriding global torch device to {override}")
     elif cuda_if_available is not None:
         d = torch.device(
             "cuda" if torch.cuda.is_available() and cuda_if_available else "cpu"
         )
-        if DEVICE is None:
-            DEVICE = d
+        if GLOBAL_DEVICE is None:
+            GLOBAL_DEVICE = d
         return d
-    elif DEVICE is None:
-        DEVICE = torch.device("cuda" if torch.cuda.is_available() and True else "cpu")
+    elif GLOBAL_DEVICE is None:
+        GLOBAL_DEVICE = torch.device(
+            "cuda" if torch.cuda.is_available() and True else "cpu"
+        )
 
-    return DEVICE
+    return GLOBAL_DEVICE
 
 
 def set_global_torch_device(device: torch.device) -> None:
-    global DEVICE
-    DEVICE = device
+    global GLOBAL_DEVICE
+    GLOBAL_DEVICE = device
 
 
 def select_cuda_device(cuda_device_idx: int) -> torch.device:
@@ -100,7 +103,7 @@ Values are memory usage as integers in MB.
     return gpu_memory_map
 
 
-def destroy() -> None:
+def destroy_cuda_state() -> None:
     r"""**Destroy cuda state by emptying cache and collecting IPC.**
 
    Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`.
