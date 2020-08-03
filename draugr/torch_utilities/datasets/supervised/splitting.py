@@ -77,15 +77,15 @@ def train_valid_test_split(
     verbose: bool = False,
 ) -> OrderedDict:
     """
-  Magic hashing
+Magic hashing
 
-  :param verbose:
-  :type verbose:
-  :param categories:
-  :param testing_percentage:
-  :param validation_percentage:
-  :return:
-  """
+:param verbose:
+:type verbose:
+:param categories:
+:param testing_percentage:
+:param validation_percentage:
+:return:
+"""
     result = collections.OrderedDict()
 
     if verbose:
@@ -123,15 +123,15 @@ def select_split(
 ) -> Dict[str, Sequence]:
     """
 
-  :param verbose:
-  :type verbose:
-  :param data_cat_split:
-  :type data_cat_split:
-  :param split:
-  :type split:
-  :return:
-  :rtype:
-  """
+:param verbose:
+:type verbose:
+:param data_cat_split:
+:type data_cat_split:
+:param split:
+:type split:
+:return:
+:rtype:
+"""
     data = {k: [] for k in data_cat_split.keys()}
     if verbose:
         print(data_cat_split)

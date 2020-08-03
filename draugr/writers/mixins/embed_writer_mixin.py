@@ -12,25 +12,25 @@ __all__ = ["EmbedWriterMixin"]
 
 class EmbedWriterMixin(ABC):
     """
-  Writer mixin that provides an interface for 'writing' embeds for interactive visualisation
-  """
+Writer mixin that provides an interface for 'writing' embeds for interactive visualisation
+"""
 
     @abstractmethod
     def embed(
         self, tag: str, features, metadata, label_img, step: int, **kwargs
     ) -> None:
         """
-    eg. visualising for projections in lower dimensional space
+eg. visualising for projections in lower dimensional space
 
-    :param tag:
-    :type tag:
-    :param data:
-    :type data:
-    :param step:
-    :type step:
-    :param dataformats:
-    :type dataformats:
-    :param kwargs:
-    :type kwargs:
-    """
+:param tag:
+:type tag:
+:param data:
+:type data:
+:param step:
+:type step:
+:param dataformats:
+:type dataformats:
+:param kwargs:
+:type kwargs:
+"""
         raise NotImplementedError

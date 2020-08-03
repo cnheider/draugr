@@ -24,15 +24,15 @@ def recursive_flatten(S: Sequence) -> Sequence:
 
 def replicate(x: Union[Sequence, Number], times: int = 2) -> Sequence:
     """
-  if not tuple
+if not tuple
 
-  :param times:
-  :type times:
-  :param x:
-  :type x:
-  :return:
-  :rtype:
-  """
+:param times:
+:type times:
+:param x:
+:type x:
+:return:
+:rtype:
+"""
     if isinstance(x, Sequence):
         if len(x) == times:
             return x

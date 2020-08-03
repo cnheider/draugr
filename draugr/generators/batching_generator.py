@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import Iterable, Sequence, Sized
+from typing import Iterable, Sequence
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -22,7 +22,7 @@ def sized_batch(sized: Iterable, n: int = 32, drop_not_full: bool = True):
 :param drop_not_full:
 :return:
 """
-    if not isinstance(sized, Sized):
+    if not isinstance(sized, Sequence):
         sized = list(sized)
     l = len(sized)
     for ndx in range(0, l, n):
@@ -34,13 +34,13 @@ def sized_batch(sized: Iterable, n: int = 32, drop_not_full: bool = True):
 def random_batches(*args, size, batch_size) -> Sequence:
     """
 
-    :param args:
-    :type args:
-    :param size:
-    :type size:
-    :param batch_size:
-    :type batch_size:
-    """
+  :param args:
+  :type args:
+  :param size:
+  :type size:
+  :param batch_size:
+  :type batch_size:
+  """
     for _ in range(size // batch_size):
         rand_ids = numpy.random.randint(0, size, batch_size)
         yield [a[rand_ids] for a in args]
@@ -49,13 +49,13 @@ def random_batches(*args, size, batch_size) -> Sequence:
 def shuffled_batches(*args, size, batch_size) -> Sequence:
     """
 
-    :param args:
-    :type args:
-    :param size:
-    :type size:
-    :param batch_size:
-    :type batch_size:
-    """
+  :param args:
+  :type args:
+  :param size:
+  :type size:
+  :param batch_size:
+  :type batch_size:
+  """
     permutation = numpy.random.permutation(size)
     r = size // batch_size
     for i in range(r):

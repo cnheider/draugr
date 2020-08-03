@@ -12,7 +12,6 @@ from functools import reduce
 import numpy
 from matplotlib import patches, pyplot
 
-
 __all__ = [
     "denormalise_minusoneone",
     "matplotlib_bounding_box",

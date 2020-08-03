@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Sized, Tuple
+from typing import Sequence, Tuple
 
 import matplotlib
 
@@ -24,7 +24,7 @@ __all__ = ["DistributionPlot"]
 class DistributionPlot(Drawer):
     """
 
-    """
+  """
 
     @passes_kws_to(pyplot.hist)
     def __init__(
@@ -87,14 +87,14 @@ class DistributionPlot(Drawer):
         if self.fig:
             pyplot.close(self.fig)
 
-    def draw(self, data: Sized, delta: float = 1.0 / 120.0):
+    def draw(self, data: Sequence, delta: float = 1.0 / 120.0):
         """
 
 :param data:
 :param delta: 1 / 60 for 60fps
 :return:
 """
-        if not isinstance(data, Sized):
+        if not isinstance(data, Sequence):
             data = [data]
 
         self.array.extend(data)

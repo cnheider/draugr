@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import random
-from typing import Iterable, Sequence, Sized
+from typing import Iterable, Sequence
 
 import numpy
 

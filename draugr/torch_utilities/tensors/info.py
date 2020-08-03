@@ -32,12 +32,12 @@ This function works similarly to C++'s sizeof operator.
 Parameters
 ----------
 obj
-        Object whose size will be measured.
+      Object whose size will be measured.
 
 Returns
 -------
 int
-        Size in bytes of the object
+      Size in bytes of the object
 
 """
     if torch.is_tensor(obj):

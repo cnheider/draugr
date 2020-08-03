@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import queue
 import threading
-from typing import Iterator, Sequence, Sized, Tuple
+from typing import Iterator, Sequence, Tuple
 
 import matplotlib
 from matplotlib import animation
@@ -129,7 +129,7 @@ fig_manager.window.SetPosition((500, 0))
         if self.fig:
             pyplot.close(self.fig)
 
-    def draw(self, data: Sized, delta: float = 1 / 120):
+    def draw(self, data: Sequence, delta: float = 1 / 120):
         """
 
 :param data:

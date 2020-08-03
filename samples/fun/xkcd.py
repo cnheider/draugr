@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 04/04/2020
            """
 
-from matplotlib import pyplot
 import numpy
 
 with plt.xkcd():

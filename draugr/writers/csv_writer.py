@@ -20,17 +20,17 @@ __all__ = ["CSVWriter"]
 class CSVWriter(Writer):
     """
 
-  """
+"""
 
     @staticmethod
     def get_csv_writer(path=pathlib.Path.home() / "Models"):
         """
 
-    :param path:
-    :type path:
-    :return:
-    :rtype:
-    """
+:param path:
+:type path:
+:return:
+:rtype:
+"""
         if path.is_dir() or path.suffix != ".csv":
             path /= "log.csv"
         csv_file = open(

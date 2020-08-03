@@ -112,21 +112,21 @@ def generate_style(
 ) -> Union[str, PrintStyle]:
     """
 
-  :param obj:
-  :type obj:
-  :param color:
-  :type color:
-  :param bold:
-  :type bold:
-  :param highlight:
-  :type highlight:
-  :param underline:
-  :type underline:
-  :param italic:
-  :type italic:
-  :return:
-  :rtype:
-  """
+:param obj:
+:type obj:
+:param color:
+:type color:
+:param bold:
+:type bold:
+:param highlight:
+:type highlight:
+:param underline:
+:type underline:
+:param italic:
+:type italic:
+:return:
+:rtype:
+"""
     attributes = []
 
     if color == "random":
@@ -198,9 +198,9 @@ will be moved to 0.
 def get_terminal_size():
     """
 
-  :return:
-  :rtype:
-  """
+:return:
+:rtype:
+"""
     try:
         size = shutil.get_terminal_size()
         columns, rows = size.columns, size.lines

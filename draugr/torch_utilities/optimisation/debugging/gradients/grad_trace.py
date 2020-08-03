@@ -15,20 +15,20 @@ import torch
 def register_bad_grad_hooks(var):
     """
 
-  :param var:
-  :type var:
-  :return:
-  :rtype:
-  """
+:param var:
+:type var:
+:return:
+:rtype:
+"""
 
     def iter_graph(root, callback):
         """
 
-    :param root:
-    :type root:
-    :param callback:
-    :type callback:
-    """
+:param root:
+:type root:
+:param callback:
+:type callback:
+"""
         queue = [root]
         seen = set()
         while queue:
@@ -46,18 +46,18 @@ def register_bad_grad_hooks(var):
     def hook_callback(fn):
         """
 
-    :param fn:
-    :type fn:
-    """
+:param fn:
+:type fn:
+"""
 
         def register_grad(grad_input, grad_output):
             """
 
-      :param grad_input:
-      :type grad_input:
-      :param grad_output:
-      :type grad_output:
-      """
+:param grad_input:
+:type grad_input:
+:param grad_output:
+:type grad_output:
+"""
             fn_dict[fn] = grad_input
 
         fn.register_hook(register_grad)
@@ -67,11 +67,11 @@ def register_bad_grad_hooks(var):
     def is_bad_grad(grad_output):
         """
 
-    :param grad_output:
-    :type grad_output:
-    :return:
-    :rtype:
-    """
+:param grad_output:
+:type grad_output:
+:return:
+:rtype:
+"""
         if grad_output is None:
             return False
         return torch.isnan(grad_output).any() or (grad_output.abs() >= 1e6).any()
@@ -79,9 +79,9 @@ def register_bad_grad_hooks(var):
     def make_dot():
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         from graphviz import Digraph
 
         node_attr = dict(
@@ -97,19 +97,19 @@ def register_bad_grad_hooks(var):
         def size_to_str(size):
             """
 
-      :param size:
-      :type size:
-      :return:
-      :rtype:
-      """
+:param size:
+:type size:
+:return:
+:rtype:
+"""
             return f'({", ".join(map(str, size))})'
 
         def build_graph(fn):
             """
 
-      :param fn:
-      :type fn:
-      """
+:param fn:
+:type fn:
+"""
             if hasattr(fn, "variable"):  # if GradAccumulator
                 u = fn.variable
                 node_name = "Variable\n " + size_to_str(u.size())

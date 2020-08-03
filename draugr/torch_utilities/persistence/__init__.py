@@ -2,6 +2,6 @@
 # -*- coding: utf-8 -*-
 __author__ = "Christian Heider Nielsen"
 
+from .config import *
 from .model import *
 from .parameters import *
-from .config import *

@@ -10,7 +10,6 @@ __doc__ = r"""
 import math
 from typing import Tuple, Union
 
-
 __all__ = ["transp_conv2d_output_shape", "transp_conv2d_padding_sizes"]
 
 from draugr import replicate

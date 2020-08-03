@@ -10,8 +10,8 @@ Created on 27/04/2019
 
 from .csv_writer import *
 from .log_writer import *
+from .mixins import *
 from .mock_writer import *
 from .terminal import *
 from .visdom import *
 from .writer import *
-from .mixins import *

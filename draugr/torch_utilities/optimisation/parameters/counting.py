@@ -15,13 +15,13 @@ from torch import nn
 def get_num_parameters(model: nn.Module, *, only_trainable: bool = False) -> int:
     """
 
-  :param only_trainable:
-  :type only_trainable:
-  :param model:
-  :type model:
-  :return:
-  :rtype:
-  """
+:param only_trainable:
+:type only_trainable:
+:param model:
+:type model:
+:return:
+:rtype:
+"""
     if only_trainable:
         return sum(p.numel() for p in model.parameters() if p.requires_grad)
     return sum(param.numel() for param in model.parameters())

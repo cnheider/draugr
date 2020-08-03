@@ -7,6 +7,6 @@ __doc__ = r"""
            Created on 23/07/2020
            """
 
+from .boxes_2d import *
 from .sizes import *
 from .torch_transforms import *
-from .boxes_2d import *

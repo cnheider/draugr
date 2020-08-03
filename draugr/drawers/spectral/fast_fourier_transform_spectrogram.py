@@ -46,25 +46,25 @@ Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_
     ):
         """
 
-    :param n_fft:
-    :type n_fft:
-    :param sampling_rate:
-    :type sampling_rate:
-    :param buffer_size_sec:
-    :type buffer_size_sec:
-    :param title:
-    :type title:
-    :param vertical:
-    :type vertical:
-    :param reverse:
-    :type reverse:
-    :param placement:
-    :type placement:
-    :param fig_size:
-    :type fig_size:
-    :param render:
-    :type render:
-    """
+:param n_fft:
+:type n_fft:
+:param sampling_rate:
+:type sampling_rate:
+:param buffer_size_sec:
+:type buffer_size_sec:
+:param title:
+:type title:
+:param vertical:
+:type vertical:
+:param reverse:
+:type reverse:
+:param placement:
+:type placement:
+:param fig_size:
+:type fig_size:
+:param render:
+:type render:
+"""
         self.fig = None
         if not render:
             return

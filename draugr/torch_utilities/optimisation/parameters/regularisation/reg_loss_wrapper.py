@@ -20,7 +20,7 @@ from draugr.torch_utilities.optimisation.parameters.initialisation import (
 class RegLossWrapper(torch.nn.Module):
     """
 
-  """
+"""
 
     def __init__(self, loss, model: torch.nn.Module, factor: float = 0.0005):
         super().__init__()

@@ -40,12 +40,12 @@ from draugr.opencv_utilities.bounding_boxes.evaluation import (
 class CV2Compose(object):
     """Composes several augmentations together.
 Args:
-  transforms (List[Transform]): list of transforms to compose.
+transforms (List[Transform]): list of transforms to compose.
 Example:
-  >>> augmentations.Compose([
-  >>>     transforms.CenterCrop(10),
-  >>>     transforms.ToTensor(),
-  >>> ])
+>>> augmentations.Compose([
+>>>     transforms.CenterCrop(10),
+>>>     transforms.ToTensor(),
+>>> ])
 """
 
     def __init__(self, transforms: List[Transform]):
@@ -275,15 +275,15 @@ class CV2ToTensor(object):
 class CV2RandomSampleCrop(object):
     """Crop
 Arguments:
-  img (Image): the image being input during training
-  boxes (Tensor): the original bounding boxes in pt form
-  labels (Tensor): the class labels for each bbox
-  mode (float tuple): the min and max jaccard overlaps
+img (Image): the image being input during training
+boxes (Tensor): the original bounding boxes in pt form
+labels (Tensor): the class labels for each bbox
+mode (float tuple): the min and max jaccard overlaps
 Return:
-  (img, boxes, classes)
-      img (Image): the cropped image
-      boxes (Tensor): the adjusted bounding boxes in pt form
-      labels (Tensor): the class labels for each bbox
+(img, boxes, classes)
+    img (Image): the cropped image
+    boxes (Tensor): the adjusted bounding boxes in pt form
+    labels (Tensor): the class labels for each bbox
 """
 
     def __init__(self):
@@ -429,8 +429,8 @@ class CV2SwapChannels(object):
     """Transforms a tensorized image by swapping the channels in the order
 specified in the swap tuple.
 Args:
-  swaps (int triple): final order of channels
-      eg: (2, 1, 0)
+swaps (int triple): final order of channels
+    eg: (2, 1, 0)
 """
 
     def __init__(self, swaps: Triple):

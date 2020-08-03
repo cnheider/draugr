@@ -48,23 +48,23 @@ class TensorBoardPytorchWriter(
     # EmbedWriterMixin
 ):
     """
-  Provides a pytorch-tensorboard-implementation writer interface
-  """
+Provides a pytorch-tensorboard-implementation writer interface
+"""
 
     @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_figure)
     def figure(self, tag: str, figure: Figure, step: int, **kwargs) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param figure:
-    :type figure:
-    :param step:
-    :type step:
-    :param kwargs:
-    :type kwargs:
-    """
+:param tag:
+:type tag:
+:param figure:
+:type figure:
+:param step:
+:type step:
+:param kwargs:
+:type kwargs:
+"""
         self.writer.add_figure(tag, figure, global_step=step, **kwargs)
 
     @drop_unused_kws
@@ -85,23 +85,23 @@ class TensorBoardPytorchWriter(
     ) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param values:
-    :type values:
-    :param step:
-    :type step:
-    :param x_labels:
-    :type x_labels:
-    :param y_label:
-    :type y_label:
-    :param x_label:
-    :type x_label:
-    :param plot_kws:
-    :type plot_kws:
-    :param kwargs:
-    :type kwargs:
-    """
+:param tag:
+:type tag:
+:param values:
+:type values:
+:param step:
+:type step:
+:param x_labels:
+:type x_labels:
+:param y_label:
+:type y_label:
+:param x_label:
+:type x_label:
+:param plot_kws:
+:type plot_kws:
+:param kwargs:
+:type kwargs:
+"""
         fig = pyplot.figure()
 
         spec = pyplot.specgram(
@@ -109,16 +109,16 @@ class TensorBoardPytorchWriter(
         )
 
         """
-    ind = numpy.arange(len(values))
-    if x_labels:
-      pyplot.xticks(ind, labels=x_labels)
-    else:
-      pyplot.xticks(ind)
+ind = numpy.arange(len(values))
+if x_labels:
+  pyplot.xticks(ind, labels=x_labels)
+else:
+  pyplot.xticks(ind)
 
-    pyplot.xlabel(x_label)
-    pyplot.ylabel(y_label)
-    pyplot.title(tag)
-    """
+pyplot.xlabel(x_label)
+pyplot.ylabel(y_label)
+pyplot.title(tag)
+"""
 
         pyplot.colorbar()
         self.writer.add_figure(
@@ -142,25 +142,25 @@ class TensorBoardPytorchWriter(
     ) -> None:
         """
 
-    :param x_label:
-    :type x_label:
-    :param tag:
-    :type tag:
-    :param values:
-    :type values:
-    :param step:
-    :type step:
-    :param yerr:
-    :type yerr:
-    :param x_labels:
-    :type x_labels:
-    :param y_label:
-    :type y_label:
-    :param title:
-    :type title:
-    :param kwargs:
-    :type kwargs:
-    """
+:param x_label:
+:type x_label:
+:param tag:
+:type tag:
+:param values:
+:type values:
+:param step:
+:type step:
+:param yerr:
+:type yerr:
+:param x_labels:
+:type x_labels:
+:param y_label:
+:type y_label:
+:param title:
+:type title:
+:param kwargs:
+:type kwargs:
+"""
         fig = pyplot.figure()
         ind = numpy.arange(len(values))
         im = pyplot.bar(ind, values, yerr=yerr)
@@ -192,25 +192,25 @@ class TensorBoardPytorchWriter(
     ) -> None:
         """
 
-    :param x_label:
-    :type x_label:
-    :param plot_kws:
-    :type plot_kws:
-    :param tag:
-    :type tag:
-    :param values:
-    :type values:
-    :param step:
-    :type step:
-    :param x_labels:
-    :type x_labels:
-    :param y_label:
-    :type y_label:
-    :param title:
-    :type title:
-    :param kwargs:
-    :type kwargs:
-    """
+:param x_label:
+:type x_label:
+:param plot_kws:
+:type plot_kws:
+:param tag:
+:type tag:
+:param values:
+:type values:
+:param step:
+:type step:
+:param x_labels:
+:type x_labels:
+:param y_label:
+:type y_label:
+:param title:
+:type title:
+:param kwargs:
+:type kwargs:
+"""
         fig = pyplot.figure()
         ind = numpy.arange(len(values))
         im = pyplot.plot(values, **plot_kws)
@@ -234,17 +234,17 @@ class TensorBoardPytorchWriter(
     ) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param values:
-    :type values:
-    :param step:
-    :type step:
-    :param bins:
-    :type bins:
-    :param kwargs:
-    :type kwargs:
-    """
+:param tag:
+:type tag:
+:param values:
+:type values:
+:param step:
+:type step:
+:param bins:
+:type bins:
+:param kwargs:
+:type kwargs:
+"""
         self.writer.add_histogram(tag, values, global_step=step, bins=bins, **kwargs)
 
     @passes_kws_to(ImageWriterMixin.__init__)
@@ -272,11 +272,11 @@ class TensorBoardPytorchWriter(
     ) -> None:
         """
 
-    :param model:
-    :type model:
-    :param input_to_model:
-    :type input_to_model:
-    """
+:param model:
+:type model:
+:param input_to_model:
+:type input_to_model:
+"""
         self.writer.add_graph(model, input_to_model, verbose)
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
@@ -296,26 +296,26 @@ class TensorBoardPytorchWriter(
     ) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param data:
-    :type data:
-    :param step:
-    :type step:
-    :param dataformats:
-    :type dataformats:
-    :param kwargs:
-    :type kwargs:
-    """
+:param tag:
+:type tag:
+:param data:
+:type data:
+:param step:
+:type step:
+:param dataformats:
+:type dataformats:
+:param kwargs:
+:type kwargs:
+"""
         self.writer.add_image(tag, data, step, dataformats=dataformats, **kwargs)
 
     @property
     def writer(self) -> SummaryWriter:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         if not hasattr(self, "_writer") or not self._writer:
             self._writer = SummaryWriter(str(self._log_dir), self._comment)
         return self._writer

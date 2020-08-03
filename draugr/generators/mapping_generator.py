@@ -14,13 +14,13 @@ __all__ = ["yield_and_map", "inner_map", "kw_map"]
 def yield_and_map(iterable: Iterable, level: int = 0, func: callable = print):
     """
 
-    :param iterable:
-    :type iterable:
-    :param level:
-    :type level:
-    :param func:
-    :type func:
-    """
+  :param iterable:
+  :type iterable:
+  :param level:
+  :type level:
+  :param func:
+  :type func:
+  """
     if level == 0:
         for a in iterable:
             func(a)
@@ -41,13 +41,13 @@ def yield_and_map(iterable: Iterable, level: int = 0, func: callable = print):
 def inner_map(func: callable, iterable: Iterable, aggregate_yield=True):
     """
 
-    :param func:
-    :type func:
-    :param iterable:
-    :type iterable:
-    :param aggregate_yield:
-    :type aggregate_yield:
-    """
+  :param func:
+  :type func:
+  :param iterable:
+  :type iterable:
+  :param aggregate_yield:
+  :type aggregate_yield:
+  """
     if aggregate_yield:
         for a in iterable:
             yield [func(b) for b in a]
@@ -60,13 +60,13 @@ def inner_map(func: callable, iterable: Iterable, aggregate_yield=True):
 def kw_map(func: callable, kw: str, iterable: Iterable):
     """
 
-    :param func:
-    :type func:
-    :param kw:
-    :type kw:
-    :param iterable:
-    :type iterable:
-    """
+  :param func:
+  :type func:
+  :param kw:
+  :type kw:
+  :param iterable:
+  :type iterable:
+  """
     for a in iterable:
         yield func(**{kw: a})
 

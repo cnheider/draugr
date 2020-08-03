@@ -7,9 +7,8 @@ __doc__ = r"""
            Created on 15/02/2020
            """
 
-
-from .updates import *
-from .parameters import *
-from .sessions import *
-from .scheduling import *
 from .debugging import *
+from .parameters import *
+from .scheduling import *
+from .sessions import *
+from .updates import *

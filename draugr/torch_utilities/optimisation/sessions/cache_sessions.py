@@ -9,18 +9,17 @@ __doc__ = r"""
 
 import torch
 
+from draugr.torch_utilities.optimisation.sessions.device_sessions import (
+    TorchCpuSession,
+    TorchCudaSession,
+    global_torch_device,
+)
 from draugr.torch_utilities.optimisation.sessions.model_sessions import (
     TorchEvalSession,
     TorchTrainSession,
 )
-from draugr.torch_utilities.optimisation.sessions.device_sessions import (
-    global_torch_device,
-    TorchCpuSession,
-    TorchCudaSession,
-)
 
 __all__ = ["TorchCacheSession"]
-
 
 from warg import AlsoDecorator
 

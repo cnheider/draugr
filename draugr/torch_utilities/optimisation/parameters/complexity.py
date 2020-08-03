@@ -27,21 +27,21 @@ def get_model_complexity_info(
 ) -> Union[Tuple[int, int], Tuple[str, str]]:
     """
 
-  :param model:
-  :type model:
-  :param input_res:
-  :type input_res:
-  :param print_per_layer_stat:
-  :type print_per_layer_stat:
-  :param as_strings:
-  :type as_strings:
-  :param input_constructor:
-  :type input_constructor:
-  :param ost:
-  :type ost:
-  :return:
-  :rtype:
-  """
+:param model:
+:type model:
+:param input_res:
+:type input_res:
+:param print_per_layer_stat:
+:type print_per_layer_stat:
+:param as_strings:
+:type as_strings:
+:param input_constructor:
+:type input_constructor:
+:param ost:
+:type ost:
+:return:
+:rtype:
+"""
     assert type(input_res) is tuple
     assert len(input_res) >= 2
     flops_model = add_flops_counting_methods(model)
@@ -76,15 +76,15 @@ def get_model_complexity_info(
 def flops_to_string(flops, units="GMac", precision=2) -> str:
     """
 
-  :param flops:
-  :type flops:
-  :param units:
-  :type units:
-  :param precision:
-  :type precision:
-  :return:
-  :rtype:
-  """
+:param flops:
+:type flops:
+:param units:
+:type units:
+:param precision:
+:type precision:
+:return:
+:rtype:
+"""
     if units is None:
         if flops // 10 ** 9 > 0:
             return f"{str(round(flops / 10. ** 9, precision))} GMac"
@@ -108,11 +108,11 @@ def flops_to_string(flops, units="GMac", precision=2) -> str:
 def params_to_string(params_num):
     """
 
-  :param params_num:
-  :type params_num:
-  :return:
-  :rtype:
-  """
+:param params_num:
+:type params_num:
+:return:
+:rtype:
+"""
     if params_num // 10 ** 6 > 0:
         return str(round(params_num / 10 ** 6, 2)) + " M"
     elif params_num // 10 ** 3:
@@ -126,27 +126,27 @@ def print_model_with_flops(
 ) -> None:
     """
 
-  :param model:
-  :type model:
-  :param units:
-  :type units:
-  :param precision:
-  :type precision:
-  :param ost:
-  :type ost:
-  :return:
-  :rtype:
-  """
+:param model:
+:type model:
+:param units:
+:type units:
+:param precision:
+:type precision:
+:param ost:
+:type ost:
+:return:
+:rtype:
+"""
     total_flops = model.compute_average_flops_cost()
 
     def accumulate_flops(self):
         """
 
-    :param self:
-    :type self:
-    :return:
-    :rtype:
-    """
+:param self:
+:type self:
+:return:
+:rtype:
+"""
         if is_supported_instance(self):
             return self.__flops__ / model.__batch_counter__
         else:
@@ -158,11 +158,11 @@ def print_model_with_flops(
     def flops_repr(self):
         """
 
-    :param self:
-    :type self:
-    :return:
-    :rtype:
-    """
+:param self:
+:type self:
+:return:
+:rtype:
+"""
         accumulated_flops_cost = self.accumulate_flops()
         return ", ".join(
             [
@@ -177,9 +177,9 @@ def print_model_with_flops(
     def add_extra_repr(m):
         """
 
-    :param m:
-    :type m:
-    """
+:param m:
+:type m:
+"""
         m.accumulate_flops = accumulate_flops.__get__(m)
         flops_extra_repr = flops_repr.__get__(m)
         if m.extra_repr != flops_extra_repr:
@@ -190,9 +190,9 @@ def print_model_with_flops(
     def del_extra_repr(m):
         """
 
-    :param m:
-    :type m:
-    """
+:param m:
+:type m:
+"""
         if hasattr(m, "original_extra_repr"):
             m.extra_repr = m.original_extra_repr
             del m.original_extra_repr
@@ -207,11 +207,11 @@ def print_model_with_flops(
 def add_flops_counting_methods(net_main_module):
     """
 
-  :param net_main_module:
-  :type net_main_module:
-  :return:
-  :rtype:
-  """
+:param net_main_module:
+:type net_main_module:
+:return:
+:rtype:
+"""
     # adding additional methods to the existing module object,
     # this is done this way so that each function has access to self object
     net_main_module.start_flops_count = start_flops_count.__get__(net_main_module)
@@ -231,12 +231,12 @@ def add_flops_counting_methods(net_main_module):
 
 def compute_average_flops_cost(self):
     """
-  A method that will be available after add_flops_counting_methods() is called
-  on a desired net object.
+A method that will be available after add_flops_counting_methods() is called
+on a desired net object.
 
-  Returns current mean flops consumption per image.
+Returns current mean flops consumption per image.
 
-  """
+"""
 
     batches_count = self.__batch_counter__
     flops_sum = 0
@@ -249,38 +249,38 @@ def compute_average_flops_cost(self):
 
 def start_flops_count(self):
     """
-  A method that will be available after add_flops_counting_methods() is called
-  on a desired net object.
+A method that will be available after add_flops_counting_methods() is called
+on a desired net object.
 
-  Activates the computation of mean flops consumption per image.
-  Call it before you run the network.
+Activates the computation of mean flops consumption per image.
+Call it before you run the network.
 
-  """
+"""
     add_batch_counter_hook_function(self)
     self.apply(add_flops_counter_hook_function)
 
 
 def stop_flops_count(self):
     """
-  A method that will be available after add_flops_counting_methods() is called
-  on a desired net object.
+A method that will be available after add_flops_counting_methods() is called
+on a desired net object.
 
-  Stops computing the mean flops consumption per image.
-  Call whenever you want to pause the computation.
+Stops computing the mean flops consumption per image.
+Call whenever you want to pause the computation.
 
-  """
+"""
     remove_batch_counter_hook_function(self)
     self.apply(remove_flops_counter_hook_function)
 
 
 def reset_flops_count(self):
     """
-  A method that will be available after add_flops_counting_methods() is called
-  on a desired net object.
+A method that will be available after add_flops_counting_methods() is called
+on a desired net object.
 
-  Resets statistics computed so far.
+Resets statistics computed so far.
 
-  """
+"""
     add_batch_counter_variables_or_reset(self)
     self.apply(add_flops_counter_variable_or_reset)
 
@@ -288,18 +288,18 @@ def reset_flops_count(self):
 def add_flops_mask(module, mask):
     """
 
-  :param module:
-  :type module:
-  :param mask:
-  :type mask:
-  """
+:param module:
+:type module:
+:param mask:
+:type mask:
+"""
 
     def add_flops_mask_func(module):
         """
 
-    :param module:
-    :type module:
-    """
+:param module:
+:type module:
+"""
         if isinstance(module, torch.nn.Conv2d):
             module.__mask__ = mask
 
@@ -309,9 +309,9 @@ def add_flops_mask(module, mask):
 def remove_flops_mask(module):
     """
 
-  :param module:
-  :type module:
-  """
+:param module:
+:type module:
+"""
     module.apply(add_flops_mask_variable_or_reset)
 
 
@@ -319,26 +319,26 @@ def remove_flops_mask(module):
 def empty_flops_counter_hook(module, input, output):
     """
 
-  :param module:
-  :type module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param module:
+:type module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     module.__flops__ += 0
 
 
 def upsample_flops_counter_hook(module, input, output):
     """
 
-  :param module:
-  :type module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param module:
+:type module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     output_size = output[0]
     batch_size = output_size.shape[0]
     output_elements_count = batch_size
@@ -350,13 +350,13 @@ def upsample_flops_counter_hook(module, input, output):
 def relu_flops_counter_hook(module, input, output):
     """
 
-  :param module:
-  :type module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param module:
+:type module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     active_elements_count = output.numel()
     module.__flops__ += int(active_elements_count)
 
@@ -364,13 +364,13 @@ def relu_flops_counter_hook(module, input, output):
 def linear_flops_counter_hook(module, input, output):
     """
 
-  :param module:
-  :type module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param module:
+:type module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     input = input[0]
     batch_size = input.shape[0]
     module.__flops__ += int(batch_size * input.shape[1] * output.shape[1])
@@ -379,13 +379,13 @@ def linear_flops_counter_hook(module, input, output):
 def pool_flops_counter_hook(module, input, output):
     """
 
-  :param module:
-  :type module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param module:
+:type module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     input = input[0]
     module.__flops__ += int(numpy.prod(input.shape))
 
@@ -393,13 +393,13 @@ def pool_flops_counter_hook(module, input, output):
 def bn_flops_counter_hook(module, input, output):
     """
 
-  :param module:
-  :type module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param module:
+:type module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     # module.affine
     input = input[0]
 
@@ -412,13 +412,13 @@ def bn_flops_counter_hook(module, input, output):
 def deconv_flops_counter_hook(conv_module, input, output):
     """
 
-  :param conv_module:
-  :type conv_module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param conv_module:
+:type conv_module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     # Can have multiple inputs, getting the first one
     input = input[0]
 
@@ -449,13 +449,13 @@ def deconv_flops_counter_hook(conv_module, input, output):
 def conv_flops_counter_hook(conv_module, input, output):
     """
 
-  :param conv_module:
-  :type conv_module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param conv_module:
+:type conv_module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     # Can have multiple inputs, getting the first one
     input = input[0]
 
@@ -498,13 +498,13 @@ def conv_flops_counter_hook(conv_module, input, output):
 def batch_counter_hook(module, input, output):
     """
 
-  :param module:
-  :type module:
-  :param input:
-  :type input:
-  :param output:
-  :type output:
-  """
+:param module:
+:type module:
+:param input:
+:type input:
+:param output:
+:type output:
+"""
     batch_size = 1
     if len(input) > 0:
         # Can have multiple inputs, getting the first one
@@ -521,20 +521,20 @@ def batch_counter_hook(module, input, output):
 def add_batch_counter_variables_or_reset(module):
     """
 
-  :param module:
-  :type module:
-  """
+:param module:
+:type module:
+"""
     module.__batch_counter__ = 0
 
 
 def add_batch_counter_hook_function(module):
     """
 
-  :param module:
-  :type module:
-  :return:
-  :rtype:
-  """
+:param module:
+:type module:
+:return:
+:rtype:
+"""
     if hasattr(module, "__batch_counter_handle__"):
         return
 
@@ -545,9 +545,9 @@ def add_batch_counter_hook_function(module):
 def remove_batch_counter_hook_function(module):
     """
 
-  :param module:
-  :type module:
-  """
+:param module:
+:type module:
+"""
     if hasattr(module, "__batch_counter_handle__"):
         module.__batch_counter_handle__.remove()
         del module.__batch_counter_handle__
@@ -556,9 +556,9 @@ def remove_batch_counter_hook_function(module):
 def add_flops_counter_variable_or_reset(module):
     """
 
-  :param module:
-  :type module:
-  """
+:param module:
+:type module:
+"""
     if is_supported_instance(module):
         module.__flops__ = 0
 
@@ -566,11 +566,11 @@ def add_flops_counter_variable_or_reset(module):
 def is_supported_instance(module):
     """
 
-  :param module:
-  :type module:
-  :return:
-  :rtype:
-  """
+:param module:
+:type module:
+:return:
+:rtype:
+"""
     if type(module) in MODULES_MAPPING:
         return True
     return False
@@ -579,11 +579,11 @@ def is_supported_instance(module):
 def add_flops_counter_hook_function(module):
     """
 
-  :param module:
-  :type module:
-  :return:
-  :rtype:
-  """
+:param module:
+:type module:
+:return:
+:rtype:
+"""
     if is_supported_instance(module):
         if hasattr(module, "__flops_handle__"):
             return
@@ -594,9 +594,9 @@ def add_flops_counter_hook_function(module):
 def remove_flops_counter_hook_function(module):
     """
 
-  :param module:
-  :type module:
-  """
+:param module:
+:type module:
+"""
     if is_supported_instance(module):
         if hasattr(module, "__flops_handle__"):
             module.__flops_handle__.remove()
@@ -609,9 +609,9 @@ def remove_flops_counter_hook_function(module):
 def add_flops_mask_variable_or_reset(module):
     """
 
-  :param module:
-  :type module:
-  """
+:param module:
+:type module:
+"""
     if is_supported_instance(module):
         module.__mask__ = None
 

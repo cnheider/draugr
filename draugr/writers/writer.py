@@ -19,7 +19,7 @@ from itertools import cycle
 class Writer(metaclass=ABCMeta):
     """
 
-  """
+"""
 
     def __init__(self, *, interval: int = 1, filters=None, **kwargs):
         self._counter = Counter()
@@ -31,11 +31,11 @@ class Writer(metaclass=ABCMeta):
     def filter(self, tag: str) -> bool:
         """
 
-    :param tag:
-    :type tag:
-    :return:
-    :rtype:
-    """
+:param tag:
+:type tag:
+:return:
+:rtype:
+"""
         is_in_filters = self.filters is None or tag in self.filters
         at_interval = self._counter[tag] % (self._interval + 1) == 0
         return is_in_filters and at_interval
@@ -61,13 +61,13 @@ class Writer(metaclass=ABCMeta):
     def scalar(self, tag: str, value: float, step_i: int = None) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param value:
-    :type value:
-    :param step_i:
-    :type step_i:
-    """
+:param tag:
+:type tag:
+:param value:
+:type value:
+:param step_i:
+:type step_i:
+"""
         if step_i:
             if self.filter(tag):
                 self._scalar(tag, value, self._counter[tag])
@@ -80,11 +80,11 @@ class Writer(metaclass=ABCMeta):
     def blip(self, tag: str, step_i: int = None) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param step_i:
-    :type step_i:
-    """
+:param tag:
+:type tag:
+:param step_i:
+:type step_i:
+"""
         if step_i:
             self.scalar(tag, next(self._blip_values), step_i)
         else:
@@ -93,13 +93,13 @@ class Writer(metaclass=ABCMeta):
     def close(self):
         """
 
-    """
+"""
         self._close()
 
     def open(self):
         """
 
-    """
+"""
         self._open()
 
     @abstractmethod
@@ -122,9 +122,9 @@ GLOBAL_WRITER = None  #: Writer = None
 def global_writer() -> Writer:
     """
 
-  :return:
-  :rtype:
-  """
+:return:
+:rtype:
+"""
     global GLOBAL_WRITER
     return GLOBAL_WRITER
 
@@ -132,9 +132,9 @@ def global_writer() -> Writer:
 def set_global_writer(writer: Writer) -> None:
     """
 
-  :return:
-  :rtype:
-  """
+:return:
+:rtype:
+"""
     global GLOBAL_WRITER
     # if GLOBAL_WRITER:
     # GLOBAL_WRITER_STACK TODO: push to stack if existing?

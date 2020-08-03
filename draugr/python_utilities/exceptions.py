@@ -22,7 +22,7 @@ class NoData(Exception):
 class IncompatiblePackageVersions(Exception):
     """
 
-  """
+"""
 
     def __init__(self, *packages, **versions):
         str_o = ", "

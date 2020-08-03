@@ -7,12 +7,12 @@ __doc__ = r"""
            Created on 15/06/2020
            """
 
-
 import torch
 
 from warg import AlsoDecorator
 
 __all__ = ["DefaultTypeSession"]
+
 
 # torch.set_default_tensor_type('torch.cuda.FloatTensor') # Legacy
 

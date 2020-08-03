@@ -20,8 +20,8 @@ def global_torch_dtype(
 
 first time call stores to dtype for global reference, later call must manually override
 
-  :param verbose:
-  :type verbose:
+:param verbose:
+:type verbose:
 :param cuda_if_available:
 :type cuda_if_available:
 :param override:

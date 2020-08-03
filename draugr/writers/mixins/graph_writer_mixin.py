@@ -14,8 +14,8 @@ __all__ = ["GraphWriterMixin"]
 
 class GraphWriterMixin(ABC):
     """
-  Writer mixin that provides an interface for 'writing' graphs
-  """
+Writer mixin that provides an interface for 'writing' graphs
+"""
 
     @abstractmethod
     def graph(
@@ -23,15 +23,15 @@ class GraphWriterMixin(ABC):
     ) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param data:
-    :type data:
-    :param step:
-    :type step:
-    :param dataformats:
-    :type dataformats:
-    :param kwargs:
-    :type kwargs:
-    """
+:param tag:
+:type tag:
+:param data:
+:type data:
+:param step:
+:type step:
+:param dataformats:
+:type dataformats:
+:param kwargs:
+:type kwargs:
+"""
         raise NotImplementedError

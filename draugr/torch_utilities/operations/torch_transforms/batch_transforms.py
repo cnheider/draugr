@@ -19,32 +19,32 @@ __all__ = [
 
 class BatchToTensor:
     """Applies the :class:`~torchvision.transforms.ToTensor` transform to a batch of images.
-  """
+"""
 
     def __init__(self):
         self.max = 255
 
     def __call__(self, tensor):
         """
-    Args:
-        tensor (Tensor): Tensor of size (N, C, H, W) to be tensorized.
-    Returns:
-        Tensor: Tensorized Tensor.
-    """
+Args:
+    tensor (Tensor): Tensor of size (N, C, H, W) to be tensorized.
+Returns:
+    Tensor: Tensorized Tensor.
+"""
         return tensor.float().div_(self.max)
 
 
 class BatchNormalize:
     """Applies the :class:`~torchvision.transforms.Normalize` transform to a batch of images.
-  .. note::
-      This transform acts out of place by default, i.e., it does not mutate the input tensor.
-  Args:
-      mean (sequence): Sequence of means for each channel.
-      std (sequence): Sequence of standard deviations for each channel.
-      inplace(bool,optional): Bool to make this operation in-place.
-      dtype (torch.dtype,optional): The data type of tensors to which the transform will be applied.
-      device (torch.device,optional): The device of tensors to which the transform will be applied.
-  """
+.. note::
+    This transform acts out of place by default, i.e., it does not mutate the input tensor.
+Args:
+    mean (sequence): Sequence of means for each channel.
+    std (sequence): Sequence of standard deviations for each channel.
+    inplace(bool,optional): Bool to make this operation in-place.
+    dtype (torch.dtype,optional): The data type of tensors to which the transform will be applied.
+    device (torch.device,optional): The device of tensors to which the transform will be applied.
+"""
 
     def __init__(self, mean, std, inplace=False, dtype=torch.float, device="cpu"):
         self.mean = torch.as_tensor(mean, dtype=dtype, device=device)[
@@ -55,11 +55,11 @@ class BatchNormalize:
 
     def __call__(self, tensor):
         """
-    Args:
-        tensor (Tensor): Tensor of size (N, C, H, W) to be normalized.
-    Returns:
-        Tensor: Normalized Tensor.
-    """
+Args:
+    tensor (Tensor): Tensor of size (N, C, H, W) to be normalized.
+Returns:
+    Tensor: Normalized Tensor.
+"""
         if not self.inplace:
             tensor = tensor.clone()
 
@@ -69,12 +69,12 @@ class BatchNormalize:
 
 class BatchRandomHorizontalFlip:
     """Applies the :class:`~torchvision.transforms.RandomHorizontalFlip` transform to a batch of images.
-  .. note::
-      This transform acts out of place by default, i.e., it does not mutate the input tensor.
-  Args:
-      p (float): probability of an image being flipped.
-      inplace(bool,optional): Bool to make this operation in-place.
-  """
+.. note::
+    This transform acts out of place by default, i.e., it does not mutate the input tensor.
+Args:
+    p (float): probability of an image being flipped.
+    inplace(bool,optional): Bool to make this operation in-place.
+"""
 
     def __init__(self, p=0.5, inplace=False):
         self.p = p
@@ -82,11 +82,11 @@ class BatchRandomHorizontalFlip:
 
     def __call__(self, tensor):
         """
-    Args:
-        tensor (Tensor): Tensor of size (N, C, H, W) to be flipped.
-    Returns:
-        Tensor: Randomly flipped Tensor.
-    """
+Args:
+    tensor (Tensor): Tensor of size (N, C, H, W) to be flipped.
+Returns:
+    Tensor: Randomly flipped Tensor.
+"""
         if not self.inplace:
             tensor = tensor.clone()
 
@@ -97,13 +97,13 @@ class BatchRandomHorizontalFlip:
 
 class BatchRandomCrop:
     """Applies the :class:`~torchvision.transforms.RandomCrop` transform to a batch of images.
-  Args:
-      size (int): Desired output size of the crop.
-      padding (int, optional): Optional padding on each border of the image.
-          Default is None, i.e no padding.
-      dtype (torch.dtype,optional): The data type of tensors to which the transform will be applied.
-      device (torch.device,optional): The device of tensors to which the transform will be applied.
-  """
+Args:
+    size (int): Desired output size of the crop.
+    padding (int, optional): Optional padding on each border of the image.
+        Default is None, i.e no padding.
+    dtype (torch.dtype,optional): The data type of tensors to which the transform will be applied.
+    device (torch.device,optional): The device of tensors to which the transform will be applied.
+"""
 
     def __init__(self, size, padding=None, dtype=torch.float, device="cpu"):
         self.size = size
@@ -113,11 +113,11 @@ class BatchRandomCrop:
 
     def __call__(self, tensor):
         """
-    Args:
-        tensor (Tensor): Tensor of size (N, C, H, W) to be cropped.
-    Returns:
-        Tensor: Randomly cropped Tensor.
-    """
+Args:
+    tensor (Tensor): Tensor of size (N, C, H, W) to be cropped.
+Returns:
+    Tensor: Randomly cropped Tensor.
+"""
         if self.padding is not None:
             padded = torch.zeros(
                 (

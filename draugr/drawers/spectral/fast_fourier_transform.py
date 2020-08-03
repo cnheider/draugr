@@ -24,7 +24,7 @@ from matplotlib import pyplot
 
 class FastFourierTransformPlot(Drawer):
     """
-    Plots last computed fft of data
+  Plots last computed fft of data
 """
 
     def __init__(
@@ -38,19 +38,19 @@ class FastFourierTransformPlot(Drawer):
     ):
         """
 
-    :param n_fft:
-    :type n_fft:
-    :param sampling_rate:
-    :type sampling_rate:
-    :param title:
-    :type title:
-    :param placement:
-    :type placement:
-    :param fig_size:
-    :type fig_size:
-    :param render:
-    :type render:
-    """
+:param n_fft:
+:type n_fft:
+:param sampling_rate:
+:type sampling_rate:
+:param title:
+:type title:
+:param placement:
+:type placement:
+:param fig_size:
+:type fig_size:
+:param render:
+:type render:
+"""
         self.fig = None
         if not render:
             return

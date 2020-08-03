@@ -21,11 +21,11 @@ __all__ = [
 def gamma_correct_fast_to_byte(image: numpy.ndarray) -> numpy.ndarray:
     """
 
-    :param image:
-    :type image:
-    :return:
-    :rtype:
-    """
+  :param image:
+  :type image:
+  :return:
+  :rtype:
+  """
     return ((image ** 0.454545) * 255).astype(numpy.uint8)
 
 
@@ -34,13 +34,13 @@ def gamma_correct_float_to_byte(
 ) -> numpy.ndarray:
     """
 
-    :param image:
-    :type image:
-    :param gamma:
-    :type gamma:
-    :return:
-    :rtype:
-    """
+  :param image:
+  :type image:
+  :param gamma:
+  :type gamma:
+  :return:
+  :rtype:
+  """
     return ((image ** (1.0 / gamma)) * 255).astype(numpy.uint8)
 
 
@@ -49,37 +49,37 @@ def linear_correct_float_to_byte(
 ) -> numpy.ndarray:
     """
 
-    :param image:
-    :type image:
-    :param gamma:
-    :type gamma:
-    :return:
-    :rtype:
-    """
+  :param image:
+  :type image:
+  :param gamma:
+  :type gamma:
+  :return:
+  :rtype:
+  """
     return ((image ** gamma) * 255).astype(numpy.uint8)
 
 
 def linear_correct_byte(image: numpy.ndarray, gamma: float = 2.2) -> numpy.ndarray:
     """
 
-    :param image:
-    :type image:
-    :param gamma:
-    :type gamma:
-    :return:
-    :rtype:
-    """
+  :param image:
+  :type image:
+  :param gamma:
+  :type gamma:
+  :return:
+  :rtype:
+  """
     return gamma_correct_float_to_byte(image / 255, gamma)
 
 
 def gamma_correct_byte(image: numpy.ndarray, gamma: float = 2.2) -> numpy.ndarray:
     """
 
-    :param image:
-    :type image:
-    :param gamma:
-    :type gamma:
-    :return:
-    :rtype:
-    """
+  :param image:
+  :type image:
+  :param gamma:
+  :type gamma:
+  :return:
+  :rtype:
+  """
     return gamma_correct_float_to_byte(image / 255, gamma)

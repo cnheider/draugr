@@ -30,17 +30,17 @@ def weight_bias_histograms(
 ) -> None:
     """
 
-  :param writer:
-  :type writer:
-  :param model:
-  :type model:
-  :param prefix:
-  :type prefix:
-  :param step:
-  :type step:
-  :param kwargs:
-  :type kwargs:
-  """
+:param writer:
+:type writer:
+:param model:
+:type model:
+:param prefix:
+:type prefix:
+:param step:
+:type step:
+:param kwargs:
+:type kwargs:
+"""
     for name, param in model.named_parameters(prefix=prefix, recurse=recurse):
         writer.histogram(name, param.clone().cpu().data.numpy(), step, **kwargs)
 

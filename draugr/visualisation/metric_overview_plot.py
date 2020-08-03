@@ -400,19 +400,19 @@ def plot_confusion_matrix(
 ):
     """
 
-  :param y_test:
-  :type y_test:
-  :param y_pred:
-  :type y_pred:
-  :param class_names:
-  :type class_names:
-  :param size:
-  :type size:
-  :param decimals:
-  :type decimals:
-  :return:
-  :rtype:
-  """
+:param y_test:
+:type y_test:
+:param y_pred:
+:type y_pred:
+:param class_names:
+:type class_names:
+:param size:
+:type size:
+:param decimals:
+:type decimals:
+:return:
+:rtype:
+"""
 
     def confusion_matrix_figure(
         y_true, y_pred, classes, normalize=False, title=None, cmap=pyplot.cm.Blues

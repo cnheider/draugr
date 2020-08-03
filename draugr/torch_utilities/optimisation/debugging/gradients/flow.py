@@ -25,20 +25,20 @@ def plot_grad_flow(
 ) -> None:
     """
 
-  Plots the gradients flowing through different layers in the net during training.
-  Can be used for checking for possible gradient vanishing / exploding problems.
+Plots the gradients flowing through different layers in the net during training.
+Can be used for checking for possible gradient vanishing / exploding problems.
 
-  Usage: After loss.backwards(), use plot_grad_flow(model) to visualize the gradient flow of model
+Usage: After loss.backwards(), use plot_grad_flow(model) to visualize the gradient flow of model
 
-  :param model:
-  :type model:
-  :param lines:
-  :type lines:
-  :param alpha:
-  :type alpha:
-  :param line_width:
-  :type line_width:
-  """
+:param model:
+:type model:
+:param lines:
+:type lines:
+:param alpha:
+:type alpha:
+:param line_width:
+:type line_width:
+"""
     assert 0.0 < alpha <= 1.0
     ave_grads = []
     max_grads = []
@@ -97,7 +97,7 @@ if __name__ == "__main__":
     def a():
         """
 
-    """
+"""
         input = torch.randn(10, 50, requires_grad=True)
         target = torch.empty(10, dtype=torch.long).random_(2)
         model = torch.nn.Sequential(

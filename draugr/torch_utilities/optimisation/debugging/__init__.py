@@ -7,6 +7,6 @@ __doc__ = r"""
            Created on 07/07/2020
            """
 
+from .gradients import *
 from .layer_fetching import *
 from .opt_verification import *
-from .gradients import *

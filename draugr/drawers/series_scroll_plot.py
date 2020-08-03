@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from math import cos, sin
-from typing import Sequence, Sized, Tuple, Union
+from typing import Sequence, Tuple, Union
 
 import matplotlib
 
@@ -24,7 +24,7 @@ __all__ = ["SeriesScrollPlot"]
 class SeriesScrollPlot(Drawer):
     """
 
-    """
+  """
 
     def __init__(
         self,
@@ -91,7 +91,9 @@ class SeriesScrollPlot(Drawer):
         if self.fig:
             pyplot.close(self.fig)
 
-    def draw(self, data: Union[Sized, int, float, complex], delta: float = 1.0 / 120.0):
+    def draw(
+        self, data: Union[Sequence, int, float, complex], delta: float = 1.0 / 120.0
+    ):
         """
 
 :param data:
@@ -172,7 +174,7 @@ if __name__ == "__main__":
     def multi_series():
         """
 
-        """
+    """
         s = SeriesScrollPlot(200, reverse=False, overwrite=False)
         for i in range(1000):
             s.draw([sin(i / 100) * 2, cos(i / 10)], 1.0 / 60.0)
@@ -180,7 +182,7 @@ if __name__ == "__main__":
     def single_series():
         """
 
-        """
+    """
         s = SeriesScrollPlot(200, reverse=False, overwrite=False)
         for i in range(1000):
             s.draw([sin(i / 20)], 1.0 / 60.0)
@@ -188,7 +190,7 @@ if __name__ == "__main__":
     def single_series_no_wrap():
         """
 
-        """
+    """
         s = SeriesScrollPlot(200, reverse=True, overwrite=False)
         for i in range(1000):
             s.draw(sin(i / 20), 1.0 / 60.0)
@@ -196,7 +198,7 @@ if __name__ == "__main__":
     def single_series_no_wrap_rescale():
         """
 
-        """
+    """
         s = SeriesScrollPlot(100, reverse=True, overwrite=False)
         for i in range(1000):
             s.draw(sin(i / 100), 1.0 / 60.0)

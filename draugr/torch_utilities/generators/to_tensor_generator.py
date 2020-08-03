@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 from typing import Iterable, Iterator, Tuple
 
+import numpy
 import torch
 from torch.utils.data import DataLoader
 
 from draugr.torch_utilities.datasets import NonSequentialDataset
 from draugr.torch_utilities.tensors import to_tensor
 from warg import passes_kws_to
-import numpy
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

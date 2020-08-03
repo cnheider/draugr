@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import torch
 
-
 __author__ = "Christian Heider Nielsen"
 
 import numpy
@@ -46,9 +45,9 @@ Initializes Linear, Conv2d, and LSTM weights.
 def initialize_parameters(m: torch.nn.Module) -> None:
     """
 
-    :param m:
-    :type m:
-    """
+  :param m:
+  :type m:
+  """
     classname = m.__class__.__name__
     if classname.find("Linear") != -1:
         m.weight.data.normal_(0, 1)

@@ -17,11 +17,13 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
 
 
-def dist_is_editable(dist):
+from typing import Any
+
+
+def dist_is_editable(dist: Any) -> bool:
     """
 Return True if given Distribution is an editable install.
 """
@@ -49,7 +51,7 @@ else:
     DEVELOP = True
 
 
-def get_version(append_time=DEVELOP):
+def get_version(append_time: Any = DEVELOP) -> str:
     version = __version__
     if not version:
         version = os.getenv("VERSION", "0.0.0")
@@ -94,7 +96,6 @@ if __version__ is None:
     __version__ = get_version(append_time=True)
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
-
 
 # from .drawers import *
 # from .opencv_utilities import *

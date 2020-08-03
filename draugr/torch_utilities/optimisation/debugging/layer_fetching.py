@@ -10,10 +10,8 @@ __doc__ = r"""
 import functools
 from collections import OrderedDict
 
-
 import torch
 from torch import nn
-
 
 __all__ = ["IntermediateLayerGetter"]
 
@@ -21,7 +19,7 @@ __all__ = ["IntermediateLayerGetter"]
 class IntermediateLayerGetter:
     """
 
-  """
+"""
 
     def __init__(
         self, model: torch.nn.Module, return_layers: list = None, keep_output=True
@@ -29,22 +27,22 @@ class IntermediateLayerGetter:
         """Wraps a Pytorch module to get intermediate values, eg for getting intermediate activations
 
 Arguments:
-    model {nn.module} -- The Pytorch module to call
-    return_layers {dict} -- Dictionary with the selected submodules
-    to return the output (format: {[current_module_name]: [desired_output_name]},
-    current_module_name can be a nested submodule, e.g. submodule1.submodule2.submodule3)
+model {nn.module} -- The Pytorch module to call
+return_layers {dict} -- Dictionary with the selected submodules
+to return the output (format: {[current_module_name]: [desired_output_name]},
+current_module_name can be a nested submodule, e.g. submodule1.submodule2.submodule3)
 
 Keyword Arguments:
-    keep_output {bool} -- If True model_output contains the final model's output
-    in the other case model_output is None (default: {True})
+keep_output {bool} -- If True model_output contains the final model's output
+in the other case model_output is None (default: {True})
 
 Returns:
-    (mid_outputs {OrderedDict}, model_output {any}) -- mid_outputs keys are
-    your desired_output_name (s) and their values are the returned tensors
-    of those submodules (OrderedDict([(desired_output_name,tensor(...)), ...).
-    See keep_output argument for model_output description.
-    In case a submodule is called more than one time, all it's outputs are
-    stored in a list.
+(mid_outputs {OrderedDict}, model_output {any}) -- mid_outputs keys are
+your desired_output_name (s) and their values are the returned tensors
+of those submodules (OrderedDict([(desired_output_name,tensor(...)), ...).
+See keep_output argument for model_output description.
+In case a submodule is called more than one time, all it's outputs are
+stored in a list.
 """
         self._model = model
         if return_layers:
@@ -56,17 +54,17 @@ Returns:
     @staticmethod
     def reduce_getattr(obj, attr, *args):
         """
-    # using wonder's beautiful simplification: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427
+# using wonder's beautiful simplification: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427
 
-    :param obj:
-    :type obj:
-    :param attr:
-    :type attr:
-    :param args:
-    :type args:
-    :return:
-    :rtype:
-    """
+:param obj:
+:type obj:
+:param attr:
+:type attr:
+:param args:
+:type args:
+:return:
+:rtype:
+"""
 
         def _getattr(obj, attr):
             return getattr(obj, attr, *args)
@@ -82,15 +80,15 @@ Returns:
             def hook(module, input, output, new_name=new_name):
                 """
 
-        :param module:
-        :type module:
-        :param input:
-        :type input:
-        :param output:
-        :type output:
-        :param new_name:
-        :type new_name:
-        """
+:param module:
+:type module:
+:param input:
+:type input:
+:param output:
+:type output:
+:param new_name:
+:type new_name:
+"""
                 if new_name in ret:
                     if type(ret[new_name]) is list:
                         ret[new_name].append(output)
@@ -118,7 +116,7 @@ if __name__ == "__main__":
     class Model(nn.Module):
         """
 
-    """
+"""
 
         def __init__(self):
             super().__init__()
@@ -135,11 +133,11 @@ if __name__ == "__main__":
         def forward(self, x):
             """
 
-      :param x:
-      :type x:
-      :return:
-      :rtype:
-      """
+:param x:
+:type x:
+:return:
+:rtype:
+"""
             x1 = self.fc1(x)
             x2 = self.fc2(x)
 

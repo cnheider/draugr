@@ -4,7 +4,7 @@
 __author__ = "Christian Heider Nielsen"
 
 from .image_data import *
-from .strings import *
+from .matplotlib_utilities import *
 from .metric_overview_plot import *
 from .pillow_utilities import *
-from .matplotlib_utilities import *
+from .strings import *
