@@ -17,64 +17,64 @@ from torch.nn.modules.module import Module
 from torch.optim import Optimizer
 
 from draugr.torch_utilities.persistence.config import (
-    ensure_directory_exist,
-    save_config,
-)
+  ensure_directory_exist,
+  save_config,
+  )
 from warg.decorators.kw_passing import drop_unused_kws
 
-model_file_ending = ".parameters"
-config_file_ending = ".py"
-optimiser_file_ending = ".optimiser"
+parameter_extension = ".parameters"
+config_extension = ".py"
+optimiser_extension = ".optimiser"
 
 __all__ = [
     "load_model_parameters",
     "load_latest_model_parameters",
     "save_parameters_and_configuration",
     "save_model_parameters",
-]
+    ]
 
 
 @drop_unused_kws
 def load_latest_model_parameters(
-    model,
+    model: torch.nn.Module,
     *,
     optimiser: Optimizer = None,
     model_name: str,
     model_directory: pathlib.Path,
-) -> Tuple[
-    Union[Union[torch.nn.Module, Tuple[torch.nn.Module, Union[Dict, None]]], None], bool
+    ) -> Tuple[
+  Union[Union[torch.nn.Module, Tuple[torch.nn.Module, Union[Dict, None]]], None], bool
 ]:
-    """
+  """
 
+  :param optimiser:
 :param model:
 :type model:
 :param model_directory:
 :param model_name:
 :return:
 """
-    if model:
-        list_of_files = list(model_directory.glob(f"{model_name}/*{model_file_ending}"))
-        if len(list_of_files) == 0:
-            print(f"Found no previous model in subtrees of: {model_directory}")
-        else:
-            latest_model_parameter_file = max(list_of_files, key=os.path.getctime)
-            print(f"loading previous model parameters: {latest_model_parameter_file}")
+  if model:
+    model_path = (model_directory / model_name)
+    list_of_files = list(model_path.glob(f"*{parameter_extension}"))
+    if len(list_of_files) == 0:
+      print(f"Found no previous models with extension {parameter_extension} in {model_path}")
+    else:
+      latest_model_parameter_file = max(list_of_files, key=os.path.getctime)
+      print(f"loading previous model parameters: {latest_model_parameter_file}")
 
-            model.load_state_dict(torch.load(str(latest_model_parameter_file)))
+      model.load_state_dict(torch.load(str(latest_model_parameter_file)))
 
-            if optimiser:
-                opt_st_d_file = latest_model_parameter_file.with_suffix(
-                    optimiser_file_ending
-                )
-                if opt_st_d_file.exists():
-                    optimiser.load_state_dict(torch.load(str(opt_st_d_file)))
-                    print(f"loading previous optimiser state: {opt_st_d_file}")
-                return (model, optimiser), True
-            else:
-                return model, True
-    if optimiser:
-        return (model, optimiser), False
-    return model, False
+      if optimiser:
+        opt_st_d_file = latest_model_parameter_file.with_suffix(optimiser_extension)
+        if opt_st_d_file.exists():
+          optimiser.load_state_dict(torch.load(str(opt_st_d_file)))
+          print(f"loading previous optimiser state: {opt_st_d_file}")
+        return (model, optimiser), True
+      else:
+        return model, True
+  if optimiser:
+    return (model, optimiser), False
+  return model, False
 
 
 load_model_parameters = load_latest_model_parameters
@@ -89,8 +89,8 @@ def save_parameters_and_configuration(
     optimiser_save_path: pathlib.Path = None,
     config_save_path: pathlib.Path = None,
     loaded_config_file_path: pathlib.Path = None,
-) -> None:
-    """
+    ) -> None:
+  """
 
 :param optimiser:
 :type optimiser:
@@ -102,11 +102,11 @@ def save_parameters_and_configuration(
 :param loaded_config_file_path:
 :return:
 """
-    torch.save(model.state_dict(), str(model_save_path))
-    if optimiser:
-        torch.save(optimiser.state_dict(), str(optimiser_save_path))
-    if loaded_config_file_path:
-        save_config(config_save_path, loaded_config_file_path)
+  torch.save(model.state_dict(), str(model_save_path))
+  if optimiser:
+    torch.save(optimiser.state_dict(), str(optimiser_save_path))
+  if loaded_config_file_path:
+    save_config(config_save_path, loaded_config_file_path)
 
 
 @drop_unused_kws
@@ -117,64 +117,65 @@ def save_model_parameters(
     save_directory: pathlib.Path,
     optimiser: Optimizer = None,
     config_file_path: pathlib.Path = None,
-) -> None:
-    """
+    ) -> None:
+  """
 
+  :param optimiser:
 :param model:
 :param save_directory:
 :param config_file_path:
 :param model_name:
 :return:
 """
-    model_date = datetime.datetime.now()
+  model_date = datetime.datetime.now()
 
-    model_time_rep = model_date.strftime("%Y%m%d%H%M%S")
-    model_save_path = save_directory / model_name / f"{model_time_rep}"
-    ensure_directory_exist(model_save_path.parent)
+  model_time_rep = model_date.strftime("%Y%m%d%H%M%S")
+  model_save_path = save_directory / model_name / f"{model_time_rep}"
+  ensure_directory_exist(model_save_path.parent)
 
-    saved = False
-    try:
+  saved = False
+  try:
+    save_parameters_and_configuration(
+        model=model,
+        model_save_path=model_save_path.with_suffix(parameter_extension),
+        optimiser=optimiser,
+        optimiser_save_path=(
+            model_save_path.parent / f"{model_time_rep}"
+        ).with_suffix(optimiser_extension),
+        loaded_config_file_path=config_file_path,
+        config_save_path=(model_save_path.parent / f"{model_time_rep}").with_suffix(
+            config_extension
+            ),
+        )
+    saved = True
+  except FileNotFoundError as e:
+    print(e)
+    while not saved:
+      model_save_path = (
+          pathlib.Path(input("Enter another file path: ")).expanduser().resolve()
+      )
+      ensure_directory_exist(model_save_path.parent)
+      try:
         save_parameters_and_configuration(
             model=model,
-            model_save_path=model_save_path.with_suffix(model_file_ending),
+            model_save_path=model_save_path.endswith(parameter_extension),
             optimiser=optimiser,
             optimiser_save_path=(
                 model_save_path.parent / f"{model_time_rep}"
-            ).with_suffix(optimiser_file_ending),
+            ).with_suffix(optimiser_extension),
             loaded_config_file_path=config_file_path,
-            config_save_path=(model_save_path.parent / f"{model_time_rep}").with_suffix(
-                config_file_ending
-            ),
-        )
-        saved = True
-    except FileNotFoundError as e:
-        print(e)
-        while not saved:
-            model_save_path = (
-                pathlib.Path(input("Enter another file path: ")).expanduser().resolve()
+            config_save_path=(
+                model_save_path.parent / f"{model_time_rep}"
+            ).with_suffix(config_extension),
             )
-            ensure_directory_exist(model_save_path.parent)
-            try:
-                save_parameters_and_configuration(
-                    model=model,
-                    model_save_path=model_save_path.endswith(model_file_ending),
-                    optimiser=optimiser,
-                    optimiser_save_path=(
-                        model_save_path.parent / f"{model_time_rep}"
-                    ).with_suffix(optimiser_file_ending),
-                    loaded_config_file_path=config_file_path,
-                    config_save_path=(
-                        model_save_path.parent / f"{model_time_rep}"
-                    ).with_suffix(config_file_ending),
-                )
-                saved = True
-            except FileNotFoundError as e:
-                print(e)
-                saved = False
+        saved = True
+      except FileNotFoundError as e:
+        print(e)
+        saved = False
 
-    if saved:
-        print(
-            f"Successfully saved model parameter, optimiser state and configuration at names {model_save_path.with_suffix('')}*"
+  if saved:
+    print(
+        f"Successfully saved model parameters, optimiser state and configuration at names {[model_save_path.with_suffix(a) for a in (parameter_extension, optimiser_extension, config_extension)]}"
         )
-    else:
-        print(f"Was unsuccesful at saving model or configuration")
+  else:
+    print(f"Was unsuccesful at saving model or configuration")

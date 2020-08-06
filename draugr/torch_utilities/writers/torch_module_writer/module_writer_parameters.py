@@ -30,6 +30,7 @@ def weight_bias_histograms(
 ) -> None:
     """
 
+    :param recurse:
 :param writer:
 :type writer:
 :param model:
@@ -46,16 +47,19 @@ def weight_bias_histograms(
 
 
 if __name__ == "__main__":
-    with TensorBoardPytorchWriter(
-        PROJECT_APP_PATH.user_log / "Tests" / "Writers"
-    ) as writer:
-        input_f = 4
-        n_classes = 10
+    def a():
+        with TensorBoardPytorchWriter(
+            PROJECT_APP_PATH.user_log / "Tests" / "Writers"
+        ) as writer:
+            input_f = 4
+            n_classes = 10
 
-        model = torch.nn.Sequential(
-            torch.nn.Linear(input_f, 20),
-            torch.nn.ReLU(),
-            torch.nn.Linear(20, n_classes),
-            torch.nn.LogSoftmax(-1),
-        )
-        weight_bias_histograms(writer, model)
+            model = torch.nn.Sequential(
+                torch.nn.Linear(input_f, 20),
+                torch.nn.ReLU(),
+                torch.nn.Linear(20, n_classes),
+                torch.nn.LogSoftmax(-1),
+            )
+            weight_bias_histograms(writer, model)
+
+    a()

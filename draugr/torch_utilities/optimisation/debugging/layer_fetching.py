@@ -113,48 +113,51 @@ stored in a list.
 
 if __name__ == "__main__":
 
-    class Model(nn.Module):
-        """
-
-"""
-
-        def __init__(self):
-            super().__init__()
-
-            self.fc1 = nn.Linear(2, 2)
-            self.fc2 = nn.Linear(2, 2)
-            self.nested = nn.Sequential(
-                nn.Sequential(nn.Linear(2, 2), nn.Linear(2, 3)), nn.Linear(3, 1)
-            )
-            self.interaction_idty = (
-                nn.Identity()
-            )  # Simple trick for operations not performed as modules
-
-        def forward(self, x):
+    def adsad():
+        class Model(nn.Module):
             """
 
-:param x:
-:type x:
-:return:
-:rtype:
-"""
-            x1 = self.fc1(x)
-            x2 = self.fc2(x)
+    """
 
-            interaction = x1 * x2
-            self.interaction_idty(interaction)
-            return self.nested(interaction)
+            def __init__(self):
+                super().__init__()
 
-    model = Model()
-    return_layers = {
-        "fc2": "fc2",
-        "nested.0.1": "nested",
-        "interaction_idty": "interaction",
-    }
-    mid_getter = IntermediateLayerGetter(
-        model, return_layers=return_layers, keep_output=True
-    )
-    mid_outputs, model_output = mid_getter(torch.randn(1, 2))
+                self.fc1 = nn.Linear(2, 2)
+                self.fc2 = nn.Linear(2, 2)
+                self.nested = nn.Sequential(
+                    nn.Sequential(nn.Linear(2, 2), nn.Linear(2, 3)), nn.Linear(3, 1)
+                )
+                self.interaction_idty = (
+                    nn.Identity()
+                )  # Simple trick for operations not performed as modules
 
-    print(model_output)
-    print(mid_outputs)
+            def forward(self, x):
+                """
+
+    :param x:
+    :type x:
+    :return:
+    :rtype:
+    """
+                x1 = self.fc1(x)
+                x2 = self.fc2(x)
+
+                interaction = x1 * x2
+                self.interaction_idty(interaction)
+                return self.nested(interaction)
+
+        model = Model()
+        return_layers = {
+            "fc2": "fc2",
+            "nested.0.1": "nested",
+            "interaction_idty": "interaction",
+        }
+        mid_getter = IntermediateLayerGetter(
+            model, return_layers=return_layers, keep_output=True
+        )
+        mid_outputs, model_output = mid_getter(torch.randn(1, 2))
+
+        print(model_output)
+        print(mid_outputs)
+
+    adsad()

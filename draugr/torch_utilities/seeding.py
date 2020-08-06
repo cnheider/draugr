@@ -3,7 +3,7 @@
 import functools
 import os
 import random
-from typing import Callable
+from typing import Any, Callable
 
 import numpy
 import torch
@@ -17,20 +17,20 @@ __all__ = ["torch_seed"]
 
 
 def torch_seed(s: int) -> None:
-    """
+  """
 seeding for reproducibility
 """
-    random.seed(s)
-    os.environ["PYTHONHASHSEED"] = str(torch_seed)
-    numpy.random.seed(s)
-    torch.manual_seed(s)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(s)
-        torch.backends.cudnn.deterministic = True
+  random.seed(s)
+  os.environ["PYTHONHASHSEED"] = str(torch_seed)
+  numpy.random.seed(s)
+  torch.manual_seed(s)
+  if torch.cuda.is_available():
+    torch.cuda.manual_seed_all(s)
+    torch.backends.cudnn.deterministic = True
 
 
 class Seed:
-    r"""**Seed PyTorch and numpy.**
+  r"""**Seed PyTorch and numpy.**
 
 This code is based on PyTorch's reproducibility guide: https://pytorch.org/docs/stable/notes/randomness.html
 Can be used as standard seeding procedure, context manager (seed will be changed only within block) or function decorator.
@@ -67,52 +67,55 @@ cuda: bool, optional
 
 """
 
-    def __init__(self, value: int, cuda: bool = False):
-        self.value = value
-        self.cuda = cuda
+  def __init__(self, value: int, cuda: bool = False):
+    self.value = value
+    self.cuda = cuda
 
-        self.no_side_effect = False
-        if self.no_side_effect:
-            self._last_seed = torch.initial_seed()
-        numpy.random.seed(self.value)
-        torch.manual_seed(self.value)
+    self.no_side_effect = False
+    if self.no_side_effect:
+      self._last_seed = torch.initial_seed()
+    numpy.random.seed(self.value)
+    torch.manual_seed(self.value)
 
-        if self.cuda:
-            torch.backends.cudnn.deterministic = True
-            torch.backends.cudnn.benchmark = False
+    if self.cuda:
+      torch.backends.cudnn.deterministic = True
+      torch.backends.cudnn.benchmark = False
 
-    def __enter__(self):
-        return self
+  def __enter__(self):
+    return self
 
-    def __exit__(self, *_, **__):
-        if self.no_side_effect:
-            torch.manual_seed(self._last_seed)
-            numpy.random.seed(self._last_seed)
-        return False
+  def __exit__(self, *_, **__):
+    if self.no_side_effect:
+      torch.manual_seed(self._last_seed)
+      numpy.random.seed(self._last_seed)
+    return False
 
-    def __call__(self, function: Callable):
-        @functools.wraps(function)
-        def decorated(*args, **kwargs):
-            value = function(*args, **kwargs)
-            self.__exit__()
-            return value
+  def __call__(self, function: Callable) -> callable:
+    @functools.wraps(function)
+    def decorated(*args, **kwargs)->Any:
+      value = function(*args, **kwargs)
+      self.__exit__()
+      return value
 
-        return decorated
+    return decorated
 
 
 if __name__ == "__main__":
 
-    @Seed(1)  # Seed only within function
-    def foo():
-        return torch.randint(5, (2, 2))
+  @Seed(1)  # Seed only within function
+  def foo():
+    return torch.randint(5, (2, 2))
 
-    def bar():
-        with Seed(1):
-            return torch.randint(5, (2, 2))
 
-    def buzz():
-        Seed(1)
-        return torch.randint(5, (2, 2))
+  def bar():
+    with Seed(1):
+      return torch.randint(5, (2, 2))
 
-    for f in [foo, bar, buzz]:
-        print(f())
+
+  def buzz():
+    Seed(1)
+    return torch.randint(5, (2, 2))
+
+
+  for f in [foo, bar, buzz]:
+    print(f())

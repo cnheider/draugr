@@ -5,11 +5,11 @@ __author__ = "Christian Heider Nielsen"
 import numpy
 import torch
 
-__all__ = ["ortho_weights"]
+__all__ = ["orthogonal_weights"]
 
 
-def ortho_weights(shape, scale: float = 1.0) -> torch.tensor:
-    """ PyTorch port of ortho_init from baselines.a2c.utils """
+def orthogonal_weights(shape, scale: float = 1.0) -> torch.tensor:
+    r""" PyTorch port of ortho_init from baselines.a2c.utils """
     shape = tuple(shape)
 
     if len(shape) == 2:

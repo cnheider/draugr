@@ -12,21 +12,22 @@ import torch
 __all__ = ["standardise"]
 
 
-def minus_one_one_unnormalise(x: torch.tensor, low=0, high=1) -> torch.tensor:
+def minus_one_one_unnormalise(x: torch.tensor, low:float=0, high:float=1) -> torch.tensor:
     act_k = (high - low) / 2.0
     act_b = (high + low) / 2.0
     return act_k * x + act_b
 
 
-def minus_one_one_normalise(x: torch.tensor, low=0, high=1) -> torch.tensor:
+def minus_one_one_normalise(x: torch.tensor, low:float=0, high:float=1) -> torch.tensor:
     act_k_inv = 2.0 / (high - low)
     act_b = (high + low) / 2.0
     return act_k_inv * (x - act_b)
 
 
-def standardise(x: torch.tensor, eps=1e-6) -> torch.tensor:
+def standardise(x: torch.tensor, eps:float=1e-6) -> torch.tensor:
     """
 
+    :param eps:
 :param x:
 :return:
 """

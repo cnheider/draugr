@@ -26,11 +26,11 @@ from warg import ContextWrapper
 def loss_grad_check(
     model: torch.nn.Module,
     loss_fn: callable,
-    input,
-    target,
+    input:torch.Tensor,
+    target:torch.Tensor,
     epsilon: float = 1e-6,
     error_tolerance: float = 1e-5,
-):
+)->None:
     """
 two sided gradient numerical approximation
 DOES not work, please refer to torch/autograd/gradcheck.py

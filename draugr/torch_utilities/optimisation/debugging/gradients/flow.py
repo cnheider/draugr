@@ -14,7 +14,7 @@ import torch
 from matplotlib import pyplot
 from matplotlib.lines import Line2D
 
-from draugr.torch_utilities.optimisation import normal_init_weights
+from draugr.torch_utilities.optimisation.parameters import normal_init_weights
 
 
 def plot_grad_flow(

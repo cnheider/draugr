@@ -14,26 +14,27 @@ from draugr.python_utilities import prod
 
 
 def flatten_tn_dim(_tensor: torch.tensor) -> torch.tensor:
-    """
+  """
 
 :param _tensor:
 :return:
 """
-    T, N, *r = _tensor.size()
-    return _tensor.view(T * N, *r)
+  T, N, *r = _tensor.size()
+  return _tensor.view(T * N, *r)
 
 
-def flatten_keep_batch(t):
-    return t.reshape(t.shape[0], -1)
+def flatten_keep_batch(t: torch.Tensor) -> torch.Tensor:
+  return t.reshape(t.shape[0], -1)
 
 
-def safe_concat(arr, el, dim=0):
-    if arr is None:
-        return el
-    return torch.cat((arr, el), dim=dim)
+def safe_concat(arr:torch.Tensor, el:torch.Tensor, dim:int=0)->torch.Tensor:
+  if arr is None:
+    return el
+  return torch.cat((arr, el), dim=dim)
 
 
 if __name__ == "__main__":
+  def a():
     shape = (2, 3, 4, 5)
     t = torch.reshape(torch.arange(0, prod(shape)), shape)
 
@@ -41,3 +42,6 @@ if __name__ == "__main__":
     tf = t.flatten(0, 1)
     print(t, f, tf)
     print(t.shape, f.shape, tf.shape)
+
+
+  a()

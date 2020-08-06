@@ -41,6 +41,7 @@ Sets global torch devices to cuda if available
             device = global_torch_device(override=torch.device("cpu"))
         if self._model:
             self._model.to(device)
+        return False
 
 
 class TorchCpuSession(AlsoDecorator):
@@ -68,6 +69,7 @@ Sets global torch devices to cpu
             device = global_torch_device(override=torch.device("cuda"))
         if self._model:
             self._model.to(device)
+        return False
 
 
 class TorchDeviceSession(AlsoDecorator):
@@ -96,6 +98,7 @@ Sets global torch devices to cpu
             device = global_torch_device(override=self.prev_dev)
             if self._model:
                 self._model.to(device)
+        return False
 
 
 if __name__ == "__main__":
