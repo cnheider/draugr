@@ -7,12 +7,11 @@ import sys
 from typing import Union
 
 import torch
-from torch.nn.modules.module import Module
-
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
+from torch.nn.modules.module import Module
 from warg import passes_kws_to
 from warg.decorators.kw_passing import drop_unused_kws
 
@@ -40,10 +39,12 @@ def load_latest_model(
 :param model_name:
 :return:
 """
-    model_path = model_directory/model_name
+    model_path = model_directory / model_name
     list_of_files = list(model_path.glob(f"*{model_extension}"))
     if len(list_of_files) == 0:
-        print(f"Found no previous models with extension {model_extension} in {model_path}")
+        print(
+            f"Found no previous models with extension {model_extension} in {model_path}"
+        )
         return None
     latest_model = max(list_of_files, key=os.path.getctime)
     print(f"loading previous model: {latest_model}")
@@ -95,9 +96,7 @@ def save_model(
     # config_name = config_name.replace(".", "_")
 
     model_time_rep = model_date.strftime("%Y%m%d%H%M%S")
-    model_save_path = (
-        save_directory / model_name / f"{model_time_rep}{model_extension}"
-    )
+    model_save_path = save_directory / model_name / f"{model_time_rep}{model_extension}"
     config_save_path = (
         save_directory / model_name / f"{model_time_rep}{config_extension}"
     )

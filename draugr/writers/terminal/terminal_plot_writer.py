@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from tqdm import tqdm
-
 from draugr.metrics import MetricCollection
 from draugr.writers.terminal.terminal_plot import styled_terminal_plot_stats_shared_x
 from draugr.writers.writer import Writer
+from tqdm import tqdm
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -19,7 +18,7 @@ __all__ = ["TerminalPlotWriter"]
 class TerminalPlotWriter(Writer):
     """
 
-  """
+"""
 
     def _open(self):
         self.E = tqdm()
@@ -67,14 +66,14 @@ if __name__ == "__main__":
 
     '''
 def train_episodically_old(self,
-                   env,
-                   test_env,
-                   *,
-                   rollouts=2000,
-                   render=False,
-                   render_frequency=100,
-                   stat_frequency=10,
-                   ):
+                 env,
+                 test_env,
+                 *,
+                 rollouts=2000,
+                 render=False,
+                 render_frequency=100,
+                 stat_frequency=10,
+                 ):
 
 E = range(1, rollouts)
 E = tqdm(E, f"Episode: {1}", leave=False, disable=not render)
@@ -88,15 +87,15 @@ if episode_i % stat_frequency == 0:
 draugr.styled_terminal_plot_stats_shared_x(stats, printer=E.write)
 
 E.set_description(
-  f"Epi: {episode_i}, "
-  f"Sig: {stats.signal.running_value[-1]:.3f}, "
-  f"Dur: {stats.duration.running_value[-1]:.1f}"
-  )
+f"Epi: {episode_i}, "
+f"Sig: {stats.signal.running_value[-1]:.3f}, "
+f"Dur: {stats.duration.running_value[-1]:.1f}"
+)
 
 if render and episode_i % render_frequency == 0:
 signal, dur, entropy, *extras = self.rollout(
-  initial_state, env, render=render
-  )
+initial_state, env, render=render
+)
 else:
 signal, dur, entropy, *extras = self.rollout(initial_state, env)
 
@@ -111,14 +110,14 @@ return NOD(model=self._distribution_parameter_regressor, stats=stats)
 
 
 def train_episodically_old(self,
-                   _environment,
-                   *,
-                   rollouts=10000,
-                   render=False,
-                   render_frequency=100,
-                   stat_frequency=100,
-                   **kwargs,
-                   ):
+                 _environment,
+                 *,
+                 rollouts=10000,
+                 render=False,
+                 render_frequency=100,
+                 stat_frequency=100,
+                 **kwargs,
+                 ):
 """
 :param _environment:
 :type _environment:,0
@@ -147,21 +146,21 @@ initial_state = _environment.reset()
 if episode_i % stat_frequency == 0:
 draugr.styled_terminal_plot_stats_shared_x(stats, printer=E.write)
 E.set_description(
-  f"Epi: {episode_i}, "
-  f"Sig: {stats.signal.running_value[-1]:.3f}, "
-  f"Dur: {stats.duration.running_value[-1]:.1f}, "
-  f"TD Err: {stats.td_error.running_value[-1]:.3f}, "
-  f"Eps: {stats.epsilon.running_value[-1]:.3f}"
-  )
+f"Epi: {episode_i}, "
+f"Sig: {stats.signal.running_value[-1]:.3f}, "
+f"Dur: {stats.duration.running_value[-1]:.1f}, "
+f"TD Err: {stats.td_error.running_value[-1]:.3f}, "
+f"Eps: {stats.epsilon.running_value[-1]:.3f}"
+)
 
 if render and episode_i % render_frequency == 0:
 signal, dur, td_error, *extras = self.rollout(
-  initial_state, _environment, render=render
-  )
+initial_state, _environment, render=render
+)
 else:
 signal, dur, td_error, *extras = self.rollout(
-  initial_state, _environment
-  )
+initial_state, _environment
+)
 
 stats.append(signal, dur, td_error, self._current_eps_threshold)
 

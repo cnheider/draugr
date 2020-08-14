@@ -106,7 +106,7 @@ Values are memory usage as integers in MB.
 def destroy_cuda_state() -> None:
     r"""**Destroy cuda state by emptying cache and collecting IPC.**
 
- Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`.
+Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`.
 """
 
     torch.cuda.empty_cache()
@@ -114,10 +114,10 @@ def destroy_cuda_state() -> None:
 
 
 def auto_select_available_cuda_device(
-    expected_memory_usage_mb: int = 1024
+    expected_memory_usage_mb: int = 1024,
 ) -> torch.device:
     r"""
-  Auto selects the device with highest compute capability and with the requested memory available
+Auto selects the device with highest compute capability and with the requested memory available
 
 :param expected_memory_usage_mb:
 :type expected_memory_usage_mb:

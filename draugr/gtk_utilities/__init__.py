@@ -7,6 +7,5 @@ __doc__ = r"""
            Created on 03/08/2020
            """
 
-
 from .gtk_settings import *
 from .theme_preferences import *

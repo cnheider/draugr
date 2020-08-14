@@ -254,19 +254,19 @@ def precision_recall_plt2():
     for f_score in f_scores:
         x = numpy.linspace(0.01, 1)
         y = f_score * x / (2 * x - f_score)
-        l, = pyplot.plot(x[y >= 0], y[y >= 0], color="gray", alpha=0.2)
+        (l,) = pyplot.plot(x[y >= 0], y[y >= 0], color="gray", alpha=0.2)
         pyplot.annotate(f"f1={f_score:0.1f}", xy=(0.9, y[45] + 0.02))
 
     lines.append(l)
     labels.append("iso-f1 curves")
-    l, = pyplot.plot(recall["micro"], precision["micro"], color="gold", lw=2)
+    (l,) = pyplot.plot(recall["micro"], precision["micro"], color="gold", lw=2)
     lines.append(l)
     labels.append(
         f"micro-average Precision-recall (area = {average_precision['micro']:0.2f})"
     )
 
     for i, color in zip(range(n_classes), colors):
-        l, = pyplot.plot(recall[i], precision[i], color=color, lw=2)
+        (l,) = pyplot.plot(recall[i], precision[i], color=color, lw=2)
         lines.append(l)
         labels.append(
             f"Precision-recall for class {i} (area = {average_precision[i]:0.2f})"

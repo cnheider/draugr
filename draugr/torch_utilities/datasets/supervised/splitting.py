@@ -41,9 +41,11 @@ class SplitByPercentage:
         self.total_num = dataset_length
         splits = numpy.array([training, validation, testing])
         self.normalised_split = splits / sum(splits)
-        self.training_percentage, self.validation_percentage, self.testing_percentage = (
-            self.normalised_split
-        )
+        (
+            self.training_percentage,
+            self.validation_percentage,
+            self.testing_percentage,
+        ) = self.normalised_split
         self.training_num, self.validation_num, self.testing_num = self.unnormalised(
             dataset_length
         )

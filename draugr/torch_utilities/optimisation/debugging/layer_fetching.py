@@ -117,7 +117,7 @@ if __name__ == "__main__":
         class Model(nn.Module):
             """
 
-    """
+"""
 
             def __init__(self):
                 super().__init__()
@@ -134,11 +134,11 @@ if __name__ == "__main__":
             def forward(self, x):
                 """
 
-    :param x:
-    :type x:
-    :return:
-    :rtype:
-    """
+:param x:
+:type x:
+:return:
+:rtype:
+"""
                 x1 = self.fc1(x)
                 x2 = self.fc2(x)
 

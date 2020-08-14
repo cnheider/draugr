@@ -12,6 +12,7 @@ from .datetimes import *
 from .debug import *
 from .exceptions import *
 from .functions import *
+from .manipulation import *
 from .replication import *
 from .sockets import *
 from .styling import *

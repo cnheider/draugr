@@ -27,7 +27,6 @@ use backprop to chart dependencies. Your deep learning code will often contain c
 from random import random
 
 import torch
-
 from draugr.torch_utilities.tensors import to_tensor
 
 __all__ = []

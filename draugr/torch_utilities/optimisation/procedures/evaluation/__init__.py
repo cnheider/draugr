@@ -4,9 +4,7 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 26/03/2020
+           Created on 09/10/2019
            """
 
-from .channel_transform import *
-from .manipulation import *
-from .resize import *
+from .cross_validation import *

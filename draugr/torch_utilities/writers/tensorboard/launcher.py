@@ -11,13 +11,13 @@ from pathlib import Path
 def launch_tensorboard(log_dir: Path, port: int = 6006) -> str:
     """
 
-  :param log_dir:
-  :type log_dir:
-  :param port:
-  :type port:
-  :return:
-  :rtype:
-  """
+:param log_dir:
+:type log_dir:
+:param port:
+:type port:
+:return:
+:rtype:
+"""
     from tensorboard import program
 
     tb = program.TensorBoard()

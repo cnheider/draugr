@@ -15,6 +15,8 @@ __all__ = ["Writer", "global_writer", "set_global_writer"]
 
 from itertools import cycle
 
+from warg import Number
+
 
 class Writer(metaclass=ABCMeta):
     """
@@ -58,7 +60,7 @@ class Writer(metaclass=ABCMeta):
             GLOBAL_WRITER = None
         self._close(exc_type, exc_val, exc_tb)
 
-    def scalar(self, tag: str, value: float, step_i: int = None) -> None:
+    def scalar(self, tag: str, value: Number, step_i: int = None) -> None:
         """
 
 :param tag:

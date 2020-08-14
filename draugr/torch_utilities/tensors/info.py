@@ -18,7 +18,7 @@ import torch
 __all__ = ["size_of_tensor", "system_info", "cuda_info"]
 
 
-def size_of_tensor(obj:torch.Tensor) -> int:
+def size_of_tensor(obj: torch.Tensor) -> int:
     r"""**Get size in bytes of Tensor, torch.nn.Module or standard object.**
 
 Specific routines are defined for torch.tensor objects and torch.nn.Module
@@ -32,12 +32,12 @@ This function works similarly to C++'s sizeof operator.
 Parameters
 ----------
 obj
-      Object whose size will be measured.
+    Object whose size will be measured.
 
 Returns
 -------
 int
-      Size in bytes of the object
+    Size in bytes of the object
 
 """
     if torch.is_tensor(obj):

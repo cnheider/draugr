@@ -10,4 +10,5 @@ __doc__ = r"""
 from .mixins import *
 from .normalise import *
 from .reshaping import *
+from .to_scalar import *
 from .to_tensor import *

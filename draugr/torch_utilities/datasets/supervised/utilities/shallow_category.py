@@ -32,9 +32,9 @@ def build_shallow_categorical_dataset(
 ) -> Dict[str, Dict[Split, Sequence]]:
     """
 Returns:
-  An OrderedDict containing an entry for each label subfolder, with images
-  split into training, testing, and validation sets within each label.
-  The order of items defines the class indices.
+An OrderedDict containing an entry for each label subfolder, with images
+split into training, testing, and validation sets within each label.
+The order of items defines the class indices.
 """
 
     if not extensions:

@@ -30,7 +30,7 @@ def weight_bias_histograms(
 ) -> None:
     """
 
-    :param recurse:
+  :param recurse:
 :param writer:
 :type writer:
 :param model:
@@ -47,6 +47,7 @@ def weight_bias_histograms(
 
 
 if __name__ == "__main__":
+
     def a():
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"

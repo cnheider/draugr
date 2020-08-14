@@ -4,7 +4,6 @@ from typing import Union
 
 import numpy
 import torch
-
 from draugr.torch_utilities.tensors.to_tensor import to_tensor
 
 __author__ = "Christian Heider Nielsen"
@@ -17,11 +16,11 @@ __all__ = ["torch_pi"]
 
 def torch_pi(device: Union[str, torch.device] = "cpu") -> torch.tensor:
     """
-  Returns numpy.pi as a tensor
+Returns numpy.pi as a tensor
 
-  :param device:
-  :type device:
-  :return:
-  :rtype:
-  """
+:param device:
+:type device:
+:return:
+:rtype:
+"""
     return to_tensor([numpy.math.pi], device=device)

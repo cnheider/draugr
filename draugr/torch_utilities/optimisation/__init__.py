@@ -9,6 +9,7 @@ __doc__ = r"""
 
 from .debugging import *
 from .parameters import *
+from .procedures import *
 from .scheduling import *
 from .sessions import *
 from .updates import *

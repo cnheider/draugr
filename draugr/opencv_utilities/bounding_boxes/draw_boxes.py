@@ -14,7 +14,6 @@ import PIL.ImageDraw as ImageDraw
 import PIL.ImageFont as ImageFont
 import numpy
 from PIL import Image
-
 from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.opencv_utilities.opencv_draw import draw_masks
 from draugr.python_utilities.colors import RGB

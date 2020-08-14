@@ -17,13 +17,13 @@ __all__ = ["intersect_numpy", "jaccard_overlap_numpy", "remove_null_boxes"]
 def intersect_numpy(box_a: Sequence, box_b: Sequence) -> numpy.ndarray:
     """
 
-  :param box_a:
-  :type box_a:
-  :param box_b:
-  :type box_b:
-  :return:
-  :rtype:
-  """
+:param box_a:
+:type box_a:
+:param box_b:
+:type box_b:
+:return:
+:rtype:
+"""
     max_xy = numpy.minimum(box_a[:, 2:], box_b[2:])
     min_xy = numpy.maximum(box_a[:, :2], box_b[:2])
     inter = numpy.clip((max_xy - min_xy), a_min=0, a_max=numpy.inf)
@@ -55,7 +55,7 @@ def remove_null_boxes(
 
 Args:
 boxes   (ndarray): NP Array with bounding boxes as lines
-                   * BBOX[x1, y1, x2, y2]
+                 * BBOX[x1, y1, x2, y2]
 labels  (labels): Corresponding labels with boxes
 
 Returns:

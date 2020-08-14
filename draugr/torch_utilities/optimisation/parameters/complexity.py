@@ -8,22 +8,21 @@ __doc__ = r"""
            """
 
 import sys
-from typing import Tuple, Union
+from typing import Sequence, TextIO, Tuple, Union
 
 import numpy
 import torch
-from torch import nn
-
 from draugr.torch_utilities.optimisation.parameters.counting import get_num_parameters
+from torch import nn
 
 
 def get_model_complexity_info(
-    model,
-    input_res,
+    model: torch.nn.Module,
+    input_res: Tuple,
     print_per_layer_stat: bool = True,
     as_strings: bool = True,
-    input_constructor=None,
-    ost=sys.stdout,
+    input_constructor: callable = None,
+    ost: TextIO = sys.stdout,
 ) -> Union[Tuple[int, int], Tuple[str, str]]:
     """
 
@@ -42,13 +41,14 @@ def get_model_complexity_info(
 :return:
 :rtype:
 """
-    assert type(input_res) is tuple
-    assert len(input_res) >= 2
+    assert isinstance(input_res, Sequence)
+    assert len(input_res) >= 1
+    assert isinstance(model, nn.Module)
+
     flops_model = add_flops_counting_methods(model)
     flops_model.eval().start_flops_count()
     if input_constructor:
-        input = input_constructor(input_res)
-        _ = flops_model(**input)
+        _ = flops_model(**input_constructor(input_res))
     else:
         try:
             batch = torch.ones(()).new_empty(
@@ -63,6 +63,7 @@ def get_model_complexity_info(
 
     if print_per_layer_stat:
         print_model_with_flops(flops_model, ost=ost)
+
     flops_count = flops_model.compute_average_flops_cost()
     params_count = get_num_parameters(flops_model, only_trainable=True)
     flops_model.stop_flops_count()
@@ -73,7 +74,7 @@ def get_model_complexity_info(
     return flops_count, params_count
 
 
-def flops_to_string(flops, units="GMac", precision=2) -> str:
+def flops_to_string(flops: int, units: str = "GMac", precision: int = 2) -> str:
     """
 
 :param flops:
@@ -105,7 +106,7 @@ def flops_to_string(flops, units="GMac", precision=2) -> str:
             return f"{str(flops)} Mac"
 
 
-def params_to_string(params_num):
+def params_to_string(params_num) -> str:
     """
 
 :param params_num:
@@ -122,7 +123,7 @@ def params_to_string(params_num):
 
 
 def print_model_with_flops(
-    model, units="GMac", precision: int = 3, ost=sys.stdout
+    model, units: str = "GMac", precision: int = 3, ost: TextIO = sys.stdout
 ) -> None:
     """
 
@@ -139,7 +140,7 @@ def print_model_with_flops(
 """
     total_flops = model.compute_average_flops_cost()
 
-    def accumulate_flops(self):
+    def accumulate_flops(self) -> int:
         """
 
 :param self:
@@ -155,7 +156,7 @@ def print_model_with_flops(
                 sum += m.accumulate_flops()
             return sum
 
-    def flops_repr(self):
+    def flops_repr(self) -> str:
         """
 
 :param self:
@@ -174,7 +175,7 @@ def print_model_with_flops(
             ]
         )
 
-    def add_extra_repr(m):
+    def add_extra_repr(m) -> None:
         """
 
 :param m:
@@ -187,7 +188,7 @@ def print_model_with_flops(
             m.extra_repr = flops_extra_repr
             assert m.extra_repr != m.original_extra_repr
 
-    def del_extra_repr(m):
+    def del_extra_repr(m) -> None:
         """
 
 :param m:
@@ -204,7 +205,7 @@ def print_model_with_flops(
     model.apply(del_extra_repr)
 
 
-def add_flops_counting_methods(net_main_module):
+def add_flops_counting_methods(net_main_module: torch.nn.Module) -> torch.nn.Module:
     """
 
 :param net_main_module:
@@ -229,7 +230,7 @@ def add_flops_counting_methods(net_main_module):
     return net_main_module
 
 
-def compute_average_flops_cost(self):
+def compute_average_flops_cost(self) -> float:
     """
 A method that will be available after add_flops_counting_methods() is called
 on a desired net object.
@@ -247,7 +248,7 @@ Returns current mean flops consumption per image.
     return flops_sum / batches_count
 
 
-def start_flops_count(self):
+def start_flops_count(self) -> None:
     """
 A method that will be available after add_flops_counting_methods() is called
 on a desired net object.
@@ -260,7 +261,7 @@ Call it before you run the network.
     self.apply(add_flops_counter_hook_function)
 
 
-def stop_flops_count(self):
+def stop_flops_count(self) -> None:
     """
 A method that will be available after add_flops_counting_methods() is called
 on a desired net object.
@@ -273,7 +274,7 @@ Call whenever you want to pause the computation.
     self.apply(remove_flops_counter_hook_function)
 
 
-def reset_flops_count(self):
+def reset_flops_count(self) -> None:
     """
 A method that will be available after add_flops_counting_methods() is called
 on a desired net object.
@@ -285,7 +286,7 @@ Resets statistics computed so far.
     self.apply(add_flops_counter_variable_or_reset)
 
 
-def add_flops_mask(module, mask):
+def add_flops_mask(module: torch.nn.Module, mask) -> None:
     """
 
 :param module:
@@ -294,7 +295,7 @@ def add_flops_mask(module, mask):
 :type mask:
 """
 
-    def add_flops_mask_func(module):
+    def add_flops_mask_func(module: torch.nn.Module) -> None:
         """
 
 :param module:
@@ -306,7 +307,7 @@ def add_flops_mask(module, mask):
     module.apply(add_flops_mask_func)
 
 
-def remove_flops_mask(module):
+def remove_flops_mask(module: torch.nn.Module) -> None:
     """
 
 :param module:
@@ -316,7 +317,7 @@ def remove_flops_mask(module):
 
 
 # ---- Internal functions
-def empty_flops_counter_hook(module, input, output):
+def empty_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
     """
 
 :param module:
@@ -329,7 +330,7 @@ def empty_flops_counter_hook(module, input, output):
     module.__flops__ += 0
 
 
-def upsample_flops_counter_hook(module, input, output):
+def upsample_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
     """
 
 :param module:
@@ -347,7 +348,7 @@ def upsample_flops_counter_hook(module, input, output):
     module.__flops__ += int(output_elements_count)
 
 
-def relu_flops_counter_hook(module, input, output):
+def relu_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
     """
 
 :param module:
@@ -361,7 +362,7 @@ def relu_flops_counter_hook(module, input, output):
     module.__flops__ += int(active_elements_count)
 
 
-def linear_flops_counter_hook(module, input, output):
+def linear_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
     """
 
 :param module:
@@ -376,7 +377,7 @@ def linear_flops_counter_hook(module, input, output):
     module.__flops__ += int(batch_size * input.shape[1] * output.shape[1])
 
 
-def pool_flops_counter_hook(module, input, output):
+def pool_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
     """
 
 :param module:
@@ -390,7 +391,7 @@ def pool_flops_counter_hook(module, input, output):
     module.__flops__ += int(numpy.prod(input.shape))
 
 
-def bn_flops_counter_hook(module, input, output):
+def bn_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
     """
 
 :param module:
@@ -409,7 +410,7 @@ def bn_flops_counter_hook(module, input, output):
     module.__flops__ += int(batch_flops)
 
 
-def deconv_flops_counter_hook(conv_module, input, output):
+def deconv_flops_counter_hook(conv_module: torch.nn.Module, input, output) -> None:
     """
 
 :param conv_module:
@@ -446,7 +447,7 @@ def deconv_flops_counter_hook(conv_module, input, output):
     conv_module.__flops__ += int(overall_flops)
 
 
-def conv_flops_counter_hook(conv_module, input, output):
+def conv_flops_counter_hook(conv_module: torch.nn.Module, input, output) -> None:
     """
 
 :param conv_module:
@@ -495,7 +496,7 @@ def conv_flops_counter_hook(conv_module, input, output):
     conv_module.__flops__ += int(overall_flops)
 
 
-def batch_counter_hook(module, input, output):
+def batch_counter_hook(module: torch.nn.Module, input, output) -> None:
     """
 
 :param module:
@@ -511,14 +512,13 @@ def batch_counter_hook(module, input, output):
         input = input[0]
         batch_size = len(input)
     else:
-        pass
         print(
             "Warning! No positional inputs found for a module, assuming batch size is 1."
         )
     module.__batch_counter__ += batch_size
 
 
-def add_batch_counter_variables_or_reset(module):
+def add_batch_counter_variables_or_reset(module: torch.nn.Module) -> None:
     """
 
 :param module:
@@ -527,7 +527,7 @@ def add_batch_counter_variables_or_reset(module):
     module.__batch_counter__ = 0
 
 
-def add_batch_counter_hook_function(module):
+def add_batch_counter_hook_function(module: torch.nn.Module) -> None:
     """
 
 :param module:
@@ -542,7 +542,7 @@ def add_batch_counter_hook_function(module):
     module.__batch_counter_handle__ = handle
 
 
-def remove_batch_counter_hook_function(module):
+def remove_batch_counter_hook_function(module: torch.nn.Module) -> None:
     """
 
 :param module:
@@ -553,7 +553,7 @@ def remove_batch_counter_hook_function(module):
         del module.__batch_counter_handle__
 
 
-def add_flops_counter_variable_or_reset(module):
+def add_flops_counter_variable_or_reset(module: torch.nn.Module) -> None:
     """
 
 :param module:
@@ -563,7 +563,7 @@ def add_flops_counter_variable_or_reset(module):
         module.__flops__ = 0
 
 
-def is_supported_instance(module):
+def is_supported_instance(module: torch.nn.Module) -> bool:
     """
 
 :param module:
@@ -576,7 +576,7 @@ def is_supported_instance(module):
     return False
 
 
-def add_flops_counter_hook_function(module):
+def add_flops_counter_hook_function(module: torch.nn.Module) -> None:
     """
 
 :param module:
@@ -591,7 +591,7 @@ def add_flops_counter_hook_function(module):
         module.__flops_handle__ = handle
 
 
-def remove_flops_counter_hook_function(module):
+def remove_flops_counter_hook_function(module) -> None:
     """
 
 :param module:
@@ -606,7 +606,7 @@ def remove_flops_counter_hook_function(module):
 # --- Masked flops counting
 
 # Also being run in the initialization
-def add_flops_mask_variable_or_reset(module):
+def add_flops_mask_variable_or_reset(module) -> None:
     """
 
 :param module:
@@ -651,3 +651,15 @@ MODULES_MAPPING = {
     # Deconvolution
     torch.nn.ConvTranspose2d: deconv_flops_counter_hook,
 }
+
+if __name__ == "__main__":
+    import torchvision.models as models
+    import torch
+
+    with torch.cuda.device(0):
+        net = models.densenet161()
+        macs, params = get_model_complexity_info(
+            net, (3, 224, 224), as_strings=True, print_per_layer_stat=True
+        )
+        print(f'{"Computational complexity: ":<30}  {macs:<8}')
+        print(f'{"Number of parameters: ":<30}  {params:<8}')

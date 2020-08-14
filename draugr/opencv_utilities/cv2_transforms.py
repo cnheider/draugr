@@ -281,9 +281,9 @@ labels (Tensor): the class labels for each bbox
 mode (float tuple): the min and max jaccard overlaps
 Return:
 (img, boxes, classes)
-    img (Image): the cropped image
-    boxes (Tensor): the adjusted bounding boxes in pt form
-    labels (Tensor): the class labels for each bbox
+  img (Image): the cropped image
+  boxes (Tensor): the adjusted bounding boxes in pt form
+  labels (Tensor): the class labels for each bbox
 """
 
     def __init__(self):
@@ -430,7 +430,7 @@ class CV2SwapChannels(object):
 specified in the swap tuple.
 Args:
 swaps (int triple): final order of channels
-    eg: (2, 1, 0)
+  eg: (2, 1, 0)
 """
 
     def __init__(self, swaps: Triple):

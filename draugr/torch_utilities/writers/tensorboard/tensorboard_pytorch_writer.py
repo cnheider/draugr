@@ -2,15 +2,12 @@
 # -*- coding: utf-8 -*-
 import pathlib
 from contextlib import suppress
-from typing import Mapping, Sequence, Union
+from typing import Any, Mapping, Sequence, Union
 
 import PIL
 import numpy
 import torch
 from PIL import Image
-from matplotlib import pyplot
-from matplotlib.figure import Figure
-
 from draugr import PROJECT_APP_PATH
 from draugr.writers import Writer
 from draugr.writers.mixins import (
@@ -22,6 +19,8 @@ from draugr.writers.mixins import (
 from draugr.writers.mixins.figure_writer_mixin import FigureWriterMixin
 from draugr.writers.mixins.line_writer_mixin import LineWriterMixin
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
+from matplotlib import pyplot
+from matplotlib.figure import Figure
 from warg import drop_unused_kws, passes_kws_to
 
 with suppress(FutureWarning):
@@ -50,6 +49,18 @@ class TensorBoardPytorchWriter(
     """
 Provides a pytorch-tensorboard-implementation writer interface
 """
+
+    @passes_kws_to(Writer.__init__)
+    def __init__(
+        self,
+        path: Union[str, pathlib.Path] = pathlib.Path.cwd() / "Models",
+        comment: str = "",
+        **kwargs
+    ):
+        super().__init__(**kwargs)
+
+        self._log_dir = path
+        self._comment = comment
 
     @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_figure)
@@ -80,7 +91,7 @@ Provides a pytorch-tensorboard-implementation writer interface
         x_labels: Sequence = None,
         y_label: str = "Frequency [Hz]",
         x_label: str = "Time [sec]",
-        plot_kws: Mapping = {},
+        plot_kws=None,
         **kwargs
     ) -> None:
         """
@@ -102,6 +113,8 @@ Provides a pytorch-tensorboard-implementation writer interface
 :param kwargs:
 :type kwargs:
 """
+        if plot_kws is None:
+            plot_kws = {}
         fig = pyplot.figure()
 
         spec = pyplot.specgram(
@@ -111,9 +124,9 @@ Provides a pytorch-tensorboard-implementation writer interface
         """
 ind = numpy.arange(len(values))
 if x_labels:
-  pyplot.xticks(ind, labels=x_labels)
+pyplot.xticks(ind, labels=x_labels)
 else:
-  pyplot.xticks(ind)
+pyplot.xticks(ind)
 
 pyplot.xlabel(x_label)
 pyplot.ylabel(y_label)
@@ -134,9 +147,9 @@ pyplot.title(tag)
         tag: str,
         values: list,
         step: int,
-        yerr: float = None,
+        value_error: float = None,
         x_labels: Sequence = None,
-        y_label: str = "Probs",
+        y_label: str = "Probabilities",
         x_label: str = "Distribution",
         **kwargs
     ) -> None:
@@ -150,20 +163,18 @@ pyplot.title(tag)
 :type values:
 :param step:
 :type step:
-:param yerr:
-:type yerr:
+:param value_error:
+:type value_error:
 :param x_labels:
 :type x_labels:
 :param y_label:
 :type y_label:
-:param title:
-:type title:
 :param kwargs:
 :type kwargs:
 """
         fig = pyplot.figure()
         ind = numpy.arange(len(values))
-        im = pyplot.bar(ind, values, yerr=yerr)
+        im = pyplot.bar(ind, values, yerr=value_error)
         if x_labels:
             pyplot.xticks(ind, labels=x_labels)
         else:
@@ -187,7 +198,7 @@ pyplot.title(tag)
         x_labels: Sequence = None,
         y_label: str = "Magnitude",
         x_label: str = "Sequence",
-        plot_kws: Mapping = {},  # Seperate as parameters name collisions might occur
+        plot_kws=None,  # Separate as parameters name collisions might occur
         **kwargs
     ) -> None:
         """
@@ -211,6 +222,8 @@ pyplot.title(tag)
 :param kwargs:
 :type kwargs:
 """
+        if plot_kws is None:
+            plot_kws = {}
         fig = pyplot.figure()
         ind = numpy.arange(len(values))
         im = pyplot.plot(values, **plot_kws)
@@ -230,7 +243,7 @@ pyplot.title(tag)
     @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_histogram)
     def histogram(
-        self, tag: str, values: list, step: int, bins="auto", **kwargs
+        self, tag: str, values: list, step: int, bins: Any = "auto", **kwargs
     ) -> None:
         """
 
@@ -247,18 +260,6 @@ pyplot.title(tag)
 """
         self.writer.add_histogram(tag, values, global_step=step, bins=bins, **kwargs)
 
-    @passes_kws_to(ImageWriterMixin.__init__)
-    def __init__(
-        self,
-        path: Union[str, pathlib.Path] = pathlib.Path.cwd() / "Models",
-        comment: str = "",
-        **kwargs
-    ):
-        super().__init__(**kwargs)
-
-        self._log_dir = path
-        self._comment = comment
-
     def _scalar(self, tag: str, value: float, step: int) -> None:
         self.writer.add_scalar(tag, value, step)
 
@@ -272,6 +273,7 @@ pyplot.title(tag)
     ) -> None:
         """
 
+    :param verbose:
 :param model:
 :type model:
 :param input_to_model:
@@ -291,7 +293,7 @@ pyplot.title(tag)
         data: Union[numpy.ndarray, torch.Tensor, PIL.Image.Image],
         step,
         *,
-        dataformats="NCHW",
+        data_formats="NCHW",
         **kwargs
     ) -> None:
         """
@@ -302,12 +304,12 @@ pyplot.title(tag)
 :type data:
 :param step:
 :type step:
-:param dataformats:
-:type dataformats:
+:param data_formats:
+:type data_formats:
 :param kwargs:
 :type kwargs:
 """
-        self.writer.add_image(tag, data, step, dataformats=dataformats, **kwargs)
+        self.writer.add_image(tag, data, step, dataformats=data_formats, **kwargs)
 
     @property
     def writer(self) -> SummaryWriter:
@@ -335,5 +337,5 @@ if __name__ == "__main__":
             dummy_img = torch.rand(32, 3, 64, 64)  # output from network
             if n_iter % 10 == 0:
                 x = make_grid(dummy_img, normalize=True, scale_each=True)
-                writer.image("ImageGrid", x, n_iter, dataformats="CHW")
+                writer.image("ImageGrid", x, n_iter, data_formats="CHW")
                 writer.image("Image", dummy_img, n_iter)

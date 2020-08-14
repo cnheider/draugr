@@ -8,9 +8,8 @@ __doc__ = r"""
            """
 
 import torch
-from torch.nn import Module
-
 from draugr.torch_utilities import global_torch_device
+from torch.nn import Module
 from warg import AlsoDecorator
 
 __all__ = ["TorchCpuSession", "TorchCudaSession", "TorchDeviceSession"]

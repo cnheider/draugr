@@ -11,11 +11,11 @@ __all__ = ["TensoriseMixin"]
 
 class TensoriseMixin(object):
     """
-  Tensorise attributes at set
-  """
+Tensorise attributes at set
+"""
 
     device = "cpu"
-    dtype = torch.float #Default values may be monkey patched for other types
+    dtype = torch.float  # Default values may be monkey patched for other types
 
     def __setattr__(self, key, value):
         super().__setattr__(key, to_tensor(value, dtype=self.dtype, device=self.device))

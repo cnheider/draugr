@@ -5,12 +5,11 @@ import os
 from logging import warning
 
 import pkg_resources
-
 from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.8.1"
+__version__ = "0.8.2"
 __doc__ = """
 Created on 27/04/2019
 

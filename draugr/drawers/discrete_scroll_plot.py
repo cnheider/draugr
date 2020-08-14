@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import queue
-import threading
+
 from typing import Iterator, Sequence, Tuple
 
-import matplotlib
+from draugr import recursive_flatten_numpy
+from draugr.drawers.mpldrawer import MplDrawer
 from matplotlib import animation
-
-from draugr.drawers.drawer import Drawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -21,14 +19,17 @@ __all__ = ["DiscreteScrollPlot", "discrete_scroll_plot"]
 from matplotlib import pyplot
 
 import numpy
+from warg import passes_kws_to
 
 
-class DiscreteScrollPlot(Drawer):
+class DiscreteScrollPlot(MplDrawer):
     """
 Waterfall plot
+only supports a single trajectory at a time, do not supply parallel trajectories to draw method, will get truncated to num actions, effectively dropping actions for other envs than the first.
 
 """
 
+    @passes_kws_to(MplDrawer.__init__)
     def __init__(
         self,
         num_actions: int,
@@ -40,12 +41,15 @@ Waterfall plot
         vertical: bool = True,
         reverse: bool = True,
         overwrite: bool = False,
-        placement: Tuple = (0, 0),
         render: bool = True,
+        figure_size: Tuple[int, int] = None,
+        **kwargs
     ):
-        self.fig = None
+
+        super().__init__(render=render, figure_size=figure_size, **kwargs)
         if not render:
             return
+
         self._num_actions = num_actions
 
         if not window_length:
@@ -57,23 +61,17 @@ Waterfall plot
         self.overwrite = overwrite
         self.reverse = reverse
         self.window_length = window_length
-        self.n = 0
 
-        if vertical:
-            self.fig = pyplot.figure(figsize=(window_length / 10, 2))
-            extent = [-window_length, 0, 0, num_actions]
+        if not figure_size:
+            if vertical:
+                self.fig = pyplot.figure(figsize=(window_length / 10, 2))
+                extent = [-window_length, 0, 0, num_actions]
+            else:
+                self.fig = pyplot.figure(figsize=(2, window_length / 10))
+                extent = [num_actions, 0, 0, -window_length]
         else:
-            self.fig = pyplot.figure(figsize=(2, window_length / 10))
-            extent = [num_actions, 0, 0, -window_length]
-
-        """
-fig_manager = pyplot.get_current_fig_manager()
-geom = fig_manager.window.geometry()
-x, y, dx, dy = geom.getRect()
-fig_manager.window.setGeometry(*placement, dx, dy)
-fig_manager.window.SetPosition((500, 0))
-"""
-        self.placement = placement
+            self.fig = pyplot.figure(figsize=figure_size)
+            extent = [figure_size[0], 0, 0, -figure_size[1]]
 
         if vertical:
             array = array.T
@@ -107,37 +105,23 @@ fig_manager.window.SetPosition((500, 0))
         pyplot.title(title)
         pyplot.tight_layout()
 
-    @staticmethod
-    def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0):
-        """Move figure's upper left corner to pixel (x, y)"""
-        backend = matplotlib.get_backend()
-        if hasattr(figure.canvas.manager, "window"):
-            window = figure.canvas.manager.window
-            if backend == "TkAgg":
-                window.wm_geometry(f"+{x:d}+{y:d}")
-            elif backend == "WXAgg":
-                window.SetPosition((x, y))
-            else:
-                # This works for QT and GTK
-                # You can also use window.setGeometry
-                window.move(x, y)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.fig:
-            pyplot.close(self.fig)
-
-    def draw(self, data: Sequence, delta: float = 1 / 120):
+    def _draw(self, data: Sequence[int]):
         """
 
 :param data:
-:param delta: 1 / 60 for 60fps
 :return:
 """
 
         array = self.im.get_array()
+
+        data = recursive_flatten_numpy(data)
+        # assert isinstance(data[0], int), f'Data was {data}'
+        """
+    if not isinstance(data[0], int):
+        data = data[0]
+    """
+
+        data = data[: self._num_actions]
 
         if self.vertical:
             array = array.T
@@ -154,12 +138,6 @@ fig_manager.window.SetPosition((500, 0))
             array = array.T
 
         self.im.set_array(array)
-        pyplot.draw()
-        if self.n <= 1:
-            self.move_figure(self.fig, *self.placement)
-        self.n += 1
-        if delta:
-            pyplot.pause(delta)
 
 
 def discrete_scroll_plot(
@@ -262,55 +240,63 @@ def discrete_scroll_plot(
 
 if __name__ == "__main__":
 
-    def ma():
-        data = queue.Queue(100)
+    def siajdisajd():
+        import queue
+        import threading
 
-        class QueueGen:
-            def __iter__(self):
-                return self
+        def ma():
+            data = queue.Queue(100)
 
-            def __next__(self):
-                return self.get()
+            class QueueGen:
+                def __iter__(self):
+                    return self
 
-            def __call__(self, *args, **kwargs):
-                return self.__next__()
+                def __next__(self):
+                    return self.get()
 
-            def add(self, a):
-                return data.put(a)
+                def __call__(self, *args, **kwargs):
+                    return self.__next__()
 
-            def get(self):
-                return data.get()
+                def add(self, a):
+                    return data.put(a)
 
-        def get_sample(num_actions=3):
-            a = numpy.zeros(num_actions)
-            a[numpy.random.randint(0, num_actions)] = 1.0
-            return a
+                def get(self):
+                    return data.get()
 
-        class MyDataFetchClass(threading.Thread):
-            def __init__(self, data):
+            def get_sample(num_actions=3):
+                a = numpy.zeros(num_actions)
+                a[numpy.random.randint(0, num_actions)] = 1.0
+                return a
 
-                threading.Thread.__init__(self)
+            class MyDataFetchClass(threading.Thread):
+                def __init__(self, data):
 
-                self._data = data
+                    threading.Thread.__init__(self)
 
-            def run(self):
+                    self._data = data
 
-                while True:
-                    self._data.add(get_sample())
+                def run(self):
 
-        d = QueueGen()
+                    while True:
+                        self._data.add(get_sample())
 
-        MyDataFetchClass(d).start()
+            d = QueueGen()
 
-        anim = discrete_scroll_plot(iter(d), labels=("a", "b", "c"))
+            MyDataFetchClass(d).start()
 
-        try:
-            pyplot.show()
-        except:
-            print("Plot Closed")
+            anim = discrete_scroll_plot(iter(d), labels=("a", "b", "c"))
 
-    delta = 1 / 60
+            try:
+                pyplot.show()
+            except:
+                print("Plot Closed")
 
-    s = DiscreteScrollPlot(3)
-    for _ in range(100):
-        s.draw(numpy.random.rand(3))
+        def asda():
+
+            s = DiscreteScrollPlot(3, default_delta=None)
+            for _ in range(100):
+                s.draw(numpy.random.rand(3))
+
+        asda()
+
+    siajdisajd()
