@@ -9,7 +9,7 @@ __doc__ = r"""
 
 import os
 from pathlib import Path
-from typing import Sequence, Union
+from typing import Sequence, Tuple, Union
 
 from torchvision.datasets.folder import (
     has_file_allowed_extension,
@@ -19,7 +19,7 @@ __all__ = ["build_flat_dataset"]
 
 
 def build_flat_dataset(
-    directory: Path, extensions: Sequence = None, is_valid_file: Sequence = None
+    directory: Path, extensions: Tuple = None, is_valid_file: Sequence = None
 ) -> dict:
     """
 
