@@ -21,6 +21,13 @@ __all__ = ["build_flat_dataset"]
 def build_flat_dataset(
     directory: Path, extensions: Sequence = None, is_valid_file: Sequence = None
 ) -> dict:
+    """
+
+    :param directory:
+    :param extensions:
+    :param is_valid_file:
+    :return:
+    """
     categories = [d.name for d in directory.iterdir() if d.is_dir()]
     instances = {k: [] for k in categories}
     both_none = extensions is None and is_valid_file is None

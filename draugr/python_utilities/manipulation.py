@@ -12,12 +12,12 @@ __all__ = ["recursive_flatten"]
 from typing import Sequence
 
 
-def recursive_flatten(S: Sequence) -> Sequence:
-    if not S:  # is empty Sequence
-        return S
-    if isinstance(S[0], Sequence):
-        return (*recursive_flatten(S[0]), *recursive_flatten(S[1:]))
-    return (*S[:1], *recursive_flatten(S[1:]))
+def recursive_flatten(seq: Sequence) -> Sequence:
+    if not seq:  # is empty Sequence
+        return seq
+    if isinstance(seq[0], Sequence):
+        return (*recursive_flatten(seq[0]), *recursive_flatten(seq[1:]))
+    return (*seq[:1], *recursive_flatten(seq[1:]))
 
 
 if __name__ == "__main__":

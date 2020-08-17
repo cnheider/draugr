@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 28/07/2020
            """
 
-__all__ = []
+__all__ = ["orthogonal_reg", "RegLossWrapper"]
 
 import torch
 from draugr.torch_utilities.optimisation.parameters.initialisation import (

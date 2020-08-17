@@ -11,6 +11,9 @@ import random
 from pathlib import Path
 from typing import Tuple
 
+from draugr.torch_utilities.datasets.supervised.utilities.flat_category import (
+    build_flat_dataset,
+)
 from torchvision.datasets import VisionDataset  # TODO: Do not need to be images
 
 __all__ = ["DictDatasetFolder", "SplitDictDatasetFolder"]

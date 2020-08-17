@@ -40,6 +40,9 @@ Returns:
 An OrderedDict containing an entry for each label subfolder, with images
 split into training, testing, and validation sets within each label.
 The order of items defines the class indices.
+    :param image_directory:
+    :param validation_percentage:
+    :param testing_percentage:
 :param extensions:
 :type extensions:
 """

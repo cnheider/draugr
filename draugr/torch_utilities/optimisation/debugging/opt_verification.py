@@ -29,13 +29,16 @@ from random import random
 import torch
 from draugr.torch_utilities.tensors import to_tensor
 
-__all__ = []
+__all__ = ["overfit_single_batch"]
 
 
 # __all__ = ['init_softmax_loss','overfit_single_batch']
 
 
 def init_softmax_loss():
+    """
+#TODO: NOT DONE, FINISH!
+    """
     batch_Size = 16
     input_f = 4
     n_classes = 10
@@ -67,6 +70,10 @@ def init_softmax_loss():
 
 
 def overfit_single_batch():
+    """
+    #TODO: NOT DONE, FINISH!
+    :return:
+    """
     input_f = 4
     n_classes = 10
 
