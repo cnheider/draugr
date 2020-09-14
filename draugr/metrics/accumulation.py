@@ -7,6 +7,7 @@ __doc__ = r"""
            Created on 16/02/2020
            """
 
+
 import math
 
 __all__ = ["lambda_accumulator", "mean_accumulator", "total_accumulator"]

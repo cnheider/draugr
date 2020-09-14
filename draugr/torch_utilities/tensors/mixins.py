@@ -3,7 +3,7 @@
 
 import torch
 
-from draugr.torch_utilities.tensors.to_tensor import to_tensor
+from draugr.torch_utilities.tensors import to_tensor
 
 __author__ = "Christian Heider Nielsen"
 __all__ = ["TensoriseMixin"]

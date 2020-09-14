@@ -16,7 +16,7 @@ __all__ = [
     "get_gpu_usage_mb",
     "auto_select_available_cuda_device",
     "set_global_torch_device",
-    "destroy_cuda_state",
+    "torch_clean_up",
 ]
 
 
@@ -103,7 +103,7 @@ Values are memory usage as integers in MB.
     return gpu_memory_map
 
 
-def destroy_cuda_state() -> None:
+def torch_clean_up() -> None:
     r"""**Destroy cuda state by emptying cache and collecting IPC.**
 
 Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`.

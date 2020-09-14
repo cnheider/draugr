@@ -10,9 +10,6 @@ __doc__ = r"""
 __all__ = ["orthogonal_reg", "RegLossWrapper"]
 
 import torch
-from draugr.torch_utilities.optimisation.parameters.initialisation import (
-    normal_init_weights,
-)
 from torch import nn
 
 
@@ -52,6 +49,10 @@ def orthogonal_reg(model, reg=1e-6):
 if __name__ == "__main__":
 
     def bb():
+        from draugr.torch_utilities.optimisation.parameters.initialisation import (
+            normal_init_weights,
+        )
+
         input = torch.randn(3, 5, requires_grad=True)
         model = torch.nn.Linear(5, 5)
         normal_init_weights(model)

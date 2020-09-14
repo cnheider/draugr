@@ -1,1 +1,1 @@
-python reinforcement-learning interface api
+python interface api

@@ -17,7 +17,7 @@ from typing import Dict, Iterable, OrderedDict, Sequence
 
 import numpy
 
-__all__ = ["Split", "SplitByPercentage", "train_valid_test_split"]
+__all__ = ["Split", "SplitByPercentage", "train_valid_test_split", "select_split"]
 
 
 class Split(Enum):
@@ -37,7 +37,13 @@ class SplitByPercentage:
 
     default_split_names = {i: i.value for i in Split}
 
-    def __init__(self, dataset_length: int, training=0.7, validation=0.2, testing=0.1):
+    def __init__(
+        self,
+        dataset_length: int,
+        training: float = 0.7,
+        validation: float = 0.2,
+        testing: float = 0.1,
+    ):
         self.total_num = dataset_length
         splits = numpy.array([training, validation, testing])
         self.normalised_split = splits / sum(splits)
@@ -49,6 +55,30 @@ class SplitByPercentage:
         self.training_num, self.validation_num, self.testing_num = self.unnormalised(
             dataset_length
         )
+
+    def shuffled_indices(self):
+        split_indices = numpy.random.permutation(self.total_num).tolist()
+
+        return (
+            self.select_train_indices(split_indices),
+            self.select_validation_indices(split_indices),
+            self.select_testing_indices(split_indices),
+        )
+
+    def select_train_indices(self, ind):
+        return ind[: self.training_num]
+
+    def select_validation_indices(self, ind):
+        if self.validation_num:
+            if self.testing_num:
+                return ind[self.training_num : -self.testing_num]
+            return ind[self.training_num :]
+        return []
+
+    def select_testing_indices(self, ind):
+        if self.testing_num:
+            return ind[-self.testing_num :]
+        return []
 
     def unnormalised(self, num: int, floored: bool = True) -> numpy.ndarray:
         """
@@ -146,4 +176,6 @@ def select_split(
 
 
 if __name__ == "__main__":
-    print(SplitByPercentage(9).default_split_names)
+    split_by_p = SplitByPercentage(100)
+    print(split_by_p.default_split_names)
+    print(split_by_p.shuffled_indices())

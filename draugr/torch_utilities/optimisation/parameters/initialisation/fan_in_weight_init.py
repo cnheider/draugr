@@ -8,7 +8,7 @@ import torch
 from torch.nn import Conv2d, Linear, Module
 from torch.nn.init import calculate_gain, constant_, uniform_, xavier_uniform_
 
-__all__ = ["fan_in_init", "xavier_init", "constant_init"]
+__all__ = ["fan_in_init", "xavier_init", "constant_init", "normal_init"]
 
 
 def fan_in_init(model: Module):

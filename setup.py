@@ -99,12 +99,8 @@ class DraugrPackage:
 
     @property
     def package_data(self) -> dict:
-        # data = glob.glob('data/', recursive=True)
-        return {
-            # 'PackageName':[
-            # *data
-            #  ]
-        }
+        emds = [str(p) for p in pathlib.Path(__file__).parent.rglob(".md")]
+        return {"draugr": [*emds]}
 
     @property
     def entry_points(self) -> dict:

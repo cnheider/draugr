@@ -14,7 +14,7 @@ def main(keep_alive: bool = True) -> str:
 :return:
 :rtype:
 """
-    from draugr.torch_utilities.writers.tensorboard.launcher import launch_tensorboard
+    from draugr.torch_utilities import launch_tensorboard
     from contextlib import suppress
     from time import sleep
 

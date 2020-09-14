@@ -45,7 +45,7 @@ def load_latest_model_parameters(
 ]:
     """
 
-  :param optimiser:
+:param optimiser:
 :param model:
 :type model:
 :param model_directory:
@@ -123,7 +123,7 @@ def save_model_parameters(
 ) -> None:
     """
 
-  :param optimiser:
+:param optimiser:
 :param model:
 :param save_directory:
 :param config_file_path:

@@ -30,7 +30,7 @@ def weight_bias_histograms(
 ) -> None:
     """
 
-  :param recurse:
+:param recurse:
 :param writer:
 :type writer:
 :param model:

@@ -62,3 +62,22 @@ def test_invalid_step_type_scalars(tag, val, step):
     except Exception as e:
         print(e)
         assert True
+
+
+@pytest.mark.parametrize(
+    ["tag", "val", "truth", "step"],
+    (
+        ("signal", range(9), range(9), 0),
+        ("signal", range(9), range(9), None),
+        ("tag1", range(9), range(9), object()),
+    ),
+    ids=["str_step", "None_step", "object_step"],
+)
+def test_precision_recall(tag, val, truth, step):
+    try:
+        with TensorBoardPytorchWriter(path=PROJECT_APP_PATH.user_log) as w:
+            w.precision_recall_curve(tag, val, truth, step)
+        assert False
+    except Exception as e:
+        print(e)
+        assert True

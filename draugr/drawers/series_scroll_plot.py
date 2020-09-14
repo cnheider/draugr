@@ -41,15 +41,15 @@ class SeriesScrollPlot(MplDrawer):
     ):
         """
 
-    :param window_length:
-    :param title:
-    :param time_label:
-    :param data_label:
-    :param reverse:
-    :param overwrite:
-    :param placement:
-    :param render:
-    """
+:param window_length:
+:param title:
+:param time_label:
+:param data_label:
+:param reverse:
+:param overwrite:
+:param placement:
+:param render:
+"""
 
         super().__init__(render=render, **kws)
         if not render:
@@ -79,7 +79,7 @@ class SeriesScrollPlot(MplDrawer):
 
     def _draw(self, data: Union[Sequence, int, float, complex]):
         """
-    SHOULD NOT BE CALLED DIRECTLY!
+SHOULD NOT BE CALLED DIRECTLY!
 
 :param data:
 :return:
@@ -154,7 +154,7 @@ if __name__ == "__main__":
         def multi_series():
             """
 
-  """
+"""
             s = SeriesScrollPlot(
                 window_length=200, reverse=False, overwrite=False, default_delta=None
             )
@@ -164,7 +164,7 @@ if __name__ == "__main__":
         def single_series():
             """
 
-  """
+"""
             s = SeriesScrollPlot(window_length=200, reverse=False, overwrite=False)
             for i in range(1000):
                 s.draw([sin(i / 20)], 1.0 / 60.0)
@@ -172,7 +172,7 @@ if __name__ == "__main__":
         def single_series_no_wrap():
             """
 
-  """
+"""
             s = SeriesScrollPlot(window_length=200, reverse=True, overwrite=False)
             for i in range(1000):
                 s.draw(sin(i / 20), 1.0 / 60.0)
@@ -180,7 +180,7 @@ if __name__ == "__main__":
         def single_series_no_wrap_rescale():
             """
 
-  """
+"""
             s = SeriesScrollPlot(window_length=100, reverse=True, overwrite=False)
             for i in range(1000):
                 s.draw(sin(i / 100), 1.0 / 60.0)

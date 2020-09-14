@@ -55,7 +55,7 @@ def remove_null_boxes(
 
 Args:
 boxes   (ndarray): NP Array with bounding boxes as lines
-                 * BBOX[x1, y1, x2, y2]
+               * BBOX[x1, y1, x2, y2]
 labels  (labels): Corresponding labels with boxes
 
 Returns:

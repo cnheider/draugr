@@ -6,7 +6,7 @@ __author__ = "Christian Heider Nielsen"
 
 import numpy
 
-__all__ = ["atari_initializer", "initialize_parameters"]
+__all__ = ["atari_initializer", "initialise_parameters"]
 
 from draugr.torch_utilities.optimisation.parameters.initialisation.ortho_weight_init import (
     orthogonal_weights,
@@ -42,7 +42,7 @@ Initializes Linear, Conv2d, and LSTM weights.
                 param.data.zero_()
 
 
-def initialize_parameters(m: torch.nn.Module) -> None:
+def initialise_parameters(m: torch.nn.Module) -> None:
     """
 
 :param m:

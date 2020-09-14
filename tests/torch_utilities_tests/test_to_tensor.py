@@ -69,5 +69,12 @@ def test_to_tensor_float_tensor():
     assert tensor.equal(ref)
 
 
+def test_generator_to_float_tensor():
+    s = range(9)
+    ref = torch.FloatTensor([*s])
+    tensor = to_tensor(s, device="cpu")
+    assert tensor.equal(ref)
+
+
 if __name__ == "__main__":
     pass

@@ -19,11 +19,11 @@ def to_scalar(
     integration: callable = torch.mean,
 ) -> Number:
     """
-  Always detaches from computation graph
+Always detaches from computation graph
 
-  default behaviour is obj.cpu().mean().item()
+default behaviour is obj.cpu().mean().item()
 
-  :param integration:
+:param integration:
 :param obj:
 :param device:
 :return:

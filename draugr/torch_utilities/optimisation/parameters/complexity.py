@@ -15,7 +15,7 @@ import torch
 from draugr.torch_utilities.optimisation.parameters.counting import get_num_parameters
 from torch import nn
 
-__all__ = ["get_model_complexity_info"]
+__all__ = ["get_model_complexity_info", "MODULES_MAPPING"]
 
 
 def get_model_complexity_info(

@@ -14,8 +14,10 @@ from collections import Counter, deque
 __all__ = ["Writer", "global_writer", "set_global_writer"]
 
 from itertools import cycle
+from typing import Iterable
 
-from warg import Number
+from warg import is_none_or_zero_or_negative_or_mod_zero
+from warg import Number, drop_unused_kws
 
 
 class Writer(metaclass=ABCMeta):
@@ -23,15 +25,23 @@ class Writer(metaclass=ABCMeta):
 
 """
 
-    def __init__(self, *, interval: int = 1, filters=None, **kwargs):
+    @drop_unused_kws
+    def __init__(
+        self, *, interval: int = 1, filters: Iterable = None, verbose: bool = False
+    ):
         self._counter = Counter()
-        self._blip_values = iter(cycle([-2.0, 1.0, -1.0, 2.0, 0.0]))
-        # self._blip_values = iter(cycle([-1.0,1.0]))
+        self._blip_values = iter(cycle(range(2)))
         self._interval = interval
         self.filters = filters
+        self._verbose = verbose
 
     def filter(self, tag: str) -> bool:
         """
+
+    returns a boolean  value, true if to be included, False if to be excluded
+
+    tag is in filter if not None
+    and within interval for inclusion
 
 :param tag:
 :type tag:
@@ -39,7 +49,9 @@ class Writer(metaclass=ABCMeta):
 :rtype:
 """
         is_in_filters = self.filters is None or tag in self.filters
-        at_interval = self._counter[tag] % (self._interval + 1) == 0
+        at_interval = is_none_or_zero_or_negative_or_mod_zero(
+            self._interval, self._counter[tag]
+        )
         return is_in_filters and at_interval
 
     def __enter__(self):
@@ -58,7 +70,7 @@ class Writer(metaclass=ABCMeta):
             GLOBAL_WRITER = GLOBAL_WRITER_STACK.popleft()  # then previous
         else:
             GLOBAL_WRITER = None
-        self._close(exc_type, exc_val, exc_tb)
+        return self._close(exc_type, exc_val, exc_tb)
 
     def scalar(self, tag: str, value: Number, step_i: int = None) -> None:
         """
@@ -89,8 +101,10 @@ class Writer(metaclass=ABCMeta):
 """
         if step_i:
             self.scalar(tag, next(self._blip_values), step_i)
+            self.scalar(tag, next(self._blip_values), step_i)
         else:
             self.scalar(tag, next(self._blip_values))
+            self.scalar(tag, next(self._blip_values), self._counter[tag])
 
     def close(self):
         """

@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 import pathlib
 from contextlib import suppress
-from typing import Any, Mapping, Sequence, Union
+from typing import Any, Iterable, Sequence, Union
 
 import PIL
 import numpy
 import torch
 from PIL import Image
 from draugr import PROJECT_APP_PATH
+from draugr.torch_utilities import to_tensor
 from draugr.writers import Writer
 from draugr.writers.mixins import (
     BarWriterMixin,
@@ -17,7 +18,11 @@ from draugr.writers.mixins import (
     ImageWriterMixin,
 )
 from draugr.writers.mixins.figure_writer_mixin import FigureWriterMixin
+from draugr.writers.mixins.instantiation_writer_mixin import InstantiationWriterMixin
 from draugr.writers.mixins.line_writer_mixin import LineWriterMixin
+from draugr.writers.mixins.precision_recall_writer_mixin import (
+    PrecisionRecallCurveWriterMixin,
+)
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
 from matplotlib import pyplot
 from matplotlib.figure import Figure
@@ -44,6 +49,8 @@ class TensorBoardPytorchWriter(
     LineWriterMixin,
     SpectrogramWriterMixin,
     FigureWriterMixin,
+    InstantiationWriterMixin,
+    PrecisionRecallCurveWriterMixin
     # EmbedWriterMixin
 ):
     """
@@ -54,13 +61,46 @@ Provides a pytorch-tensorboard-implementation writer interface
     def __init__(
         self,
         path: Union[str, pathlib.Path] = pathlib.Path.cwd() / "Models",
-        comment: str = "",
-        **kwargs
+        summary_writer_kws=None,
+        **kwargs,
     ):
         super().__init__(**kwargs)
 
+        if summary_writer_kws is None:
+            summary_writer_kws = {}
+
         self._log_dir = path
-        self._comment = comment
+        self._summary_writer_kws = summary_writer_kws
+
+    # @passes_kws_to(SummaryWriter.add_hparams)
+    def instance(self, instance: dict, metrics: dict) -> None:
+        self.writer.add_hparams(instance, metrics)
+
+    @drop_unused_kws
+    @passes_kws_to(SummaryWriter.add_pr_curve)
+    def precision_recall_curve(
+        self,
+        tag: str,
+        predictions: Iterable,
+        truths: Iterable,
+        step: int = None,
+        **kwargs,
+    ) -> None:
+        """
+
+    :param tag:
+    :param predictions:
+    :param truths:
+    :param step:
+    :param kwargs:
+    """
+        self.writer.add_pr_curve(
+            tag,
+            to_tensor(truths, device="cpu"),
+            to_tensor(predictions, device="cpu"),
+            global_step=step,
+            **kwargs,
+        )
 
     @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_figure)
@@ -92,10 +132,13 @@ Provides a pytorch-tensorboard-implementation writer interface
         y_label: str = "Frequency [Hz]",
         x_label: str = "Time [sec]",
         plot_kws=None,
-        **kwargs
+        **kwargs,
     ) -> None:
         """
 
+    :param sample_rate:
+    :param n_fft:
+    :param step_size:
 :param tag:
 :type tag:
 :param values:
@@ -151,7 +194,7 @@ pyplot.title(tag)
         x_labels: Sequence = None,
         y_label: str = "Probabilities",
         x_label: str = "Distribution",
-        **kwargs
+        **kwargs,
     ) -> None:
         """
 
@@ -199,7 +242,7 @@ pyplot.title(tag)
         y_label: str = "Magnitude",
         x_label: str = "Sequence",
         plot_kws=None,  # Separate as parameters name collisions might occur
-        **kwargs
+        **kwargs,
     ) -> None:
         """
 
@@ -217,8 +260,6 @@ pyplot.title(tag)
 :type x_labels:
 :param y_label:
 :type y_label:
-:param title:
-:type title:
 :param kwargs:
 :type kwargs:
 """
@@ -294,7 +335,7 @@ pyplot.title(tag)
         step,
         *,
         data_formats="NCHW",
-        **kwargs
+        **kwargs,
     ) -> None:
         """
 
@@ -319,7 +360,9 @@ pyplot.title(tag)
 :rtype:
 """
         if not hasattr(self, "_writer") or not self._writer:
-            self._writer = SummaryWriter(str(self._log_dir), self._comment)
+            self._writer = SummaryWriter(str(self._log_dir), **self._summary_writer_kws)
+            if self._verbose:
+                print(f"Logging at {self._log_dir}")
         return self._writer
 
     def _open(self):

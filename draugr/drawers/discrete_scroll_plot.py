@@ -117,9 +117,9 @@ only supports a single trajectory at a time, do not supply parallel trajectories
         data = recursive_flatten_numpy(data)
         # assert isinstance(data[0], int), f'Data was {data}'
         """
-    if not isinstance(data[0], int):
-        data = data[0]
-    """
+if not isinstance(data[0], int):
+    data = data[0]
+"""
 
         data = data[: self._num_actions]
 
