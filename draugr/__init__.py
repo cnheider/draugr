@@ -2,26 +2,32 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
+import pathlib
 from logging import warning
 
 import pkg_resources
-
 from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.6.2"
+__version__ = "0.8.2"
 __doc__ = """
 Created on 27/04/2019
 
 @author: cnheider
+
 """
 
+with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
 
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
 
 
-def dist_is_editable(dist):
+from typing import Any
+
+
+def dist_is_editable(dist: Any) -> bool:
     """
 Return True if given Distribution is an editable install.
 """
@@ -49,7 +55,7 @@ else:
     DEVELOP = True
 
 
-def get_version(append_time=DEVELOP):
+def get_version(append_time: Any = DEVELOP) -> str:
     version = __version__
     if not version:
         version = os.getenv("VERSION", "0.0.0")
@@ -96,7 +102,6 @@ if __version__ is None:
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
 # from .drawers import *
-# from .writers import *
 # from .opencv_utilities import *
 # from .torch_utilities import *
 from .metrics import *
@@ -105,3 +110,4 @@ from .generators import *
 from .python_utilities import *
 from .visualisation import *
 from .numpy_utilities import *
+from .writers import *

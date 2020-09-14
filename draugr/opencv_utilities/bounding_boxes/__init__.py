@@ -10,3 +10,4 @@ __doc__ = r"""
 from .boxes_2d import *
 from .colors import *
 from .draw_boxes import *
+from .evaluation import *

@@ -7,15 +7,30 @@ __doc__ = r"""
            Created on 16/02/2020
            """
 
+
 import math
 
 __all__ = ["lambda_accumulator", "mean_accumulator", "total_accumulator"]
 
 
 def lambda_accumulator(start_value=None, lambd=0.99):
+    """
+
+:param start_value:
+:type start_value:
+:param lambd:
+:type lambd:
+:return:
+:rtype:
+"""
     assert 0 <= lambd <= 1
 
     def lambda_accumulator_(n=start_value):
+        """
+
+:param n:
+:type n:
+"""
         while True:
             new_n = yield n
             if new_n is not None:
@@ -31,7 +46,20 @@ def lambda_accumulator(start_value=None, lambd=0.99):
 
 
 def mean_accumulator(start_value=None):
+    """
+
+:param start_value:
+:type start_value:
+:return:
+:rtype:
+"""
+
     def mean_accumulator_(n=start_value):
+        """
+
+:param n:
+:type n:
+"""
         if n is not None:
             num = 1
         else:
@@ -52,7 +80,20 @@ def mean_accumulator(start_value=None):
 
 
 def total_accumulator(start_value=0):
+    """
+
+:param start_value:
+:type start_value:
+:return:
+:rtype:
+"""
+
     def total_accumulator_(total=start_value):
+        """
+
+:param total:
+:type total:
+"""
         while True:
             a = yield total
             if a:
@@ -68,6 +109,9 @@ if __name__ == "__main__":
     samples = 10000
 
     def stest_1():
+        """
+
+"""
         lmbd_acc = lambda_accumulator()
 
         print(next(lmbd_acc))
@@ -78,6 +122,9 @@ if __name__ == "__main__":
                 print(next(lmbd_acc))
 
     def stest_2():
+        """
+
+"""
         mean_acc = mean_accumulator()
 
         print(next(mean_acc))
@@ -88,6 +135,9 @@ if __name__ == "__main__":
                 print(next(mean_acc))
 
     def stest_3():
+        """
+
+"""
         mean_acc = mean_accumulator()
         print(next(mean_acc))
 
@@ -97,6 +147,9 @@ if __name__ == "__main__":
                 print(next(mean_acc))
 
     def stest_4():
+        """
+
+"""
         lmbd_acc = lambda_accumulator()
 
         print(next(lmbd_acc))
@@ -107,6 +160,9 @@ if __name__ == "__main__":
                 print(next(lmbd_acc))
 
     def stest_lambda_zero():
+        """
+
+"""
         lmbd_acc = lambda_accumulator(lambd=0)
 
         print(next(lmbd_acc))
@@ -117,6 +173,9 @@ if __name__ == "__main__":
                 print(next(lmbd_acc))
 
     def stest_lambda_zero_input():
+        """
+
+"""
         lmbd_acc = lambda_accumulator()
 
         print(next(lmbd_acc))
@@ -127,6 +186,9 @@ if __name__ == "__main__":
                 print(next(lmbd_acc))
 
     def stest_5():
+        """
+
+"""
         total = total_accumulator()
 
         print(next(total))
@@ -138,6 +200,9 @@ if __name__ == "__main__":
         print(next(total))
 
     def stest_6():
+        """
+
+"""
         total = total_accumulator()
 
         print(next(total))

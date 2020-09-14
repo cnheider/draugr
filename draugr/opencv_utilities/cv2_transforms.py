@@ -1,17 +1,13 @@
 import types
-from typing import Tuple
+from typing import Any, List, Tuple
 
 import cv2
 import numpy
-import numpy as np
 import torch
+from PIL.ImageTransform import Transform
 from numpy import random
-from torchvision import transforms
 
 __all__ = [
-    "intersect",
-    "jaccard_numpy",
-    "remove_empty_boxes",
     "CV2Compose",
     "Lambda",
     "ConvertFromInts",
@@ -34,102 +30,63 @@ __all__ = [
     "CV2PhotometricDistort",
 ]
 
-
-def intersect(box_a, box_b) -> numpy.ndarray:
-    max_xy = np.minimum(box_a[:, 2:], box_b[2:])
-    min_xy = np.maximum(box_a[:, :2], box_b[:2])
-    inter = np.clip((max_xy - min_xy), a_min=0, a_max=np.inf)
-    return inter[:, 0] * inter[:, 1]
-
-
-def jaccard_numpy(box_a, box_b) -> numpy.ndarray:
-    """Compute the jaccard overlap of two sets of boxes.  The jaccard overlap
-is simply the intersection over union of two boxes.
-E.g.:
-  A ∩ B / A ∪ B = A ∩ B / (area(A) + area(B) - A ∩ B)
-Args:
-  box_a: Multiple bounding boxes, Shape: [num_boxes,4]
-  box_b: Single bounding box, Shape: [4]
-Return:
-  jaccard overlap: Shape: [box_a.shape[0], box_a.shape[1]]
-"""
-    inter = intersect(box_a, box_b)
-    area_a = (box_a[:, 2] - box_a[:, 0]) * (box_a[:, 3] - box_a[:, 1])  # [A,B]
-    area_b = (box_b[2] - box_b[0]) * (box_b[3] - box_b[1])  # [A,B]
-    union = area_a + area_b - inter
-    return inter / union  # [A,B]
-
-
-def remove_empty_boxes(boxes, labels) -> Tuple[numpy.ndarray, numpy.ndarray]:
-    """Removes bounding boxes of W or H equal to 0 and its labels
-
-Args:
-  boxes   (ndarray): NP Array with bounding boxes as lines
-                     * BBOX[x1, y1, x2, y2]
-  labels  (labels): Corresponding labels with boxes
-
-Returns:
-  ndarray: Valid bounding boxes
-  ndarray: Corresponding labels
-"""
-    del_boxes = []
-    for idx, box in enumerate(boxes):
-        if box[0] == box[2] or box[1] == box[3]:
-            del_boxes.append(idx)
-
-    return np.delete(boxes, del_boxes, 0), np.delete(labels, del_boxes)
+from draugr.opencv_utilities.bounding_boxes.colors import Triple
+from draugr.opencv_utilities.bounding_boxes.evaluation import (
+    jaccard_overlap_numpy,
+    remove_null_boxes,
+)
 
 
 class CV2Compose(object):
     """Composes several augmentations together.
 Args:
-  transforms (List[Transform]): list of transforms to compose.
+transforms (List[Transform]): list of transforms to compose.
 Example:
-  >>> augmentations.Compose([
-  >>>     transforms.CenterCrop(10),
-  >>>     transforms.ToTensor(),
-  >>> ])
+>>> augmentations.Compose([
+>>>     transforms.CenterCrop(10),
+>>>     transforms.ToTensor(),
+>>> ])
 """
 
-    def __init__(self, transforms):
-        self.transforms = transforms
+    def __init__(self, transforms: List[Transform]):
+        self._transforms = transforms
 
-    def __call__(self, img, boxes=None, labels=None):
-        for t in self.transforms:
-            img, boxes, labels = t(img, boxes, labels)
+    def __call__(self, img, boxes=None, labels=None) -> Tuple:
+        for transform in self._transforms:
+            img, boxes, labels = transform(img, boxes, labels)
             if boxes is not None:
-                boxes, labels = remove_empty_boxes(boxes, labels)
+                boxes, labels = remove_null_boxes(boxes, labels)
         return img, boxes, labels
 
 
 class Lambda(object):
     """Applies a lambda as a transform."""
 
-    def __init__(self, lambd):
+    def __init__(self, lambd: callable):
         assert isinstance(lambd, types.LambdaType)
         self.lambd = lambd
 
-    def __call__(self, img, boxes=None, labels=None):
+    def __call__(self, img: Any, boxes: Any = None, labels: Any = None):
         return self.lambd(img, boxes, labels)
 
 
 class ConvertFromInts(object):
-    def __call__(self, image, boxes=None, labels=None):
-        return image.astype(np.float32), boxes, labels
+    def __call__(self, image: Any, boxes: Any = None, labels: Any = None) -> Tuple:
+        return image.astype(numpy.float32), boxes, labels
 
 
 class SubtractMeans(object):
-    def __init__(self, mean):
-        self.mean = np.array(mean, dtype=np.float32)
+    def __init__(self, mean: Tuple):
+        self.mean = numpy.array(mean, dtype=numpy.float32)
 
-    def __call__(self, image, boxes=None, labels=None):
-        image = image.astype(np.float32)
+    def __call__(self, image: Any, boxes: Any = None, labels: Any = None) -> Tuple:
+        image = image.astype(numpy.float32)
         image -= self.mean
-        return image.astype(np.float32), boxes, labels
+        return image.astype(numpy.float32), boxes, labels
 
 
 class CV2ToAbsoluteCoords(object):
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(self, image: Any, boxes: Any = None, labels: Any = None) -> Tuple:
         height, width, channels = image.shape
         boxes[:, 0] *= width
         boxes[:, 2] *= width
@@ -140,7 +97,12 @@ class CV2ToAbsoluteCoords(object):
 
 
 class CV2ToPercentCoords(object):
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         height, width, channels = image.shape
         boxes[:, 0] /= width
         boxes[:, 2] /= width
@@ -151,38 +113,53 @@ class CV2ToPercentCoords(object):
 
 
 class CV2Resize(object):
-    def __init__(self, size=300):
-        self.size = size
+    def __init__(self, size: int = 300):
+        self._size = size
 
-    def __call__(self, image, boxes=None, labels=None):
-        image = cv2.resize(image, (self.size, self.size))
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
+        image = cv2.resize(image, (self._size, self._size))
         return image, boxes, labels
 
 
 class CV2RandomSaturation(object):
-    def __init__(self, lower=0.5, upper=1.5):
+    def __init__(self, lower: float = 0.5, upper: float = 1.5):
         self.lower = lower
         self.upper = upper
         assert self.upper >= self.lower, "contrast upper must be >= lower."
         assert self.lower >= 0, "contrast lower must be non-negative."
 
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         if random.randint(2):
-            image[:, :, 1] *= random.uniform(self.lower, self.upper)
+            image[..., 1] *= random.uniform(self.lower, self.upper)
 
         return image, boxes, labels
 
 
 class CV2RandomHue(object):
-    def __init__(self, delta=18.0):
+    def __init__(self, delta: float = 18.0):
         assert delta >= 0.0 and delta <= 360.0
         self.delta = delta
 
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         if random.randint(2):
-            image[:, :, 0] += random.uniform(-self.delta, self.delta)
-            image[:, :, 0][image[:, :, 0] > 360.0] -= 360.0
-            image[:, :, 0][image[:, :, 0] < 0.0] += 360.0
+            image[..., 0] += random.uniform(-self.delta, self.delta)
+            image[..., 0][image[..., 0] > 360.0] -= 360.0
+            image[..., 0][image[..., 0] < 0.0] += 360.0
         return image, boxes, labels
 
 
@@ -190,7 +167,12 @@ class CV2RandomLightingNoise(object):
     def __init__(self):
         self.perms = ((0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0))
 
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         if random.randint(2):
             swap = self.perms[random.randint(len(self.perms))]
             shuffle = CV2SwapChannels(swap)  # shuffle channels
@@ -203,7 +185,12 @@ class CV2ConvertColor(object):
         self.transform = transform
         self.current = current
 
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         if self.current == "BGR" and self.transform == "HSV":
             image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         elif self.current == "RGB" and self.transform == "HSV":
@@ -220,14 +207,19 @@ class CV2ConvertColor(object):
 
 
 class CV2RandomContrast(object):
-    def __init__(self, lower=0.5, upper=1.5):
+    def __init__(self, lower: float = 0.5, upper: float = 1.5):
         self.lower = lower
         self.upper = upper
         assert self.upper >= self.lower, "contrast upper must be >= lower."
         assert self.lower >= 0, "contrast lower must be non-negative."
 
     # expects float image
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         if random.randint(2):
             alpha = random.uniform(self.lower, self.upper)
             image *= alpha
@@ -235,12 +227,17 @@ class CV2RandomContrast(object):
 
 
 class CV2RandomBrightness(object):
-    def __init__(self, delta=32):
+    def __init__(self, delta: float = 32):
         assert delta >= 0.0
         assert delta <= 255.0
         self.delta = delta
 
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         if random.randint(2):
             delta = random.uniform(-self.delta, self.delta)
             image += delta
@@ -248,18 +245,28 @@ class CV2RandomBrightness(object):
 
 
 class CV2ToImage(object):
-    def __call__(self, tensor, boxes=None, labels=None):
+    def __call__(
+        self,
+        tensor: torch.Tensor,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         return (
-            tensor.cpu().numpy().astype(np.float32).transpose((1, 2, 0)),
+            tensor.cpu().numpy().astype(numpy.float32).transpose((1, 2, 0)),
             boxes,
             labels,
         )
 
 
 class CV2ToTensor(object):
-    def __call__(self, cvimage, boxes=None, labels=None):
+    def __call__(
+        self,
+        cvimage: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         return (
-            torch.from_numpy(cvimage.astype(np.float32)).permute(2, 0, 1),
+            torch.from_numpy(cvimage.astype(numpy.float32)).permute(2, 0, 1),
             boxes,
             labels,
         )
@@ -268,15 +275,15 @@ class CV2ToTensor(object):
 class CV2RandomSampleCrop(object):
     """Crop
 Arguments:
-  img (Image): the image being input during training
-  boxes (Tensor): the original bounding boxes in pt form
-  labels (Tensor): the class labels for each bbox
-  mode (float tuple): the min and max jaccard overlaps
+img (Image): the image being input during training
+boxes (Tensor): the original bounding boxes in pt form
+labels (Tensor): the class labels for each bbox
+mode (float tuple): the min and max jaccard overlaps
 Return:
-  (img, boxes, classes)
-      img (Image): the cropped image
-      boxes (Tensor): the adjusted bounding boxes in pt form
-      labels (Tensor): the class labels for each bbox
+(img, boxes, classes)
+img (Image): the cropped image
+boxes (Tensor): the adjusted bounding boxes in pt form
+labels (Tensor): the class labels for each bbox
 """
 
     def __init__(self):
@@ -292,7 +299,12 @@ Return:
             (None, None),
         )
 
-    def __call__(self, image, boxes=None, labels=None):
+    def __call__(
+        self,
+        image: numpy.ndarray,
+        boxes: numpy.ndarray = None,
+        labels: numpy.ndarray = None,
+    ) -> Tuple:
         # guard against no boxes
         if boxes is not None and boxes.shape[0] == 0:
             return image, boxes, labels
@@ -324,10 +336,10 @@ Return:
                 top = random.uniform(height - h)
 
                 # convert to integer rect x1,y1,x2,y2
-                rect = np.array([int(left), int(top), int(left + w), int(top + h)])
+                rect = numpy.array([int(left), int(top), int(left + w), int(top + h)])
 
                 # calculate IoU (jaccard overlap) b/t the cropped and gt boxes
-                overlap = jaccard_numpy(boxes, rect)
+                overlap = jaccard_overlap_numpy(boxes, rect)
 
                 # is min and max overlap constraint satisfied? if not try again
                 if overlap.max() < min_iou or overlap.min() > max_iou:
@@ -359,11 +371,11 @@ Return:
                 current_labels = labels[mask]
 
                 # should we use the box left and top corner or the crop's
-                current_boxes[:, :2] = np.maximum(current_boxes[:, :2], rect[:2])
+                current_boxes[:, :2] = numpy.maximum(current_boxes[:, :2], rect[:2])
                 # adjust to crop (by substracting crop's left,top)
                 current_boxes[:, :2] -= rect[:2]
 
-                current_boxes[:, 2:] = np.minimum(current_boxes[:, 2:], rect[2:])
+                current_boxes[:, 2:] = numpy.minimum(current_boxes[:, 2:], rect[2:])
                 # adjust to crop (by substracting crop's left,top)
                 current_boxes[:, 2:] -= rect[:2]
 
@@ -371,10 +383,12 @@ Return:
 
 
 class CV2Expand(object):
-    def __init__(self, mean):
+    def __init__(self, mean: float):
         self.mean = mean
 
-    def __call__(self, image, boxes, labels):
+    def __call__(
+        self, image: numpy.ndarray, boxes: numpy.ndarray, labels: numpy.ndarray
+    ) -> Tuple:
         if random.randint(2):
             return image, boxes, labels
 
@@ -383,10 +397,10 @@ class CV2Expand(object):
         left = random.uniform(0, width * ratio - width)
         top = random.uniform(0, height * ratio - height)
 
-        expand_image = np.zeros(
+        expand_image = numpy.zeros(
             (int(height * ratio), int(width * ratio), depth), dtype=image.dtype
         )
-        expand_image[:, :, :] = self.mean
+        expand_image[..., :] = self.mean
         expand_image[
             int(top) : int(top + height), int(left) : int(left + width)
         ] = image
@@ -400,7 +414,9 @@ class CV2Expand(object):
 
 
 class CV2RandomMirror(object):
-    def __call__(self, image, boxes, classes):
+    def __call__(
+        self, image: numpy.ndarray, boxes: numpy.ndarray, classes: numpy.ndarray
+    ) -> Tuple:
         _, width, _ = image.shape
         if random.randint(2):
             image = image[:, ::-1]
@@ -413,14 +429,14 @@ class CV2SwapChannels(object):
     """Transforms a tensorized image by swapping the channels in the order
 specified in the swap tuple.
 Args:
-  swaps (int triple): final order of channels
-      eg: (2, 1, 0)
+swaps (int triple): final order of channels
+eg: (2, 1, 0)
 """
 
-    def __init__(self, swaps):
+    def __init__(self, swaps: Triple):
         self.swaps = swaps
 
-    def __call__(self, image):
+    def __call__(self, image: numpy.ndarray) -> numpy.ndarray:
         """
 Args:
 image (Tensor): image tensor to be transformed
@@ -430,8 +446,8 @@ a tensor with channels swapped according to swap
         # if torch.is_tensor(image):
         #     image = image.data.cpu().numpy()
         # else:
-        #     image = np.array(image)
-        image = image[:, :, self.swaps]
+        #     image = numpy.array(image)
+        image = image[..., self.swaps]
         return image
 
 
@@ -448,7 +464,9 @@ class CV2PhotometricDistort(object):
         self.rand_brightness = CV2RandomBrightness()
         self.rand_light_noise = CV2RandomLightingNoise()
 
-    def __call__(self, image, boxes, labels):
+    def __call__(
+        self, image: numpy.ndarray, boxes: numpy.ndarray, labels: numpy.ndarray
+    ) -> Tuple:
         im = image.copy()
         im, boxes, labels = self.rand_brightness(im, boxes, labels)
         if random.randint(2):

@@ -4,8 +4,8 @@ from typing import Iterable, Sequence, Union
 
 import numpy
 import torch
+import torchvision
 from PIL.Image import Image
-from torchvision.transforms import functional
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
@@ -14,11 +14,11 @@ __all__ = ["to_tensor"]
 
 # @passes_kws_to(torch.Tensor.to)
 def to_tensor(
-    obj: Union[torch.Tensor, numpy.ndarray, Iterable, int, float],
-    dtype=torch.float,
-    device="cpu",
+    obj: Union[torch.Tensor, numpy.ndarray, Iterable, Sequence, int, float],
+    dtype: torch.dtype = torch.float,
+    device: Union[str, torch.device] = "cpu",
     **kwargs
-):
+) -> torch.Tensor:
     """
 
 :param obj:
@@ -33,7 +33,7 @@ def to_tensor(
         return obj.to(dtype=dtype, device=device, **kwargs)
 
     if isinstance(obj, Image):
-        return functional.to_tensor(obj)
+        return torchvision.transforms.functional.to_tensor(obj)
 
     if isinstance(obj, numpy.ndarray):
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:

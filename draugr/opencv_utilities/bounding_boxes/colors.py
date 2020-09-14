@@ -20,4 +20,11 @@ def compute_color_for_labels(
     """
 Simple function that adds fixed color depending on the class
 """
-    return tuple([int((p * (label ** 2 - label + 1)) % 255) for p in palette])
+    return (
+        *[int(((label > 0) * p * (label ** 2 - label + 1)) % 255) for p in palette],
+    )
+
+
+if __name__ == "__main__":
+    for i in range(9):
+        print(compute_color_for_labels(i))

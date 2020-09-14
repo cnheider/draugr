@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Sized
+from typing import Sequence
 
 import torch
 from torch.utils.data import Dataset
@@ -15,9 +15,13 @@ __all__ = ["RandomDataset"]
 
 
 class RandomDataset(Dataset):
-    def __init__(self, size: Sized, length: int):
+    """
+
+"""
+
+    def __init__(self, nd_size: Sequence, length: int):
         self.len = length
-        self.data = torch.randn((length, *size))
+        self.data = torch.randn((length, *nd_size))
 
     def __getitem__(self, index):
         return self.data[index]

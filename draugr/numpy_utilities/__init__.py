@@ -8,3 +8,5 @@ __doc__ = r"""
            """
 
 from .channel_transform import *
+from .manipulation import *
+from .resize import *

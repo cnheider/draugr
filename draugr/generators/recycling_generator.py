@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import random
-from typing import Iterable, Sized
+from typing import Iterable, Sequence
 
 import numpy
 
@@ -22,20 +22,20 @@ exhausted
 :param iterable:
 :return:
 """
-    if not isinstance(iterable, Sized):
+    if not isinstance(iterable, Sequence):
         iterable = list(iterable)
     while True:
         for element in random.sample(iterable, len(iterable)):
             yield element
 
 
-def batched_recycle(sized: Sized, batch_size: int = 32):
+def batched_recycle(sized: Sequence, batch_size: int = 32):
     """Batches and re-cycles an array with a different permutation"""
     if isinstance(sized, numpy.ndarray):
         while True:
             yield sized[numpy.random.choice(sized.shape[0], batch_size, replace=False)]
     else:
-        if not isinstance(sized, Sized):
+        if not isinstance(sized, Sequence):
             sized = [*sized]
         while True:
             yield random.sample(sized, batch_size)

@@ -2,7 +2,13 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
-__doc__ = ""
+__doc__ = r"""
+"""
+
+import pathlib
+
+with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
 
 import warnings
 
@@ -12,6 +18,5 @@ warnings.filterwarnings(
 # the time that their system is constantly being deprecated..
 from .launcher import *
 from .tensorboard_pytorch_writer import *
-from .image_writer import *
 
 # from .tensorboard_x_writer import *

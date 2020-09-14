@@ -12,13 +12,26 @@ import torch
 __all__ = ["standardise"]
 
 
-def normalise(x: torch.tensor, eps=1e-6) -> torch.tensor:
-    return
+def minus_one_one_unnormalise(
+    x: torch.tensor, low: float = 0, high: float = 1
+) -> torch.tensor:
+    act_k = (high - low) / 2.0
+    act_b = (high + low) / 2.0
+    return act_k * x + act_b
 
 
-def standardise(x: torch.tensor, eps=1e-6) -> torch.tensor:
+def minus_one_one_normalise(
+    x: torch.tensor, low: float = 0, high: float = 1
+) -> torch.tensor:
+    act_k_inv = 2.0 / (high - low)
+    act_b = (high + low) / 2.0
+    return act_k_inv * (x - act_b)
+
+
+def standardise(x: torch.tensor, eps: float = 1e-6) -> torch.tensor:
     """
 
+:param eps:
 :param x:
 :return:
 """
@@ -37,3 +50,7 @@ if __name__ == "__main__":
     print(standardise(torch.ones((1, 10)) * torch.rand((1, 10))))
 
     print(standardise(torch.rand((1, 10))))
+
+    print(minus_one_one_normalise(7, 0, 10))
+    print(minus_one_one_unnormalise(0.4, 0, 10))
+    print(minus_one_one_normalise(minus_one_one_unnormalise(3.4, 3, 4), 3, 4))

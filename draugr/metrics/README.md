@@ -1,4 +1,5 @@
-# OpenCV Utilities
+# Metrics
 
-
-- Image Resizing
+- Aggregation, accumulation and collection
+- Summaries
+- Plotting

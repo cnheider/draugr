@@ -7,14 +7,14 @@ __doc__ = r"""
            Created on 10/12/2019
            """
 
-import gym
-from IPython.display import display
+from typing import Sequence
+
 from matplotlib import animation, pyplot
 
 __all__ = ["replay_frames"]
 
 
-def replay_frames(frames, interval=100):
+def replay_frames(frames: Sequence, interval: int = 100, Ipython: bool = False):
     """
 Displays a list of frames as a gif, with controls
 """
@@ -28,20 +28,30 @@ Displays a list of frames as a gif, with controls
     anim = animation.FuncAnimation(
         pyplot.gcf(), animate, frames=len(frames), interval=interval
     )
-    display(anim)
+    if Ipython:
+        from IPython.display import display
+
+        display(anim)
+    else:
+        pyplot.show()
 
 
 if __name__ == "__main__":
 
-    env = gym.make("Pendulum-v0")
-    state = env.reset()
+    def main():
+        import gym
 
-    frames = []
-    done = False
-    while not done:
-        frames.append(env.render())
+        env = gym.make("Pendulum-v0")
+        state = env.reset()
 
-        state, reward, done, info = env.step(env.action_space.sample())
-    env.close()
+        frames = []
+        done = False
+        while not done:
+            frames.append(env.render())
 
-    replay_frames(frames)
+            state, reward, done, info = env.step(env.action_space.sample())
+        env.close()
+
+        replay_frames(frames)
+
+    main()

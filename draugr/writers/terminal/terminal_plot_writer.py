@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import Union
 
-from tqdm import tqdm
-
+import numpy
+import torch
+from PIL import Image
 from draugr.metrics import MetricCollection
+from draugr.writers.mixins import ImageWriterMixin
+from draugr.writers.terminal.terminal_image_renderer import (
+    render_image,
+    terminalise_image,
+)
 from draugr.writers.terminal.terminal_plot import styled_terminal_plot_stats_shared_x
 from draugr.writers.writer import Writer
+from tqdm import tqdm
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -16,12 +24,28 @@ Created on 27/04/2019
 __all__ = ["TerminalPlotWriter"]
 
 
-class TerminalPlotWriter(Writer):
+class TerminalPlotWriter(Writer, ImageWriterMixin):
+    """
+
+"""
+
+    def image(
+        self,
+        tag: str,
+        data: Union[numpy.ndarray, torch.Tensor, Image.Image],
+        step,
+        *,
+        dataformats: str = "NCHW",
+        **kwargs,
+    ) -> None:
+        self.E.write(terminalise_image(render_image(data, scale=(28, 28))))
+
     def _open(self):
         self.E = tqdm()
+        return self
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
-        self.E.close()
+        return self.E.close()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -60,17 +84,18 @@ if __name__ == "__main__":
 
     with TerminalPlotWriter() as w:
         w.scalar("What", 4)
+        w.image("bro", numpy.random.randint(0, 255, (28, 28, 3)), 0)
 
     '''
 def train_episodically_old(self,
-                     env,
-                     test_env,
-                     *,
-                     rollouts=2000,
-                     render=False,
-                     render_frequency=100,
-                     stat_frequency=10,
-                     ):
+               env,
+               test_env,
+               *,
+               rollouts=2000,
+               render=False,
+               render_frequency=100,
+               stat_frequency=10,
+               ):
 
 E = range(1, rollouts)
 E = tqdm(E, f"Episode: {1}", leave=False, disable=not render)
@@ -84,15 +109,15 @@ if episode_i % stat_frequency == 0:
 draugr.styled_terminal_plot_stats_shared_x(stats, printer=E.write)
 
 E.set_description(
-    f"Epi: {episode_i}, "
-    f"Sig: {stats.signal.running_value[-1]:.3f}, "
-    f"Dur: {stats.duration.running_value[-1]:.1f}"
-    )
+f"Epi: {episode_i}, "
+f"Sig: {stats.signal.running_value[-1]:.3f}, "
+f"Dur: {stats.duration.running_value[-1]:.1f}"
+)
 
 if render and episode_i % render_frequency == 0:
 signal, dur, entropy, *extras = self.rollout(
-    initial_state, env, render=render
-    )
+initial_state, env, render=render
+)
 else:
 signal, dur, entropy, *extras = self.rollout(initial_state, env)
 
@@ -107,14 +132,14 @@ return NOD(model=self._distribution_parameter_regressor, stats=stats)
 
 
 def train_episodically_old(self,
-                     _environment,
-                     *,
-                     rollouts=10000,
-                     render=False,
-                     render_frequency=100,
-                     stat_frequency=100,
-                     **kwargs,
-                     ):
+               _environment,
+               *,
+               rollouts=10000,
+               render=False,
+               render_frequency=100,
+               stat_frequency=100,
+               **kwargs,
+               ):
 """
 :param _environment:
 :type _environment:,0
@@ -143,21 +168,21 @@ initial_state = _environment.reset()
 if episode_i % stat_frequency == 0:
 draugr.styled_terminal_plot_stats_shared_x(stats, printer=E.write)
 E.set_description(
-    f"Epi: {episode_i}, "
-    f"Sig: {stats.signal.running_value[-1]:.3f}, "
-    f"Dur: {stats.duration.running_value[-1]:.1f}, "
-    f"TD Err: {stats.td_error.running_value[-1]:.3f}, "
-    f"Eps: {stats.epsilon.running_value[-1]:.3f}"
-    )
+f"Epi: {episode_i}, "
+f"Sig: {stats.signal.running_value[-1]:.3f}, "
+f"Dur: {stats.duration.running_value[-1]:.1f}, "
+f"TD Err: {stats.td_error.running_value[-1]:.3f}, "
+f"Eps: {stats.epsilon.running_value[-1]:.3f}"
+)
 
 if render and episode_i % render_frequency == 0:
 signal, dur, td_error, *extras = self.rollout(
-    initial_state, _environment, render=render
-    )
+initial_state, _environment, render=render
+)
 else:
 signal, dur, td_error, *extras = self.rollout(
-    initial_state, _environment
-    )
+initial_state, _environment
+)
 
 stats.append(signal, dur, td_error, self._current_eps_threshold)
 

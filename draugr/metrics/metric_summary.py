@@ -22,14 +22,31 @@ class MetricSummary:
         self.running_variance = 0
 
     def append(self, val):
+        """
+
+:param val:
+:type val:
+"""
         self._values.append(val)
         self.length += 1
 
     @property
     def values(self):
+        """
+
+:return:
+:rtype:
+"""
         return self._values
 
     def moving_average(self, window_size=100):
+        """
+
+:param window_size:
+:type window_size:
+:return:
+:rtype:
+"""
         if self.length >= window_size:
             return S.mean(self._values[-window_size:])
         elif self.length > 0:

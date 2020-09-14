@@ -6,5 +6,3 @@ __doc__ = r"""
 
            Created on 03/04/2020
            """
-
-from .metric_overview_plot import *

@@ -13,6 +13,10 @@ __all__ = ["MetricCollection"]
 
 
 class MetricCollection(dict):
+    """
+
+"""
+
     def __init__(
         self,
         metrics=("signal", "length"),
@@ -34,11 +38,23 @@ class MetricCollection(dict):
             )
 
     def add_metric(self, name):
+        """
+
+:param name:
+:type name:
+"""
         self._metrics[name] = MetricAggregator(
             measures=self._measures, keep_measure_history=self._keep_measure_history
         )
 
     def append(self, *args, **kwargs):
+        """
+
+:param args:
+:type args:
+:param kwargs:
+:type kwargs:
+"""
         for (arg, (k, v)) in zip(args, self._metrics.items()):
             self._metrics[k].append(arg)
 
@@ -46,6 +62,11 @@ class MetricCollection(dict):
             self._metrics[k].append(v)
 
     def remove_metric(self, name):
+        """
+
+:param name:
+:type name:
+"""
         del self._metrics[name]
 
     def __len__(self):
@@ -53,6 +74,11 @@ class MetricCollection(dict):
 
     @property
     def metrics(self):
+        """
+
+:return:
+:rtype:
+"""
         return self._metrics
 
     def __getattr__(self, name):
@@ -74,15 +100,30 @@ class MetricCollection(dict):
         return self.metrics[item]
 
     def keys(self):
+        """
+
+:return:
+:rtype:
+"""
         return self.metrics.keys()
 
     def __contains__(self, item):
         return item in self.metrics
 
     def items(self):
+        """
+
+:return:
+:rtype:
+"""
         return self.metrics.items()
 
     def save(self, **kwargs):
+        """
+
+:param kwargs:
+:type kwargs:
+"""
         for key, value in self._metrics.items():
             value.save(stat_name=key, **kwargs)
 

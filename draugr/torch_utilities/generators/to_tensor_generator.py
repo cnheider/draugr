@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, Sized
+from typing import Iterable, Iterator, Tuple
 
-from torch.utils.data import DataLoader
-
+import numpy
+import torch
 from draugr.torch_utilities.datasets import NonSequentialDataset
 from draugr.torch_utilities.tensors import to_tensor
+from torch.utils.data import DataLoader
 from warg import passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
@@ -16,7 +17,7 @@ __doc__ = r"""
 __all__ = [
     "to_tensor_generator",
     "batch_generator_torch",
-    "to_device_tensor_iterator_shitty",
+    "to_device_iterator",
 ]
 
 
@@ -43,18 +44,29 @@ def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs
     return
 
 
-def to_device_tensor_iterator_shitty(data_iterator, device):
-    while True:
-        yield (to_tensor(i, device=device) for i in next(data_iterator))
+def to_device_iterator(data_iterator: Iterator, device: torch.device) -> Tuple:
+    """
+
+  :param data_iterator:
+  :param device:
+  """
+    if isinstance(data_iterator, Iterable):
+        data_iterator = iter(data_iterator)
+    try:
+        while True:
+            yield (to_tensor(i, device=device) for i in next(data_iterator))
+    except StopIteration:
+        pass
 
 
 @passes_kws_to(DataLoader)
 def batch_generator_torch(
-    sized: Sized, mini_batches: int = 10, shuffle: bool = True, **kwargs
+    sized: numpy.ndarray, mini_batches: int = 10, shuffle: bool = True, **kwargs
 ) -> DataLoader:
     """
 
-:param dataset:
+  :param sized:
+  :return:
 :param mini_batches:
 :param shuffle:
 :param kwargs:
@@ -76,37 +88,54 @@ if __name__ == "__main__":
     def s():
 
         a = iter(numpy.random.sample((5, 5, 5)))
-        for a in to_device_tensor_iterator_shitty(a, "cpu"):
+        for a in to_device_iterator(a, "cpu"):
             d, *_ = a
             print(d)
             print(type(d))
 
-    a_transform = transforms.Compose(
-        [
-            transforms.ToPILImage("RGB"),
-            transforms.Resize(224),
-            transforms.CenterCrop(224),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-        ]
-    )
+    def sdiaj():
+        # a = numpy.random.sample((5, 5, 5))
+        from draugr.torch_utilities.datasets import RandomDataset
 
-    channels_in = 3
-    channels_out = 3
+        a = DataLoader(RandomDataset((10, 2), 100), batch_size=4)
+        for _ in range(4):
+            for i, a in enumerate(to_device_iterator(a, "cpu")):
+                d, *_ = a
+                print(d)
+                print(type(d))
 
-    samples = 10
-    device = "cuda"
-    batches = 3
-    batch_size = 32
-    data_shape = (batches * batch_size, 256, 256, channels_in)
+    def asijda():
+        a_transform = transforms.Compose(
+            [
+                transforms.ToPILImage("RGB"),
+                transforms.Resize(224),
+                transforms.CenterCrop(224),
+                transforms.RandomHorizontalFlip(),
+                transforms.ToTensor(),
+            ]
+        )
 
-    generator = to_tensor_generator(
-        inner_map(
-            a_transform, batched_recycle(numpy.random.sample(data_shape), batch_size)
-        ),
-        device=device,
-    )
+        channels_in = 3
+        channels_out = 3
 
-    for i, a in enumerate(generator):
-        print(a)
-        break
+        samples = 10
+        device = "cuda"
+        batches = 3
+        batch_size = 32
+        data_shape = (batches * batch_size, 256, 256, channels_in)
+
+        generator = to_tensor_generator(
+            inner_map(
+                a_transform,
+                batched_recycle(numpy.random.sample(data_shape), batch_size),
+            ),
+            device=device,
+        )
+
+        for i, a in enumerate(generator):
+            print(a)
+            break
+
+    # s()
+    sdiaj()
+    # asijda()

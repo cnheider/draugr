@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from draugr.writers import MockWriter
+from draugr import MockWriter, global_writer, set_global_writer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -61,3 +61,23 @@ def test_invalid_step_type_scalars(tag, val, step):
     except Exception as e:
         print(e)
         assert True
+
+
+def test_global_writer():
+    with MockWriter() as writer_o:
+        mw2 = MockWriter()
+        assert writer_o == global_writer()
+        assert mw2 != global_writer()
+        assert writer_o != mw2
+
+        with MockWriter() as writer_i:
+            assert writer_i == global_writer()
+            assert writer_o != global_writer()
+            assert writer_o != mw2
+
+        assert writer_o == global_writer()
+        assert writer_o != mw2
+
+        set_global_writer(mw2)
+        assert mw2 == global_writer()
+        assert writer_o != global_writer()

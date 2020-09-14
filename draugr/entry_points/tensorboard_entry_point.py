@@ -7,7 +7,14 @@ __doc__ = ""
 
 
 def main(keep_alive: bool = True) -> str:
-    from draugr.torch_utilities.writers.tensorboard.launcher import launch_tensorboard
+    """
+
+:param keep_alive:
+:type keep_alive:
+:return:
+:rtype:
+"""
+    from draugr.torch_utilities import launch_tensorboard
     from contextlib import suppress
     from time import sleep
 
@@ -16,8 +23,12 @@ def main(keep_alive: bool = True) -> str:
     import argparse
 
     parser = argparse.ArgumentParser(description="Option for launching tensorboard")
+    parser.add_argument("NAME", type=str, help="App name to open AppPath for")
     parser.add_argument(
-        "APP_NAME", metavar="Name", type=str, help="App name to open AppPath for"
+        "--author", type=str, help="App author to open AppPath for", default=None
+    )
+    parser.add_argument(
+        "--version", type=str, help="App version to open AppPath for", default=None
     )
     parser.add_argument(
         "--clean",
@@ -30,7 +41,7 @@ def main(keep_alive: bool = True) -> str:
     )
     args = parser.parse_args()
 
-    PROJECT_APP_PATH = AppPath(args.APP_NAME)
+    PROJECT_APP_PATH = AppPath(args.NAME, args.author, args.version)
 
     log_dir = PROJECT_APP_PATH.user_log
 

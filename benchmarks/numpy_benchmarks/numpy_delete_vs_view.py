@@ -7,8 +7,9 @@ __doc__ = r"""
            Created on 03/04/2020
            """
 
-import numpy
 import time
+
+import numpy
 
 
 def test_perf_delete_vs_view():

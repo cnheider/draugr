@@ -12,7 +12,6 @@ from typing import Tuple
 import cv2
 import numpy
 from PIL import Image
-
 from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.python_utilities.colors import RGB
 
@@ -23,7 +22,7 @@ def find_contours(*args, **kwargs):
     """
 Wraps cv2.findContours to maintain compatibility between versions 3 and 4
 Returns:
-  contours, hierarchy
+contours, hierarchy
 """
     if cv2.__version__.startswith("4"):
         contours, hierarchy = cv2.findContours(*args, **kwargs)
@@ -46,23 +45,23 @@ def draw_masks(
 ) -> numpy.ndarray:
     """
 Args:
-  image: numpy array image, shape should be (height, width, channel)
-  masks: (N, 1, Height, Width)
-  labels: mask label
-  border: draw border on mask
-  border_width: border width
-  border_color: border color
-  alpha: mask alpha
-  color: mask color
+image: numpy array image, shape should be (height, width, channel)
+masks: (N, 1, Height, Width)
+labels: mask label
+border: draw border on mask
+border_width: border width
+border_color: border color
+alpha: mask alpha
+color: mask color
 Returns:
-  numpy.ndarray
+numpy.ndarray
 """
     if isinstance(image, Image.Image):
         image = numpy.array(image)
     assert isinstance(image, numpy.ndarray)
     masks = numpy.array(masks)
     for i, mask in enumerate(masks):
-        mask = mask.squeeze()[:, :, None].astype(numpy.bool)
+        mask = mask.squeeze()[..., None].astype(numpy.bool)
 
         label = labels[i] if labels is not None else 1
         _color = compute_color_for_labels(label) if color is None else tuple(color)
@@ -82,6 +81,4 @@ Returns:
                 thickness=border_width,
                 lineType=cv2.LINE_AA,
             )
-
-    image = image.astype(numpy.uint8)
-    return image
+    return image.astype(numpy.uint8)

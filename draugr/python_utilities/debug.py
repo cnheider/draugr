@@ -9,10 +9,10 @@ __doc__ = r"""
 
 __all__ = ["evaluate_context"]
 
-from typing import Any, Callable
+from typing import Any, Callable, Tuple
 
 
-def evaluate_context(x: Any, *args, **kwargs) -> Any:
+def evaluate_context(x: Any, *args, **kwargs) -> Tuple:
     """
 
 :param x:
@@ -20,11 +20,14 @@ def evaluate_context(x: Any, *args, **kwargs) -> Any:
 :param kwargs:
 :return:
 """
-    a_r = [evaluate_context(a) for a in args]
-    kw_r = {k: evaluate_context(v) for k, v in kwargs.items()}
     if isinstance(x, Callable):
         x = x(*args, **kwargs)
-    return a_r, kw_r, x, type(x)
+    return (
+        [evaluate_context(a) for a in args],
+        {k: evaluate_context(v) for k, v in kwargs.items()},
+        x,
+        type(x),
+    )
 
 
 if __name__ == "__main__":

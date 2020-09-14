@@ -2,10 +2,13 @@
 # -*- coding: utf-8 -*-
 import os
 import shutil
+from pathlib import Path
+from random import randint
+from time import time
+from typing import Any, Union
 
 import numpy
-
-from warg import NOD
+from warg import NOD, passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
 
@@ -19,6 +22,8 @@ __all__ = [
     "PrintStyle",
     "scale",
     "get_terminal_size",
+    "hyperlink_path",
+    "hyperlink_url",
 ]
 
 COLORS = NOD(
@@ -52,19 +57,85 @@ DECORATIONS = NOD(
 )
 
 
+def hyperlink_url(
+    link: str, link_id=None, style: bool = False, prefix="https://"
+) -> str:
+    if not link.startswith(prefix):
+        if "://" in link:
+            link = f'{prefix}{link.split("://")[1]}'
+        else:
+            link = f"{prefix}{link}"
+
+    if not style:
+        return link
+    if not link_id:
+        link_id = f"{time()}-{randint(0, 999999)}" if link else ""
+    return f"\x1b]8;id={link_id};{link}\x1b\\{link}\x1b]8;;\x1b\\"
+
+
+def hyperlink_path(
+    link: Path, link_id=None, style: bool = False, linux: bool = True
+) -> str:
+    if linux:
+        link = f"file://{link.resolve()}"
+    if not style:
+        return link
+    if not link_id:
+        link_id = f"{time()}-{randint(0, 999999)}" if link else ""
+    return f"\x1b]8;id={link_id};{link}\x1b\\{link}\x1b]8;;\x1b\\"
+
+
+class PrintStyle(object):
+    """
+
+"""
+
+    def __init__(self, attributes_joined, end):
+        self._attributes_joined = attributes_joined
+        self._end = end
+
+    def __call__(self, obj, *args, **kwargs):
+        intermediate_repr = f"\x1b[{self._attributes_joined}m{obj}\x1b[{self._end}m"
+        string = six.u(intermediate_repr)
+        return string
+
+
 def generate_style(
-    obj=None,
+    obj: Any = None,
     *,
-    color: str = "white",
+    color: Union[str, int] = "random",
     bold: bool = False,
     highlight: bool = False,
     underline: bool = False,
     italic: bool = False,
-):
+) -> Union[str, PrintStyle]:
+    """
+
+:param obj:
+:type obj:
+:param color:
+:type color:
+:param bold:
+:type bold:
+:param highlight:
+:type highlight:
+:param underline:
+:type underline:
+:param italic:
+:type italic:
+:return:
+:rtype:
+"""
     attributes = []
 
-    if color in COLORS:
+    if color == "random":
+        num = int(list(COLORS.values())[randint(0, len(COLORS) - 1)])
+    elif color in COLORS:
         num = int(COLORS[color])
+    elif color in COLORS.values():
+        num = int(color)
+    elif isinstance(color, int) and color < 39:
+        num = color
     else:
         num = int(COLORS["white"])
 
@@ -94,15 +165,13 @@ def generate_style(
         return print_style
 
 
-def sprint(obj, **kwargs):
+@passes_kws_to(generate_style)
+def sprint(obj: Any, print_kws={}, **kwargs) -> None:
     """
-Stylised print.
+Stylised print. Defaults to stdout
 Valid colors: gray, red, green, yellow, blue, magenta, cyan, white, crimson
 """
-
-    string = generate_style(obj, **kwargs)
-
-    print(string)
+    print(generate_style(obj, **kwargs), **print_kws)
 
 
 def scale(x, length):
@@ -126,6 +195,11 @@ will be moved to 0.
 
 
 def get_terminal_size():
+    """
+
+:return:
+:rtype:
+"""
     try:
         size = shutil.get_terminal_size()
         columns, rows = size.columns, size.lines
@@ -137,16 +211,10 @@ def get_terminal_size():
     return NOD(rows=rows, columns=columns)
 
 
-class PrintStyle(object):
-    def __init__(self, attributes_joined, end):
-        self._attributes_joined = attributes_joined
-        self._end = end
-
-    def __call__(self, obj, *args, **kwargs):
-        intermediate_repr = f"\x1b[{self._attributes_joined}m{obj}\x1b[{self._end}m"
-        string = six.u(intermediate_repr)
-        return string
-
-
 if __name__ == "__main__":
-    print(get_terminal_size())
+    sprint(get_terminal_size())
+    sprint(hyperlink_path(Path.home()))
+    print(hyperlink_path(Path.home()))
+    sprint(hyperlink_path(Path.home() / ".xprofile"))
+    sprint(hyperlink_url("http://dr.dk"))
+    sprint(hyperlink_url("dr.dk"))
