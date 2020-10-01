@@ -16,11 +16,11 @@ __all__ = ["hwc_to_chw", "chw_to_hwc", "uint_hwc_to_chw_float", "float_chw_to_hw
 def hwc_to_chw(inp: numpy.ndarray) -> numpy.ndarray:
     """
 
-  :param inp:
-  :type inp:
-  :return:
-  :rtype:
-  """
+:param inp:
+:type inp:
+:return:
+:rtype:
+"""
     return inp.transpose((2, 0, 1))
 
 
@@ -28,11 +28,11 @@ def hwc_to_chw(inp: numpy.ndarray) -> numpy.ndarray:
 def chw_to_hwc(inp: numpy.ndarray) -> numpy.ndarray:
     """
 
-  :param inp:
-  :type inp:
-  :return:
-  :rtype:
-  """
+:param inp:
+:type inp:
+:return:
+:rtype:
+"""
     return inp.transpose((1, 2, 0))
 
 
@@ -42,13 +42,13 @@ def uint_hwc_to_chw_float(
 ) -> numpy.ndarray:
     """
 
-  :param inp:
-  :type inp:
-  :param normalise:
-  :type normalise:
-  :return:
-  :rtype:
-  """
+:param inp:
+:type inp:
+:param normalise:
+:type normalise:
+:return:
+:rtype:
+"""
     if normalise:
         inp /= 255.0
         inp = numpy.clip(inp, 0, 1)
@@ -61,13 +61,13 @@ def float_chw_to_hwc_uint(
 ) -> numpy.ndarray:
     """
 
-  :param inp:
-  :type inp:
-  :param unnormalise:
-  :type unnormalise:
-  :return:
-  :rtype:
-  """
+:param inp:
+:type inp:
+:param unnormalise:
+:type unnormalise:
+:return:
+:rtype:
+"""
     inp = chw_to_hwc(inp)
     if unnormalise:
         inp *= 255.0

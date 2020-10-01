@@ -7,6 +7,8 @@ __doc__ = r"""
            Created on 28/06/2020
            """
 
+__all__ = ["Meter", "AverageMeter"]
+
 
 class Meter:
     """Stores current value"""

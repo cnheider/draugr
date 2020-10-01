@@ -3,7 +3,7 @@
 
 import torch
 
-from draugr.torch_utilities.tensors.to_tensor import to_tensor
+from draugr.torch_utilities.tensors import to_tensor
 
 __author__ = "Christian Heider Nielsen"
 __all__ = ["TensoriseMixin"]
@@ -11,11 +11,11 @@ __all__ = ["TensoriseMixin"]
 
 class TensoriseMixin(object):
     """
-  Tensorise attributes at set
-  """
+Tensorise attributes at set
+"""
 
     device = "cpu"
-    dtype = torch.float
+    dtype = torch.float  # Default values may be monkey patched for other types
 
     def __setattr__(self, key, value):
         super().__setattr__(key, to_tensor(value, dtype=self.dtype, device=self.device))

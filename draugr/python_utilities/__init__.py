@@ -7,11 +7,17 @@ __doc__ = r"""
            Created on 14/01/2020
            """
 
+import pathlib
+
+with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
+
 from .business import *
 from .datetimes import *
 from .debug import *
 from .exceptions import *
 from .functions import *
+from .manipulation import *
 from .replication import *
 from .sockets import *
 from .styling import *

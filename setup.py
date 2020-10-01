@@ -99,20 +99,18 @@ class DraugrPackage:
 
     @property
     def package_data(self) -> dict:
-        # data = glob.glob('data/', recursive=True)
-        return {
-            # 'PackageName':[
-            # *data
-            #  ]
-        }
+        emds = [str(p) for p in pathlib.Path(__file__).parent.rglob(".md")]
+        return {"draugr": [*emds]}
 
     @property
     def entry_points(self) -> dict:
         return {
             "console_scripts": [
                 # "name_of_executable = module.with:function_to_execute"
-                "draugr-tb = draugr.entry_points.tensorboard_entry_point:main",
                 "draugr-darkmode-toggle = draugr.entry_points.toggle_darkmode:main",
+                "draugr-tb = draugr.entry_points.tensorboard_entry_point:main",
+                "draugr-cpu = draugr.entry_points.cpu_usage_entry_point:main",
+                "draugr-vis = draugr.entry_points.visdom_entry_point:main",
             ]
         }
 

@@ -1,14 +1,14 @@
 from bisect import bisect_right
 
-from torch.optim.lr_scheduler import _LRScheduler
-
 __all__ = ["WarmupMultiStepLR"]
+
+from torch.optim.lr_scheduler import _LRScheduler
 
 
 class WarmupMultiStepLR(_LRScheduler):
     """
 
-  """
+"""
 
     def __init__(
         self,
@@ -34,9 +34,9 @@ class WarmupMultiStepLR(_LRScheduler):
     def get_lr(self):
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         warmup_factor = 1
         if self.last_epoch < self.warmup_iters:
             alpha = float(self.last_epoch) / self.warmup_iters

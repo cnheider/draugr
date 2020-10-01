@@ -6,10 +6,10 @@ __author__ = "Christian Heider Nielsen"
 
 import numpy
 
-__all__ = ["atari_initializer", "initialize_parameters"]
+__all__ = ["atari_initializer", "initialise_parameters"]
 
 from draugr.torch_utilities.optimisation.parameters.initialisation.ortho_weight_init import (
-    ortho_weights,
+    orthogonal_weights,
 )
 
 
@@ -21,13 +21,13 @@ Initializes Linear, Conv2d, and LSTM weights.
     classname = module.__class__.__name__
 
     if classname == "Linear":
-        module.weight.data = ortho_weights(
+        module.weight.data = orthogonal_weights(
             module.weight.data.size(), scale=numpy.sqrt(2.0)
         )
         module.bias.data.zero_()
 
     elif classname == "Conv2d":
-        module.weight.data = ortho_weights(
+        module.weight.data = orthogonal_weights(
             module.weight.data.size(), scale=numpy.sqrt(2.0)
         )
         module.bias.data.zero_()
@@ -35,19 +35,19 @@ Initializes Linear, Conv2d, and LSTM weights.
     elif classname == "LSTM":
         for name, param in module.named_parameters():
             if "weight_ih" in name:
-                param.data = ortho_weights(param.data.size(), scale=1.0)
+                param.data = orthogonal_weights(param.data.size(), scale=1.0)
             if "weight_hh" in name:
-                param.data = ortho_weights(param.data.size(), scale=1.0)
+                param.data = orthogonal_weights(param.data.size(), scale=1.0)
             if "bias" in name:
                 param.data.zero_()
 
 
-def initialize_parameters(m: torch.nn.Module) -> None:
+def initialise_parameters(m: torch.nn.Module) -> None:
     """
 
-  :param m:
-  :type m:
-  """
+:param m:
+:type m:
+"""
     classname = m.__class__.__name__
     if classname.find("Linear") != -1:
         m.weight.data.normal_(0, 1)

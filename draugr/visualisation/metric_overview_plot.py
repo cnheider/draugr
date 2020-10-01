@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import math
-from typing import Sequence, Tuple
+from typing import Iterable, Iterator, Sequence, Tuple
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -10,6 +10,7 @@ Created on 27/04/2019
 @author: cnheider
 """
 
+from matplotlib.figure import Figure
 from matplotlib.pyplot import matshow, imshow
 from itertools import cycle
 
@@ -19,7 +20,6 @@ from warg import passes_kws_to
 from matplotlib import pyplot
 import numpy
 from sklearn import svm
-from sklearn.datasets import make_classification
 from sklearn.decomposition import PCA
 from sklearn.metrics import (
     auc,
@@ -30,25 +30,22 @@ from sklearn.metrics import (
 )
 from sklearn.model_selection import train_test_split
 from sklearn.multiclass import OneVsRestClassifier
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler, label_binarize
 from sklearn.utils.multiclass import unique_labels
 
 __all__ = [
-    "correlation_matrix_plot",
     "horizontal_imshow",
-    "horizontal_imshow2",
     "biplot",
-    "plot_confusion_matrix",
-    "precision_recall_plt2",
     "pca_biplot",
+    "correlation_matrix_plot",
+    "confusion_matrix_plot",
     "roc_plot",
-    "precision_recall_plt",
+    "precision_recall_plot",
 ]
 
 
 @passes_kws_to(matshow)
-def correlation_matrix_plot(cor, labels=None, title="", **kwargs):
+def correlation_matrix_plot(cor, labels=None, title="", **kwargs) -> Figure:
     if labels is None:
         labels = [f"P{i}" for i in range(len(cor))]
 
@@ -67,21 +64,22 @@ def correlation_matrix_plot(cor, labels=None, title="", **kwargs):
 
     fig.colorbar(cax, ticks=numpy.arange(-1.1, 1.1, 0.1))
 
-
-def horizontal_imshow2(images, columns=4, figsize=(20, 10), **kwargs):
-    """Small helper function for creating horizontal subplots with pyplot"""
-    pyplot.figure(figsize=figsize)
-    for i, image in enumerate(images):
-        pyplot.subplot(len(images) / columns + 1, columns, i + 1)
-        pyplot.imshow(image, **kwargs)
+    return fig
 
 
 @passes_kws_to(imshow)
 def horizontal_imshow(
-    images: Sequence, titles: Sequence = None, columns: int = 4, **kwargs
+    images: Sequence, titles: Sequence = None, num_columns: int = 4, **kwargs
 ):
-    """Small helper function for creating horizontal subplots with pyplot"""
-    num_d = len(images) / columns
+    """Small helper function for creating horizontal subplots with pyplot
+
+  :param images:
+  :param titles:
+  :param num_columns:
+  :param kwargs:
+  :return:
+  """
+    num_d = len(images) / num_columns
     num_d_f = math.floor(num_d)
     if num_d_f != num_d:
         num_d_f += 1
@@ -90,7 +88,7 @@ def horizontal_imshow(
         titles = [f"fig{a}" for a in range(len(images))]
     fig, axes = pyplot.subplots(
         num_d_f,
-        columns,
+        num_columns,
         squeeze=False,
         sharex="all",
         sharey="all",
@@ -110,13 +108,14 @@ def horizontal_imshow(
 def biplot(
     scores: Sequence,
     coefficients: numpy.ndarray,
-    categories: Sequence = None,
+    categories: Iterable = None,
     labels: Sequence = None,
     label_multiplier: float = 1.06,
-):
+) -> pyplot.Figure:
     """
-# Call the function. Use only the 2 PCs.
+   Use only the 2 Principal components.
 
+  :rtype: object
 :param label_multiplier:
 :param categories:
 :param scores:
@@ -182,187 +181,165 @@ def biplot(
             va="center",
         )
 
+    return fig
 
-def pca_biplot(X, y, labels=None):
+
+def pca_biplot(
+    predictor: Iterable, response: Iterable, labels: Iterable[str] = None
+) -> pyplot.Figure:
     """
 produces a pca projection and plot the 2 most significant component score and the component coefficients.
 
-:param X:
-:param y:
+:param predictor:
+:param response:
 :param labels:
 :return:
 """
 
     scaler = StandardScaler()
-    scaler.fit(X)
-    X = scaler.transform(X)
+    scaler.fit(predictor)
 
     pca = PCA()
-    x_new = pca.fit_transform(X)
 
-    biplot(x_new[:, 0:2], numpy.transpose(pca.components_[0:2, :]), y, labels)
-
-
-def precision_recall_plt2():
-    iris = datasets.load_iris()
-    X = iris.data
-    y = iris.target
-
-    # Use label_binarize to be multi-label like settings
-    Y = label_binarize(y, classes=[0, 1, 2])
-    n_classes = Y.shape[1]
-
-    # Split into training and test
-    X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y, test_size=0.5, random_state=random_state
+    return biplot(
+        pca.fit_transform(scaler.transform(predictor))[:, 0:2],
+        numpy.transpose(pca.components_[0:2, :]),
+        response,
+        labels,
     )
 
-    # Run classifier
-    classifier = OneVsRestClassifier(svm.LinearSVC(random_state=random_state))
-    classifier.fit(X_train, Y_train)
-    y_score = classifier.decision_function(X_test)
 
-    # For each class
+def precision_recall_plot(
+    truth,
+    pred_score,
+    num_classes,
+    *,
+    num_decimals: int = 2,
+    include_thresholds: bool = False,
+    y_lim: Tuple[float, float] = (0.0, 1.05),
+    figure_size: Tuple[int, int] = (7, 9),
+    color_cycle: Iterator = cycle(
+        ["navy", "turquoise", "darkorange", "cornflowerblue", "teal"]
+    ),
+) -> pyplot.Figure:
+    """
+
+  # A "micro-average": quantifying score on all classes jointly
+
+  :param truth:
+  :param pred_score:
+  :param num_classes:
+  :param num_decimals:
+  :param include_thresholds:
+  :param y_lim:
+  :param figure_size:
+  :param color_cycle:
+  :return:
+  """
     precision = dict()
     recall = dict()
     average_precision = dict()
-    for i in range(n_classes):
-        precision[i], recall[i], _ = precision_recall_curve(Y_test[:, i], y_score[:, i])
-        average_precision[i] = average_precision_score(Y_test[:, i], y_score[:, i])
+    thresholds = dict()
+    for i in range(num_classes):
+        precision[i], recall[i], thresholds[i] = precision_recall_curve(
+            truth[:, i], pred_score[:, i]
+        )
+        average_precision[i] = average_precision_score(truth[:, i], pred_score[:, i])
 
-    # A "micro-average": quantifying score on all classes jointly
-    precision["micro"], recall["micro"], _ = precision_recall_curve(
-        Y_test.ravel(), y_score.ravel()
+    precision["micro"], recall["micro"], thresholds["micro"] = precision_recall_curve(
+        truth.ravel(), pred_score.ravel()
     )
     average_precision["micro"] = average_precision_score(
-        Y_test, y_score, average="micro"
-    )
-    print(
-        f"Average precision score, micro-averaged over all classes: {average_precision['micro']:0.2f}"
+        truth, pred_score, average="micro"
     )
 
-    from itertools import cycle
-
-    # setup plot details
-    colors = cycle(["navy", "turquoise", "darkorange", "cornflowerblue", "teal"])
-
-    pyplot.figure(figsize=(7, 8))
+    fig = pyplot.figure(figsize=figure_size)
     f_scores = numpy.linspace(0.2, 0.8, num=4)
     lines = []
     labels = []
-    l = None
+    iso_curves = None
     for f_score in f_scores:
         x = numpy.linspace(0.01, 1)
         y = f_score * x / (2 * x - f_score)
-        l, = pyplot.plot(x[y >= 0], y[y >= 0], color="gray", alpha=0.2)
+        iso_curves = pyplot.plot(x[y >= 0], y[y >= 0], color="gray", alpha=0.2)
         pyplot.annotate(f"f1={f_score:0.1f}", xy=(0.9, y[45] + 0.02))
 
-    lines.append(l)
+    lines.extend(iso_curves)
     labels.append("iso-f1 curves")
-    l, = pyplot.plot(recall["micro"], precision["micro"], color="gold", lw=2)
-    lines.append(l)
+
+    lines.extend(pyplot.plot(recall["micro"], precision["micro"], color="gold", lw=2))
+    if include_thresholds:
+        for p, r, t in zip(precision["micro"], recall["micro"], thresholds["micro"]):
+            pyplot.annotate(f"{t:.{num_decimals}f}", (r, p))
     labels.append(
-        f"micro-average Precision-recall (area = {average_precision['micro']:0.2f})"
+        f"micro-average Precision-recall (area = {average_precision['micro']:0.{num_decimals}f})"
     )
 
-    for i, color in zip(range(n_classes), colors):
-        l, = pyplot.plot(recall[i], precision[i], color=color, lw=2)
-        lines.append(l)
+    for i, color in zip(range(num_classes), color_cycle):
+        lines.extend(pyplot.plot(recall[i], precision[i], color=color, lw=2))
+        if include_thresholds:
+            for p, r, t in zip(precision[i], recall[i], thresholds[i]):
+                pyplot.annotate(f"{t:.{num_decimals}f}", (r, p))
         labels.append(
-            f"Precision-recall for class {i} (area = {average_precision[i]:0.2f})"
+            f"Precision-recall for class {i} (area = {average_precision[i]:0.{num_decimals}f})"
         )
+
+    pyplot.plot([0, 1], [0.5, 0.5], linestyle="--")  # plot no skill
 
     fig = pyplot.gcf()
     fig.subplots_adjust(bottom=0.25)
     pyplot.xlim([0.0, 1.0])
-    pyplot.ylim([0.0, 1.05])
+    pyplot.ylim(y_lim)
     pyplot.xlabel("Recall")
     pyplot.ylabel("Precision")
-    pyplot.title("Extension of Precision-Recall curve to multi-class")
+    pyplot.title("Multi-class extension of Precision-Recall curve")
     pyplot.legend(lines, labels, loc=(0, -0.38), prop=dict(size=14))
 
-    pyplot.show()
-
-
-def precision_recall_plt(y, yhat, n_classes=2):
-    # generate 2 class dataset
-    X, y = make_classification(
-        n_samples=1000, n_classes=2, weights=[1, 1], random_state=1
-    )
-    # split into train/test sets
-    trainX, testX, trainy, testy = train_test_split(X, y, test_size=0.5, random_state=2)
-    # fit a model
-    model = KNeighborsClassifier(n_neighbors=3)
-    model.fit(trainX, trainy)
-
-    # predict probabilities
-    probs = model.predict_proba(testX)
-
-    # keep probabilities for the positive outcome only
-    probs = probs[:, 1]
-
-    # calculate precision-recall curve
-    precision, recall, thresholds = precision_recall_curve(testy, probs)
-
-    # calculate precision-recall AUC
-    auc_v = auc(recall, precision)
-
-    # plot no skill
-    pyplot.plot([0, 1], [0.5, 0.5], linestyle="--")
-    # plot the precision-recall curve for the model
-    pyplot.plot(recall, precision, marker=".")
-
-    for p, r, t in zip(precision, recall, thresholds):
-        pyplot.annotate(f"{t:.2f}", (r, p))
-
-    pyplot.xlim([0.0, 1.0])
-    pyplot.ylim([0.45, 1.05])
-    pyplot.xlabel("Precision")
-    pyplot.ylabel("Recall")
-    pyplot.title(f"Multi-class extension Precision Recall {auc_v} (Varying threshold)")
-    pyplot.legend(loc="lower right")
+    return fig
 
 
 def roc_plot(
-    y_test, y_pred, n_classes: int, size: Tuple[int, int] = (8, 8), decimals: int = 3
-):
+    truth,
+    pred_score,
+    num_classes: int,
+    *,
+    figure_size: Tuple[int, int] = (8, 8),
+    num_decimals: int = 2,
+) -> Figure:
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
-    for i in range(n_classes):
-        fpr[i], tpr[i], _ = roc_curve(y_test[:, i], y_pred[:, i])
+    for i in range(num_classes):
+        fpr[i], tpr[i], _ = roc_curve(truth[:, i], pred_score[:, i])
         roc_auc[i] = auc(fpr[i], tpr[i])
 
     # Compute micro-average ROC curve and ROC area
-    fpr["micro"], tpr["micro"], _ = roc_curve(y_test.ravel(), y_pred.ravel())
+    fpr["micro"], tpr["micro"], _ = roc_curve(truth.ravel(), pred_score.ravel())
     roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
 
     # Compute macro-average ROC curve and ROC area
-
-    # First aggregate all false positive rates
-    all_fpr = numpy.unique(numpy.concatenate([fpr[i] for i in range(n_classes)]))
-
-    # Then interpolate all ROC curves at this points
-    mean_tpr = numpy.zeros_like(all_fpr)
-    for i in range(n_classes):
+    all_fpr = numpy.unique(
+        numpy.concatenate([fpr[i] for i in range(num_classes)])
+    )  # First aggregate all false positive rates
+    mean_tpr = numpy.zeros_like(
+        all_fpr
+    )  # Then interpolate all ROC curves at this points
+    for i in range(num_classes):
         mean_tpr += interp(all_fpr, fpr[i], tpr[i])
-
-    # Finally average it and compute AUC
-    mean_tpr /= n_classes
-
+    mean_tpr /= num_classes  # Finally average it and compute AUC
     fpr["macro"] = all_fpr
     tpr["macro"] = mean_tpr
     roc_auc["macro"] = auc(fpr["macro"], tpr["macro"])
 
     # Plot all ROC curves
-    pyplot.figure(figsize=size)
+    fig = pyplot.figure(figsize=figure_size)
     lw = 1
     pyplot.plot([0, 1], [0, 1], "k--", lw=lw)
 
     pyplot.plot(
         fpr["micro"],
         tpr["micro"],
-        label=f'micro-average ROC curve (area = {roc_auc["micro"]:0.2f})',
+        label=f'micro-average ROC curve (area = {roc_auc["micro"]:0.{num_decimals}f})',
         color="deeppink",
         linestyle=":",
         linewidth=lw,
@@ -371,43 +348,50 @@ def roc_plot(
     pyplot.plot(
         fpr["macro"],
         tpr["macro"],
-        label=f'macro-average ROC curve (area = {roc_auc["macro"]:0.2f})',
+        label=f'macro-average ROC curve (area = {roc_auc["macro"]:0.{num_decimals}f})',
         color="navy",
         linestyle=":",
         linewidth=lw,
     )
 
     colors = cycle(["aqua", "darkorange", "cornflowerblue", "red", "green", "teal"])
-    for i, color in zip(range(n_classes), colors):
+    for i, color in zip(range(num_classes), colors):
         pyplot.plot(
             fpr[i],
             tpr[i],
             color=color,
             lw=lw,
-            label=f"ROC curve of class {i} (area = {roc_auc[i]:0.2f})",
+            label=f"ROC curve of class {i} (area = {roc_auc[i]:0.{num_decimals}f})",
         )
 
     pyplot.xlim([-0.05, 1.0])
     pyplot.ylim([0.0, 1.05])
     pyplot.xlabel("False Positive Rate")
     pyplot.ylabel("True Positive Rate")
-    pyplot.title("multi-class extension Receiver operating characteristic")
+    pyplot.title("Multi-class Extension Receiver Operating Characteristic")
     pyplot.legend(loc="lower right")
 
+    return fig
 
-def plot_confusion_matrix(
-    y_test, y_pred, class_names, size: Tuple[int, int] = (8, 8), decimals: int = 3
-):
+
+def confusion_matrix_plot(
+    truth: Iterable,
+    pred: Iterable,
+    category_names: Iterable[str],
+    *,
+    figure_size: Tuple[int, int] = (8, 8),
+    decimals: int = 3,
+) -> Figure:
     """
 
-:param y_test:
-:type y_test:
-:param y_pred:
-:type y_pred:
-:param class_names:
-:type class_names:
-:param size:
-:type size:
+:param truth:
+:type truth:
+:param pred:
+:type pred:
+:param category_names:
+:type category_names:
+:param figure_size:
+:type figure_size:
 :param decimals:
 :type decimals:
 :return:
@@ -427,15 +411,15 @@ Normalization can be applied by setting `normalize=True`.
             else:
                 title = "Confusion matrix, without normalization"
 
-        # Compute confusion matrix
         cm = confusion_matrix(y_true, y_pred)
-        # Only use the labels that appear in the data
-        unique = unique_labels(y_true, y_pred)
+        unique = unique_labels(
+            y_true, y_pred
+        )  # Only use the labels that appear in the data
         classes = classes[unique]
         if normalize:
             cm = cm.astype("float") / cm.sum(axis=1)[:, numpy.newaxis]
 
-        fig, ax = pyplot.subplots(figsize=size)
+        fig, ax = pyplot.subplots(figsize=figure_size)
         im = ax.imshow(cm, interpolation="nearest", cmap=cmap)
         pyplot.colorbar(im, ax=ax)
 
@@ -468,15 +452,15 @@ Normalization can be applied by setting `normalize=True`.
                     color="white" if cm[i, j] > thresh else "black",
                 )
         fig.tight_layout()
-        return ax
+        return fig
 
     numpy.set_printoptions(precision=decimals)
 
     # Plot normalized confusion matrix
-    confusion_matrix_figure(
-        y_test,
-        y_pred,
-        classes=class_names,
+    return confusion_matrix_figure(
+        truth,
+        pred,
+        classes=category_names,
         normalize=True,
         title="Normalized confusion matrix",
     )
@@ -484,46 +468,66 @@ Normalization can be applied by setting `normalize=True`.
 
 if __name__ == "__main__":
 
-    # df = pd.read_csv(my_csv, index_col=0)
-    # cor = df.corr()
+    def a():
+        from sklearn import datasets
 
-    # correlation_matrix_plot(cor, labels=df.columns)
-    # pyplot.show()
+        iris = datasets.load_iris()
+        X = iris.data
+        y = iris.target
 
-    from sklearn import datasets
+        num_classes = len(iris.target_names)
 
-    iris = datasets.load_iris()
-    X = iris.data
-    y = iris.target
+        # Add noisy features to make the problem harder
+        random_state = numpy.random.RandomState(0)
+        n_samples, n_features = X.shape
+        # X_noisy = numpy.c_[X, random_state.randn(n_samples, 200 * n_features)*0.01]
 
-    pca_biplot(X, y)
-    pyplot.show()
+        X_noisy = X
 
-    # Binarise the output
-    y = label_binarize(y, classes=[0, 1, 2])
-    n_classes = y.shape[1]
+        (X_train, X_test, y_train, y_test) = train_test_split(
+            X_noisy,
+            label_binarize(y, classes=range(len(iris.target_names))),
+            test_size=0.3,
+            random_state=0,
+            shuffle=True,
+        )  # shuffle and split training and test sets
 
-    # Add noisy features to make the problem harder
-    random_state = numpy.random.RandomState(0)
-    n_samples, n_features = X.shape
-    X = numpy.c_[X, random_state.randn(n_samples, 200 * n_features)]
+        classifier = OneVsRestClassifier(
+            svm.SVC(kernel="linear", probability=True, random_state=random_state)
+        )  # Learn to predict each class against the other
+        y_score = classifier.fit(X_train, y_train).decision_function(X_test)
 
-    # shuffle and split training and test sets
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.5, random_state=0
-    )
+        def sasasasgasgssiasjdijasagsaagdi():
+            confusion_matrix_plot(
+                numpy.argmax(y_test, axis=-1),
+                numpy.argmax(y_score, axis=-1),
+                category_names=iris.target_names,
+            )
+            pyplot.show()
 
-    # Learn to predict each class against the other
-    classifier = OneVsRestClassifier(
-        svm.SVC(kernel="linear", probability=True, random_state=random_state)
-    )
-    y_score = classifier.fit(X_train, y_train).decision_function(X_test)
+        def sasasasgasgssagsaagdi():
+            roc_plot(y_test, y_score, num_classes)
+            pyplot.show()
 
-    # plot_cf(,y,class_names=df.columns)
-    # pyplot.show()
+        def sasasgssagsaagdi():
+            precision_recall_plot(y_test, y_score, num_classes)
+            pyplot.show()
 
-    # roc_plot(numpy.argmax(y_score, axis=-1), y_test, n_classes)
-    # pyplot.show()
+        def sasafgsagdi():
+            pca_biplot(X, y)
+            pyplot.show()
 
-    precision_recall_plt(y_score, y_test, n_classes)
-    pyplot.show()
+        def sadi():
+            import pandas
+
+            df = pandas.DataFrame(X, columns=iris.feature_names)
+            correlation_matrix_plot(cor=df.corr(), labels=df.columns)
+            pyplot.show()
+
+        sasasasgasgssiasjdijasagsaagdi()
+        sasasasgasgssagsaagdi()
+        sasasgssagsaagdi()
+        sasafgsagdi()
+        sadi()
+
+    a()

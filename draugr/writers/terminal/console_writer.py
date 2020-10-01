@@ -15,7 +15,7 @@ __all__ = ["ConsoleWriter"]
 class ConsoleWriter(Writer):
     """
 
-  """
+"""
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
         pass
@@ -30,4 +30,22 @@ class ConsoleWriter(Writer):
 if __name__ == "__main__":
 
     with ConsoleWriter() as w:
-        w.scalar("lol", 6)
+        for i in range(10):
+            w.scalar("lol", i)
+
+    print()
+    with ConsoleWriter(interval=0) as w:
+        for i in range(10):
+            w.scalar("lol", i)
+    print()
+    with ConsoleWriter(interval=-1) as w:
+        for i in range(10):
+            w.scalar("lol", i)
+    print()
+    with ConsoleWriter(interval=None) as w:
+        for i in range(10):
+            w.scalar("lol", i)
+    print()
+    with ConsoleWriter(interval=2) as w:
+        for i in range(10):
+            w.scalar("lol", i)

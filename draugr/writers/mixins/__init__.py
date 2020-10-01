@@ -6,6 +6,10 @@ __doc__ = r"""
 
            Created on 05/07/2020
            """
+import pathlib
+
+with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
 
 from .bar_writer_mixin import *
 from .embed_writer_mixin import *
@@ -15,3 +19,6 @@ from .histogram_writer_mixin import *
 from .image_writer_mixin import *
 from .line_writer_mixin import *
 from .spectrogram_writer_mixin import *
+from .precision_recall_writer_mixin import *
+from .audio_writer_mixin import *
+from .instantiation_writer_mixin import *

@@ -8,9 +8,8 @@ __doc__ = r"""
            """
 
 import torch
-from torch.nn import Module
-
 from draugr.torch_utilities import global_torch_device
+from torch.nn import Module
 from warg import AlsoDecorator
 
 __all__ = ["TorchCpuSession", "TorchCudaSession", "TorchDeviceSession"]
@@ -41,6 +40,7 @@ Sets global torch devices to cuda if available
             device = global_torch_device(override=torch.device("cpu"))
         if self._model:
             self._model.to(device)
+        return False
 
 
 class TorchCpuSession(AlsoDecorator):
@@ -68,6 +68,7 @@ Sets global torch devices to cpu
             device = global_torch_device(override=torch.device("cuda"))
         if self._model:
             self._model.to(device)
+        return False
 
 
 class TorchDeviceSession(AlsoDecorator):
@@ -96,6 +97,7 @@ Sets global torch devices to cpu
             device = global_torch_device(override=self.prev_dev)
             if self._model:
                 self._model.to(device)
+        return False
 
 
 if __name__ == "__main__":

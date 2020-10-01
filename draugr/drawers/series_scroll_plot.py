@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from math import cos, sin
-from typing import Sequence, Tuple, Union
 
-import matplotlib
+from typing import Sequence, Union
 
-from draugr.drawers.drawer import Drawer
+from draugr import recursive_flatten_numpy
+from draugr.drawers.mpldrawer import MplDrawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -20,12 +19,15 @@ import numpy
 
 __all__ = ["SeriesScrollPlot"]
 
+from warg import passes_kws_to
 
-class SeriesScrollPlot(Drawer):
+
+class SeriesScrollPlot(MplDrawer):
     """
 
-  """
+"""
 
+    @passes_kws_to(MplDrawer.__init__)
     def __init__(
         self,
         window_length: int = None,
@@ -34,27 +36,33 @@ class SeriesScrollPlot(Drawer):
         data_label: str = "Magnitude",
         reverse: bool = False,
         overwrite: bool = False,
-        placement: Tuple = (0, 0),
         render: bool = True,
+        **kws
     ):
-        self.fig = None
+        """
 
+:param window_length:
+:param title:
+:param time_label:
+:param data_label:
+:param reverse:
+:param overwrite:
+:param placement:
+:param render:
+"""
+
+        super().__init__(render=render, **kws)
         if not render:
             return
 
         self.overwrite = overwrite
         self.reverse = reverse
         self.window_length = window_length
-        self.n = 0
 
         if window_length:
             assert window_length > 3
-            self.fig = pyplot.figure(figsize=(4, 4))
-        else:
-            self.fig = pyplot.figure(figsize=(4, 4))
 
-        self.placement = placement
-
+        self.fig = pyplot.figure(figsize=(4, 4))
         self.im = pyplot.plot([], [])
 
         if window_length:
@@ -69,46 +77,24 @@ class SeriesScrollPlot(Drawer):
         pyplot.title(title)
         pyplot.tight_layout()
 
-    @staticmethod
-    def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0):
-        """Move figure's upper left corner to pixel (x, y)"""
-        backend = matplotlib.get_backend()
-        if hasattr(figure.canvas.manager, "window"):
-            window = figure.canvas.manager.window
-            if backend == "TkAgg":
-                window.wm_geometry(f"+{x:d}+{y:d}")
-            elif backend == "WXAgg":
-                window.SetPosition((x, y))
-            else:
-                # This works for QT and GTK
-                # You can also use window.setGeometry
-                window.move(x, y)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.fig:
-            pyplot.close(self.fig)
-
-    def draw(
-        self, data: Union[Sequence, int, float, complex], delta: float = 1.0 / 120.0
-    ):
+    def _draw(self, data: Union[Sequence, int, float, complex]):
         """
+SHOULD NOT BE CALLED DIRECTLY!
 
 :param data:
-:param delta: 1 / 60 for 60fps
 :return:
 """
         if not isinstance(data, Sequence):
             data = [data]
 
-        num_figures = len(self.im)
+        data = recursive_flatten_numpy(data)
+
+        num_images = len(self.im)
         num_series = len(data)
 
         min_min, max_max = None, None
 
-        if num_figures != num_series:
+        if num_images != num_series:
             # print('Reinstantiating figures')
             self.im = pyplot.plot(*[[] for _ in range(num_series)] * 2)
             if self.window_length:
@@ -116,7 +102,7 @@ class SeriesScrollPlot(Drawer):
                     self.im[i].set_xdata(range(self.window_length))
                     self.im[i].set_ydata([numpy.nan] * self.window_length)
 
-        for i in range(num_figures):
+        for i in range(num_images):
             time_points = self.im[i].get_xdata()
             data_points = self.im[i].get_ydata()
 
@@ -159,48 +145,46 @@ class SeriesScrollPlot(Drawer):
 
         pyplot.ylim(min_min, max_max)
 
-        pyplot.draw()
-
-        if self.n <= 1:
-            self.move_figure(self.fig, *self.placement)
-        self.n += 1
-
-        if delta:
-            pyplot.pause(delta)
-
 
 if __name__ == "__main__":
 
-    def multi_series():
-        """
+    def asidjas():
+        from math import cos, sin
 
-    """
-        s = SeriesScrollPlot(200, reverse=False, overwrite=False)
-        for i in range(1000):
-            s.draw([sin(i / 100) * 2, cos(i / 10)], 1.0 / 60.0)
+        def multi_series():
+            """
 
-    def single_series():
-        """
+"""
+            s = SeriesScrollPlot(
+                window_length=200, reverse=False, overwrite=False, default_delta=None
+            )
+            for i in range(1000):
+                s.draw([sin(i / 100) * 2, cos(i / 10)])
 
-    """
-        s = SeriesScrollPlot(200, reverse=False, overwrite=False)
-        for i in range(1000):
-            s.draw([sin(i / 20)], 1.0 / 60.0)
+        def single_series():
+            """
 
-    def single_series_no_wrap():
-        """
+"""
+            s = SeriesScrollPlot(window_length=200, reverse=False, overwrite=False)
+            for i in range(1000):
+                s.draw([sin(i / 20)], 1.0 / 60.0)
 
-    """
-        s = SeriesScrollPlot(200, reverse=True, overwrite=False)
-        for i in range(1000):
-            s.draw(sin(i / 20), 1.0 / 60.0)
+        def single_series_no_wrap():
+            """
 
-    def single_series_no_wrap_rescale():
-        """
+"""
+            s = SeriesScrollPlot(window_length=200, reverse=True, overwrite=False)
+            for i in range(1000):
+                s.draw(sin(i / 20), 1.0 / 60.0)
 
-    """
-        s = SeriesScrollPlot(100, reverse=True, overwrite=False)
-        for i in range(1000):
-            s.draw(sin(i / 100), 1.0 / 60.0)
+        def single_series_no_wrap_rescale():
+            """
 
-    multi_series()
+"""
+            s = SeriesScrollPlot(window_length=100, reverse=True, overwrite=False)
+            for i in range(1000):
+                s.draw(sin(i / 100), 1.0 / 60.0)
+
+        multi_series()
+
+    asidjas()

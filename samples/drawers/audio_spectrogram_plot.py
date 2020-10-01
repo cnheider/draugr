@@ -10,24 +10,16 @@ __doc__ = r"""
 from pathlib import Path
 
 import numpy
+from draugr.drawers import FastFourierTransformPlot, FastFourierTransformSpectrogramPlot
 from matplotlib import pyplot
 from scipy.io import wavfile
 
-from draugr.drawers.spectral.fast_fourier_transform import FastFourierTransformPlot
-from draugr.drawers.spectral.fast_fourier_transform_spectrogram import (
-    FastFourierTransformSpectrogramPlot,
-)
 
 if __name__ == "__main__":
 
     def main():
         sampling_rate, audio = wavfile.read(
-            str(
-                Path.home()
-                / "Data"
-                / "Audio"
-                / "/home/heider/Data/Audio/Nightingale-sound.wav"
-            )
+            str(Path.home() / "Data" / "Audio" / "Nightingale-sound.wav")
         )
         audio = numpy.mean(audio, axis=1)
         num_samples = audio.shape[0]

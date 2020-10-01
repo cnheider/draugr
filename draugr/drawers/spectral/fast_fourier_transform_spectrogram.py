@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import math
-from typing import Tuple
 
-import matplotlib
-import matplotlib.pyplot
 import numpy
+from draugr.drawers.mpldrawer import MplDrawer
 from matplotlib.gridspec import GridSpec
-
-from draugr.drawers.drawer import Drawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -22,7 +18,7 @@ __all__ = ["FastFourierTransformSpectrogramPlot"]
 from matplotlib import pyplot
 
 
-class FastFourierTransformSpectrogramPlot(Drawer):
+class FastFourierTransformSpectrogramPlot(MplDrawer):
     """
 TODO: CENTER Align fft maybe, to mimick librosa stft
 Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_fft, and no window function ( TODO: Hanning Smoothing)
@@ -37,12 +33,10 @@ Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_
         title: str = "",
         vertical: bool = True,
         reverse: bool = False,
-        placement: Tuple = (0, 0),
-        fig_size=(9, 9),
+        figure_size=(9, 9),
         cmap="viridis",
-        # window_function:callable=numpy.hanning, # NOT supported yet because fft is not calculated from center.
-        # log_scale:bool = True,
         render: bool = True,
+        **kwargs
     ):
         """
 
@@ -65,9 +59,12 @@ Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_
 :param render:
 :type render:
 """
-        self.fig = None
+        super().__init__(render=render, figure_size=figure_size, **kwargs)
+
         if not render:
             return
+
+        self.fig = pyplot.figure(figsize=figure_size)
 
         self.n_fft = n_fft
         self.n_positive_fft = (self.n_fft + 1) // 2
@@ -87,7 +84,6 @@ Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_
         zeroes_img = numpy.zeros((self.n_positive_fft, self.buffer_array_size - n_fft))
         self.zeroes_padding = numpy.zeros((self.n_positive_fft, n_fft))
 
-        self.fig = pyplot.figure(figsize=fig_size)
         gs = GridSpec(3, 2, width_ratios=[100, 2])
         (
             self.raw_ax,
@@ -98,7 +94,7 @@ Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_
             self.spec_cbar_ax,
         ) = [pyplot.subplot(gs[i]) for i in range(6)]
 
-        self.raw_line2d, = self.raw_ax.plot(time_s, raw_array)
+        (self.raw_line2d,) = self.raw_ax.plot(time_s, raw_array)
         self.raw_ax.set_xlim([time_s[0], time_s[-1]])
         self.raw_ax.set_ylabel("Signal [Magnitude]")
 
@@ -132,37 +128,13 @@ Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_
 
         self.vertical = vertical
         self.reverse = reverse
-        self.placement = placement
-        self.n = 0
 
         pyplot.xlim(time_s[0], time_s[-1])
 
         pyplot.title(title)
         pyplot.tight_layout()
 
-    @staticmethod
-    def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0) -> None:
-        """Move figure's upper left corner to pixel (x, y)"""
-        backend = matplotlib.get_backend()
-        if hasattr(figure.canvas.manager, "window"):
-            window = figure.canvas.manager.window
-            if backend == "TkAgg":
-                window.wm_geometry(f"+{x:d}+{y:d}")
-            elif backend == "WXAgg":
-                window.SetPosition((x, y))
-            else:
-                # This works for QT and GTK
-                # You can also use window.setGeometry
-                window.move(x, y)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.fig:
-            pyplot.close(self.fig)
-
-    def draw(self, signal_sample: float, delta: float = 1 / 120) -> None:
+    def _draw(self, signal_sample: float, delta: float = 1 / 120) -> None:
         """
 
 :param signal_sample:
@@ -231,13 +203,6 @@ Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_
         self.dft_mag_img.set_array(magnitude_data)
         # self.spec_cbar_ax.set_ylabel("Magnitude (Linear)", rotation=90)
         self.spec_cbar_ax.set_ylabel("Magnitude (dB)", rotation=90)
-
-        pyplot.draw()
-        if self.n <= 1:
-            self.move_figure(self.fig, *self.placement)
-        self.n += 1
-        if delta:
-            pyplot.pause(delta)
 
 
 if __name__ == "__main__":

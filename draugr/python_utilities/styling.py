@@ -8,7 +8,6 @@ from time import time
 from typing import Any, Union
 
 import numpy
-
 from warg import NOD, passes_kws_to
 
 __author__ = "Christian Heider Nielsen"

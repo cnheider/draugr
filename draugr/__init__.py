@@ -2,20 +2,24 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
+import pathlib
 from logging import warning
 
 import pkg_resources
-
 from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.8.1"
+__version__ = "0.8.2"
 __doc__ = """
 Created on 27/04/2019
 
 @author: cnheider
+
 """
+
+with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
 
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
 

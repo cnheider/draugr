@@ -48,28 +48,28 @@ Writer mixin that provides an interface for 'writing' spectrogram charts
     '''
 @abstractmethod
 def mfcc_spectrogram(self,
-                tag: str,
-                values: list,
-                sample_rate:int,
-                step: int,
-                NFFT:int=512,
-                x_labels: Sequence = None,
-                y_label: str = "Magnitude",
-                x_label: str = "Sequence",
-                plot_kws: Mapping = {},  # Seperate as parameters name collisions might occur
-                **kwargs) -> None:
-  """
+            tag: str,
+            values: list,
+            sample_rate:int,
+            step: int,
+            NFFT:int=512,
+            x_labels: Sequence = None,
+            y_label: str = "Magnitude",
+            x_label: str = "Sequence",
+            plot_kws: Mapping = {},  # Seperate as parameters name collisions might occur
+            **kwargs) -> None:
+"""
 
-  :param tag:
-  :type tag:
-  :param data:
-  :type data:
-  :param step:
-  :type step:
-  :param dataformats:
-  :type dataformats:
-  :param kwargs:
-  :type kwargs:
-  """
-  raise NotImplementedError
+:param tag:
+:type tag:
+:param data:
+:type data:
+:param step:
+:type step:
+:param dataformats:
+:type dataformats:
+:param kwargs:
+:type kwargs:
+"""
+raise NotImplementedError
 '''

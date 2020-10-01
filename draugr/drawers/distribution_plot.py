@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Sequence, Tuple
+from typing import Sequence
 
-import matplotlib
-
-from draugr.drawers.drawer import Drawer
+from draugr.drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
@@ -21,11 +19,12 @@ import numpy
 __all__ = ["DistributionPlot"]
 
 
-class DistributionPlot(Drawer):
+class DistributionPlot(MplDrawer):
     """
 
-  """
+"""
 
+    @passes_kws_to(MplDrawer.__init__)
     @passes_kws_to(pyplot.hist)
     def __init__(
         self,
@@ -34,27 +33,19 @@ class DistributionPlot(Drawer):
         data_label: str = "Magnitude",
         reverse: bool = False,
         overwrite: bool = False,
-        placement: Tuple = (0, 0),
         render: bool = True,
-        **kwargs,
+        **kwargs
     ):
-        self.fig = None
+        super().__init__(render=render, **kwargs)
 
         if not render:
             return
 
+        self.fig = pyplot.figure(figsize=(4, 4))
+
         self.overwrite = overwrite
         self.reverse = reverse
         self.window_length = window_length
-        self.n = 0
-
-        if window_length:
-            assert window_length > 3
-            self.fig = pyplot.figure(figsize=(4, 4))
-        else:
-            self.fig = pyplot.figure(figsize=(4, 4))
-
-        self.placement = placement
 
         self.array = []
         self.hist_kws = kwargs
@@ -65,33 +56,10 @@ class DistributionPlot(Drawer):
         pyplot.title(title)
         pyplot.tight_layout()
 
-    @staticmethod
-    def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0):
-        """Move figure's upper left corner to pixel (x, y)"""
-        backend = matplotlib.get_backend()
-        if hasattr(figure.canvas.manager, "window"):
-            window = figure.canvas.manager.window
-            if backend == "TkAgg":
-                window.wm_geometry(f"+{x:d}+{y:d}")
-            elif backend == "WXAgg":
-                window.SetPosition((x, y))
-            else:
-                # This works for QT and GTK
-                # You can also use window.setGeometry
-                window.move(x, y)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.fig:
-            pyplot.close(self.fig)
-
-    def draw(self, data: Sequence, delta: float = 1.0 / 120.0):
+    def _draw(self, data: Sequence):
         """
 
 :param data:
-:param delta: 1 / 60 for 60fps
 :return:
 """
         if not isinstance(data, Sequence):
@@ -100,15 +68,6 @@ class DistributionPlot(Drawer):
         self.array.extend(data)
         pyplot.cla()
         pyplot.hist(self.array, **self.hist_kws)
-
-        pyplot.draw()
-
-        if self.n <= 1:
-            self.move_figure(self.fig, *self.placement)
-        self.n += 1
-
-        if delta:
-            pyplot.pause(delta)
 
 
 if __name__ == "__main__":

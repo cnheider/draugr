@@ -7,6 +7,11 @@ __doc__ = r"""
            Created on 11/05/2020
            """
 
+import pathlib
+
+with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
+
 from .cache_sessions import *
 from .device_sessions import *
 from .jit_sessions import *

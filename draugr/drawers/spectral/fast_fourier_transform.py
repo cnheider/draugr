@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import math
-from typing import Tuple
 
-import matplotlib
-import matplotlib.pyplot
 import numpy
+from draugr.drawers.mpldrawer import MplDrawer
 from matplotlib.gridspec import GridSpec
-
-from draugr.drawers.drawer import Drawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -22,9 +18,9 @@ __all__ = ["FastFourierTransformPlot"]
 from matplotlib import pyplot
 
 
-class FastFourierTransformPlot(Drawer):
+class FastFourierTransformPlot(MplDrawer):
     """
-  Plots last computed fft of data
+Plots last computed fft of data
 """
 
     def __init__(
@@ -32,9 +28,9 @@ class FastFourierTransformPlot(Drawer):
         n_fft: int = 64,
         sampling_rate=int(1.0 / 0.0005),
         title: str = "",
-        placement: Tuple = (0, 0),
-        fig_size=(9, 9),
+        figure_size=(9, 9),
         render: bool = True,
+        **kwargs
     ):
         """
 
@@ -51,9 +47,12 @@ class FastFourierTransformPlot(Drawer):
 :param render:
 :type render:
 """
-        self.fig = None
+        super().__init__(render=render, figure_size=figure_size, **kwargs)
+
         if not render:
             return
+
+        self.fig = pyplot.figure(figsize=figure_size)
 
         self.n_fft = n_fft
         self.abs_n_fft = (self.n_fft + 1) // 2
@@ -64,7 +63,6 @@ class FastFourierTransformPlot(Drawer):
 
         self.zeroes_padding = numpy.zeros((self.abs_n_fft, n_fft))
 
-        self.fig = pyplot.figure(figsize=fig_size)
         gs = GridSpec(3, 1)
         (self.raw_ax, self.angle_ax, self.mag_ax) = [
             pyplot.subplot(gs[i]) for i in range(3)
@@ -72,50 +70,25 @@ class FastFourierTransformPlot(Drawer):
 
         freqs = numpy.fft.fftfreq(self.n_fft, 1 / sampling_rate)
 
-        self.dft_raw_img, = self.raw_ax.plot(freq_bins, raw_array)
+        (self.dft_raw_img,) = self.raw_ax.plot(freq_bins, raw_array)
         self.raw_ax.set_xlabel("Time (Sec)")
         self.raw_ax.set_ylabel("Amplitude")
 
-        self.dft_angle_img, = self.angle_ax.plot(freq_bins, raw_array)
+        (self.dft_angle_img,) = self.angle_ax.plot(freq_bins, raw_array)
         self.angle_ax.set_xlabel("Phase [Hz]")
         self.angle_ax.set_ylabel("Angle (Radians)")
         self.angle_ax.set_ylim([-math.pi, math.pi])
         # self.angle_ax.set_xticks(freqs)
 
-        self.dft_mag_img, = self.mag_ax.plot(freq_bins, raw_array)
+        (self.dft_mag_img,) = self.mag_ax.plot(freq_bins, raw_array)
         self.mag_ax.set_xlabel("Frequency [Hz]")
         self.mag_ax.set_xlabel("Magnitude (Linear)")
         # self.mag_ax.set_xticks(freqs)
 
-        self.placement = placement
-        self.n = 0
-
         pyplot.title(title)
         pyplot.tight_layout()
 
-    @staticmethod
-    def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0) -> None:
-        """Move figure's upper left corner to pixel (x, y)"""
-        backend = matplotlib.get_backend()
-        if hasattr(figure.canvas.manager, "window"):
-            window = figure.canvas.manager.window
-            if backend == "TkAgg":
-                window.wm_geometry(f"+{x:d}+{y:d}")
-            elif backend == "WXAgg":
-                window.SetPosition((x, y))
-            else:
-                # This works for QT and GTK
-                # You can also use window.setGeometry
-                window.move(x, y)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.fig:
-            pyplot.close(self.fig)
-
-    def draw(self, signal_sample: float, delta: float = 1 / 120) -> None:
+    def _draw(self, signal_sample: float, delta: float = 1 / 120) -> None:
         """
 
 :param signal_sample:
@@ -140,13 +113,6 @@ class FastFourierTransformPlot(Drawer):
         mag = numpy.abs(f_coef) ** 2
         self.dft_mag_img.set_ydata(mag)
         self.mag_ax.set_ylim([min(mag), max(mag)])
-
-        pyplot.draw()
-        if self.n <= 1:
-            self.move_figure(self.fig, *self.placement)
-        self.n += 1
-        if delta:
-            pyplot.pause(delta)
 
 
 if __name__ == "__main__":

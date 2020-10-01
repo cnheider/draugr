@@ -11,44 +11,46 @@ import random
 from pathlib import Path
 from typing import Tuple
 
-from torchvision.datasets import VisionDataset  # TODO: Do not need to be images
-
-__all__ = ["DictDatasetFolder", "SplitDictDatasetFolder"]
-
+from draugr.torch_utilities.datasets.supervised.splitting import Split, select_split
+from draugr.torch_utilities.datasets.supervised.utilities.flat_category import (
+    build_flat_dataset,
+)
 from draugr.torch_utilities.datasets.supervised.utilities.shallow_category import (
     build_shallow_categorical_dataset,
 )
-from draugr.torch_utilities.datasets.supervised.splitting import Split, select_split
+from torchvision.datasets import VisionDataset  # TODO: Do not need to be images
+
+__all__ = ["DictDatasetFolder", "SplitDictDatasetFolder"]
 
 
 class SplitDictDatasetFolder(VisionDataset):
     """A generic data loader where the samples are arranged in this way: ::
 
-    root/class_x/xxx.ext
-    root/class_x/xxy.ext
-    root/class_x/xxz.ext
+root/class_x/xxx.ext
+root/class_x/xxy.ext
+root/class_x/xxz.ext
 
-    root/class_y/123.ext
-    root/class_y/nsdf3.ext
-    root/class_y/asd932_.ext
+root/class_y/123.ext
+root/class_y/nsdf3.ext
+root/class_y/asd932_.ext
 
 Args:
-    root (string): Root directory path.
-    loader (callable): A function to load a sample given its path.
-    extensions (tuple[string]): A list of allowed extensions.
-        both extensions and is_valid_file should not be passed.
-    transform (callable, optional): A function/transform that takes in
-        a sample and returns a transformed version.
-        E.g, ``transforms.RandomCrop`` for images.
-    target_transform (callable, optional): A function/transform that takes
-        in the target and transforms it.
-    is_valid_file (callable, optional): A function that takes path of a file
-        and check if the file is a valid file (used to check of corrupt files)
-        both extensions and is_valid_file should not be passed.
+root (string): Root directory path.
+loader (callable): A function to load a sample given its path.
+extensions (tuple[string]): A list of allowed extensions.
+    both extensions and is_valid_file should not be passed.
+transform (callable, optional): A function/transform that takes in
+    a sample and returns a transformed version.
+    E.g, ``transforms.RandomCrop`` for images.
+target_transform (callable, optional): A function/transform that takes
+    in the target and transforms it.
+is_valid_file (callable, optional): A function that takes path of a file
+    and check if the file is a valid file (used to check of corrupt files)
+    both extensions and is_valid_file should not be passed.
 
- Attributes:
-    _categories (list): List of the class names sorted alphabetically.
-    _data_categories (list): List of (sample path, class_index) tuples
+Attributes:
+_categories (list): List of the class names sorted alphabetically.
+_data_categories (list): List of (sample path, class_index) tuples
 """
 
     def __init__(
@@ -95,10 +97,10 @@ Args:
 Non-pure implementation! Index maybe not map to the same item as target randomly sampled
 
 Args:
-    index (int): Index
+index (int): Index
 
 Returns:
-    tuple: (sample, target) where target is class_index of the target class.
+tuple: (sample, target) where target is class_index of the target class.
 """
         target = random.choice(self.category_names)
         return self.sample(target, index)
@@ -120,31 +122,31 @@ Returns:
 class DictDatasetFolder(VisionDataset):
     """A generic data loader where the samples are arranged in this way: ::
 
-    root/class_x/xxx.ext
-    root/class_x/xxy.ext
-    root/class_x/xxz.ext
+root/class_x/xxx.ext
+root/class_x/xxy.ext
+root/class_x/xxz.ext
 
-    root/class_y/123.ext
-    root/class_y/nsdf3.ext
-    root/class_y/asd932_.ext
+root/class_y/123.ext
+root/class_y/nsdf3.ext
+root/class_y/asd932_.ext
 
 Args:
-    root (string): Root directory path.
-    loader (callable): A function to load a sample given its path.
-    extensions (tuple[string]): A list of allowed extensions.
-        both extensions and is_valid_file should not be passed.
-    transform (callable, optional): A function/transform that takes in
-        a sample and returns a transformed version.
-        E.g, ``transforms.RandomCrop`` for images.
-    target_transform (callable, optional): A function/transform that takes
-        in the target and transforms it.
-    is_valid_file (callable, optional): A function that takes path of a file
-        and check if the file is a valid file (used to check of corrupt files)
-        both extensions and is_valid_file should not be passed.
+root (string): Root directory path.
+loader (callable): A function to load a sample given its path.
+extensions (tuple[string]): A list of allowed extensions.
+    both extensions and is_valid_file should not be passed.
+transform (callable, optional): A function/transform that takes in
+    a sample and returns a transformed version.
+    E.g, ``transforms.RandomCrop`` for images.
+target_transform (callable, optional): A function/transform that takes
+    in the target and transforms it.
+is_valid_file (callable, optional): A function that takes path of a file
+    and check if the file is a valid file (used to check of corrupt files)
+    both extensions and is_valid_file should not be passed.
 
- Attributes:
-    _categories (list): List of the class names sorted alphabetically.
-    _data (list): List of (sample path, class_index) tuples
+Attributes:
+_categories (list): List of the class names sorted alphabetically.
+_data (list): List of (sample path, class_index) tuples
 """
 
     def __init__(
@@ -178,10 +180,10 @@ Args:
 Non-pure implementation! Index maybe not map to the same item as target randomly sampled
 
 Args:
-    index (int): Index
+index (int): Index
 
 Returns:
-    tuple: (sample, target) where target is class_index of the target class.
+tuple: (sample, target) where target is class_index of the target class.
 """
         target = random.choice(self.category_names)
         return self.sample(target, index)

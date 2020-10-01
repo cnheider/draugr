@@ -17,7 +17,7 @@ class GtkThemePreferences(GtkSettings):
     def theme(self):
         """
 
-    """
+"""
         return self.settings.get_property("gtk-theme-name")
 
     @theme.setter
@@ -28,9 +28,9 @@ class GtkThemePreferences(GtkSettings):
     def prefer_dark_mode(self) -> bool:
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return self.settings.get_property("gtk-application-prefer-dark-theme")
 
     @prefer_dark_mode.setter
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     def asdad():
         """
 
-    """
+"""
         a = GtkThemePreferences()
 
         print(a.prefer_dark_mode)

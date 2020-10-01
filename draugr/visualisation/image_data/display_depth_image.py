@@ -11,13 +11,13 @@ __all__ = ["display_depth_map"]
 
 
 def display_depth_map(
-    data_set_directory=Path.home() / "Datasets" / "neodroid" / "depth" / "80.png"
+    data_set_directory=Path.home() / "Datasets" / "neodroid" / "depth" / "80.png",
 ):
     """
 
-  :param data_set_directory:
-  :type data_set_directory:
-  """
+:param data_set_directory:
+:type data_set_directory:
+"""
     # img = Image.open(data_set_directory + file_name).convert('LA')
     # img_array =numpy.asarray(img)
     # print(img_array.shape)

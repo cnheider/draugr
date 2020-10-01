@@ -7,12 +7,14 @@ __doc__ = r"""
            Created on 29/07/2020
            """
 
-__all__ = ["register_bad_grad_hooks"]
+__all__ = ["register_bad_grad_hooks", "print_grad_trace"]
+
+from typing import Any
 
 import torch
 
 
-def register_bad_grad_hooks(var):
+def register_bad_grad_hooks(var: Any) -> callable:
     """
 
 :param var:
@@ -132,20 +134,6 @@ def register_bad_grad_hooks(var):
     return make_dot
 
 
-if __name__ == "__main__":
-
-    x = torch.randn(10, 10, requires_grad=True)
-    y = torch.randn(10, 10, requires_grad=True)
-
-    z = x / (y * 0)
-    z = z.sum() * 2
-    get_dot = register_bad_grad_hooks(z)
-    z.backward()
-    dot = get_dot()
-    # dot.save('tmp.dot') # to get .dot
-    # dot.render('tmp') # to get SVG
-
-
 def print_grad_trace(var_grad_fn):
     print(var_grad_fn)
     for n in var_grad_fn.next_functions:
@@ -158,3 +146,20 @@ def print_grad_trace(var_grad_fn):
                 print()
             except AttributeError as e:
                 print_grad_trace(n[0])
+
+
+if __name__ == "__main__":
+
+    def asdifiejsf():
+        x = torch.randn(10, 10, requires_grad=True)
+        y = torch.randn(10, 10, requires_grad=True)
+
+        z = x / (y * 0)
+        z = z.sum() * 2
+        get_dot = register_bad_grad_hooks(z)
+        z.backward()
+        dot = get_dot()
+        # dot.save('tmp.dot') # to get .dot
+        # dot.render('tmp') # to get SVG
+
+    asdifiejsf()

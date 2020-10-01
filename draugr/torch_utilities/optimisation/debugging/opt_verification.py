@@ -19,22 +19,26 @@ visualize just before the net. The unambiguously correct place to visualize your
 
 use backprop to chart dependencies. Your deep learning code will often contain complicated, vectorized, and broadcasted operations. A relatively common bug I’ve come across a few times is that people get this wrong (e.g. they use view instead of transpose/permute somewhere) and inadvertently mix information across the batch dimension. It is a depressing fact that your network will typically still train okay because it will learn to ignore data from the other examples. One way to debug this (and other related problems) is to set the loss to be something trivial like the sum of all outputs of example i, run the backward pass all the way to the input, and ensure that you get a non-zero gradient only on the i-th input. The same strategy can be used to e.g. ensure that your autoregressive model at time t only depends on 1..t-1. More generally, gradients give you information about what depends on what in your network, which can be useful for debugging.
 
+#TODO: NOT DONE, FINISH!
+
            Created on 07/07/2020
            """
 
 from random import random
 
 import torch
-
 from draugr.torch_utilities.tensors import to_tensor
 
-__all__ = []
+__all__ = ["overfit_single_batch"]
 
 
 # __all__ = ['init_softmax_loss','overfit_single_batch']
 
 
 def init_softmax_loss():
+    """
+#TODO: NOT DONE, FINISH!
+  """
     batch_Size = 16
     input_f = 4
     n_classes = 10
@@ -66,6 +70,10 @@ def init_softmax_loss():
 
 
 def overfit_single_batch():
+    """
+  #TODO: NOT DONE, FINISH!
+  :return:
+  """
     input_f = 4
     n_classes = 10
 

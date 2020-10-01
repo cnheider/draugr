@@ -14,7 +14,7 @@ __all__ = ["MetricAggregator", "save_metric"]
 class MetricAggregator(object):
     """
 
-  """
+"""
 
     def __init__(
         self,
@@ -43,36 +43,36 @@ class MetricAggregator(object):
     def values(self):
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return self._values
 
     @property
     def max(self):
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return max(self._values)
 
     @property
     def min(self):
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         return min(self._values)
 
     @property
     def measures(self):
         """
 
-    :return:
-    :rtype:
-    """
+:return:
+:rtype:
+"""
         if self._keep_measure_history:
             return self._measures
         else:
@@ -89,17 +89,17 @@ class MetricAggregator(object):
     def add(self, values):
         """
 
-    :param values:
-    :type values:
-    """
+:param values:
+:type values:
+"""
         self.append(values)
 
     def append(self, values):
         """
 
-    :param values:
-    :type values:
-    """
+:param values:
+:type values:
+"""
         self._values.append(values)
         if type is list:
             self._length += len(values)
@@ -124,6 +124,10 @@ class MetricAggregator(object):
                         # TODO: warn(f'{e}')
                         val = None
                     self._measures[key].append(val)
+
+    # def __setitem__(self, key, value):
+    #    if self._keep_measure_history:
+    #        self.
 
     def __getitem__(self, item):
         return self._values[item]
@@ -174,11 +178,11 @@ class MetricAggregator(object):
     def calc_moving_average(self, window_size=100):
         """
 
-    :param window_size:
-    :type window_size:
-    :return:
-    :rtype:
-    """
+:param window_size:
+:type window_size:
+:return:
+:rtype:
+"""
         if self._length >= window_size:
             return stats.mean(self._values[-window_size:])
         elif self._length > 0:
@@ -189,13 +193,13 @@ class MetricAggregator(object):
     def calc_running_value(self, new_val=None, *, lambd=0.99):
         """
 
-    :param new_val:
-    :type new_val:
-    :param lambd:
-    :type lambd:
-    :return:
-    :rtype:
-    """
+:param new_val:
+:type new_val:
+:param lambd:
+:type lambd:
+:return:
+:rtype:
+"""
         if new_val is None:
             return self._running_value
 
@@ -218,15 +222,15 @@ class MetricAggregator(object):
     ):
         """
 
-    :param stat_name:
-    :type stat_name:
-    :param project_name:
-    :type project_name:
-    :param config_name:
-    :type config_name:
-    :param directory:
-    :type directory:
-    """
+:param stat_name:
+:type stat_name:
+:param project_name:
+:type project_name:
+:param config_name:
+:type config_name:
+:param directory:
+:type directory:
+"""
         save_metric(
             self._values,
             metric_name=stat_name,
@@ -246,19 +250,19 @@ def save_metric(
 ) -> bool:
     """
 
-  :param metric:
-  :type metric:
-  :param metric_name:
-  :type metric_name:
-  :param project_name:
-  :type project_name:
-  :param config_name:
-  :type config_name:
-  :param directory:
-  :type directory:
-  :return:
-  :rtype:
-  """
+:param metric:
+:type metric:
+:param metric_name:
+:type metric_name:
+:param project_name:
+:type project_name:
+:param config_name:
+:type config_name:
+:param directory:
+:type directory:
+:return:
+:rtype:
+"""
     import csv
     import datetime
 

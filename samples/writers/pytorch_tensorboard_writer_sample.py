@@ -10,19 +10,17 @@ __doc__ = r"""
 import librosa
 import numpy
 import torch
-from draugr.torch_utilities.initialisation.fan_in_weight_init import (
-    constant_init,
-    fan_in_init,
-    normal_init,
-    xavier_init,
-)
 from librosa.display import specshow
 from matplotlib import pyplot
 
 from draugr import PROJECT_APP_PATH
-from draugr.torch_utilities import TensorBoardPytorchWriter
-from draugr.torch_utilities.writers.torch_module_writer.module_writer_parameters import (
+from draugr.torch_utilities import (
+    TensorBoardPytorchWriter,
+    constant_init,
+    fan_in_init,
+    normal_init,
     weight_bias_histograms,
+    xavier_init,
 )
 
 if __name__ == "__main__":

@@ -7,11 +7,15 @@ Created on 27/04/2019
 
 @author: cnheider
 """
+import pathlib
+
+with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
 
 from .csv_writer import *
 from .log_writer import *
 from .mixins import *
 from .mock_writer import *
 from .terminal import *
-from .visdom import *
 from .writer import *
+from .standard_tags import *

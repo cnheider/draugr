@@ -15,8 +15,8 @@ __all__ = ["to_tensor"]
 # @passes_kws_to(torch.Tensor.to)
 def to_tensor(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, Sequence, int, float],
-    dtype=torch.float,
-    device="cpu",
+    dtype: torch.dtype = torch.float,
+    device: Union[str, torch.device] = "cpu",
     **kwargs
 ) -> torch.Tensor:
     """
