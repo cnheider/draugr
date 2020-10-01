@@ -9,4 +9,4 @@ __doc__ = r"""
 
 from .terminal_plot import *
 from .terminal_plot_writer import *
-from .terminal_writer import *
+from .console_writer import *

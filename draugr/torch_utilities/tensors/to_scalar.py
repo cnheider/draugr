@@ -16,14 +16,14 @@ from warg import Number
 def to_scalar(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, Sequence, int, float],
     device: Union[str, torch.device] = "cpu",
-    integration: callable = torch.mean,
+    aggregation: callable = torch.mean,
 ) -> Number:
     """
 Always detaches from computation graph
 
 default behaviour is obj.cpu().mean().item()
 
-:param integration:
+:param aggregation:
 :param obj:
 :param device:
 :return:
@@ -34,8 +34,8 @@ default behaviour is obj.cpu().mean().item()
     else:
         obj = obj.detach()
 
-    if integration:
-        obj = integration(obj)
+    if aggregation:
+        obj = aggregation(obj)
 
     return obj.to(device=device).item()
 

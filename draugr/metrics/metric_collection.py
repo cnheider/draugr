@@ -5,7 +5,7 @@ __author__ = "Christian Heider Nielsen"
 
 import statistics as S
 
-from .metric_aggregator import MetricAggregator
+from draugr.metrics.metric_aggregator import MetricAggregator
 
 MEASURES = S.__all__[1:]
 
@@ -82,10 +82,7 @@ class MetricCollection(dict):
         return self._metrics
 
     def __getattr__(self, name):
-        if name in self._metrics:
-            return self._metrics[name]
-        else:
-            raise AttributeError
+        return self.__getitem__(name)
 
     def __repr__(self):
         return f"<StatisticCollection> {self._metrics} </StatisticCollection>"
@@ -96,8 +93,22 @@ class MetricCollection(dict):
     def __iter__(self):
         return self.metrics
 
-    def __getitem__(self, item):
-        return self.metrics[item]
+    def __getitem__(self, name):
+        if name in self._metrics:
+            return self._metrics[name]
+        else:
+            # return self.add_metric(name)
+            raise AttributeError
+
+    # def __setitem__(self, key, value):
+    #     if key in self._metrics:
+    #         if self._keep_measure_history:
+    #             self._metrics[key].append(value)
+    #         else:
+    #             self._metrics[key] = value
+    #     else:
+    #         self.add_metric(key)
+    #         self.append({key:value})
 
     def keys(self):
         """

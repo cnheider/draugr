@@ -7,14 +7,14 @@ __author__ = "Christian Heider Nielsen"
 # python -m visdom.server
 
 
-def run_visdom_server():
+def main():
     """
 Will start a visdom server
 """
+    import visdom.server as server
+
     server.main()
 
 
 if __name__ == "__main__":
-    import visdom.server as server
-
-    run_visdom_server()
+    main()

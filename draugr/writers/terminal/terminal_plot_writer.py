@@ -11,7 +11,10 @@ from draugr.writers.terminal.terminal_image_renderer import (
     render_image,
     terminalise_image,
 )
-from draugr.writers.terminal.terminal_plot import styled_terminal_plot_stats_shared_x
+from draugr.writers.terminal.terminal_plot import (
+    styled_terminal_plot_stats_shared_x,
+    terminal_plot,
+)
 from draugr.writers.writer import Writer
 from tqdm import tqdm
 
@@ -42,6 +45,7 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
 
     def _open(self):
         self.E = tqdm()
+        self.values = MetricCollection()
         return self
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
@@ -77,6 +81,9 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
         )
 
     def _scalar(self, tag: str, value: float, step: int):
+        self.values[tag] = value
+        # styled_terminal_plot_stats_shared_x(self.values, printer=self.E.write)
+        terminal_plot([value], printer=self.E.write)
         self.E.set_description(f"Tag:{tag} Val:{value} Step:{step}")
 
 
@@ -88,14 +95,14 @@ if __name__ == "__main__":
 
     '''
 def train_episodically_old(self,
-               env,
-               test_env,
-               *,
-               rollouts=2000,
-               render=False,
-               render_frequency=100,
-               stat_frequency=10,
-               ):
+             env,
+             test_env,
+             *,
+             rollouts=2000,
+             render=False,
+             render_frequency=100,
+             stat_frequency=10,
+             ):
 
 E = range(1, rollouts)
 E = tqdm(E, f"Episode: {1}", leave=False, disable=not render)
@@ -132,14 +139,14 @@ return NOD(model=self._distribution_parameter_regressor, stats=stats)
 
 
 def train_episodically_old(self,
-               _environment,
-               *,
-               rollouts=10000,
-               render=False,
-               render_frequency=100,
-               stat_frequency=100,
-               **kwargs,
-               ):
+             _environment,
+             *,
+             rollouts=10000,
+             render=False,
+             render_frequency=100,
+             stat_frequency=100,
+             **kwargs,
+             ):
 """
 :param _environment:
 :type _environment:,0

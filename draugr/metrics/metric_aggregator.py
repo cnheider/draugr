@@ -125,6 +125,10 @@ class MetricAggregator(object):
                         val = None
                     self._measures[key].append(val)
 
+    # def __setitem__(self, key, value):
+    #    if self._keep_measure_history:
+    #        self.
+
     def __getitem__(self, item):
         return self._values[item]
 
