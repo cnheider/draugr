@@ -27,6 +27,7 @@ jobs:
               --source
               --binary
               --out-dir dist/
+              .
       - name: Publish distribution 📦 to Test PyPI
         uses: pypa/gh-action-pypi-publish@master
         with:
@@ -37,3 +38,5 @@ jobs:
         uses: pypa/gh-action-pypi-publish@master
         with:
           password: ${{ secrets.pypi_password }}
+          #verbose: true
+          #skip_existing: true
