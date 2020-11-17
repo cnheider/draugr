@@ -19,9 +19,8 @@ __all__ = ["DefaultTypeSession"]
 
 class DefaultTypeSession(AlsoDecorator):
     """
-# speed up evaluating after training finished
-
-"""
+    # speed up evaluating after training finished
+    """
 
     def __init__(self, dtype: torch.dtype = torch.float32, no_side_effect: bool = True):
         self._dtype = dtype

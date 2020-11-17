@@ -19,11 +19,10 @@ class MplDrawer(
     # metaclass=PostInit
 ):
     """
-Real time plotting base class
+    Real time plotting base class
 
-for Matplotlib
-
-"""
+    for Matplotlib
+    """
 
     # @drop_unused_kws
     def __init__(
@@ -36,11 +35,10 @@ for Matplotlib
     ):
         """
 
-:param default_delta:
-:param render:
-:param placement:
-:param kwargs:
-"""
+        :param default_delta:
+        :param render:
+        :param placement:
+        :param kwargs:"""
         super().__init__()
         self.fig = None
 
@@ -93,8 +91,8 @@ def __post_init__(self,*, figure_size: Tuple[int, int] = None):
     @staticmethod
     def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0):
         r"""
-    Move figure's upper left corner to pixel (x, y)
-    """
+        Move figure's upper left corner to pixel (x, y)
+        """
         backend = matplotlib.get_backend()
         if hasattr(figure.canvas.manager, "window"):
             window = figure.canvas.manager.window
@@ -118,26 +116,23 @@ def __post_init__(self,*, figure_size: Tuple[int, int] = None):
     def _draw(self, data: Any) -> None:
         """
 
-:param data:
-:type data:
-:param delta:
-:type delta:
-"""
+        :param data:
+        :type data:
+        :param delta:
+        :type delta:"""
         raise NotImplementedError
 
 
 class MockDrawer(MplDrawer):
     """
-Mock for drawer, accepts data but draws nothing
-
-"""
+    Mock for drawer, accepts data but draws nothing
+    """
 
     def _draw(self, data: Sequence) -> None:
         """
 
-:param data:
-:type data:
-:param delta:
-:type delta:
-"""
+        :param data:
+        :type data:
+        :param delta:
+        :type delta:"""
         pass

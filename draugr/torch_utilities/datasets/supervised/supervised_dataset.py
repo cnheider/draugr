@@ -16,15 +16,13 @@ __all__ = ["SupervisedDataset"]
 
 from draugr.torch_utilities.datasets.supervised.splitting import (
     Split,
-    SplitByPercentage,
+    SplitIndexer,
 )
 from warg import drop_unused_kws
 
 
 class SupervisedDataset(Dataset):
-    """
-
-"""
+    """"""
 
     @drop_unused_kws
     def __init__(self):
@@ -37,22 +35,18 @@ class SupervisedDataset(Dataset):
 :return:
 :rtype:
 """
-        return SplitByPercentage.default_split_names
+        return SplitIndexer.default_split_names
 
     @property
     @abstractmethod
     def response_shape(self) -> Tuple[int, ...]:
-        """
-
-"""
+        """"""
         raise NotImplementedError
 
     @property
     @abstractmethod
     def predictor_shape(self) -> Tuple[int, ...]:
-        """
-
-"""
+        """"""
         raise NotImplementedError
 
     @abstractmethod
@@ -65,5 +59,5 @@ class SupervisedDataset(Dataset):
 
 
 if __name__ == "__main__":
-    print(SplitByPercentage(521))
-    print(SplitByPercentage(2512).unnormalised(123))
+    print(SplitIndexer(521))
+    print(SplitIndexer(2512).unnormalised(123))

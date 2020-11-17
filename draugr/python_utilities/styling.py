@@ -86,9 +86,7 @@ def hyperlink_path(
 
 
 class PrintStyle(object):
-    """
-
-"""
+    """"""
 
     def __init__(self, attributes_joined, end):
         self._attributes_joined = attributes_joined
@@ -111,21 +109,20 @@ def generate_style(
 ) -> Union[str, PrintStyle]:
     """
 
-:param obj:
-:type obj:
-:param color:
-:type color:
-:param bold:
-:type bold:
-:param highlight:
-:type highlight:
-:param underline:
-:type underline:
-:param italic:
-:type italic:
-:return:
-:rtype:
-"""
+    :param obj:
+    :type obj:
+    :param color:
+    :type color:
+    :param bold:
+    :type bold:
+    :param highlight:
+    :type highlight:
+    :param underline:
+    :type underline:
+    :param italic:
+    :type italic:
+    :return:
+    :rtype:"""
     attributes = []
 
     if color == "random":
@@ -168,18 +165,16 @@ def generate_style(
 @passes_kws_to(generate_style)
 def sprint(obj: Any, print_kws={}, **kwargs) -> None:
     """
-Stylised print. Defaults to stdout
-Valid colors: gray, red, green, yellow, blue, magenta, cyan, white, crimson
-"""
+    Stylised print. Defaults to stdout
+    Valid colors: gray, red, green, yellow, blue, magenta, cyan, white, crimson"""
     print(generate_style(obj, **kwargs), **print_kws)
 
 
 def scale(x, length):
     """
-Scale points in 'x', such that distance between
-max(x) and min(x) equals to 'length'. min(x)
-will be moved to 0.
-"""
+    Scale points in 'x', such that distance between
+    max(x) and min(x) equals to 'length'. min(x)
+    will be moved to 0."""
     if type(x) is list:
         s = float(length) / (max(x) - min(x)) if x and max(x) - min(x) != 0 else length
     # elif type(x) is range:
@@ -197,9 +192,8 @@ will be moved to 0.
 def get_terminal_size():
     """
 
-:return:
-:rtype:
-"""
+    :return:
+    :rtype:"""
     try:
         size = shutil.get_terminal_size()
         columns, rows = size.columns, size.lines

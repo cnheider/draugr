@@ -12,10 +12,16 @@ import pathlib
 with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
-from .csv_writer import *
-from .log_writer import *
-from .mixins import *
-from .mock_writer import *
-from .terminal import *
-from .writer import *
-from .standard_tags import *
+try:
+    from .csv_writer import *
+    from .log_writer import *
+    from .mixins import *
+    from .mock_writer import *
+    from .terminal import *
+    from .writer import *
+    from .standard_tags import *
+except ImportError as ix:
+    print(
+        f"Make sure requirements is installed for {pathlib.Path(__file__).parent.name}"
+    )
+    raise ix

@@ -21,9 +21,7 @@ from warg import Number, drop_unused_kws
 
 
 class Writer(metaclass=ABCMeta):
-    """
-
-"""
+    """"""
 
     @drop_unused_kws
     def __init__(
@@ -38,16 +36,15 @@ class Writer(metaclass=ABCMeta):
     def filter(self, tag: str) -> bool:
         """
 
-    returns a boolean  value, true if to be included, False if to be excluded
+            returns a boolean  value, true if to be included, False if to be excluded
 
-    tag is in filter if not None
-    and within interval for inclusion
+            tag is in filter if not None
+            and within interval for inclusion
 
-:param tag:
-:type tag:
-:return:
-:rtype:
-"""
+        :param tag:
+        :type tag:
+        :return:
+        :rtype:"""
         is_in_filters = self.filters is None or tag in self.filters
         at_interval = is_none_or_zero_or_negative_or_mod_zero(
             self._interval, self._counter[tag]
@@ -75,13 +72,12 @@ class Writer(metaclass=ABCMeta):
     def scalar(self, tag: str, value: Number, step_i: int = None) -> None:
         """
 
-:param tag:
-:type tag:
-:param value:
-:type value:
-:param step_i:
-:type step_i:
-"""
+        :param tag:
+        :type tag:
+        :param value:
+        :type value:
+        :param step_i:
+        :type step_i:"""
         if step_i:
             if self.filter(tag):
                 self._scalar(tag, value, self._counter[tag])
@@ -94,11 +90,10 @@ class Writer(metaclass=ABCMeta):
     def blip(self, tag: str, step_i: int = None) -> None:
         """
 
-:param tag:
-:type tag:
-:param step_i:
-:type step_i:
-"""
+        :param tag:
+        :type tag:
+        :param step_i:
+        :type step_i:"""
         if step_i:
             self.scalar(tag, next(self._blip_values), step_i)
             self.scalar(tag, next(self._blip_values), step_i)
@@ -107,15 +102,11 @@ class Writer(metaclass=ABCMeta):
             self.scalar(tag, next(self._blip_values), self._counter[tag])
 
     def close(self):
-        """
-
-"""
+        """"""
         self._close()
 
     def open(self):
-        """
-
-"""
+        """"""
         self._open()
 
     @abstractmethod
@@ -138,9 +129,8 @@ GLOBAL_WRITER = None  #: Writer = None
 def global_writer() -> Writer:
     """
 
-:return:
-:rtype:
-"""
+    :return:
+    :rtype:"""
     global GLOBAL_WRITER
     return GLOBAL_WRITER
 
@@ -148,9 +138,8 @@ def global_writer() -> Writer:
 def set_global_writer(writer: Writer) -> None:
     """
 
-:return:
-:rtype:
-"""
+    :return:
+    :rtype:"""
     global GLOBAL_WRITER
     # if GLOBAL_WRITER:
     # GLOBAL_WRITER_STACK TODO: push to stack if existing?

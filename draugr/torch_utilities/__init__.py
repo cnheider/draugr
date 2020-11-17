@@ -8,7 +8,6 @@ import pathlib
 with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ = this_init_file.read()
 
-from .constants import *
 from .system import *
 from .datasets import *
 from .distributions import *
@@ -19,6 +18,7 @@ from .optimisation import *
 from .persistence import *
 from .tensors import *
 from .writers import *
+from .sessions import *
 
 if __name__ == "__main__":
     print(__doc__)

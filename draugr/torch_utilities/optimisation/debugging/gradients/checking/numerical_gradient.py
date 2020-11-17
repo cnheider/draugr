@@ -18,7 +18,7 @@ from draugr.torch_utilities.optimisation.parameters import (
     normal_init_weights,
     trainable_parameters,
 )
-from draugr.torch_utilities.optimisation.sessions import TorchEvalSession
+from draugr.torch_utilities.sessions import TorchEvalSession
 from warg import ContextWrapper
 
 
@@ -31,24 +31,23 @@ def loss_grad_check(
     error_tolerance: float = 1e-5,
 ) -> None:
     """
-two sided gradient numerical approximation
-DOES not work, please refer to torch/autograd/gradcheck.py
+    two sided gradient numerical approximation
+    DOES not work, please refer to torch/autograd/gradcheck.py
 
-:param input:
-:type input:
-:param target:
-:type target:
-:param error_tolerance:
-:type error_tolerance:
-:param model:
-:type model:
-:param loss_fn:
-:type loss_fn:
-:param epsilon:
-:type epsilon:
-:return:
-:rtype:
-"""
+    :param input:
+    :type input:
+    :param target:
+    :type target:
+    :param error_tolerance:
+    :type error_tolerance:
+    :param model:
+    :type model:
+    :param loss_fn:
+    :type loss_fn:
+    :param epsilon:
+    :type epsilon:
+    :return:
+    :rtype:"""
     assert epsilon > 0.0
     c_model = copy.deepcopy(model)
 

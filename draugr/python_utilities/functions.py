@@ -19,47 +19,42 @@ from warg import drop_unused_kws
 @drop_unused_kws
 def identity(*args) -> Tuple[Any, ...]:
     """
-Returns args without any modification what so ever. Drops kws
-:param x:
-:return:
-"""
+    Returns args without any modification what so ever. Drops kws
+    :param x:
+    :return:"""
     return args
 
 
 def kw_identity(*args, **kwargs) -> Tuple[Tuple[Any], Dict[str, Any]]:
     """
 
-:param args:
-:param kwargs:
-:return:
-"""
+    :param args:
+    :param kwargs:
+    :return:"""
     return args, kwargs
 
 
 def collate_batch_fn(batch: Iterable) -> tuple:
     """
 
-:param batch:
-:return:
-"""
+    :param batch:
+    :return:"""
     return tuple(zip(*batch))
 
 
 def sink(*args, **kwargs) -> None:
     """
-Returns None, but accepts everthing
+    Returns None, but accepts everthing
 
-:param args:
-:param kwargs:
-:return:
-"""
+    :param args:
+    :param kwargs:
+    :return:"""
     return None
 
 
 def prod(iterable: Iterable[Union[int, float]]) -> Union[int, float]:
     """
-Calculate the product of the a Iterable of int or floats
-:param iterable:
-:return:
-"""
+    Calculate the product of the a Iterable of int or floats
+    :param iterable:
+    :return:"""
     return reduce(operator.mul, iterable, 1)

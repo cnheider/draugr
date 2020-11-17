@@ -35,10 +35,9 @@ def load_latest_model(
 ) -> Union[torch.nn.Module, None]:
     """
 
-:param model_directory:
-:param model_name:
-:return:
-"""
+    :param model_directory:
+    :param model_name:
+    :return:"""
     model_path = model_directory / model_name
     list_of_files = list(model_path.glob(f"*{model_extension}"))
     if len(list_of_files) == 0:
@@ -65,12 +64,11 @@ def save_model_and_configuration(
 ) -> None:
     """
 
-:param model:
-:param model_save_path:
-:param config_save_path:
-:param loaded_config_file_path:
-:return:
-"""
+    :param model:
+    :param model_save_path:
+    :param config_save_path:
+    :param loaded_config_file_path:
+    :return:"""
     torch.save(model, str(model_save_path))
     if loaded_config_file_path:
         save_config(config_save_path, loaded_config_file_path)
@@ -86,12 +84,11 @@ def save_model(
 ) -> None:
     """
 
-:param model:
-:param save_directory:
-:param config_file_path:
-:param model_name:
-:return:
-"""
+    :param model:
+    :param save_directory:
+    :param config_file_path:
+    :param model_name:
+    :return:"""
     model_date = datetime.datetime.now()
     # config_name = config_name.replace(".", "_")
 
@@ -142,9 +139,8 @@ def save_model(
 def convert_saved_model_to_cpu(path: pathlib.Path) -> None:
     """
 
-:param path:
-:return:
-"""
+    :param path:
+    :return:"""
     model = torch.load(path, map_location=lambda storage, loc: storage)
     torch.save(model, f"{path}.cpu{model_extension}")
 

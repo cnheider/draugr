@@ -11,18 +11,14 @@ __all__ = ["NoData", "IncompatiblePackageVersions"]
 
 
 class NoData(Exception):
-    """
-
-"""
+    """"""
 
     def __init__(self, msg: str = "No Data Available"):
         Exception.__init__(self, msg)
 
 
 class IncompatiblePackageVersions(Exception):
-    """
-
-"""
+    """"""
 
     def __init__(self, *packages, **versions):
         str_o = ", "

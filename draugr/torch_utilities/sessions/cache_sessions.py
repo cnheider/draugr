@@ -9,12 +9,12 @@ __doc__ = r"""
 
 import torch
 
-from draugr.torch_utilities.optimisation.sessions.device_sessions import (
+from draugr.torch_utilities.sessions.device_sessions import (
+    global_torch_device,
     TorchCpuSession,
     TorchCudaSession,
-    global_torch_device,
 )
-from draugr.torch_utilities.optimisation.sessions.model_sessions import (
+from draugr.torch_utilities.sessions.model_sessions import (
     TorchEvalSession,
     TorchTrainSession,
 )
@@ -26,10 +26,9 @@ from warg import AlsoDecorator
 
 class TorchCacheSession(AlsoDecorator):
     """
-# speed up evaluating after training finished
-# NOTE: HAS THE SIDE EFFECT OF CLEARING CACHE, NON RECOVERABLE
-
-"""
+    # speed up evaluating after training finished
+    # NOTE: HAS THE SIDE EFFECT OF CLEARING CACHE, NON RECOVERABLE
+    """
 
     def __init__(self, using_cuda: bool = global_torch_device().type == "cuda"):
         self.using_cuda = using_cuda

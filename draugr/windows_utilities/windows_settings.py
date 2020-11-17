@@ -13,9 +13,7 @@ from warg import SingletonMeta
 
 
 class WindowsSettings(metaclass=SingletonMeta):
-    """
-
-"""
+    """"""
 
     def __init__(self):
         self.registry = winreg.ConnectRegistry(None, winreg.HKEY_CURRENT_USER)
@@ -23,10 +21,9 @@ class WindowsSettings(metaclass=SingletonMeta):
 
     def get_dark_mode(self) -> bool:
         """
-    True if
+        True if
 
-    :return:
-    """
+        :return:"""
         key = winreg.OpenKey(
             self.registry,
             r"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize",
@@ -41,8 +38,14 @@ class WindowsSettings(metaclass=SingletonMeta):
             winreg.KEY_ALL_ACCESS | winreg.KEY_WOW64_64KEY,
         )
         self.changes.add(key)
+
+        # noinspection PyTypeChecker
         winreg.SetValueEx(
-            key, "AppsUseLightTheme", None, winreg.REG_DWORD, int(not value)
+            key,
+            "AppsUseLightTheme",
+            None,
+            winreg.REG_DWORD,
+            int(not value),  # SHOULD BE OF TYPE INT!
         )
 
     def __enter__(self):
@@ -57,9 +60,7 @@ class WindowsSettings(metaclass=SingletonMeta):
 
     @property
     def all_settings(self):
-        """
-
-"""
+        """"""
         return None
         # for i in self.settings.list_properties():  # getting all existing properties
         #  yield i

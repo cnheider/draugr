@@ -107,7 +107,10 @@ class DraugrPackage:
         return {
             "console_scripts": [
                 # "name_of_executable = module.with:function_to_execute"
-                "draugr-tb = draugr.entry_points.tensorboard_entry_point:main"
+                "draugr-darkmode-toggle = draugr.entry_points.toggle_darkmode:main",
+                "draugr-tb = draugr.entry_points.tensorboard_entry_point:main",
+                "draugr-cpu = draugr.entry_points.cpu_usage_entry_point:main",
+                "draugr-vis = draugr.entry_points.visdom_entry_point:main",
             ]
         }
 

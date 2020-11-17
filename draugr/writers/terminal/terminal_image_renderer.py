@@ -4,7 +4,7 @@ from typing import Any, List, Tuple
 
 import numpy
 from PIL import Image
-from colors import color
+from colors import color  # ansicolors
 
 
 def get_pixel(col: Tuple) -> Any:
@@ -40,10 +40,10 @@ def render_image(pixels: numpy.ndarray, scale: Tuple) -> List[List]:
 def terminalise_image(output):
     """
 
-  joins lists
+    joins lists
 
-  :return:
-  """
+    :return:
+    """
     return "\n".join(["".join(row) for row in output])
 
 

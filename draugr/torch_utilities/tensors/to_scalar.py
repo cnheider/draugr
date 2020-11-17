@@ -16,26 +16,25 @@ from warg import Number
 def to_scalar(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, Sequence, int, float],
     device: Union[str, torch.device] = "cpu",
-    integration: callable = torch.mean,
+    aggregation: callable = torch.mean,
 ) -> Number:
     """
-Always detaches from computation graph
+    Always detaches from computation graph
 
-default behaviour is obj.cpu().mean().item()
+    default behaviour is obj.cpu().mean().item()
 
-:param integration:
-:param obj:
-:param device:
-:return:
-"""
+    :param aggregation:
+    :param obj:
+    :param device:
+    :return:"""
 
     if not torch.is_tensor(obj):
         obj = to_tensor(obj)
     else:
         obj = obj.detach()
 
-    if integration:
-        obj = integration(obj)
+    if aggregation:
+        obj = aggregation(obj)
 
     return obj.to(device=device).item()
 

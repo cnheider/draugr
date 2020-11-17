@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 from pathlib import Path
-from typing import Sequence, Tuple
+from typing import Sequence, Tuple, Union
 
 import PIL.ImageDraw as ImageDraw
 import PIL.ImageFont as ImageFont
@@ -18,15 +18,15 @@ from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labe
 from draugr.opencv_utilities.opencv_draw import draw_masks
 from draugr.python_utilities.colors import RGB
 
-__all__ = ["draw_bouding_boxes"]
+__all__ = ["draw_bounding_boxes"]
 
 
 def draw_single_box(
     image: Image.Image,
-    xmin: float,
-    ymin: float,
-    xmax: float,
-    ymax: float,
+    x_min: float,
+    y_min: float,
+    x_max: float,
+    y_max: float,
     *,
     score_color: Tuple = RGB(0, 0, 0),
     display_str: str = None,
@@ -36,8 +36,15 @@ def draw_single_box(
     outline_alpha: float = 0.5,
     color_fill_score: bool = False,
 ) -> Image.Image:
-    draw = ImageDraw.Draw(image, mode="RGBA")
-    left, right, top, bottom = xmin, xmax, ymin, ymax
+    if not isinstance(image, ImageDraw.ImageDraw):
+        assert isinstance(image, Image.Image)
+        if image.mode != "RGBA":
+            image = image.convert("RGBA")
+        draw = ImageDraw.Draw(image, mode="RGBA")
+    else:
+        draw = image
+
+    left, right, top, bottom = x_min, x_max, y_min, y_max
     alpha_color = outline_color + (int(255 * outline_alpha),)
     draw.rectangle(
         [(left, top), (right, bottom)],
@@ -80,8 +87,8 @@ def draw_single_box(
     return image
 
 
-def draw_bouding_boxes(
-    image: numpy.ndarray,
+def draw_bounding_boxes(
+    image: Union[numpy.ndarray, Image.Image],
     boxes: numpy.ndarray,
     *,
     labels: numpy.ndarray = None,
@@ -92,30 +99,32 @@ def draw_bouding_boxes(
     score_color_fill: bool = False,
     score_font: ImageFont = ImageFont.load_default(),
     score_format: str = ": {:.2f}",
+    mode="RGBA",
 ) -> numpy.ndarray:
     """Draw bounding boxes(labels, scores) on image
-Args:
-image: numpy array image, shape should be (height, width, channel)
-boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax), NOT NORMALISED!
-labels: labels, shape: (N, )
-scores: label scores, shape: (N, )
-class_name_map: list or dict, map class id to class name for visualization.
-width: box width
-alpha: text background alpha
-fill: fill box or not
-font: text font
-score_format: score format
-Returns:
-An image with information drawn on it.
-"""
+    Args:
+    image: numpy array image, shape should be (height, width, channel)
+    boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax), NOT NORMALISED!
+    labels: labels, shape: (N, )
+    scores: label scores, shape: (N, )
+    class_name_map: list or dict, map class id to class name for visualization.
+    width: box width
+    alpha: text background alpha
+    fill: fill box or not
+    font: text font
+    score_format: score format
+    Returns:
+    An image with information drawn on it."""
     boxes = numpy.array(boxes)
     num_boxes = boxes.shape[0]
     if isinstance(image, Image.Image):
         draw_image = image
     elif isinstance(image, numpy.ndarray):
-        draw_image = Image.fromarray(image)
+        draw_image = Image.fromarray(image, mode)
     else:
         raise AttributeError(f"Unsupported images type {type(image)}")
+
+    draw = ImageDraw.Draw(image, mode="RGBA")
 
     for i in range(num_boxes):
         display_str = ""
@@ -132,10 +141,10 @@ An image with information drawn on it.
 
         draw_image = draw_single_box(
             image=draw_image,
-            xmin=boxes[i, 0],
-            ymin=boxes[i, 1],
-            xmax=boxes[i, 2],
-            ymax=boxes[i, 3],
+            x_min=boxes[i, 0],
+            y_min=boxes[i, 1],
+            x_max=boxes[i, 2],
+            y_max=boxes[i, 3],
             outline_color=color,
             outline_width=outline_width,
             outline_alpha=outline_alpha,
@@ -161,7 +170,7 @@ if __name__ == "__main__":
 
         img = Image.open(str(data_root / f"{name}.jpg"))
         img = draw_masks(img, data.masks, data.labels)
-        img = draw_bouding_boxes(
+        img = draw_bounding_boxes(
             img,
             boxes=data.boxes,
             labels=data.labels,
@@ -175,11 +184,11 @@ if __name__ == "__main__":
     def b():
         from matplotlib import pyplot
 
-        data_root = Path.home() / "Pictures"
+        data_root = Path.home() / "Data" / "PennFudanPed" / "PNGImages"
 
-        img = Image.open(str(data_root / f"0.jpeg"))
+        img = Image.open(str(data_root / f"FudanPed00001.png"))
         img_width, _ = img.size
-        img = draw_bouding_boxes(
+        img = draw_bounding_boxes(
             img,
             boxes=(
                 (0 * img_width, 0 * img_width, 0.2 * img_width, 0.2 * img_width),

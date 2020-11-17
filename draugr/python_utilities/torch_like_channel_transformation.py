@@ -51,6 +51,8 @@ def rgb_drop_alpha_batch_nhwc(inp: StrictNumbers) -> StrictNumbers:
 def torch_vision_normalize_batch_nchw(inp: StrictNumbers) -> StrictNumbers:
     """
 
+    WARNING INPLACE!
+
 :param inp:
 :type inp:
 :return:

@@ -36,9 +36,8 @@ def terminal_plot(
     border_size=1,
 ):
     """
-x, y list of values on x- and y-axis
-plot those values within canvas size (rows and columns)
-"""
+    x, y list of values on x- and y-axis
+    plot those values within canvas size (rows and columns)"""
 
     num_y = len(y)
     if num_y == 0:
@@ -113,15 +112,14 @@ plot those values within canvas size (rows and columns)
 def styled_terminal_plot_stats_shared_x(stats, *, styles=None, **kwargs):
     """
 
-:param stats:
-:type stats:
-:param styles:
-:type styles:
-:param kwargs:
-:type kwargs:
-:return:
-:rtype:
-"""
+    :param stats:
+    :type stats:
+    :param styles:
+    :type styles:
+    :param kwargs:
+    :type kwargs:
+    :return:
+    :rtype:"""
     if styles is None:
         styles = [
             generate_style(color=color, highlight=True)
@@ -141,19 +139,18 @@ def terminal_plot_stats_shared_x(
 ):
     """
 
-:param stats:
-:type stats:
-:param x:
-:type x:
-:param styles:
-:type styles:
-:param printer:
-:type printer:
-:param margin:
-:type margin:
-:param summary:
-:type summary:
-"""
+    :param stats:
+    :type stats:
+    :param x:
+    :type x:
+    :param styles:
+    :type styles:
+    :param printer:
+    :type printer:
+    :param margin:
+    :type margin:
+    :param summary:
+    :type summary:"""
     num_stats = len(stats)
 
     y_size = (1 - margin) / num_stats

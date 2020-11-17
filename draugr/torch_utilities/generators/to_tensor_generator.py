@@ -14,22 +14,17 @@ __doc__ = r"""
 
            Created on 28/10/2019
            """
-__all__ = [
-    "to_tensor_generator",
-    "batch_generator_torch",
-    "to_device_iterator",
-]
+__all__ = ["to_tensor_generator", "batch_generator_torch", "to_device_iterator"]
 
 
 @passes_kws_to(to_tensor)
 def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs):
     """
 
-:param iterable:
-:param preload_next:
-:param kwargs:
-:return:
-"""
+    :param iterable:
+    :param preload_next:
+    :param kwargs:
+    :return:"""
     if preload_next:
         iterable_iter = iter(iterable)
         current = to_tensor(next(iterable_iter), **kwargs)
@@ -47,9 +42,9 @@ def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs
 def to_device_iterator(data_iterator: Iterator, device: torch.device) -> Tuple:
     """
 
-  :param data_iterator:
-  :param device:
-  """
+    :param data_iterator:
+    :param device:
+    """
     if isinstance(data_iterator, Iterable):
         data_iterator = iter(data_iterator)
     try:
@@ -65,13 +60,12 @@ def batch_generator_torch(
 ) -> DataLoader:
     """
 
-  :param sized:
-  :return:
-:param mini_batches:
-:param shuffle:
-:param kwargs:
-:return:
-"""
+      :param sized:
+      :return:
+    :param mini_batches:
+    :param shuffle:
+    :param kwargs:
+    :return:"""
 
     dataset = NonSequentialDataset(sized)
     return DataLoader(
