@@ -33,6 +33,8 @@ class Split(Enum):
 class SplitIndexer:
     """
 
+    """
+
     default_split_names = {i: i.value for i in Split}
 
     def __init__(
