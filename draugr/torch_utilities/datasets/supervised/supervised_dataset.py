@@ -22,9 +22,7 @@ from warg import drop_unused_kws
 
 
 class SupervisedDataset(Dataset):
-    """
-
-"""
+    """"""
 
     @drop_unused_kws
     def __init__(self):
@@ -34,25 +32,20 @@ class SupervisedDataset(Dataset):
     def split_names(self) -> Dict[Split, str]:
         """
 
-:return:
-:rtype:
-"""
+        :return:
+        :rtype:"""
         return SplitByPercentage.default_split_names
 
     @property
     @abstractmethod
     def response_shape(self) -> Tuple[int, ...]:
-        """
-
-"""
+        """"""
         raise NotImplementedError
 
     @property
     @abstractmethod
     def predictor_shape(self) -> Tuple[int, ...]:
-        """
-
-"""
+        """"""
         raise NotImplementedError
 
     @abstractmethod

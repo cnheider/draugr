@@ -13,8 +13,7 @@ __all__ = ["SpectrogramWriterMixin"]
 
 class SpectrogramWriterMixin(ABC):
     """
-Writer mixin that provides an interface for 'writing' spectrogram charts
-"""
+    Writer mixin that provides an interface for 'writing' spectrogram charts"""
 
     @abstractmethod
     def spectrogram(
@@ -32,17 +31,16 @@ Writer mixin that provides an interface for 'writing' spectrogram charts
     ) -> None:
         """
 
-:param tag:
-:type tag:
-:param data:
-:type data:
-:param step:
-:type step:
-:param dataformats:
-:type dataformats:
-:param kwargs:
-:type kwargs:
-"""
+        :param tag:
+        :type tag:
+        :param data:
+        :type data:
+        :param step:
+        :type step:
+        :param dataformats:
+        :type dataformats:
+        :param kwargs:
+        :type kwargs:"""
         raise NotImplementedError
 
     '''

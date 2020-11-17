@@ -16,8 +16,7 @@ ax.autoscale_view(None, False, False, False)
 
 def sample_unit_circle(p=numpy.inf, samples=100, color="r", marker="^", size=3):
     """
-plot some 2D vectors with p-norm < 1
-"""
+    plot some 2D vectors with p-norm < 1"""
     for i in range(samples):
         xyz = numpy.array(
             [

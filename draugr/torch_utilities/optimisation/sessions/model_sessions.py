@@ -24,9 +24,8 @@ __all__ = [
 
 class TorchEvalSession(AlsoDecorator):
     """
-# speed up evaluating after training finished
-
-"""
+    # speed up evaluating after training finished
+    """
 
     def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model
@@ -48,9 +47,8 @@ class TorchEvalSession(AlsoDecorator):
 
 class TorchTrainSession(AlsoDecorator):
     """
-# speed up evaluating after training finished
-
-"""
+    # speed up evaluating after training finished
+    """
 
     def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model
@@ -73,9 +71,7 @@ TorchTrainingSession = TorchTrainSession
 
 
 class TorchFrozenModelSession(AlsoDecorator):
-    """
-
-"""
+    """"""
 
     def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model

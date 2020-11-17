@@ -13,8 +13,7 @@ __all__ = ["LineWriterMixin"]
 
 class LineWriterMixin(ABC):
     """
-Writer mixin that provides an interface for 'writing' line charts
-"""
+    Writer mixin that provides an interface for 'writing' line charts"""
 
     @abstractmethod
     def line(
@@ -30,15 +29,14 @@ Writer mixin that provides an interface for 'writing' line charts
     ) -> None:
         """
 
-:param tag:
-:type tag:
-:param data:
-:type data:
-:param step:
-:type step:
-:param dataformats:
-:type dataformats:
-:param kwargs:
-:type kwargs:
-"""
+        :param tag:
+        :type tag:
+        :param data:
+        :type data:
+        :param step:
+        :type step:
+        :param dataformats:
+        :type dataformats:
+        :param kwargs:
+        :type kwargs:"""
         raise NotImplementedError

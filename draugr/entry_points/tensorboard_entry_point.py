@@ -9,11 +9,10 @@ __doc__ = ""
 def main(keep_alive: bool = True) -> str:
     """
 
-:param keep_alive:
-:type keep_alive:
-:return:
-:rtype:
-"""
+    :param keep_alive:
+    :type keep_alive:
+    :return:
+    :rtype:"""
     from draugr.torch_utilities import launch_tensorboard
     from contextlib import suppress
     from time import sleep

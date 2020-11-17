@@ -19,22 +19,20 @@ from torch.nn import Module, Parameter
 def freeze_model(model: Module, value: bool = None, recurse: bool = True) -> None:
     """
 
-:param model:
-:type model:
-:param recurse:
-:param value:
-:return:
-"""
+    :param model:
+    :type model:
+    :param recurse:
+    :param value:
+    :return:"""
     freeze_parameters(model.parameters(recurse), value)
 
 
 def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
     """
 
-:param params:
-:param value:
-:return:
-"""
+    :param params:
+    :param value:
+    :return:"""
     if isinstance(value, bool):
         for p in params:
             p.requires_grad = not value
@@ -47,12 +45,11 @@ def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
 def frozen_model(model: Module, recurse: bool = True, enabled: bool = True) -> None:
     """
 
-:param enabled:
-:type enabled:
-:param model:
-:param recurse:
-:return:
-"""
+    :param enabled:
+    :type enabled:
+    :param model:
+    :param recurse:
+    :return:"""
     params_1, params_2 = tee(model.parameters(recurse))
     if enabled:
         freeze_parameters(params_1, True)
@@ -65,11 +62,10 @@ def frozen_model(model: Module, recurse: bool = True, enabled: bool = True) -> N
 def frozen_parameters(params: Iterator[Parameter], enabled=True) -> None:
     """
 
-:param enabled:
-:type enabled:
-:param params:
-:return:
-"""
+    :param enabled:
+    :type enabled:
+    :param params:
+    :return:"""
     params_1, params_2 = tee(params)
     if enabled:
         freeze_parameters(params_1, True)

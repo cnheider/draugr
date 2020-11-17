@@ -16,8 +16,7 @@ __all__ = ["replay_frames"]
 
 def replay_frames(frames: Sequence, interval: int = 100, Ipython: bool = False):
     """
-Displays a list of frames as a gif, with controls
-"""
+    Displays a list of frames as a gif, with controls"""
     # pyplot.figure(figsize=(frames[0].shape[1] / 72.0, frames[0].shape[0] / 72.0), dpi = 72)
     patch = pyplot.imshow(frames[0])
     pyplot.axis("off")

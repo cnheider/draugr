@@ -21,9 +21,7 @@ __all__ = ["Split", "SplitByPercentage", "train_valid_test_split", "select_split
 
 
 class Split(Enum):
-    """
-
-"""
+    """"""
 
     Training = "training"
     Validation = "validation"
@@ -31,9 +29,7 @@ class Split(Enum):
 
 
 class SplitByPercentage:
-    """
-
-"""
+    """"""
 
     default_split_names = {i: i.value for i in Split}
 
@@ -83,13 +79,12 @@ class SplitByPercentage:
     def unnormalised(self, num: int, floored: bool = True) -> numpy.ndarray:
         """
 
-:param num:
-:type num:
-:param floored:
-:type floored:
-:return:
-:rtype:
-"""
+        :param num:
+        :type num:
+        :param floored:
+        :type floored:
+        :return:
+        :rtype:"""
         unnorm = self.normalised_split * num
         if floored:
             unnorm = numpy.floor(unnorm)
@@ -109,15 +104,14 @@ def train_valid_test_split(
     verbose: bool = False,
 ) -> OrderedDict:
     """
-Magic hashing
+    Magic hashing
 
-:param verbose:
-:type verbose:
-:param categories:
-:param testing_percentage:
-:param validation_percentage:
-:return:
-"""
+    :param verbose:
+    :type verbose:
+    :param categories:
+    :param testing_percentage:
+    :param validation_percentage:
+    :return:"""
     result = collections.OrderedDict()
 
     if verbose:
@@ -155,15 +149,14 @@ def select_split(
 ) -> Dict[str, Sequence]:
     """
 
-:param verbose:
-:type verbose:
-:param data_cat_split:
-:type data_cat_split:
-:param split:
-:type split:
-:return:
-:rtype:
-"""
+    :param verbose:
+    :type verbose:
+    :param data_cat_split:
+    :type data_cat_split:
+    :param split:
+    :type split:
+    :return:
+    :rtype:"""
     data = {k: [] for k in data_cat_split.keys()}
     if verbose:
         print(data_cat_split)

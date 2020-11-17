@@ -94,20 +94,19 @@ def draw_bouding_boxes(
     score_format: str = ": {:.2f}",
 ) -> numpy.ndarray:
     """Draw bounding boxes(labels, scores) on image
-Args:
-image: numpy array image, shape should be (height, width, channel)
-boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax), NOT NORMALISED!
-labels: labels, shape: (N, )
-scores: label scores, shape: (N, )
-class_name_map: list or dict, map class id to class name for visualization.
-width: box width
-alpha: text background alpha
-fill: fill box or not
-font: text font
-score_format: score format
-Returns:
-An image with information drawn on it.
-"""
+    Args:
+    image: numpy array image, shape should be (height, width, channel)
+    boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax), NOT NORMALISED!
+    labels: labels, shape: (N, )
+    scores: label scores, shape: (N, )
+    class_name_map: list or dict, map class id to class name for visualization.
+    width: box width
+    alpha: text background alpha
+    fill: fill box or not
+    font: text font
+    score_format: score format
+    Returns:
+    An image with information drawn on it."""
     boxes = numpy.array(boxes)
     num_boxes = boxes.shape[0]
     if isinstance(image, Image.Image):

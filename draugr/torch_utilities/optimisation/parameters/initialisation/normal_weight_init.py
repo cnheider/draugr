@@ -12,13 +12,12 @@ __all__ = ["normal_init_weights"]
 
 
 def normal_init_weights(m, mean: float = 0.0, std: float = 0.1) -> None:
-  """
+    """
 
-  :param mean:
-  :param std:
-:param m:
-:type m:
-"""
-  if isinstance(m, nn.Linear):
-    nn.init.normal_(m.weight, mean=mean, std=std)
-    nn.init.constant_(m.bias, std)
+      :param mean:
+      :param std:
+    :param m:
+    :type m:"""
+    if isinstance(m, nn.Linear):
+        nn.init.normal_(m.weight, mean=mean, std=std)
+        nn.init.constant_(m.bias, std)

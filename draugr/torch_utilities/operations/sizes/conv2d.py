@@ -24,19 +24,18 @@ def conv2d_hw_shape(
 ) -> Tuple[int, int]:
     """
 
-:param h_w:
-:type h_w:
-:param kernel_size:
-:type kernel_size:
-:param stride:
-:type stride:
-:param pad:
-:type pad:
-:param dilation:
-:type dilation:
-:return:
-:rtype:
-"""
+    :param h_w:
+    :type h_w:
+    :param kernel_size:
+    :type kernel_size:
+    :param stride:
+    :type stride:
+    :param pad:
+    :type pad:
+    :param dilation:
+    :type dilation:
+    :return:
+    :rtype:"""
     (h_w, kernel_size, stride, pad, dilation) = (
         replicate(h_w),
         replicate(kernel_size),
@@ -65,19 +64,18 @@ def conv2d_padding_size(
 ) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """
 
-:param h_w_in:
-:type h_w_in:
-:param h_w_out:
-:type h_w_out:
-:param kernel_size:
-:type kernel_size:
-:param stride:
-:type stride:
-:param dilation:
-:type dilation:
-:return:
-:rtype:
-"""
+    :param h_w_in:
+    :type h_w_in:
+    :param h_w_out:
+    :type h_w_out:
+    :param kernel_size:
+    :type kernel_size:
+    :param stride:
+    :type stride:
+    :param dilation:
+    :type dilation:
+    :return:
+    :rtype:"""
     (h_w_in, h_w_out, kernel_size, stride, dilation) = (
         replicate(h_w_in),
         replicate(h_w_out),

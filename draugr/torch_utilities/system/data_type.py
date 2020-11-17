@@ -18,17 +18,16 @@ def global_torch_dtype(
 ) -> torch.dtype:
     """
 
-first time call stores to dtype for global reference, later call must manually override
+    first time call stores to dtype for global reference, later call must manually override
 
-:param verbose:
-:type verbose:
-:param cuda_if_available:
-:type cuda_if_available:
-:param override:
-:type override:
-:return:
-:rtype:
-"""
+    :param verbose:
+    :type verbose:
+    :param cuda_if_available:
+    :type cuda_if_available:
+    :param override:
+    :type override:
+    :return:
+    :rtype:"""
     global GLOBAL_DTYPE
 
     if override is not None:

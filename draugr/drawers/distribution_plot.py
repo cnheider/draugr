@@ -20,9 +20,7 @@ __all__ = ["DistributionPlot"]
 
 
 class DistributionPlot(MplDrawer):
-    """
-
-"""
+    """"""
 
     @passes_kws_to(MplDrawer.__init__)
     @passes_kws_to(pyplot.hist)
@@ -59,9 +57,8 @@ class DistributionPlot(MplDrawer):
     def _draw(self, data: Sequence):
         """
 
-:param data:
-:return:
-"""
+        :param data:
+        :return:"""
         if not isinstance(data, Sequence):
             data = [data]
 

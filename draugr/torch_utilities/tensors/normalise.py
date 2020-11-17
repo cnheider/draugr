@@ -31,10 +31,9 @@ def minus_one_one_normalise(
 def standardise(x: torch.tensor, eps: float = 1e-6) -> torch.tensor:
     """
 
-:param eps:
-:param x:
-:return:
-"""
+    :param eps:
+    :param x:
+    :return:"""
     x -= x.mean()
     x /= x.std() + eps
     return x

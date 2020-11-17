@@ -28,9 +28,7 @@ __all__ = ["TerminalPlotWriter"]
 
 
 class TerminalPlotWriter(Writer, ImageWriterMixin):
-    """
-
-"""
+    """"""
 
     def image(
         self,
@@ -59,8 +57,7 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
     def stats(self, value: MetricCollection, step_i: int = None):
         """
 
-:type value: object
-"""
+        :type value: object"""
         if step_i:
             if self.filter(self._stats_tag):
                 self._stats(value, self._counter[self._stats_tag])

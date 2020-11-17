@@ -15,10 +15,9 @@ __all__ = ["pil_merge_images", "pil_img_to_np_array", "np_array_to_pil_img"]
 
 def pil_img_to_np_array(data_path, desired_size=None, expand=False, view=False):
     """
-Util function for loading RGB image into a numpy array.
+    Util function for loading RGB image into a numpy array.
 
-Returns array of shape (1, H, W, C).
-"""
+    Returns array of shape (1, H, W, C)."""
     img = Image.open(data_path)
     img = img.convert("RGB")
     if desired_size:
@@ -34,10 +33,9 @@ Returns array of shape (1, H, W, C).
 
 def np_array_to_pil_img(x):
     """
-Util function for converting anumpy array to a PIL img.
+    Util function for converting anumpy array to a PIL img.
 
-Returns PIL RGB img.
-"""
+    Returns PIL RGB img."""
     x = numpy.asarray(x)
     x = x + max(-numpy.min(x), 0)
     x_max = numpy.max(x)
@@ -48,8 +46,7 @@ Returns PIL RGB img.
 
 
 def pil_merge_images(image1, image2):
-    """Merge two images into one, displayed side by side.
-"""
+    """Merge two images into one, displayed side by side."""
     (width1, height1) = image1.size
     (width2, height2) = image2.size
 

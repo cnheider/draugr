@@ -14,10 +14,9 @@ from draugr.torch_utilities.optimisation.parameters.initialisation.ortho_weight_
 
 
 def atari_initializer(module: torch.nn.Module):
-    """ Parameter initializer for Atari models
+    """Parameter initializer for Atari models
 
-Initializes Linear, Conv2d, and LSTM weights.
-"""
+    Initializes Linear, Conv2d, and LSTM weights."""
     classname = module.__class__.__name__
 
     if classname == "Linear":
@@ -45,9 +44,8 @@ Initializes Linear, Conv2d, and LSTM weights.
 def initialise_parameters(m: torch.nn.Module) -> None:
     """
 
-:param m:
-:type m:
-"""
+    :param m:
+    :type m:"""
     classname = m.__class__.__name__
     if classname.find("Linear") != -1:
         m.weight.data.normal_(0, 1)
