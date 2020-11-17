@@ -101,6 +101,7 @@ if __version__ is None:
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 
 # from .drawers import *
+# from .writers import *
 # from .opencv_utilities import *
 # from .torch_utilities import *
 from .metrics import *
@@ -109,4 +110,3 @@ from .generators import *
 from .python_utilities import *
 from .visualisation import *
 from .numpy_utilities import *
-from .writers import *

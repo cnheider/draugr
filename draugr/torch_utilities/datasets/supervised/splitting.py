@@ -17,7 +17,9 @@ from typing import Dict, Iterable, OrderedDict, Sequence
 
 import numpy
 
-__all__ = ["Split", "SplitByPercentage", "train_valid_test_split", "select_split"]
+__all__ = ["Split", "SplitIndexer", "train_valid_test_split", "select_split"]
+
+from draugr.torch_utilities import torch_seed
 
 
 class Split(Enum):
@@ -28,8 +30,8 @@ class Split(Enum):
     Testing = "testing"
 
 
-class SplitByPercentage:
-    """"""
+class SplitIndexer:
+    """
 
     default_split_names = {i: i.value for i in Split}
 
@@ -52,26 +54,26 @@ class SplitByPercentage:
             dataset_length
         )
 
-    def shuffled_indices(self):
+    def shuffled_indices(self) -> dict:
         split_indices = numpy.random.permutation(self.total_num).tolist()
 
-        return (
-            self.select_train_indices(split_indices),
-            self.select_validation_indices(split_indices),
-            self.select_testing_indices(split_indices),
-        )
+        return {
+            Split.Training: self.select_train_indices(split_indices),
+            Split.Validation: self.select_validation_indices(split_indices),
+            Split.Testing: self.select_testing_indices(split_indices),
+        }
 
-    def select_train_indices(self, ind):
+    def select_train_indices(self, ind: Sequence) -> Sequence:
         return ind[: self.training_num]
 
-    def select_validation_indices(self, ind):
+    def select_validation_indices(self, ind: Sequence) -> Sequence:
         if self.validation_num:
             if self.testing_num:
                 return ind[self.training_num : -self.testing_num]
             return ind[self.training_num :]
         return []
 
-    def select_testing_indices(self, ind):
+    def select_testing_indices(self, ind: Sequence) -> Sequence:
         if self.testing_num:
             return ind[-self.testing_num :]
         return []
@@ -94,6 +96,18 @@ class SplitByPercentage:
         return str(
             {k: n for k, n in zip(self.default_split_names, self.normalised_split)}
         )
+
+    def select_shuffled_split_indices(self, split: Split, seed=0) -> Sequence:
+        torch_seed(seed)
+        split_indices = numpy.random.permutation(self.total_num).tolist()
+
+        if split == Split.Training:
+            return self.select_train_indices(split_indices)
+        elif split == Split.Validation:
+            return self.select_validation_indices(split_indices)
+        elif split == Split.Testing:
+            return self.select_testing_indices(split_indices)
+        raise NotImplementedError
 
 
 def train_valid_test_split(
@@ -169,6 +183,7 @@ def select_split(
 
 
 if __name__ == "__main__":
-    split_by_p = SplitByPercentage(100)
+    split_by_p = SplitIndexer(100)
     print(split_by_p.default_split_names)
     print(split_by_p.shuffled_indices())
+    print(split_by_p.select_shuffled_split_indices(Split.Training))

@@ -10,7 +10,7 @@ class WarmupMultiStepLR(_LRScheduler):
 
     def __init__(
         self,
-        optimizer,
+        optimiser,
         milestones,
         gamma=0.1,
         warmup_factor=1.0 / 3,
@@ -27,7 +27,7 @@ class WarmupMultiStepLR(_LRScheduler):
         self.gamma = gamma
         self.warmup_factor = warmup_factor
         self.warmup_iters = warmup_iters
-        super().__init__(optimizer, last_epoch)
+        super().__init__(optimiser, last_epoch)
 
     def get_lr(self):
         """

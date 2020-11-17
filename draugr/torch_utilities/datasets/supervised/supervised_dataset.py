@@ -16,7 +16,7 @@ __all__ = ["SupervisedDataset"]
 
 from draugr.torch_utilities.datasets.supervised.splitting import (
     Split,
-    SplitByPercentage,
+    SplitIndexer,
 )
 from warg import drop_unused_kws
 
@@ -32,9 +32,10 @@ class SupervisedDataset(Dataset):
     def split_names(self) -> Dict[Split, str]:
         """
 
-        :return:
-        :rtype:"""
-        return SplitByPercentage.default_split_names
+:return:
+:rtype:
+"""
+        return SplitIndexer.default_split_names
 
     @property
     @abstractmethod
@@ -58,5 +59,5 @@ class SupervisedDataset(Dataset):
 
 
 if __name__ == "__main__":
-    print(SplitByPercentage(521))
-    print(SplitByPercentage(2512).unnormalised(123))
+    print(SplitIndexer(521))
+    print(SplitIndexer(2512).unnormalised(123))

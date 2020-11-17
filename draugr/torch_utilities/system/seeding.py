@@ -23,6 +23,8 @@ def torch_seed(s: int) -> None:
     os.environ["PYTHONHASHSEED"] = str(s)
     numpy.random.seed(s)
     torch.manual_seed(s)
+    if False:  # Disabled for now
+        torch.set_deterministic(True)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(s)
         torch.backends.cudnn.deterministic = True
@@ -74,7 +76,8 @@ class Seed:
             self._last_seed = torch.initial_seed()
         numpy.random.seed(self.value)
         torch.manual_seed(self.value)
-
+        if False:  # Disabled for now
+            torch.set_deterministic(True)
         if self.cuda:
             torch.backends.cudnn.deterministic = True
             torch.backends.cudnn.benchmark = False

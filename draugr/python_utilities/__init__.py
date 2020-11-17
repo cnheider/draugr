@@ -21,4 +21,4 @@ from .manipulation import *
 from .replication import *
 from .sockets import *
 from .styling import *
-from .torch_channel_transform import *
+from .torch_like_channel_transformation import *

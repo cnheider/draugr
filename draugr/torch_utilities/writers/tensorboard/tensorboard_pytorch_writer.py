@@ -8,11 +8,16 @@ import PIL
 import numpy
 import torch
 from PIL import Image
+from matplotlib import pyplot
+from matplotlib.figure import Figure
+
 from draugr import PROJECT_APP_PATH
+from draugr.python_utilities import sprint
 from draugr.torch_utilities import to_tensor
 from draugr.writers import Writer
 from draugr.writers.mixins import (
     BarWriterMixin,
+    EmbedWriterMixin,
     GraphWriterMixin,
     HistogramWriterMixin,
     ImageWriterMixin,
@@ -24,8 +29,6 @@ from draugr.writers.mixins.precision_recall_writer_mixin import (
     PrecisionRecallCurveWriterMixin,
 )
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
-from matplotlib import pyplot
-from matplotlib.figure import Figure
 from warg import drop_unused_kws, passes_kws_to
 
 with suppress(FutureWarning):
@@ -50,11 +53,46 @@ class TensorBoardPytorchWriter(
     SpectrogramWriterMixin,
     FigureWriterMixin,
     InstantiationWriterMixin,
-    PrecisionRecallCurveWriterMixin
-    # EmbedWriterMixin
+    PrecisionRecallCurveWriterMixin,
+    EmbedWriterMixin,
 ):
     """
     Provides a pytorch-tensorboard-implementation writer interface"""
+
+    @passes_kws_to(SummaryWriter.add_embedding)
+    def embed(
+        self,
+        tag: str,
+        response: Sequence,
+        metadata: Any = None,
+        label_img: Any = None,
+        step: int = None,
+        **kwargs,
+    ) -> None:
+        """
+
+    BORKED!
+
+    :param tag:
+    :param response:
+    :param metadata:
+    :param label_img:
+    :param step:
+    :param kwargs:
+    :return:
+    """
+        try:
+            self.writer.add_embedding(
+                response,
+                metadata=metadata,
+                label_img=label_img,
+                global_step=step,
+                tag=tag,
+                **kwargs,
+            )
+        except Exception as e:
+            sprint("Try update tensorflow and/or tensorboard")
+            raise e
 
     @passes_kws_to(Writer.__init__)
     def __init__(
@@ -63,6 +101,12 @@ class TensorBoardPytorchWriter(
         summary_writer_kws=None,
         **kwargs,
     ):
+        """
+
+    :param path:
+    :param summary_writer_kws:
+    :param kwargs:
+    """
         super().__init__(**kwargs)
 
         if summary_writer_kws is None:
@@ -73,6 +117,14 @@ class TensorBoardPytorchWriter(
 
     # @passes_kws_to(SummaryWriter.add_hparams)
     def instance(self, instance: dict, metrics: dict) -> None:
+        """
+
+    Not finished!
+
+    :param instance:
+    :param metrics:
+    :return:
+    """
         self.writer.add_hparams(instance, metrics)
 
     @drop_unused_kws
@@ -359,6 +411,10 @@ pyplot.title(tag)
     def _open(self):
         return self
 
+
+TensorboardPytorchWriter = TensorBoardPytorchWriter
+TensorBoardPyTorchWriter = TensorBoardPytorchWriter
+TensorboardPyTorchWriter = TensorBoardPytorchWriter
 
 if __name__ == "__main__":
 

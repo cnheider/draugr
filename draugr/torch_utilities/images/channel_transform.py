@@ -18,6 +18,8 @@ __all__ = [
     "uint_hwc_to_chw_float_tensor",
 ]
 
+from PIL.Image import Image
+
 
 def hwc_to_chw_tensor(inp: torch.Tensor) -> torch.Tensor:
     """

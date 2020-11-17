@@ -18,7 +18,7 @@ from draugr.torch_utilities.optimisation.parameters import (
     normal_init_weights,
     trainable_parameters,
 )
-from draugr.torch_utilities.optimisation.sessions import TorchEvalSession
+from draugr.torch_utilities.sessions import TorchEvalSession
 from warg import ContextWrapper
 
 
