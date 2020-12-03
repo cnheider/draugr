@@ -19,6 +19,7 @@ from .persistence import *
 from .tensors import *
 from .writers import *
 from .sessions import *
+from .evaluation import *
 
 if __name__ == "__main__":
     print(__doc__)

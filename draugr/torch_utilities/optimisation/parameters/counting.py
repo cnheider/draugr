@@ -9,11 +9,15 @@ __doc__ = r"""
 
 __all__ = ["get_num_parameters"]
 
+from draugr.torch_utilities.optimisation.parameters.trainable import (
+    trainable_parameters,
+)
 from torch import nn
 
 
 def get_num_parameters(model: nn.Module, *, only_trainable: bool = False) -> int:
     """
+    Returns the number of parameters of a model (trainable or all)
 
     :param only_trainable:
     :type only_trainable:
@@ -22,5 +26,5 @@ def get_num_parameters(model: nn.Module, *, only_trainable: bool = False) -> int
     :return:
     :rtype:"""
     if only_trainable:
-        return sum(p.numel() for p in model.parameters() if p.requires_grad)
+        return sum(p.numel() for p in trainable_parameters(model))
     return sum(param.numel() for param in model.parameters())

@@ -16,7 +16,7 @@ __doc__ = r"""
 __all__ = ["torch_seed"]
 
 
-def torch_seed(s: int) -> None:
+def torch_seed(s: int = 72163) -> None:
     """
     seeding for reproducibility"""
     random.seed(s)

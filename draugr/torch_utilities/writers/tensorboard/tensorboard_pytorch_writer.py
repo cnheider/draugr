@@ -412,9 +412,17 @@ pyplot.title(tag)
         return self
 
 
+# NAMING AND CASING, SO MANY IMPLEMENTATION OF TENSORBOARD WRITERS, COVER BASES!
 TensorboardPytorchWriter = TensorBoardPytorchWriter
 TensorBoardPyTorchWriter = TensorBoardPytorchWriter
 TensorboardPyTorchWriter = TensorBoardPytorchWriter
+PytorchTensorboardWriter = TensorBoardPytorchWriter
+PyTorchTensorBoardWriter = TensorBoardPytorchWriter
+PyTorchTensorboardWriter = TensorBoardPytorchWriter
+TensorboardTorchWriter = TensorBoardPytorchWriter
+TensorBoardTorchWriter = TensorBoardPytorchWriter
+TorchTensorboardWriter = TensorBoardPytorchWriter
+TorchTensorBoardWriter = TensorBoardPytorchWriter
 
 if __name__ == "__main__":
 

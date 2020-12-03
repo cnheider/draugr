@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import torch
+from typing import Union
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -21,30 +22,39 @@ __all__ = [
 
 
 def global_torch_device(
-    cuda_if_available: bool = None, override: torch.device = None, verbose: bool = False
+    cuda_device_preference: Union[bool, str] = None,
+    override: torch.device = None,
+    verbose: bool = False,
 ) -> torch.device:
     """
 
-    first time call stores to device for global reference, later call must manually override
+  first time call stores to device for global reference, later call must manually override
 
-    :param verbose:
-    :type verbose:
-    :param cuda_if_available:
-    :type cuda_if_available:
-    :param override:
-    :type override:
-    :return:
-    :rtype:"""
+  :param verbose:
+  :type verbose:
+  :param cuda_device_preference:
+  :type cuda_device_preference:
+  :param override:
+  :type override:
+  :return:
+  :rtype:"""
     global GLOBAL_DEVICE
 
     if override is not None:
         GLOBAL_DEVICE = override
         if verbose:
             print(f"Overriding global torch device to {override}")
-    elif cuda_if_available is not None:
-        d = torch.device(
-            "cuda" if torch.cuda.is_available() and cuda_if_available else "cpu"
-        )
+    elif cuda_device_preference is not None:
+        if isinstance(cuda_device_preference, bool):
+            d = torch.device(
+                "cuda"
+                if torch.cuda.is_available() and cuda_device_preference
+                else "cpu"
+            )
+        elif isinstance(cuda_device_preference, str):
+            d = torch.device(cuda_device_preference)
+        else:
+            raise TypeError("not bool or str")
         if GLOBAL_DEVICE is None:
             GLOBAL_DEVICE = d
         return d
@@ -64,10 +74,10 @@ def set_global_torch_device(device: torch.device) -> None:
 def select_cuda_device(cuda_device_idx: int) -> torch.device:
     """
 
-    :param cuda_device_idx:
-    :type cuda_device_idx:
-    :return:
-    :rtype:"""
+  :param cuda_device_idx:
+  :type cuda_device_idx:
+  :return:
+  :rtype:"""
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
     assert cuda_device_idx < num_cuda_device
@@ -78,8 +88,8 @@ def select_cuda_device(cuda_device_idx: int) -> torch.device:
 def get_gpu_usage_mb():
     """
 
-    :return:
-    :rtype:"""
+  :return:
+  :rtype:"""
 
     import subprocess
 
@@ -103,7 +113,7 @@ Values are memory usage as integers in MB.
 def torch_clean_up() -> None:
     r"""**Destroy cuda state by emptying cache and collecting IPC.**
 
-    Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`."""
+  Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`."""
 
     torch.cuda.empty_cache()
     torch.cuda.ipc_collect()
@@ -113,12 +123,12 @@ def auto_select_available_cuda_device(
     expected_memory_usage_mb: int = 1024,
 ) -> torch.device:
     r"""
-    Auto selects the device with highest compute capability and with the requested memory available
+  Auto selects the device with highest compute capability and with the requested memory available
 
-    :param expected_memory_usage_mb:
-    :type expected_memory_usage_mb:
-    :return:
-    :rtype:"""
+  :param expected_memory_usage_mb:
+  :type expected_memory_usage_mb:
+  :return:
+  :rtype:"""
 
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
@@ -161,16 +171,18 @@ if __name__ == "__main__":
         print(global_torch_device(verbose=True))
         print(
             global_torch_device(
-                override=global_torch_device(cuda_if_available=False, verbose=True),
+                override=global_torch_device(
+                    cuda_device_preference=False, verbose=True
+                ),
                 verbose=True,
             )
         )
         print(global_torch_device(verbose=True))
-        print(global_torch_device(cuda_if_available=True))
+        print(global_torch_device(cuda_device_preference=True))
         print(global_torch_device())
         print(
             global_torch_device(
-                override=global_torch_device(cuda_if_available=True, verbose=True)
+                override=global_torch_device(cuda_device_preference=True, verbose=True)
             )
         )
         print(global_torch_device())

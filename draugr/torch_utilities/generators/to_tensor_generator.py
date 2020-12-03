@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, Iterator, Tuple
+from typing import Iterable, Iterator, Tuple, Union
 
 import numpy
 import torch
+from torch.utils.data.dataloader import DataLoader
+
 from draugr.torch_utilities.datasets import NonSequentialDataset
 from draugr.torch_utilities.tensors import to_tensor
-from torch.utils.data import DataLoader
 from warg import passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
@@ -21,10 +22,10 @@ __all__ = ["to_tensor_generator", "batch_generator_torch", "to_device_iterator"]
 def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs):
     """
 
-    :param iterable:
-    :param preload_next:
-    :param kwargs:
-    :return:"""
+  :param iterable:
+  :param preload_next:
+  :param kwargs:
+  :return:"""
     if preload_next:
         iterable_iter = iter(iterable)
         current = to_tensor(next(iterable_iter), **kwargs)
@@ -39,12 +40,14 @@ def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs
     return
 
 
-def to_device_iterator(data_iterator: Iterator, device: torch.device) -> Tuple:
+def to_device_iterator(
+    data_iterator: Iterator, device: Union[torch.device, str]
+) -> Tuple:
     """
 
-    :param data_iterator:
-    :param device:
-    """
+  :param data_iterator:
+  :param device:
+  """
     if isinstance(data_iterator, Iterable):
         data_iterator = iter(data_iterator)
     try:
@@ -60,12 +63,12 @@ def batch_generator_torch(
 ) -> DataLoader:
     """
 
-      :param sized:
-      :return:
-    :param mini_batches:
-    :param shuffle:
-    :param kwargs:
-    :return:"""
+  :param sized:
+  :param mini_batches:
+  :param shuffle:
+  :param kwargs:
+  :return:
+  """
 
     dataset = NonSequentialDataset(sized)
     return DataLoader(
@@ -110,9 +113,9 @@ if __name__ == "__main__":
         )
 
         channels_in = 3
-        channels_out = 3
+        # channels_out = 3
 
-        samples = 10
+        # samples = 10
         device = "cuda"
         batches = 3
         batch_size = 32
