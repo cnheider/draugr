@@ -97,7 +97,7 @@ class TensorBoardPytorchWriter(
     @passes_kws_to(Writer.__init__)
     def __init__(
         self,
-        path: Union[str, pathlib.Path] = pathlib.Path.cwd() / "Models",
+        path: Union[str, pathlib.Path] = pathlib.Path.cwd() / "Logs",
         summary_writer_kws=None,
         **kwargs,
     ):

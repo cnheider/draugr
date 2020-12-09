@@ -27,6 +27,12 @@ class Writer(metaclass=ABCMeta):
     def __init__(
         self, *, interval: int = 1, filters: Iterable = None, verbose: bool = False
     ):
+        """
+
+        :param interval:
+        :param filters:
+        :param verbose:
+        """
         self._counter = Counter()
         self._blip_values = iter(cycle(range(2)))
         self._interval = interval
