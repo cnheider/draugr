@@ -9,17 +9,18 @@ __doc__ = r"""
 
 import os
 from pathlib import Path
-from typing import Sequence, Tuple, Union
-
-from torchvision.datasets.folder import (
-    has_file_allowed_extension,
-)  # TODO: allow all types not only images
+from typing import Sequence, Tuple, Union, Iterable
 
 __all__ = ["build_flat_dataset"]
 
 
 def build_flat_dataset(
-    directory: Path, extensions: Tuple = None, is_valid_file: Sequence = None
+    directory: Union[Path, str],
+    *,
+    validation_percentage: float = 15,
+    testing_percentage: float = 0,
+    extensions: Iterable = None,
+    is_valid_file: callable = None,
 ) -> dict:
     """
 
@@ -28,6 +29,9 @@ def build_flat_dataset(
     :param is_valid_file:
     :return:
     """
+    if not isinstance(directory, Path):
+        directory = Path(directory)
+
     categories = [d.name for d in directory.iterdir() if d.is_dir()]
     instances = {k: [] for k in categories}
     both_none = extensions is None and is_valid_file is None
@@ -40,7 +44,7 @@ def build_flat_dataset(
     if extensions is not None:
 
         def is_valid_file(x: Union[Path, str]) -> bool:
-            return has_file_allowed_extension(str(x), extensions)
+            return str(x) in extensions
 
     elif is_valid_file is None:
         is_valid_file = lambda a: a is not None
@@ -55,3 +59,25 @@ def build_flat_dataset(
                 if is_valid_file(path):
                     instances[target_class].append(path)
     return instances
+
+
+if __name__ == "__main__":
+
+    def absa():
+        from draugr.visualisation import indent_lines
+        from draugr.numpy_utilities.datasets.splitting import Split
+
+        a = build_flat_dataset(Path.home() / "Data" / "mnist_png" / "training")
+
+        for k in a.keys():
+            total = (
+                len(a[k][Split.Training])
+                + len(a[k][Split.Validation])
+                + len(a[k][Split.Testing])
+            )
+            print(f"\n{k}:")
+            print(indent_lines(len(a[k][Split.Training]) / total))
+            print(indent_lines(len(a[k][Split.Validation]) / total))
+            print(indent_lines(len(a[k][Split.Testing]) / total))
+
+    absa()

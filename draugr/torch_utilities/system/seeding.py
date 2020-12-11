@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import functools
-import os
-import random
 from typing import Any, Callable
 
 import numpy
@@ -19,9 +17,6 @@ __all__ = ["torch_seed"]
 def torch_seed(s: int = 72163) -> None:
     """
     seeding for reproducibility"""
-    random.seed(s)
-    os.environ["PYTHONHASHSEED"] = str(s)
-    numpy.random.seed(s)
     torch.manual_seed(s)
     if False:  # Disabled for now
         torch.set_deterministic(True)

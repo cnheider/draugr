@@ -7,8 +7,9 @@ __doc__ = r"""
            Created on 23/07/2020
            """
 
-from .deep_category import *
-from .defaults import *
+import pathlib
+
+with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
+
 from .dict_dataset import *
-from .flat_category import *
-from .shallow_category import *

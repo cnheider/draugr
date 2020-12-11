@@ -45,6 +45,7 @@ PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018
 PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
+INCLUDE_PROJECT_READMES = False
 
 distributions = {v.key: v for v in pkg_resources.working_set}
 if PROJECT_NAME in distributions:
@@ -104,8 +105,8 @@ __version_info__ = tuple(int(segment) for segment in __version__.split("."))
 # from .writers import *
 # from .opencv_utilities import *
 # from .torch_utilities import *
+# from .stopping import *
 from .metrics import *
-from .stopping import *
 from .generators import *
 from .python_utilities import *
 from .visualisation import *

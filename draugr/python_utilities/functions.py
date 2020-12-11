@@ -44,7 +44,7 @@ def collate_batch_fn(batch: Iterable) -> tuple:
 
 def sink(*args, **kwargs) -> None:
     """
-    Returns None, but accepts everthing
+    Returns None, but accepts everything
 
     :param args:
     :param kwargs:

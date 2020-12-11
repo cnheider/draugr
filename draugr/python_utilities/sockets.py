@@ -9,7 +9,7 @@ __doc__ = r"""
 __all__ = ["get_host_ip"]
 
 
-def get_host_ip():
+def get_host_ip() -> str:
     """Get host ip.
 
     Returns:

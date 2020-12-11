@@ -19,11 +19,12 @@ import numpy
 
 __all__ = ["Split", "SplitIndexer", "train_valid_test_split", "select_split"]
 
-from draugr.torch_utilities import torch_seed
-
 
 class Split(Enum):
-    """"""
+    """
+  Split Enum class for selecting splits
+
+  """
 
     Training = "training"
     Validation = "validation"
@@ -33,7 +34,7 @@ class Split(Enum):
 class SplitIndexer:
     """
 
-    """
+  """
 
     default_split_names = {i: i.value for i in Split}
 
@@ -83,12 +84,12 @@ class SplitIndexer:
     def unnormalised(self, num: int, floored: bool = True) -> numpy.ndarray:
         """
 
-        :param num:
-        :type num:
-        :param floored:
-        :type floored:
-        :return:
-        :rtype:"""
+    :param num:
+    :type num:
+    :param floored:
+    :type floored:
+    :return:
+    :rtype:"""
         unnorm = self.normalised_split * num
         if floored:
             unnorm = numpy.floor(unnorm)
@@ -99,8 +100,8 @@ class SplitIndexer:
             {k: n for k, n in zip(self.default_split_names, self.normalised_split)}
         )
 
-    def select_shuffled_split_indices(self, split: Split, seed=0) -> Sequence:
-        torch_seed(seed)
+    def select_shuffled_split_indices(self, split: Split, seed: int = 0) -> Sequence:
+        numpy.random.seed(seed)
         split_indices = numpy.random.permutation(self.total_num).tolist()
 
         if split == Split.Training:
@@ -115,19 +116,19 @@ class SplitIndexer:
 def train_valid_test_split(
     categories: Dict[str, Iterable[Path]],
     *,
-    validation_percentage: float = 15,
+    validation_percentage: float = 15,  # TODO: ACCEPT AND SQUEEZE ZERO-HUNDRED TO ZERO-ONE range!
     testing_percentage: float = 0,
     verbose: bool = False,
 ) -> OrderedDict:
     """
-    Magic hashing
+  Magic hashing
 
-    :param verbose:
-    :type verbose:
-    :param categories:
-    :param testing_percentage:
-    :param validation_percentage:
-    :return:"""
+  :param verbose:
+  :type verbose:
+  :param categories:
+  :param testing_percentage:
+  :param validation_percentage:
+  :return:"""
     result = collections.OrderedDict()
 
     if verbose:
@@ -165,14 +166,14 @@ def select_split(
 ) -> Dict[str, Sequence]:
     """
 
-    :param verbose:
-    :type verbose:
-    :param data_cat_split:
-    :type data_cat_split:
-    :param split:
-    :type split:
-    :return:
-    :rtype:"""
+  :param verbose:
+  :type verbose:
+  :param data_cat_split:
+  :type data_cat_split:
+  :param split:
+  :type split:
+  :return:
+  :rtype:"""
     data = {k: [] for k in data_cat_split.keys()}
     if verbose:
         print(data_cat_split)

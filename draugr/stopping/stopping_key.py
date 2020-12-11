@@ -10,6 +10,9 @@ __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 from warg import GDKC, drop_unused_kws, passes_kws_to
+from pynput import keyboard
+
+# import keyboard
 
 __all__ = ["add_early_stopping_key_combination", "CaptureEarlyStop"]
 
@@ -17,19 +20,15 @@ __all__ = ["add_early_stopping_key_combination", "CaptureEarlyStop"]
 @drop_unused_kws
 def add_early_stopping_key_combination(
     callbacks: callable = None, has_x_server: bool = True, verbose: bool = False
-):
+) -> keyboard.Listener:
     """
 
-    :param callbacks:
-    :param has_x_server:
-    :param verbose:
-    :return:"""
+  :param callbacks:
+  :param has_x_server:
+  :param verbose:
+  :return:"""
     if not has_x_server:
         return
-
-    from pynput import keyboard
-
-    # import keyboard
 
     COMBINATIONS = [
         {keyboard.Key.ctrl, keyboard.KeyCode(char="c")},
@@ -79,7 +78,7 @@ def add_early_stopping_key_combination(
 
 class CaptureEarlyStop(contextlib.AbstractContextManager):
     """
-    Context for early stopping a loop"""
+  Context for early stopping a loop"""
 
     @passes_kws_to(add_early_stopping_key_combination)
     def __init__(self, *args, **kwargs):

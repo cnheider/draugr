@@ -4,7 +4,7 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 09/10/2019
+           Created on 11-12-2020
            """
 
 import pathlib
@@ -12,4 +12,6 @@ import pathlib
 with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
-from .entropy import *
+from .shallow_category import *
+from .deep_category import *
+from .flat_category import *

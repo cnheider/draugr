@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 19/03/2020
            """
 
-from typing import Tuple
+from typing import Sequence, Tuple
 
 import cv2
 import numpy
@@ -18,7 +18,7 @@ from draugr.python_utilities.colors import RGB
 __all__ = ["find_contours", "draw_masks"]
 
 
-def find_contours(*args, **kwargs):
+def find_contours(*args, **kwargs) -> Tuple:
     """
     Wraps cv2.findContours to maintain compatibility between versions 3 and 4
     Returns:
@@ -35,8 +35,8 @@ def find_contours(*args, **kwargs):
 def draw_masks(
     image,
     masks,
-    labels=None,
-    border=True,
+    labels: Sequence = None,
+    border: bool = True,
     border_width: float = 2,
     border_color: Tuple = RGB(255, 255, 255),
     alpha: float = 0.5,

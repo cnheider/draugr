@@ -13,7 +13,7 @@ from typing import Iterable
 
 def busy_indicator(
     *,
-    stream=print,
+    stream: callable = print,
     indicator_interval: int = 1,
     phases: Iterable[str] = ("◑", "◒", "◐", "◓"),
 ) -> Iterable:

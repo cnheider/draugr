@@ -14,7 +14,7 @@ from torch.utils.data import Dataset
 
 __all__ = ["SupervisedDataset"]
 
-from draugr.torch_utilities.datasets.supervised.splitting import (
+from draugr.numpy_utilities.datasets.splitting import (
     Split,
     SplitIndexer,
 )

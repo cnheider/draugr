@@ -9,10 +9,12 @@ __doc__ = r"""
 
 __all__ = ["indent_lines"]
 
+from typing import Any
+
 
 def indent_lines(
-    input_str: str, indent_spaces_num: int = 2, ignore_single_lines: bool = False
-):
+    input_str: Any, indent_spaces_num: int = 2, ignore_single_lines: bool = False
+) -> str:
     """
 
     :param ignore_single_lines:
