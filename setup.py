@@ -165,6 +165,11 @@ class DraugrPackage:
             return f.read()
 
     @property
+    def changelog(self) -> str:
+        with open("CHANGELOG.md") as f:
+            return f.read()
+
+    @property
     def keyword(self) -> str:
         with open("KEYWORDS.md") as f:
             return f.read()

@@ -3,11 +3,11 @@
 
 __author__ = "Christian Heider Nielsen"
 
-import statistics as S
+import statistics
 
 from draugr.metrics.metric_aggregator import MetricAggregator
 
-MEASURES = S.__all__[1:]
+MEASURES = statistics.__all__[1:]
 
 __all__ = ["MetricCollection"]
 
@@ -38,8 +38,8 @@ class MetricCollection(dict):
     def add_metric(self, name):
         """
 
-        :param name:
-        :type name:"""
+    :param name:
+    :type name:"""
         self._metrics[name] = MetricAggregator(
             measures=self._measures, keep_measure_history=self._keep_measure_history
         )
@@ -47,10 +47,10 @@ class MetricCollection(dict):
     def append(self, *args, **kwargs):
         """
 
-        :param args:
-        :type args:
-        :param kwargs:
-        :type kwargs:"""
+    :param args:
+    :type args:
+    :param kwargs:
+    :type kwargs:"""
         for (arg, (k, v)) in zip(args, self._metrics.items()):
             self._metrics[k].append(arg)
 
@@ -60,8 +60,8 @@ class MetricCollection(dict):
     def remove_metric(self, name):
         """
 
-        :param name:
-        :type name:"""
+    :param name:
+    :type name:"""
         del self._metrics[name]
 
     def __len__(self):
@@ -71,8 +71,8 @@ class MetricCollection(dict):
     def metrics(self):
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         return self._metrics
 
     def __getattr__(self, name):
@@ -107,8 +107,8 @@ class MetricCollection(dict):
     def keys(self):
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         return self.metrics.keys()
 
     def __contains__(self, item):
@@ -117,15 +117,15 @@ class MetricCollection(dict):
     def items(self):
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         return self.metrics.items()
 
     def save(self, **kwargs):
         """
 
-        :param kwargs:
-        :type kwargs:"""
+    :param kwargs:
+    :type kwargs:"""
         for key, value in self._metrics.items():
             value.save(stat_name=key, **kwargs)
 

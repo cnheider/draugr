@@ -36,12 +36,12 @@ def matplotlib_bounding_box(x, y, size, color="w"):
 def plot_img_array(img_array: numpy.ndarray, n_col: int = 3) -> None:
     """
 
-    :param img_array:
-    :type img_array:
-    :param n_col:
-    :type n_col:
-    :return:
-    :rtype:"""
+  :param img_array:
+  :type img_array:
+  :param n_col:
+  :type n_col:
+  :return:
+  :rtype:"""
     n_row = len(img_array) // n_col
 
     f, plots = pyplot.subplots(

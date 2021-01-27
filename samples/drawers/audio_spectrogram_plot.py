@@ -14,7 +14,6 @@ from draugr.drawers import FastFourierTransformPlot, FastFourierTransformSpectro
 from matplotlib import pyplot
 from scipy.io import wavfile
 
-
 if __name__ == "__main__":
 
     def main():

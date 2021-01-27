@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 15-10-2020
            """
 
-
 import pyperf
 
 runner = pyperf.Runner()

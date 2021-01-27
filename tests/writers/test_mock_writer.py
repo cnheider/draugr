@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from draugr import MockWriter, global_writer, set_global_writer
+from draugr.writers import MockWriter, global_writer, set_global_writer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

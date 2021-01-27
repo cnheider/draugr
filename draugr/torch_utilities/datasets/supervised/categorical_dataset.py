@@ -8,6 +8,7 @@ __doc__ = r"""
            """
 
 from abc import abstractmethod
+from typing import Sequence
 
 from draugr.torch_utilities.datasets.supervised.supervised_dataset import (
     SupervisedDataset,
@@ -20,7 +21,7 @@ from warg import OrderedSet
 
 class CategoricalDataset(SupervisedDataset):
     """
-
+  Categorical Dataset for discrete learning problems.
 """
 
     @property
@@ -28,8 +29,8 @@ class CategoricalDataset(SupervisedDataset):
     def categories(self) -> OrderedSet[str]:
         raise NotImplementedError
 
-    def idx_to_str(self, idx: int) -> str:
+    def idx_to_str(self, idx: Sequence[int]) -> Sequence[str]:
         return self.categories[idx]
 
-    def str_to_idx(self, str: str) -> int:
-        return self.categories.index(str)
+    def str_to_idx(self, s: str) -> int:
+        return self.categories.index(s)

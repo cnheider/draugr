@@ -17,3 +17,4 @@ from .counting import *
 from .freezing import *
 from .initialisation import *
 from .regularisation import *
+from .trainable import *

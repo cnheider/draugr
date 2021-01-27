@@ -14,6 +14,5 @@ with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
 
 from .debugging import *
 from .parameters import *
-from .procedures import *
 from .scheduling import *
 from .updates import *

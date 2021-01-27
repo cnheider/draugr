@@ -1,14 +1,5 @@
 # Drawers
 
-Utilities for drawing real time data stream figures using matplotlib and also some general classification metric plots
+For displaying plots to screen.
 
-## Real time plotting
-
-- [Multi]-series scroll plot
-- Discrete waterfall plot
-- Distribution plot
-- FFT scroll plot
-
-## Evaluation
-
-- Metric overview plots
+Utilities for drawing real time data stream figures and also some general classification metric plots

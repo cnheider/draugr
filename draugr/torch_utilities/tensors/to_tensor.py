@@ -21,11 +21,11 @@ def to_tensor(
 ) -> torch.Tensor:
     """
 
-    :param obj:
-    :param dtype:
-    :param device:
-    :param kwargs:
-    :return:"""
+  :param obj:
+  :param dtype:
+  :param device:
+  :param kwargs:
+  :return:"""
 
     # torch.as_tensor()
     if torch.is_tensor(obj):

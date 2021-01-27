@@ -11,31 +11,41 @@ __doc__ = r"""
 
 __all__ = ["draw_cube", "draw_axis", "cube_3d_matrix"]
 
+from warg import Number
 
-def draw_axis(img, corners, rot_vecs, trans_vecs, camera_mtx, dist_coef, size=1):
+
+def draw_axis(
+    img,
+    corners,
+    rotation_vectors,
+    translation_vectors,
+    camera_matrix,
+    dist_coef,
+    size=1,
+):
     """
 
-    :param img:
-    :type img:
-    :param corners:
-    :type corners:
-    :param rot_vecs:
-    :type rot_vecs:
-    :param trans_vecs:
-    :type trans_vecs:
-    :param camera_mtx:
-    :type camera_mtx:
-    :param dist_coef:
-    :type dist_coef:
-    :param size:
-    :type size:
-    :return:
-    :rtype:"""
+  :param img:
+  :type img:
+  :param corners:
+  :type corners:
+  :param rotation_vectors:
+  :type rotation_vectors:
+  :param translation_vectors:
+  :type translation_vectors:
+  :param camera_matrix:
+  :type camera_matrix:
+  :param dist_coef:
+  :type dist_coef:
+  :param size:
+  :type size:
+  :return:
+  :rtype:"""
     axis_size: numpy.ndarray = numpy.eye(3, 3) @ numpy.diag([size, size, -size])
     axis_size = axis_size.astype(numpy.float32)
 
     img_pts, jac = cv2.projectPoints(
-        axis_size, rot_vecs, trans_vecs, camera_mtx, dist_coef
+        axis_size, rotation_vectors, translation_vectors, camera_matrix, dist_coef
     )  # project 3D points to image plane
 
     corner = tuple(corners[0].ravel())
@@ -48,8 +58,8 @@ def draw_axis(img, corners, rot_vecs, trans_vecs, camera_mtx, dist_coef, size=1)
 def cube_3d_matrix():
     """
 
-    :return:
-    :rtype:"""
+  :return:
+  :rtype:"""
     return [
         [0, 0, 0],
         [0, 1, 0],
@@ -62,40 +72,47 @@ def cube_3d_matrix():
     ]
 
 
-def draw_cube(img, rot_vecs, trans_vecs, camera_mtx, dist_coef, size=6):
+def draw_cube(
+    img,
+    rotation_vectors,
+    translation_vectors,
+    camera_matrix,
+    dist_coef,
+    size: Number = 6,
+):
     """
 
-    :param img:
-    :type img:
-    :param rot_vecs:
-    :type rot_vecs:
-    :param trans_vecs:
-    :type trans_vecs:
-    :param camera_mtx:
-    :type camera_mtx:
-    :param dist_coef:
-    :type dist_coef:
-    :param size:
-    :type size:
-    :return:
-    :rtype:"""
+  :param img:
+  :type img:
+  :param rotation_vectors:
+  :type rotation_vectors:
+  :param translation_vectors:
+  :type translation_vectors:
+  :param camera_matrix:
+  :type camera_matrix:
+  :param dist_coef:
+  :type dist_coef:
+  :param size:
+  :type size:
+  :return:
+  :rtype:"""
     cube_size = numpy.float32(cube_3d_matrix()) * size
 
-    imgpts, jac2 = cv2.projectPoints(
-        cube_size, rot_vecs, trans_vecs, camera_mtx, dist_coef
+    img_pts, jac2 = cv2.projectPoints(
+        cube_size, rotation_vectors, translation_vectors, camera_matrix, dist_coef
     )
 
-    imgpts = numpy.int32(imgpts).reshape(-1, 2)
+    img_pts = numpy.int32(img_pts).reshape(-1, 2)
 
     # draw ground floor in green
-    img = cv2.drawContours(img, [imgpts[:4]], -1, (0, 255, 0), -3)
+    img = cv2.drawContours(img, [img_pts[:4]], -1, (0, 255, 0), -3)
 
     # draw pillars in blue color
     for i, j in zip(range(4), range(4, 8)):
-        img = cv2.line(img, tuple(imgpts[i]), tuple(imgpts[j]), (255, 0, 0), 3)
+        img = cv2.line(img, tuple(img_pts[i]), tuple(img_pts[j]), (255, 0, 0), 3)
 
     # draw top layer in red color
-    img = cv2.drawContours(img, [imgpts[4:]], -1, (0, 0, 255), 3)
+    img = cv2.drawContours(img, [img_pts[4:]], -1, (0, 0, 255), 3)
 
     return img
 

@@ -12,6 +12,6 @@ import pathlib
 with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
-from .splitting import *
 from .supervised_dataset import *
-from .utilities import *
+from .vision_datasets import *
+from .categorical_dataset import *

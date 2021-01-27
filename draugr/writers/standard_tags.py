@@ -26,6 +26,7 @@ class TrainingCurves(Enum):
 
 class TrainingTables(Enum):
     validation_confusion_matrix = "validation_confusion_matrix"
+    validation_support = "validation_support"
 
 
 class TestingScalars(Enum):
@@ -44,6 +45,7 @@ class TestingCurves(Enum):
 
 class TestingTables(Enum):
     test_confusion_matrix = "test_confusion_matrix"
+    test_support = "test_support"
 
 
 if __name__ == "__main__":

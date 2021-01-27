@@ -28,7 +28,7 @@ Writer mixin that provides an interface for 'writing' embeds/projections(2d,3d) 
         **kwargs
     ) -> None:
         """
-        eg. visualising for projections in lower dimensional space
+    eg. visualising for projections in lower dimensional space
 
 :param tag:
 :type tag:

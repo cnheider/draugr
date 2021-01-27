@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable
+from typing import Iterable, Any
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -11,15 +11,15 @@ __doc__ = r"""
 __all__ = ["yield_and_map", "inner_map", "kw_map"]
 
 
-def yield_and_map(iterable: Iterable, level: int = 0, func: callable = print):
+def yield_and_map(iterable: Iterable, level: int = 0, func: callable = print) -> Any:
     """
 
-    :param iterable:
-    :type iterable:
-    :param level:
-    :type level:
-    :param func:
-    :type func:"""
+  :param iterable:
+  :type iterable:
+  :param level:
+  :type level:
+  :param func:
+  :type func:"""
     if level == 0:
         for a in iterable:
             func(a)
@@ -37,15 +37,15 @@ def yield_and_map(iterable: Iterable, level: int = 0, func: callable = print):
                     yield c
 
 
-def inner_map(func: callable, iterable: Iterable, aggregate_yield=True):
+def inner_map(func: callable, iterable: Iterable, aggregate_yield: bool = True) -> Any:
     """
 
-    :param func:
-    :type func:
-    :param iterable:
-    :type iterable:
-    :param aggregate_yield:
-    :type aggregate_yield:"""
+  :param func:
+  :type func:
+  :param iterable:
+  :type iterable:
+  :param aggregate_yield:
+  :type aggregate_yield:"""
     if aggregate_yield:
         for a in iterable:
             yield [func(b) for b in a]
@@ -55,15 +55,15 @@ def inner_map(func: callable, iterable: Iterable, aggregate_yield=True):
                 yield func(b)
 
 
-def kw_map(func: callable, kw: str, iterable: Iterable):
+def kw_map(func: callable, kw: str, iterable: Iterable) -> Any:
     """
 
-    :param func:
-    :type func:
-    :param kw:
-    :type kw:
-    :param iterable:
-    :type iterable:"""
+  :param func:
+  :type func:
+  :param kw:
+  :type kw:
+  :param iterable:
+  :type iterable:"""
     for a in iterable:
         yield func(**{kw: a})
 

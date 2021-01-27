@@ -14,13 +14,13 @@ __doc__ = r"""
 __all__ = ["cv2_resize"]
 
 
-def cv2_resize(x: Any, target_size: tuple, interpolation=cv2.INTER_LINEAR):
+def cv2_resize(x: Any, target_size: tuple, interpolation=cv2.INTER_LINEAR) -> Any:
     """
 
-    :param interpolation:
-    :param x:
-    :param target_size: proper (width, height) shape, no cv craziness
-    :return:"""
+  :param interpolation:
+  :param x:
+  :param target_size: proper (width, height) shape, no cv craziness
+  :return:"""
     if x.shape != target_size:
         x = cv2.resize(x, target_size[::-1], interpolation=interpolation)
     return x

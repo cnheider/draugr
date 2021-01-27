@@ -14,7 +14,7 @@ from torch.utils.data import Dataset
 
 __all__ = ["SupervisedDataset"]
 
-from draugr.torch_utilities.datasets.supervised.splitting import (
+from draugr.numpy_utilities.datasets.splitting import (
     Split,
     SplitIndexer,
 )
@@ -22,7 +22,9 @@ from warg import drop_unused_kws
 
 
 class SupervisedDataset(Dataset):
-    """"""
+    """
+  Supervised Dataset is comprised of separate Splits
+  """
 
     @drop_unused_kws
     def __init__(self):

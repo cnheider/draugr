@@ -16,3 +16,4 @@ from .batching_generator import *
 from .mapping_generator import *
 from .recycling_generator import *
 from .zipping_generator import *
+from .filtering import *

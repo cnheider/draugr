@@ -13,21 +13,21 @@ from typing import Iterable
 
 def busy_indicator(
     *,
-    stream=print,
+    stream: callable = print,
     indicator_interval: int = 1,
     phases: Iterable[str] = ("◑", "◒", "◐", "◓"),
 ) -> Iterable:
     """
-    You can choose arbitrary phases like ['|','/','-','\\']
+  You can choose arbitrary phases like ['|','/','-','\\']
 
-    :param stream:
-    :type stream:
-    :param indicator_interval:
-    :type indicator_interval:
-    :param phases:
-    :type phases:
-    :return:
-    :rtype:"""
+  :param stream:
+  :type stream:
+  :param indicator_interval:
+  :type indicator_interval:
+  :param phases:
+  :type phases:
+  :return:
+  :rtype:"""
 
     phases = cycle(phases)
     i = 0

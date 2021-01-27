@@ -6,7 +6,7 @@ from warnings import warn
 
 __author__ = "Christian Heider Nielsen"
 
-import statistics as stats
+import statistics
 
 __all__ = ["MetricAggregator", "save_metric"]
 
@@ -16,7 +16,7 @@ class MetricAggregator(object):
 
     def __init__(
         self,
-        measures=stats.__all__[1:],
+        measures=statistics.__all__[1:],
         keep_measure_history=False,
         use_disk_cache=True,
     ):
@@ -41,40 +41,40 @@ class MetricAggregator(object):
     def values(self):
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         return self._values
 
     @property
     def max(self):
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         return max(self._values)
 
     @property
     def min(self):
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         return min(self._values)
 
     @property
     def measures(self):
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         if self._keep_measure_history:
             return self._measures
         else:
             out = {}
             for key in self._stat_measure_keys:
                 try:
-                    val = getattr(stats, key)(self._values)
-                except stats.StatisticsError as e:
+                    val = getattr(statistics, key)(self._values)
+                except statistics.StatisticsError as e:
                     # TODO: warn(f'{e}')
                     val = None
                 out[key] = val
@@ -83,15 +83,15 @@ class MetricAggregator(object):
     def add(self, values):
         """
 
-        :param values:
-        :type values:"""
+    :param values:
+    :type values:"""
         self.append(values)
 
     def append(self, values):
         """
 
-        :param values:
-        :type values:"""
+    :param values:
+    :type values:"""
         self._values.append(values)
         if type is list:
             self._length += len(values)
@@ -104,15 +104,15 @@ class MetricAggregator(object):
             for key in self._stat_measure_keys:
                 if self._length > 1:
                     try:
-                        val = getattr(stats, key)(self._values)
+                        val = getattr(statistics, key)(self._values)
                     except:
                         val = None
                     self._measures[key].append(val)
                 else:
                     # warn(f'Length of statistical values are <=1, measure "{key}" maybe ill-defined')
                     try:
-                        val = getattr(stats, key)(self._values)
-                    except stats.StatisticsError as e:
+                        val = getattr(statistics, key)(self._values)
+                    except statistics.StatisticsError as e:
                         # TODO: warn(f'{e}')
                         val = None
                     self._measures[key].append(val)
@@ -137,8 +137,8 @@ class MetricAggregator(object):
                     return self._measures[item]
                 else:
                     try:
-                        return getattr(stats, item)(self._values)
-                    except stats.StatisticsError as e:
+                        return getattr(statistics, item)(self._values)
+                    except statistics.StatisticsError as e:
                         warn(f"{e}")
                         return None
             else:
@@ -146,8 +146,8 @@ class MetricAggregator(object):
                     f'Length of statistical values are <=1, measure "{item}" maybe ill-defined'
                 )
                 try:
-                    return getattr(stats, item)(self._values)
-                except stats.StatisticsError as e:
+                    return getattr(statistics, item)(self._values)
+                except statistics.StatisticsError as e:
                     warn(f"{e}")
                     return None
         elif item == self._running_value_key:
@@ -170,26 +170,26 @@ class MetricAggregator(object):
     def calc_moving_average(self, window_size=100):
         """
 
-        :param window_size:
-        :type window_size:
-        :return:
-        :rtype:"""
+    :param window_size:
+    :type window_size:
+    :return:
+    :rtype:"""
         if self._length >= window_size:
-            return stats.mean(self._values[-window_size:])
+            return statistics.mean(self._values[-window_size:])
         elif self._length > 0:
-            return stats.mean(self._values)
+            return statistics.mean(self._values)
         else:
             return 0
 
     def calc_running_value(self, new_val=None, *, lambd=0.99):
         """
 
-        :param new_val:
-        :type new_val:
-        :param lambd:
-        :type lambd:
-        :return:
-        :rtype:"""
+    :param new_val:
+    :type new_val:
+    :param lambd:
+    :type lambd:
+    :return:
+    :rtype:"""
         if new_val is None:
             return self._running_value
 
@@ -212,14 +212,14 @@ class MetricAggregator(object):
     ):
         """
 
-        :param stat_name:
-        :type stat_name:
-        :param project_name:
-        :type project_name:
-        :param config_name:
-        :type config_name:
-        :param directory:
-        :type directory:"""
+    :param stat_name:
+    :type stat_name:
+    :param project_name:
+    :type project_name:
+    :param config_name:
+    :type config_name:
+    :param directory:
+    :type directory:"""
         save_metric(
             self._values,
             metric_name=stat_name,
@@ -239,18 +239,18 @@ def save_metric(
 ) -> bool:
     """
 
-    :param metric:
-    :type metric:
-    :param metric_name:
-    :type metric_name:
-    :param project_name:
-    :type project_name:
-    :param config_name:
-    :type config_name:
-    :param directory:
-    :type directory:
-    :return:
-    :rtype:"""
+  :param metric:
+  :type metric:
+  :param metric_name:
+  :type metric_name:
+  :param project_name:
+  :type project_name:
+  :param config_name:
+  :type config_name:
+  :param directory:
+  :type directory:
+  :return:
+  :rtype:"""
     import csv
     import datetime
 

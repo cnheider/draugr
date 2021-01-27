@@ -17,7 +17,7 @@ __all__ = ["TorchCpuSession", "TorchCudaSession", "TorchDeviceSession"]
 
 class TorchCudaSession(AlsoDecorator):
     """
-    Sets global torch devices to cuda if available"""
+  Sets global torch devices to cuda if available"""
 
     def __init__(self, model: Module = None, no_side_effect: bool = True):
         self._model = model
@@ -44,8 +44,8 @@ class TorchCudaSession(AlsoDecorator):
 
 class TorchCpuSession(AlsoDecorator):
     """
-    Sets global torch devices to cpu
-    """
+  Sets global torch devices to cpu
+  """
 
     def __init__(self, model: Module = None, no_side_effect: bool = True):
         self._model = model
@@ -71,8 +71,8 @@ class TorchCpuSession(AlsoDecorator):
 
 class TorchDeviceSession(AlsoDecorator):
     """
-    Sets global torch devices to cpu
-    """
+  Sets global torch devices to cpu
+  """
 
     def __init__(
         self, device: torch.device, model: Module = None, no_side_effect: bool = True

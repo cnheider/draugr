@@ -17,7 +17,7 @@ __all__ = ["AudioWriterMixin"]
 
 class AudioWriterMixin(ABC):
     """
-    Writer subclass that provides an interface for 'writing' images"""
+  Writer subclass that provides an interface for 'writing' images"""
 
     @abstractmethod
     def audio(
@@ -29,12 +29,12 @@ class AudioWriterMixin(ABC):
     ) -> None:
         """
 
-        :param tag:
-        :type tag:
-        :param data:
-        :type data:
-        :param step:
-        :type step:
-        :param kwargs:
-        :type kwargs:"""
+    :param tag:
+    :type tag:
+    :param data:
+    :type data:
+    :param step:
+    :type step:
+    :param kwargs:
+    :type kwargs:"""
         raise NotImplementedError

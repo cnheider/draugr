@@ -53,7 +53,6 @@ from IPython import get_ipython
 # Load the TensorBoard notebook extension
 get_ipython().run_line_magic("load_ext", "tensorboard")
 
-
 # %%
 # Clear any logs from previous runs
 get_ipython().system("rm -rf ./logs/ ")
@@ -97,6 +96,7 @@ with tf.summary.create_file_writer("logs/hparam_tuning").as_default():
         hparams=[HP_NUM_UNITS, HP_DROPOUT, HP_OPTIMIZER],
         metrics=[hp.Metric(METRIC_ACCURACY, display_name="Accuracy")],
     )
+
 
 # %% [markdown]
 # If you choose to skip this step, you can use a string literal wherever you would otherwise use an `HParam` value: e.g., `hparams['dropout']` instead of `hparams[HP_DROPOUT]`.

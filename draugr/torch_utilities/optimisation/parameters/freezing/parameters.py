@@ -7,32 +7,21 @@ __doc__ = r"""
            Created on 15/02/2020
            """
 
-__all__ = ["frozen_parameters", "freeze_parameters", "freeze_model", "frozen_model"]
+__all__ = ["frozen_parameters", "freeze_parameters"]
 
 from contextlib import contextmanager
 from itertools import tee
 from typing import Iterator
 
-from torch.nn import Module, Parameter
-
-
-def freeze_model(model: Module, value: bool = None, recurse: bool = True) -> None:
-    """
-
-    :param model:
-    :type model:
-    :param recurse:
-    :param value:
-    :return:"""
-    freeze_parameters(model.parameters(recurse), value)
+from torch.nn import Parameter
 
 
 def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
     """
 
-    :param params:
-    :param value:
-    :return:"""
+  :param params:
+  :param value:
+  :return:"""
     if isinstance(value, bool):
         for p in params:
             p.requires_grad = not value
@@ -42,30 +31,13 @@ def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
 
 
 @contextmanager
-def frozen_model(model: Module, recurse: bool = True, enabled: bool = True) -> None:
-    """
-
-    :param enabled:
-    :type enabled:
-    :param model:
-    :param recurse:
-    :return:"""
-    params_1, params_2 = tee(model.parameters(recurse))
-    if enabled:
-        freeze_parameters(params_1, True)
-    yield True
-    if enabled:
-        freeze_parameters(params_2, False)
-
-
-@contextmanager
 def frozen_parameters(params: Iterator[Parameter], enabled=True) -> None:
     """
 
-    :param enabled:
-    :type enabled:
-    :param params:
-    :return:"""
+  :param enabled:
+  :type enabled:
+  :param params:
+  :return:"""
     params_1, params_2 = tee(params)
     if enabled:
         freeze_parameters(params_1, True)
@@ -76,13 +48,6 @@ def frozen_parameters(params: Iterator[Parameter], enabled=True) -> None:
 
 if __name__ == "__main__":
     from torch import nn
-
-    def asda():
-        a = nn.Linear(10, 5)
-        print(a.weight.requires_grad)
-        with frozen_model(a):
-            print(a.weight.requires_grad)
-        print(a.weight.requires_grad)
 
     def asd21312a():
         a = nn.Linear(10, 5)
@@ -135,7 +100,6 @@ if __name__ == "__main__":
         freeze_parameters(a.parameters(), False)
         print(next(a.parameters()).requires_grad)
 
-    asda()
     print("\n")
     asd21312a()
     print("\n")
