@@ -12,11 +12,8 @@ from matplotlib import pyplot
 import numpy
 
 from scipy.signal import decimate, resample
-from neodroidaudition import PACKAGE_DATA_PATH
 
 __all__ = ["dissected_channel_plot", "overlay_channel_plot"]
-
-TEST_FILE = str(PACKAGE_DATA_PATH / "fireworks.wav")
 
 
 def max_decimation_subsample(signal, decimation_factor: int = 10):
@@ -125,7 +122,7 @@ def orthogonal_stereo_channel_3d_plot(
     ax.plot(sub_time, numpy.zeros(len(sub_time)), zs=sub_signal[1])
 
 
-def deinterleaved_channel_plot_file(wav_file=TEST_FILE):
+def deinterleaved_channel_plot_file(wav_file):
     import wave
 
     with wave.open(wav_file, "r") as wav_file:
