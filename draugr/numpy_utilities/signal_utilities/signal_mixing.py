@@ -107,7 +107,7 @@ if __name__ == "__main__":
         from draugr.torch_utilities import to_tensor
         from neodroidaudition.data.recognition.libri_speech import LibriSpeech
         from neodroidaudition.noise_generation.gaussian_noise import white_noise
-
+        import torchaudio
         from pathlib import Path
 
         libri_speech = LibriSpeech(
