@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-__author__ = "Christian Heider Nielsen"
-__doc__ = r"""
-
-           Created on 19-01-2021
-           """
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -15,20 +7,20 @@ __doc__ = r"""
            Created on 06-01-2021
            """
 
-from scipy.signal import chirp, welch, spectrogram
-from scipy.io import wavfile
+from scipy.signal import chirp, spectrogram
+
 import numpy
 from matplotlib import cm, pyplot
-from skimage import util
+
 from typing import Sequence
 from draugr.python_utilities.powers import next_pow_2
 import mpl_toolkits.mplot3d.axes3d as p3
-from matplotlib import animation
 
 from mpl_toolkits.mplot3d import axes3d
 from matplotlib import animation
 
 __all__ = ["spectral_plot3d", "spectrum_plot3d"]
+
 
 # TODO: ANIMATED VARIANT, maybe as a drawer!
 
@@ -37,8 +29,8 @@ def spectral_plot3d(
     time: Sequence, frequencies: Sequence, fxt: numpy.ndarray
 ) -> pyplot.Figure:
     """
-  return new figure
-  """
+return new figure
+"""
     assert fxt.shape == (*frequencies.shape, *time.shape)
     assert fxt.dtype == numpy.complex
 
@@ -83,7 +75,7 @@ def spectrum_plot3d(
 ) -> pyplot.Figure:
     """
 
-  """
+"""
     n_per_seg = next_pow_2(
         sampling_rate * window_length_ms
     )  # 20 ms, next_pow_2 per seg == n_fft

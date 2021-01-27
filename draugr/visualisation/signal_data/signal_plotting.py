@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 04-01-2021
            """
 
-from typing import Iterable, Sequence, Tuple
+from typing import Sequence, Tuple
 from matplotlib import pyplot
 import numpy
 

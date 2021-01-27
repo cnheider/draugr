@@ -8,10 +8,8 @@ __doc__ = r"""
            """
 
 from scipy.signal import welch, spectrogram
-from scipy.io import wavfile
 import numpy
 from matplotlib import pyplot
-from skimage import util
 from typing import Sequence
 from draugr.python_utilities.powers import next_pow_2
 
