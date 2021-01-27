@@ -200,4 +200,3 @@ if __name__ == "__main__":
     # stest_override()
 
     print(global_torch_device(False).type)
-    print(global_pin_memory())
