@@ -28,14 +28,14 @@ def _sequential(
 ) -> Generator:
     """Returns a generator for a sequential map with a progress bar.
 
-    Arguments:
-        function(Callable): The function to apply to each element of the given Iterables.
-        iterables(Tuple[Iterable]): One or more Iterables containing the data to be mapped.
+  Arguments:
+      function(Callable): The function to apply to each element of the given Iterables.
+      iterables(Tuple[Iterable]): One or more Iterables containing the data to be mapped.
 
-    Returns:
-        A generator which will apply the function to each element of the given Iterables
-        sequentially in order with a progress bar.
-    """
+  Returns:
+      A generator which will apply the function to each element of the given Iterables
+      sequentially in order with a progress bar.
+  """
 
     # Determine length of tqdm (equal to length of shortest iterable)
     length = min(len(iterable) for iterable in iterables if isinstance(iterable, Sized))
@@ -55,15 +55,15 @@ def _parallel(
 ) -> Generator:
     """Returns a generator for a parallel map with a progress bar.
 
-    Arguments:
-        ordered(bool): True for an ordered map, false for an unordered map.
-        function(Callable): The function to apply to each element of the given Iterables.
-        iterables(Tuple[Iterable]): One or more Iterables containing the data to be mapped.
+  Arguments:
+      ordered(bool): True for an ordered map, false for an unordered map.
+      function(Callable): The function to apply to each element of the given Iterables.
+      iterables(Tuple[Iterable]): One or more Iterables containing the data to be mapped.
 
-    Returns:
-        A generator which will apply the function to each element of the given Iterables
-        in parallel in order with a progress bar.
-    """
+  Returns:
+      A generator which will apply the function to each element of the given Iterables
+      in parallel in order with a progress bar.
+  """
 
     if func_kws is None:
         func_kws = {}

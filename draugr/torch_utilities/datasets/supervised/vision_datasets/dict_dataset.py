@@ -18,7 +18,7 @@ __all__ = ["DictDatasetFolder", "SplitDictDatasetFolder"]
 
 from torchvision.datasets.folder import has_file_allowed_extension
 
-from draugr import (
+from draugr.numpy_utilities import (
     Split,
     build_flat_dataset,
     build_shallow_categorical_dataset,
@@ -29,31 +29,31 @@ from draugr import (
 class SplitDictDatasetFolder(VisionDataset):
     """A generic data loader where the samples are arranged in this way: ::
 
-  root/class_x/xxx.ext
-  root/class_x/xxy.ext
-  root/class_x/xxz.ext
+root/class_x/xxx.ext
+root/class_x/xxy.ext
+root/class_x/xxz.ext
 
-  root/class_y/123.ext
-  root/class_y/nsdf3.ext
-  root/class_y/asd932_.ext
+root/class_y/123.ext
+root/class_y/nsdf3.ext
+root/class_y/asd932_.ext
 
-  Args:
-  root (string): Root directory path.
-  loader (callable): A function to load a sample given its path.
-  extensions (tuple[string]): A list of allowed extensions.
-      both extensions and is_valid_file should not be passed.
-  transform (callable, optional): A function/transform that takes in
-      a sample and returns a transformed version.
-      E.g, ``transforms.RandomCrop`` for images.
-  target_transform (callable, optional): A function/transform that takes
-      in the target and transforms it.
-  is_valid_file (callable, optional): A function that takes path of a file
-      and check if the file is a valid file (used to check of corrupt files)
-      both extensions and is_valid_file should not be passed.
+Args:
+root (string): Root directory path.
+loader (callable): A function to load a sample given its path.
+extensions (tuple[string]): A list of allowed extensions.
+    both extensions and is_valid_file should not be passed.
+transform (callable, optional): A function/transform that takes in
+    a sample and returns a transformed version.
+    E.g, ``transforms.RandomCrop`` for images.
+target_transform (callable, optional): A function/transform that takes
+    in the target and transforms it.
+is_valid_file (callable, optional): A function that takes path of a file
+    and check if the file is a valid file (used to check of corrupt files)
+    both extensions and is_valid_file should not be passed.
 
-  Attributes:
-  _categories (list): List of the class names sorted alphabetically.
-  _data_categories (list): List of (sample path, class_index) tuples"""
+Attributes:
+_categories (list): List of the class names sorted alphabetically.
+_data_categories (list): List of (sample path, class_index) tuples"""
 
     def __init__(
         self,
@@ -82,7 +82,7 @@ class SplitDictDatasetFolder(VisionDataset):
         )
 
         if len(self._data_categories) == 0:
-            msg = f"Found 0 categories in subfolders of: {self.root}\n"
+            msg = f"Found 0 categories in sub-folders of: {self.root}\n"
             if extensions is not None:
                 msg += f"Supported extensions are: {','.join(extensions)}"
             raise RuntimeError(msg)
@@ -99,13 +99,13 @@ class SplitDictDatasetFolder(VisionDataset):
     def __getitem__(self, index) -> Tuple:
         """
 
-    Non-pure implementation! Index maybe not map to the same item as target randomly sampled
+Non-pure implementation! Index maybe not map to the same item as target randomly sampled
 
-    Args:
-    index (int): Index
+Args:
+index (int): Index
 
-    Returns:
-    tuple: (sample, target) where target is class_index of the target class."""
+Returns:
+tuple: (sample, target) where target is class_index of the target class."""
         target = random.choice(self.category_names)
         return self.sample(target, index)
 
@@ -126,31 +126,31 @@ class SplitDictDatasetFolder(VisionDataset):
 class DictDatasetFolder(VisionDataset):
     """A generic data loader where the samples are arranged in this way: ::
 
-  root/class_x/xxx.ext
-  root/class_x/xxy.ext
-  root/class_x/xxz.ext
+root/class_x/xxx.ext
+root/class_x/xxy.ext
+root/class_x/xxz.ext
 
-  root/class_y/123.ext
-  root/class_y/nsdf3.ext
-  root/class_y/asd932_.ext
+root/class_y/123.ext
+root/class_y/nsdf3.ext
+root/class_y/asd932_.ext
 
-  Args:
-  root (string): Root directory path.
-  loader (callable): A function to load a sample given its path.
-  extensions (tuple[string]): A list of allowed extensions.
-      both extensions and is_valid_file should not be passed.
-  transform (callable, optional): A function/transform that takes in
-      a sample and returns a transformed version.
-      E.g, ``transforms.RandomCrop`` for images.
-  target_transform (callable, optional): A function/transform that takes
-      in the target and transforms it.
-  is_valid_file (callable, optional): A function that takes path of a file
-      and check if the file is a valid file (used to check of corrupt files)
-      both extensions and is_valid_file should not be passed.
+Args:
+root (string): Root directory path.
+loader (callable): A function to load a sample given its path.
+extensions (tuple[string]): A list of allowed extensions.
+    both extensions and is_valid_file should not be passed.
+transform (callable, optional): A function/transform that takes in
+    a sample and returns a transformed version.
+    E.g, ``transforms.RandomCrop`` for images.
+target_transform (callable, optional): A function/transform that takes
+    in the target and transforms it.
+is_valid_file (callable, optional): A function that takes path of a file
+    and check if the file is a valid file (used to check of corrupt files)
+    both extensions and is_valid_file should not be passed.
 
-  Attributes:
-  _categories (list): List of the class names sorted alphabetically.
-  _data (list): List of (sample path, class_index) tuples"""
+Attributes:
+_categories (list): List of the class names sorted alphabetically.
+_data (list): List of (sample path, class_index) tuples"""
 
     def __init__(
         self,
@@ -170,7 +170,7 @@ class DictDatasetFolder(VisionDataset):
         )
 
         if len(self._data) == 0:
-            msg = f"Found 0 files in subfolders of: {self.root}\n"
+            msg = f"Found 0 files in sub-folders of: {self.root}\n"
             if extensions is not None:
                 msg += f"Supported extensions are: {','.join(extensions)}"
             raise RuntimeError(msg)
@@ -184,13 +184,13 @@ class DictDatasetFolder(VisionDataset):
     def __getitem__(self, index) -> Tuple:
         """
 
-    Non-pure implementation! Index maybe not map to the same item as target randomly sampled
+Non-pure implementation! Index maybe not map to the same item as target randomly sampled
 
-    Args:
-    index (int): Index
+Args:
+index (int): Index
 
-    Returns:
-    tuple: (sample, target) where target is class_index of the target class."""
+Returns:
+tuple: (sample, target) where target is class_index of the target class."""
         target = random.choice(self.category_names)
         return self.sample(target, index)
 
@@ -204,3 +204,7 @@ class DictDatasetFolder(VisionDataset):
 
     def __len__(self):
         return sum(list(self.category_sizes.values()))
+
+
+if __name__ == "__main__":
+    pass

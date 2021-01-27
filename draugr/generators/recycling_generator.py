@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import random
-from typing import Iterable, Sequence
+from typing import Iterable, Sequence, Any
 
 import numpy
 
@@ -14,13 +14,13 @@ __doc__ = r"""
 __all__ = ["recycle", "batched_recycle"]
 
 
-def recycle(iterable: Iterable):
+def recycle(iterable: Iterable) -> Any:
     """
-    loops an iterable like itertools.cycle, but in a random order (Permutation) everytime the iterable is
-    exhausted
+  loops an iterable like itertools.cycle, but in a random order (Permutation) everytime the iterable is
+  exhausted
 
-    :param iterable:
-    :return:"""
+  :param iterable:
+  :return:"""
     if not isinstance(iterable, Sequence):
         iterable = list(iterable)
     while True:
@@ -28,7 +28,7 @@ def recycle(iterable: Iterable):
             yield element
 
 
-def batched_recycle(sized: Sequence, batch_size: int = 32):
+def batched_recycle(sized: Sequence, batch_size: int = 32) -> Any:
     """Batches and re-cycles an array with a different permutation"""
     if isinstance(sized, numpy.ndarray):
         while True:

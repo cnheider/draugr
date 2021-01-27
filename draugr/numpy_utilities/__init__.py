@@ -16,3 +16,6 @@ from .channel_transform import *
 from .manipulation import *
 from .resize import *
 from .datasets import *
+from .sampling import *
+from .powers import *
+from .signal_utilities import *

@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 16/02/2020
            """
 
-
 import math
 
 __all__ = ["lambda_accumulator", "mean_accumulator", "total_accumulator"]
@@ -16,19 +15,19 @@ __all__ = ["lambda_accumulator", "mean_accumulator", "total_accumulator"]
 def lambda_accumulator(start_value=None, lambd=0.99):
     """
 
-    :param start_value:
-    :type start_value:
-    :param lambd:
-    :type lambd:
-    :return:
-    :rtype:"""
+  :param start_value:
+  :type start_value:
+  :param lambd:
+  :type lambd:
+  :return:
+  :rtype:"""
     assert 0 <= lambd <= 1
 
     def lambda_accumulator_(n=start_value):
         """
 
-        :param n:
-        :type n:"""
+    :param n:
+    :type n:"""
         while True:
             new_n = yield n
             if new_n is not None:
@@ -46,16 +45,16 @@ def lambda_accumulator(start_value=None, lambd=0.99):
 def mean_accumulator(start_value=None):
     """
 
-    :param start_value:
-    :type start_value:
-    :return:
-    :rtype:"""
+  :param start_value:
+  :type start_value:
+  :return:
+  :rtype:"""
 
     def mean_accumulator_(n=start_value):
         """
 
-        :param n:
-        :type n:"""
+    :param n:
+    :type n:"""
         if n is not None:
             num = 1
         else:
@@ -78,16 +77,16 @@ def mean_accumulator(start_value=None):
 def total_accumulator(start_value=0):
     """
 
-    :param start_value:
-    :type start_value:
-    :return:
-    :rtype:"""
+  :param start_value:
+  :type start_value:
+  :return:
+  :rtype:"""
 
     def total_accumulator_(total=start_value):
         """
 
-        :param total:
-        :type total:"""
+    :param total:
+    :type total:"""
         while True:
             a = yield total
             if a:

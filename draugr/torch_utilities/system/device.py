@@ -10,7 +10,6 @@ __doc__ = r"""
            Created on 15/11/2019
            """
 
-
 GLOBAL_DEVICE: torch.device = None
 
 __all__ = [
@@ -71,9 +70,9 @@ first time call stores to device for global reference, later call must manually 
 def set_global_torch_device(device: torch.device) -> None:
     """
 
-  :param device:
-  :return:
-  """
+:param device:
+:return:
+"""
     global GLOBAL_DEVICE
     GLOBAL_DEVICE = device
 

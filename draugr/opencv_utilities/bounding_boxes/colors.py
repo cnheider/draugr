@@ -10,15 +10,14 @@ __doc__ = r"""
 __all__ = ["compute_color_for_labels"]
 
 from typing import Tuple
-
-Triple = Tuple[float, float, float]
+from warg import Triple
 
 
 def compute_color_for_labels(
     label: int, palette: Triple = (2 ** 11 - 1, 2 ** 15 - 1, 2 ** 20 - 1)
 ) -> Tuple:
     """
-    Simple function that adds fixed color depending on the class"""
+  Simple function that adds fixed color depending on the class"""
     return (
         *[int(((label > 0) * p * (label ** 2 - label + 1)) % 255) for p in palette],
     )

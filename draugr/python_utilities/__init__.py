@@ -23,3 +23,7 @@ from .sockets import *
 from .styling import *
 from .torch_like_channel_transformation import *
 from .resources import *
+from .platform_selection import *
+from .strings import *
+from .resources import *
+from .powers import *

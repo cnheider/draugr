@@ -24,11 +24,11 @@ def build_flat_dataset(
 ) -> dict:
     """
 
-    :param directory:
-    :param extensions:
-    :param is_valid_file:
-    :return:
-    """
+  :param directory:
+  :param extensions:
+  :param is_valid_file:
+  :return:
+  """
     if not isinstance(directory, Path):
         directory = Path(directory)
 

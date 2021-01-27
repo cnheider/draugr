@@ -7,6 +7,7 @@ Created on 27/04/2019
 
 @author: cnheider
 """
+
 import pathlib
 
 with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:

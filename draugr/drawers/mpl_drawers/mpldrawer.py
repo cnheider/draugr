@@ -12,17 +12,19 @@ __doc__ = r"""
 __all__ = ["MplDrawer", "MockDrawer"]
 
 import matplotlib
+from draugr.drawers.drawer import Drawer
 from matplotlib import pyplot
 
 
 class MplDrawer(
     # metaclass=PostInit
+    Drawer
 ):
     """
-    Real time plotting base class
+  Real time plotting base class
 
-    for Matplotlib
-    """
+  for Matplotlib
+  """
 
     # @drop_unused_kws
     def __init__(
@@ -35,10 +37,10 @@ class MplDrawer(
     ):
         """
 
-        :param default_delta:
-        :param render:
-        :param placement:
-        :param kwargs:"""
+    :param default_delta:
+    :param render:
+    :param placement:
+    :param kwargs:"""
         super().__init__()
         self.fig = None
 
@@ -63,10 +65,10 @@ fig_manager.window.SetPosition((500, 0))
     """
 @drop_unused_kws
 def __post_init__(self,*, figure_size: Tuple[int, int] = None):
-  if self.fig is None:
-    if figure_size is None:
-      figure_size = (4, 4)
-    self.fig = pyplot.figure(figsize=figure_size)
+if self.fig is None:
+  if figure_size is None:
+    figure_size = (4, 4)
+  self.fig = pyplot.figure(figsize=figure_size)
 """
 
     def draw(self, data: Any, delta: float = None):
@@ -91,8 +93,8 @@ def __post_init__(self,*, figure_size: Tuple[int, int] = None):
     @staticmethod
     def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0):
         r"""
-        Move figure's upper left corner to pixel (x, y)
-        """
+    Move figure's upper left corner to pixel (x, y)
+    """
         backend = matplotlib.get_backend()
         if hasattr(figure.canvas.manager, "window"):
             window = figure.canvas.manager.window
@@ -116,23 +118,23 @@ def __post_init__(self,*, figure_size: Tuple[int, int] = None):
     def _draw(self, data: Any) -> None:
         """
 
-        :param data:
-        :type data:
-        :param delta:
-        :type delta:"""
+    :param data:
+    :type data:
+    :param delta:
+    :type delta:"""
         raise NotImplementedError
 
 
 class MockDrawer(MplDrawer):
     """
-    Mock for drawer, accepts data but draws nothing
-    """
+  Mock for drawer, accepts data but draws nothing
+  """
 
     def _draw(self, data: Sequence) -> None:
         """
 
-        :param data:
-        :type data:
-        :param delta:
-        :type delta:"""
+    :param data:
+    :type data:
+    :param delta:
+    :type delta:"""
         pass

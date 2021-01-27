@@ -13,7 +13,7 @@ import re
 import sys
 from enum import Enum
 from pathlib import Path
-from typing import Dict, Iterable, OrderedDict, Sequence
+from typing import Dict, Iterable, OrderedDict, Sequence, Any
 
 import numpy
 
@@ -22,9 +22,9 @@ __all__ = ["Split", "SplitIndexer", "train_valid_test_split", "select_split"]
 
 class Split(Enum):
     """
-  Split Enum class for selecting splits
+Split Enum class for selecting splits
 
-  """
+"""
 
     Training = "training"
     Validation = "validation"
@@ -34,7 +34,7 @@ class Split(Enum):
 class SplitIndexer:
     """
 
-  """
+"""
 
     default_split_names = {i: i.value for i in Split}
 
@@ -84,12 +84,12 @@ class SplitIndexer:
     def unnormalised(self, num: int, floored: bool = True) -> numpy.ndarray:
         """
 
-    :param num:
-    :type num:
-    :param floored:
-    :type floored:
-    :return:
-    :rtype:"""
+:param num:
+:type num:
+:param floored:
+:type floored:
+:return:
+:rtype:"""
         unnorm = self.normalised_split * num
         if floored:
             unnorm = numpy.floor(unnorm)
@@ -110,6 +110,8 @@ class SplitIndexer:
             return self.select_validation_indices(split_indices)
         elif split == Split.Testing:
             return self.select_testing_indices(split_indices)
+        elif split is None:
+            return split_indices
         raise NotImplementedError
 
 
@@ -121,14 +123,14 @@ def train_valid_test_split(
     verbose: bool = False,
 ) -> OrderedDict:
     """
-  Magic hashing
+Magic hashing
 
-  :param verbose:
-  :type verbose:
-  :param categories:
-  :param testing_percentage:
-  :param validation_percentage:
-  :return:"""
+:param verbose:
+:type verbose:
+:param categories:
+:param testing_percentage:
+:param validation_percentage:
+:return:"""
     result = collections.OrderedDict()
 
     if verbose:
@@ -162,18 +164,20 @@ def train_valid_test_split(
 
 
 def select_split(
-    data_cat_split, split: Split, verbose: bool = False
-) -> Dict[str, Sequence]:
+    data_cat_split: Dict[Any, Dict[Split, Sequence]],
+    split: Split,
+    verbose: bool = False,
+) -> Dict[Any, Sequence]:
     """
 
-  :param verbose:
-  :type verbose:
-  :param data_cat_split:
-  :type data_cat_split:
-  :param split:
-  :type split:
-  :return:
-  :rtype:"""
+:param verbose:
+:type verbose:
+:param data_cat_split:
+:type data_cat_split:
+:param split:
+:type split:
+:return:
+:rtype:"""
     data = {k: [] for k in data_cat_split.keys()}
     if verbose:
         print(data_cat_split)
@@ -190,3 +194,5 @@ if __name__ == "__main__":
     print(split_by_p.default_split_names)
     print(split_by_p.shuffled_indices())
     print(split_by_p.select_shuffled_split_indices(Split.Training))
+    a = split_by_p.select_shuffled_split_indices(None)
+    print(a, len(a))

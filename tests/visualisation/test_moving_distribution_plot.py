@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import numpy
 
-from draugr.drawers.distribution_plot import DistributionPlot
+from draugr.drawers.mpl_drawers.distribution_plot import DistributionPlot
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

@@ -14,3 +14,4 @@ with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
 
 from .supervised_dataset import *
 from .vision_datasets import *
+from .categorical_dataset import *

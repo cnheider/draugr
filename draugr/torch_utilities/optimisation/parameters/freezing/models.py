@@ -21,11 +21,11 @@ __all__ = ["freeze_model", "frozen_model"]
 def freeze_model(model: Module, value: bool = None, recurse: bool = True) -> None:
     """
 
-    :param model:
-    :type model:
-    :param recurse:
-    :param value:
-    :return:"""
+  :param model:
+  :type model:
+  :param recurse:
+  :param value:
+  :return:"""
     freeze_parameters(model.parameters(recurse), value)
 
 
@@ -33,11 +33,11 @@ def freeze_model(model: Module, value: bool = None, recurse: bool = True) -> Non
 def frozen_model(model: Module, recurse: bool = True, enabled: bool = True) -> None:
     """
 
-    :param enabled:
-    :type enabled:
-    :param model:
-    :param recurse:
-    :return:"""
+  :param enabled:
+  :type enabled:
+  :param model:
+  :param recurse:
+  :return:"""
     params_1, params_2 = tee(model.parameters(recurse))
     if enabled:
         freeze_parameters(params_1, True)

@@ -7,7 +7,15 @@ __doc__ = r"""
            Created on 14/01/2020
            """
 
-__all__ = ["identity", "sink", "prod", "collate_batch_fn", "kw_identity"]
+__all__ = [
+    "kws_sink",
+    "sink",
+    "prod",
+    "collate_batch_fn",
+    "call_identity",
+    "args_sink",
+    "identity",
+]
 
 import operator
 from functools import reduce
@@ -16,45 +24,58 @@ from typing import Any, Dict, Iterable, Tuple, Union
 from warg import drop_unused_kws
 
 
+def identity(a: Any) -> Any:
+    return a
+
+
 @drop_unused_kws
-def identity(*args) -> Tuple[Any, ...]:
+def kws_sink(*args) -> Tuple[Any, ...]:
     """
-    Returns args without any modification what so ever. Drops kws
-    :param x:
-    :return:"""
+  Returns args without any modification what so ever. Drops kws
+  :param x:
+  :return:"""
     return args
 
 
-def kw_identity(*args, **kwargs) -> Tuple[Tuple[Any], Dict[str, Any]]:
+def call_identity(*args, **kwargs) -> Tuple[Tuple[Any], Dict[str, Any]]:
     """
 
-    :param args:
-    :param kwargs:
-    :return:"""
+  :param args:
+  :param kwargs:
+  :return:"""
     return args, kwargs
+
+
+def args_sink(*args, **kwargs) -> Dict[str, Any]:
+    """
+
+  :param args:
+  :param kwargs:
+  :return:"""
+    return kwargs
 
 
 def collate_batch_fn(batch: Iterable) -> tuple:
     """
 
-    :param batch:
-    :return:"""
+  :param batch:
+  :return:"""
     return tuple(zip(*batch))
 
 
 def sink(*args, **kwargs) -> None:
     """
-    Returns None, but accepts everything
+  Returns None, but accepts everything
 
-    :param args:
-    :param kwargs:
-    :return:"""
+  :param args:
+  :param kwargs:
+  :return:"""
     return None
 
 
 def prod(iterable: Iterable[Union[int, float]]) -> Union[int, float]:
     """
-    Calculate the product of the a Iterable of int or floats
-    :param iterable:
-    :return:"""
+  Calculate the product of the a Iterable of int or floats
+  :param iterable:
+  :return:"""
     return reduce(operator.mul, iterable, 1)

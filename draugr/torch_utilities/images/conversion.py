@@ -16,11 +16,11 @@ from PIL import Image
 def quick_to_pil_image(inp: torch.Tensor, mode="RGB") -> Image.Image:
     """
 
-  LOTS OF ASSUMPTIONS!
+LOTS OF ASSUMPTIONS!
 
-  :param inp:
-  :return:
-  """
+:param inp:
+:return:
+"""
 
     return Image.fromarray(inp.cpu().numpy().astype(numpy.uint8), mode)
 

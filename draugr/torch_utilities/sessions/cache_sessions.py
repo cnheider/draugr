@@ -26,9 +26,9 @@ from warg import AlsoDecorator
 
 class TorchCacheSession(AlsoDecorator):
     """
-    # speed up evaluating after training finished
-    # NOTE: HAS THE SIDE EFFECT OF CLEARING CACHE, NON RECOVERABLE
-    """
+  # speed up evaluating after training finished
+  # NOTE: HAS THE SIDE EFFECT OF CLEARING CACHE, NON RECOVERABLE
+  """
 
     def __init__(self, using_cuda: bool = global_torch_device().type == "cuda"):
         self.using_cuda = using_cuda

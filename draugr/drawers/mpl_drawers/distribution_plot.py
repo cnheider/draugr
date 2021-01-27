@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from typing import Sequence
 
-from draugr.drawers.mpldrawer import MplDrawer
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
@@ -57,8 +57,8 @@ class DistributionPlot(MplDrawer):
     def _draw(self, data: Sequence):
         """
 
-        :param data:
-        :return:"""
+    :param data:
+    :return:"""
         if not isinstance(data, Sequence):
             data = [data]
 

@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 import torch
-from draugr import identity
+from draugr import kws_sink
 from draugr.torch_utilities.system.device import global_torch_device
 from draugr.torch_utilities.sessions.model_sessions import TorchEvalSession
 
@@ -22,7 +22,7 @@ def find_n_misclassified(
     model: torch.nn.Module,
     evaluation_loader: DataLoader,
     *,
-    mapper: callable = identity,
+    mapper: callable = kws_sink,
     n: int = 10,
     device: torch.device = global_torch_device(),
 ) -> None:

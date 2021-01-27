@@ -3,8 +3,8 @@
 
 from typing import Iterator, Sequence, Tuple
 
-from draugr import recursive_flatten_numpy
-from draugr.drawers.mpldrawer import MplDrawer
+from draugr.numpy_utilities import recursive_flatten_numpy
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from matplotlib import animation
 
 __author__ = "Christian Heider Nielsen"
@@ -24,9 +24,9 @@ from warg import passes_kws_to
 
 class DiscreteScrollPlot(MplDrawer):
     """
-    Waterfall plot
-    only supports a single trajectory at a time, do not supply parallel trajectories to draw method, will get truncated to num actions, effectively dropping actions for other envs than the first.
-    """
+  Waterfall plot
+  only supports a single trajectory at a time, do not supply parallel trajectories to draw method, will get truncated to num actions, effectively dropping actions for other envs than the first.
+  """
 
     @passes_kws_to(MplDrawer.__init__)
     def __init__(
@@ -107,8 +107,8 @@ class DiscreteScrollPlot(MplDrawer):
     def _draw(self, data: Sequence[int]):
         """
 
-        :param data:
-        :return:"""
+    :param data:
+    :return:"""
 
         array = self.im.get_array()
 
@@ -116,7 +116,7 @@ class DiscreteScrollPlot(MplDrawer):
         # assert isinstance(data[0], int), f'Data was {data}'
         """
 if not isinstance(data[0], int):
-    data = data[0]
+data = data[0]
 """
 
         data = data[: self._num_actions]

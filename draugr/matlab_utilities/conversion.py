@@ -18,16 +18,16 @@ __all__ = ["ndarray_to_matlab", "matlab_to_ndarray"]
 def ndarray_to_matlab(x: numpy.ndarray) -> Any:
     """
 
-    :param x:
-    :return:
-    """
+  :param x:
+  :return:
+  """
     return matlab.double(x.tolist())
 
 
 def matlab_to_ndarray(x: Any) -> numpy.ndarray:
     """
 
-    :param x:
-    :return:
-    """
+  :param x:
+  :return:
+  """
     return numpy.asarray(x)

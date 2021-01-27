@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 02-12-2020
            """
 
-
 __all__ = ["get_model_hash"]
 
 import torch

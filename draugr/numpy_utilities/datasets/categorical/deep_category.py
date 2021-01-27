@@ -25,26 +25,26 @@ def build_deep_categorical_dataset(
     is_valid_file: callable = None,
 ) -> dict:
     """
-  Builds a list of training images from the file system.
+Builds a list of training images from the file system.
 
-  Analyzes the sub folders in the image directory, splits them into stable
-  training, testing, and validation sets, and returns a data structure
-  describing the lists of images for each label and their paths.
+Analyzes the sub folders in the image directory, splits them into stable
+training, testing, and validation sets, and returns a data structure
+describing the lists of images for each label and their paths.
 
-  Args:
-  image_directory: String path to a folder containing subfolders of images.
-  testing_percentage: Integer percentage of the images to reserve for tests.
-  validation_percentage: Integer percentage of images reserved for validation.
+Args:
+image_directory: String path to a folder containing subfolders of images.
+testing_percentage: Integer percentage of the images to reserve for tests.
+validation_percentage: Integer percentage of images reserved for validation.
 
-  Returns:
-  An OrderedDict containing an entry for each label subfolder, with images
-  split into training, testing, and validation sets within each label.
-  The order of items defines the class indices.
-    :param directory:
-    :param validation_percentage:
-    :param testing_percentage:
-  :param extensions:
-  :type extensions:"""
+Returns:
+An OrderedDict containing an entry for each label subfolder, with images
+split into training, testing, and validation sets within each label.
+The order of items defines the class indices.
+  :param directory:
+  :param validation_percentage:
+  :param testing_percentage:
+:param extensions:
+:type extensions:"""
 
     if not isinstance(directory, Path):
         directory = Path(directory)

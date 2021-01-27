@@ -40,10 +40,10 @@ def render_image(pixels: numpy.ndarray, scale: Tuple) -> List[List]:
 def terminalise_image(output):
     """
 
-    joins lists
+  joins lists
 
-    :return:
-    """
+  :return:
+  """
     return "\n".join(["".join(row) for row in output])
 
 

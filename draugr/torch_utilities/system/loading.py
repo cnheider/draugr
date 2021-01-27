@@ -9,30 +9,36 @@ __doc__ = r"""
 
 __all__ = ["default_worker_init_fn", "global_pin_memory"]
 
+import random
 from typing import Union
 
+import numpy
 import torch
 from draugr.torch_utilities.system.device import global_torch_device
 
 
 def default_worker_init_fn() -> None:
     worker_seed = torch.initial_seed()
+    torch.random.seed(worker_seed)
     random.seed(worker_seed)
     numpy.random.seed(worker_seed)
 
 
 def global_pin_memory(
-    num_workers,
+    num_workers: int,
     preference: Union[torch.device, bool, str] = True,
     update_num_thread_for_pinned_loader: bool = True,
 ) -> bool:
     """
 
-  #Some weird behaviour of when copying to pinned memory with more workers observed
+#Some weird behaviour of when copying to pinned memory with more workers observed
+  @param num_workers:
+  @param preference:
+  @param update_num_thread_for_pinned_loader:
+  @return:
 
-  :param preference:
-  :return:
-  """
+
+"""
     if isinstance(preference, (torch.device, str)):
         if isinstance(preference, torch.device):
             res = True if "cuda" in torch.device.type else False

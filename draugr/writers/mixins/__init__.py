@@ -6,6 +6,7 @@ __doc__ = r"""
 
            Created on 05/07/2020
            """
+
 import pathlib
 
 with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:

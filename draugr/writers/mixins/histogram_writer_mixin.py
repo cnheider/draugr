@@ -12,20 +12,20 @@ __all__ = ["HistogramWriterMixin"]
 
 class HistogramWriterMixin(ABC):
     """
-    Writer mixin that provides an interface for 'writing' histogram"""
+  Writer mixin that provides an interface for 'writing' histogram"""
 
     @abstractmethod
     def histogram(self, tag: str, values: list, step: int, **kwargs) -> None:
         """
 
-        :param tag:
-        :type tag:
-        :param data:
-        :type data:
-        :param step:
-        :type step:
-        :param dataformats:
-        :type dataformats:
-        :param kwargs:
-        :type kwargs:"""
+    :param tag:
+    :type tag:
+    :param data:
+    :type data:
+    :param step:
+    :type step:
+    :param dataformats:
+    :type dataformats:
+    :param kwargs:
+    :type kwargs:"""
         raise NotImplementedError

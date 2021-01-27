@@ -20,22 +20,22 @@ def pad2d_hw_shape(
 ) -> Tuple[int, int]:
     """
 
-    quad(left,right,top,bottom) torch quad definition
-    double(h,w)
-    single(all)
+  quad(left,right,top,bottom) torch quad definition
+  double(h,w)
+  single(all)
 
-    :param h_w:
-    :type h_w:
-    :param kernel_size:
-    :type kernel_size:
-    :param stride:
-    :type stride:
-    :param pad:
-    :type pad:
-    :param dilation:
-    :type dilation:
-    :return:
-    :rtype:"""
+  :param h_w:
+  :type h_w:
+  :param kernel_size:
+  :type kernel_size:
+  :param stride:
+  :type stride:
+  :param pad:
+  :type pad:
+  :param dilation:
+  :type dilation:
+  :return:
+  :rtype:"""
     h_w = replicate(h_w)
     if isinstance(pad_size, Sequence) and len(pad_size) == 4:
         pad = (pad_size[2:], pad_size[:2])  # NOTE: permuted torch quadruple pad order

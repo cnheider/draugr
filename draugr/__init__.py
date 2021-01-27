@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
-import pathlib
+from pathlib import Path
 from logging import warning
 
 import pkg_resources
@@ -18,7 +18,7 @@ Created on 27/04/2019
 
 """
 
-with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
@@ -26,12 +26,22 @@ with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
 
 from typing import Any
 
+# from .drawers import *
+# from .writers import *
+# from .opencv_utilities import *
+# from .torch_utilities import *
+# from .stopping import *
+# from .numpy_utilities import *
+from .visualisation import *
+from .metrics import *
+from .generators import *
+from .python_utilities import *
+
 
 def dist_is_editable(dist: Any) -> bool:
     """
-    Return True if given Distribution is an editable install."""
+  Return True if given Distribution is an editable install."""
     import sys
-    from pathlib import Path
 
     for path_item in sys.path:
         egg_link = Path(path_item) / f"{dist.project_name}.egg-link"
@@ -45,6 +55,7 @@ PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018
 PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
+PACKAGE_DATA_PATH = Path(pkg_resources.resource_filename(PROJECT_NAME, "data"))
 INCLUDE_PROJECT_READMES = False
 
 distributions = {v.key: v for v in pkg_resources.working_set}
@@ -100,14 +111,3 @@ if __version__ is None:
     __version__ = get_version(append_time=True)
 
 __version_info__ = tuple(int(segment) for segment in __version__.split("."))
-
-# from .drawers import *
-# from .writers import *
-# from .opencv_utilities import *
-# from .torch_utilities import *
-# from .stopping import *
-from .metrics import *
-from .generators import *
-from .python_utilities import *
-from .visualisation import *
-from .numpy_utilities import *

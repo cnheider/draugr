@@ -26,10 +26,10 @@ __all__ = [
 def set_all_parameter_requires_grad(model: nn.Module, bo: bool = False) -> None:
     """
 
-    :param model:
-    :type model:
-    :param bo:
-    :type bo:"""
+  :param model:
+  :type model:
+  :param bo:
+  :type bo:"""
     for param in model.parameters():
         param.requires_grad = bo
 
@@ -39,12 +39,12 @@ def set_first_n_parameter_requires_grad(
 ) -> None:
     """
 
-    :param model:
-    :type model:
-    :param n:
-    :type n:
-    :param bo:
-    :type bo:"""
+  :param model:
+  :type model:
+  :param n:
+  :type n:
+  :param bo:
+  :type bo:"""
     for i, child in enumerate(model.children()):
         if i <= n:
             set_all_parameter_requires_grad(child, bo)
@@ -53,10 +53,10 @@ def set_first_n_parameter_requires_grad(
 def trainable_parameters(model: Module) -> List[torch.nn.Parameter]:
     """
 
-    :param model:
-    :type model:
-    :return:
-    :rtype:"""
+  :param model:
+  :type model:
+  :return:
+  :rtype:"""
     params_to_update = []
     for name, param in model.named_parameters():
         if param.requires_grad:
@@ -67,10 +67,10 @@ def trainable_parameters(model: Module) -> List[torch.nn.Parameter]:
 def named_trainable_parameters(model: Module) -> Dict[str, torch.nn.Parameter]:
     """
 
-    :param model:
-    :type model:
-    :return:
-    :rtype:"""
+  :param model:
+  :type model:
+  :return:
+  :rtype:"""
     params_to_update = {}
     for name, param in model.named_parameters():
         if param.requires_grad:
@@ -87,10 +87,10 @@ def trainable_parameters_iterator(model: Module) -> List[torch.nn.Parameter]:
 def named_trainable_parameters_iterator(model: Module) -> Dict[str, torch.nn.Parameter]:
     """
 
-    :param model:
-    :type model:
-    :return:
-    :rtype:"""
+  :param model:
+  :type model:
+  :return:
+  :rtype:"""
     for name, param in model.named_parameters():
         if param.requires_grad:
             yield {name: param}

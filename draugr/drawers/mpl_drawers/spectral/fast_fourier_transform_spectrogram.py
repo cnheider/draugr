@@ -3,7 +3,7 @@
 import math
 
 import numpy
-from draugr.drawers.mpldrawer import MplDrawer
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from matplotlib.gridspec import GridSpec
 
 __author__ = "Christian Heider Nielsen"
@@ -17,12 +17,16 @@ __all__ = ["FastFourierTransformSpectrogramPlot"]
 
 from matplotlib import pyplot
 
+from draugr.tqdm_utilities import progress_bar
+
+FLOAT_EPS = numpy.finfo(float).eps
+
 
 class FastFourierTransformSpectrogramPlot(MplDrawer):
     """
-    TODO: CENTER Align fft maybe, to mimick librosa stft
-    Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_fft, and no window function ( TODO: Hanning Smoothing)
-    """
+  TODO: CENTER Align fft maybe, to mimick librosa stft
+  Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_fft, and no window function ( TODO: Hanning Smoothing)
+  """
 
     def __init__(
         self,
@@ -39,24 +43,24 @@ class FastFourierTransformSpectrogramPlot(MplDrawer):
     ):
         """
 
-        :param n_fft:
-        :type n_fft:
-        :param sampling_rate:
-        :type sampling_rate:
-        :param buffer_size_sec:
-        :type buffer_size_sec:
-        :param title:
-        :type title:
-        :param vertical:
-        :type vertical:
-        :param reverse:
-        :type reverse:
-        :param placement:
-        :type placement:
-        :param fig_size:
-        :type fig_size:
-        :param render:
-        :type render:"""
+    :param n_fft:
+    :type n_fft:
+    :param sampling_rate:
+    :type sampling_rate:
+    :param buffer_size_sec:
+    :type buffer_size_sec:
+    :param title:
+    :type title:
+    :param vertical:
+    :type vertical:
+    :param reverse:
+    :type reverse:
+    :param placement:
+    :type placement:
+    :param fig_size:
+    :type fig_size:
+    :param render:
+    :type render:"""
         super().__init__(render=render, figure_size=figure_size, **kwargs)
 
         if not render:
@@ -78,7 +82,7 @@ class FastFourierTransformSpectrogramPlot(MplDrawer):
         time_s = numpy.linspace(
             0, self.buffer_size_sec, self.buffer_array_size, endpoint=False
         )
-        raw_array = numpy.zeros(self.buffer_array_size, dtype="complex")
+        raw_array = numpy.zeros(self.buffer_array_size)
         zeroes_img = numpy.zeros((self.n_positive_fft, self.buffer_array_size - n_fft))
         self.zeroes_padding = numpy.zeros((self.n_positive_fft, n_fft))
 
@@ -135,9 +139,9 @@ class FastFourierTransformSpectrogramPlot(MplDrawer):
     def _draw(self, signal_sample: float, delta: float = 1 / 120) -> None:
         """
 
-        :param signal_sample:
-        :param delta: 1 / 60 for 60fps
-        :return:"""
+    :param signal_sample:
+    :param delta: 1 / 60 for 60fps
+    :return:"""
         y_data = self.raw_line2d.get_ydata()
 
         if not self.reverse:
@@ -163,8 +167,8 @@ class FastFourierTransformSpectrogramPlot(MplDrawer):
         )  # Only select the positive frequencies
 
         phase_data = self.dft_angle_img.get_array()
-        # sin_, cos = f_coef.imag,f_coef.real
         new_phase = numpy.angle(f_coef)
+        # new_phase = f_coef.imag
 
         if not self.reverse:
             phase_data = numpy.concatenate(
@@ -180,9 +184,14 @@ class FastFourierTransformSpectrogramPlot(MplDrawer):
         self.dft_angle_img.set_array(phase_data)
 
         magnitude_data = self.dft_mag_img.get_array()
-        new_mag_lin = numpy.abs(f_coef) ** 2
-        new_mag_db = 10 * numpy.log10(new_mag_lin + numpy.finfo(float).eps)
-        new_mag = new_mag_db
+        new_mag = 10 * numpy.log10(
+            (
+                numpy.abs(f_coef)
+                # f_coef.real
+                ** 2
+            )
+            + FLOAT_EPS
+        )  # db
         if not self.reverse:
             magnitude_data = numpy.concatenate(
                 (magnitude_data[:, 1 : -self.n_fft], new_mag, self.zeroes_padding),
@@ -214,7 +223,7 @@ if __name__ == "__main__":
         s = FastFourierTransformSpectrogramPlot(
             n_fft=n_fft, sampling_rate=sampling_rate, buffer_size_sec=delta * n_fft * 4
         )
-        for t in numpy.arange(0, duration_sec, delta):
+        for t in progress_bar(numpy.arange(0, duration_sec, delta)):
             ts = 2 * numpy.pi * t
             s1 = numpy.sin(ts * 1 * sampling_Hz / 2 ** 4 * mul)
             s2 = numpy.sin(ts * 3 * sampling_Hz / 2 ** 3 * mul + 0.33 * numpy.pi)

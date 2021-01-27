@@ -19,9 +19,9 @@ from torch.nn import Parameter
 def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
     """
 
-    :param params:
-    :param value:
-    :return:"""
+  :param params:
+  :param value:
+  :return:"""
     if isinstance(value, bool):
         for p in params:
             p.requires_grad = not value
@@ -34,10 +34,10 @@ def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
 def frozen_parameters(params: Iterator[Parameter], enabled=True) -> None:
     """
 
-    :param enabled:
-    :type enabled:
-    :param params:
-    :return:"""
+  :param enabled:
+  :type enabled:
+  :param params:
+  :return:"""
     params_1, params_2 = tee(params)
     if enabled:
         freeze_parameters(params_1, True)

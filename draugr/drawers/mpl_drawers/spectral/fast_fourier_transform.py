@@ -3,7 +3,7 @@
 import math
 
 import numpy
-from draugr.drawers.mpldrawer import MplDrawer
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from matplotlib.gridspec import GridSpec
 
 __author__ = "Christian Heider Nielsen"
@@ -17,10 +17,14 @@ __all__ = ["FastFourierTransformPlot"]
 
 from matplotlib import pyplot
 
+from draugr.tqdm_utilities import progress_bar
+
+FLOAT_EPS = numpy.finfo(float).eps
+
 
 class FastFourierTransformPlot(MplDrawer):
     """
-    Plots last computed fft of data"""
+  Plots last computed fft of data"""
 
     def __init__(
         self,
@@ -33,18 +37,18 @@ class FastFourierTransformPlot(MplDrawer):
     ):
         """
 
-        :param n_fft:
-        :type n_fft:
-        :param sampling_rate:
-        :type sampling_rate:
-        :param title:
-        :type title:
-        :param placement:
-        :type placement:
-        :param fig_size:
-        :type fig_size:
-        :param render:
-        :type render:"""
+    :param n_fft:
+    :type n_fft:
+    :param sampling_rate:
+    :type sampling_rate:
+    :param title:
+    :type title:
+    :param placement:
+    :type placement:
+    :param fig_size:
+    :type fig_size:
+    :param render:
+    :type render:"""
         super().__init__(render=render, figure_size=figure_size, **kwargs)
 
         if not render:
@@ -57,7 +61,7 @@ class FastFourierTransformPlot(MplDrawer):
         self.sampling_rate = sampling_rate
 
         freq_bins = numpy.arange(self.n_fft)
-        raw_array = numpy.zeros(self.n_fft, dtype="complex")
+        raw_array = numpy.zeros(self.n_fft)
 
         self.zeroes_padding = numpy.zeros((self.abs_n_fft, n_fft))
 
@@ -80,7 +84,7 @@ class FastFourierTransformPlot(MplDrawer):
 
         (self.dft_mag_img,) = self.mag_ax.plot(freq_bins, raw_array)
         self.mag_ax.set_xlabel("Frequency [Hz]")
-        self.mag_ax.set_xlabel("Magnitude (Linear)")
+        self.mag_ax.set_xlabel("Magnitude (dB)")
         # self.mag_ax.set_xticks(freqs)
 
         pyplot.title(title)
@@ -89,9 +93,9 @@ class FastFourierTransformPlot(MplDrawer):
     def _draw(self, signal_sample: float, delta: float = 1 / 120) -> None:
         """
 
-        :param signal_sample:
-        :param delta: 1 / 60 for 60fps
-        :return:"""
+    :param signal_sample:
+    :param delta: 1 / 60 for 60fps
+    :return:"""
         raw_array = self.dft_raw_img.get_ydata()
         raw_array = numpy.hstack((signal_sample, raw_array[:-1]))
         self.dft_raw_img.set_ydata(raw_array)
@@ -102,12 +106,10 @@ class FastFourierTransformPlot(MplDrawer):
 
         f_coef = numpy.fft.fft(raw_array, n=self.n_fft)
 
-        # f_coef = f_coef[: self.abs_n_fft]
-        # print(f_coef)
-
         self.dft_angle_img.set_ydata(numpy.angle(f_coef))
 
-        mag = numpy.abs(f_coef) ** 2
+        mag = 10 * numpy.log10((numpy.abs(f_coef) ** 2) + FLOAT_EPS)
+
         self.dft_mag_img.set_ydata(mag)
         self.mag_ax.set_ylim([min(mag), max(mag)])
 
@@ -122,7 +124,7 @@ if __name__ == "__main__":
         delta = 1 / sampling_rate
         n_fft = 64
         s = FastFourierTransformPlot(n_fft=n_fft, sampling_rate=sampling_rate)
-        for t in numpy.arange(0, duration_sec, delta):
+        for t in progress_bar(numpy.arange(0, duration_sec, delta)):
             ts = 2 * numpy.pi * t
             s1 = numpy.sin(ts * 1 * sampling_Hz / 2 ** 4 * mul)
             s2 = numpy.sin(ts * 3 * sampling_Hz / 2 ** 3 * mul + 0.33 * numpy.pi)

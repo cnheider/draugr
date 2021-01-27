@@ -10,15 +10,15 @@ __doc__ = r"""
 import os
 import random
 
-import numpy
-
 __all__ = ["seed_stack"]
 
 
 def seed_stack(s: int = 23) -> None:
+    from draugr.torch_utilities import torch_seed
+
     python_seed(s)
     numpy_seed(s)
-    torch_seeed(s)
+    torch_seed(s)
 
 
 def python_seed(s: int = 2318) -> None:
@@ -27,4 +27,6 @@ def python_seed(s: int = 2318) -> None:
 
 
 def numpy_seed(s: int = 78213) -> None:
+    import numpy
+
     numpy.random.seed(s)

@@ -10,8 +10,8 @@ __all__ = ["system_info", "cuda_info"]
 def system_info() -> str:
     """
 
-    :return:
-    :rtype:"""
+  :return:
+  :rtype:"""
     return "\n".join(
         [
             f"Python version: {platform.python_version()}",
@@ -29,8 +29,8 @@ def system_info() -> str:
 def cuda_info() -> str:
     """
 
-    :return:
-    :rtype:"""
+  :return:
+  :rtype:"""
 
     def _cuda_devices_formatting(
         info_function: typing.Callable,

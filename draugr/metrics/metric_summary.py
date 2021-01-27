@@ -3,7 +3,7 @@
 
 __author__ = "Christian Heider Nielsen"
 
-import statistics as S
+import statistics
 
 import numpy
 
@@ -22,8 +22,8 @@ class MetricSummary:
     def append(self, val):
         """
 
-        :param val:
-        :type val:"""
+    :param val:
+    :type val:"""
         self._values.append(val)
         self.length += 1
 
@@ -31,29 +31,29 @@ class MetricSummary:
     def values(self):
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         return self._values
 
     def moving_average(self, window_size=100):
         """
 
-        :param window_size:
-        :type window_size:
-        :return:
-        :rtype:"""
+    :param window_size:
+    :type window_size:
+    :return:
+    :rtype:"""
         if self.length >= window_size:
-            return S.mean(self._values[-window_size:])
+            return statistics.mean(self._values[-window_size:])
         elif self.length > 0:
-            return S.mean(self._values)
+            return statistics.mean(self._values)
         else:
             return 0
 
     def running_average(self, data):
         """
-        Computes new running mean and variances.
-        :param data: New piece of data.
-        :return: New mean and variance values."""
+    Computes new running mean and variances.
+    :param data: New piece of data.
+    :return: New mean and variance values."""
         mean, var, steps = self.running_mean, self.running_variance, self.length
         current_x = numpy.mean(data, axis=0)
 
