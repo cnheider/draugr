@@ -8,42 +8,12 @@ __doc__ = r"""
            """
 
 from typing import Sequence, Tuple
+
+from draugr.numpy_utilities import fft_subsample, fir_subsample
 from matplotlib import pyplot
 import numpy
 
-from scipy.signal import decimate, resample
-
 __all__ = ["dissected_channel_plot", "overlay_channel_plot"]
-
-
-def max_decimation_subsample(signal, decimation_factor: int = 10):
-    return numpy.max(signal.reshape(-1, decimation_factor), axis=1)
-
-
-def fir_subsample(signal, max_resolution, sampling_rate) -> Tuple:
-    if signal.shape[-1] > max_resolution:
-        sub_signal = decimate(signal, (signal.shape[-1] // max_resolution) + 1, axis=-1)
-    else:
-        sub_signal = signal
-    sub_time = numpy.linspace(
-        0,
-        signal.shape[-1] // sampling_rate,  # Get time from indices
-        num=sub_signal.shape[-1],
-    )
-    return sub_time, sub_signal
-
-
-def fft_subsample(signal, max_resolution, sampling_rate) -> Tuple:
-    if signal.shape[-1] > max_resolution:
-        sub_signal = resample(signal, max_resolution, axis=-1)
-    else:
-        sub_signal = signal
-    sub_time = numpy.linspace(
-        0,
-        signal.shape[-1] // sampling_rate,  # Get time from indices
-        num=sub_signal.shape[-1],
-    )
-    return sub_time, sub_signal
 
 
 def overlay_channel_plot(

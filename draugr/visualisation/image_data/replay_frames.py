@@ -14,7 +14,9 @@ from matplotlib import animation, pyplot
 __all__ = ["replay_frames"]
 
 
-def replay_frames(frames: Sequence, interval: int = 100, is_ipython: bool = False):
+def replay_frames(
+    frames: Sequence, interval: int = 100, is_ipython: bool = False
+) -> None:
     """
   Displays a list of frames as a gif, with controls"""
     # pyplot.figure(figsize=(frames[0].shape[1] / 72.0, frames[0].shape[0] / 72.0), dpi = 72)

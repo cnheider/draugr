@@ -14,7 +14,7 @@ Created on 27/04/2019
 __all__ = ["metrics"]
 
 
-def metrics(array) -> collections.OrderedDict:
+def metrics(array: numpy.ndarray) -> collections.OrderedDict:
     """
 
   :param array:

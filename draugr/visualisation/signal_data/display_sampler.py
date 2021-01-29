@@ -39,22 +39,22 @@ class DisplaySampler(object):
             numpy.sum(mask) // self.max_points, 1
         )  # sort out how many points to drop
 
-        xdata, ydata = (
+        x_data, y_data = (
             self._x_data[mask][::ratio],
             self._y_data[mask][::ratio],
         )  # mask data and downsample data
 
         if self.verbose:
-            print(f"using {len(ydata)} of {numpy.sum(mask)} visible points")
+            print(f"using {len(y_data)} of {numpy.sum(mask)} visible points")
 
-        return xdata, ydata
+        return x_data, y_data
 
     def update(self, ax):
         """Update the line"""
-        lims = ax.viewLim
-        if numpy.abs(lims.width - self.delta) > 1e-8:
-            self.delta = lims.width
-            self.line.set_data(*self.downsample(*lims.intervalx))
+        limits = ax.viewLim
+        if numpy.abs(limits.width - self.delta) > 1e-8:
+            self.delta = limits.width
+            self.line.set_data(*self.downsample(*limits.intervalx))
             ax.figure.canvas.draw_idle()
 
 
