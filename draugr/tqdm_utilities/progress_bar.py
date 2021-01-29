@@ -28,29 +28,14 @@ def progress_bar(
     notifications: bool = False,
     total: int = None,
     auto_total_generator: bool = True,
-    auto_desc: bool = True,
+    auto_desc: bool = True,  # DOES NOT WORK IS THIS FUNCTION IS ALIAS does not match!
+    alias="progress_bar",
     **kwargs
 ) -> Any:
-    if desc is None and auto_desc:  # TODO: MAY break!
-        # Local imports
-        import inspect
-        import textwrap
-        import ast
-        from warg import FirstArgIdentifier
+    if desc is None and auto_desc:
+        from warg import get_first_arg_name
 
-        caller_frame = inspect.currentframe().f_back
-        # caller_src_code_snippet = inspect.getsource(caller_frame) # Only gets scope
-        caller_src_code_lines = inspect.getsourcelines(caller_frame)
-        caller_src_code_valid = textwrap.dedent(
-            "".join(caller_src_code_lines[0])
-        )  # TODO: maybe there is a nicer way?
-        call_nodes = ast.parse(
-            caller_src_code_valid
-        )  # parse code to get nodes of abstract syntax tree of the call
-        fai = FirstArgIdentifier("progress_bar")
-        fai.visit(call_nodes)
-        snippet_offset = caller_src_code_lines[1] - 1
-        desc = fai.result["progress_bar"][caller_frame.f_lineno - snippet_offset]
+        desc = get_first_arg_name(alias)
 
     if isinstance(iterable, Generator) and auto_total_generator:
         iterable, ic = tee(iterable, 2)
@@ -60,3 +45,33 @@ def progress_bar(
             yield from tqdm.tqdm(iterable, desc, leave=leave, total=total, **kwargs)
         return
     yield from tqdm.tqdm(iterable, desc, leave=leave, total=total, **kwargs)
+
+
+if __name__ == "__main__":
+
+    def dsad3123():
+        from time import sleep
+
+        for a in progress_bar([2.13, 8921.9123, 923], notifications=False):
+            sleep(1)
+
+    def asd21sa():
+        from time import sleep
+
+        pb = progress_bar  # Aliased!
+
+        for a in pb([2.13, 8921.9123, 923], notifications=False):
+            sleep(1)
+
+    def dict_items():
+        from time import sleep
+
+        class exp_v:
+            Test_Sets = {v: v for v in range(9)}
+
+        for a in progress_bar(exp_v.Test_Sets.items()):
+            sleep(1)
+
+    # dsad3123()
+    # asd21sa()
+    dict_items()
