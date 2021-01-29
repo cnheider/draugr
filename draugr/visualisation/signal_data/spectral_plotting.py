@@ -12,6 +12,7 @@ import numpy
 from matplotlib import pyplot
 from typing import Sequence
 from draugr.python_utilities.powers import next_pow_2
+from warg import Number
 
 __all__ = ["spectral_plot", "ltass_plot", "spectrum_plot", "fft_plot"]
 
@@ -51,7 +52,7 @@ def ltass_plot(signal: Sequence, sampling_rate: int, label="#") -> pyplot.Figure
 
 
 def spectrum_plot(
-    signal: Sequence, sampling_rate: int, window_length_ms=(20 / 1000)
+    signal: Sequence, sampling_rate: int, window_length_ms: Number = (20 / 1000)
 ) -> pyplot.Figure:
     """
 

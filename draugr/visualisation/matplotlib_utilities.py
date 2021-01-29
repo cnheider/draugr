@@ -24,7 +24,7 @@ def denormalise_minusoneone(T, coords):
     return 0.5 * ((coords + 1.0) * T)
 
 
-def matplotlib_bounding_box(x, y, size, color="w"):
+def matplotlib_bounding_box(x, y, size, color: str = "w"):
     x = int(x - (size / 2))
     y = int(y - (size / 2))
     rect = patches.Rectangle(

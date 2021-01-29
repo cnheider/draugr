@@ -11,7 +11,11 @@ __all__ = ["display_depth_map"]
 
 
 def display_depth_map(
-    data_set_directory=Path.home() / "Datasets" / "neodroid" / "depth" / "80.png",
+    data_set_directory: Path = Path.home()
+    / "Datasets"
+    / "neodroid"
+    / "depth"
+    / "80.png",
 ):
     """
 

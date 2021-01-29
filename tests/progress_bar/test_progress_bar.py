@@ -105,6 +105,16 @@ def test_ds1saijd2s23():
         pass
 
 
+def test_dict_items():
+    from time import sleep
+
+    class exp_v:
+        Test_Sets = {v: v for v in range(9)}
+
+    for a in progress_bar(exp_v.Test_Sets.items()):
+        sleep(1)
+
+
 if __name__ == "__main__":
     test_progress_bar()
     test_asudhweasijdq()
@@ -115,3 +125,4 @@ if __name__ == "__main__":
     test_ds12s23()
     test_asudhwea213si23jdq()
     test_ds1saijd2s23()
+    test_dict_items()

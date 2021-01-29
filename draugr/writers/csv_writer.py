@@ -21,7 +21,7 @@ class CSVWriter(Writer):
     """"""
 
     @staticmethod
-    def get_csv_writer(path=pathlib.Path.home() / "Models"):
+    def get_csv_writer(path: pathlib.Path = pathlib.Path.home() / "Models"):
         """
 
     :param path:

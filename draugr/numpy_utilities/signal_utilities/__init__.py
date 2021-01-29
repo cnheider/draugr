@@ -14,3 +14,4 @@ from .signal_statistics import *
 from .signal_mixing import *
 from .signal_projection import *
 from .padding import *
+from .subsampling import *
