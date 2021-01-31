@@ -17,11 +17,14 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
+
 from draugr import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_YEAR, PROJECT_VERSION
 
-sys.path.insert(0, os.path.abspath("."))
+import sys
+from pathlib import Path
+
+PACKAGE_ROOT = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(PACKAGE_ROOT.absolute()))
 
 # -- General configuration ------------------------------------------------
 
@@ -34,7 +37,7 @@ sys.path.insert(0, os.path.abspath("."))
 # ones.
 
 extensions = [
-    "m2r",
+    "m2r2",
     # 'recommonmark',
     "sphinxcontrib.programoutput",
     "sphinx.ext.autodoc",

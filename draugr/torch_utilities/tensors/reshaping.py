@@ -10,8 +10,6 @@ __all__ = ["flatten_tn_dim", "flatten_keep_batch", "safe_concat"]
 
 import torch
 
-from draugr.python_utilities import prod
-
 
 def flatten_tn_dim(_tensor: torch.tensor) -> torch.tensor:
     """
@@ -48,6 +46,8 @@ if __name__ == "__main__":
 
     def a():
         shape = (2, 3, 4, 5)
+        from warg import prod
+
         t = torch.reshape(torch.arange(0, prod(shape)), shape)
 
         f = flatten_tn_dim(t)
