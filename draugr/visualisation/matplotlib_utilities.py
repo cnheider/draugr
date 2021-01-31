@@ -17,7 +17,26 @@ __all__ = [
     "matplotlib_bounding_box",
     "plot_img_array",
     "plot_side_by_side",
+    "remove_decoration",
 ]
+
+from matplotlib.axes import Axes
+
+
+def remove_decoration(ax_: Axes) -> None:
+    transparent = (1.0, 1.0, 1.0, 0.0)
+
+    ax_.w_xaxis.set_pane_color(transparent)
+    ax_.w_yaxis.set_pane_color(transparent)
+    ax_.w_zaxis.set_pane_color(transparent)
+
+    ax_.w_xaxis.line.set_color(transparent)
+    ax_.w_yaxis.line.set_color(transparent)
+    ax_.w_zaxis.line.set_color(transparent)
+
+    ax_.set_xticks([])
+    ax_.set_yticks([])
+    ax_.set_zticks([])
 
 
 def denormalise_minusoneone(T, coords):
