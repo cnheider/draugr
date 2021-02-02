@@ -22,29 +22,31 @@ __all__ = ["progress_bar"]
 @passes_kws_to(tqdm.tqdm)
 def progress_bar(
     iterable: Iterable,
-    desc: str = None,
+    description: str = None,
     *,
     leave: bool = False,
     notifications: bool = False,
     total: int = None,
     auto_total_generator: bool = True,
-    auto_desc: bool = True,  # DOES NOT WORK IS THIS FUNCTION IS ALIAS does not match!
+    auto_describe_iterator: bool = True,  # DOES NOT WORK IS THIS FUNCTION IS ALIAS does not match!
     alias="progress_bar",
     **kwargs
 ) -> Any:
-    if desc is None and auto_desc:
+    if description is None and auto_describe_iterator:
         from warg import get_first_arg_name
 
-        desc = get_first_arg_name(alias)
+        description = get_first_arg_name(alias)
 
-    if isinstance(iterable, Generator) and auto_total_generator:
+    if total is None and isinstance(iterable, Generator) and auto_total_generator:
         iterable, ic = tee(iterable, 2)
         total = len(list(ic))
     if notifications:
-        with JobNotificationSession(desc):
-            yield from tqdm.tqdm(iterable, desc, leave=leave, total=total, **kwargs)
+        with JobNotificationSession(description):
+            yield from tqdm.tqdm(
+                iterable, description, leave=leave, total=total, **kwargs
+            )
         return
-    yield from tqdm.tqdm(iterable, desc, leave=leave, total=total, **kwargs)
+    yield from tqdm.tqdm(iterable, description, leave=leave, total=total, **kwargs)
 
 
 if __name__ == "__main__":

@@ -11,33 +11,46 @@ __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 __all__ = ["to_tensor"]
 
+from draugr.torch_utilities.tensors.types import numpy_to_torch_dtype
+
 
 # @passes_kws_to(torch.Tensor.to)
 def to_tensor(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, Sequence, int, float],
-    dtype: torch.dtype = torch.float,
+    dtype: torch.dtype = None,  # if None, torch.float or equivalent numpy.dtype is used, can be used to force dtype
     device: Union[str, torch.device] = "cpu",
     **kwargs
 ) -> torch.Tensor:
     """
 
-  :param obj:
-  :param dtype:
-  :param device:
-  :param kwargs:
-  :return:"""
+:param obj:
+:param dtype:
+:param device:
+:param kwargs:
+:return:"""
+
+    if dtype is None:
+        use_dtype = torch.float
+    else:
+        use_dtype = dtype
 
     # torch.as_tensor()
     if torch.is_tensor(obj):
-        return obj.to(dtype=dtype, device=device, **kwargs)
+        if dtype is not None:
+            use_dtype = obj.dtype
+        return obj.to(dtype=use_dtype, device=device, **kwargs)
 
     if isinstance(obj, Image):
         return torchvision.transforms.functional.to_tensor(obj)
 
     if isinstance(obj, numpy.ndarray):
+        if dtype is not None:
+            use_dtype = numpy_to_torch_dtype(obj.dtype)
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:
-            return torch.stack(obj.tolist()).to(dtype=dtype, device=device, **kwargs)
-        return torch.from_numpy(obj).to(dtype=dtype, device=device, **kwargs)
+            return torch.stack(obj.tolist()).to(
+                dtype=use_dtype, device=device, **kwargs
+            )
+        return torch.from_numpy(obj).to(dtype=use_dtype, device=device, **kwargs)
 
     if not isinstance(obj, Sequence):
         if isinstance(obj, set):
@@ -49,12 +62,12 @@ def to_tensor(
 
     if isinstance(obj, list):
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:
-            return torch.stack(obj).to(dtype=dtype, device=device, **kwargs)
+            return torch.stack(obj).to(dtype=use_dtype, device=device, **kwargs)
         elif isinstance(obj[0], list):
             obj = [to_tensor(o) for o in obj]
-            return torch.stack(obj).to(dtype=dtype, device=device, **kwargs)
+            return torch.stack(obj).to(dtype=use_dtype, device=device, **kwargs)
 
-    return torch.tensor(obj, dtype=dtype, device=device, **kwargs)
+    return torch.tensor(obj, dtype=use_dtype, device=device, **kwargs)
 
 
 if __name__ == "__main__":
