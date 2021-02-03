@@ -36,7 +36,7 @@ def to_tensor(
 
     # torch.as_tensor()
     if torch.is_tensor(obj):
-        if dtype is not None:
+        if dtype is None:
             use_dtype = obj.dtype
         return obj.to(dtype=use_dtype, device=device, **kwargs)
 
@@ -44,7 +44,7 @@ def to_tensor(
         return torchvision.transforms.functional.to_tensor(obj)
 
     if isinstance(obj, numpy.ndarray):
-        if dtype is not None:
+        if dtype is None:
             use_dtype = numpy_to_torch_dtype(obj.dtype)
         if torch.is_tensor(obj[0]) and len(obj[0].size()) > 0:
             return torch.stack(obj.tolist()).to(

@@ -16,3 +16,4 @@ from .matplotlib_utilities import *
 from .metric_overview_plot import *
 from .pillow_utilities import *
 from .signal_data import *
+from .figure_sessions import *
