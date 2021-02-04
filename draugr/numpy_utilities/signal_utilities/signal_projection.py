@@ -9,7 +9,6 @@ __doc__ = r"""
 
 import numpy
 
-
 __all__ = [
     "normalise_signal",
     "normalise_signal_minmax",

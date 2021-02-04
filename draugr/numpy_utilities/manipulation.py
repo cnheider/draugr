@@ -14,8 +14,8 @@ from typing import Sequence
 import numpy
 
 
-def recursive_flatten_numpy(S: Sequence) -> numpy.ndarray:
-    return numpy.array(S).ravel()
+def recursive_flatten_numpy(nested: Sequence) -> numpy.ndarray:
+    return numpy.array(nested).ravel()
 
 
 if __name__ == "__main__":
