@@ -23,10 +23,10 @@ def add_early_stopping_key_combination(
 ) -> keyboard.Listener:
     """
 
-:param callbacks:
-:param has_x_server:
-:param verbose:
-:return:"""
+    :param callbacks:
+    :param has_x_server:
+    :param verbose:
+    :return:"""
     if not has_x_server:
         return
 
@@ -78,7 +78,7 @@ def add_early_stopping_key_combination(
 
 class CaptureEarlyStop(contextlib.AbstractContextManager):
     """
-Context for early stopping a loop"""
+    Context for early stopping a loop"""
 
     @passes_kws_to(add_early_stopping_key_combination)
     def __init__(self, *args, **kwargs):

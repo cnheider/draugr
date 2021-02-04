@@ -43,8 +43,8 @@ class ImageStreamPlot(MplDrawer):
     def _draw(self, data: Sequence):
         """
 
-    :param data:
-    :return:"""
+        :param data:
+        :return:"""
         self.im.set_data(data)
 
     @staticmethod

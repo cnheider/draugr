@@ -28,8 +28,8 @@ class OpencvImageStream(Drawer):
     def draw(self, data: Sequence):
         """
 
-    :param data:
-    :return:"""
+        :param data:
+        :return:"""
         if cv2.waitKey(1) == 27:  # esc to quit
             cv2.destroyWindow(self.window_id)
             raise StopIteration

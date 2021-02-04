@@ -16,9 +16,8 @@ __all__ = ["TorchDeterministicSession"]
 
 class TorchDeterministicSession(AlsoDecorator):
     """
-# Disable torch jit tracing
-
-"""
+    # Disable torch jit tracing
+    """
 
     def __init__(self, no_side_effect: bool = True):
         self._no_side_effect = no_side_effect

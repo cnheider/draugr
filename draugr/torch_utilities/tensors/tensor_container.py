@@ -3,8 +3,8 @@ __all__ = ["NamedTensorTuple"]
 
 class NamedTensorTuple:
     """
-  Help class for manage boxes, labels, etc...
-  Not inherit dict due to `default_collate` will change dict's subclass to dict."""
+    Help class for manage boxes, labels, etc...
+    Not inherit dict due to `default_collate` will change dict's subclass to dict."""
 
     def __init__(self, **kwargs):
         self._data_dict = kwargs
@@ -32,19 +32,19 @@ class NamedTensorTuple:
     def to(self, *args, **kwargs):
         """
 
-    :param args:
-    :type args:
-    :param kwargs:
-    :type kwargs:
-    :return:
-    :rtype:"""
+        :param args:
+        :type args:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:"""
         return self._call("to", *args, **kwargs)
 
     def numpy(self):
         """
 
-    :return:
-    :rtype:"""
+        :return:
+        :rtype:"""
         return self._call("numpy")
 
     def __repr__(self):

@@ -40,7 +40,7 @@ from .python_utilities import *
 
 def dist_is_editable(dist: Any) -> bool:
     """
-  Return True if given Distribution is an editable install."""
+    Return True if given Distribution is an editable install."""
     import sys
 
     for path_item in sys.path:

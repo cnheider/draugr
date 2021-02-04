@@ -21,8 +21,7 @@ from warg import OrderedSet
 
 class CategoricalDataset(SupervisedDataset):
     """
-  Categorical Dataset for discrete learning problems.
-"""
+    Categorical Dataset for discrete learning problems."""
 
     @property
     @abstractmethod

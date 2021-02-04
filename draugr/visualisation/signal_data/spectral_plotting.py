@@ -24,8 +24,8 @@ def spectral_plot(
     fig_size: Sequence = (4.8, 2.4),
 ) -> pyplot.Figure:
     """
-  return new figure
-  """
+    return new figure
+    """
     assert fxt.shape == (*frequencies.shape, *time.shape)
     f, ax = pyplot.subplots(figsize=fig_size)
     ax.pcolormesh(time, frequencies / 1000, 10 * numpy.log10(fxt), cmap="viridis")
@@ -35,9 +35,7 @@ def spectral_plot(
 
 
 def ltass_plot(signal: Sequence, sampling_rate: int, label="#") -> pyplot.Figure:
-    """
-
-  """
+    """"""
     n_per_seg = next_pow_2(
         sampling_rate * (20 / 1000)
     )  # 20 ms, next_pow_2 per seg == n_fft
@@ -54,9 +52,7 @@ def ltass_plot(signal: Sequence, sampling_rate: int, label="#") -> pyplot.Figure
 def spectrum_plot(
     signal: Sequence, sampling_rate: int, window_length_ms: Number = (20 / 1000)
 ) -> pyplot.Figure:
-    """
-
-  """
+    """"""
     n_per_seg = next_pow_2(
         sampling_rate * window_length_ms
     )  # 20 ms, next_pow_2 per seg == n_fft
@@ -72,9 +68,7 @@ def spectrum_plot(
 
 
 def fft_plot(signal: Sequence, *, line_width: float = 0.2) -> pyplot.Figure:
-    """
-
-  """
+    """"""
     n_per_seg = next_pow_2(len(signal))
     spectrum = numpy.fft.fft(signal, n_per_seg)[: n_per_seg // 2]
     frequencies = numpy.fft.fftfreq(n_per_seg)[: n_per_seg // 2]

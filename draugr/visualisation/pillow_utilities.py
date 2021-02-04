@@ -27,11 +27,11 @@ from PIL import Image
 
 def pil_image_to_byte_array(image: Image.Image, *, coding: str = "PNG") -> bytes:
     """
-  PNG encoded by default
-  @param coding:
-  @param image:
-  @return:
-  """
+    PNG encoded by default
+    @param coding:
+    @param image:
+    @return:
+    """
     buffer = io.BytesIO()
     image.save(buffer, coding)
     return buffer.getvalue()
@@ -40,9 +40,9 @@ def pil_image_to_byte_array(image: Image.Image, *, coding: str = "PNG") -> bytes
 def byte_array_to_pil_image(byte_array: bytes) -> Image.Image:
     """
 
-  @param byte_array:
-  @return:
-  """
+    @param byte_array:
+    @return:
+    """
     return Image.open(io.BytesIO(byte_array))
 
 
@@ -53,9 +53,9 @@ def pil_img_to_np_array(
     expand: int = False
 ) -> numpy.ndarray:
     """
-  Util function for loading RGB image into a numpy array.
+    Util function for loading RGB image into a numpy array.
 
-  Returns array of shape (1, H, W, C)."""
+    Returns array of shape (1, H, W, C)."""
     img = Image.open(data_path)
     img = img.convert("RGB")
     if desired_size:
@@ -68,9 +68,9 @@ def pil_img_to_np_array(
 
 def np_array_to_pil_img(x: numpy.ndarray) -> Image.Image:
     """
-  Util function for converting anumpy array to a PIL img.
+    Util function for converting anumpy array to a PIL img.
 
-  Returns PIL RGB img."""
+    Returns PIL RGB img."""
     x = numpy.asarray(x)
     x = x + max(-numpy.min(x), 0)
     x_max = numpy.max(x)

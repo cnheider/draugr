@@ -32,17 +32,17 @@ def mix_ratio(
     log_multiplier: int = LOG_MAGNITUDE_MULTIPLIER,
 ) -> Sequence:
     """
-  # Function to mix clean speech and noise at various SNR levels
+    # Function to mix clean speech and noise at various SNR levels
 
-  # Normalizing to -25 dB FS
+    # Normalizing to -25 dB FS
 
-  :param s1:
-  :param s2:
-  :param db_ratio:
-  :param norm_db:
-  :param log_multiplier:
-  :return:
-  """
+    :param s1:
+    :param s2:
+    :param db_ratio:
+    :param norm_db:
+    :param log_multiplier:
+    :return:
+    """
     s1, s2 = min_length_truncate_batch((s1, s2))
     s1_max = numpy.abs(s1).max()
     mix = (s1 / s1_max) + (

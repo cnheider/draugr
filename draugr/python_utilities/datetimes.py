@@ -19,12 +19,12 @@ def default_datetime_repr(
 ) -> str:
     """
 
-  :param date:
-  :type date:
-  :param str_format:
-  :type str_format:
-  :return:
-  :rtype:"""
+    :param date:
+    :type date:
+    :param str_format:
+    :type str_format:
+    :return:
+    :rtype:"""
     return date.strftime(str_format)
 
 

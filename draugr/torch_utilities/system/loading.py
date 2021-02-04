@@ -31,14 +31,13 @@ def global_pin_memory(
 ) -> bool:
     """
 
-#Some weird behaviour of when copying to pinned memory with more workers observed
-  @param num_workers:
-  @param preference:
-  @param update_num_thread_for_pinned_loader:
-  @return:
+    #Some weird behaviour of when copying to pinned memory with more workers observed
+      @param num_workers:
+      @param preference:
+      @param update_num_thread_for_pinned_loader:
+      @return:
 
-
-"""
+    """
     if isinstance(preference, (torch.device, str)):
         if isinstance(preference, torch.device):
             res = True if "cuda" in torch.device.type else False

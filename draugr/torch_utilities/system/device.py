@@ -29,16 +29,16 @@ def global_torch_device(
 ) -> torch.device:
     """
 
-first time call stores to device for global reference, later call must manually override
+    first time call stores to device for global reference, later call must manually override
 
-:param verbose:
-:type verbose:
-:param cuda_device_preference:
-:type cuda_device_preference:
-:param override:
-:type override:
-:return:
-:rtype:"""
+    :param verbose:
+    :type verbose:
+    :param cuda_device_preference:
+    :type cuda_device_preference:
+    :param override:
+    :type override:
+    :return:
+    :rtype:"""
     global GLOBAL_DEVICE
 
     if override is not None:
@@ -70,9 +70,8 @@ first time call stores to device for global reference, later call must manually 
 def set_global_torch_device(device: torch.device) -> None:
     """
 
-:param device:
-:return:
-"""
+    :param device:
+    :return:"""
     global GLOBAL_DEVICE
     GLOBAL_DEVICE = device
 
@@ -80,10 +79,10 @@ def set_global_torch_device(device: torch.device) -> None:
 def select_cuda_device(cuda_device_idx: int) -> torch.device:
     """
 
-:param cuda_device_idx:
-:type cuda_device_idx:
-:return:
-:rtype:"""
+    :param cuda_device_idx:
+    :type cuda_device_idx:
+    :return:
+    :rtype:"""
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
     assert cuda_device_idx < num_cuda_device
@@ -94,8 +93,8 @@ def select_cuda_device(cuda_device_idx: int) -> torch.device:
 def get_gpu_usage_mb():
     """
 
-:return:
-:rtype:"""
+    :return:
+    :rtype:"""
 
     import subprocess
 
@@ -119,7 +118,7 @@ Values are memory usage as integers in MB.
 def torch_clean_up() -> None:
     r"""**Destroy cuda state by emptying cache and collecting IPC.**
 
-Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`."""
+    Consecutively calls `torch.cuda.empty_cache()` and `torch.cuda.ipc_collect()`."""
 
     torch.cuda.empty_cache()
     torch.cuda.ipc_collect()
@@ -129,12 +128,12 @@ def auto_select_available_cuda_device(
     expected_memory_usage_mb: int = 1024,
 ) -> torch.device:
     r"""
-Auto selects the device with highest compute capability and with the requested memory available
+    Auto selects the device with highest compute capability and with the requested memory available
 
-:param expected_memory_usage_mb:
-:type expected_memory_usage_mb:
-:return:
-:rtype:"""
+    :param expected_memory_usage_mb:
+    :type expected_memory_usage_mb:
+    :return:
+    :rtype:"""
 
     num_cuda_device = torch.cuda.device_count()
     assert num_cuda_device > 0
