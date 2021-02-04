@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import List, Sequence, Union
+from typing import IO, List, Sequence, Union
 
 
 def python_version_check(major: int = 3, minor: int = 7):
@@ -18,7 +18,7 @@ from pathlib import Path
 
 
 def read_reqs(file: str, path: Path) -> List[str]:
-    def readlines_ignore_comments(f):
+    def readlines_ignore_comments(f: IO):
         return [a_ for a_ in f.readlines() if "#" not in a_ and a_]
 
     def recursive_flatten_ignore_str(seq: Sequence) -> Sequence:
@@ -33,7 +33,7 @@ def read_reqs(file: str, path: Path) -> List[str]:
             )
         return (*seq[:1], *recursive_flatten_ignore_str(seq[1:]))
 
-    def unroll_nested_reqs(req_str: str, base_path: Path):
+    def unroll_nested_reqs(req_str: str, base_path: Path) -> Sequence:
         if req_str.startswith("-r"):
             with open(base_path / req_str.strip("-r").strip()) as f:
                 return [
