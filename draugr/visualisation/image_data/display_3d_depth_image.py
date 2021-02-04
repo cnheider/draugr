@@ -4,7 +4,7 @@ __author__ = "Christian Heider Nielsen"
 
 from pathlib import Path
 
-import matplotlib.image as mpimg
+from matplotlib.image import imread
 import numpy
 import scipy.misc
 from matplotlib import pyplot
@@ -28,7 +28,7 @@ def display_depth_map_3d(
     # downscaling has a 'smoothing' effect
     # lena = scipy.misc.imresize(lena, 0.15, interp='cubic')
 
-    img = mpimg.imread(data_set_directory)
+    img = imread(data_set_directory)
     img = img[..., 0]
 
     # def ivas(x, cam_ang):

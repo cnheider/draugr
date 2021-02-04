@@ -10,7 +10,7 @@ from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.8.4"
+__version__ = "0.8.5"
 __doc__ = """
 Created on 27/04/2019
 
@@ -32,7 +32,7 @@ from typing import Any
 # from .torch_utilities import *
 # from .stopping import *
 # from .numpy_utilities import *
-from .visualisation import *
+# from .visualisation import *
 from .metrics import *
 from .generators import *
 from .python_utilities import *

@@ -3,9 +3,9 @@
 
 __author__ = "Christian Heider Nielsen"
 
+
 import statistics
 
-import numpy
 
 __all__ = ["MetricSummary"]
 
@@ -55,7 +55,7 @@ class MetricSummary:
     :param data: New piece of data.
     :return: New mean and variance values."""
         mean, var, steps = self.running_mean, self.running_variance, self.length
-        current_x = numpy.mean(data, axis=0)
+        current_x = statistics.mean(data)
 
         new_mean = mean + (current_x - mean) / (steps + 1)
         new_variance = var + (current_x - new_mean) * (current_x - mean)
