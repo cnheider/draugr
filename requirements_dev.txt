@@ -16,3 +16,13 @@ pycodestyle
 doc8
 mccabe
 bandit
+matplotlib
+-r requirements_docs.txt
+-r requirements_drawers.txt
+-r requirements_opencv.txt
+-r requirements_setup.txt
+-r requirements_torch.txt
+-r requirements_writers.txt
+-r requirements_tqdm.txt
+
+# full install

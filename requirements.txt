@@ -2,4 +2,4 @@ apppath
 warg
 numpy
 six
-
+# minimal installation

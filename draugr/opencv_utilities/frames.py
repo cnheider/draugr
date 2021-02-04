@@ -14,7 +14,8 @@ import cv2
 
 __all__ = ["frame_generator"]
 
-from draugr import identity
+
+from warg import identity
 
 
 def frame_generator(
