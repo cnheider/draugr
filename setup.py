@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import List, Union
+from typing import List, Sequence, Union
 
 
 def python_version_check(major=3, minor=6):
@@ -14,14 +14,55 @@ def python_version_check(major=3, minor=6):
 
 python_version_check()
 
-import pathlib
+from pathlib import Path
+
+
+def read_reqs(file: str, path: Path) -> List[str]:
+    def readlines_ignore_comments(f):
+        return [a_ for a_ in f.readlines() if "#" not in a_ and a_]
+
+    def recursive_flatten_ignore_str(seq: Sequence) -> Sequence:
+        if not seq:  # is empty Sequence
+            return seq
+        if isinstance(seq[0], str):
+            return seq
+        if isinstance(seq[0], Sequence):
+            return (
+                *recursive_flatten_ignore_str(seq[0]),
+                *recursive_flatten_ignore_str(seq[1:]),
+            )
+        return (*seq[:1], *recursive_flatten_ignore_str(seq[1:]))
+
+    def unroll_nested_reqs(req_str: str, base_path: Path):
+        if req_str.startswith("-r"):
+            with open(base_path / req_str.strip("-r").strip()) as f:
+                return [
+                    unroll_nested_reqs(req.strip(), base_path)
+                    for req in readlines_ignore_comments(f)
+                ]
+        else:
+            return (req_str,)
+
+    requirements_group = []
+    with open(str(file)) as f:
+        requirements = readlines_ignore_comments(f)
+        for requirement in requirements:
+            requirements_group.extend(
+                recursive_flatten_ignore_str(
+                    unroll_nested_reqs(requirement.strip(), path)
+                )
+            )
+
+    req_set = set(requirements_group)
+    req_set.discard("")
+    return list(req_set)
+
+
 import re
 
 from setuptools import find_packages, setup
 
-with open(
-    pathlib.Path(__file__).parent / "draugr" / "__init__.py", "r"
-) as project_init_file:
+with open(Path(__file__).parent / "draugr" / "__init__.py", "r") as project_init_file:
     content = project_init_file.read()  # get strings from module
     version = re.search(r"__version__ = ['\"]([^'\"]*)['\"]", content, re.M).group(1)
     project_name = re.search(r"__project__ = ['\"]([^'\"]*)['\"]", content, re.M).group(
@@ -35,27 +76,11 @@ __author__ = author
 class DraugrPackage:
     @property
     def test_dependencies(self) -> list:
-        path = pathlib.Path(__file__).parent
-        requirements_tests = []
-        with open(path / "requirements_tests.txt") as f:
-            requirements = f.readlines()
-
-            for requirement in requirements:
-                requirements_tests.append(requirement.strip())
-
-        return requirements_tests
+        return read_reqs("requirements_tests.txt", Path(__file__).parent)
 
     @property
     def setup_dependencies(self) -> list:
-        path = pathlib.Path(__file__).parent
-        requirements_setup = []
-        with open(path / "requirements_setup.txt") as f:
-            requirements = f.readlines()
-
-            for requirement in requirements:
-                requirements_setup.append(requirement.strip())
-
-        return requirements_setup
+        return read_reqs("requirements_setup.txt", Path(__file__).parent)
 
     @property
     def package_name(self) -> str:
@@ -99,7 +124,7 @@ class DraugrPackage:
 
     @property
     def package_data(self) -> dict:
-        emds = [str(p) for p in pathlib.Path(__file__).parent.rglob(".md")]
+        emds = [str(p) for p in Path(__file__).parent.rglob(".md")]
         return {"draugr": [*emds]}
 
     @property
@@ -120,40 +145,23 @@ class DraugrPackage:
             # 'ExtraName':['package-name; platform_system == "System(Linux,Windows)"'
         }
 
-        path: pathlib.Path = pathlib.Path(__file__).parent
+        path: Path = Path(__file__).parent
 
         for file in path.iterdir():
             if file.name.startswith("requirements_"):
-
-                requirements_group = []
-                with open(str(file.absolute())) as f:
-                    requirements = f.readlines()
-
-                    for requirement in requirements:
-                        requirements_group.append(requirement.strip())
-
                 group_name_ = "_".join(file.name.strip(".txt").split("_")[1:])
-
-                these_extras[group_name_] = requirements_group
+                these_extras[group_name_] = read_reqs(file, path)
 
         all_dependencies = []
-
         for group_name in these_extras:
             all_dependencies += these_extras[group_name]
-        these_extras["all"] = all_dependencies
+        these_extras["all"] = list(set(all_dependencies))
 
         return these_extras
 
     @property
     def requirements(self) -> list:
-        requirements_out = []
-        with open("requirements.txt") as f:
-            requirements = f.readlines()
-
-            for requirement in requirements:
-                requirements_out.append(requirement.strip())
-
-        return requirements_out
+        return read_reqs("requirements.txt", Path(__file__).parent)
 
     @property
     def description(self) -> str:
@@ -161,7 +169,7 @@ class DraugrPackage:
 
     @property
     def readme(self) -> str:
-        with open("README.md") as f:
+        with open("README.md", encoding="utf8") as f:
             return f.read()
 
     @property
@@ -204,6 +212,8 @@ class DraugrPackage:
 if __name__ == "__main__":
 
     pkg = DraugrPackage()
+
+    print(pkg.extras)
 
     setup(
         name=pkg.package_name,
