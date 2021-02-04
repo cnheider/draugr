@@ -2,6 +2,4 @@ apppath
 warg
 numpy
 six
-sklearn
-pynput
-matplotlib
+

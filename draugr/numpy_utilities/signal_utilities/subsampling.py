@@ -49,3 +49,12 @@ def fft_subsample(
         num=sub_signal.shape[-1],
     )
     return sub_time, sub_signal
+
+
+if __name__ == "__main__":
+
+    def aisjd():
+        a = numpy.arange(0, 100)
+        print(max_decimation_subsample(a))
+
+    aisjd()
