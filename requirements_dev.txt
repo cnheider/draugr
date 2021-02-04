@@ -23,5 +23,6 @@ matplotlib
 -r requirements_setup.txt
 -r requirements_torch.txt
 -r requirements_writers.txt
+-r requirements_tqdm.txt
 
 # full install
