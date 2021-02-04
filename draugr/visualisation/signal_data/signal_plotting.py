@@ -7,13 +7,18 @@ __doc__ = r"""
            Created on 04-01-2021
            """
 
-from typing import Sequence, Tuple
+from typing import Sequence
 
-from draugr.numpy_utilities import fft_subsample, fir_subsample
+
 from matplotlib import pyplot
 import numpy
 
 __all__ = ["dissected_channel_plot", "overlay_channel_plot"]
+
+from draugr.numpy_utilities.signal_utilities.subsampling import (
+    fft_subsample,
+    fir_subsample,
+)
 
 
 def overlay_channel_plot(

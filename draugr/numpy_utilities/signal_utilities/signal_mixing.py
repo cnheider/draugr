@@ -16,7 +16,7 @@ from apppath import ensure_existence
 from draugr.numpy_utilities.signal_utilities.signal_statistics import root_mean_square
 from draugr.numpy_utilities.signal_utilities.truncation import min_length_truncate_batch
 
-from draugr.numpy_utilities import Split
+from draugr.numpy_utilities.datasets.splitting import Split
 
 LOG_MAGNITUDE_MULTIPLIER = 20
 LOG_POWER_MULTIPLIER = 10

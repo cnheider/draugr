@@ -2,3 +2,4 @@ torch
 sklearn
 pynput
 matplotlib
+notus
