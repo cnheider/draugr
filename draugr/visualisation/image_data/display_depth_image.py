@@ -4,7 +4,7 @@ __author__ = "Christian Heider Nielsen"
 
 from pathlib import Path
 
-import matplotlib.image as mpimg
+from matplotlib.image import imread
 from matplotlib import pyplot
 
 __all__ = ["display_depth_map"]
@@ -25,7 +25,7 @@ def display_depth_map(
     # img_array =numpy.asarray(img)
     # print(img_array.shape)
 
-    img = mpimg.imread(data_set_directory)
+    img = imread(data_set_directory)
     img = img[..., 0]
     img = img / 255
 

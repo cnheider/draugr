@@ -32,7 +32,7 @@ from typing import Any
 # from .torch_utilities import *
 # from .stopping import *
 # from .numpy_utilities import *
-from .visualisation import *
+# from .visualisation import *
 from .metrics import *
 from .generators import *
 from .python_utilities import *
