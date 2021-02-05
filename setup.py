@@ -213,8 +213,6 @@ if __name__ == "__main__":
 
     pkg = DraugrPackage()
 
-    print(pkg.extras)
-
     setup(
         name=pkg.package_name,
         version=pkg.version,
