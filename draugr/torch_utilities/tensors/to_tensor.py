@@ -23,11 +23,11 @@ def to_tensor(
 ) -> torch.Tensor:
     """
 
-:param obj:
-:param dtype:
-:param device:
-:param kwargs:
-:return:"""
+    :param obj:
+    :param dtype:
+    :param device:
+    :param kwargs:
+    :return:"""
 
     if dtype is None:
         use_dtype = torch.float

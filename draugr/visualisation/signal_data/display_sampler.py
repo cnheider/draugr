@@ -15,7 +15,7 @@ __all__ = ["DisplaySampler"]
 class DisplaySampler(object):
     """
     # A class that will downsample the data and recompute when zoomed.
-  """
+    """
 
     def __init__(self, x_data, y_data, verbose: bool = False):
         self._y_data = y_data

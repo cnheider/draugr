@@ -19,19 +19,19 @@ from warg import Number
 def lambda_accumulator(start_value=None, lambd: float = 0.99) -> Generator:
     """
 
-:param start_value:
-:type start_value:
-:param lambd:
-:type lambd:
-:return:
-:rtype:"""
+    :param start_value:
+    :type start_value:
+    :param lambd:
+    :type lambd:
+    :return:
+    :rtype:"""
     assert 0 <= lambd <= 1
 
     def lambda_accumulator_(n: Number = start_value):
         """
 
-:param n:
-:type n:"""
+        :param n:
+        :type n:"""
         while True:
             new_n = yield n
             if new_n is not None:
@@ -49,16 +49,16 @@ def lambda_accumulator(start_value=None, lambd: float = 0.99) -> Generator:
 def mean_accumulator(start_value: Number = None) -> Generator:
     """
 
-:param start_value:
-:type start_value:
-:return:
-:rtype:"""
+    :param start_value:
+    :type start_value:
+    :return:
+    :rtype:"""
 
     def mean_accumulator_(n: Number = start_value):
         """
 
-:param n:
-:type n:"""
+        :param n:
+        :type n:"""
         if n is not None:
             num = 1
         else:
@@ -81,16 +81,16 @@ def mean_accumulator(start_value: Number = None) -> Generator:
 def total_accumulator(start_value: Number = 0) -> Generator:
     """
 
-:param start_value:
-:type start_value:
-:return:
-:rtype:"""
+    :param start_value:
+    :type start_value:
+    :return:
+    :rtype:"""
 
     def total_accumulator_(total=start_value):
         """
 
-:param total:
-:type total:"""
+        :param total:
+        :type total:"""
         while True:
             a = yield total
             if a:

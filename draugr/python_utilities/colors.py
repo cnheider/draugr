@@ -19,14 +19,14 @@ __all__ = ["RGB", "RGBA", "color_to_str", "color_from_str"]
 def RGB(R: int, G: int, B: int) -> COLOR_RGB:
     """
 
-  :param R:
-  :type R:
-  :param G:
-  :type G:
-  :param B:
-  :type B:
-  :return:
-  :rtype:"""
+    :param R:
+    :type R:
+    :param G:
+    :type G:
+    :param B:
+    :type B:
+    :return:
+    :rtype:"""
     assert 0 <= R <= 255 and 0 <= G <= 255 and 0 <= B <= 255
     return R, G, B
 
@@ -34,16 +34,16 @@ def RGB(R: int, G: int, B: int) -> COLOR_RGB:
 def RGBA(R: int, G: int, B: int, A: int) -> COLOR_RGBA:
     """
 
-  :param R:
-  :type R:
-  :param G:
-  :type G:
-  :param B:
-  :type B:
-  :param A:
-  :type A:
-  :return:
-  :rtype:"""
+    :param R:
+    :type R:
+    :param G:
+    :type G:
+    :param B:
+    :type B:
+    :param A:
+    :type A:
+    :return:
+    :rtype:"""
     assert 0 <= R <= 255 and 0 <= G <= 255 and 0 <= B <= 255 and 0 <= A <= 255
     return R, G, B, A
 
@@ -51,12 +51,12 @@ def RGBA(R: int, G: int, B: int, A: int) -> COLOR_RGBA:
 def color_from_str(s: str, seperator: str = " ") -> COLOR_INT:
     """
 
-  :param s:
-  :type s:
-  :param seperator:
-  :type seperator:
-  :return:
-  :rtype:"""
+    :param s:
+    :type s:
+    :param seperator:
+    :type seperator:
+    :return:
+    :rtype:"""
     components = s.split(seperator)
     n = len(components)
     if n == 3:
@@ -69,12 +69,12 @@ def color_from_str(s: str, seperator: str = " ") -> COLOR_INT:
 def color_to_str(t: COLOR_INT, seperator: str = " ") -> str:
     """
 
-  :param t:
-  :type t:
-  :param seperator:
-  :type seperator:
-  :return:
-  :rtype:"""
+    :param t:
+    :type t:
+    :param seperator:
+    :type seperator:
+    :return:
+    :rtype:"""
     return seperator.join([str(c) for c in t])
 
 

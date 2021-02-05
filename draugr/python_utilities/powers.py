@@ -26,23 +26,23 @@ from warg import Number
 
 def next_pow(x: Number, n: int = None) -> int:
     """
-  If the base(n) not specified, returns the natural logarithm (base e) of x.
+    If the base(n) not specified, returns the natural logarithm (base e) of x.
 
-  @param x:
-  @param n:
-  @return:
-  """
+    @param x:
+    @param n:
+    @return:
+    """
     return int(pow(n, ceil(log(x, n))))
 
 
 def prev_pow(x: Number, n: int = None) -> int:
     """
-  If the base(n) not specified, returns the natural logarithm (base e) of x.
+    If the base(n) not specified, returns the natural logarithm (base e) of x.
 
-  @param x:
-  @param n:
-  @return:
-  """
+    @param x:
+    @param n:
+    @return:
+    """
     return int(pow(n, floor(log(x, n))))
 
 

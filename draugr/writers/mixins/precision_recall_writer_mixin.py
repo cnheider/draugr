@@ -16,7 +16,7 @@ from warg import drop_unused_kws
 
 class PrecisionRecallCurveWriterMixin(ABC):
     """
-  Writer mixin that provides an interface for 'writing' instantiation"""
+    Writer mixin that provides an interface for 'writing' instantiation"""
 
     @drop_unused_kws
     @abstractmethod
@@ -30,14 +30,14 @@ class PrecisionRecallCurveWriterMixin(ABC):
     ) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param data:
-    :type data:
-    :param step:
-    :type step:
-    :param dataformats:
-    :type dataformats:
-    :param kwargs:
-    :type kwargs:"""
+        :param tag:
+        :type tag:
+        :param data:
+        :type data:
+        :param step:
+        :type step:
+        :param dataformats:
+        :type dataformats:
+        :param kwargs:
+        :type kwargs:"""
         raise NotImplementedError

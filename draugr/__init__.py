@@ -10,7 +10,7 @@ from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.8.6"
+__version__ = "0.8.7"
 __doc__ = """
 Created on 27/04/2019
 
@@ -40,7 +40,7 @@ from .python_utilities import *
 
 def dist_is_editable(dist: Any) -> bool:
     """
-  Return True if given Distribution is an editable install."""
+    Return True if given Distribution is an editable install."""
     import sys
 
     for path_item in sys.path:

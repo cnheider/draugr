@@ -18,12 +18,12 @@ def unzip(iterable: Iterable) -> Iterable:
 
 def unzipper(iterable: Iterable[Iterable]) -> Iterable:
     """
-  Unzips an iterable of an iterable
+    Unzips an iterable of an iterable
 
-  Be carefully has undefined and expected behaviour
+    Be carefully has undefined and expected behaviour
 
-  :param iterable:
-  :return:"""
+    :param iterable:
+    :return:"""
 
     def check_next_iter(iterable: Any) -> Any:
         if isinstance(iterable, Iterable):

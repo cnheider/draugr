@@ -18,11 +18,11 @@ __all__ = ["AsyncVideoStream"]
 class AsyncVideoStream:
     def __init__(self, src=0, thread_name: str = None, group: Any = None):
         """
-    threaded async wrapper around opencv cv2.VideoCapture with alike interface
+        threaded async wrapper around opencv cv2.VideoCapture with alike interface
 
-    @param src:
-    @param thread_name:
-    """
+        @param src:
+        @param thread_name:
+        """
         self._stream = cv2.VideoCapture(src)
         (self.grabbed, self.frame) = self._stream.read()
 
@@ -33,9 +33,9 @@ class AsyncVideoStream:
 
     def start(self):
         """
-        # start the thread to read frames from the video stream
-    @return:
-    """
+            # start the thread to read frames from the video stream
+        @return:
+        """
 
         self._thread.start()
         return self

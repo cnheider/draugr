@@ -57,8 +57,8 @@ class DistributionPlot(MplDrawer):
     def _draw(self, data: Sequence):
         """
 
-    :param data:
-    :return:"""
+        :param data:
+        :return:"""
         if not isinstance(data, Sequence):
             data = [data]
 

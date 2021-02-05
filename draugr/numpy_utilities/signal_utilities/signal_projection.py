@@ -31,9 +31,9 @@ def normalise_signal(
     signal: numpy.ndarray, variance: numpy.ndarray = None
 ) -> numpy.ndarray:
     """Normalise power in y to a (standard normal) white noise signal.
-  Optionally normalise to power in signal `x`.
-  The mean power of a Gaussian with `mu=0` and `sigma=1` is 1.
-  """
+    Optionally normalise to power in signal `x`.
+    The mean power of a Gaussian with `mu=0` and `sigma=1` is 1.
+    """
     if variance is not None:
         variance = mean_square(variance)
     else:
@@ -45,8 +45,8 @@ def normalise_signal(
 def heaviside(signal: numpy.ndarray) -> numpy.ndarray:
     """Heaviside.
 
-  Returns the value 0 for `x < 0`, 1 for `x > 0`, and 1/2 for `x = 0`.
-  """
+    Returns the value 0 for `x < 0`, 1 for `x > 0`, and 1/2 for `x = 0`.
+    """
     return 0.5 * (numpy.sign(signal) + 1)
 
 

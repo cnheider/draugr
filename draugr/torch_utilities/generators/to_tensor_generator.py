@@ -22,10 +22,10 @@ __all__ = ["to_tensor_generator", "batch_generator_torch", "to_device_iterator"]
 def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs):
     """
 
-:param iterable:
-:param preload_next:
-:param kwargs:
-:return:"""
+    :param iterable:
+    :param preload_next:
+    :param kwargs:
+    :return:"""
     if preload_next:
         iterable_iter = iter(iterable)
         current = to_tensor(next(iterable_iter), **kwargs)
@@ -45,9 +45,8 @@ def to_device_iterator(
 ) -> Tuple:
     """
 
-:param data_iterator:
-:param device:
-"""
+    :param data_iterator:
+    :param device:"""
     if isinstance(data_iterator, Iterable):
         data_iterator = iter(data_iterator)
     try:
@@ -63,12 +62,11 @@ def batch_generator_torch(
 ) -> DataLoader:
     """
 
-:param sized:
-:param mini_batches:
-:param shuffle:
-:param kwargs:
-:return:
-"""
+    :param sized:
+    :param mini_batches:
+    :param shuffle:
+    :param kwargs:
+    :return:"""
 
     dataset = NonSequentialDataset(sized)
     return DataLoader(

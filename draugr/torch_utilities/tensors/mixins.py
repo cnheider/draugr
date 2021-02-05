@@ -11,7 +11,7 @@ __all__ = ["TensoriseMixin"]
 
 class TensoriseMixin(object):
     """
-  Tensorise attributes at set"""
+    Tensorise attributes at set"""
 
     device = "cpu"
     dtype = torch.float  # Default values may be monkey patched for other types

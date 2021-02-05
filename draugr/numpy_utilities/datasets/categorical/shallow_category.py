@@ -29,16 +29,16 @@ def build_shallow_categorical_dataset(
     verbose: bool = False,
 ) -> Dict[str, Dict[Split, Sequence]]:
     """
-Returns:
-An OrderedDict containing an entry for each label subfolder, with images
-split into training, testing, and validation sets within each label.
-The order of items defines the class indices.
-  :param directory:
-  :param validation_percentage:
-  :param testing_percentage:
-  :param extensions:
-  :param verbose:
-  :return:"""
+    Returns:
+    An OrderedDict containing an entry for each label subfolder, with images
+    split into training, testing, and validation sets within each label.
+    The order of items defines the class indices.
+      :param directory:
+      :param validation_percentage:
+      :param testing_percentage:
+      :param extensions:
+      :param verbose:
+      :return:"""
 
     if not isinstance(directory, Path):
         directory = Path(directory)

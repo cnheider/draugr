@@ -30,12 +30,11 @@ def request_worker_cores(
     percentage: float, *, of_remaining: bool = False, verbose: bool = False
 ) -> int:
     """
-global_pin_memory
-:param percentage:
-:param of_remaining:
-:param verbose:
-:return:
-"""
+    global_pin_memory
+    :param percentage:
+    :param of_remaining:
+    :param verbose:
+    :return:"""
     global IN_USE_BY_THIS_PROCESS
 
     if IN_USE_BY_THIS_PROCESS >= CORE_COUNT:
@@ -60,9 +59,8 @@ global_pin_memory
 def release_worker_cores(num: int) -> int:
     """
 
-:param num:
-:return:
-"""
+    :param num:
+    :return:"""
     global IN_USE_BY_THIS_PROCESS
     res = max(IN_USE_BY_THIS_PROCESS - num, 0)
     IN_USE_BY_THIS_PROCESS = res
@@ -72,40 +70,35 @@ def release_worker_cores(num: int) -> int:
 def core_count() -> int:
     """
 
-:return:
-"""
+    :return:"""
     return CORE_COUNT
 
 
 def worker_cores_available() -> int:
     """
-maybe negative if over allocated
-:return:
-"""
+    maybe negative if over allocated
+    :return:"""
     return CORE_COUNT - IN_USE_BY_THIS_PROCESS
 
 
 def worker_cores_in_use() -> int:
     """
 
-:return:
-"""
+    :return:"""
     return IN_USE_BY_THIS_PROCESS
 
 
 def reset_worker_tracker() -> None:
     """
 
-:return:
-"""
+    :return:"""
     global IN_USE_BY_THIS_PROCESS
     IN_USE_BY_THIS_PROCESS = 0
 
 
 class WorkerSession(AlsoDecorator):
     """
-# speed up evaluating after training finished
-"""
+    # speed up evaluating after training finished"""
 
     @passes_kws_to(request_worker_cores)
     def __init__(self, percentage, **kwargs):
