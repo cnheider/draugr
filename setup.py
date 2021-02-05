@@ -44,7 +44,7 @@ def read_reqs(file: str, path: Path) -> List[str]:
             return (req_str,)
 
     requirements_group = []
-    with open(str(file)) as f:
+    with open(str(path / file)) as f:
         requirements = readlines_ignore_comments(f)
         for requirement in requirements:
             requirements_group.extend(
@@ -76,11 +76,15 @@ __author__ = author
 class DraugrPackage:
     @property
     def test_dependencies(self) -> list:
-        return read_reqs("requirements_tests.txt", Path(__file__).parent)
+        return read_reqs(
+            "requirements_tests.txt", Path(__file__).parent / "requirements"
+        )
 
     @property
     def setup_dependencies(self) -> list:
-        return read_reqs("requirements_setup.txt", Path(__file__).parent)
+        return read_reqs(
+            "requirements_setup.txt", Path(__file__).parent / "requirements"
+        )
 
     @property
     def package_name(self) -> str:
@@ -145,7 +149,7 @@ class DraugrPackage:
             # 'ExtraName':['package-name; platform_system == "System(Linux,Windows)"'
         }
 
-        path: Path = Path(__file__).parent
+        path: Path = Path(__file__).parent / "requirements"
 
         for file in path.iterdir():
             if file.name.startswith("requirements_"):
