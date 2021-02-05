@@ -6,8 +6,8 @@ python:
   - '3.8'
 install:
   - pip install -r requirements.txt
-  - pip install -r requirements_dev.txt
-  - pip install -r requirements_tests.txt
+  - pip install -r requirements/requirements_dev.txt
+  - pip install -r requirements/requirements_tests.txt
   - pip install -e .
 script:
   - pytest --cov=draugr

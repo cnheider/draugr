@@ -154,7 +154,7 @@ class DraugrPackage:
         for file in path.iterdir():
             if file.name.startswith("requirements_"):
                 group_name_ = "_".join(file.name.strip(".txt").split("_")[1:])
-                these_extras[group_name_] = read_reqs(file, path)
+                these_extras[group_name_] = read_reqs(file.name, path)
 
         all_dependencies = []
         for group_name in these_extras:
