@@ -4,10 +4,10 @@ __author__ = "Christian Heider Nielsen"
 
 __doc__ = r"""
 """
+from pathlib import Path
 
-import pathlib
 
-with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 from .config import *

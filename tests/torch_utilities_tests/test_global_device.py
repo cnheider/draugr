@@ -7,13 +7,9 @@ __doc__ = r"""
            Created on 11/05/2020
            """
 
-import torch
-
 from draugr.torch_utilities import (
     TorchCpuSession,
     TorchCudaSession,
-    TorchEvalSession,
-    TorchTrainSession,
     global_torch_device,
 )
 

@@ -50,6 +50,8 @@ if __name__ == "__main__":
     from torch import nn
 
     def asd21312a():
+        """
+        """
         a = nn.Linear(10, 5)
         print(a.weight.requires_grad)
         with frozen_parameters(a.parameters()):
@@ -57,6 +59,8 @@ if __name__ == "__main__":
         print(a.weight.requires_grad)
 
     def afsda32():
+        """
+        """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -65,6 +69,8 @@ if __name__ == "__main__":
         print(a.weight.requires_grad)
 
     def afsda12332_toogle():
+        """
+        """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -74,6 +80,8 @@ if __name__ == "__main__":
         print(a.weight.requires_grad)
 
     def afsda12332_explicit():
+        """
+        """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -83,6 +91,8 @@ if __name__ == "__main__":
         print(a.weight.requires_grad)
 
     def seq_no_context():
+        """
+        """
         a = nn.Sequential(nn.Linear(10, 5), nn.Linear(5, 5))
 
         print(next(a.parameters()).requires_grad)
@@ -92,6 +102,8 @@ if __name__ == "__main__":
         print(next(a.parameters()).requires_grad)
 
     def seq_context():
+        """
+        """
         a = nn.Sequential(nn.Linear(10, 5), nn.Linear(5, 5))
 
         print(next(a.parameters()).requires_grad)

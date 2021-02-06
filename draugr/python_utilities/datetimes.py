@@ -29,6 +29,8 @@ def default_datetime_repr(
 
 
 def now_repr() -> str:
+    """
+    """
     return default_datetime_repr(datetime.datetime.now())
 
 

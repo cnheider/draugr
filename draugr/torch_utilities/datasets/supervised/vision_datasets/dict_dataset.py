@@ -110,6 +110,8 @@ class SplitDictDatasetFolder(VisionDataset):
         return self.sample(target, index)
 
     def sample(self, target, index) -> Tuple:
+        """
+        """
         sample = self.loader(
             self._data_categories[target][index % self.category_sizes[target]]
         )
@@ -195,6 +197,8 @@ class DictDatasetFolder(VisionDataset):
         return self.sample(target, index)
 
     def sample(self, target, index) -> Tuple:
+        """
+        """
         sample = self.loader(self._data[target][index % self.category_sizes[target]])
         if self.transform is not None:
             sample = self.transform(sample)

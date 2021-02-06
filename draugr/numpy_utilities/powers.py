@@ -7,9 +7,8 @@ __doc__ = r"""
            Created on 07-01-2021
            """
 
-from math import ceil, log
-
 import numpy
+
 from warg import Number
 
 __all__ = [

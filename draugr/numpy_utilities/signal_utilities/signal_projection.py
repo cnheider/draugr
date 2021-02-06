@@ -20,10 +20,14 @@ from draugr.numpy_utilities.signal_utilities.signal_statistics import mean_squar
 
 
 def normalise_signal_minmax(signal: numpy.ndarray) -> numpy.ndarray:
+    """
+    """
     return numpy.interp(signal, (signal.min(), signal.max()), (-1, 1))
 
 
 def normalise_signal_max_abs(signal: numpy.ndarray) -> numpy.ndarray:
+    """
+    """
     return signal / numpy.abs(signal).max()
 
 
@@ -53,6 +57,8 @@ def heaviside(signal: numpy.ndarray) -> numpy.ndarray:
 if __name__ == "__main__":
 
     def asiudha():
+        """
+        """
         a = numpy.random.random(9) - 0.5
         print(
             normalise_signal_minmax(a),

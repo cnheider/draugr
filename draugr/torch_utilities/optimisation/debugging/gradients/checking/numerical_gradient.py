@@ -103,19 +103,27 @@ def loss_grad_check(
 if __name__ == "__main__":
 
     def stest_return_duplicate():
+        """
+        """
         from torch.autograd import Function, gradcheck, gradgradcheck
 
         class DoubleDuplicate(Function):
             @staticmethod
             def forward(ctx, x):
+                """
+                """
                 output = x * 2
                 return output, output
 
             @staticmethod
             def backward(ctx, grad1, grad2):
+                """
+                """
                 return grad1 * 2 + grad2 * 2
 
         def fn(x):
+            """
+            """
             a, b = DoubleDuplicate.apply(x)
             return a + b
 
@@ -124,6 +132,8 @@ if __name__ == "__main__":
         gradgradcheck(fn, [x])
 
     def a():
+        """
+        """
         #    from torch.testing import _get_default_tolerance
 
         input = torch.randn(5, 5, requires_grad=True, dtype=torch.double)

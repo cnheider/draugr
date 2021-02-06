@@ -81,7 +81,8 @@ if __name__ == "__main__":
     from draugr import inner_map
 
     def s():
-
+        """
+        """
         a = iter(numpy.random.sample((5, 5, 5)))
         for a in to_device_iterator(a, "cpu"):
             d, *_ = a
@@ -89,6 +90,8 @@ if __name__ == "__main__":
             print(type(d))
 
     def sdiaj():
+        """
+        """
         # a = numpy.random.sample((5, 5, 5))
         from draugr.torch_utilities.datasets import RandomDataset
 
@@ -100,6 +103,8 @@ if __name__ == "__main__":
                 print(type(d))
 
     def asijda():
+        """
+        """
         a_transform = transforms.Compose(
             [
                 transforms.ToPILImage("RGB"),

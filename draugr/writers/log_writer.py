@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import logging
-import pathlib
+
 import sys
 
 from apppath import ensure_existence
@@ -15,6 +15,7 @@ Created on 27/04/2019
 @author: cnheider
 """
 __all__ = ["LogWriter"]
+from pathlib import Path
 
 
 class LogWriter(Writer):
@@ -25,8 +26,7 @@ class LogWriter(Writer):
 
     @staticmethod
     def get_logger(
-        path: pathlib.Path = pathlib.Path.cwd() / "0.log",
-        write_to_std_out: bool = False,
+        path: Path = Path.cwd() / "0.log", write_to_std_out: bool = False,
     ) -> logging.Logger:
         """
 

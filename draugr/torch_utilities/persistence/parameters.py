@@ -9,7 +9,7 @@ __doc__ = r"""
 
 import datetime
 import os
-import pathlib
+
 from typing import Dict, Tuple, Union
 
 import torch
@@ -31,6 +31,7 @@ __all__ = [
     "save_parameters_and_configuration",
     "save_model_parameters",
 ]
+from pathlib import Path
 
 
 @drop_unused_kws
@@ -39,7 +40,7 @@ def load_latest_model_parameters(
     *,
     optimiser: Optimizer = None,
     model_name: str,
-    model_directory: pathlib.Path,
+    model_directory: Path,
 ) -> Tuple[
     Union[Union[torch.nn.Module, Tuple[torch.nn.Module, Union[Dict, None]]], None], bool
 ]:
@@ -86,11 +87,11 @@ load_model_parameters = load_latest_model_parameters
 def save_parameters_and_configuration(
     *,
     model: Module,
-    model_save_path: pathlib.Path,
+    model_save_path: Path,
     optimiser: Optimizer = None,
-    optimiser_save_path: pathlib.Path = None,
-    config_save_path: pathlib.Path = None,
-    loaded_config_file_path: pathlib.Path = None,
+    optimiser_save_path: Path = None,
+    config_save_path: Path = None,
+    loaded_config_file_path: Path = None,
 ) -> None:
     """
 
@@ -115,9 +116,9 @@ def save_model_parameters(
     model: Module,
     *,
     model_name: str,
-    save_directory: pathlib.Path,
+    save_directory: Path,
     optimiser: Optimizer = None,
-    config_file_path: pathlib.Path = None,
+    config_file_path: Path = None,
 ) -> None:
     """
 
@@ -152,7 +153,7 @@ def save_model_parameters(
         print(e)
         while not saved:
             model_save_path = (
-                pathlib.Path(input("Enter another file path: ")).expanduser().resolve()
+                Path(input("Enter another file path: ")).expanduser().resolve()
             )
             ensure_directory_exist(model_save_path.parent)
             try:

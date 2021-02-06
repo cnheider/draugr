@@ -25,7 +25,8 @@ class DisplaySampler(object):
         self.verbose = verbose
 
     def downsample(self, xstart, xend):
-
+        """
+        """
         mask = (self._x_data > xstart) & (
             self._x_data < xend
         )  # get the points in the view range
@@ -61,6 +62,8 @@ class DisplaySampler(object):
 if __name__ == "__main__":
 
     def asdsad():
+        """
+        """
         from matplotlib import pyplot
 
         # Create a signal

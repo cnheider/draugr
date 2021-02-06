@@ -90,6 +90,8 @@ class Seed:
     def __call__(self, function: Callable) -> callable:
         @functools.wraps(function)
         def decorated(*args, **kwargs) -> Any:
+            """
+            """
             value = function(*args, **kwargs)
             self.__exit__()
             return value
@@ -101,13 +103,19 @@ if __name__ == "__main__":
 
     @Seed(1)  # Seed only within function
     def foo():
+        """
+        """
         return torch.randint(5, (2, 2))
 
     def bar():
+        """
+        """
         with Seed(1):
             return torch.randint(5, (2, 2))
 
     def buzz():
+        """
+        """
         Seed(1)
         return torch.randint(5, (2, 2))
 

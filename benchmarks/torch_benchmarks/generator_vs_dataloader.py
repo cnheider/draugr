@@ -162,7 +162,6 @@ def test_d3():
 def test_d4():
     from torchvision.transforms import transforms
     import numpy
-    from draugr.generators.recycling import batched_recycle
     from draugr import inner_map
 
     a_transform = transforms.Compose(
@@ -195,6 +194,9 @@ def test_d4():
     ).to(device)
 
     class RandomDataset(Dataset):
+        """
+        """
+
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
 
@@ -239,7 +241,6 @@ def test_d4():
 def test_d5():
     from torchvision.transforms import transforms
     import numpy
-    from draugr.generators.recycling import batched_recycle
     from draugr import inner_map
 
     a_transform = transforms.Compose(
@@ -263,6 +264,9 @@ def test_d5():
     batch_shape = torch.Size([batch_size, channels_in, 224, 224])
 
     class RandomDataset(Dataset):
+        """
+        """
+
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
 
@@ -305,7 +309,6 @@ def test_d5():
 def test_d6():
     from torchvision.transforms import transforms
     import numpy
-    from draugr.generators.recycling import batched_recycle
     from draugr import inner_map
 
     a_transform = transforms.Compose(
@@ -329,6 +332,9 @@ def test_d6():
     batch_shape = torch.Size([batch_size, channels_in, 224, 224])
 
     class RandomDataset(Dataset):
+        """
+        """
+
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
 
@@ -371,7 +377,6 @@ def test_d6():
 
 def test_d7():
     import numpy
-    from draugr.generators.recycling import batched_recycle
 
     channels_in = 3
 
@@ -384,6 +389,9 @@ def test_d7():
     dtype = torch.float
 
     class RandomDataset(Dataset):
+        """
+        """
+
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
 

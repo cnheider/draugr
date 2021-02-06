@@ -13,6 +13,8 @@ __all__ = ["unzip", "unzipper"]
 
 
 def unzip(iterable: Iterable) -> Iterable:
+    """
+    """
     return zip(*iterable)
 
 
@@ -26,6 +28,8 @@ def unzipper(iterable: Iterable[Iterable]) -> Iterable:
     :return:"""
 
     def check_next_iter(iterable: Any) -> Any:
+        """
+        """
         if isinstance(iterable, Iterable):
             try:
                 a = next(iter(iterable))
@@ -51,6 +55,8 @@ def unzipper(iterable: Iterable[Iterable]) -> Iterable:
 if __name__ == "__main__":
 
     def recursive_eval(node: Any):
+        """
+        """
         if isinstance(node, (Iterable, Generator, Iterator)):
             gather = []
             for i in node:
@@ -59,6 +65,8 @@ if __name__ == "__main__":
         return node
 
     def aasda():
+        """
+        """
         r = range(4)
 
         print(0)
@@ -81,6 +89,8 @@ if __name__ == "__main__":
         print(2)
 
     def skad23():
+        """
+        """
         print(0)
         zippy_once = zip(range(6), range(3))
         dsadsa = list(deepcopy(zippy_once))
@@ -118,6 +128,8 @@ if __name__ == "__main__":
         print(6)
 
     def skad():
+        """
+        """
         print(0)
         zippy_once = zip(zip(range(6), range(3)))
         zippy_once_copy = deepcopy(zippy_once)

@@ -40,6 +40,8 @@ def frame_generator(
 if __name__ == "__main__":
 
     def asd():
+        """
+        """
         from tqdm import tqdm
 
         for image in tqdm(frame_generator(cv2.VideoCapture(0), None)):

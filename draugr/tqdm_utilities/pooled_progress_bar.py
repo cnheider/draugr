@@ -129,7 +129,12 @@ def sequential_map(
 if __name__ == "__main__":
 
     def asdasd():
+        """
+        """
+
         def add(a, b, *c):
+            """
+            """
             return a + b
 
         print(

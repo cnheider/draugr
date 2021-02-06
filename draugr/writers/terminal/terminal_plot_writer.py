@@ -39,6 +39,8 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
         dataformats: str = "NCHW",
         **kwargs,
     ) -> None:
+        """
+        """
         self.E.write(terminalise_image(render_image(data, scale=(28, 28))))
 
     def _open(self):

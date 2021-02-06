@@ -24,6 +24,8 @@ from matplotlib.axes import Axes
 
 
 def remove_decoration(ax_: Axes) -> None:
+    """
+    """
     transparent = (1.0, 1.0, 1.0, 0.0)
 
     ax_.w_xaxis.set_pane_color(transparent)
@@ -40,10 +42,14 @@ def remove_decoration(ax_: Axes) -> None:
 
 
 def denormalise_minusoneone(T, coords):
+    """
+    """
     return 0.5 * ((coords + 1.0) * T)
 
 
 def matplotlib_bounding_box(x, y, size, color: str = "w"):
+    """
+    """
     x = int(x - (size / 2))
     y = int(y - (size / 2))
     rect = patches.Rectangle(
@@ -72,6 +78,8 @@ def plot_img_array(img_array: numpy.ndarray, n_col: int = 3) -> None:
 
 
 def plot_side_by_side(img_arrays) -> None:
+    """
+    """
     flatten_list = reduce(lambda x, y: x + y, zip(*img_arrays))
 
     plot_img_array(numpy.array(flatten_list), n_col=len(img_arrays))

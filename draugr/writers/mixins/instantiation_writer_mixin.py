@@ -22,15 +22,5 @@ class InstantiationWriterMixin(ABC):
     @abstractmethod
     def instance(self, instance: Mapping, metrics: Mapping) -> None:
         """
-
-        :param tag:
-        :type tag:
-        :param data:
-        :type data:
-        :param step:
-        :type step:
-        :param dataformats:
-        :type dataformats:
-        :param kwargs:
-        :type kwargs:"""
+    """
         raise NotImplementedError

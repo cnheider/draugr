@@ -75,6 +75,9 @@ class ConvertFromInts(object):
 
 
 class SubtractMeans(object):
+    """
+    """
+
     def __init__(self, mean: Tuple):
         self.mean = numpy.array(mean, dtype=numpy.float32)
 
@@ -112,6 +115,9 @@ class CV2ToPercentCoords(object):
 
 
 class CV2Resize(object):
+    """
+    """
+
     def __init__(self, size: int = 300):
         self._size = size
 
@@ -126,6 +132,9 @@ class CV2Resize(object):
 
 
 class CV2RandomSaturation(object):
+    """
+    """
+
     def __init__(self, lower: float = 0.5, upper: float = 1.5):
         self.lower = lower
         self.upper = upper
@@ -145,6 +154,9 @@ class CV2RandomSaturation(object):
 
 
 class CV2RandomHue(object):
+    """
+    """
+
     def __init__(self, delta: float = 18.0):
         assert delta >= 0.0 and delta <= 360.0
         self.delta = delta
@@ -163,6 +175,9 @@ class CV2RandomHue(object):
 
 
 class CV2RandomLightingNoise(object):
+    """
+    """
+
     def __init__(self):
         self.perms = ((0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0))
 
@@ -180,6 +195,9 @@ class CV2RandomLightingNoise(object):
 
 
 class CV2ConvertColor(object):
+    """
+    """
+
     def __init__(self, current, transform):
         self.transform = transform
         self.current = current
@@ -206,6 +224,9 @@ class CV2ConvertColor(object):
 
 
 class CV2RandomContrast(object):
+    """
+    """
+
     def __init__(self, lower: float = 0.5, upper: float = 1.5):
         self.lower = lower
         self.upper = upper
@@ -226,6 +247,9 @@ class CV2RandomContrast(object):
 
 
 class CV2RandomBrightness(object):
+    """
+    """
+
     def __init__(self, delta: float = 32):
         assert delta >= 0.0
         assert delta <= 255.0
@@ -381,6 +405,9 @@ class CV2RandomSampleCrop(object):
 
 
 class CV2Expand(object):
+    """
+    """
+
     def __init__(self, mean: float):
         self.mean = mean
 
@@ -448,6 +475,9 @@ class CV2SwapChannels(object):
 
 
 class CV2PhotometricDistort(object):
+    """
+    """
+
     def __init__(self):
         self.pd = [
             CV2RandomContrast(),  # RGB

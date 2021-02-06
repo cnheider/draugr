@@ -173,6 +173,8 @@ torch.cuda.memory_stats(dev_idx)
 if __name__ == "__main__":
 
     def stest_override():
+        """
+        """
         print(global_torch_device(verbose=True))
         print(
             global_torch_device(
@@ -193,6 +195,8 @@ if __name__ == "__main__":
         print(global_torch_device())
 
     def a():
+        """
+        """
         print(global_torch_device())
         print(auto_select_available_cuda_device())
 

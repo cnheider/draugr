@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import pathlib
+
 from contextlib import suppress
 from typing import Any, Iterable, Sequence, Union
 
@@ -41,6 +41,8 @@ Created on 27/04/2019
 @author: cnheider
 """
 __all__ = ["TensorBoardPytorchWriter"]
+
+from pathlib import Path
 
 
 class TensorBoardPytorchWriter(
@@ -96,7 +98,7 @@ class TensorBoardPytorchWriter(
     @passes_kws_to(Writer.__init__)
     def __init__(
         self,
-        path: Union[str, pathlib.Path] = pathlib.Path.cwd() / "Logs",
+        path: Union[str, Path] = Path.cwd() / "Logs",
         summary_writer_kws=None,
         **kwargs,
     ):

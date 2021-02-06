@@ -50,6 +50,8 @@ if __name__ == "__main__":
     from torch import nn
 
     def asda():
+        """
+        """
         a = nn.Linear(10, 5)
         print(a.weight.requires_grad)
         with frozen_model(a):

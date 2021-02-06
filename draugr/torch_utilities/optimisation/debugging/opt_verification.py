@@ -37,9 +37,9 @@ __all__ = ["overfit_single_batch"]
 
 def init_softmax_loss():
     """
-    #TODO: NOT DONE, FINISH!
-    """
-    batch_Size = 16
+  #TODO: NOT DONE, FINISH!
+  """
+    batch_size = 16
     input_f = 4
     n_classes = 10
 
@@ -53,14 +53,14 @@ def init_softmax_loss():
     for p in model.parameters():
         torch.nn.init.constant_(p, 1)
 
-    input = to_tensor([range(input_f) for _ in range(batch_Size)])
+    input = to_tensor([range(input_f) for _ in range(batch_size)])
 
     print(input)  # Visualise input just before forward
     out = model(input)
     print(out)
 
     target = to_tensor(
-        [int(n_classes * random()) for _ in range(batch_Size)], dtype=torch.long
+        [int(n_classes * random()) for _ in range(batch_size)], dtype=torch.long
     )
     # loss = torch.nn.MSELoss()(out, target)
     loss = torch.nn.NLLLoss()(out, target)
@@ -71,9 +71,9 @@ def init_softmax_loss():
 
 def overfit_single_batch():
     """
-    #TODO: NOT DONE, FINISH!
-    :return:
-    """
+  #TODO: NOT DONE, FINISH!
+  :return:
+  """
     input_f = 4
     n_classes = 10
 

@@ -84,6 +84,8 @@ def batch_generator(iterable: Iterable, n: int = 32, drop_not_full: bool = True)
 if __name__ == "__main__":
 
     def asda():
+        """
+        """
         arg_num = 4
         size = 12
         mini_batch_size = 5

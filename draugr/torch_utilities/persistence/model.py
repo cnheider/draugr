@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
-import pathlib
+
 import sys
 from typing import Union
 
@@ -27,11 +27,12 @@ __all__ = [
     "save_model",
     "convert_saved_model_to_cpu",
 ]
+from pathlib import Path
 
 
 @drop_unused_kws
 def load_latest_model(
-    *, model_name: str, model_directory: pathlib.Path, raise_on_failure: bool = True
+    *, model_name: str, model_directory: Path, raise_on_failure: bool = True
 ) -> Union[torch.nn.Module, None]:
     """
 
@@ -64,9 +65,9 @@ load_model = load_latest_model
 def save_model_and_configuration(
     *,
     model: Module,
-    model_save_path: pathlib.Path,
-    config_save_path: pathlib.Path = None,
-    loaded_config_file_path: pathlib.Path = None,
+    model_save_path: Path,
+    config_save_path: Path = None,
+    loaded_config_file_path: Path = None,
     raise_on_existing: bool = False,
 ) -> None:
     """
@@ -90,8 +91,8 @@ def save_model(
     model: Module,
     *,
     model_name: str,
-    save_directory: pathlib.Path,  # TODO: RENAME to model directory for consistency
-    config_file_path: pathlib.Path = None,
+    save_directory: Path,  # TODO: RENAME to model directory for consistency
+    config_file_path: Path = None,
     prompt_on_failure: bool = True,
     verbose: bool = False,
 ) -> None:
@@ -130,7 +131,7 @@ def save_model(
             print(e)
             while not saved:
                 file_path = input("Enter another file path: ")
-                model_save_path = pathlib.Path(file_path).expanduser().resolve()
+                model_save_path = Path(file_path).expanduser().resolve()
                 parent = model_save_path.parent
                 ensure_directory_exist(parent)
                 config_save_path = parent / f"{model_save_path.name}{config_extension}"
@@ -157,7 +158,7 @@ def save_model(
             print(f"Was unsuccesful at saving model or configuration")
 
 
-def convert_saved_model_to_cpu(path: pathlib.Path) -> None:
+def convert_saved_model_to_cpu(path: Path) -> None:
     """
 
     :param path:
@@ -167,4 +168,4 @@ def convert_saved_model_to_cpu(path: pathlib.Path) -> None:
 
 
 if __name__ == "__main__":
-    convert_saved_model_to_cpu(pathlib.Path(sys.argv[1]))
+    convert_saved_model_to_cpu(Path(sys.argv[1]))

@@ -60,6 +60,8 @@ DECORATIONS = NOD(
 def hyperlink_url(
     link: str, link_id: str = None, style: bool = False, prefix: str = "https://"
 ) -> str:
+    """
+    """
     if not link.startswith(prefix):
         if "://" in link:
             link = f'{prefix}{link.split("://")[1]}'
@@ -76,6 +78,8 @@ def hyperlink_url(
 def hyperlink_path(
     link: Path, link_id: str = None, style: bool = False, linux: bool = True
 ) -> str:
+    """
+    """
     if linux:
         link = f"file://{link.resolve()}"
     if not style:

@@ -15,6 +15,8 @@ import numpy
 
 
 def recursive_flatten_numpy(nested: Sequence) -> numpy.ndarray:
+    """
+    """
     return numpy.array(nested).ravel()
 
 

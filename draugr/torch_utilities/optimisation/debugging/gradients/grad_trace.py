@@ -127,6 +127,8 @@ def register_bad_grad_hooks(var: Any) -> callable:
 
 
 def print_grad_trace(var_grad_fn):
+    """
+    """
     print(var_grad_fn)
     for n in var_grad_fn.next_functions:
         if n[0]:
@@ -143,6 +145,8 @@ def print_grad_trace(var_grad_fn):
 if __name__ == "__main__":
 
     def asdifiejsf():
+        """
+        """
         x = torch.randn(10, 10, requires_grad=True)
         y = torch.randn(10, 10, requires_grad=True)
 

@@ -72,6 +72,8 @@ if self.fig is None:
 """
 
     def draw(self, data: Any, delta: float = None):
+        """
+        """
         if not self.fig:
             raise NotImplementedError(
                 "Figure was not instantiated check specialisation of MplDrawer"
@@ -120,8 +122,7 @@ if self.fig is None:
 
         :param data:
         :type data:
-        :param delta:
-        :type delta:"""
+        """
         raise NotImplementedError
 
 
@@ -135,6 +136,5 @@ class MockDrawer(MplDrawer):
 
         :param data:
         :type data:
-        :param delta:
-        :type delta:"""
+        """
         pass

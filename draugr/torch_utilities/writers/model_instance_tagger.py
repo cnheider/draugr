@@ -11,4 +11,6 @@ import torch
 
 
 def generate_tag(model: torch.nn.Module, **satellite_parameters) -> str:
+    """
+    """
     return ""

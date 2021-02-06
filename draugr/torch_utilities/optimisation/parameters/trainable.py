@@ -79,6 +79,8 @@ def named_trainable_parameters(model: Module) -> Dict[str, torch.nn.Parameter]:
 
 
 def trainable_parameters_iterator(model: Module) -> List[torch.nn.Parameter]:
+    """
+    """
     for name, param in model.named_parameters():
         if param.requires_grad:
             yield param
