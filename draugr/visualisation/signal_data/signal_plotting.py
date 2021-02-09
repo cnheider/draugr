@@ -14,7 +14,7 @@ from matplotlib import pyplot
 
 __all__ = ["dissected_channel_plot", "overlay_channel_plot"]
 
-from draugr.numpy_utilities.signal_utilities.subsampling import (
+from draugr.scipy_utilities.subsampling import (
     fft_subsample,
     fir_subsample,
 )

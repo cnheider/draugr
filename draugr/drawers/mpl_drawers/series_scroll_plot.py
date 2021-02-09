@@ -39,14 +39,14 @@ class SeriesScrollPlot(MplDrawer):
     ):
         """
 
-        :param window_length:
-        :param title:
-        :param time_label:
-        :param data_label:
-        :param reverse:
-        :param overwrite:
-        :param placement:
-        :param render:"""
+    :param window_length:
+    :param title:
+    :param time_label:
+    :param data_label:
+    :param reverse:
+    :param overwrite:
+    :param placement:
+    :param render:"""
 
         super().__init__(render=render, **kws)
         if not render:
@@ -76,10 +76,10 @@ class SeriesScrollPlot(MplDrawer):
 
     def _draw(self, data: Union[Sequence, int, float, complex]):
         """
-        SHOULD NOT BE CALLED DIRECTLY!
+    SHOULD NOT BE CALLED DIRECTLY!
 
-        :param data:
-        :return:"""
+    :param data:
+    :return:"""
         if not isinstance(data, Sequence):
             data = [data]
 
@@ -146,7 +146,7 @@ if __name__ == "__main__":
 
     def asidjas():
         """
-        """
+    """
         from math import cos, sin
 
         def multi_series():

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import pytest
+
 from draugr.drawers import discrete_scroll_plot
 
 __author__ = "Christian Heider Nielsen"
@@ -9,6 +11,7 @@ __doc__ = r"""
            """
 
 
+@pytest.mark.skip
 def test_activation_scroll_plot():
     gen = iter(
         [

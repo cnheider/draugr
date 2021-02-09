@@ -5,6 +5,8 @@ from shutil import rmtree
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
+from draugr import IgnoreInterruptSignal
+
 
 def main(keep_alive: bool = True) -> str:
     """
@@ -55,7 +57,7 @@ def main(keep_alive: bool = True) -> str:
 
     if keep_alive:
         print(f"tensorboard address: {address} for log_dir {log_dir}")
-        with suppress(KeyboardInterrupt):
+        with IgnoreInterruptSignal():
             while True:
                 sleep(10)
 

@@ -32,7 +32,7 @@ class MplDrawer(
         *,
         default_delta: float = 1 / 120,
         render: bool = True,
-        placement: Tuple[int, int] = (0, 0),
+        placement: Tuple[int, int] = None,
         **kwargs,
     ):
         """
@@ -41,14 +41,14 @@ class MplDrawer(
         :param render:
         :param placement:
         :param kwargs:"""
-        super().__init__()
+        super().__init__(**kwargs)
         self.fig = None
 
         if not render:
             return
 
         if default_delta is None:  # Zero still passes
-            default_delta = 3e-7
+            default_delta = 1 / 120
 
         self._default_delta = default_delta
         self.n = 0
@@ -83,11 +83,11 @@ if self.fig is None:
 
         pyplot.draw()
 
-        if self.n <= 1:
+        if self.n <= 1 and self.placement:
             self.move_figure(self.fig, *self.placement)
         self.n += 1
 
-        if delta:
+        if delta:  # TODO: ALLOW FOR ASYNC DRAWING
             pyplot.pause(delta)
         elif self._default_delta:
             pyplot.pause(self._default_delta)
@@ -112,9 +112,17 @@ if self.fig is None:
     def __enter__(self):
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def close(self):
+        if self._verbose:
+            print("mlpdrawer close was called")
         if self.fig:
             pyplot.close(self.fig)
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
+
+    def __del__(self):
+        self.close()
 
     @abstractmethod
     def _draw(self, data: Any) -> None:
