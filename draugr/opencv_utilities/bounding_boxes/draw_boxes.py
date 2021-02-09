@@ -36,6 +36,8 @@ def draw_single_box(
     outline_alpha: float = 0.5,
     color_fill_score: bool = False,
 ) -> Image.Image:
+    """
+    """
     if not isinstance(image, ImageDraw.ImageDraw):
         assert isinstance(image, Image.Image)
         if image.mode != "RGBA":
@@ -159,6 +161,8 @@ def draw_bounding_boxes(
 if __name__ == "__main__":
 
     def a():
+        """
+        """
         from matplotlib import pyplot
         import pickle
         from neodroidvision.data.datasets.supervised.detection.coco import COCODataset
@@ -182,6 +186,8 @@ if __name__ == "__main__":
         pyplot.show()
 
     def b():
+        """
+        """
         from matplotlib import pyplot
 
         data_root = Path.home() / "Data" / "PennFudanPed" / "PNGImages"

@@ -21,6 +21,8 @@ def plot_median_labels(
     stroke_width: int = 2,
     precision: int = 3,
 ) -> None:
+    """
+    """
     lines = ax.get_lines()
     # depending on fliers, toggle between 5 and 6 lines per box
     lines_per_box = 5 + int(has_fliers)
@@ -53,6 +55,9 @@ def plot_median_labels(
 
 
 def show_values_on_bars(axs: pyplot.Axes, h_v="v", space=0.4) -> None:
+    """
+    """
+
     def _show_on_single_plot(ax):
         if h_v == "v":
             for p in ax.patches:

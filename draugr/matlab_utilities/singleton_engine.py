@@ -15,6 +15,8 @@ MATLAB_ENGINE = None
 
 
 def start_engine() -> Any:
+    """
+    """
     global MATLAB_ENGINE
     if not MATLAB_ENGINE:
         from matlab import engine

@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from collections import Sized
-from typing import Any, Callable, Generator, Iterable, List
+from typing import Any, Callable, Generator, Iterable, List, Sized
 
 from pathos.helpers import cpu_count
 from pathos.multiprocessing import ProcessPool as Pool
@@ -129,7 +128,12 @@ def sequential_map(
 if __name__ == "__main__":
 
     def asdasd():
+        """
+        """
+
         def add(a, b, *c):
+            """
+            """
             return a + b
 
         print(

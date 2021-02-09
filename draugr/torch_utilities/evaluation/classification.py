@@ -26,6 +26,8 @@ def find_n_misclassified(
     n: int = 10,
     device: torch.device = global_torch_device(),
 ) -> None:
+    """
+    """
     j = 0
     num_samples = len(evaluation_loader)
     with TorchEvalSession(model):

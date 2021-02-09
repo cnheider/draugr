@@ -17,6 +17,8 @@ from scipy.io import wavfile
 if __name__ == "__main__":
 
     def main():
+        """
+        """
         sampling_rate, audio = wavfile.read(
             str(Path.home() / "Data" / "Audio" / "Nightingale-sound.wav")
         )
@@ -27,12 +29,16 @@ if __name__ == "__main__":
         print(f"Audio length: {length_sec:.2f} seconds")
 
         def a():
+            """
+            """
             n_fft = 32
             s = FastFourierTransformPlot(n_fft=n_fft, sampling_rate=sampling_rate)
             for sample in audio:
                 s.draw(sample)
 
         def b():
+            """
+            """
             n_fft = 32
             delta = 1 / sampling_rate
             s = FastFourierTransformSpectrogramPlot(
@@ -44,6 +50,8 @@ if __name__ == "__main__":
                 s.draw(sample)
 
         def c():
+            """
+            """
             f, ax = pyplot.subplots()
             ax.plot(numpy.arange(num_samples) / sampling_rate, audio)
             ax.set_xlabel("Time [s]")
@@ -51,6 +59,8 @@ if __name__ == "__main__":
             pyplot.show()
 
         def d():
+            """
+            """
             from skimage import util
 
             M = 1024

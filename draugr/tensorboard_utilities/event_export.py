@@ -17,6 +17,9 @@ from warg import passes_kws_to
 
 
 class TensorboardEventExporter:
+    """
+    """
+
     def __init__(
         self,
         path_to_events_file_s: Path,
@@ -402,6 +405,8 @@ class TensorboardEventExporter:
 if __name__ == "__main__":
 
     def a():
+        """
+        """
         _path_to_events_file = next(
             AppPath("Adversarial Speech", "Christian Heider Nielsen").user_log.rglob(
                 "events.out.tfevents.*"

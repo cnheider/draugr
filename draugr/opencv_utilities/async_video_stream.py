@@ -16,6 +16,9 @@ __all__ = ["AsyncVideoStream"]
 
 
 class AsyncVideoStream:
+    """
+    """
+
     def __init__(self, src=0, thread_name: str = None, group: Any = None):
         """
         threaded async wrapper around opencv cv2.VideoCapture with alike interface
@@ -41,6 +44,8 @@ class AsyncVideoStream:
         return self
 
     def update(self):
+        """
+        """
         while not self._stopped:  # keep looping infinitely until the thread is stopped
             (
                 self.grabbed,
@@ -48,14 +53,20 @@ class AsyncVideoStream:
             ) = self._stream.read()  # otherwise, read the next frame from the stream
 
     def read(self):
+        """
+        """
         return self.grabbed, self.frame  # return the frame most recently read
 
     def stop(self):
+        """
+        """
         self._stream.release()
         self._stopped = True  # indicate that the thread should be stopped
 
     # noinspection PyPep8Naming
     def isOpened(self):
+        """
+        """
         return self._stream.isOpened()
 
     def __call__(self, *args, **kwargs):

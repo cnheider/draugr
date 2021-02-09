@@ -46,6 +46,8 @@ __all__ = [
 
 @passes_kws_to(matshow)
 def correlation_matrix_plot(cor, labels=None, title="", **kwargs) -> Figure:
+    """
+    """
     if labels is None:
         labels = [f"P{i}" for i in range(len(cor))]
 
@@ -304,6 +306,8 @@ def roc_plot(
     figure_size: Tuple[int, int] = (8, 8),
     num_decimals: int = 2,
 ) -> Figure:
+    """
+    """
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -465,6 +469,8 @@ def confusion_matrix_plot(
 if __name__ == "__main__":
 
     def a():
+        """
+        """
         from sklearn import datasets
 
         iris = datasets.load_iris()
@@ -494,6 +500,8 @@ if __name__ == "__main__":
         y_score = classifier.fit(X_train, y_train).decision_function(X_test)
 
         def sasasasgasgssiasjdijasagsaagdi():
+            """
+            """
             confusion_matrix_plot(
                 numpy.argmax(y_test, axis=-1),
                 numpy.argmax(y_score, axis=-1),
@@ -502,18 +510,26 @@ if __name__ == "__main__":
             pyplot.show()
 
         def sasasasgasgssagsaagdi():
+            """
+            """
             roc_plot(y_test, y_score, num_classes)
             pyplot.show()
 
         def sasasgssagsaagdi():
+            """
+            """
             precision_recall_plot(y_test, y_score, num_classes)
             pyplot.show()
 
         def sasafgsagdi():
+            """
+            """
             pca_biplot(X, y)
             pyplot.show()
 
         def sadi():
+            """
+            """
             import pandas
 
             df = pandas.DataFrame(X, columns=iris.feature_names)

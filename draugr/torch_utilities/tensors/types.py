@@ -37,16 +37,22 @@ torch_to_numpy_dtype_dict = {
 
 
 def numpy_to_torch_dtype(numpy_dtype: numpy.dtype) -> torch.dtype:
+    """
+    """
     return numpy_to_torch_dtype_dict[numpy_dtype.type]
 
 
 def torch_to_numpy_dtype(torch_dtype: torch.dtype) -> numpy.dtype:
+    """
+    """
     return torch_to_numpy_dtype_dict[torch_dtype]
 
 
 if __name__ == "__main__":
 
     def iusahdu():
+        """
+        """
         a = numpy.zeros((1, 1))
         print(a.dtype)
         b = numpy_to_torch_dtype(a.dtype)

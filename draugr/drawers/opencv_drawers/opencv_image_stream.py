@@ -10,8 +10,8 @@ __doc__ = r"""
 from typing import Sequence
 
 import cv2
+
 from draugr.drawers.drawer import Drawer
-from warg import passes_kws_to
 
 
 class OpencvImageStream(Drawer):
@@ -40,7 +40,8 @@ class OpencvImageStream(Drawer):
 if __name__ == "__main__":
 
     def asdasf():
-
+        """
+        """
         from draugr.opencv_utilities import frame_generator, AsyncVideoStream
         from draugr.tqdm_utilities import progress_bar
 

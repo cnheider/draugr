@@ -8,9 +8,9 @@ Created on 27/04/2019
 @author: cnheider
 """
 
-import pathlib
+from pathlib import Path
 
-with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 try:
@@ -22,7 +22,5 @@ try:
     from .writer import *
     from .standard_tags import *
 except ImportError as ix:
-    print(
-        f"Make sure requirements is installed for {pathlib.Path(__file__).parent.name}"
-    )
+    print(f"Make sure requirements is installed for {Path(__file__).parent.name}")
     raise ix

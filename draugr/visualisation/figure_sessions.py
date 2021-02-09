@@ -16,6 +16,9 @@ __all__ = ["FigureSession", "SubplotSession"]
 
 
 class FigureSession(AlsoDecorator):
+    """
+    """
+
     @passes_kws_to(pyplot.figure)
     def __init__(self, **kws):
         self.fig = pyplot.figure(**kws)
@@ -30,6 +33,9 @@ class FigureSession(AlsoDecorator):
 
 
 class SubplotSession(AlsoDecorator):
+    """
+    """
+
     @passes_kws_to(pyplot.subplots)
     def __init__(self, **kws):
         self.fig, axs = pyplot.subplots(**kws)
@@ -49,6 +55,8 @@ class SubplotSession(AlsoDecorator):
 if __name__ == "__main__":
 
     def deiajsd():
+        """
+        """
         for a in range(100):
             with SubplotSession() as a:
                 fig, (ax1,) = a

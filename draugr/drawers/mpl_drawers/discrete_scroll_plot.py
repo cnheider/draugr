@@ -31,12 +31,12 @@ class DiscreteScrollPlot(MplDrawer):
     @passes_kws_to(MplDrawer.__init__)
     def __init__(
         self,
-        num_actions: int,
+        num_bins: int,
         window_length: int = None,
         labels: Sequence = None,
         title: str = "",
         time_label: str = "Time",
-        data_label: str = "Action Index",
+        data_label: str = "Bin Index",
         vertical: bool = True,
         reverse: bool = True,
         overwrite: bool = False,
@@ -49,12 +49,12 @@ class DiscreteScrollPlot(MplDrawer):
         if not render:
             return
 
-        self._num_actions = num_actions
+        self._num_actions = num_bins
 
         if not window_length:
-            window_length = num_actions * 20
+            window_length = num_bins * 20
 
-        array = numpy.zeros((window_length, num_actions))
+        array = numpy.zeros((window_length, num_bins))
 
         self.vertical = vertical
         self.overwrite = overwrite
@@ -64,10 +64,10 @@ class DiscreteScrollPlot(MplDrawer):
         if not figure_size:
             if vertical:
                 self.fig = pyplot.figure(figsize=(window_length / 10, 2))
-                extent = [-window_length, 0, 0, num_actions]
+                extent = [-window_length, 0, 0, num_bins]
             else:
                 self.fig = pyplot.figure(figsize=(2, window_length / 10))
-                extent = [num_actions, 0, 0, -window_length]
+                extent = [num_bins, 0, 0, -window_length]
         else:
             self.fig = pyplot.figure(figsize=figure_size)
             extent = [figure_size[0], 0, 0, -figure_size[1]]
@@ -85,9 +85,9 @@ class DiscreteScrollPlot(MplDrawer):
             extent=extent,
         )
 
-        b = numpy.arange(0.5, num_actions + 0.5, 1)
+        b = numpy.arange(0.5, num_bins + 0.5, 1)
         if not labels:
-            labels = numpy.arange(0, num_actions, 1)
+            labels = numpy.arange(0, num_bins, 1)
 
         if vertical:
             pyplot.yticks(b, labels, rotation=45)
@@ -150,6 +150,8 @@ def discrete_scroll_plot(
     reverse: bool = True,
     overwrite: bool = False,
 ):
+    """
+    """
     d = vector_provider.__next__()
     num_actions = len(d)
     if not window_length:
@@ -169,6 +171,8 @@ def discrete_scroll_plot(
             array[-1] = d
 
     def update_fig(n):
+        """
+        """
         data = vector_provider.__next__()
         array = im.get_array()
 
@@ -239,10 +243,14 @@ def discrete_scroll_plot(
 if __name__ == "__main__":
 
     def siajdisajd():
+        """
+        """
         import queue
         import threading
 
         def ma():
+            """
+            """
             data = queue.Queue(100)
 
             class QueueGen:
@@ -256,17 +264,26 @@ if __name__ == "__main__":
                     return self.__next__()
 
                 def add(self, a):
+                    """
+                    """
                     return data.put(a)
 
                 def get(self):
+                    """
+                    """
                     return data.get()
 
             def get_sample(num_actions=3):
+                """
+                """
                 a = numpy.zeros(num_actions)
                 a[numpy.random.randint(0, num_actions)] = 1.0
                 return a
 
             class MyDataFetchClass(threading.Thread):
+                """
+                """
+
                 def __init__(self, data):
 
                     threading.Thread.__init__(self)
@@ -274,7 +291,8 @@ if __name__ == "__main__":
                     self._data = data
 
                 def run(self):
-
+                    """
+                    """
                     while True:
                         self._data.add(get_sample())
 
@@ -290,7 +308,8 @@ if __name__ == "__main__":
                 print("Plot Closed")
 
         def asda():
-
+            """
+            """
             s = DiscreteScrollPlot(3, default_delta=None)
             for _ in range(100):
                 s.draw(numpy.random.rand(3))

@@ -43,6 +43,8 @@ def safe_concat(arr: torch.Tensor, el: torch.Tensor, dim: int = 0) -> torch.Tens
 if __name__ == "__main__":
 
     def a():
+        """
+        """
         shape = (2, 3, 4, 5)
         from warg import prod
 

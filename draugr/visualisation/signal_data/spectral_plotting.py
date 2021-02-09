@@ -18,8 +18,8 @@ __all__ = ["spectral_plot", "ltass_plot", "spectrum_plot", "fft_plot"]
 
 
 def spectral_plot(
-    time: Sequence,
-    frequencies: Sequence,
+    time: numpy.ndarray,
+    frequencies: numpy.ndarray,
     fxt: numpy.ndarray,
     fig_size: Sequence = (4.8, 2.4),
 ) -> pyplot.Figure:
@@ -82,7 +82,8 @@ def fft_plot(signal: Sequence, *, line_width: float = 0.2) -> pyplot.Figure:
 if __name__ == "__main__":
 
     def asdijaisd():
-
+        """
+        """
         sr = 1000
         t = numpy.arange(sr * 4) / sr
         # noise = numpy.random.rand(sr * 2) * 0.001

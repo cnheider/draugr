@@ -6,10 +6,9 @@ __doc__ = r"""
 
            Created on 09/10/2019
            """
+from pathlib import Path
 
-import pathlib
-
-with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 from .entropy import *

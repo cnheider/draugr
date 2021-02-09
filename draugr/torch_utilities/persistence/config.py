@@ -9,11 +9,13 @@ __doc__ = r"""
 
 __all__ = ["save_config", "ensure_directory_exist"]
 
-import pathlib
+
 import shutil
 
+from pathlib import Path
 
-def save_config(config_save_path: pathlib.Path, config_file_path: pathlib.Path) -> None:
+
+def save_config(config_save_path: Path, config_file_path: Path) -> None:
     """
 
     :param config_save_path:
@@ -22,7 +24,7 @@ def save_config(config_save_path: pathlib.Path, config_file_path: pathlib.Path) 
     shutil.copyfile(str(config_file_path), str(config_save_path))
 
 
-def ensure_directory_exist(model_path: pathlib.Path) -> None:
+def ensure_directory_exist(model_path: Path) -> None:
     """
 
     :param model_path:

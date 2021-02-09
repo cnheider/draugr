@@ -42,6 +42,8 @@ def global_torch_dtype(
 
 
 def set_global_torch_dtype(dtype: torch.dtype) -> None:
+    """
+    """
     global GLOBAL_DTYPE
     GLOBAL_DTYPE = dtype
     torch.set_default_dtype(GLOBAL_DTYPE)
@@ -50,6 +52,8 @@ def set_global_torch_dtype(dtype: torch.dtype) -> None:
 if __name__ == "__main__":
 
     def stest_override():
+        """
+        """
         print(global_torch_dtype(verbose=True))
         print(global_torch_dtype(override=torch.double, verbose=True))
         print(global_torch_dtype(verbose=True))

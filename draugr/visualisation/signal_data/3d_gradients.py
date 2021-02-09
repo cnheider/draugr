@@ -7,14 +7,15 @@ __doc__ = r"""
            Created on 20-01-2021
            """
 
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib import cm, pyplot
 import numpy
+from matplotlib import cm, pyplot
 
 __all__ = ["plot_gradients_3d"]
 
 
 def plot_gradients_3d() -> pyplot.Figure:
+    """
+    """
     fig = pyplot.figure()
     ax = fig.gca(projection="3d")
     X = numpy.arange(-5, 5, 0.25)

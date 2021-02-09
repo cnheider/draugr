@@ -36,7 +36,8 @@ if __name__ == "__main__":
     )
 
     def module_param_histograms():
-
+        """
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -67,12 +68,16 @@ if __name__ == "__main__":
                 weight_bias_histograms(writer, model, step=i, prefix="fan_in")
 
     def signal_plot():
+        """
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
             writer.line("Signal", SIGNAL, step=0)
 
     def fft_plot():
+        """
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -80,6 +85,8 @@ if __name__ == "__main__":
             writer.line("FFT", spectral, title="Frequency", step=0)
 
     def spectral_plot():
+        """
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -88,6 +95,8 @@ if __name__ == "__main__":
             )
 
     def spectral_plot_scipy():
+        """
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -101,6 +110,8 @@ if __name__ == "__main__":
             )
 
     def cepstral_plot():
+        """
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -111,6 +122,8 @@ if __name__ == "__main__":
             writer.figure("STFT_Rosa", fig, step=0)
 
     def mel_cepstral_plot():
+        """
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:

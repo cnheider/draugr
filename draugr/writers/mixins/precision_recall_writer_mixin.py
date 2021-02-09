@@ -9,8 +9,6 @@ __doc__ = r"""
            """
 __all__ = ["PrecisionRecallCurveWriterMixin"]
 
-from typing import Mapping
-
 from warg import drop_unused_kws
 
 
@@ -30,14 +28,5 @@ class PrecisionRecallCurveWriterMixin(ABC):
     ) -> None:
         """
 
-        :param tag:
-        :type tag:
-        :param data:
-        :type data:
-        :param step:
-        :type step:
-        :param dataformats:
-        :type dataformats:
-        :param kwargs:
-        :type kwargs:"""
+        """
         raise NotImplementedError

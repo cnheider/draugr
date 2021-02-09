@@ -24,6 +24,8 @@ def test_asudhweasijdq():
 
 def test_asudhwea213si23jdq():
     def sas(l):
+        """
+        """
         yield from range(l)
 
     for a in progress_bar(sas(129), notifications=False):
@@ -32,6 +34,8 @@ def test_asudhwea213si23jdq():
 
 def test_asudhweasi23jdq():
     def sas():
+        """
+        """
         yield from range(100)
 
     for a in progress_bar(sas(), notifications=False):

@@ -26,10 +26,16 @@ class CategoricalDataset(SupervisedDataset):
     @property
     @abstractmethod
     def categories(self) -> OrderedSet[str]:
+        """
+        """
         raise NotImplementedError
 
     def idx_to_str(self, idx: Sequence[int]) -> Sequence[str]:
+        """
+        """
         return self.categories[idx]
 
     def str_to_idx(self, s: str) -> int:
+        """
+        """
         return self.categories.index(s)

@@ -32,6 +32,8 @@ def progress_bar(
     alias="progress_bar",
     **kwargs
 ) -> Any:
+    """
+    """
     if description is None and auto_describe_iterator:
         from warg import get_first_arg_name
 
@@ -52,12 +54,16 @@ def progress_bar(
 if __name__ == "__main__":
 
     def dsad3123():
+        """
+        """
         from time import sleep
 
         for a in progress_bar([2.13, 8921.9123, 923], notifications=False):
             sleep(1)
 
     def asd21sa():
+        """
+        """
         from time import sleep
 
         pb = progress_bar  # Aliased!
@@ -66,6 +72,8 @@ if __name__ == "__main__":
             sleep(1)
 
     def dict_items():
+        """
+        """
         from time import sleep
 
         class exp_v:

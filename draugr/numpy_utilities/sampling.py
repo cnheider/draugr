@@ -16,6 +16,8 @@ __all__ = ["get_sampler"]
 
 
 def get_sampler(seed: Union[RandomState, int] = None) -> RandomState:
+    """
+    """
     if isinstance(seed, RandomState):
         return seed
     return numpy.random.RandomState(seed)

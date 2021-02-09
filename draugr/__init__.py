@@ -10,7 +10,7 @@ from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.8.8"
+__version__ = "0.8.9"
 __doc__ = """
 Created on 27/04/2019
 
@@ -67,6 +67,8 @@ else:
 
 
 def get_version(append_time: Any = DEVELOP) -> str:
+    """
+    """
     version = __version__
     if not version:
         version = os.getenv("VERSION", "0.0.0")

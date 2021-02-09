@@ -24,6 +24,8 @@ def replay_frames(
     pyplot.axis("off")
 
     def animate(start_episode):
+        """
+        """
         patch.set_data(frames[start_episode])
 
     anim = animation.FuncAnimation(
@@ -40,6 +42,8 @@ def replay_frames(
 if __name__ == "__main__":
 
     def main():
+        """
+        """
         import gym
 
         env = gym.make("Pendulum-v0")

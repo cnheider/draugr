@@ -49,6 +49,8 @@ class ImageStreamPlot(MplDrawer):
 
     @staticmethod
     def close(event):
+        """
+        """
         if event.key == "q":
             pyplot.close(event.canvas.figure)
             raise StopIteration
@@ -57,6 +59,8 @@ class ImageStreamPlot(MplDrawer):
 if __name__ == "__main__":
 
     def asdasf():
+        """
+        """
         import cv2
         from draugr.opencv_utilities import frame_generator
         from draugr.tqdm_utilities import progress_bar

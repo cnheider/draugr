@@ -7,9 +7,9 @@ __doc__ = r"""
            Created on 01/03/2020
            """
 
-import pathlib
+from pathlib import Path
 
-with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 from .supervised_dataset import *

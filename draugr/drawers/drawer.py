@@ -11,10 +11,18 @@ from abc import abstractmethod
 
 __all__ = ["Drawer"]
 
+from warg import drop_unused_kws
+
 
 class Drawer(object):
+    @drop_unused_kws
+    def __init__(self, verbose: bool = False):
+        self._verbose = verbose
+
     @abstractmethod
     def draw(self, *args, **kwargs):
+        """
+    """
         raise NotImplementedError
 
     def __enter__(self):

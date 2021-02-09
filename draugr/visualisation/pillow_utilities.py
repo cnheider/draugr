@@ -10,7 +10,6 @@ __doc__ = r"""
 from typing import Tuple, Union
 
 import numpy
-from PIL import Image
 
 __all__ = [
     "pil_merge_images",

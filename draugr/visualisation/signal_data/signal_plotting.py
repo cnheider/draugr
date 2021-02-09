@@ -9,13 +9,12 @@ __doc__ = r"""
 
 from typing import Sequence
 
-
-from matplotlib import pyplot
 import numpy
+from matplotlib import pyplot
 
 __all__ = ["dissected_channel_plot", "overlay_channel_plot"]
 
-from draugr.numpy_utilities.signal_utilities.subsampling import (
+from draugr.scipy_utilities.subsampling import (
     fft_subsample,
     fir_subsample,
 )
@@ -27,8 +26,11 @@ def overlay_channel_plot(
     channel_names: Sequence[str] = None,
     sampling_rate: int = 16000,
     line_width: float = 0.2,
-    max_resolution=20000,
+    max_resolution: int = 20000,
+    color_func=pyplot.cm.rainbow,
 ) -> None:
+    """
+    """
     n_channels = len(signal)
     sub_time, sub_signal = fft_subsample(signal, max_resolution, sampling_rate)
 
@@ -40,7 +42,7 @@ def overlay_channel_plot(
     else:
         labels = [f"C{i}" for i in range(n_channels)]
 
-    colors = iter(pyplot.cm.rainbow(numpy.linspace(0, 1, n_channels)))
+    colors = iter(color_func(numpy.linspace(0, 1, n_channels)))
     for i, channel in enumerate(sub_signal):
         pyplot.plot(
             sub_time,
@@ -62,7 +64,10 @@ def dissected_channel_plot(
     line_width: float = 0.2,
     col_size=4,
     max_resolution: int = 20000,
+    color_func=pyplot.cm.rainbow,
 ) -> None:
+    """
+    """
     n_channels = len(signal)
     f, axs = pyplot.subplots(
         n_channels, 1, sharex="all", sharey="all", figsize=(n_channels, col_size)
@@ -72,7 +77,7 @@ def dissected_channel_plot(
 
     sub_time, sub_signal = fft_subsample(signal, max_resolution, sampling_rate)
 
-    colors = iter(pyplot.cm.rainbow(numpy.linspace(0, 1, n_channels)))
+    colors = iter(color_func(numpy.linspace(0, 1, n_channels)))
     pyplot.subplots_adjust(wspace=0.2, hspace=0.5)
     pyplot.suptitle(title)
     for i in range(len(sub_signal)):
@@ -86,8 +91,8 @@ def dissected_channel_plot(
 def orthogonal_stereo_channel_3d_plot(
     signal: numpy.ndarray, *, max_resolution: int = 20000, sampling_rate: int = 16000,
 ) -> None:
-    from mpl_toolkits.mplot3d import Axes3D
-
+    """
+    """
     fig = pyplot.figure()
     ax = fig.add_subplot(111, projection="3d")
 
@@ -98,6 +103,8 @@ def orthogonal_stereo_channel_3d_plot(
 
 
 def deinterleaved_channel_plot_file(wav_file):
+    """
+    """
     import wave
 
     with wave.open(wav_file, "r") as wav_file:
@@ -129,6 +136,8 @@ def deinterleaved_channel_plot_file(wav_file):
 if __name__ == "__main__":
 
     def iushjaqdfu():
+        """
+        """
         sr = 1000
         max_res = sr * 4
         t = numpy.arange(sr * 4) / sr
@@ -144,6 +153,8 @@ if __name__ == "__main__":
         pyplot.show()
 
     def decimate_stest():
+        """
+        """
         sr = 1000
         max_res = sr * 4
         t = numpy.arange(sr * 4) / sr

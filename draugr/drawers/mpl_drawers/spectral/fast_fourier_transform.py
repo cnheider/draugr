@@ -117,6 +117,8 @@ class FastFourierTransformPlot(MplDrawer):
 if __name__ == "__main__":
 
     def a():
+        """
+        """
         duration_sec = 4
         mul = 1000
         sampling_Hz = 44

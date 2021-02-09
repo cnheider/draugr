@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import numpy
+import pytest
 
 from draugr.drawers.mpl_drawers.distribution_plot import DistributionPlot
 
@@ -11,6 +12,7 @@ __doc__ = r"""
            """
 
 
+@pytest.mark.skip
 def test_moving_distribution_plot():
     data_generator = iter(
         [

@@ -7,9 +7,9 @@ __doc__ = r"""
            Created on 14/01/2020
            """
 
-import pathlib
+from pathlib import Path
 
-with open(pathlib.Path(__file__).parent / "README.md", "r") as this_init_file:
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 from .business import *
@@ -26,3 +26,4 @@ from .platform_selection import *
 from .strings import *
 from .resources import *
 from .powers import *
+from .contexts import *

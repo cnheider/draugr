@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import csv
-import pathlib
+
 
 from apppath import ensure_existence
 from draugr import PROJECT_APP_PATH
@@ -16,12 +16,14 @@ Created on 27/04/2019
 
 __all__ = ["CSVWriter"]
 
+from pathlib import Path
+
 
 class CSVWriter(Writer):
     """"""
 
     @staticmethod
-    def get_csv_writer(path: pathlib.Path = pathlib.Path.home() / "Models"):
+    def get_csv_writer(path: Path = Path.home() / "Models"):
         """
 
         :param path:
