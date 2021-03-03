@@ -30,25 +30,31 @@ def progress_bar(
     auto_total_generator: bool = True,
     auto_describe_iterator: bool = True,  # DOES NOT WORK IS THIS FUNCTION IS ALIAS does not match!
     alias="progress_bar",
-    **kwargs
+    disable: bool = False,
+    **kwargs,
 ) -> Any:
     """
     """
-    if description is None and auto_describe_iterator:
-        from warg import get_first_arg_name
+    if not disable:
+        if description is None and auto_describe_iterator:
+            from warg import get_first_arg_name
 
-        description = get_first_arg_name(alias)
+            description = get_first_arg_name(alias)
 
-    if total is None and isinstance(iterable, Generator) and auto_total_generator:
-        iterable, ic = tee(iterable, 2)
-        total = len(list(ic))
-    if notifications:
-        with JobNotificationSession(description):
-            yield from tqdm.tqdm(
-                iterable, description, leave=leave, total=total, **kwargs
-            )
-        return
-    yield from tqdm.tqdm(iterable, description, leave=leave, total=total, **kwargs)
+        if total is None and isinstance(iterable, Generator) and auto_total_generator:
+            iterable, ic = tee(iterable, 2)
+            total = len(list(ic))
+            if total == 0:
+                print(f"WARNING zero length iterable - {description}:{iterable}")
+        if notifications:
+            with JobNotificationSession(description):
+                yield from tqdm.tqdm(
+                    iterable, description, leave=leave, total=total, **kwargs
+                )
+            return
+        yield from tqdm.tqdm(iterable, description, leave=leave, total=total, **kwargs)
+    else:
+        yield from iterable
 
 
 if __name__ == "__main__":

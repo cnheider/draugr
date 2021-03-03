@@ -14,6 +14,12 @@ from matplotlib.figure import Figure
 from draugr import PROJECT_APP_PATH
 from draugr.python_utilities import sprint
 from draugr.torch_utilities import to_tensor
+from draugr.torch_utilities.writers.torch_module_writer.module_parameter_writer_mixin import (
+    ModuleParameterWriterMixin,
+)
+from draugr.torch_utilities.writers.torch_module_writer.module_writer_parameters import (
+    weight_bias_histograms,
+)
 from draugr.writers import Writer
 from draugr.writers.mixins import (
     BarWriterMixin,
@@ -57,9 +63,13 @@ class TensorBoardPytorchWriter(
     InstantiationWriterMixin,
     PrecisionRecallCurveWriterMixin,
     EmbedWriterMixin,
+    ModuleParameterWriterMixin,
 ):
     """
     Provides a pytorch-tensorboard-implementation writer interface"""
+
+    def parameters(self, tag: str, model: torch.nn.Module, step: int, **kwargs) -> None:
+        weight_bias_histograms(self, model, prefix=tag, step=step, **kwargs)
 
     @passes_kws_to(SummaryWriter.add_embedding)
     def embed(
@@ -119,7 +129,7 @@ class TensorBoardPytorchWriter(
     def instance(self, instance: dict, metrics: dict) -> None:
         """
 
-        Not finished!
+        TODO: Not finished!
 
         :param instance:
         :param metrics:

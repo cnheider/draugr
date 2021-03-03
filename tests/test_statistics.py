@@ -7,8 +7,6 @@ __doc__ = r"""
            Created on 17-12-2020
            """
 
-from statistics import mean
-
 from draugr.numpy_utilities import root_mean_square
 
 
@@ -19,5 +17,8 @@ def test_root_mean_square_signed(asad: int = 60):
 
 
 def test_root_mean_square_unsigned(asad: int = 60):
+    from statistics import mean
+
     s = [i + asad // 2 for i in range(asad)]
-    # assert root_mean_square(s) == mean(s)..
+    a = root_mean_square(s)
+    # assert a == mean(s)..

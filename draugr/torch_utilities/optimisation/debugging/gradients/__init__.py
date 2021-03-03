@@ -10,3 +10,4 @@ __doc__ = r"""
 from .checking import *
 from .flow import *
 from .grad_trace import *
+from .guided import *

@@ -13,3 +13,4 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 from .display_3d_depth_image import *
 from .display_depth_image import *
 from .replay_frames import *
+from .multiple import *

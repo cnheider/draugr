@@ -14,7 +14,6 @@ __doc__ = ""
 
 from warg import GDKC, drop_unused_kws, passes_kws_to
 
-
 # import keyboard
 
 __all__ = ["add_early_stopping_key_combination", "CaptureEarlyStop"]
@@ -27,10 +26,10 @@ def add_early_stopping_key_combination(
 
     """
 
-  :param callbacks:
-  :param has_x_server:
-  :param verbose:
-  :return:"""
+:param callbacks:
+:param has_x_server:
+:param verbose:
+:return:"""
     if not has_x_server:
         return
 
@@ -65,7 +64,7 @@ def add_early_stopping_key_combination(
 
     def on_press(key):
         """
-    """
+"""
         if any([key in COMBO for COMBO in combinations]):
             if verbose:
                 print(f"Adding key {key}")
@@ -78,7 +77,7 @@ def add_early_stopping_key_combination(
 
     def on_release(key):
         """
-    """
+"""
         if any([key in combo for combo in combinations]):
             if key in current:
                 if verbose:
@@ -90,7 +89,7 @@ def add_early_stopping_key_combination(
 
 class CaptureEarlyStop(contextlib.AbstractContextManager):
     """
-  Context for early stopping a loop"""
+Context for early stopping a loop"""
 
     @passes_kws_to(add_early_stopping_key_combination)
     def __init__(self, *args, **kwargs):
@@ -110,13 +109,13 @@ if __name__ == "__main__":
 
     def c():
         """
-    """
+"""
         print("start")
         RUN = True
 
         def stop_loop():
             """
-      """
+"""
             global RUN
             RUN = False
 
@@ -127,7 +126,7 @@ if __name__ == "__main__":
 
     def b():  # DOES NOT WORK!
         """
-    """
+"""
         print("start2")
         with CaptureEarlyStop(GDKC(exit, code=0)) as _:
             while True:
