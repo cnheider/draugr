@@ -29,7 +29,7 @@ def spectral_plot3d(
     time: numpy.ndarray, frequencies: numpy.ndarray, fxt: numpy.ndarray
 ) -> pyplot.Figure:
     """
-    return new figure"""
+  return new figure"""
     assert fxt.shape == (*frequencies.shape, *time.shape)
     assert fxt.dtype == numpy.complex
 
@@ -92,7 +92,7 @@ if __name__ == "__main__":
 
     def asdijaisd():
         """
-        """
+    """
         sr = 1000
         t = numpy.arange(sr * 4) / sr
         # noise = numpy.random.rand(sr * 2) * 0.001
@@ -104,13 +104,13 @@ if __name__ == "__main__":
 
     def aisjd():
         """
-        """
+    """
         fig = pyplot.figure()
         ax = axes3d.Axes3D(fig)
 
         def gen(n):
             """
-            """
+      """
             phi = 0
             while phi < 2 * numpy.pi:
                 yield numpy.array([numpy.cos(phi), numpy.sin(phi), phi])
@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
         def update(num, data, line):
             """
-            """
+      """
             line.set_data(data[:2, :num])
             line.set_3d_properties(data[2, :num])
 

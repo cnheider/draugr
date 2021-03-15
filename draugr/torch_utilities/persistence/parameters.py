@@ -31,6 +31,7 @@ __all__ = [
     "save_parameters_and_configuration",
     "save_model_parameters",
 ]
+
 from pathlib import Path
 
 
@@ -46,12 +47,12 @@ def load_latest_model_parameters(
 ]:
     """
 
-    :param optimiser:
-    :param model:
-    :type model:
-    :param model_directory:
-    :param model_name:
-    :return:"""
+  :param optimiser:
+  :param model:
+  :type model:
+  :param model_directory:
+  :param model_name:
+  :return:"""
     if model:
         model_path = model_directory / model_name
         list_of_files = list(model_path.glob(f"*{parameter_extension}"))
@@ -95,15 +96,15 @@ def save_parameters_and_configuration(
 ) -> None:
     """
 
-    :param optimiser:
-    :type optimiser:
-    :param optimiser_save_path:
-    :type optimiser_save_path:
-    :param model:
-    :param model_save_path:
-    :param config_save_path:
-    :param loaded_config_file_path:
-    :return:"""
+  :param optimiser:
+  :type optimiser:
+  :param optimiser_save_path:
+  :type optimiser_save_path:
+  :param model:
+  :param model_save_path:
+  :param config_save_path:
+  :param loaded_config_file_path:
+  :return:"""
     torch.save(model.state_dict(), str(model_save_path))
     if optimiser:
         torch.save(optimiser.state_dict(), str(optimiser_save_path))
@@ -122,12 +123,12 @@ def save_model_parameters(
 ) -> None:
     """
 
-    :param optimiser:
-    :param model:
-    :param save_directory:
-    :param config_file_path:
-    :param model_name:
-    :return:"""
+  :param optimiser:
+  :param model:
+  :param save_directory:
+  :param config_file_path:
+  :param model_name:
+  :return:"""
     model_date = datetime.datetime.now()
 
     model_time_rep = model_date.strftime("%Y%m%d%H%M%S")

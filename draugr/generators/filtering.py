@@ -27,7 +27,7 @@ def symbol_filter(
     exclusion_mode: FilterModeEnum = FilterModeEnum.exclude_postfix,
 ):
     """
-    """
+  """
     if exclusion_mode == FilterModeEnum.exclude_fully:
         yield from filter(lambda s: symbol not in s, string_stream)
     elif (
@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     def asijsda():
         """
-        """
+    """
         strings = [
             " # aasd # sad ",
             " faojasasd # oiwaos ",

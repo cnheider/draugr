@@ -14,7 +14,7 @@ from draugr.gtk_utilities import GtkThemePreferences
 
 def main():
     """
-    """
+  """
     with GtkThemePreferences() as a:
         a.prefer_dark_mode = not a.prefer_dark_mode
 

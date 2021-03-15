@@ -17,7 +17,7 @@ __all__ = ["resize_array"]
 
 def resize_array(x: numpy.ndarray, size: Tuple[int, int]) -> numpy.ndarray:
     """
-    """
+  """
     assert x.ndim in [3, 4], "Only 3D and 4D Tensors allowed!"
 
     if x.ndim == 4:  # 4D Tensor

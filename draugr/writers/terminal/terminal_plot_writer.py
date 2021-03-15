@@ -40,7 +40,7 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
         **kwargs,
     ) -> None:
         """
-        """
+    """
         self.E.write(terminalise_image(render_image(data, scale=(28, 28))))
 
     def _open(self):
@@ -59,7 +59,7 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
     def stats(self, value: MetricCollection, step_i: int = None):
         """
 
-        :type value: object"""
+    :type value: object"""
         if step_i:
             if self.filter(self._stats_tag):
                 self._stats(value, self._counter[self._stats_tag])
@@ -94,14 +94,14 @@ if __name__ == "__main__":
 
     '''
 def train_episodically_old(self,
-           env,
-           test_env,
-           *,
-           rollouts=2000,
-           render=False,
-           render_frequency=100,
-           stat_frequency=10,
-           ):
+         env,
+         test_env,
+         *,
+         rollouts=2000,
+         render=False,
+         render_frequency=100,
+         stat_frequency=10,
+         ):
 
 E = range(1, rollouts)
 E = tqdm(E, f"Episode: {1}", leave=False, disable=not render)
@@ -138,14 +138,14 @@ return NOD(model=self._distribution_parameter_regressor, stats=stats)
 
 
 def train_episodically_old(self,
-           _environment,
-           *,
-           rollouts=10000,
-           render=False,
-           render_frequency=100,
-           stat_frequency=100,
-           **kwargs,
-           ):
+         _environment,
+         *,
+         rollouts=10000,
+         render=False,
+         render_frequency=100,
+         stat_frequency=100,
+         **kwargs,
+         ):
 """
 :param _environment:
 :type _environment:,0

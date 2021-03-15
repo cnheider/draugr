@@ -17,7 +17,7 @@ from pandas.core.dtypes.missing import array_equivalent
 
 def duplicate_columns(frame: pandas.DataFrame) -> List[str]:
     """
-    """
+  """
     groups = frame.columns.to_series().groupby(frame.dtypes).groups
     dups = []
 

@@ -24,9 +24,9 @@ from warg import passes_kws_to
 
 class DiscreteScrollPlot(MplDrawer):
     """
-    Waterfall plot
-    only supports a single trajectory at a time, do not supply parallel trajectories to draw method, will get truncated to num actions, effectively dropping actions for other envs than the first.
-    """
+  Waterfall plot
+  only supports a single trajectory at a time, do not supply parallel trajectories to draw method, will get truncated to num actions, effectively dropping actions for other envs than the first.
+  """
 
     @passes_kws_to(MplDrawer.__init__)
     def __init__(
@@ -107,8 +107,8 @@ class DiscreteScrollPlot(MplDrawer):
     def _draw(self, data: Sequence[int]):
         """
 
-        :param data:
-        :return:"""
+    :param data:
+    :return:"""
 
         array = self.im.get_array()
 
@@ -151,7 +151,7 @@ def discrete_scroll_plot(
     overwrite: bool = False,
 ):
     """
-    """
+  """
     d = vector_provider.__next__()
     num_actions = len(d)
     if not window_length:
@@ -172,7 +172,7 @@ def discrete_scroll_plot(
 
     def update_fig(n):
         """
-        """
+    """
         data = vector_provider.__next__()
         array = im.get_array()
 
@@ -244,13 +244,13 @@ if __name__ == "__main__":
 
     def siajdisajd():
         """
-        """
+    """
         import queue
         import threading
 
         def ma():
             """
-            """
+      """
             data = queue.Queue(100)
 
             class QueueGen:
@@ -265,24 +265,24 @@ if __name__ == "__main__":
 
                 def add(self, a):
                     """
-                    """
+          """
                     return data.put(a)
 
                 def get(self):
                     """
-                    """
+          """
                     return data.get()
 
             def get_sample(num_actions=3):
                 """
-                """
+        """
                 a = numpy.zeros(num_actions)
                 a[numpy.random.randint(0, num_actions)] = 1.0
                 return a
 
             class MyDataFetchClass(threading.Thread):
                 """
-                """
+        """
 
                 def __init__(self, data):
 
@@ -292,7 +292,7 @@ if __name__ == "__main__":
 
                 def run(self):
                     """
-                    """
+          """
                     while True:
                         self._data.add(get_sample())
 
@@ -309,7 +309,7 @@ if __name__ == "__main__":
 
         def asda():
             """
-            """
+      """
             s = DiscreteScrollPlot(3, default_delta=None)
             for _ in range(100):
                 s.draw(numpy.random.rand(3))

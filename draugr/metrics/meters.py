@@ -25,10 +25,10 @@ class Meter:
     def update(self, val, n: int = 1):
         """
 
-        :param val:
-        :type val:
-        :param n:
-        :type n:"""
+    :param val:
+    :type val:
+    :param n:
+    :type n:"""
         self.val = val
         self.sum += val * n
         self.count += n
@@ -45,9 +45,9 @@ class AverageMeter(Meter):
     def update(self, val, n: int = 1):
         """
 
-        :param val:
-        :type val:
-        :param n:
-        :type n:"""
+    :param val:
+    :type val:
+    :param n:
+    :type n:"""
         super().update(val, n)
         self.avg = self.sum / self.count

@@ -19,8 +19,8 @@ def display_depth_map(
 ):
     """
 
-    :param data_set_directory:
-    :type data_set_directory:"""
+  :param data_set_directory:
+  :type data_set_directory:"""
     # img = Image.open(data_set_directory + file_name).convert('LA')
     # img_array =numpy.asarray(img)
     # print(img_array.shape)

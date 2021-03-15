@@ -14,8 +14,8 @@ __all__ = ["DisplaySampler"]
 
 class DisplaySampler(object):
     """
-    # A class that will downsample the data and recompute when zoomed.
-    """
+  # A class that will downsample the data and recompute when zoomed.
+  """
 
     def __init__(self, x_data, y_data, verbose: bool = False):
         self._y_data = y_data
@@ -26,7 +26,7 @@ class DisplaySampler(object):
 
     def downsample(self, xstart, xend):
         """
-        """
+    """
         mask = (self._x_data > xstart) & (
             self._x_data < xend
         )  # get the points in the view range
@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
     def asdsad():
         """
-        """
+    """
         from matplotlib import pyplot
 
         # Create a signal

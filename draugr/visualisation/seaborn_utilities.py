@@ -9,9 +9,10 @@ __doc__ = r"""
 
 import seaborn
 
-__all__ = ["despine_all", "set_y_log_scale"]
+__all__ = ["despine_all", "set_y_log_scale", "VisualisationErrorStyle"]
 
 from matplotlib import pyplot
+from enum import Enum
 from matplotlib.axes import Axes
 
 
@@ -29,6 +30,11 @@ def set_y_log_scale(ax: Axes = None) -> None:
         ax = pyplot.gca()
 
     ax.set(yscale="log")
+
+
+class VisualisationErrorStyle(Enum):
+    Band = "band"
+    Bar = "bars"
 
 
 if __name__ == "__main__":

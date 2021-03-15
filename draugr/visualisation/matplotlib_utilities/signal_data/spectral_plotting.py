@@ -24,8 +24,8 @@ def spectral_plot(
     fig_size: Sequence = (4.8, 2.4),
 ) -> pyplot.Figure:
     """
-    return new figure
-    """
+  return new figure
+  """
     assert fxt.shape == (*frequencies.shape, *time.shape)
     f, ax = pyplot.subplots(figsize=fig_size)
     ax.pcolormesh(time, frequencies / 1000, 10 * numpy.log10(fxt), cmap="viridis")
@@ -83,7 +83,7 @@ if __name__ == "__main__":
 
     def asdijaisd():
         """
-        """
+    """
         sr = 1000
         t = numpy.arange(sr * 4) / sr
         # noise = numpy.random.rand(sr * 2) * 0.001

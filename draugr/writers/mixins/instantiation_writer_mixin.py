@@ -16,11 +16,11 @@ from warg import drop_unused_kws
 
 class InstantiationWriterMixin(ABC):
     """
-    Writer mixin that provides an interface for 'writing' instantiation"""
+  Writer mixin that provides an interface for 'writing' instantiation"""
 
     @drop_unused_kws
     @abstractmethod
     def instance(self, instance: Mapping, metrics: Mapping) -> None:
         """
-    """
+"""
         raise NotImplementedError

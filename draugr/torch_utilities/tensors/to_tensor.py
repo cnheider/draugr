@@ -12,26 +12,31 @@ __doc__ = ""
 __all__ = ["to_tensor"]
 
 from draugr.torch_utilities.tensors.types import numpy_to_torch_dtype
+from warg import Number
 
 
 # @passes_kws_to(torch.Tensor.to)
 def to_tensor(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, Sequence, int, float],
-    dtype: torch.dtype = None,  # if None, torch.float or equivalent numpy.dtype is used, can be used to force dtype
+    dtype: Union[
+        torch.dtype, object
+    ] = None,  # if None, torch.float or equivalent numpy.dtype is used, can be used to force dtype
     device: Union[str, torch.device] = "cpu",
     **kwargs
 ) -> torch.Tensor:
     """
 
-    :param obj:
-    :param dtype:
-    :param device:
-    :param kwargs:
-    :return:"""
+  :param obj:
+  :param dtype:
+  :param device:
+  :param kwargs:
+  :return:"""
 
     if dtype is None:
         use_dtype = torch.float
     else:
+        if dtype == float:
+            dtype = torch.float  # TODO: LOOKUP TABLE OF TYPES
         use_dtype = dtype
 
     # torch.as_tensor()

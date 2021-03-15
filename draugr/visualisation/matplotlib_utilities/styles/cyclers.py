@@ -7,22 +7,39 @@ __doc__ = r"""
            Created on 18-02-2021
            """
 
-__all__ = ["monochrome_hatch_cycler", "simple_hatch_cycler"]
+__all__ = [
+    "monochrome_hatch_cycler",
+    "simple_hatch_cycler",
+    "monochrome_line_no_marker_cycler",
+    "monochrome_line_cycler",
+]
 
+from draugr.visualisation.matplotlib_utilities.styles.lines import (
+    line_styles,
+    marker_styles,
+)
 from matplotlib import cycler
-
-increasing_density_hatch = (
-    b * a for a in range(2, 3 + 2) for b in ("\\", "/", "x", ".",)
+from draugr.visualisation.matplotlib_utilities.styles.hatching import (
+    four_times_denser_hatch,
 )
-simple_hatch_cycler = cycler("hatch", increasing_density_hatch)
+
+simple_hatch_cycler = cycler("hatch", four_times_denser_hatch)
 monochrome_hatch_cycler = (
-    cycler("color", "w") * cycler("edgecolor", "k") * simple_hatch_cycler
+    cycler("color", "w")
+    * cycler("facecolor", "w")
+    * cycler("edgecolor", "k")
+    * simple_hatch_cycler
 )
 
-line_styles = ("-", "--", ":", "-.")
-marker_styles = (",", "^", "o", "x", "s")
+monochrome_line_no_marker_cycler = cycler("color", ["k"]) * cycler(
+    "linestyle", line_styles
+)
+
 monochrome_line_cycler = (
     cycler("color", ["k"])
     * cycler("linestyle", line_styles)
     * cycler("marker", marker_styles)
 )
+
+if __name__ == "__main__":
+    print([a for _, a in zip(range(10), monochrome_line_cycler)])

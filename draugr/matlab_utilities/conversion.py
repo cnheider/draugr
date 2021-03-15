@@ -25,14 +25,14 @@ from draugr.matlab_utilities.matlab_conversion_utilities import (
 
 def matlab_to_ndarray(matlab_array: Any) -> numpy.ndarray:
     """
-  Convert matlab mlarray to numpy array
-  The conversion is realised without copy for real data thank to the frombuffer
-  protocol. The np ndarray type depends on the type of matlab data.
+Convert matlab mlarray to numpy array
+The conversion is realised without copy for real data thank to the frombuffer
+protocol. The np ndarray type depends on the type of matlab data.
 
-  Paramerters
-  -----------
-  matlab_array : mlarray
-  the matlab array to convert
+Paramerters
+-----------
+matlab_array : mlarray
+the matlab array to convert
 
 Returns
 -------
@@ -45,15 +45,15 @@ Complex 2D array
 >>> mc=matlab.double([[(1+1j),(0.3+0j),1j],[(-1+1.2j),0j,(1+1j)]], is_complex=True)
 >>> matlab_to_ndarray(mc)
 array([[ 1. +1.j ,  0.3+0.j ,  0. +1.j ],
-       [-1. +1.2j,  0. +0.j ,  1. +1.j ]])
+     [-1. +1.2j,  0. +0.j ,  1. +1.j ]])
 >>> m3 = matlab.double([[[1.0,10.0],[2.0,20.0],[3.0,30.0]],[[4.0,40.0],[5.0,50.0],[6.0,60.0]]])
 >>> np3 = matlab_to_ndarray(m3)
 >>> np3[...,0]
 array([[1., 2., 3.],
-       [4., 5., 6.]])
+     [4., 5., 6.]])
 >>> np3[...,1]
 array([[10., 20., 30.],
-       [40., 50., 60.]])
+     [40., 50., 60.]])
 >>> np3.flags['OWNDATA'] # no copy
 False
 References
@@ -62,7 +62,7 @@ https://stackoverflow.com/questions/34155829/how-to-efficiently-convert-matlab-e
 
 
 for real:
-  ma._data.itemsize # get item size
+ma._data.itemsize # get item size
 ma._data.typecode # get item type
 ma._python_type
 https://docs.scipy.org/doc/numpy/reference/generated/numpy.dtype.html#numpy.dtype
@@ -84,10 +84,10 @@ U 	Unicode
 V 	void
 
 
-  :param matlab_array:
+:param matlab_array:
 :param x:
 :return:
-  """
+"""
 
     if "mlarray" not in str(type(matlab_array)):
         raise TypeError(f"Expected matlab.mlarray. Got {type(matlab_array)}")
@@ -134,37 +134,37 @@ V 	void
 def ndarray_to_matlab(numpy_array):
     """ Conversion of a numpy array to matlab mlarray
 
-  The conversion is realised without copy for real data. First an empty initialization is realized.
-  Then the numpy array is affected to the _data field. Thus the data field is not really an
-  array.array but a numpy array. Matlab doesn't see anything...
-  For complex data, the strides seems to not work properly with matlab.double.
+The conversion is realised without copy for real data. First an empty initialization is realized.
+Then the numpy array is affected to the _data field. Thus the data field is not really an
+array.array but a numpy array. Matlab doesn't see anything...
+For complex data, the strides seems to not work properly with matlab.double.
 
-  Paramerters
-  -----------
-  numpy_array : numpy array
-      the array to convert
-  Returns
-  -------
-  matlab_array : mlarray
-      the converted array that can be passe to matlab
-  Examples
-  --------
-  >>> npi=numpy.array([[1,2,3],[4,5,6],[7,8,9],[10,11,12]],dtype=numpy.int64,order='C')
-  >>> ndarray_to_matlab(npi)
-  matlab.int64([[1,2,3],[4,5,6],[7,8,9],[10,11,12]])
-  >>> npif=numpy.array([[1,2,3],[4,5,6],[7,8,9],[10,11,12]],dtype=numpy.int64,order='F')
-  >>> ndarray_to_matlab(npif)
-  matlab.int64([[1,2,3],[4,5,6],[7,8,9],[10,11,12]])
+Paramerters
+-----------
+numpy_array : numpy array
+    the array to convert
+Returns
+-------
+matlab_array : mlarray
+    the converted array that can be passe to matlab
+Examples
+--------
+>>> npi=numpy.array([[1,2,3],[4,5,6],[7,8,9],[10,11,12]],dtype=numpy.int64,order='C')
+>>> ndarray_to_matlab(npi)
+matlab.int64([[1,2,3],[4,5,6],[7,8,9],[10,11,12]])
+>>> npif=numpy.array([[1,2,3],[4,5,6],[7,8,9],[10,11,12]],dtype=numpy.int64,order='F')
+>>> ndarray_to_matlab(npif)
+matlab.int64([[1,2,3],[4,5,6],[7,8,9],[10,11,12]])
 
-  >>> npcf=numpy.array([[1,2+0.2j,3],[4,5,6],[7,8,9],[10+0.1j,11,12]],dtype=numpy.complex,order='F')
-  >>> ndarray_to_matlab(npcf)
-  matlab.double([[(1+0j),(2+0.2j),(3+0j)],[(4+0j),(5+0j),(6+0j)],[(7+0j),(8+0j),(9+0j)],[(10+0.1j),(11+0j),(12+0j)]], is_complex=True)
+>>> npcf=numpy.array([[1,2+0.2j,3],[4,5,6],[7,8,9],[10+0.1j,11,12]],dtype=numpy.complex,order='F')
+>>> ndarray_to_matlab(npcf)
+matlab.double([[(1+0j),(2+0.2j),(3+0j)],[(4+0j),(5+0j),(6+0j)],[(7+0j),(8+0j),(9+0j)],[(10+0.1j),(11+0j),(12+0j)]], is_complex=True)
 
-  References
-  -----------
-  https://scipy-lectures.org/advanced/advanced_numpy/ (strides)
+References
+-----------
+https://scipy-lectures.org/advanced/advanced_numpy/ (strides)
 
-  """
+"""
 
     if "ndarray" not in str(type(numpy_array)):  # check numpy
         raise TypeError(f"Expect  numpy.ndarray. Got {type(numpy_array)}")
@@ -187,9 +187,9 @@ def ndarray_to_matlab(numpy_array):
         )  # create empty matlab.mlarray
         # associate the data
         """
-    # associate the data (no copy), works on 2D array only...
-    matlab_array._real=numpy_array.ravel(order=order) # allow to map real and imaginary part continuously!
-    """
+# associate the data (no copy), works on 2D array only...
+matlab_array._real=numpy_array.ravel(order=order) # allow to map real and imaginary part continuously!
+"""
         cpx = numpy_array.ravel(order="F")  # copy except for fortran like array
         matlab_array._real = (
             cpx.real.ravel()
@@ -228,17 +228,17 @@ def ndarray_to_matlab(numpy_array):
 def dict_to_sparse(K):
     """Create a scipy sparse CSR matrix from dictionary
 
-  Parameters
-  -----------
-  K : dictionary K['i'], K['j'] and K['s']
-      The sparse matrix in the coo format. K['i'], K['j'] contains the row
-      and column index (int64) and the values K['s']  (double or complex)
+Parameters
+-----------
+K : dictionary K['i'], K['j'] and K['s']
+    The sparse matrix in the coo format. K['i'], K['j'] contains the row
+    and column index (int64) and the values K['s']  (double or complex)
 
-  Returns
-  -------
-  Ksp :  sparse.csr_matrix
-      The converted sparse matrix. csr is faster for computation.
-  """
+Returns
+-------
+Ksp :  sparse.csr_matrix
+    The converted sparse matrix. csr is faster for computation.
+"""
     # get shape
     shape = tuple(K["shape"]._data)
     # -1 because matlab index start to 1

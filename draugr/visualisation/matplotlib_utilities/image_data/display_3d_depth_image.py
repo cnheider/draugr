@@ -21,8 +21,8 @@ def display_depth_map_3d(
 ):
     """
 
-    :param data_set_directory:
-    :type data_set_directory:"""
+  :param data_set_directory:
+  :type data_set_directory:"""
     # lena = scipy.misc.ascent()
 
     # downscaling has a 'smoothing' effect

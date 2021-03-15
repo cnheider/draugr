@@ -26,9 +26,9 @@ from warg import AlsoDecorator
 
 class TorchCacheSession(AlsoDecorator):
     """
-    # speed up evaluating after training finished
-    # NOTE: HAS THE SIDE EFFECT OF CLEARING CACHE, NON RECOVERABLE
-    """
+  # speed up evaluating after training finished
+  # NOTE: HAS THE SIDE EFFECT OF CLEARING CACHE, NON RECOVERABLE
+  """
 
     def __init__(self, using_cuda: bool = global_torch_device().type == "cuda"):
         self.using_cuda = using_cuda
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     def a():
         """
-        """
+    """
         print(torch.cuda.memory_cached(global_torch_device()))
         with TorchCacheSession():
             torch.tensor([0.0], device=global_torch_device())
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     def b():
         """
-        """
+    """
         model = torch.nn.Sequential(torch.nn.Linear(1, 1), torch.nn.Dropout(0.1))
         print(model.training)
         with TorchEvalSession(model):
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
     def c():
         """
-        """
+    """
         model = torch.nn.Sequential(torch.nn.Linear(1, 1), torch.nn.Dropout(0.1))
         model.eval()
         print(model.training)
@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
     def d():
         """
-        """
+    """
         print(
             global_torch_device(
                 override=global_torch_device(cuda_device_preference=False)
@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
     def e():
         """
-        """
+    """
         print(
             global_torch_device(
                 override=global_torch_device(cuda_device_preference=True)

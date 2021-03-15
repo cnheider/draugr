@@ -24,7 +24,7 @@ def transp_conv2d_output_shape(
     out_pad: Union[int, Tuple[int, int]] = 0,
 ) -> Tuple[int, int]:
     """
-    """
+  """
     (h_w, kernel_size, stride, pad, dilation, out_pad) = (
         replicate(h_w),
         replicate(kernel_size),
@@ -62,7 +62,7 @@ def transp_conv2d_padding_sizes(
     out_pad: Union[int, Tuple[int, int]] = 0,
 ) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """
-    """
+  """
     (h_w_in, h_w_out, kernel_size, stride, dilation, out_pad) = (
         replicate(h_w_in),
         replicate(h_w_out),

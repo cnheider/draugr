@@ -15,6 +15,7 @@ Created on 27/04/2019
 @author: cnheider
 """
 __all__ = ["LogWriter"]
+
 from pathlib import Path
 
 
@@ -30,12 +31,12 @@ class LogWriter(Writer):
     ) -> logging.Logger:
         """
 
-        :param path:
-        :type path:
-        :param write_to_std_out:
-        :type write_to_std_out:
-        :return:
-        :rtype:"""
+    :param path:
+    :type path:
+    :param write_to_std_out:
+    :type write_to_std_out:
+    :return:
+    :rtype:"""
         ensure_existence(path, declare_file=True, overwrite_on_wrong_type=True)
 
         handlers = [logging.FileHandler(filename=str(path))]

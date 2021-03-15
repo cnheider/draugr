@@ -10,10 +10,16 @@ __doc__ = r"""
 from pathlib import Path
 from typing import Iterable, Sequence, Tuple, Union
 
-from matplotlib import pyplot, rcParams
+from matplotlib import pyplot
 from warg import AlsoDecorator, passes_kws_to
 
-__all__ = ["FigureSession", "SubplotSession", "MonoChromeStyleSession"]
+__all__ = [
+    "FigureSession",
+    "SubplotSession",
+    "MonoChromeStyleSession",
+    "NoOutlineSession",
+    "OutlineSession",
+]
 
 from draugr.visualisation.matplotlib_utilities.matplotlib_utilities import (
     simple_hatch_cycler,
@@ -27,7 +33,7 @@ from draugr.visualisation.matplotlib_utilities.quirks import (
 
 class FigureSession(AlsoDecorator):
     """
-  """
+"""
 
     @passes_kws_to(pyplot.figure)
     def __init__(self, **kws):
@@ -44,7 +50,7 @@ class FigureSession(AlsoDecorator):
 
 class SubplotSession(AlsoDecorator):
     """
-  """
+"""
 
     @passes_kws_to(pyplot.subplots)
     def __init__(self, return_self: bool = False, **kws):
@@ -69,7 +75,7 @@ class SubplotSession(AlsoDecorator):
 
 class MonoChromeStyleSession(AlsoDecorator):
     """
-  """
+"""
 
     def __init__(self, prop_cycler=monochrome_line_cycler):
         self.ctx = pyplot.style.context(
@@ -79,7 +85,7 @@ class MonoChromeStyleSession(AlsoDecorator):
 
     def __enter__(self) -> pyplot.Figure:
         a = self.ctx.__enter__()
-        rcParams.update({"axes.prop_cycle": self.prop_cycler})
+        pyplot.rcParams.update({"axes.prop_cycle": self.prop_cycler})
         return a
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -89,17 +95,51 @@ class MonoChromeStyleSession(AlsoDecorator):
         self.ctx.__exit__(exc_type, exc_val, exc_tb)
 
 
+class NoOutlineSession(AlsoDecorator):
+    def __init__(self):
+        self._rcParams_copy = pyplot.rcParams.copy()
+
+    def __enter__(self) -> bool:
+        pyplot.rcParams.update(
+            {
+                "patch.edgecolor": "none",
+                "patch.force_edgecolor": False,
+                "patch.linewidth": 0,
+            }
+        )
+        return True
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pyplot.rcParams = self._rcParams_copy
+
+
+class OutlineSession(AlsoDecorator):
+    def __init__(self):
+        self._rcParams_copy = pyplot.rcParams.copy()
+
+    def __enter__(self) -> bool:
+        pyplot.rcParams.update(
+            {
+                "patch.edgecolor": "k",
+                "patch.force_edgecolor": True,
+                "patch.linewidth": 1.0,
+            }
+        )
+        return True
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pyplot.rcParams = self._rcParams_copy
+
+
 if __name__ == "__main__":
 
     def deiajsd():
         """
-    """
+"""
         for a in range(100):
             with SubplotSession() as a:
                 fig, (ax1,) = a
                 ax1.set_ylabel("test")
-
-    deiajsd()
 
     def asiuhdsada():
 
@@ -114,3 +154,23 @@ if __name__ == "__main__":
 
         legend()
         pyplot.show()
+
+    def no_border_boxplot():
+        with NoOutlineSession():
+            import numpy
+
+            num = 5
+            pyplot.bar(range(num), numpy.random.rand(num))
+        pyplot.show()
+
+    def border_boxplot():
+        with OutlineSession():
+            import numpy
+
+            num = 5
+            pyplot.bar(range(num), numpy.random.rand(num))
+            pyplot.show()
+
+    # deiajsd()
+    no_border_boxplot()
+    # border_boxplot()

@@ -19,9 +19,9 @@ from torch.nn import Parameter
 def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
     """
 
-    :param params:
-    :param value:
-    :return:"""
+  :param params:
+  :param value:
+  :return:"""
     if isinstance(value, bool):
         for p in params:
             p.requires_grad = not value
@@ -34,10 +34,10 @@ def freeze_parameters(params: Iterator[Parameter], value: bool = None) -> None:
 def frozen_parameters(params: Iterator[Parameter], enabled=True) -> None:
     """
 
-    :param enabled:
-    :type enabled:
-    :param params:
-    :return:"""
+  :param enabled:
+  :type enabled:
+  :param params:
+  :return:"""
     params_1, params_2 = tee(params)
     if enabled:
         freeze_parameters(params_1, True)
@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
     def asd21312a():
         """
-        """
+    """
         a = nn.Linear(10, 5)
         print(a.weight.requires_grad)
         with frozen_parameters(a.parameters()):
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     def afsda32():
         """
-        """
+    """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
     def afsda12332_toogle():
         """
-        """
+    """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     def afsda12332_explicit():
         """
-        """
+    """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -92,7 +92,7 @@ if __name__ == "__main__":
 
     def seq_no_context():
         """
-        """
+    """
         a = nn.Sequential(nn.Linear(10, 5), nn.Linear(5, 5))
 
         print(next(a.parameters()).requires_grad)
@@ -103,7 +103,7 @@ if __name__ == "__main__":
 
     def seq_context():
         """
-        """
+    """
         a = nn.Sequential(nn.Linear(10, 5), nn.Linear(5, 5))
 
         print(next(a.parameters()).requires_grad)

@@ -22,7 +22,7 @@ class Drawer(object):
     @abstractmethod
     def draw(self, *args, **kwargs):
         """
-    """
+"""
         raise NotImplementedError
 
     def __enter__(self):

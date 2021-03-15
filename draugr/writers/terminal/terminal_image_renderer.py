@@ -9,7 +9,7 @@ from colors import color  # ansicolors
 
 def get_pixel(col: Tuple) -> Any:
     """
-    """
+  """
     if isinstance(col, (float, int)) or len(col) == 1:
         col = (col, col, col)
     return color("  ", bg=f"rgb({int(col[0])}, {int(col[1])}, {int(col[2])})")
@@ -17,7 +17,7 @@ def get_pixel(col: Tuple) -> Any:
 
 def render_image(pixels: numpy.ndarray, scale: Tuple) -> List[List]:
     """
-    """
+  """
     # first of all scale the image to the scale 'tuple'
     image_size = pixels.shape[:2]
     block_size = (image_size[0] / scale[0], image_size[1] / scale[1])
@@ -44,16 +44,16 @@ def render_image(pixels: numpy.ndarray, scale: Tuple) -> List[List]:
 def terminalise_image(output):
     """
 
-    joins lists
+  joins lists
 
-    :return:
-    """
+  :return:
+  """
     return "\n".join(["".join(row) for row in output])
 
 
 def get_image(path: Path):
     """
-    """
+  """
     img = numpy.asarray(Image.open(path))
     if img.shape[2] > 3:
         return numpy.array([[pixel[:3] for pixel in row] for row in img])
@@ -62,7 +62,7 @@ def get_image(path: Path):
 
 def render_file(path: Path, scale=(60, 60)):
     """
-    """
+  """
     image = get_image(path)
     output = render_image(image, scale)
     print(terminalise_image(output))
@@ -70,7 +70,7 @@ def render_file(path: Path, scale=(60, 60)):
 
 def entry_point():
     """
-    """
+  """
     parser = argparse.ArgumentParser(description="Render images on the command line")
     parser.add_argument("path", metavar="path", type=str, help="the image path")
     parser.add_argument(
