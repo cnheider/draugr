@@ -414,7 +414,9 @@ pyplot.title(tag)
 :return:
 :rtype:"""
         if not hasattr(self, "_writer") or not self._writer:
-            self._writer = SummaryWriter(str(self._log_dir), **self._summary_writer_kws)
+            self._writer = SummaryWriter(
+                str(self._log_dir), **self._summary_writer_kws
+            )  # DB MODEL    --db sqlite:~/.tensorboard.db ON HOLD..
             if self._verbose:
                 print(f"Logging at {self._log_dir}")
         return self._writer

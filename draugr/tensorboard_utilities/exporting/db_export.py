@@ -4,9 +4,7 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-Auto hook-in
 
-#Not published
 
-           Created on 07/07/2020
+           Created on 17-03-2021
            """

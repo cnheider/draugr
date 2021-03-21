@@ -19,9 +19,7 @@ from draugr.torch_utilities import (
 
 
 def test_cpu():
-    print(
-        global_torch_device(override=global_torch_device(cuda_device_preference=True))
-    )
+    print(global_torch_device(override=global_torch_device(device_preference=True)))
     print(global_torch_device())
     with TorchCpuSession():
         print(global_torch_device())
@@ -45,9 +43,7 @@ def test_nested_model_sessions():
 
 
 def test_nested_device_sessions():
-    print(
-        global_torch_device(override=global_torch_device(cuda_device_preference=True))
-    )
+    print(global_torch_device(override=global_torch_device(device_preference=True)))
     print(global_torch_device())
     with TorchCpuSession():
         print(global_torch_device())

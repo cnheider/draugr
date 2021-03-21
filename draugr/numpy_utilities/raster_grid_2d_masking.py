@@ -12,8 +12,10 @@ from typing import Tuple
 import numpy
 from warg import Number
 
+__all__ = ["circular_mask"]
 
-def create_circular_mask(
+
+def circular_mask(
     h: Number, w: Number, center: Tuple[Number, Number] = None, radius: Number = None
 ) -> numpy.ndarray:
     """
@@ -36,4 +38,4 @@ def create_circular_mask(
 
 
 if __name__ == "__main__":
-    print(create_circular_mask(9, 9))
+    print(circular_mask(9, 9))

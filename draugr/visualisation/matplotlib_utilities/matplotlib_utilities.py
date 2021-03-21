@@ -8,19 +8,22 @@ __doc__ = r"""
            """
 
 from pathlib import Path
+from typing import Sequence, Union
 
 import numpy
+from matplotlib import patches, pyplot, rcParams
 from matplotlib.legend_handler import HandlerErrorbar
 
 from draugr.visualisation.matplotlib_utilities.quirks import auto_post_hatch
+from draugr.visualisation.matplotlib_utilities.styles.annotation import (
+    rt_ann_transform,
+    semi_opaque_round_tight_bbox,
+)
 from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
-    simple_hatch_cycler,
     monochrome_hatch_cycler,
     monochrome_line_cycler,
+    simple_hatch_cycler,
 )
-from matplotlib import patches, pyplot, rcParams
-from cycler import cycler
-from typing import Sequence, Union
 
 __all__ = [
     "denormalise_minusoneone",
@@ -31,6 +34,7 @@ __all__ = [
     "save_pdf_embed_fig",
     "latex_clean_label",
     "make_errorbar_legend",
+    "annotate_point",
 ]
 
 from matplotlib.patches import Rectangle
@@ -62,19 +66,71 @@ def make_errorbar_legend() -> None:
     )
 
 
+def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Sequence) -> None:
+    ax.annotate(
+        f"{t:.2f}",
+        (x, y),
+        textcoords="offset points",
+        fontsize="xx-small",
+        bbox=semi_opaque_round_tight_bbox,
+        annotation_clip=True,  # see details https://github.com/matplotlib/matplotlib/issues/14354#issuecomment-523630316
+        clip_on=True,
+        **rt_ann_transform,
+    )
+
+
 @passes_kws_to(pyplot.savefig)
 def save_pdf_embed_fig(
-    path: Union[Path, str] = "foo.pdf", bbox_inches="tight", transparent=True, **kwargs
+    path: Union[Path, str] = "foo.pdf",
+    bbox_inches="tight",
+    transparent=True,
+    attempt_fix_empty_white_space: bool = False,
+    post_process_crop: bool = False,
+    **kwargs,
 ) -> None:
-    """Save fig for latex pdf embedding"""
+    """Save fig for latex pdf embedding
+  """
+
+    if attempt_fix_empty_white_space:  # remove it
+        # pyplot.gca().set_axis_off()
+        # plt.axis('off') # this rows the rectangular frame
+        # ax.get_xaxis().set_visible(False) # this removes the ticks and numbers for x axis
+        # ax.get_yaxis().set_visible(False) # this removes the ticks and numbers for y axis
+        pyplot.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
+        pyplot.margins(0, 0)
+        pyplot.gca().xaxis.set_major_locator(pyplot.NullLocator())
+        pyplot.gca().yaxis.set_major_locator(pyplot.NullLocator())
+
+    """
+  clip_box = Bbox(((0,0),(300,300)))
+  for o in pyplot.findobj():
+    o.set_clip_on(True)
+    o.set_clip_box(clip_box)
+
+  """
+
     if not isinstance(path, Path):
         path = Path(path)
+
+    path_str = str(path.with_suffix(".pdf"))
     pyplot.savefig(
-        str(path.with_suffix(".pdf")),
-        bbox_inches=bbox_inches,
-        transparent=transparent,
-        **kwargs,
+        path_str, bbox_inches=bbox_inches, transparent=transparent, **kwargs,
     )
+
+    if (
+        post_process_crop
+    ):  # Good idea since matplotlib does not exclude invisible parts(eg. data points or anchors) of the plot.
+        from pdfCropMargins import crop
+
+        crop(
+            [
+                "-p",
+                "0",  # remove all percentage of old margin
+                "-a",
+                "-5",  # add 5bp margin around all
+                path_str,
+            ]
+        )
 
 
 def remove_decoration(ax: Axes) -> None:

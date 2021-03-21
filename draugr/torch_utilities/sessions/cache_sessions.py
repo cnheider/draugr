@@ -77,9 +77,7 @@ if __name__ == "__main__":
         """
     """
         print(
-            global_torch_device(
-                override=global_torch_device(cuda_device_preference=False)
-            )
+            global_torch_device(override=global_torch_device(device_preference=False))
         )
         print(global_torch_device())
         with TorchCudaSession():
@@ -89,11 +87,7 @@ if __name__ == "__main__":
     def e():
         """
     """
-        print(
-            global_torch_device(
-                override=global_torch_device(cuda_device_preference=True)
-            )
-        )
+        print(global_torch_device(override=global_torch_device(device_preference=True)))
         print(global_torch_device())
         with TorchCpuSession():
             print(global_torch_device())
