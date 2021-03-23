@@ -68,9 +68,10 @@ class SubplotSession(AlsoDecorator):
         return self.fig, self.axs
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        pyplot.cla()
+        # pyplot.cla()
+        # pyplot.clf()
+        self.fig.clear()
         pyplot.close(self.fig)
-        pyplot.clf()
 
 
 class MonoChromeStyleSession(AlsoDecorator):

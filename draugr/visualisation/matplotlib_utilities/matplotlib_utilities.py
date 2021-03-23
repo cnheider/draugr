@@ -57,9 +57,12 @@ def latex_clean_label(s: str) -> str:
     return s.replace("_", " ")  # .replace('\\',' ').replace('/',' ')
 
 
-def make_errorbar_legend() -> None:
+def make_errorbar_legend(ax: Axes = None) -> None:
     """ size adjusted legend for error bars, default does not work well with different linestyles """
-    pyplot.legend(
+
+    if ax is None:
+        ax = pyplot.gca()
+    ax.legend(
         handlelength=5,
         handleheight=3,
         handler_map={ErrorbarContainer: HandlerErrorbar(xerr_size=0.9, yerr_size=0.9)},
@@ -67,6 +70,16 @@ def make_errorbar_legend() -> None:
 
 
 def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Sequence) -> None:
+    """
+
+    :param ax:
+    :param x:
+    :param y:
+    :param t:
+    :return:
+    """
+    if ax is None:
+        ax = pyplot.gca()
     ax.annotate(
         f"{t:.2f}",
         (x, y),
@@ -86,6 +99,7 @@ def save_pdf_embed_fig(
     transparent=True,
     attempt_fix_empty_white_space: bool = False,
     post_process_crop: bool = False,
+    ax: Axes = None,
     **kwargs,
 ) -> None:
     """Save fig for latex pdf embedding
@@ -96,10 +110,12 @@ def save_pdf_embed_fig(
         # plt.axis('off') # this rows the rectangular frame
         # ax.get_xaxis().set_visible(False) # this removes the ticks and numbers for x axis
         # ax.get_yaxis().set_visible(False) # this removes the ticks and numbers for y axis
+        if ax is None:
+            ax = pyplot.gca()
         pyplot.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
         pyplot.margins(0, 0)
-        pyplot.gca().xaxis.set_major_locator(pyplot.NullLocator())
-        pyplot.gca().yaxis.set_major_locator(pyplot.NullLocator())
+        ax.xaxis.set_major_locator(pyplot.NullLocator())
+        ax.yaxis.set_major_locator(pyplot.NullLocator())
 
     """
   clip_box = Bbox(((0,0),(300,300)))
