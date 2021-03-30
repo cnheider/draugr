@@ -1,13 +1,15 @@
+import enum
+from enum import Enum
 from itertools import zip_longest
 from pathlib import Path
 from pickle import dump
-from typing import Iterable, Mapping, Tuple
+from typing import Iterable, Mapping, Tuple, Union
 
 import numpy
 import pandas
 import tensorflow
 from PIL.Image import Image
-from apppath import AppPath
+from apppath import AppPath, ensure_existence
 from matplotlib import pyplot
 from tensorboard.backend.event_processing import event_accumulator
 
@@ -16,9 +18,25 @@ __all__ = ["TensorboardEventExporter"]
 from warg import passes_kws_to
 
 
+# TODO: implement export options using ExportMethodEnum
+# TODO: MAJOR REFACTOR INCOMING
+
+
 class TensorboardEventExporter:
     """
-  """
+  Reads event files and exports the requested tags.
+"""
+
+    # class TagTypeEnum(Enum): #Static version, does not adapt to plugins!
+    #    images = 'images'
+    #    scalars = 'scalars'
+    #    tensors = 'tensors'
+    #    audio = 'audio'
+    #    distributions= 'distributions'
+    #    graph = 'graph'
+    #    meta_graph = 'meta_graph'
+    #    histograms = 'histograms'
+    #    run_metadata = 'run_metadata'
 
     def __init__(
         self,
@@ -29,10 +47,10 @@ class TensorboardEventExporter:
     ):
         """
 
-    :param path_to_events_file_s:
-    :param size_guidance:
-    :param save_to_disk:
-    """
+:param path_to_events_file_s:
+:param size_guidance:
+:param save_to_disk:
+"""
         if size_guidance is None:
             size_guidance = 0
 
@@ -62,10 +80,14 @@ class TensorboardEventExporter:
         self.tags_available = self.event_acc.Tags()
         self.save_to_disk = save_to_disk
 
+        tags_dict = {}
         for (
             t
         ) in self.tags_available:  # TODO: Automatic but not nice for code completion
             setattr(self, f"available_{t}", self.tags_available[t])
+            tags_dict[str(t)] = str(t)
+
+        self.TagTypeEnum = enum.Enum("TagTypeEnum", tags_dict)  # dynamic version
 
     def __enter__(self):
         return self
@@ -78,10 +100,10 @@ class TensorboardEventExporter:
     ) -> Tuple[pyplot.Figure]:
         """
 
-    :param tags:
-    :param out_dir:
-    :return:
-    """
+:param tags:
+:param out_dir:
+:return:
+"""
         self.tag_test(*tags, type_str="scalars")
         out = []
         for t in tags:
@@ -98,32 +120,33 @@ class TensorboardEventExporter:
     ) -> Tuple[Image]:
         """
 
-    :param tags:
-    :param out_dir:
-    :return:
-    """
+:param tags:
+:param out_dir:
+:return:
+"""
         self.tag_test(*tags, type_str="images")
         out = []
         for t in tags:
-            img = self.event_acc.Images(t)
+            img = self.event_acc.Images(t)  # TODO: CHECK VIDEO compatibility(gifs)
             if self.save_to_disk:
                 with open(str(out_dir / f"{t}_img_{img.step}.png"), "wb") as f:
                     f.write(img.encoded_image_string)
             out.append(Image.fromstring(img.encoded_image_string))
         return (*out,)
 
-    def tag_test(
-        self, *tags, type_str: str  # TODO: Maybe make an Enum for supported types
-    ) -> bool:
+    def tag_test(self, *tags, type_str: Union[str, "TagTypeEnum"]) -> bool:
         """
 
-    :param tags:
-    :param type_str:
-    :return:
-    """
+:param tags:
+:param type_str:
+:return:
+"""
         if not len(tags):
             print("No tags requested")
             # raise Exception #TODO: maybe
+
+        if isinstance(type_str, Enum):
+            type_str = type_str.value
 
         if (
             len(tags) == 1
@@ -141,12 +164,12 @@ class TensorboardEventExporter:
         self, *tags: Iterable[str], out_dir: Path = Path.cwd()
     ) -> Iterable:
         """
-    if save to files it pickles tags values with file ending .pkl
+if save to files it pickles tags values with file ending .pkl
 
-    :param tags:
-    :param out_dir:
-    :return:
-    """
+:param tags:
+:param out_dir:
+:return:
+"""
         self.tag_test(*tags, type_str="scalars")
         out = []
         for t in tags:
@@ -160,26 +183,33 @@ class TensorboardEventExporter:
     def export_distribution(self, *tags: Iterable[str], out_dir: Path = Path.cwd()):
         """
 
-    :param tags:
-    :param out_dir:
-    """
+:param tags:
+:param out_dir:
+"""
         self.tag_test(*tags, type_str="distributions")
+        raise NotImplemented("not implemented yet!")
+        out = []
+        for t in tags:
+            vals = None  # t
+            out.append(vals)
+        return (*out,)
 
     def export_tensor(
         self, *tags: Iterable[str], out_dir: Path = Path.cwd()
     ) -> Iterable:
         """
 
-    :param tags:
-    :param out_dir:
-    :return:
-    """
+:param tags:
+:param out_dir:
+:return:
+"""
         self.tag_test(*tags, type_str="tensors")
         out = []
         for t in tags:
             w_times, step_nums, vals = zip(*self.event_acc.Tensors(t))
             if self.save_to_disk:
-                pass
+                with open(str(out_dir / f"{t}.pkl"), "wb") as f:
+                    dump(vals, f)
             out.append(vals)
         return (*out,)
 
@@ -188,14 +218,15 @@ class TensorboardEventExporter:
     ) -> Iterable:
         """
 
-    :param tags:
-    :param out_dir:
-    :return:
-    """
+:param tags:
+:param out_dir:
+:return:
+"""
         out = []
         w_times, step_nums, vals = zip(*self.event_acc.Graph())
         if self.save_to_disk:
-            pass
+            with open(str(out_dir / f"graph.pkl"), "wb") as f:
+                dump(vals, f)
         out.append(vals)
         return (*out,)
 
@@ -204,16 +235,17 @@ class TensorboardEventExporter:
     ) -> Iterable:
         """
 
-    :param tags:
-    :param out_dir:
-    :return:
-    """
+:param tags:
+:param out_dir:
+:return:
+"""
         self.tag_test(*tags, type_str="audio")
         out = []
         for t in tags:
             w_times, step_nums, vals = zip(*self.event_acc.Audio(t))
             if self.save_to_disk:
-                pass
+                with open(str(out_dir / f"{t}.pkl"), "wb") as f:
+                    dump(vals, f)
             out.append(vals)
         return (*out,)
 
@@ -222,19 +254,20 @@ class TensorboardEventExporter:
     ) -> Iterable:
         """
 
-    https://www.tensorflow.org/api_docs/python/tf/summary/histogram
+https://www.tensorflow.org/api_docs/python/tf/summary/histogram
 
-    :param tags:
-    :param out_dir:
-    :return:
-    """
+:param tags:
+:param out_dir:
+:return:
+"""
         self.tag_test(*tags, type_str="histograms")
 
         out = []
         for t in tags:
             w_times, step_nums, vals = zip(*self.event_acc.Histograms(t))
             if self.save_to_disk:
-                pass
+                with open(str(out_dir / f"{t}.pkl"), "wb") as f:
+                    dump(vals, f)
             out.append(vals)
         return (*out,)
 
@@ -243,16 +276,16 @@ class TensorboardEventExporter:
         self,
         *tags: Iterable[str],
         out_dir: Path = Path.cwd(),
-        index_label="epoch",
+        index_label: str = "epoch",
         **kwargs,
     ) -> Tuple[pandas.DataFrame]:
         """
-    size_guidance = 0 means all events, no aggregation or dropping
+size_guidance = 0 means all events, no aggregation or dropping
 
-    :return:
-    :param tags:
-    :param out_dir:
-    """
+:return:
+:param tags:
+:param out_dir:
+"""
         if not len(tags):
             print("No tags requested")  # TODO: maybe just return
             # return tuple()
@@ -290,18 +323,18 @@ class TensorboardEventExporter:
         self,
         *tags: Iterable[str],
         out_dir: Path = Path.cwd(),
-        index_label="epoch",
+        index_label: str = "epoch",
         **kwargs,
     ) -> Tuple[pandas.DataFrame]:
         """
-    #TODO only supports a single step and tag for now
+#TODO only supports a single step and tag for now
 
-    size_guidance = 0 means all events, no aggregation or dropping
+size_guidance = 0 means all events, no aggregation or dropping
 
-    :return:
-    :param tags:
-    :param out_dir:
-    """
+:return:
+:param tags:
+:param out_dir:
+"""
         if not len(tags):
             print("No tags requested")  # TODO: maybe just return
             # return tuple()
@@ -353,17 +386,17 @@ class TensorboardEventExporter:
         self,
         *tags: Iterable[str],
         out_dir: Path = Path.cwd(),
-        index_label="epoch",
+        index_label: str = "epoch",
         **kwargs,
     ) -> Tuple[pandas.DataFrame]:
         """
 
-    size_guidance = 0 means all events, no aggregation or dropping
+size_guidance = 0 means all events, no aggregation or dropping
 
-    :return:
-    :param tags:
-    :param out_dir:
-    """
+:return:
+:param tags:
+:param out_dir:
+"""
         if not len(tags):
             print("No tags requested")  # TODO: maybe just return
             # return tuple()
@@ -406,9 +439,9 @@ if __name__ == "__main__":
 
     def a():
         """
-    """
+"""
         _path_to_events_file = next(
-            AppPath("Adversarial Speech", "Christian Heider Nielsen").user_log.rglob(
+            AppPath("Draugr", "Christian Heider Nielsen").user_log.rglob(
                 "events.out.tfevents.*"
             )
         )
@@ -422,8 +455,10 @@ if __name__ == "__main__":
         print(tee.available_scalars)
         print(
             tee.pr_curve_export_csv(
-                *tee.tags_available["tensors"], out_dir=Path.cwd() / "exclude"
+                *tee.tags_available["tensors"],
+                out_dir=ensure_existence(Path.cwd() / "exclude"),
             )
         )
+        print(list(iter(tee.TagTypeEnum)))
 
     a()

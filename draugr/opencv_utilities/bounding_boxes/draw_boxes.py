@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 from pathlib import Path
-from typing import Sequence, Tuple, Union
+from typing import Sequence, Tuple, Union, Optional
 
 import PIL.ImageDraw as ImageDraw
 import PIL.ImageFont as ImageFont
@@ -93,9 +93,9 @@ def draw_bounding_boxes(
     image: Union[numpy.ndarray, Image.Image],
     boxes: numpy.ndarray,
     *,
-    labels: numpy.ndarray = None,
-    scores: numpy.ndarray = None,
-    categories: Sequence[str] = None,
+    labels: Optional[numpy.ndarray] = None,
+    scores: Optional[numpy.ndarray] = None,
+    categories: Optional[Sequence[str]] = None,
     outline_width: int = 2,
     outline_alpha: float = 0.5,
     score_color_fill: bool = False,

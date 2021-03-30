@@ -5,18 +5,18 @@ from shutil import rmtree
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
-from draugr import IgnoreInterruptSignal
-
 
 def main(keep_alive: bool = True) -> str:
     """
 
-  :param keep_alive:
-  :type keep_alive:
-  :return:
-  :rtype:"""
+:param keep_alive:
+:type keep_alive:
+:return:
+:rtype:"""
     from draugr.torch_utilities import launch_tensorboard
-    from contextlib import suppress
+
+    # from draugr import IgnoreInterruptSignal
+    # from contextlib import suppress
     from time import sleep
 
     from apppath import AppPath
@@ -42,9 +42,8 @@ def main(keep_alive: bool = True) -> str:
     )
     args = parser.parse_args()
 
-    PROJECT_APP_PATH = AppPath(args.NAME, args.author, args.version)
-
-    log_dir = PROJECT_APP_PATH.user_log
+    project_app_path = AppPath(args.NAME, args.author, args.version)
+    log_dir = project_app_path.user_log
 
     if args.clean:
         print(f"Wiping {log_dir}")
@@ -57,9 +56,9 @@ def main(keep_alive: bool = True) -> str:
 
     if keep_alive:
         print(f"tensorboard address: {address} for log_dir {log_dir}")
-        with IgnoreInterruptSignal():
-            while True:
-                sleep(10)
+        # with IgnoreInterruptSignal(): # Do not block
+        while True:
+            sleep(10)
 
     return address
 

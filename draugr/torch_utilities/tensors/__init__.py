@@ -19,3 +19,5 @@ from .reshaping import *
 from .tensor_container import *
 from .to_scalar import *
 from .to_tensor import *
+from .dimension_order import *
+from .types import *

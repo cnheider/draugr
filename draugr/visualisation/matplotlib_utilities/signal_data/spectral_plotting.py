@@ -34,7 +34,7 @@ def spectral_plot(
     return f
 
 
-def ltass_plot(signal: Sequence, sampling_rate: int, label="#") -> pyplot.Figure:
+def ltass_plot(signal: Sequence, sampling_rate: int, label: str = "#") -> pyplot.Figure:
     """"""
     n_per_seg = next_pow_2(
         sampling_rate * (20 / 1000)

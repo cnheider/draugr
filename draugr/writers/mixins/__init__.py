@@ -23,3 +23,5 @@ from .spectrogram_writer_mixin import *
 from .precision_recall_writer_mixin import *
 from .audio_writer_mixin import *
 from .instantiation_writer_mixin import *
+from .video_writer_mixin import *
+from .mesh_writer_mixin import *

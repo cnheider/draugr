@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from contextlib import suppress
+from enum import Enum
 from typing import Any, Iterable, Sequence, Union
 
 import PIL
@@ -14,19 +15,25 @@ from matplotlib.figure import Figure
 from draugr import PROJECT_APP_PATH
 from draugr.python_utilities import sprint
 from draugr.torch_utilities import to_tensor
+from draugr.torch_utilities.tensors.dimension_order import (
+    nhwc_to_nchw_tensor,
+    nthwc_to_ntchw_tensor,
+)
 from draugr.torch_utilities.writers.torch_module_writer.module_parameter_writer_mixin import (
     ModuleParameterWriterMixin,
 )
 from draugr.torch_utilities.writers.torch_module_writer.module_writer_parameters import (
     weight_bias_histograms,
 )
-from draugr.writers import Writer
+from draugr.writers.writer import Writer
 from draugr.writers.mixins import (
     BarWriterMixin,
     EmbedWriterMixin,
     GraphWriterMixin,
     HistogramWriterMixin,
     ImageWriterMixin,
+    MeshWriterMixin,
+    VideoWriterMixin,
 )
 from draugr.writers.mixins.figure_writer_mixin import FigureWriterMixin
 from draugr.writers.mixins.instantiation_writer_mixin import InstantiationWriterMixin
@@ -51,6 +58,21 @@ __all__ = ["TensorBoardPytorchWriter"]
 from pathlib import Path
 
 
+class VideoInputDimsEnum(Enum):
+    """
+  Input mode
+  """
+
+    thw = "THW"
+    tchw = "TCHW"
+    thwc = "THWC"
+    ntchw = "NTCHW"
+    nthwc = "NTHWC"
+
+
+FPS_UPPER_LIMIT = 50  # https://wunkolo.github.io/post/2020/02/buttery-smooth-10fps/ ... Browser-engine image decoders will automatically reset the frame rate to 10fps if not requested fps is not supported
+
+
 class TensorBoardPytorchWriter(
     Writer,
     ImageWriterMixin,
@@ -64,9 +86,65 @@ class TensorBoardPytorchWriter(
     PrecisionRecallCurveWriterMixin,
     EmbedWriterMixin,
     ModuleParameterWriterMixin,
+    VideoWriterMixin,
+    MeshWriterMixin,
 ):
     """
 Provides a pytorch-tensorboard-implementation writer interface"""
+
+    def video(
+        self,
+        tag: str,
+        data: Union[numpy.ndarray, torch.Tensor, Image.Image],
+        step=None,
+        frame_rate=30,
+        input_dims=VideoInputDimsEnum.ntchw,
+        **kwargs,
+    ) -> None:
+        """
+Shape:
+
+    fastest expects vid_tensor: (N,T,C,H,W) .
+     The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
+
+    """
+        if input_dims == VideoInputDimsEnum.thwc:
+            data = nhwc_to_nchw_tensor(to_tensor(data)).unsqueeze(0)  # batch dim
+        elif input_dims == VideoInputDimsEnum.tchw:
+            data = to_tensor(data).unsqueeze(0)  # batch dim
+        elif input_dims == VideoInputDimsEnum.nthwc:
+            data = nthwc_to_ntchw_tensor(to_tensor(data))
+        elif input_dims == VideoInputDimsEnum.thw:
+            data = to_tensor(data).unsqueeze(1).unsqueeze(0)  # channel then batch dim
+
+        assert len(data.shape) == 5
+
+        frame_rate = min(frame_rate, FPS_UPPER_LIMIT)
+
+        self.writer.add_video(tag, data, fps=frame_rate, global_step=step, **kwargs)
+
+    def mesh(
+        self,
+        tag: str,
+        data: Union[numpy.ndarray, torch.Tensor, Image.Image],
+        step=None,
+        **kwargs,
+    ) -> None:
+        """
+    Data being vertices here.
+
+    Shape: (B,N,3)
+    data: (B,N,3). (batch, number_of_vertices, channels)
+    colors: (B,N,3). The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
+    faces: (B,N,3). The values should lie in [0, number_of_vertices] for type uint8.
+
+    @param tag:
+    @param data:
+    @param step:
+    @param kwargs:
+    @return:
+    """
+        self.writer.add_mesh(tag, data, global_step=step, **kwargs)
 
     def parameters(
         self, model: torch.nn.Module, step: int, tag: str = "", **kwargs
@@ -128,7 +206,7 @@ BORKED!
         self._summary_writer_kws = summary_writer_kws
 
     # @passes_kws_to(SummaryWriter.add_hparams)
-    def instance(self, instance: dict, metrics: dict) -> None:
+    def instance(self, instance: dict, metrics: dict, **kwargs) -> None:
         """
 
 TODO: Not finished!
@@ -136,7 +214,7 @@ TODO: Not finished!
 :param instance:
 :param metrics:
 :return:"""
-        self.writer.add_hparams(instance, metrics)
+        self.writer.add_hparams(instance, metrics, **kwargs)
 
     @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_pr_curve)
@@ -197,9 +275,9 @@ TODO: Not finished!
     ) -> None:
         """
 
-    :param sample_rate:
-    :param n_fft:
-    :param step_size:
+:param sample_rate:
+:param n_fft:
+:param step_size:
 :param tag:
 :type tag:
 :param values:
@@ -371,7 +449,7 @@ pyplot.title(tag)
     ) -> None:
         """
 
-    :param verbose:
+:param verbose:
 :param model:
 :type model:
 :param input_to_model:

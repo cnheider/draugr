@@ -39,9 +39,9 @@ auto scale dpi of lines for print
 @return:
 """
     dpi = rcParams["figure.dpi"]
-    linewidth = 1.0 / dpi * scalar
-    rcParams["hatch.linewidth"] = linewidth * 2
-    rcParams["grid.linewidth"] = linewidth
+    line_width = 1.0 / dpi * scalar
+    rcParams["hatch.linewidth"] = line_width * 2
+    rcParams["grid.linewidth"] = line_width
 
 
 def auto_post_hatch(

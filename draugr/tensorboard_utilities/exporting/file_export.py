@@ -12,5 +12,5 @@ __doc__ = r"""
 from draugr.tensorboard_utilities import TensorboardEventExporter
 
 
-class TensorboardEventExporterDatabase(TensorboardEventExporter):
+class TensorboardEventExporterFile(TensorboardEventExporter):
     pass

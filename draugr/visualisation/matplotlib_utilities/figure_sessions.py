@@ -91,7 +91,7 @@ class MonoChromeStyleSession(AlsoDecorator):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         fix_edge_gridlines(pyplot.gca())
-        pyplot.tight_layout()
+        # pyplot.tight_layout()
         # auto_post_hatch(pyplot.gca(),hatch_cycler)
         self.ctx.__exit__(exc_type, exc_val, exc_tb)
 

@@ -20,7 +20,7 @@ from matplotlib.pyplot import Axes
 
 default_index_decimator = GDKC(
     mag_decimation_subsample, decimation_factor=5, return_indices=True
-)  # finds intresting features?
+)  # finds interesting features?
 
 
 @passes_kws_to(Axes.annotate)

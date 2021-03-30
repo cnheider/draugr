@@ -52,7 +52,7 @@ if __name__ == "__main__":
         frames = []
         done = False
         while not done:
-            frames.append(env.render())
+            frames.append(env.render("rgb_array"))
 
             state, reward, done, info = env.step(env.action_space.sample())
         env.close()

@@ -4,7 +4,7 @@ import datetime
 import os
 
 import sys
-from typing import Union
+from typing import Optional, Union
 
 import torch
 from draugr.torch_utilities.persistence.config import (
@@ -34,7 +34,7 @@ from pathlib import Path
 @drop_unused_kws
 def load_latest_model(
     *, model_name: str, model_directory: Path, raise_on_failure: bool = True
-) -> Union[torch.nn.Module, None]:
+) -> Optional[torch.nn.Module]:
     """
 
   load model with the lastest time appendix or in this case creation time

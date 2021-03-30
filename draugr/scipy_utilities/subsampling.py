@@ -15,7 +15,7 @@ __all__ = [
     "fft_subsample",
 ]
 
-from typing import Tuple
+from typing import Optional, Tuple
 
 import numpy
 from scipy.signal import decimate, resample

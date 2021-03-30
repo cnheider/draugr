@@ -9,10 +9,36 @@ __doc__ = r"""
 
 __all__ = ["duplicate_columns"]
 
+import enum
 from typing import List
 
 import pandas
 from pandas.core.dtypes.missing import array_equivalent
+
+
+class ExportMethodEnum(enum.Enum):
+    """
+    Available Pandas Dataframe Export methods
+    """
+
+    parquet = "parquet"
+    pickle = "pickle"  # 'dataframe'
+    csv = "csv"
+    hdf = "hdf"
+    sql = "sql"
+    dict = "dict"
+    excel = "excel"
+    json = "json"
+    html = "html"
+    feather = "feather"
+    latex = "latex"
+    stata = "stata"
+    gbq = "gbq"
+    records = "records"
+    string = "string"
+    clipboard = "clipboard"
+    markdown = "markdown"
+    xarray = "xarray"
 
 
 def duplicate_columns(frame: pandas.DataFrame) -> List[str]:

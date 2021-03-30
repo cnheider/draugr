@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 from functools import partial
-from typing import Callable, Iterable, Union
+from typing import Callable, Iterable, Optional, Union
 
 import cv2
 
@@ -19,7 +19,7 @@ from warg import identity
 
 def frame_generator(
     video_stream: cv2.VideoCapture,
-    coder: Union[None, Callable] = partial(cv2.cvtColor, code=cv2.COLOR_BGR2RGB),
+    coder: Optional[Callable] = partial(cv2.cvtColor, code=cv2.COLOR_BGR2RGB),
 ) -> Iterable:
     """
 

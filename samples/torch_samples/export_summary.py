@@ -5,7 +5,7 @@ from matplotlib import pyplot
 
 from draugr import PROJECT_APP_PATH
 from draugr.tensorboard_utilities import TensorboardEventExporter
-from draugr.writers.standard_tags import TrainingScalars
+from draugr.writers import TrainingScalars
 
 if __name__ == "__main__":
     save = False

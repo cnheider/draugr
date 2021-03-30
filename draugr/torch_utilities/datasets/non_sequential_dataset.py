@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import List
+
 import numpy
 from torch.utils.data import Dataset
 
@@ -32,7 +34,7 @@ class NonSequentialDataset(Dataset):
         super().__init__()
         self.arrays = [array.reshape(-1, *array.shape[2:]) for array in arrays]
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int) -> List:
         return [array[index] for array in self.arrays]
 
     def __len__(self):

@@ -8,11 +8,12 @@ __doc__ = r"""
            """
 
 from pathlib import Path
-from typing import Sequence, Union
+from typing import Any, Sequence, Union
 
 import numpy
 from matplotlib import patches, pyplot, rcParams
 from matplotlib.legend_handler import HandlerErrorbar
+from cycler import Cycler
 
 from draugr.visualisation.matplotlib_utilities.quirks import auto_post_hatch
 from draugr.visualisation.matplotlib_utilities.styles.annotation import (
@@ -69,15 +70,15 @@ def make_errorbar_legend(ax: Axes = None) -> None:
     )
 
 
-def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Sequence) -> None:
+def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Any) -> None:
     """
 
-    :param ax:
-    :param x:
-    :param y:
-    :param t:
-    :return:
-    """
+  :param ax:
+  :param x:
+  :param y:
+  :param t:
+  :return:
+  """
     if ax is None:
         ax = pyplot.gca()
     ax.annotate(
@@ -95,15 +96,15 @@ def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Sequence) -> None:
 @passes_kws_to(pyplot.savefig)
 def save_pdf_embed_fig(
     path: Union[Path, str] = "foo.pdf",
-    bbox_inches="tight",
-    transparent=True,
+    bbox_inches: Union[Number, str] = "tight",
+    transparent: bool = True,
     attempt_fix_empty_white_space: bool = False,
     post_process_crop: bool = False,
     ax: Axes = None,
     **kwargs,
 ) -> None:
     """Save fig for latex pdf embedding
-  """
+"""
 
     if attempt_fix_empty_white_space:  # remove it
         # pyplot.gca().set_axis_off()
@@ -118,12 +119,12 @@ def save_pdf_embed_fig(
         ax.yaxis.set_major_locator(pyplot.NullLocator())
 
     """
-  clip_box = Bbox(((0,0),(300,300)))
-  for o in pyplot.findobj():
-    o.set_clip_on(True)
-    o.set_clip_box(clip_box)
+clip_box = Bbox(((0,0),(300,300)))
+for o in pyplot.findobj():
+  o.set_clip_on(True)
+  o.set_clip_box(clip_box)
 
-  """
+"""
 
     if not isinstance(path, Path):
         path = Path(path)
@@ -175,13 +176,18 @@ def denormalise_minusoneone(
     return 0.5 * ((coordinates + 1.0) * t)
 
 
-def decolorise_plot(ax_: Axes) -> None:
+def decolorise_plot(ax_: Axes, inverted: bool = False) -> None:
     """
-set black and white edge colors and face colors respectively.
+
+set black and white edge colors and face colors respectively. Converse if inverted.
 
 """
-    pyplot.setp(ax_.artists, edgecolor="k", facecolor="w")
-    pyplot.setp(ax_.lines, color="k")
+    edge_color = "k"
+    face_color = "w"
+    if inverted:
+        face_color, edge_color = edge_color, face_color
+    pyplot.setp(ax_.artists, edgecolor=edge_color, facecolor=face_color)
+    pyplot.setp(ax_.lines, color=edge_color)
 
 
 def matplotlib_bounding_box(
@@ -198,7 +204,7 @@ def matplotlib_bounding_box(
 
 
 def use_monochrome_style(
-    prop_cycler=monochrome_line_cycler,  # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
+    prop_cycler: Cycler = monochrome_line_cycler,  # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
 ) -> None:
     # from matplotlib.pyplot import axes, grid
 

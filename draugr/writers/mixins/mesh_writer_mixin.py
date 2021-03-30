@@ -12,15 +12,15 @@ __doc__ = r"""
 
            Created on 09/10/2019
            """
-__all__ = ["AudioWriterMixin"]
+__all__ = ["MeshWriterMixin"]
 
 
-class AudioWriterMixin(ABC):
+class MeshWriterMixin(ABC):
     """
-  Writer subclass that provides an interface for 'writing' audio clips"""
+  Writer subclass that provides an interface for 'writing' meshes"""
 
     @abstractmethod
-    def audio(
+    def mesh(
         self,
         tag: str,
         data: Union[numpy.ndarray, torch.Tensor, Image.Image],

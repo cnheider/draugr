@@ -12,19 +12,20 @@ __doc__ = r"""
 
            Created on 09/10/2019
            """
-__all__ = ["AudioWriterMixin"]
+__all__ = ["VideoWriterMixin"]
 
 
-class AudioWriterMixin(ABC):
+class VideoWriterMixin(ABC):
     """
-  Writer subclass that provides an interface for 'writing' audio clips"""
+  Writer subclass that provides an interface for 'writing' video clips"""
 
     @abstractmethod
-    def audio(
+    def video(
         self,
         tag: str,
         data: Union[numpy.ndarray, torch.Tensor, Image.Image],
         step,
+        frame_rate=30,
         **kwargs
     ) -> None:
         """
