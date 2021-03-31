@@ -3,7 +3,7 @@ from enum import Enum
 from itertools import zip_longest
 from pathlib import Path
 from pickle import dump
-from typing import Iterable, Mapping, Tuple, Union
+from typing import Iterable, Mapping, Tuple, TypeVar, Union
 
 import numpy
 import pandas
@@ -17,9 +17,10 @@ __all__ = ["TensorboardEventExporter"]
 
 from warg import passes_kws_to
 
-
 # TODO: implement export options using ExportMethodEnum
 # TODO: MAJOR REFACTOR INCOMING
+
+TagTypeEnum = TypeVar("TagTypeEnum")
 
 
 class TensorboardEventExporter:
@@ -87,7 +88,35 @@ class TensorboardEventExporter:
             setattr(self, f"available_{t}", self.tags_available[t])
             tags_dict[str(t)] = str(t)
 
-        self.TagTypeEnum = enum.Enum("TagTypeEnum", tags_dict)  # dynamic version
+        TensorboardEventExporter.TagTypeEnum = enum.Enum(
+            TagTypeEnum, tags_dict
+        )  # dynamic version
+
+    def tag_test(self, *tags, type_str: Union[str, TagTypeEnum]) -> bool:
+        """
+
+:param tags:
+:param type_str:
+:return:
+"""
+        if not len(tags):
+            print("No tags requested")
+            # raise Exception #TODO: maybe
+
+        if isinstance(type_str, Enum):
+            type_str = type_str.value
+
+        if (
+            len(tags) == 1
+            and isinstance(tags[0], Iterable)
+            and not isinstance(tags[0], str)
+        ):
+            tags = tags[0]
+        tags_available = self.tags_available[type_str]
+        assert all(
+            [tags_available.__contains__(t) for t in tags]
+        ), f"{type_str} tags available: {tags_available}, tags requested {tags}"
+        return True
 
     def __enter__(self):
         return self
@@ -133,32 +162,6 @@ class TensorboardEventExporter:
                     f.write(img.encoded_image_string)
             out.append(Image.fromstring(img.encoded_image_string))
         return (*out,)
-
-    def tag_test(self, *tags, type_str: Union[str, "TagTypeEnum"]) -> bool:
-        """
-
-:param tags:
-:param type_str:
-:return:
-"""
-        if not len(tags):
-            print("No tags requested")
-            # raise Exception #TODO: maybe
-
-        if isinstance(type_str, Enum):
-            type_str = type_str.value
-
-        if (
-            len(tags) == 1
-            and isinstance(tags[0], Iterable)
-            and not isinstance(tags[0], str)
-        ):
-            tags = tags[0]
-        tags_available = self.tags_available[type_str]
-        assert all(
-            [tags_available.__contains__(t) for t in tags]
-        ), f"{type_str} tags available: {tags_available}, tags requested {tags}"
-        return True
 
     def export_scalar(
         self, *tags: Iterable[str], out_dir: Path = Path.cwd()

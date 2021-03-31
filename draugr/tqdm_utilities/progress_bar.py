@@ -27,7 +27,7 @@ def progress_bar(
     leave: bool = False,
     notifications: bool = False,
     total: int = None,
-    auto_total_generator: bool = True,
+    auto_total_generator: bool = False,
     auto_describe_iterator: bool = True,  # DOES NOT WORK IS THIS FUNCTION IS ALIAS does not match!
     alias="progress_bar",
     disable: bool = False,
@@ -49,10 +49,22 @@ def progress_bar(
         if notifications:
             with JobNotificationSession(description):
                 yield from tqdm.tqdm(
-                    iterable, description, leave=leave, total=total, **kwargs
+                    iterable,
+                    description,
+                    leave=leave,
+                    total=total,
+                    disable=disable,  # redundant
+                    **kwargs,
                 )
             return
-        yield from tqdm.tqdm(iterable, description, leave=leave, total=total, **kwargs)
+        yield from tqdm.tqdm(
+            iterable,
+            description,
+            leave=leave,
+            total=total,
+            disable=disable,  # redundant
+            **kwargs,
+        )
     else:
         yield from iterable
 

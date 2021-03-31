@@ -15,6 +15,7 @@ isort
 pycodestyle
 doc8
 mccabe
+flake8
 bandit
 matplotlib
 -r requirements_docs.txt
