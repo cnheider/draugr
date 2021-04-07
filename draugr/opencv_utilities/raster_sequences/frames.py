@@ -23,8 +23,8 @@ def frame_generator(
 ) -> Iterable:
     """
 
-  @param video_stream:
-  @param coder:
+  :param video_stream:
+  :param coder:
   """
     if coder is None:
         coder = identity

@@ -23,8 +23,8 @@ class AsyncVideoStream:
         """
     threaded async wrapper around opencv cv2.VideoCapture with alike interface
 
-    @param src:
-    @param thread_name:
+    :param src:
+    :param thread_name:
     """
         self._stream = cv2.VideoCapture(src)
         (self.grabbed, self.frame) = self._stream.read()
@@ -37,7 +37,7 @@ class AsyncVideoStream:
     def start(self):
         """
         # start the thread to read frames from the video stream
-    @return:
+    :return:
     """
 
         self._thread.start()

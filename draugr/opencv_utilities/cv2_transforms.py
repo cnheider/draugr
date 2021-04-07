@@ -30,7 +30,7 @@ __all__ = [
     "CV2PhotometricDistort",
 ]
 
-from draugr.opencv_utilities.bounding_boxes.colors import Triple
+from draugr.opencv_utilities.bounding_boxes.colors import TripleNumber
 from draugr.opencv_utilities.bounding_boxes.evaluation import (
     jaccard_overlap_numpy,
     remove_null_boxes,
@@ -457,7 +457,7 @@ class CV2SwapChannels(object):
   swaps (int triple): final order of channels
   eg: (2, 1, 0)"""
 
-    def __init__(self, swaps: Triple):
+    def __init__(self, swaps: TripleNumber):
         self.swaps = swaps
 
     def __call__(self, image: numpy.ndarray) -> numpy.ndarray:

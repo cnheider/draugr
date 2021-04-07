@@ -33,6 +33,7 @@ from draugr.writers.mixins import (
     HistogramWriterMixin,
     ImageWriterMixin,
     MeshWriterMixin,
+    VideoInputDimsEnum,
     VideoWriterMixin,
 )
 from draugr.writers.mixins.figure_writer_mixin import FigureWriterMixin
@@ -58,19 +59,7 @@ __all__ = ["TensorBoardPytorchWriter"]
 from pathlib import Path
 
 
-class VideoInputDimsEnum(Enum):
-    """
-  Input mode
-  """
-
-    thw = "THW"
-    tchw = "TCHW"
-    thwc = "THWC"
-    ntchw = "NTCHW"
-    nthwc = "NTHWC"
-
-
-FPS_UPPER_LIMIT = 50  # https://wunkolo.github.io/post/2020/02/buttery-smooth-10fps/ ... Browser-engine image decoders will automatically reset the frame rate to 10fps if not requested fps is not supported
+GIF_FPS_UPPER_LIMIT = 50  # https://wunkolo.github.io/post/2020/02/buttery-smooth-10fps/ ... Browser-engine image decoders will automatically reset the frame rate to 10fps if not requested fps is not supported
 
 
 class TensorBoardPytorchWriter(
@@ -108,18 +97,26 @@ Shape:
      The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
 
     """
+
+        data = to_tensor(data)
         if input_dims == VideoInputDimsEnum.thwc:
-            data = nhwc_to_nchw_tensor(to_tensor(data)).unsqueeze(0)  # batch dim
+            data = nhwc_to_nchw_tensor(data).unsqueeze(0)  # batch dim
         elif input_dims == VideoInputDimsEnum.tchw:
-            data = to_tensor(data).unsqueeze(0)  # batch dim
-        elif input_dims == VideoInputDimsEnum.nthwc:
-            data = nthwc_to_ntchw_tensor(to_tensor(data))
+            data = data.unsqueeze(0)  # batch dim
         elif input_dims == VideoInputDimsEnum.thw:
-            data = to_tensor(data).unsqueeze(1).unsqueeze(0)  # channel then batch dim
+            data = data.unsqueeze(1).unsqueeze(0)  # channel then batch dim
+        elif input_dims == VideoInputDimsEnum.nthwc:
+            data = nthwc_to_ntchw_tensor(data)
+        elif input_dims == VideoInputDimsEnum.ntchw:
+            pass
+        else:
+            raise NotImplementedError(
+                "Not supported yet, use one of the other combinations"
+            )
 
         assert len(data.shape) == 5
 
-        frame_rate = min(frame_rate, FPS_UPPER_LIMIT)
+        frame_rate = min(frame_rate, GIF_FPS_UPPER_LIMIT)
 
         self.writer.add_video(tag, data, fps=frame_rate, global_step=step, **kwargs)
 
@@ -138,11 +135,11 @@ Shape:
     colors: (B,N,3). The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
     faces: (B,N,3). The values should lie in [0, number_of_vertices] for type uint8.
 
-    @param tag:
-    @param data:
-    @param step:
-    @param kwargs:
-    @return:
+    :param tag:
+    :param data:
+    :param step:
+    :param kwargs:
+    :return:
     """
         self.writer.add_mesh(tag, data, global_step=step, **kwargs)
 

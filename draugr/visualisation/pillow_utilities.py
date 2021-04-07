@@ -27,9 +27,9 @@ from PIL import Image
 def pil_image_to_byte_array(image: Image.Image, *, coding: str = "PNG") -> bytes:
     """
   PNG encoded by default
-  @param coding:
-  @param image:
-  @return:
+  :param coding:
+  :param image:
+  :return:
   """
     buffer = io.BytesIO()
     image.save(buffer, coding)
@@ -39,8 +39,8 @@ def pil_image_to_byte_array(image: Image.Image, *, coding: str = "PNG") -> bytes
 def byte_array_to_pil_image(byte_array: bytes) -> Image.Image:
     """
 
-  @param byte_array:
-  @return:
+  :param byte_array:
+  :return:
   """
     return Image.open(io.BytesIO(byte_array))
 

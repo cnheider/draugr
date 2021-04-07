@@ -20,11 +20,11 @@ def circular_mask(
 ) -> numpy.ndarray:
     """
 
-  @param h:
-  @param w:
-  @param center:
-  @param radius:
-  @return:
+  :param h:
+  :param w:
+  :param center:
+  :param radius:
+  :return:
   """
     if center is None:  # use the middle of the image
         center = (int(w / 2), int(h / 2))

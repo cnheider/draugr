@@ -10,11 +10,11 @@ __doc__ = r"""
 __all__ = ["compute_color_for_labels"]
 
 from typing import Tuple
-from warg import Triple
+from warg import TripleNumber
 
 
 def compute_color_for_labels(
-    label: int, palette: Triple = (2 ** 11 - 1, 2 ** 15 - 1, 2 ** 20 - 1)
+    label: int, palette: TripleNumber = (2 ** 11 - 1, 2 ** 15 - 1, 2 ** 20 - 1)
 ) -> Tuple:
     """
   Simple function that adds fixed color depending on the class"""

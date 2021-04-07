@@ -7,6 +7,8 @@ import sys
 from typing import Optional, Union
 
 import torch
+from torch.optim.optimizer import Optimizer
+
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
@@ -37,12 +39,12 @@ def load_latest_model(
 ) -> Optional[torch.nn.Module]:
     """
 
-  load model with the lastest time appendix or in this case creation time
+load model with the lastest time appendix or in this case creation time
 
-  :param raise_on_failure:
-  :param model_directory:
-  :param model_name:
-  :return:"""
+:param raise_on_failure:
+:param model_directory:
+:param model_name:
+:return:"""
     model_path = model_directory / model_name
     list_of_files = list(model_path.glob(f"*{model_extension}"))
     if len(list_of_files) == 0:
@@ -73,12 +75,12 @@ def save_model_and_configuration(
 ) -> None:
     """
 
-  :param raise_on_existing:
-  :param model:
-  :param model_save_path:
-  :param config_save_path:
-  :param loaded_config_file_path:
-  :return:"""
+:param raise_on_existing:
+:param model:
+:param model_save_path:
+:param config_save_path:
+:param loaded_config_file_path:
+:return:"""
     if raise_on_existing and model_save_path.exists():
         raise FileExistsError(f"{model_save_path} exists!")
     torch.save(model, str(model_save_path))
@@ -99,15 +101,15 @@ def save_model(
 ) -> None:
     """
 
-  save a model with a timestamp appendix to later to loaded
+save a model with a timestamp appendix to later to loaded
 
-  :param prompt_on_failure:
-  :param verbose:
-  :param model:
-  :param save_directory:
-  :param config_file_path:
-  :param model_name:
-  :return:"""
+:param prompt_on_failure:
+:param verbose:
+:param model:
+:param save_directory:
+:param config_file_path:
+:param model_name:
+:return:"""
     model_date = datetime.datetime.now()
     # config_name = config_name.replace(".", "_")
 
@@ -162,8 +164,8 @@ def save_model(
 def convert_saved_model_to_cpu(path: Path) -> None:
     """
 
-  :param path:
-  :return:"""
+:param path:
+:return:"""
     model = torch.load(path, map_location=lambda storage, loc: storage)
     torch.save(model, f"{path}.cpu{model_extension}")
 

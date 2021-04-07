@@ -15,7 +15,7 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 from .bounding_boxes import *
 from .color_space import *
 from .cv2_transforms import *
-from .frames import *
+from .raster_sequences import *
 from .opencv_draw import *
 from .opencv_drawing_utilities import *
 from .resize import *
