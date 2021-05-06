@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 from functools import partial
-from typing import Callable, Iterable, Optional, Union
+from typing import Callable, Iterable, Optional
 
 import cv2
 

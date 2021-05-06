@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, Any
+from typing import Any, Iterable
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

@@ -148,7 +148,6 @@ if __name__ == "__main__":
 
         import matplotlib.pyplot as plt
         import numpy as np
-        import sklearn.metrics
 
         test_pred_raw = []
         test_labels = []

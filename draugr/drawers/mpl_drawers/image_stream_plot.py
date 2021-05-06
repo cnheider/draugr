@@ -9,9 +9,9 @@ __doc__ = r"""
 
 from typing import Sequence
 
-from draugr.drawers import MplDrawer
-
 from matplotlib import pyplot
+
+from draugr.drawers import MplDrawer
 from warg import passes_kws_to
 
 

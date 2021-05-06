@@ -7,17 +7,15 @@ __doc__ = r"""
            Created on 06-01-2021
            """
 
+from typing import Sequence
+
+import mpl_toolkits.mplot3d.axes3d as p3
+import numpy
+from matplotlib import animation, cm, pyplot
+from mpl_toolkits.mplot3d import axes3d
 from scipy.signal import chirp, spectrogram
 
-import numpy
-from matplotlib import cm, pyplot
-
-from typing import Sequence
 from draugr.python_utilities.powers import next_pow_2
-import mpl_toolkits.mplot3d.axes3d as p3
-
-from mpl_toolkits.mplot3d import axes3d
-from matplotlib import animation
 
 __all__ = ["spectral_plot3d", "spectrum_plot3d"]
 

@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from contextlib import suppress
-from enum import Enum
 from typing import Any, Iterable, Sequence, Union
 
 import PIL
@@ -25,7 +24,6 @@ from draugr.torch_utilities.writers.torch_module_writer.module_parameter_writer_
 from draugr.torch_utilities.writers.torch_module_writer.module_writer_parameters import (
     weight_bias_histograms,
 )
-from draugr.writers.writer import Writer
 from draugr.writers.mixins import (
     BarWriterMixin,
     EmbedWriterMixin,
@@ -43,6 +41,7 @@ from draugr.writers.mixins.precision_recall_writer_mixin import (
     PrecisionRecallCurveWriterMixin,
 )
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
+from draugr.writers.writer import Writer
 from warg import drop_unused_kws, passes_kws_to
 
 with suppress(FutureWarning):

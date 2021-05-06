@@ -12,7 +12,6 @@ __doc__ = ""
 __all__ = ["to_tensor"]
 
 from draugr.torch_utilities.tensors.types import numpy_to_torch_dtype
-from warg import Number
 
 
 # @passes_kws_to(torch.Tensor.to)

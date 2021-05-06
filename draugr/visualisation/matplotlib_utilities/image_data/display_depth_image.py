@@ -4,8 +4,8 @@ __author__ = "Christian Heider Nielsen"
 
 from pathlib import Path
 
-from matplotlib.image import imread
 from matplotlib import pyplot
+from matplotlib.image import imread
 
 __all__ = ["display_depth_map"]
 

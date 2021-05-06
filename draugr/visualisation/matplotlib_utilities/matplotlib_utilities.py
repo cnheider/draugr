@@ -11,9 +11,9 @@ from pathlib import Path
 from typing import Any, Sequence, Union
 
 import numpy
+from cycler import Cycler
 from matplotlib import patches, pyplot, rcParams
 from matplotlib.legend_handler import HandlerErrorbar
-from cycler import Cycler
 
 from draugr.visualisation.matplotlib_utilities.quirks import auto_post_hatch
 from draugr.visualisation.matplotlib_utilities.styles.annotation import (

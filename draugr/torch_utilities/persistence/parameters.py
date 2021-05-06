@@ -9,16 +9,16 @@ __doc__ = r"""
 
 import datetime
 import os
-
-from typing import Dict, Optional, Tuple, Union
+from typing import Optional, Tuple, Union
 
 import torch
+from torch.nn.modules.module import Module
+from torch.optim import Optimizer
+
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
-from torch.nn.modules.module import Module
-from torch.optim import Optimizer
 from warg.decorators.kw_passing import drop_unused_kws
 
 parameter_extension = ".parameters"

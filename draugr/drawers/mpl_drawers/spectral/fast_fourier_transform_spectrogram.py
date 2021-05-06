@@ -3,8 +3,9 @@
 import math
 
 import numpy
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from matplotlib.gridspec import GridSpec
+
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """

@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
-from pathlib import Path
 from logging import warning
+from pathlib import Path
 
 import pkg_resources
+
 from apppath import AppPath
 
 __project__ = "Draugr"

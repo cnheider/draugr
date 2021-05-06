@@ -11,8 +11,6 @@ from typing import Any
 
 import matlab
 import numpy
-
-from matlab import engine
 from scipy import sparse
 
 __all__ = ["ndarray_to_matlab", "matlab_to_ndarray", "dict_to_sparse"]

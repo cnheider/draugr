@@ -10,9 +10,9 @@ __doc__ = r"""
 import torch
 
 from draugr.torch_utilities.sessions.device_sessions import (
-    global_torch_device,
     TorchCpuSession,
     TorchCudaSession,
+    global_torch_device,
 )
 from draugr.torch_utilities.sessions.model_sessions import (
     TorchEvalSession,

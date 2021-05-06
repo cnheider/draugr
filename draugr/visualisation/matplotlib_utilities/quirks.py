@@ -9,6 +9,7 @@ __doc__ = r"""
 
 from matplotlib import cycler, pyplot, rcParams
 from matplotlib.axes import Axes
+
 from .styles import simple_hatch_cycler
 
 __all__ = ["fix_edge_gridlines", "auto_post_print_dpi", "auto_post_hatch"]

@@ -10,10 +10,11 @@ __doc__ = r"""
 from contextlib import contextmanager
 from itertools import tee
 
+from torch.nn import Module
+
 from draugr.torch_utilities.optimisation.parameters.freezing.parameters import (
     freeze_parameters,
 )
-from torch.nn import Module
 
 __all__ = ["freeze_model", "frozen_model"]
 

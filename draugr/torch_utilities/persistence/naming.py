@@ -9,8 +9,9 @@ __doc__ = r"""
 
 __all__ = ["get_model_hash"]
 
-import torch
 import hashlib
+
+import torch
 
 
 def get_model_hash(model: torch.nn.Module) -> str:

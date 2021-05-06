@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import contextlib
-import signal
 from time import sleep
-from typing import Callable, Iterable, MutableSequence
+from typing import Callable, Iterable
 
 from pynput.keyboard import KeyCode
 

@@ -10,6 +10,7 @@ __doc__ = r"""
 from typing import Tuple
 
 import numpy
+
 from warg import Number
 
 __all__ = ["circular_mask"]

@@ -8,12 +8,12 @@ __doc__ = r"""
            """
 
 from pathlib import Path
-from typing import Sequence, Tuple, Union, Optional
+from typing import Optional, Sequence, Tuple, Union
 
-import PIL.ImageDraw as ImageDraw
-import PIL.ImageFont as ImageFont
+
 import numpy
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
+
 from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.opencv_utilities.opencv_draw import draw_masks
 from draugr.python_utilities.colors import RGB

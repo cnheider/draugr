@@ -13,7 +13,7 @@ import re
 import sys
 from enum import Enum
 from pathlib import Path
-from typing import Dict, Iterable, OrderedDict, Sequence, Any
+from typing import Any, Dict, Iterable, OrderedDict, Sequence
 
 import numpy
 

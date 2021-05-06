@@ -7,8 +7,9 @@ __doc__ = r"""
            Created on 08-02-2021
            """
 
-from typing import Sequence, Tuple, Union
 from pathlib import Path
+from typing import Tuple, Union
+
 import numpy
 from scipy.io import wavfile
 

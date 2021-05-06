@@ -16,8 +16,6 @@ from draugr.writers import HistogramWriterMixin
 
 __all__ = ["weight_bias_histograms"]
 
-from warg import passes_kws_to
-
 
 # @passes_kws_to(TensorBoardPytorchWriter.histogram) # Self reference issue
 def weight_bias_histograms(

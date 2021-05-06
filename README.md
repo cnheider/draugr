@@ -29,6 +29,8 @@ A utility package for...
 - opencv images
 - numpy array functions
 
+Many of these utilities might eventually be spun off as their own package onces they grow sufficiently coherent and/or massive.
+
 https://en.wikipedia.org/wiki/Draugr
 
 ```bash

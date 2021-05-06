@@ -8,6 +8,7 @@ __all__ = [
     "TestingCurves",
     "TestingTables",
     "should_plot_y_log_scale",
+    "should_smooth_series",
 ]
 
 
@@ -49,10 +50,28 @@ class TestingTables(Enum):
     test_support = "test_support"
 
 
-def should_plot_y_log_scale(enum_: Enum) -> bool:
-    if enum_ is TrainingScalars.training_loss:
+def should_plot_y_log_scale(tag: Enum) -> bool:
+    """
+
+    :param tag:
+    :return:
+    """
+    if tag is TrainingScalars.training_loss:
         return True
-    elif enum_ is TrainingScalars.validation_loss:
+    elif tag is TrainingScalars.validation_loss:
+        return True
+    return False
+
+
+def should_smooth_series(tag: Enum) -> bool:
+    """
+
+    :param tag:
+    :return:
+    """
+    if tag is TrainingScalars.training_loss:
+        return True
+    elif tag is TrainingScalars.validation_loss:
         return True
     return False
 

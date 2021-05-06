@@ -3,9 +3,10 @@
 
 from typing import Iterator, Sequence, Tuple
 
-from draugr.numpy_utilities import recursive_flatten_numpy
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from matplotlib import animation
+
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
+from draugr.numpy_utilities import recursive_flatten_numpy
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """

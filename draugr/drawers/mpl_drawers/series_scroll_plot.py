@@ -3,8 +3,8 @@
 
 from typing import Sequence, Union
 
-from draugr.numpy_utilities import recursive_flatten_numpy
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
+from draugr.numpy_utilities import recursive_flatten_numpy
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

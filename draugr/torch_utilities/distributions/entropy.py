@@ -3,6 +3,7 @@
 import math
 
 import torch
+
 from draugr.torch_utilities.system.constants import torch_pi
 
 __author__ = "Christian Heider Nielsen"

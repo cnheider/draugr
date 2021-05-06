@@ -8,6 +8,7 @@ __doc__ = r"""
            """
 
 import numpy
+
 from draugr.python_utilities.powers import next_pow_2
 
 __all__ = ["zero_pad_to_power_2", "zero_pad_to"]

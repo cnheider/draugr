@@ -15,13 +15,13 @@ __all__ = ["MockWriter"]
 class MockWriter(Writer):
     """"""
 
-    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None) -> None:
         pass
 
     def _open(self):
         return self
 
-    def _scalar(self, *args, **kwargs):
+    def _scalar(self, *args, **kwargs) -> None:
         pass
 
 

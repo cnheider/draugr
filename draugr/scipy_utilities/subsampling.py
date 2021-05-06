@@ -15,11 +15,10 @@ __all__ = [
     "fft_subsample",
 ]
 
-from typing import Optional, Tuple
+from typing import Iterable, Tuple, Union
 
 import numpy
 from scipy.signal import decimate, resample
-from typing import Union, Iterable
 
 
 def max_decimation_subsample(

@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 13-01-2021
            """
 
-from math import ceil, log, log10, log2, floor
+from math import ceil, floor, log, log10, log2
 
 __all__ = [
     "next_pow",

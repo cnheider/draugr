@@ -7,10 +7,12 @@ __doc__ = r"""
            Created on 06-01-2021
            """
 
-from scipy.signal import welch, spectrogram
+from typing import Sequence
+
 import numpy
 from matplotlib import pyplot
-from typing import Sequence
+from scipy.signal import spectrogram, welch
+
 from draugr.python_utilities.powers import next_pow_2
 from warg import Number
 

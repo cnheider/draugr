@@ -6,7 +6,7 @@ __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 
-def main(keep_alive: bool = True) -> str:
+def main(keep_alive: bool = True, asyncio_s=True) -> str:
     """
 
 :param keep_alive:
@@ -56,9 +56,28 @@ def main(keep_alive: bool = True) -> str:
 
     if keep_alive:
         print(f"tensorboard address: {address} for log_dir {log_dir}")
-        # with IgnoreInterruptSignal(): # Do not block
-        while True:
-            sleep(10)
+
+        if asyncio_s:
+            import asyncio
+
+            async def work():
+                while True:
+                    await asyncio.sleep(1)
+                    # print("Task Executed")
+
+            loop = asyncio.get_event_loop()
+            try:
+                asyncio.ensure_future(work())
+                loop.run_forever()
+            except KeyboardInterrupt:
+                pass
+            finally:
+                print("Closing Loop")
+                loop.close()
+        else:
+            # with IgnoreInterruptSignal(): # Do not block
+            while True:
+                sleep(10)
 
     return address
 

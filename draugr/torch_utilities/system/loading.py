@@ -14,6 +14,7 @@ from typing import Union
 
 import numpy
 import torch
+
 from draugr.torch_utilities.system.device import global_torch_device
 
 

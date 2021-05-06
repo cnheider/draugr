@@ -9,9 +9,10 @@ import numpy
 import pandas
 import tensorflow
 from PIL.Image import Image
-from apppath import AppPath, ensure_existence
 from matplotlib import pyplot
 from tensorboard.backend.event_processing import event_accumulator
+
+from apppath import AppPath, ensure_existence
 
 __all__ = ["TensorboardEventExporter"]
 
@@ -89,7 +90,7 @@ class TensorboardEventExporter:
             tags_dict[str(t)] = str(t)
 
         TensorboardEventExporter.TagTypeEnum = enum.Enum(
-            TagTypeEnum, tags_dict
+            "TagTypeEnum", tags_dict
         )  # dynamic version
 
     def tag_test(self, *tags, type_str: Union[str, TagTypeEnum]) -> bool:

@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Iterable, Sequence, Tuple, Union
 
 from matplotlib import pyplot
+
 from warg import AlsoDecorator, passes_kws_to
 
 __all__ = [
@@ -22,13 +23,9 @@ __all__ = [
 ]
 
 from draugr.visualisation.matplotlib_utilities.matplotlib_utilities import (
-    simple_hatch_cycler,
     monochrome_line_cycler,
 )
-from draugr.visualisation.matplotlib_utilities.quirks import (
-    auto_post_hatch,
-    fix_edge_gridlines,
-)
+from draugr.visualisation.matplotlib_utilities.quirks import fix_edge_gridlines
 
 
 class FigureSession(AlsoDecorator):

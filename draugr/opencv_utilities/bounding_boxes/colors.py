@@ -10,6 +10,7 @@ __doc__ = r"""
 __all__ = ["compute_color_for_labels"]
 
 from typing import Tuple
+
 from warg import TripleNumber
 
 
