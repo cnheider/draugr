@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import datetime
-import os
 import sys
 from typing import Optional
 
 import torch
+from draugr.python_utilities.path_utilities import latest_file
 from torch.nn.modules.module import Module
 
 from draugr.torch_utilities.persistence.config import (
@@ -37,26 +37,21 @@ def load_latest_model(
 ) -> Optional[torch.nn.Module]:
     """
 
-load model with the lastest time appendix or in this case creation time
+    load model with the lastest time appendix or in this case creation time
 
-:param raise_on_failure:
-:param model_directory:
-:param model_name:
-:return:"""
+    :param raise_on_failure:
+    :param model_directory:
+    :param model_name:
+    :return:"""
     model_path = model_directory / model_name
-    list_of_files = list(model_path.glob(f"*{model_extension}"))
-    if len(list_of_files) == 0:
-        msg = (
-            f"Found no previous models with extension {model_extension} in {model_path}"
-        )
-        if raise_on_failure:
-            raise FileNotFoundError(msg)
-        print(msg)
-        return None
-    latest_model = max(list_of_files, key=os.path.getctime)  # USES CREATION TIME
-    print(f"loading previous model: {latest_model}")
+    latest_model_ = latest_file(
+        model_path,
+        extension=model_extension,
+        raise_on_failure=raise_on_failure,
+    )
+    print(f"loading previous model: {latest_model_}")
 
-    return torch.load(str(latest_model))
+    return torch.load(str(latest_model_))
 
 
 load_model = load_latest_model
@@ -73,12 +68,12 @@ def save_model_and_configuration(
 ) -> None:
     """
 
-:param raise_on_existing:
-:param model:
-:param model_save_path:
-:param config_save_path:
-:param loaded_config_file_path:
-:return:"""
+    :param raise_on_existing:
+    :param model:
+    :param model_save_path:
+    :param config_save_path:
+    :param loaded_config_file_path:
+    :return:"""
     if raise_on_existing and model_save_path.exists():
         raise FileExistsError(f"{model_save_path} exists!")
     torch.save(model, str(model_save_path))
@@ -99,15 +94,15 @@ def save_model(
 ) -> None:
     """
 
-save a model with a timestamp appendix to later to loaded
+    save a model with a timestamp appendix to later to loaded
 
-:param prompt_on_failure:
-:param verbose:
-:param model:
-:param save_directory:
-:param config_file_path:
-:param model_name:
-:return:"""
+    :param prompt_on_failure:
+    :param verbose:
+    :param model:
+    :param save_directory:
+    :param config_file_path:
+    :param model_name:
+    :return:"""
     model_date = datetime.datetime.now()
     # config_name = config_name.replace(".", "_")
 
@@ -162,8 +157,8 @@ save a model with a timestamp appendix to later to loaded
 def convert_saved_model_to_cpu(path: Path) -> None:
     """
 
-:param path:
-:return:"""
+    :param path:
+    :return:"""
     model = torch.load(path, map_location=lambda storage, loc: storage)
     torch.save(model, f"{path}.cpu{model_extension}")
 

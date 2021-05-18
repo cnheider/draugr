@@ -53,7 +53,7 @@ Created on 27/04/2019
 
 @author: cnheider
 """
-__all__ = ["TensorBoardPytorchWriter"]
+__all__ = ["TensorBoardPytorchWriter", "PTW"]
 
 from pathlib import Path
 
@@ -78,7 +78,7 @@ class TensorBoardPytorchWriter(
     MeshWriterMixin,
 ):
     """
-Provides a pytorch-tensorboard-implementation writer interface"""
+    Provides a pytorch-tensorboard-implementation writer interface"""
 
     def video(
         self,
@@ -90,12 +90,12 @@ Provides a pytorch-tensorboard-implementation writer interface"""
         **kwargs,
     ) -> None:
         """
-Shape:
+        Shape:
 
-    fastest expects vid_tensor: (N,T,C,H,W) .
-     The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
+            fastest expects vid_tensor: (N,T,C,H,W) .
+             The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
 
-    """
+        """
 
         data = to_tensor(data)
         if input_dims == VideoInputDimsEnum.thwc:
@@ -127,19 +127,19 @@ Shape:
         **kwargs,
     ) -> None:
         """
-    Data being vertices here.
+        Data being vertices here.
 
-    Shape: (B,N,3)
-    data: (B,N,3). (batch, number_of_vertices, channels)
-    colors: (B,N,3). The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
-    faces: (B,N,3). The values should lie in [0, number_of_vertices] for type uint8.
+        Shape: (B,N,3)
+        data: (B,N,3). (batch, number_of_vertices, channels)
+        colors: (B,N,3). The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
+        faces: (B,N,3). The values should lie in [0, number_of_vertices] for type uint8.
 
-    :param tag:
-    :param data:
-    :param step:
-    :param kwargs:
-    :return:
-    """
+        :param tag:
+        :param data:
+        :param step:
+        :param kwargs:
+        :return:
+        """
         self.writer.add_mesh(tag, data, global_step=step, **kwargs)
 
     def parameters(
@@ -159,15 +159,15 @@ Shape:
     ) -> None:
         """
 
-BORKED!
+        BORKED!
 
-:param tag:
-:param response:
-:param metadata:
-:param label_img:
-:param step:
-:param kwargs:
-:return:"""
+        :param tag:
+        :param response:
+        :param metadata:
+        :param label_img:
+        :param step:
+        :param kwargs:
+        :return:"""
         try:
             self.writer.add_embedding(
                 response,
@@ -190,9 +190,9 @@ BORKED!
     ):
         """
 
-:param path:
-:param summary_writer_kws:
-:param kwargs:"""
+        :param path:
+        :param summary_writer_kws:
+        :param kwargs:"""
         super().__init__(**kwargs)
 
         if summary_writer_kws is None:
@@ -205,11 +205,11 @@ BORKED!
     def instance(self, instance: dict, metrics: dict, **kwargs) -> None:
         """
 
-TODO: Not finished!
+        TODO: Not finished!
 
-:param instance:
-:param metrics:
-:return:"""
+        :param instance:
+        :param metrics:
+        :return:"""
         self.writer.add_hparams(instance, metrics, **kwargs)
 
     @drop_unused_kws
@@ -224,12 +224,11 @@ TODO: Not finished!
     ) -> None:
         """
 
-:param tag:
-:param predictions:
-:param truths:
-:param step:
-:param kwargs:
-"""
+        :param tag:
+        :param predictions:
+        :param truths:
+        :param step:
+        :param kwargs:"""
         self.writer.add_pr_curve(
             tag,
             to_tensor(truths, device="cpu"),
@@ -243,14 +242,14 @@ TODO: Not finished!
     def figure(self, tag: str, figure: Figure, step: int, **kwargs) -> None:
         """
 
-:param tag:
-:type tag:
-:param figure:
-:type figure:
-:param step:
-:type step:
-:param kwargs:
-:type kwargs:"""
+        :param tag:
+        :type tag:
+        :param figure:
+        :type figure:
+        :param step:
+        :type step:
+        :param kwargs:
+        :type kwargs:"""
         self.writer.add_figure(tag, figure, global_step=step, **kwargs)
 
     @drop_unused_kws
@@ -271,25 +270,25 @@ TODO: Not finished!
     ) -> None:
         """
 
-:param sample_rate:
-:param n_fft:
-:param step_size:
-:param tag:
-:type tag:
-:param values:
-:type values:
-:param step:
-:type step:
-:param x_labels:
-:type x_labels:
-:param y_label:
-:type y_label:
-:param x_label:
-:type x_label:
-:param plot_kws:
-:type plot_kws:
-:param kwargs:
-:type kwargs:"""
+        :param sample_rate:
+        :param n_fft:
+        :param step_size:
+        :param tag:
+        :type tag:
+        :param values:
+        :type values:
+        :param step:
+        :type step:
+        :param x_labels:
+        :type x_labels:
+        :param y_label:
+        :type y_label:
+        :param x_label:
+        :type x_label:
+        :param plot_kws:
+        :type plot_kws:
+        :param kwargs:
+        :type kwargs:"""
         if plot_kws is None:
             plot_kws = {}
         fig = pyplot.figure()
@@ -332,22 +331,22 @@ pyplot.title(tag)
     ) -> None:
         """
 
-:param x_label:
-:type x_label:
-:param tag:
-:type tag:
-:param values:
-:type values:
-:param step:
-:type step:
-:param value_error:
-:type value_error:
-:param x_labels:
-:type x_labels:
-:param y_label:
-:type y_label:
-:param kwargs:
-:type kwargs:"""
+        :param x_label:
+        :type x_label:
+        :param tag:
+        :type tag:
+        :param values:
+        :type values:
+        :param step:
+        :type step:
+        :param value_error:
+        :type value_error:
+        :param x_labels:
+        :type x_labels:
+        :param y_label:
+        :type y_label:
+        :param kwargs:
+        :type kwargs:"""
         fig = pyplot.figure()
         ind = numpy.arange(len(values))
         im = pyplot.bar(ind, values, yerr=value_error)
@@ -379,22 +378,22 @@ pyplot.title(tag)
     ) -> None:
         """
 
-:param x_label:
-:type x_label:
-:param plot_kws:
-:type plot_kws:
-:param tag:
-:type tag:
-:param values:
-:type values:
-:param step:
-:type step:
-:param x_labels:
-:type x_labels:
-:param y_label:
-:type y_label:
-:param kwargs:
-:type kwargs:"""
+        :param x_label:
+        :type x_label:
+        :param plot_kws:
+        :type plot_kws:
+        :param tag:
+        :type tag:
+        :param values:
+        :type values:
+        :param step:
+        :type step:
+        :param x_labels:
+        :type x_labels:
+        :param y_label:
+        :type y_label:
+        :param kwargs:
+        :type kwargs:"""
         if plot_kws is None:
             plot_kws = {}
         fig = pyplot.figure()
@@ -420,16 +419,16 @@ pyplot.title(tag)
     ) -> None:
         """
 
-:param tag:
-:type tag:
-:param values:
-:type values:
-:param step:
-:type step:
-:param bins:
-:type bins:
-:param kwargs:
-:type kwargs:"""
+        :param tag:
+        :type tag:
+        :param values:
+        :type values:
+        :param step:
+        :type step:
+        :param bins:
+        :type bins:
+        :param kwargs:
+        :type kwargs:"""
         self.writer.add_histogram(tag, values, global_step=step, bins=bins, **kwargs)
 
     def _scalar(self, tag: str, value: float, step: int) -> None:
@@ -445,11 +444,11 @@ pyplot.title(tag)
     ) -> None:
         """
 
-:param verbose:
-:param model:
-:type model:
-:param input_to_model:
-:type input_to_model:"""
+        :param verbose:
+        :param model:
+        :type model:
+        :param input_to_model:
+        :type input_to_model:"""
         self.writer.add_graph(model, input_to_model, verbose)
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
@@ -469,24 +468,24 @@ pyplot.title(tag)
     ) -> None:
         """
 
-:param tag:
-:type tag:
-:param data:
-:type data:
-:param step:
-:type step:
-:param data_formats:
-:type data_formats:
-:param kwargs:
-:type kwargs:"""
+        :param tag:
+        :type tag:
+        :param data:
+        :type data:
+        :param step:
+        :type step:
+        :param data_formats:
+        :type data_formats:
+        :param kwargs:
+        :type kwargs:"""
         self.writer.add_image(tag, data, step, dataformats=data_formats, **kwargs)
 
     @property
     def writer(self) -> SummaryWriter:
         """
 
-:return:
-:rtype:"""
+        :return:
+        :rtype:"""
         if not hasattr(self, "_writer") or not self._writer:
             self._writer = SummaryWriter(
                 str(self._log_dir), **self._summary_writer_kws
@@ -510,6 +509,7 @@ TensorboardTorchWriter = TensorBoardPytorchWriter
 TensorBoardTorchWriter = TensorBoardPytorchWriter
 TorchTensorboardWriter = TensorBoardPytorchWriter
 TorchTensorBoardWriter = TensorBoardPytorchWriter
+PTW = TensorBoardPytorchWriter
 
 if __name__ == "__main__":
 

@@ -2,10 +2,10 @@ fail_fast: true
 #exclude: '^exclude'
 repos:
   - repo: https://github.com/ambv/black
-    rev:  stable
+    rev:  21.5b1
     hooks:
       - id:               black
-        language_version: python3.7
+        language_version: python3.9
   - repo: local
     hooks:
       - id:             pytest-check
