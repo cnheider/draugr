@@ -11,7 +11,7 @@ from apppath import AppPath
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.8.9"
+__version__ = "0.9.0"
 __doc__ = """
 Created on 27/04/2019
 
@@ -41,7 +41,7 @@ from .python_utilities import *
 
 def dist_is_editable(dist: Any) -> bool:
     """
-  Return True if given Distribution is an editable install."""
+    Return True if given Distribution is an editable install."""
     import sys
 
     for path_item in sys.path:
@@ -68,8 +68,7 @@ else:
 
 
 def get_version(append_time: Any = DEVELOP) -> str:
-    """
-  """
+    """ """
     version = __version__
     if not version:
         version = os.getenv("VERSION", "0.0.0")
