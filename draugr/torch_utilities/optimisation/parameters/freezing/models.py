@@ -10,10 +10,11 @@ __doc__ = r"""
 from contextlib import contextmanager
 from itertools import tee
 
+from torch.nn import Module
+
 from draugr.torch_utilities.optimisation.parameters.freezing.parameters import (
     freeze_parameters,
 )
-from torch.nn import Module
 
 __all__ = ["freeze_model", "frozen_model"]
 
@@ -21,11 +22,11 @@ __all__ = ["freeze_model", "frozen_model"]
 def freeze_model(model: Module, value: bool = None, recurse: bool = True) -> None:
     """
 
-    :param model:
-    :type model:
-    :param recurse:
-    :param value:
-    :return:"""
+  :param model:
+  :type model:
+  :param recurse:
+  :param value:
+  :return:"""
     freeze_parameters(model.parameters(recurse), value)
 
 
@@ -33,11 +34,11 @@ def freeze_model(model: Module, value: bool = None, recurse: bool = True) -> Non
 def frozen_model(model: Module, recurse: bool = True, enabled: bool = True) -> None:
     """
 
-    :param enabled:
-    :type enabled:
-    :param model:
-    :param recurse:
-    :return:"""
+  :param enabled:
+  :type enabled:
+  :param model:
+  :param recurse:
+  :return:"""
     params_1, params_2 = tee(model.parameters(recurse))
     if enabled:
         freeze_parameters(params_1, True)
@@ -51,7 +52,7 @@ if __name__ == "__main__":
 
     def asda():
         """
-        """
+    """
         a = nn.Linear(10, 5)
         print(a.weight.requires_grad)
         with frozen_model(a):

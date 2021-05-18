@@ -8,6 +8,7 @@ __doc__ = r"""
            """
 
 import numpy
+
 from draugr.python_utilities.powers import next_pow_2
 
 __all__ = ["zero_pad_to_power_2", "zero_pad_to"]
@@ -15,7 +16,7 @@ __all__ = ["zero_pad_to_power_2", "zero_pad_to"]
 
 def zero_pad_to(signal: numpy.ndarray, length: int) -> numpy.ndarray:
     """
-    """
+  """
     return numpy.pad(
         signal, (0, length - len(signal)), "constant", constant_values=(0, 0)
     )
@@ -23,7 +24,7 @@ def zero_pad_to(signal: numpy.ndarray, length: int) -> numpy.ndarray:
 
 def zero_pad_to_power_2(signal: numpy.ndarray) -> numpy.ndarray:
     """
-    """
+  """
     return zero_pad_to(signal, next_pow_2(len(signal)))
 
 

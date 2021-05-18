@@ -17,14 +17,14 @@ def indent_lines(
 ) -> str:
     """
 
-    :param ignore_single_lines:
-    :type ignore_single_lines:
-    :param input_str:
-    :type input_str:
-    :param indent_spaces_num:
-    :type indent_spaces_num:
-    :return:
-    :rtype:"""
+  :param ignore_single_lines:
+  :type ignore_single_lines:
+  :param input_str:
+  :type input_str:
+  :param indent_spaces_num:
+  :type indent_spaces_num:
+  :return:
+  :rtype:"""
     if not isinstance(input_str, str):
         input_str = str(input_str)
     s = input_str.split("\n")

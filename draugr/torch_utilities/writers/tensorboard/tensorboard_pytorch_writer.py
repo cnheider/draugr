@@ -14,13 +14,25 @@ from matplotlib.figure import Figure
 from draugr import PROJECT_APP_PATH
 from draugr.python_utilities import sprint
 from draugr.torch_utilities import to_tensor
-from draugr.writers import Writer
+from draugr.torch_utilities.tensors.dimension_order import (
+    nhwc_to_nchw_tensor,
+    nthwc_to_ntchw_tensor,
+)
+from draugr.torch_utilities.writers.torch_module_writer.module_parameter_writer_mixin import (
+    ModuleParameterWriterMixin,
+)
+from draugr.torch_utilities.writers.torch_module_writer.module_writer_parameters import (
+    weight_bias_histograms,
+)
 from draugr.writers.mixins import (
     BarWriterMixin,
     EmbedWriterMixin,
     GraphWriterMixin,
     HistogramWriterMixin,
     ImageWriterMixin,
+    MeshWriterMixin,
+    VideoInputDimsEnum,
+    VideoWriterMixin,
 )
 from draugr.writers.mixins.figure_writer_mixin import FigureWriterMixin
 from draugr.writers.mixins.instantiation_writer_mixin import InstantiationWriterMixin
@@ -29,6 +41,7 @@ from draugr.writers.mixins.precision_recall_writer_mixin import (
     PrecisionRecallCurveWriterMixin,
 )
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
+from draugr.writers.writer import Writer
 from warg import drop_unused_kws, passes_kws_to
 
 with suppress(FutureWarning):
@@ -40,9 +53,12 @@ Created on 27/04/2019
 
 @author: cnheider
 """
-__all__ = ["TensorBoardPytorchWriter"]
+__all__ = ["TensorBoardPytorchWriter", "PTW"]
 
 from pathlib import Path
+
+
+GIF_FPS_UPPER_LIMIT = 50  # https://wunkolo.github.io/post/2020/02/buttery-smooth-10fps/ ... Browser-engine image decoders will automatically reset the frame rate to 10fps if not requested fps is not supported
 
 
 class TensorBoardPytorchWriter(
@@ -57,9 +73,79 @@ class TensorBoardPytorchWriter(
     InstantiationWriterMixin,
     PrecisionRecallCurveWriterMixin,
     EmbedWriterMixin,
+    ModuleParameterWriterMixin,
+    VideoWriterMixin,
+    MeshWriterMixin,
 ):
     """
     Provides a pytorch-tensorboard-implementation writer interface"""
+
+    def video(
+        self,
+        tag: str,
+        data: Union[numpy.ndarray, torch.Tensor, Image.Image],
+        step=None,
+        frame_rate=30,
+        input_dims=VideoInputDimsEnum.ntchw,
+        **kwargs,
+    ) -> None:
+        """
+        Shape:
+
+            fastest expects vid_tensor: (N,T,C,H,W) .
+             The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
+
+        """
+
+        data = to_tensor(data)
+        if input_dims == VideoInputDimsEnum.thwc:
+            data = nhwc_to_nchw_tensor(data).unsqueeze(0)  # batch dim
+        elif input_dims == VideoInputDimsEnum.tchw:
+            data = data.unsqueeze(0)  # batch dim
+        elif input_dims == VideoInputDimsEnum.thw:
+            data = data.unsqueeze(1).unsqueeze(0)  # channel then batch dim
+        elif input_dims == VideoInputDimsEnum.nthwc:
+            data = nthwc_to_ntchw_tensor(data)
+        elif input_dims == VideoInputDimsEnum.ntchw:
+            pass
+        else:
+            raise NotImplementedError(
+                "Not supported yet, use one of the other combinations"
+            )
+
+        assert len(data.shape) == 5
+
+        frame_rate = min(frame_rate, GIF_FPS_UPPER_LIMIT)
+
+        self.writer.add_video(tag, data, fps=frame_rate, global_step=step, **kwargs)
+
+    def mesh(
+        self,
+        tag: str,
+        data: Union[numpy.ndarray, torch.Tensor, Image.Image],
+        step=None,
+        **kwargs,
+    ) -> None:
+        """
+        Data being vertices here.
+
+        Shape: (B,N,3)
+        data: (B,N,3). (batch, number_of_vertices, channels)
+        colors: (B,N,3). The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
+        faces: (B,N,3). The values should lie in [0, number_of_vertices] for type uint8.
+
+        :param tag:
+        :param data:
+        :param step:
+        :param kwargs:
+        :return:
+        """
+        self.writer.add_mesh(tag, data, global_step=step, **kwargs)
+
+    def parameters(
+        self, model: torch.nn.Module, step: int, tag: str = "", **kwargs
+    ) -> None:
+        weight_bias_histograms(self, model, prefix=tag, step=step, **kwargs)
 
     @passes_kws_to(SummaryWriter.add_embedding)
     def embed(
@@ -116,15 +202,15 @@ class TensorBoardPytorchWriter(
         self._summary_writer_kws = summary_writer_kws
 
     # @passes_kws_to(SummaryWriter.add_hparams)
-    def instance(self, instance: dict, metrics: dict) -> None:
+    def instance(self, instance: dict, metrics: dict, **kwargs) -> None:
         """
 
-        Not finished!
+        TODO: Not finished!
 
         :param instance:
         :param metrics:
         :return:"""
-        self.writer.add_hparams(instance, metrics)
+        self.writer.add_hparams(instance, metrics, **kwargs)
 
     @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_pr_curve)
@@ -142,8 +228,7 @@ class TensorBoardPytorchWriter(
         :param predictions:
         :param truths:
         :param step:
-        :param kwargs:
-        """
+        :param kwargs:"""
         self.writer.add_pr_curve(
             tag,
             to_tensor(truths, device="cpu"),
@@ -185,9 +270,9 @@ class TensorBoardPytorchWriter(
     ) -> None:
         """
 
-            :param sample_rate:
-            :param n_fft:
-            :param step_size:
+        :param sample_rate:
+        :param n_fft:
+        :param step_size:
         :param tag:
         :type tag:
         :param values:
@@ -359,7 +444,7 @@ pyplot.title(tag)
     ) -> None:
         """
 
-            :param verbose:
+        :param verbose:
         :param model:
         :type model:
         :param input_to_model:
@@ -402,7 +487,9 @@ pyplot.title(tag)
         :return:
         :rtype:"""
         if not hasattr(self, "_writer") or not self._writer:
-            self._writer = SummaryWriter(str(self._log_dir), **self._summary_writer_kws)
+            self._writer = SummaryWriter(
+                str(self._log_dir), **self._summary_writer_kws
+            )  # DB MODEL    --db sqlite:~/.tensorboard.db ON HOLD..
             if self._verbose:
                 print(f"Logging at {self._log_dir}")
         return self._writer
@@ -422,6 +509,7 @@ TensorboardTorchWriter = TensorBoardPytorchWriter
 TensorBoardTorchWriter = TensorBoardPytorchWriter
 TorchTensorboardWriter = TensorBoardPytorchWriter
 TorchTensorBoardWriter = TensorBoardPytorchWriter
+PTW = TensorBoardPytorchWriter
 
 if __name__ == "__main__":
 

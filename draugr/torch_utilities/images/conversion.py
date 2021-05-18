@@ -16,10 +16,10 @@ from PIL import Image
 def quick_to_pil_image(inp: torch.Tensor, mode="RGB") -> Image.Image:
     """
 
-    LOTS OF ASSUMPTIONS!
+  LOTS OF ASSUMPTIONS!
 
-    :param inp:
-    :return:"""
+  :param inp:
+  :return:"""
 
     return Image.fromarray(inp.cpu().numpy().astype(numpy.uint8), mode)
 
@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     def asd2():
         """
-        """
+    """
         import cv2
         import torch
         from PIL import Image

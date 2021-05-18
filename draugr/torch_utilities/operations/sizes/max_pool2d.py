@@ -24,26 +24,26 @@ def max_pool2d_hw_shape(
 ) -> Tuple[int, int]:
     r"""
 
-    .. math::
-    H_{out} = \left\lfloor\frac{H_{in} + 2 * \text{padding[0]} - \text{dilation[0]}
-          \times (\text{kernel\_size[0]} - 1) - 1}{\text{stride[0]}} + 1\right\rfloor
+  .. math::
+  H_{out} = \left\lfloor\frac{H_{in} + 2 * \text{padding[0]} - \text{dilation[0]}
+        \times (\text{kernel\_size[0]} - 1) - 1}{\text{stride[0]}} + 1\right\rfloor
 
-    .. math::
-    W_{out} = \left\lfloor\frac{W_{in} + 2 * \text{padding[1]} - \text{dilation[1]}
-          \times (\text{kernel\_size[1]} - 1) - 1}{\text{stride[1]}} + 1\right\rfloor
+  .. math::
+  W_{out} = \left\lfloor\frac{W_{in} + 2 * \text{padding[1]} - \text{dilation[1]}
+        \times (\text{kernel\_size[1]} - 1) - 1}{\text{stride[1]}} + 1\right\rfloor
 
-    :param pool_size:
-    :type pool_size:
-    :param h_w:
-    :type h_w:
-    :param stride:
-    :type stride:
-    :param pad:
-    :type pad:
-    :param dilation:
-    :type dilation:
-    :return:
-    :rtype:"""
+  :param pool_size:
+  :type pool_size:
+  :param h_w:
+  :type h_w:
+  :param stride:
+  :type stride:
+  :param pad:
+  :type pad:
+  :param dilation:
+  :type dilation:
+  :return:
+  :rtype:"""
 
     if stride is None:
         stride = pool_size

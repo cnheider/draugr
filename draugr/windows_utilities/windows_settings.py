@@ -21,9 +21,9 @@ class WindowsSettings(metaclass=SingletonMeta):
 
     def get_dark_mode(self) -> bool:
         """
-        True if
+    True if
 
-        :return:"""
+    :return:"""
         key = winreg.OpenKey(
             self.registry,
             r"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize",
@@ -32,7 +32,7 @@ class WindowsSettings(metaclass=SingletonMeta):
 
     def set_dark_mode(self, value: bool) -> None:
         """
-        """
+    """
         key = winreg.OpenKey(
             self.registry,
             r"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize",
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     def a():
         """
-        """
+    """
         ws = WindowsSettings()
         dark_mode = ws.get_dark_mode()
         ws.set_dark_mode(not dark_mode)

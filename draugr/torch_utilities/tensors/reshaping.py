@@ -14,8 +14,8 @@ import torch
 def flatten_tn_dim(_tensor: torch.tensor) -> torch.tensor:
     """
 
-    :param _tensor:
-    :return:"""
+  :param _tensor:
+  :return:"""
     t, n, *r = _tensor.size()
     return _tensor.reshape(t * n, *r)
 
@@ -23,18 +23,18 @@ def flatten_tn_dim(_tensor: torch.tensor) -> torch.tensor:
 def flatten_keep_batch(t: torch.Tensor) -> torch.Tensor:
     """
 
-    :param t:
-    :return:"""
+  :param t:
+  :return:"""
     return t.reshape(t.shape[0], -1)
 
 
 def safe_concat(arr: torch.Tensor, el: torch.Tensor, dim: int = 0) -> torch.Tensor:
     """
 
-    :param arr:
-    :param el:
-    :param dim:
-    :return:"""
+  :param arr:
+  :param el:
+  :param dim:
+  :return:"""
     if arr is None:
         return el
     return torch.cat((arr, el), dim=dim)
@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     def a():
         """
-        """
+    """
         shape = (2, 3, 4, 5)
         from warg import prod
 

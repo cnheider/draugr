@@ -13,9 +13,9 @@ __all__ = ["set_lr"]
 def set_lr(optimizer, lr):
     """
 
-    :param optimizer:
-    :type optimizer:
-    :param lr:
-    :type lr:"""
+  :param optimizer:
+  :type optimizer:
+  :param lr:
+  :type lr:"""
     for param_group in optimizer.param_groups:
         param_group["lr"] = lr

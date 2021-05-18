@@ -11,9 +11,10 @@ __all__ = ["plot_grad_flow"]
 
 import numpy
 import torch
-from draugr.torch_utilities.optimisation.parameters import normal_init_weights
 from matplotlib import pyplot
 from matplotlib.lines import Line2D
+
+from draugr.torch_utilities.optimisation.parameters import normal_init_weights
 
 
 def plot_grad_flow(
@@ -24,19 +25,19 @@ def plot_grad_flow(
 ) -> None:
     """
 
-    Plots the gradients flowing through different layers in the net during training.
-    Can be used for checking for possible gradient vanishing / exploding problems.
+  Plots the gradients flowing through different layers in the net during training.
+  Can be used for checking for possible gradient vanishing / exploding problems.
 
-    Usage: After loss.backwards(), use plot_grad_flow(model) to visualize the gradient flow of model
+  Usage: After loss.backwards(), use plot_grad_flow(model) to visualize the gradient flow of model
 
-    :param model:
-    :type model:
-    :param lines:
-    :type lines:
-    :param alpha:
-    :type alpha:
-    :param line_width:
-    :type line_width:"""
+  :param model:
+  :type model:
+  :param lines:
+  :type lines:
+  :param alpha:
+  :type alpha:
+  :param line_width:
+  :type line_width:"""
     assert 0.0 < alpha <= 1.0
     ave_grads = []
     max_grads = []

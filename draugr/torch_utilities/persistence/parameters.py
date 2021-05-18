@@ -9,16 +9,16 @@ __doc__ = r"""
 
 import datetime
 import os
-
-from typing import Dict, Tuple, Union
+from typing import Optional, Tuple, Union
 
 import torch
+from torch.nn.modules.module import Module
+from torch.optim import Optimizer
+
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
-from torch.nn.modules.module import Module
-from torch.optim import Optimizer
 from warg.decorators.kw_passing import drop_unused_kws
 
 parameter_extension = ".parameters"
@@ -31,6 +31,7 @@ __all__ = [
     "save_parameters_and_configuration",
     "save_model_parameters",
 ]
+
 from pathlib import Path
 
 
@@ -41,17 +42,17 @@ def load_latest_model_parameters(
     optimiser: Optimizer = None,
     model_name: str,
     model_directory: Path,
-) -> Tuple[
-    Union[Union[torch.nn.Module, Tuple[torch.nn.Module, Union[Dict, None]]], None], bool
-]:
+) -> Tuple[Union[torch.nn.Module, Tuple[torch.nn.Module, Optimizer]], bool]:
     """
 
-    :param optimiser:
-    :param model:
-    :type model:
-    :param model_directory:
-    :param model_name:
-    :return:"""
+  inplace but returns model
+
+:param optimiser:
+:param model:
+:type model:
+:param model_directory:
+:param model_name:
+:return:"""
     if model:
         model_path = model_directory / model_name
         list_of_files = list(model_path.glob(f"*{parameter_extension}"))
@@ -88,22 +89,22 @@ def save_parameters_and_configuration(
     *,
     model: Module,
     model_save_path: Path,
-    optimiser: Optimizer = None,
-    optimiser_save_path: Path = None,
-    config_save_path: Path = None,
-    loaded_config_file_path: Path = None,
+    optimiser: Optional[Optimizer] = None,
+    optimiser_save_path: Optional[Path] = None,
+    config_save_path: Optional[Path] = None,
+    loaded_config_file_path: Optional[Path] = None,
 ) -> None:
     """
 
-    :param optimiser:
-    :type optimiser:
-    :param optimiser_save_path:
-    :type optimiser_save_path:
-    :param model:
-    :param model_save_path:
-    :param config_save_path:
-    :param loaded_config_file_path:
-    :return:"""
+:param optimiser:
+:type optimiser:
+:param optimiser_save_path:
+:type optimiser_save_path:
+:param model:
+:param model_save_path:
+:param config_save_path:
+:param loaded_config_file_path:
+:return:"""
     torch.save(model.state_dict(), str(model_save_path))
     if optimiser:
         torch.save(optimiser.state_dict(), str(optimiser_save_path))
@@ -117,17 +118,17 @@ def save_model_parameters(
     *,
     model_name: str,
     save_directory: Path,
-    optimiser: Optimizer = None,
-    config_file_path: Path = None,
+    optimiser: Optional[Optimizer] = None,
+    config_file_path: Optional[Path] = None,
 ) -> None:
     """
 
-    :param optimiser:
-    :param model:
-    :param save_directory:
-    :param config_file_path:
-    :param model_name:
-    :return:"""
+:param optimiser:
+:param model:
+:param save_directory:
+:param config_file_path:
+:param model_name:
+:return:"""
     model_date = datetime.datetime.now()
 
     model_time_rep = model_date.strftime("%Y%m%d%H%M%S")
@@ -179,4 +180,4 @@ def save_model_parameters(
             f"Successfully saved model parameters, optimiser state and configuration at names {[model_save_path.with_suffix(a) for a in (parameter_extension, optimiser_extension, config_extension)]}"
         )
     else:
-        print(f"Was unsuccesful at saving model or configuration")
+        print(f"Was unsuccessful at saving model or configuration")

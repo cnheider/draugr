@@ -7,22 +7,50 @@ __doc__ = r"""
            Created on 26-01-2021
            """
 
+from enum import Enum
+
 import numpy
 from matplotlib import patheffects, pyplot
 
 __all__ = ["plot_median_labels", "show_values_on_bars"]
 
+from draugr.visualisation.matplotlib_utilities.styles.annotation import (
+    semi_opaque_round_tight_bbox,
+)
+
+
+class MatplotlibHorizontalAlignment(Enum):
+    Center = "center"
+    Right = "right"
+    Left = "left"
+
+
+class MatplotlibVerticalAlignment(Enum):
+    Center = "center"
+    Top = "top"
+    Bottom = "bottom"
+    Baseline = "baseline"
+    CenterBaseline = "center_baseline"
+
 
 def plot_median_labels(
     ax: pyplot.Axes,
+    *,
     has_fliers: bool = False,
-    text_size: int = 10,
-    text_weight: str = "normal",
-    stroke_width: int = 2,
+    # text_size: int = 10,
+    # text_weight: str = "normal",
+    stroke_width: int = 0,
     precision: int = 3,
+    color="black",
+    edgecolor="black",  # also the stroke color
+    ha="center",
+    va="center",  # bottom
+    bbox=semi_opaque_round_tight_bbox,
 ) -> None:
     """
-    """
+
+
+  """
     lines = ax.get_lines()
     # depending on fliers, toggle between 5 and 6 lines per box
     lines_per_box = 5 + int(has_fliers)
@@ -37,26 +65,29 @@ def plot_median_labels(
             mean_x,
             mean_y,
             f"{round(mean_y, precision)}",
-            ha="center",
-            va="center",
-            fontweight=text_weight,
-            size=text_size,
-            color="white",
+            ha=ha,
+            va=va,
+            # fontweight=text_weight,
+            # size=text_size,
+            color=color,
+            # edgecolor=edgecolor
+            bbox=bbox,
         )  # print text to center coordinates
 
-        # create small black border around white text
-        # for better readability on multi-colored boxes
-        text.set_path_effects(
-            [
-                patheffects.Stroke(linewidth=stroke_width, foreground="black"),
-                patheffects.Normal(),
-            ]
-        )
+        if stroke_width:
+            # create small black border around white text
+            # for better readability on multi-colored boxes
+            text.set_path_effects(
+                [
+                    patheffects.Stroke(linewidth=stroke_width, foreground=edgecolor),
+                    patheffects.Normal(),
+                ]
+            )
 
 
 def show_values_on_bars(axs: pyplot.Axes, h_v="v", space=0.4) -> None:
     """
-    """
+  """
 
     def _show_on_single_plot(ax):
         if h_v == "v":

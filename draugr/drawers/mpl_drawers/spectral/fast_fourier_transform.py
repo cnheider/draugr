@@ -3,8 +3,9 @@
 import math
 
 import numpy
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from matplotlib.gridspec import GridSpec
+
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -24,7 +25,7 @@ FLOAT_EPS = numpy.finfo(float).eps
 
 class FastFourierTransformPlot(MplDrawer):
     """
-    Plots last computed fft of data"""
+  Plots last computed fft of data"""
 
     def __init__(
         self,
@@ -37,18 +38,18 @@ class FastFourierTransformPlot(MplDrawer):
     ):
         """
 
-        :param n_fft:
-        :type n_fft:
-        :param sampling_rate:
-        :type sampling_rate:
-        :param title:
-        :type title:
-        :param placement:
-        :type placement:
-        :param fig_size:
-        :type fig_size:
-        :param render:
-        :type render:"""
+    :param n_fft:
+    :type n_fft:
+    :param sampling_rate:
+    :type sampling_rate:
+    :param title:
+    :type title:
+    :param placement:
+    :type placement:
+    :param fig_size:
+    :type fig_size:
+    :param render:
+    :type render:"""
         super().__init__(render=render, figure_size=figure_size, **kwargs)
 
         if not render:
@@ -93,9 +94,9 @@ class FastFourierTransformPlot(MplDrawer):
     def _draw(self, signal_sample: float, delta: float = 1 / 120) -> None:
         """
 
-        :param signal_sample:
-        :param delta: 1 / 60 for 60fps
-        :return:"""
+    :param signal_sample:
+    :param delta: 1 / 60 for 60fps
+    :return:"""
         raw_array = self.dft_raw_img.get_ydata()
         raw_array = numpy.hstack((signal_sample, raw_array[:-1]))
         self.dft_raw_img.set_ydata(raw_array)
@@ -118,7 +119,7 @@ if __name__ == "__main__":
 
     def a():
         """
-        """
+    """
         duration_sec = 4
         mul = 1000
         sampling_Hz = 44

@@ -10,7 +10,7 @@ from pathlib import Path
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
-from .event_export import *
+from draugr.tensorboard_utilities.exporting import *
 
 if __name__ == "__main__":
     print(__doc__)

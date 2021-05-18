@@ -21,9 +21,10 @@ from .replication import *
 from .sockets import *
 from .styling import *
 from .torch_like_channel_transformation import *
-from .resources import *
+from .resource_utilities import *
 from .platform_selection import *
 from .strings import *
-from .resources import *
 from .powers import *
 from .contexts import *
+from .path_utilities import *
+from .function_wrappers import *

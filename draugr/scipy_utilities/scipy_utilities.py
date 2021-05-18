@@ -7,8 +7,9 @@ __doc__ = r"""
            Created on 08-02-2021
            """
 
-from typing import Sequence, Tuple, Union
 from pathlib import Path
+from typing import Tuple, Union
+
 import numpy
 from scipy.io import wavfile
 
@@ -17,9 +18,9 @@ __all__ = ["read_normalised_wave", "write_normalised_wave"]
 
 def read_normalised_wave(wav_file_name: Union[str, Path]) -> Tuple[int, numpy.ndarray]:
     """
-  [-1..1] normalised
+[-1..1] normalised
 
-  """
+"""
     sampling_rate, signal = wavfile.read(str(wav_file_name))
     if signal.dtype == numpy.int16:
         num_bits = 16 - 1  # -> 16-bit wav files, -1 for sign
@@ -45,9 +46,9 @@ def write_normalised_wave(
     dtype=numpy.float32,
 ) -> None:
     """
-  [-1..1] normalised
+[-1..1] normalised
 
-  """
+"""
     assert signal.dtype == numpy.float
 
     if dtype == numpy.int16:

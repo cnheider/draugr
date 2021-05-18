@@ -25,22 +25,22 @@ def draw_axis(
 ):
     """
 
-    :param img:
-    :type img:
-    :param corners:
-    :type corners:
-    :param rotation_vectors:
-    :type rotation_vectors:
-    :param translation_vectors:
-    :type translation_vectors:
-    :param camera_matrix:
-    :type camera_matrix:
-    :param dist_coef:
-    :type dist_coef:
-    :param size:
-    :type size:
-    :return:
-    :rtype:"""
+  :param img:
+  :type img:
+  :param corners:
+  :type corners:
+  :param rotation_vectors:
+  :type rotation_vectors:
+  :param translation_vectors:
+  :type translation_vectors:
+  :param camera_matrix:
+  :type camera_matrix:
+  :param dist_coef:
+  :type dist_coef:
+  :param size:
+  :type size:
+  :return:
+  :rtype:"""
     axis_size: numpy.ndarray = numpy.eye(3, 3) @ numpy.diag([size, size, -size])
     axis_size = axis_size.astype(numpy.float32)
 
@@ -58,8 +58,8 @@ def draw_axis(
 def cube_3d_matrix():
     """
 
-    :return:
-    :rtype:"""
+  :return:
+  :rtype:"""
     return [
         [0, 0, 0],
         [0, 1, 0],
@@ -82,20 +82,20 @@ def draw_cube(
 ):
     """
 
-    :param img:
-    :type img:
-    :param rotation_vectors:
-    :type rotation_vectors:
-    :param translation_vectors:
-    :type translation_vectors:
-    :param camera_matrix:
-    :type camera_matrix:
-    :param dist_coef:
-    :type dist_coef:
-    :param size:
-    :type size:
-    :return:
-    :rtype:"""
+  :param img:
+  :type img:
+  :param rotation_vectors:
+  :type rotation_vectors:
+  :param translation_vectors:
+  :type translation_vectors:
+  :param camera_matrix:
+  :type camera_matrix:
+  :param dist_coef:
+  :type dist_coef:
+  :param size:
+  :type size:
+  :return:
+  :rtype:"""
     cube_size = numpy.float32(cube_3d_matrix()) * size
 
     img_pts, jac2 = cv2.projectPoints(

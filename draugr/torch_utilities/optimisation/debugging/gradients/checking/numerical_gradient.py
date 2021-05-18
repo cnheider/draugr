@@ -13,6 +13,7 @@ import copy
 import math
 
 import torch
+
 from draugr.torch_utilities.optimisation.parameters import (
     named_trainable_parameters,
     normal_init_weights,
@@ -31,23 +32,23 @@ def loss_grad_check(
     error_tolerance: float = 1e-5,
 ) -> None:
     """
-    two sided gradient numerical approximation
-    DOES not work, please refer to torch/autograd/gradcheck.py
+  two sided gradient numerical approximation
+  DOES not work, please refer to torch/autograd/gradcheck.py
 
-    :param input:
-    :type input:
-    :param target:
-    :type target:
-    :param error_tolerance:
-    :type error_tolerance:
-    :param model:
-    :type model:
-    :param loss_fn:
-    :type loss_fn:
-    :param epsilon:
-    :type epsilon:
-    :return:
-    :rtype:"""
+  :param input:
+  :type input:
+  :param target:
+  :type target:
+  :param error_tolerance:
+  :type error_tolerance:
+  :param model:
+  :type model:
+  :param loss_fn:
+  :type loss_fn:
+  :param epsilon:
+  :type epsilon:
+  :return:
+  :rtype:"""
     assert epsilon > 0.0
     c_model = copy.deepcopy(model)
 
@@ -104,26 +105,26 @@ if __name__ == "__main__":
 
     def stest_return_duplicate():
         """
-        """
+    """
         from torch.autograd import Function, gradcheck, gradgradcheck
 
         class DoubleDuplicate(Function):
             @staticmethod
             def forward(ctx, x):
                 """
-                """
+        """
                 output = x * 2
                 return output, output
 
             @staticmethod
             def backward(ctx, grad1, grad2):
                 """
-                """
+        """
                 return grad1 * 2 + grad2 * 2
 
         def fn(x):
             """
-            """
+      """
             a, b = DoubleDuplicate.apply(x)
             return a + b
 
@@ -133,7 +134,7 @@ if __name__ == "__main__":
 
     def a():
         """
-        """
+    """
         #    from torch.testing import _get_default_tolerance
 
         input = torch.randn(5, 5, requires_grad=True, dtype=torch.double)

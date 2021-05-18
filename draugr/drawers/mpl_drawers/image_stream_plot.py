@@ -9,10 +9,9 @@ __doc__ = r"""
 
 from typing import Sequence
 
+from matplotlib import pyplot
 
 from draugr.drawers import MplDrawer
-
-from matplotlib import pyplot
 from warg import passes_kws_to
 
 
@@ -43,14 +42,14 @@ class ImageStreamPlot(MplDrawer):
     def _draw(self, data: Sequence):
         """
 
-        :param data:
-        :return:"""
+    :param data:
+    :return:"""
         self.im.set_data(data)
 
     @staticmethod
     def close(event):
         """
-        """
+    """
         if event.key == "q":
             pyplot.close(event.canvas.figure)
             raise StopIteration
@@ -60,7 +59,7 @@ if __name__ == "__main__":
 
     def asdasf():
         """
-        """
+    """
         import cv2
         from draugr.opencv_utilities import frame_generator
         from draugr.tqdm_utilities import progress_bar

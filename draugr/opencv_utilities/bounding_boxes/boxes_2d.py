@@ -7,29 +7,29 @@ __doc__ = r"""
            Created on 23/03/2020
            """
 
-from warg import Quad
+from warg import QuadNumber
 
 __all__ = ["xywh_to_minmax", "minmax_to_xywh"]
 
 
-def xywh_to_minmax(box: Quad) -> Quad:
+def xywh_to_minmax(box: QuadNumber) -> QuadNumber:
     """
 
-    :param box:
-    :type box:
-    :return:
-    :rtype:"""
+  :param box:
+  :type box:
+  :return:
+  :rtype:"""
     x1, y1, w, h = box
     return x1, y1, x1 + w, y1 + h
 
 
-def minmax_to_xywh(boxes: Quad) -> Quad:
+def minmax_to_xywh(boxes: QuadNumber) -> QuadNumber:
     """
 
-    :param boxes:
-    :type boxes:
-    :return:
-    :rtype:"""
+  :param boxes:
+  :type boxes:
+  :return:
+  :rtype:"""
     x_min, y_min, x_max, y_max = boxes
     return x_min, y_min, x_max - x_min, y_max - y_min
 

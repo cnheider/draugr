@@ -22,10 +22,10 @@ __all__ = ["to_tensor_generator", "batch_generator_torch", "to_device_iterator"]
 def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs):
     """
 
-    :param iterable:
-    :param preload_next:
-    :param kwargs:
-    :return:"""
+  :param iterable:
+  :param preload_next:
+  :param kwargs:
+  :return:"""
     if preload_next:
         iterable_iter = iter(iterable)
         current = to_tensor(next(iterable_iter), **kwargs)
@@ -45,8 +45,8 @@ def to_device_iterator(
 ) -> Tuple:
     """
 
-    :param data_iterator:
-    :param device:"""
+  :param data_iterator:
+  :param device:"""
     if isinstance(data_iterator, Iterable):
         data_iterator = iter(data_iterator)
     try:
@@ -62,11 +62,11 @@ def batch_generator_torch(
 ) -> DataLoader:
     """
 
-    :param sized:
-    :param mini_batches:
-    :param shuffle:
-    :param kwargs:
-    :return:"""
+  :param sized:
+  :param mini_batches:
+  :param shuffle:
+  :param kwargs:
+  :return:"""
 
     dataset = NonSequentialDataset(sized)
     return DataLoader(
@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
     def s():
         """
-        """
+    """
         a = iter(numpy.random.sample((5, 5, 5)))
         for a in to_device_iterator(a, "cpu"):
             d, *_ = a
@@ -91,7 +91,7 @@ if __name__ == "__main__":
 
     def sdiaj():
         """
-        """
+    """
         # a = numpy.random.sample((5, 5, 5))
         from draugr.torch_utilities.datasets import RandomDataset
 
@@ -104,7 +104,7 @@ if __name__ == "__main__":
 
     def asijda():
         """
-        """
+    """
         a_transform = transforms.Compose(
             [
                 transforms.ToPILImage("RGB"),

@@ -43,14 +43,14 @@ if __name__ == "__main__":
 
     def main():
         """
-        """
+    """
         raise IncompatiblePackageVersions(
             "numpy", "scipy", "Something", numpy="0.0.1", scipy="0.0.2"
         )
 
     def main2():
         """
-        """
+    """
         import numpy
         import scipy
 

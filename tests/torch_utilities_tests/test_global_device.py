@@ -15,15 +15,11 @@ from draugr.torch_utilities import (
 
 
 def test_cpu():
-    print(
-        global_torch_device(override=global_torch_device(cuda_device_preference=True))
-    )
+    print(global_torch_device(override=global_torch_device(device_preference=True)))
     print(global_torch_device())
     with TorchCpuSession():
         print(global_torch_device())
     with TorchCudaSession():
         print(global_torch_device())
-    print(
-        global_torch_device(override=global_torch_device(cuda_device_preference="cpu"))
-    )
+    print(global_torch_device(override=global_torch_device(device_preference="cpu")))
     print(global_torch_device())

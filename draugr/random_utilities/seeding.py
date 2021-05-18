@@ -15,7 +15,7 @@ __all__ = ["seed_stack"]
 
 def seed_stack(s: int = 23) -> None:
     """
-    """
+  """
     from draugr.torch_utilities import torch_seed
 
     python_seed(s)
@@ -25,14 +25,14 @@ def seed_stack(s: int = 23) -> None:
 
 def python_seed(s: int = 2318) -> None:
     """
-    """
+  """
     random.seed(s)
     os.environ["PYTHONHASHSEED"] = str(s)
 
 
 def numpy_seed(s: int = 78213) -> None:
     """
-    """
+  """
     import numpy
 
     numpy.random.seed(s)

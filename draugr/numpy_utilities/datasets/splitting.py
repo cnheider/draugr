@@ -13,7 +13,7 @@ import re
 import sys
 from enum import Enum
 from pathlib import Path
-from typing import Dict, Iterable, OrderedDict, Sequence, Any
+from typing import Any, Dict, Iterable, OrderedDict, Sequence
 
 import numpy
 
@@ -22,8 +22,8 @@ __all__ = ["Split", "SplitIndexer", "train_valid_test_split", "select_split"]
 
 class Split(Enum):
     """
-    Split Enum class for selecting splits
-    """
+  Split Enum class for selecting splits
+  """
 
     Training = "training"
     Validation = "validation"
@@ -56,7 +56,7 @@ class SplitIndexer:
 
     def shuffled_indices(self) -> dict:
         """
-        """
+    """
         split_indices = numpy.random.permutation(self.total_num).tolist()
 
         return {
@@ -67,12 +67,12 @@ class SplitIndexer:
 
     def select_train_indices(self, ind: Sequence) -> Sequence:
         """
-        """
+    """
         return ind[: self.training_num]
 
     def select_validation_indices(self, ind: Sequence) -> Sequence:
         """
-        """
+    """
         if self.validation_num:
             if self.testing_num:
                 return ind[self.training_num : -self.testing_num]
@@ -81,7 +81,7 @@ class SplitIndexer:
 
     def select_testing_indices(self, ind: Sequence) -> Sequence:
         """
-        """
+    """
         if self.testing_num:
             return ind[-self.testing_num :]
         return []
@@ -89,12 +89,12 @@ class SplitIndexer:
     def unnormalised(self, num: int, floored: bool = True) -> numpy.ndarray:
         """
 
-        :param num:
-        :type num:
-        :param floored:
-        :type floored:
-        :return:
-        :rtype:"""
+    :param num:
+    :type num:
+    :param floored:
+    :type floored:
+    :return:
+    :rtype:"""
         unnorm = self.normalised_split * num
         if floored:
             unnorm = numpy.floor(unnorm)
@@ -107,7 +107,7 @@ class SplitIndexer:
 
     def select_shuffled_split_indices(self, split: Split, seed: int = 0) -> Sequence:
         """
-        """
+    """
         numpy.random.seed(seed)
         split_indices = numpy.random.permutation(self.total_num).tolist()
 
@@ -130,14 +130,14 @@ def train_valid_test_split(
     verbose: bool = False,
 ) -> OrderedDict:
     """
-    Magic hashing
+  Magic hashing
 
-    :param verbose:
-    :type verbose:
-    :param categories:
-    :param testing_percentage:
-    :param validation_percentage:
-    :return:"""
+  :param verbose:
+  :type verbose:
+  :param categories:
+  :param testing_percentage:
+  :param validation_percentage:
+  :return:"""
     result = collections.OrderedDict()
 
     if verbose:
@@ -177,14 +177,14 @@ def select_split(
 ) -> Dict[Any, Sequence]:
     """
 
-    :param verbose:
-    :type verbose:
-    :param data_cat_split:
-    :type data_cat_split:
-    :param split:
-    :type split:
-    :return:
-    :rtype:"""
+  :param verbose:
+  :type verbose:
+  :param data_cat_split:
+  :type data_cat_split:
+  :param split:
+  :type split:
+  :return:
+  :rtype:"""
     data = {k: [] for k in data_cat_split.keys()}
     if verbose:
         print(data_cat_split)

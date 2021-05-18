@@ -17,8 +17,8 @@ __all__ = ["TorchJitSession", "TorchIgnoreJitSession"]
 
 class TorchIgnoreJitSession(AlsoDecorator):
     """
-    # Disable torch jit tracing
-    """
+  # Disable torch jit tracing
+  """
 
     def __init__(self, no_side_effect: bool = True):
         self._no_side_effect = no_side_effect
@@ -38,8 +38,8 @@ class TorchIgnoreJitSession(AlsoDecorator):
 
 class TorchJitSession(AlsoDecorator):
     """
-    # Disable torch jit tracing
-    """
+  # Disable torch jit tracing
+  """
 
     def __init__(self, enabled=False, no_side_effect: bool = True):
         self._no_side_effect = no_side_effect
@@ -62,12 +62,12 @@ if __name__ == "__main__":
 
     def a():
         """
-        """
+    """
 
         @torch.jit.script
         def scripted_fn(x: torch.Tensor):
             """
-            """
+      """
             for i in range(12):
                 x = x + x
 
@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
         def fn(x):
             """
-            """
+      """
             x = torch.neg(x)
             # import pdb
             # pdb.set_trace()

@@ -1,0 +1,2 @@
+- name: Latest tag
+  uses: EndBug/latest-tag@v1.4.0

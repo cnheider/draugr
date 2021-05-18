@@ -12,8 +12,8 @@ __all__ = ["get_host_ip"]
 def get_host_ip() -> str:
     """Get host ip.
 
-    Returns:
-    str: The obtained ip. UNKNOWN if failed."""
+  Returns:
+  str: The obtained ip. UNKNOWN if failed."""
     import socket
 
     try:

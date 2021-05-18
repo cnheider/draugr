@@ -11,12 +11,10 @@ from typing import Sequence
 
 import numpy
 
-
 from apppath import ensure_existence
+from draugr.numpy_utilities.datasets.splitting import Split
 from draugr.numpy_utilities.signal_utilities.signal_statistics import root_mean_square
 from draugr.numpy_utilities.signal_utilities.truncation import min_length_truncate_batch
-
-from draugr.numpy_utilities.datasets.splitting import Split
 
 LOG_MAGNITUDE_MULTIPLIER = 20
 LOG_POWER_MULTIPLIER = 10
@@ -32,17 +30,17 @@ def mix_ratio(
     log_multiplier: int = LOG_MAGNITUDE_MULTIPLIER,
 ) -> Sequence:
     """
-    # Function to mix clean speech and noise at various SNR levels
+# Function to mix clean speech and noise at various SNR levels
 
-    # Normalizing to -25 dB FS
+# Normalizing to -25 dB FS
 
-    :param s1:
-    :param s2:
-    :param db_ratio:
-    :param norm_db:
-    :param log_multiplier:
-    :return:
-    """
+:param s1:
+:param s2:
+:param db_ratio:
+:param norm_db:
+:param log_multiplier:
+:return:
+"""
     s1, s2 = min_length_truncate_batch((s1, s2))
     s1_max = numpy.abs(s1).max()
     mix = (s1 / s1_max) + (
@@ -55,7 +53,7 @@ if __name__ == "__main__":
 
     def asad():
         """
-        """
+"""
         from neodroidaudition.data.recognition.libri_speech import LibriSpeech
         from neodroidaudition.noise_generation.gaussian_noise import white_noise
 
@@ -72,7 +70,7 @@ if __name__ == "__main__":
 
     def asadsa():
         """
-        """
+"""
         from draugr.torch_utilities import to_tensor
         from neodroidaudition.data.recognition.libri_speech import LibriSpeech
         from neodroidaudition.noise_generation.gaussian_noise import white_noise
@@ -108,7 +106,7 @@ if __name__ == "__main__":
 
     def asadsa2():
         """
-        """
+"""
         from draugr.torch_utilities import to_tensor
         from neodroidaudition.data.recognition.libri_speech import LibriSpeech
         from neodroidaudition.noise_generation.gaussian_noise import white_noise

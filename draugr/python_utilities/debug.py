@@ -15,10 +15,10 @@ from typing import Any, Callable, Tuple
 def evaluate_context(x: Any, *args, **kwargs) -> Tuple:
     """
 
-    :param x:
-    :param args:
-    :param kwargs:
-    :return:"""
+  :param x:
+  :param args:
+  :param kwargs:
+  :return:"""
     if isinstance(x, Callable):
         x = x(*args, **kwargs)
     return (

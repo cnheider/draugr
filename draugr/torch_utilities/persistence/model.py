@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import datetime
-import os
-
 import sys
-from typing import Union
+from typing import Optional
 
 import torch
+from draugr.python_utilities.path_utilities import latest_file
+from torch.nn.modules.module import Module
+
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
-from torch.nn.modules.module import Module
 from warg import passes_kws_to
 from warg.decorators.kw_passing import drop_unused_kws
 
@@ -27,13 +27,14 @@ __all__ = [
     "save_model",
     "convert_saved_model_to_cpu",
 ]
+
 from pathlib import Path
 
 
 @drop_unused_kws
 def load_latest_model(
     *, model_name: str, model_directory: Path, raise_on_failure: bool = True
-) -> Union[torch.nn.Module, None]:
+) -> Optional[torch.nn.Module]:
     """
 
     load model with the lastest time appendix or in this case creation time
@@ -43,19 +44,14 @@ def load_latest_model(
     :param model_name:
     :return:"""
     model_path = model_directory / model_name
-    list_of_files = list(model_path.glob(f"*{model_extension}"))
-    if len(list_of_files) == 0:
-        msg = (
-            f"Found no previous models with extension {model_extension} in {model_path}"
-        )
-        if raise_on_failure:
-            raise FileNotFoundError(msg)
-        print(msg)
-        return None
-    latest_model = max(list_of_files, key=os.path.getctime)  # USES CREATION TIME
-    print(f"loading previous model: {latest_model}")
+    latest_model_ = latest_file(
+        model_path,
+        extension=model_extension,
+        raise_on_failure=raise_on_failure,
+    )
+    print(f"loading previous model: {latest_model_}")
 
-    return torch.load(str(latest_model))
+    return torch.load(str(latest_model_))
 
 
 load_model = load_latest_model

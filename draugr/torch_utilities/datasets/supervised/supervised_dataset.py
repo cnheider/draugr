@@ -23,8 +23,8 @@ from warg import drop_unused_kws
 
 class SupervisedDataset(Dataset):
     """
-    Supervised Dataset is comprised of separate Splits
-    """
+  Supervised Dataset is comprised of separate Splits
+  """
 
     @drop_unused_kws
     def __init__(self):
@@ -34,8 +34,8 @@ class SupervisedDataset(Dataset):
     def split_names(self) -> Dict[Split, str]:
         """
 
-        :return:
-        :rtype:"""
+    :return:
+    :rtype:"""
         return SplitIndexer.default_split_names
 
     @property
@@ -55,7 +55,7 @@ class SupervisedDataset(Dataset):
         raise NotImplementedError
 
     @abstractmethod
-    def __getitem__(self, index):
+    def __getitem__(self, index: int):
         raise NotImplementedError
 
 
