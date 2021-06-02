@@ -16,7 +16,7 @@ __all__ = ["torch_seed"]
 
 def torch_seed(s: int = 72163) -> torch.Generator:
     """
-  seeding for reproducibility"""
+    seeding for reproducibility"""
     generator = torch.manual_seed(s)
     if False:  # Disabled for now
         torch.set_deterministic(True)
@@ -29,39 +29,39 @@ def torch_seed(s: int = 72163) -> torch.Generator:
 class Seed:
     r"""**Seed PyTorch and numpy.**
 
-  This code is based on PyTorch's reproducibility guide: https://pytorch.org/docs/stable/notes/randomness.html
-  Can be used as standard seeding procedure, context manager (seed will be changed only within block) or function decorator.
+    This code is based on PyTorch's reproducibility guide: https://pytorch.org/docs/stable/notes/randomness.html
+    Can be used as standard seeding procedure, context manager (seed will be changed only within block) or function decorator.
 
-  **Standard seed**::
+    **Standard seed**::
 
-        torchfunc.Seed(0) # no surprises I guess
+          torchfunc.Seed(0) # no surprises I guess
 
-  **Used as context manager**::
+    **Used as context manager**::
 
-    with Seed(1):
-        ... # your operations
+      with Seed(1):
+          ... # your operations
 
-    print(torch.initial_seed()) # Should be back to seed pre block
+      print(torch.initial_seed()) # Should be back to seed pre block
 
-  **Used as function decorator**::
+    **Used as function decorator**::
 
-    @Seed(1) # Seed only within function
-    def foo():
-        return 42
+      @Seed(1) # Seed only within function
+      def foo():
+          return 42
 
-  **Important:** It's impossible to put original `numpy` seed after context manager
-  or decorator, hence it will be set to original PyTorch's seed.
+    **Important:** It's impossible to put original `numpy` seed after context manager
+    or decorator, hence it will be set to original PyTorch's seed.
 
-  Parameters
-  ----------
-  value: int
-        Seed value used in np.random_seed and torch.manual_seed. Usually int is provided
-  cuda: bool, optional
-        Whether to set PyTorch's cuda backend into deterministic mode (setting cudnn.benchmark to `False`
-        and cudnn.deterministic to `True`). If `False`, consecutive runs may be slightly different.
-        If `True`, automatic autotuning for convolutions layers with consistent input shape will be turned off.
-        Default: `False`
-  """
+    Parameters
+    ----------
+    value: int
+          Seed value used in numpy.random_seed and torch.manual_seed. Usually int is provided
+    cuda: bool, optional
+          Whether to set PyTorch's cuda backend into deterministic mode (setting cudnn.benchmark to `False`
+          and cudnn.deterministic to `True`). If `False`, consecutive runs may be slightly different.
+          If `True`, automatic autotuning for convolutions layers with consistent input shape will be turned off.
+          Default: `False`
+    """
 
     def __init__(self, value: int, cuda: bool = False):
         self.value = value
@@ -90,8 +90,7 @@ class Seed:
     def __call__(self, function: Callable) -> callable:
         @functools.wraps(function)
         def decorated(*args, **kwargs) -> Any:
-            """
-      """
+            """ """
             value = function(*args, **kwargs)
             self.__exit__()
             return value
@@ -103,19 +102,16 @@ if __name__ == "__main__":
 
     @Seed(1)  # Seed only within function
     def foo():
-        """
-    """
+        """ """
         return torch.randint(5, (2, 2))
 
     def bar():
-        """
-    """
+        """ """
         with Seed(1):
             return torch.randint(5, (2, 2))
 
     def buzz():
-        """
-    """
+        """ """
         Seed(1)
         return torch.randint(5, (2, 2))
 

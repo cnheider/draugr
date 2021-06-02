@@ -24,10 +24,10 @@ def pretty_print_conf_matrix(
     cmap=pyplot.cm.Blues,
 ):
     """
-  Mostly stolen from: http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html#sphx-glr-auto-examples-model-selection-plot-confusion-matrix-py
+    Mostly stolen from: http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html#sphx-glr-auto-examples-model-selection-plot-confusion-matrix-py
 
-  Normalization changed, classification_report stats added below plot
-  """
+    Normalization changed, classification_report stats added below plot
+    """
 
     cm = confusion_matrix(y_true, y_pred)
 
@@ -42,7 +42,7 @@ def pretty_print_conf_matrix(
 
     # Calculate normalized values (so all cells sum to 1) if desired
     if normalize:
-        cm = numpy.round(cm.astype("float") / cm.sum(), 2)  # (axis=1)[:, np.newaxis]
+        cm = numpy.round(cm.astype("float") / cm.sum(), 2)  # (axis=1)[:, numpy.newaxis]
 
     # Place Numbers as Text on Confusion Matrix Plot
     thresh = cm.max() / 2.0

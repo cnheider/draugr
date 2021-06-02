@@ -8,6 +8,7 @@ __doc__ = r"""
            """
 
 from enum import Enum
+from typing import Tuple
 
 import numpy
 from matplotlib import patheffects, pyplot
@@ -41,16 +42,13 @@ def plot_median_labels(
     # text_weight: str = "normal",
     stroke_width: int = 0,
     precision: int = 3,
-    color="black",
-    edgecolor="black",  # also the stroke color
-    ha="center",
-    va="center",  # bottom
-    bbox=semi_opaque_round_tight_bbox,
+    color: str = "black",
+    edgecolor: str = "black",  # also the stroke color
+    ha: str = "center",
+    va: str = "center",  # bottom
+    bbox: Tuple = semi_opaque_round_tight_bbox,
 ) -> None:
-    """
-
-
-  """
+    """ """
     lines = ax.get_lines()
     # depending on fliers, toggle between 5 and 6 lines per box
     lines_per_box = 5 + int(has_fliers)
@@ -85,9 +83,8 @@ def plot_median_labels(
             )
 
 
-def show_values_on_bars(axs: pyplot.Axes, h_v="v", space=0.4) -> None:
-    """
-  """
+def show_values_on_bars(axs: pyplot.Axes, h_v: str = "v", space: float = 0.4) -> None:
+    """ """
 
     def _show_on_single_plot(ax):
         if h_v == "v":

@@ -18,13 +18,13 @@ __all__ = ["rgb_to_grayscale"]
 def rgb_to_grayscale(obs: Any) -> Any:
     """Convert a 3-channel color observation image to grayscale and uint8.
 
-  Args:
-     obs (np.ndarray): Observation array, conforming to observation_space
+    Args:
+       obs (numpy.ndarray): Observation array, conforming to observation_space
 
-  Returns:
-     np.ndarray: 1-channel grayscale version of obs, represented as uint8
+    Returns:
+       numpy.ndarray: 1-channel grayscale version of obs, represented as uint8
 
-  """
+    """
     with warnings.catch_warnings():
         # Suppressing warning for possible precision loss when converting
         # from float64 to uint8

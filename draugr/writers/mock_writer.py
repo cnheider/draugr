@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import Any
+
 from draugr.writers.writer import Writer
 
 __author__ = "Christian Heider Nielsen"
@@ -13,12 +15,12 @@ __all__ = ["MockWriter"]
 
 
 class MockWriter(Writer):
-    """"""
+    """ """
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None) -> None:
         pass
 
-    def _open(self):
+    def _open(self) -> Any:
         return self
 
     def _scalar(self, *args, **kwargs) -> None:

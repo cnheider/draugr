@@ -25,69 +25,69 @@ from draugr.torch_utilities.tensors.dimension_order import (
 
 
 def uint_hwc_to_chw_float_tensor(
-    inp: torch.Tensor, *, normalise: bool = True
+    tensor: torch.Tensor, *, normalise: bool = True
 ) -> torch.Tensor:
     """
 
-  :param inp:
-  :type inp:
-  :param normalise:
-  :type normalise:
-  :return:
-  :rtype:"""
+    :param tensor:
+    :type tensor:
+    :param normalise:
+    :type normalise:
+    :return:
+    :rtype:"""
     if normalise:
-        inp = (inp / 255.0).clamp(0, 1)
-    return hwc_to_chw_tensor(inp)
+        tensor = (tensor / 255.0).clamp(0, 1)
+    return hwc_to_chw_tensor(tensor)
 
 
 def float_chw_to_hwc_uint_tensor(
-    inp: torch.Tensor, *, unnormalise: bool = True
+    tensor: torch.Tensor, *, unnormalise: bool = True
 ) -> torch.Tensor:
     """
 
-  :param inp:
-  :type inp:
-  :param unnormalise:
-  :type unnormalise:
-  :return:
-  :rtype:"""
-    inp = chw_to_hwc_tensor(inp)
+    :param tensor:
+    :type tensor:
+    :param unnormalise:
+    :type unnormalise:
+    :return:
+    :rtype:"""
+    tensor = chw_to_hwc_tensor(tensor)
     if unnormalise:
-        inp = (inp * 255.0).clamp(0, 255)
-    return inp.to(dtype=torch.uint8)
+        tensor = (tensor * 255.0).clamp(0, 255)
+    return tensor.to(dtype=torch.uint8)
 
 
 def uint_nhwc_to_nchw_float_batch(
-    inp: torch.Tensor, *, normalise: bool = True
+    tensor: torch.Tensor, *, normalise: bool = True
 ) -> torch.Tensor:
     """
 
-  :param inp:
-  :type inp:
-  :param normalise:
-  :type normalise:
-  :return:
-  :rtype:"""
+    :param tensor:
+    :type tensor:
+    :param normalise:
+    :type normalise:
+    :return:
+    :rtype:"""
     if normalise:
-        inp = (inp / 255.0).clamp(0, 1)
-    return nhwc_to_nchw_tensor(inp)
+        tensor = (tensor / 255.0).clamp(0, 1)
+    return nhwc_to_nchw_tensor(tensor)
 
 
 def float_nchw_to_nhwc_uint_batch(
-    inp: torch.Tensor, *, unnormalise: bool = True
+    tensor: torch.Tensor, *, unnormalise: bool = True
 ) -> torch.Tensor:
     """
 
-  :param inp:
-  :type inp:
-  :param unnormalise:
-  :type unnormalise:
-  :return:
-  :rtype:"""
-    inp = nchw_to_nhwc_tensor(inp)
+    :param tensor:
+    :type tensor:
+    :param unnormalise:
+    :type unnormalise:
+    :return:
+    :rtype:"""
+    tensor = nchw_to_nhwc_tensor(tensor)
     if unnormalise:
-        inp = (inp * 255.0).clamp(0, 255)
-    return inp.to(dtype=torch.uint8)
+        tensor = (tensor * 255.0).clamp(0, 255)
+    return tensor.to(dtype=torch.uint8)
 
 
 if __name__ == "__main__":

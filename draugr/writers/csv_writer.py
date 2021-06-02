@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import csv
 
+from typing import Any, TextIO, Tuple
+
 from apppath import ensure_existence
 from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
@@ -19,16 +21,16 @@ from pathlib import Path
 
 
 class CSVWriter(Writer):
-    """"""
+    """ """
 
     @staticmethod
-    def get_csv_writer(path: Path = Path.home() / "Models"):
+    def get_csv_writer(path: Path = Path.home() / "Models") -> Tuple[TextIO, Any]:
         """
 
-    :param path:
-    :type path:
-    :return:
-    :rtype:"""
+        :param path:
+        :type path:
+        :return:
+        :rtype:"""
         if path.is_dir() or path.suffix != ".csv":
             path /= "log.csv"
         csv_file = open(
@@ -39,7 +41,7 @@ class CSVWriter(Writer):
         )
         return csv_file, csv.writer(csv_file)
 
-    def _scalar(self, tag: str, value: float, step: int):
+    def _scalar(self, tag: str, value: float, step: int) -> None:
         self._write(step, tag, value)
 
     def __init__(self, path, **kwargs):
@@ -52,10 +54,10 @@ class CSVWriter(Writer):
         self._file, self._writer = self.get_csv_writer(self._path)
         return self
 
-    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None) -> None:
         self._file.close()
 
-    def _write(self, *d):
+    def _write(self, *d) -> None:
         self._writer.writerow(d)
 
 

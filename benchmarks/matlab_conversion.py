@@ -16,7 +16,7 @@ def conversion_benchmark():
         "\nCompare Numpy to matlab conversion strategy : (a bit long with several matlab.engine opening)"
     )
     setup_np2mat = (
-        "import numpy as np\n"
+        "import numpy\n"
         "import matlab\n"
         "from draugr.matlab_utilities import matlab_to_ndarray, ndarray_to_matlab\n"
         "import array\n"
@@ -46,7 +46,7 @@ def conversion_benchmark():
     # Matlab to numpy
     print("\nCompare matlab to numpy conversition strategy :")
     setup_tolist = (
-        "import numpy as np\n"
+        "import numpy\n"
         "import matlab\n"
         "from draugr.matlab_utilities import matlab_to_ndarray, ndarray_to_matlab\n"
         "eng = matlab.engine.start_matlab()\n"
@@ -84,7 +84,7 @@ def conversion_benchmark():
         + " s"
     )
     setup_tolist_cpx = (
-        "import numpy as np\n"
+        "import numpy\n"
         "import matlab\n"
         "from draugr.matlab_utilities import matlab_to_ndarray, ndarray_to_matlab\n"
         "eng = matlab.engine.start_matlab()\n"

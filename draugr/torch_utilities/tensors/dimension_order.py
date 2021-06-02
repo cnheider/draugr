@@ -9,6 +9,7 @@ __doc__ = r"""
            Created on 28-03-2021
            """
 
+import numpy
 import torch
 
 __all__ = [
@@ -21,67 +22,67 @@ __all__ = [
 ]
 
 
-def hwc_to_chw_tensor(inp: torch.Tensor) -> torch.Tensor:
+def hwc_to_chw_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-:param inp:
-:type inp:
-:return:
-:rtype:"""
-    assert len(inp.shape) == 3
-    return inp.permute(2, 0, 1)
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
+    assert len(tensor.shape) == 3
+    return tensor.permute(2, 0, 1)
 
 
-def chw_to_hwc_tensor(inp: torch.Tensor) -> torch.Tensor:
+def chw_to_hwc_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-:param inp:
-:type inp:
-:return:
-:rtype:"""
-    assert len(inp.shape) == 3
-    return inp.permute(1, 2, 0)
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
+    assert len(tensor.shape) == 3
+    return tensor.permute(1, 2, 0)
 
 
-def nhwc_to_nchw_tensor(inp: torch.Tensor) -> torch.Tensor:
+def nhwc_to_nchw_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-:param inp:
-:type inp:
-:return:
-:rtype:"""
-    assert len(inp.shape) == 4
-    return inp.permute(0, 3, 1, 2)
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
+    assert len(tensor.shape) == 4
+    return tensor.permute(0, 3, 1, 2)
 
 
-def nchw_to_nhwc_tensor(inp: torch.Tensor) -> torch.Tensor:
+def nchw_to_nhwc_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-:param inp:
-:type inp:
-:return:
-:rtype:"""
-    assert len(inp.shape) == 4
-    return inp.permute(0, 2, 3, 1)
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
+    assert len(tensor.shape) == 4
+    return tensor.permute(0, 2, 3, 1)
 
 
-def nthwc_to_ntchw_tensor(inp: torch.Tensor) -> torch.Tensor:
+def nthwc_to_ntchw_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-:param inp:
-:type inp:
-:return:
-:rtype:"""
-    assert len(inp.shape) == 5
-    return inp.permute(0, 1, 4, 2, 3)
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
+    assert len(tensor.shape) == 5
+    return tensor.permute(0, 1, 4, 2, 3)
 
 
-def ntchw_to_nthwc_tensor(inp: torch.Tensor) -> torch.Tensor:
+def ntchw_to_nthwc_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-:param inp:
-:type inp:
-:return:
-:rtype:"""
-    assert len(inp.shape) == 5
-    return inp.permute(0, 1, 3, 4, 2)
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
+    assert len(tensor.shape) == 5
+    return tensor.permute(0, 1, 3, 4, 2)

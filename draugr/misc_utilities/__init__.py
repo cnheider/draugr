@@ -7,5 +7,4 @@ __doc__ = r"""
            Created on 26-01-2021
            """
 
-from .pandas_utilties import *
 from .seaborn_utilities import *
