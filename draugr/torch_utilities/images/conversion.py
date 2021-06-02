@@ -13,7 +13,7 @@ import torch
 from PIL import Image
 
 
-def quick_to_pil_image(tensor: torch.Tensor, mode="RGB") -> Image.Image:
+def quick_to_pil_image(tensor: torch.Tensor, mode: str = "RGB") -> Image.Image:
     """
 
     LOTS OF ASSUMPTIONS!

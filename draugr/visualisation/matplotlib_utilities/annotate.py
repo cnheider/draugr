@@ -7,6 +7,8 @@ __doc__ = r"""
            Created on 04-03-2021
            """
 
+from typing import Tuple
+
 from draugr.scipy_utilities import mag_decimation_subsample
 
 __all__ = [
@@ -28,14 +30,14 @@ def annotate_lines(
     ax_: Axes,
     num_lines: int = 1,  # None for all
     index_decimator: callable = default_index_decimator,
-    color="k",  # None for auto color
-    xycoords=(
+    color: str = "k",  # None for auto color
+    xycoords: Tuple[str, str] = (
         "data",
         # 'axes fraction',
         "data",
     ),  # TODO: NOT DONE! Where to place annotation, use 'axes fraction' for along axes'
-    ha="left",
-    va="center",
+    ha: str = "left",
+    va: str = "center",
     **kwargs,
 ) -> None:
     lines = ax_.lines

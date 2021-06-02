@@ -45,9 +45,10 @@ __all__ = [
 
 
 @passes_kws_to(matshow)
-def correlation_matrix_plot(cor, labels=None, title="", **kwargs) -> Figure:
-    """
-  """
+def correlation_matrix_plot(
+    cor: Sequence, labels: Sequence = None, title: str = "", **kwargs
+) -> Figure:
+    """ """
     if labels is None:
         labels = [f"P{i}" for i in range(len(cor))]
 
@@ -75,12 +76,12 @@ def horizontal_imshow(
 ):
     """Small helper function for creating horizontal subplots with pyplot
 
-  :param images:
-  :param titles:
-  :param num_columns:
-  :param kwargs:
-  :return:
-  """
+    :param images:
+    :param titles:
+    :param num_columns:
+    :param kwargs:
+    :return:
+    """
     num_d = len(images) / num_columns
     num_d_f = math.floor(num_d)
     if num_d_f != num_d:
@@ -115,15 +116,15 @@ def biplot(
     label_multiplier: float = 1.06,
 ) -> pyplot.Figure:
     """
-     Use only the 2 Principal components.
+       Use only the 2 Principal components.
 
-    :rtype: object
-  :param label_multiplier:
-  :param categories:
-  :param scores:
-  :param coefficients:
-  :param labels:
-  :return:"""
+      :rtype: object
+    :param label_multiplier:
+    :param categories:
+    :param scores:
+    :param coefficients:
+    :param labels:
+    :return:"""
     assert label_multiplier >= 1.0
 
     fig = pyplot.figure()
@@ -189,12 +190,12 @@ def pca_biplot(
     predictor: Iterable, response: Iterable, labels: Iterable[str] = None
 ) -> pyplot.Figure:
     """
-  produces a pca projection and plot the 2 most significant component score and the component coefficients.
+    produces a pca projection and plot the 2 most significant component score and the component coefficients.
 
-  :param predictor:
-  :param response:
-  :param labels:
-  :return:"""
+    :param predictor:
+    :param response:
+    :param labels:
+    :return:"""
 
     scaler = StandardScaler()
     scaler.fit(predictor)
@@ -224,18 +225,18 @@ def precision_recall_plot(
 ) -> pyplot.Figure:
     """
 
-  # A "micro-average": quantifying score on all classes jointly
+    # A "micro-average": quantifying score on all classes jointly
 
-  :param truth:
-  :param pred_score:
-  :param num_classes:
-  :param num_decimals:
-  :param include_thresholds:
-  :param y_lim:
-  :param figure_size:
-  :param color_cycle:
-  :return:
-  """
+    :param truth:
+    :param pred_score:
+    :param num_classes:
+    :param num_decimals:
+    :param include_thresholds:
+    :param y_lim:
+    :param figure_size:
+    :param color_cycle:
+    :return:
+    """
     precision = dict()
     recall = dict()
     average_precision = dict()
@@ -306,8 +307,7 @@ def roc_plot(
     figure_size: Tuple[int, int] = (8, 8),
     num_decimals: int = 2,
 ) -> Figure:
-    """
-  """
+    """ """
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -386,25 +386,25 @@ def confusion_matrix_plot(
 ) -> Figure:
     """
 
-  :param truth:
-  :type truth:
-  :param pred:
-  :type pred:
-  :param category_names:
-  :type category_names:
-  :param figure_size:
-  :type figure_size:
-  :param decimals:
-  :type decimals:
-  :return:
-  :rtype:"""
+    :param truth:
+    :type truth:
+    :param pred:
+    :type pred:
+    :param category_names:
+    :type category_names:
+    :param figure_size:
+    :type figure_size:
+    :param decimals:
+    :type decimals:
+    :return:
+    :rtype:"""
 
     def confusion_matrix_figure(
         y_true, y_pred, classes, normalize=False, title=None, cmap=pyplot.cm.Blues
     ):
         """
-    This function prints and plots the confusion matrix.
-    Normalization can be applied by setting `normalize=True`."""
+        This function prints and plots the confusion matrix.
+        Normalization can be applied by setting `normalize=True`."""
         if not title:
             if normalize:
                 title = "Normalized confusion matrix"
@@ -469,8 +469,7 @@ def confusion_matrix_plot(
 if __name__ == "__main__":
 
     def a():
-        """
-    """
+        """ """
         from sklearn import datasets
 
         iris = datasets.load_iris()
@@ -500,8 +499,7 @@ if __name__ == "__main__":
         y_score = classifier.fit(X_train, y_train).decision_function(X_test)
 
         def sasasasgasgssiasjdijasagsaagdi():
-            """
-      """
+            """ """
             confusion_matrix_plot(
                 numpy.argmax(y_test, axis=-1),
                 numpy.argmax(y_score, axis=-1),
@@ -510,26 +508,22 @@ if __name__ == "__main__":
             pyplot.show()
 
         def sasasasgasgssagsaagdi():
-            """
-      """
+            """ """
             roc_plot(y_test, y_score, num_classes)
             pyplot.show()
 
         def sasasgssagsaagdi():
-            """
-      """
+            """ """
             precision_recall_plot(y_test, y_score, num_classes)
             pyplot.show()
 
         def sasafgsagdi():
-            """
-      """
+            """ """
             pca_biplot(X, y)
             pyplot.show()
 
         def sadi():
-            """
-      """
+            """ """
             import pandas
 
             df = pandas.DataFrame(X, columns=iris.feature_names)
