@@ -6,13 +6,14 @@ __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
 
-def main(keep_alive: bool = True, asyncio_s=True) -> str:
+def main(keep_alive: bool = True, use_asyncio: bool = True) -> str:
     """
 
-:param keep_alive:
-:type keep_alive:
-:return:
-:rtype:"""
+      :param use_asyncio:
+    :param keep_alive:
+    :type keep_alive:
+    :return:
+    :rtype:"""
     from draugr.torch_utilities import launch_tensorboard
 
     # from draugr import IgnoreInterruptSignal
@@ -57,7 +58,7 @@ def main(keep_alive: bool = True, asyncio_s=True) -> str:
     if keep_alive:
         print(f"tensorboard address: {address} for log_dir {log_dir}")
 
-        if asyncio_s:
+        if use_asyncio:
             import asyncio
 
             async def work():
@@ -83,4 +84,125 @@ def main(keep_alive: bool = True, asyncio_s=True) -> str:
 
 
 if __name__ == "__main__":
-    main()
+    import webbrowser
+
+    """
+  Type Name
+
+Class Name
+
+Notes
+
+'mozilla'
+
+Mozilla('mozilla')
+
+'firefox'
+
+Mozilla('mozilla')
+
+'netscape'
+
+Mozilla('netscape')
+
+'galeon'
+
+Galeon('galeon')
+
+'epiphany'
+
+Galeon('epiphany')
+
+'skipstone'
+
+BackgroundBrowser('skipstone')
+
+'kfmclient'
+
+Konqueror()
+
+(1)
+
+'konqueror'
+
+Konqueror()
+
+(1)
+
+'kfm'
+
+Konqueror()
+
+(1)
+
+'mosaic'
+
+BackgroundBrowser('mosaic')
+
+'opera'
+
+Opera()
+
+'grail'
+
+Grail()
+
+'links'
+
+GenericBrowser('links')
+
+'elinks'
+
+Elinks('elinks')
+
+'lynx'
+
+GenericBrowser('lynx')
+
+'w3m'
+
+GenericBrowser('w3m')
+
+'windows-default'
+
+WindowsDefault
+
+(2)
+
+'macosx'
+
+MacOSX('default')
+
+(3)
+
+'safari'
+
+MacOSX('safari')
+
+(3)
+
+'google-chrome'
+
+Chrome('google-chrome')
+
+'chrome'
+
+Chrome('chrome')
+
+'chromium'
+
+Chromium('chromium')
+
+'chromium-browser'
+
+Chromium('chromium-browser')
+
+
+  
+  """
+
+    # Open URL in a new tab, if a browser window is already open.
+    webbrowser.open_new_tab(main())
+
+    ## Open URL in new window, raising the window if possible.
+    # webbrowser.open_new(url)

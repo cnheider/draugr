@@ -23,9 +23,8 @@ def frame_generator(
 ) -> Iterable:
     """
 
-  :param video_stream:
-  :param coder:
-  """
+    :param video_stream:
+    :param coder:"""
     if coder is None:
         coder = identity
     while video_stream.isOpened():
@@ -39,8 +38,7 @@ def frame_generator(
 if __name__ == "__main__":
 
     def asd():
-        """
-    """
+        """ """
         from tqdm import tqdm
 
         for image in tqdm(frame_generator(cv2.VideoCapture(0), None)):

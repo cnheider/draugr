@@ -14,8 +14,6 @@ __all__ = [
     "monochrome_line_cycler",
 ]
 
-from matplotlib import cycler
-
 from draugr.visualisation.matplotlib_utilities.styles.hatching import (
     four_times_denser_hatch,
 )
@@ -23,6 +21,7 @@ from draugr.visualisation.matplotlib_utilities.styles.lines import (
     line_styles,
     marker_styles,
 )
+from matplotlib import cycler
 
 simple_hatch_cycler = cycler("hatch", four_times_denser_hatch)
 monochrome_hatch_cycler = (
@@ -41,6 +40,7 @@ monochrome_line_cycler = (
     * cycler("linestyle", line_styles)
     * cycler("marker", marker_styles)
 )
+
 
 if __name__ == "__main__":
     print([a for _, a in zip(range(10), monochrome_line_cycler)])

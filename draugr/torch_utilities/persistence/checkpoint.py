@@ -16,14 +16,16 @@ __all__ = ["save_checkpoint", "load_checkpoint"]
 
 
 def save_optimiser(
-    *, optimiser: Optimizer, optimiser_save_path: Path, raise_on_existing: bool = False,
+    *,
+    optimiser: Optimizer,
+    optimiser_save_path: Path,
+    raise_on_existing: bool = False,
 ) -> None:
     """
 
-  :param optimiser:
-  :param optimiser_save_path:
-  :param raise_on_existing:
-  """
+    :param optimiser:
+    :param optimiser_save_path:
+    :param raise_on_existing:"""
     if raise_on_existing and optimiser_save_path.exists():
         raise FileExistsError(f"{optimiser_save_path} exists!")
     torch.save(optimiser, str(optimiser_save_path))

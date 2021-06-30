@@ -88,7 +88,7 @@ def horizontal_imshow(
         num_d_f += 1
 
     if titles is None:
-        titles = [f"fig{a}" for a in range(len(images))]
+        titles = [f"fig{a_}" for a_ in range(len(images))]
     fig, axes = pyplot.subplots(
         num_d_f,
         num_columns,
@@ -98,8 +98,8 @@ def horizontal_imshow(
         constrained_layout=True,
     )
     figure_axes = []
-    for a in axes:
-        figure_axes.extend(a)
+    for a_ in axes:
+        figure_axes.extend(a_)
     for i, image in enumerate(images):
         ax = figure_axes[i]
         if titles:
@@ -212,7 +212,7 @@ def pca_biplot(
 
 def precision_recall_plot(
     truth,
-    pred_score,
+    score,
     num_classes,
     *,
     num_decimals: int = 2,
@@ -228,7 +228,7 @@ def precision_recall_plot(
     # A "micro-average": quantifying score on all classes jointly
 
     :param truth:
-    :param pred_score:
+    :param score:
     :param num_classes:
     :param num_decimals:
     :param include_thresholds:
@@ -243,16 +243,14 @@ def precision_recall_plot(
     thresholds = dict()
     for i in range(num_classes):
         precision[i], recall[i], thresholds[i] = precision_recall_curve(
-            truth[:, i], pred_score[:, i]
+            truth[:, i], score[:, i]
         )
-        average_precision[i] = average_precision_score(truth[:, i], pred_score[:, i])
+        average_precision[i] = average_precision_score(truth[:, i], score[:, i])
 
     precision["micro"], recall["micro"], thresholds["micro"] = precision_recall_curve(
-        truth.ravel(), pred_score.ravel()
+        truth.ravel(), score.ravel()
     )
-    average_precision["micro"] = average_precision_score(
-        truth, pred_score, average="micro"
-    )
+    average_precision["micro"] = average_precision_score(truth, score, average="micro")
 
     fig = pyplot.figure(figsize=figure_size)
     f_scores = numpy.linspace(0.2, 0.8, num=4)
@@ -301,7 +299,7 @@ def precision_recall_plot(
 
 def roc_plot(
     truth,
-    pred_score,
+    score,
     num_classes: int,
     *,
     figure_size: Tuple[int, int] = (8, 8),
@@ -312,11 +310,11 @@ def roc_plot(
     tpr = dict()
     roc_auc = dict()
     for i in range(num_classes):
-        fpr[i], tpr[i], _ = roc_curve(truth[:, i], pred_score[:, i])
+        fpr[i], tpr[i], _ = roc_curve(truth[:, i], score[:, i])
         roc_auc[i] = auc(fpr[i], tpr[i])
 
     # Compute micro-average ROC curve and ROC area
-    fpr["micro"], tpr["micro"], _ = roc_curve(truth.ravel(), pred_score.ravel())
+    fpr["micro"], tpr["micro"], _ = roc_curve(truth.ravel(), score.ravel())
     roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
 
     # Compute macro-average ROC curve and ROC area
@@ -378,7 +376,7 @@ def roc_plot(
 
 def confusion_matrix_plot(
     truth: Iterable,
-    pred: Iterable,
+    prediction: Iterable,
     category_names: Iterable[str],
     *,
     figure_size: Tuple[int, int] = (8, 8),
@@ -388,8 +386,8 @@ def confusion_matrix_plot(
 
     :param truth:
     :type truth:
-    :param pred:
-    :type pred:
+    :param prediction:
+    :type prediction:
     :param category_names:
     :type category_names:
     :param figure_size:
@@ -400,7 +398,7 @@ def confusion_matrix_plot(
     :rtype:"""
 
     def confusion_matrix_figure(
-        y_true, y_pred, classes, normalize=False, title=None, cmap=pyplot.cm.Blues
+        truth_, prediction_, classes, normalize=False, title=None, cmap=pyplot.cm.Blues
     ):
         """
         This function prints and plots the confusion matrix.
@@ -411,9 +409,9 @@ def confusion_matrix_plot(
             else:
                 title = "Confusion matrix, without normalization"
 
-        cm = confusion_matrix(y_true, y_pred)
+        cm = confusion_matrix(truth_, prediction_)
         unique = unique_labels(
-            y_true, y_pred
+            truth_, prediction_
         )  # Only use the labels that appear in the data
         classes = classes[unique]
         if normalize:
@@ -459,7 +457,7 @@ def confusion_matrix_plot(
     # Plot normalized confusion matrix
     return confusion_matrix_figure(
         truth,
-        pred,
+        prediction,
         classes=category_names,
         normalize=True,
         title="Normalized confusion matrix",
@@ -473,20 +471,20 @@ if __name__ == "__main__":
         from sklearn import datasets
 
         iris = datasets.load_iris()
-        X = iris.data
+        x = iris.data
         y = iris.target
 
         num_classes = len(iris.target_names)
 
         # Add noisy features to make the problem harder
         random_state = numpy.random.RandomState(0)
-        n_samples, n_features = X.shape
+        n_samples, n_features = x.shape
         # X_noisy = numpy.c_[X, random_state.randn(n_samples, 200 * n_features)*0.01]
 
-        X_noisy = X
+        x_noisy = x
 
         (X_train, X_test, y_train, y_test) = train_test_split(
-            X_noisy,
+            x_noisy,
             label_binarize(y, classes=range(len(iris.target_names))),
             test_size=0.3,
             random_state=0,
@@ -519,14 +517,14 @@ if __name__ == "__main__":
 
         def sasafgsagdi():
             """ """
-            pca_biplot(X, y)
+            pca_biplot(x, y)
             pyplot.show()
 
         def sadi():
             """ """
             import pandas
 
-            df = pandas.DataFrame(X, columns=iris.feature_names)
+            df = pandas.DataFrame(x, columns=iris.feature_names)
             correlation_matrix_plot(cor=df.corr(), labels=df.columns)
             pyplot.show()
 

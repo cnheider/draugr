@@ -18,28 +18,29 @@ __all__ = ["IntermediateLayerGetter"]
 
 
 class IntermediateLayerGetter:
-    """"""
+    """ """
 
     def __init__(
-        self, model: torch.nn.Module, return_layers: dict = None,
+        self,
+        model: torch.nn.Module,
+        return_layers: dict = None,
     ):
         """
-Wraps a Pytorch module to get intermediate values, eg for getting intermediate activations
+        Wraps a Pytorch module to get intermediate values, eg for getting intermediate activations
 
-Arguments:
-model {nn.module} -- The Pytorch module to call
-return_layers {dict} -- Dictionary with the selected submodules
-to return the output (format: {[current_module_name]: [desired_output_name]},
-current_module_name can be a nested submodule, e.g. submodule1.submodule2.submodule3)
+        Arguments:
+        model {nn.module} -- The Pytorch module to call
+        return_layers {dict} -- Dictionary with the selected submodules
+        to return the output (format: {[current_module_name]: [desired_output_name]},
+        current_module_name can be a nested submodule, e.g. submodule1.submodule2.submodule3)
 
-Returns:
-(mid_outputs {OrderedDict}, model_output {any}) -- mid_outputs keys are
-your desired_output_name (s) and their values are the returned tensors
-of those submodules (OrderedDict([(desired_output_name,tensor(...)), ...).
+        Returns:
+        (mid_outputs {OrderedDict}, model_output {any}) -- mid_outputs keys are
+        your desired_output_name (s) and their values are the returned tensors
+        of those submodules (OrderedDict([(desired_output_name,tensor(...)), ...).
 
-In case a submodule is called more than one time, all it's outputs are
-stored in a list.
-"""
+        In case a submodule is called more than one time, all it's outputs are
+        stored in a list."""
         self._model = model
         if return_layers:
             self.return_layers = return_layers.items()
@@ -49,16 +50,16 @@ stored in a list.
     @staticmethod
     def reduce_getattr(obj, attr, *args):
         """
-# using wonder's beautiful simplification: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427
+        # using wonder's beautiful simplification: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427
 
-:param obj:
-:type obj:
-:param attr:
-:type attr:
-:param args:
-:type args:
-:return:
-:rtype:"""
+        :param obj:
+        :type obj:
+        :param attr:
+        :type attr:
+        :param args:
+        :type args:
+        :return:
+        :rtype:"""
 
         def _getattr(obj, attr):
             return getattr(obj, attr, *args)
@@ -84,15 +85,13 @@ stored in a list.
                 ):
                     """
 
-:param module:
-:type module:
-:param input:
-:type input:
-:param output:
-:type output:
-:param new_name:
-:type new_name:
-"""
+                              :param new_name_:
+                    :param module:
+                    :type module:
+                    :param input:
+                    :type input:
+                    :param output:
+                    :type output:"""
                     if new_name_ in ret:
                         cur_val = ret[new_name_]
                         if type(cur_val) is list:
@@ -123,11 +122,10 @@ stored in a list.
 if __name__ == "__main__":
 
     def adsad():
-        """
-"""
+        """ """
 
         class Model(nn.Module):
-            """"""
+            """ """
 
             def __init__(self):
                 super().__init__()
@@ -144,10 +142,10 @@ if __name__ == "__main__":
             def forward(self, x):
                 """
 
-:param x:
-:type x:
-:return:
-:rtype:"""
+                :param x:
+                :type x:
+                :return:
+                :rtype:"""
                 x1 = self.fc1(x)
                 x2 = self.fc2(x)
 
@@ -168,11 +166,10 @@ if __name__ == "__main__":
         print(mid_outputs)
 
     def adsad2():
-        """
-"""
+        """ """
 
         class Model(nn.Module):
-            """"""
+            """ """
 
             def __init__(self):
                 super().__init__()
@@ -189,10 +186,10 @@ if __name__ == "__main__":
             def forward(self, x):
                 """
 
-:param x:
-:type x:
-:return:
-:rtype:"""
+                :param x:
+                :type x:
+                :return:
+                :rtype:"""
                 x1 = self.fc1(x)
                 x2 = self.fc2(x)
 

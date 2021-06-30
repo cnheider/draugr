@@ -16,7 +16,6 @@ from warg import Number
 
 from apppath import ensure_existence
 
-
 __all__ = [
     "color_highlight_extreme",
     "ColorEnum",
@@ -122,7 +121,7 @@ if __name__ == "__main__":
         f.write(html_)
 
     """
-  Styler.applymap(func) for elementwise styles
+Styler.applymap(func) for elementwise styles
 
 Styler.apply(func, axis=0) for columnwise styles
 

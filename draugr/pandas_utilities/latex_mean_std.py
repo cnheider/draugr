@@ -39,6 +39,8 @@ def pandas_mean_std_to_str(
 ) -> pandas.DataFrame:
     """
     latex \pm plus minus
+    :param level:
+    :param axis:
     :param std_col:
     :param mean_col:
     :param df:
@@ -136,14 +138,14 @@ def pandas_to_latex_clean(
                 for _name in entry_provider_df.columns
             ]
             """
-      entry_provider_df.columns = pandas.MultiIndex(levels=[
-          [col.replace('_', '\_') for col in lvl]
-          for lvl in entry_provider_df.columns.levels
-          ],
-          codes=entry_provider_df.columns.codes,
-          names=entry_provider_df.columns.names
-          )
-      """
+entry_provider_df.columns = pandas.MultiIndex(levels=[
+    [col.replace('_', '\_') for col in lvl]
+    for lvl in entry_provider_df.columns.levels
+    ],
+    codes=entry_provider_df.columns.codes,
+    names=entry_provider_df.columns.names
+    )
+"""
 
         if not isinstance(entry_provider_df.index, pandas.MultiIndex):
             entry_provider_df.index = entry_provider_df.index.str.replace("_", "\_")

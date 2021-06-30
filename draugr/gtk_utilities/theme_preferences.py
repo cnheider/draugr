@@ -15,7 +15,7 @@ from draugr.gtk_utilities.gtk_settings import GtkSettings
 class GtkThemePreferences(GtkSettings):
     @property
     def theme(self):
-        """"""
+        """ """
         return self.settings.get_property("gtk-theme-name")
 
     @theme.setter
@@ -26,8 +26,8 @@ class GtkThemePreferences(GtkSettings):
     def prefer_dark_mode(self) -> bool:
         """
 
-    :return:
-    :rtype:"""
+        :return:
+        :rtype:"""
         return self.settings.get_property("gtk-application-prefer-dark-theme")
 
     @prefer_dark_mode.setter
@@ -38,7 +38,7 @@ class GtkThemePreferences(GtkSettings):
 if __name__ == "__main__":
 
     def asdad():
-        """"""
+        """ """
         a = GtkThemePreferences()
 
         print(a.prefer_dark_mode)
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         print(a.prefer_dark_mode)
 
     def asdad2312():
-        """"""
+        """ """
         with GtkThemePreferences() as a:
             print(a.prefer_dark_mode)
 
@@ -61,7 +61,7 @@ if __name__ == "__main__":
             print(a.prefer_dark_mode)
 
     def asda213sad2312d():
-        """"""
+        """ """
         a = GtkThemePreferences()
 
         print(a.prefer_dark_mode)

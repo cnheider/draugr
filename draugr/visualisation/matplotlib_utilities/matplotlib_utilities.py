@@ -12,9 +12,6 @@ from typing import Any, Sequence, Union
 
 import numpy
 from cycler import Cycler
-from matplotlib import patches, pyplot, rcParams
-from matplotlib.legend_handler import HandlerErrorbar
-
 from draugr.visualisation.matplotlib_utilities.quirks import auto_post_hatch
 from draugr.visualisation.matplotlib_utilities.styles.annotation import (
     rt_ann_transform,
@@ -25,6 +22,8 @@ from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
     monochrome_line_cycler,
     simple_hatch_cycler,
 )
+from matplotlib import patches, pyplot, rcParams
+from matplotlib.legend_handler import HandlerErrorbar
 
 __all__ = [
     "denormalise_minusoneone",
@@ -121,8 +120,8 @@ def save_embed_fig(
     """
 clip_box = Bbox(((0,0),(300,300)))
 for o in pyplot.findobj():
-  o.set_clip_on(True)
-  o.set_clip_box(clip_box)
+o.set_clip_on(True)
+o.set_clip_box(clip_box)
 
 """
 
@@ -203,7 +202,8 @@ def matplotlib_bounding_box(
 
 
 def use_monochrome_style(
-    prop_cycler: Cycler = monochrome_line_cycler,  # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
+    prop_cycler: Cycler = monochrome_line_cycler,
+    # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
 ) -> None:
     # from matplotlib.pyplot import axes, grid
 

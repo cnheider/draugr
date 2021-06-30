@@ -3,9 +3,8 @@
 import math
 
 import numpy
-from matplotlib.gridspec import GridSpec
-
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
+from matplotlib.gridspec import GridSpec
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -25,9 +24,8 @@ FLOAT_EPS = numpy.finfo(float).eps
 
 class FastFourierTransformSpectrogramPlot(MplDrawer):
     """
-  TODO: CENTER Align fft maybe, to mimick librosa stft
-  Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_fft, and no window function ( TODO: Hanning Smoothing)
-  """
+    TODO: CENTER Align fft maybe, to mimick librosa stft
+    Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_fft, and no window function ( TODO: Hanning Smoothing)"""
 
     def __init__(
         self,
@@ -44,24 +42,24 @@ class FastFourierTransformSpectrogramPlot(MplDrawer):
     ):
         """
 
-    :param n_fft:
-    :type n_fft:
-    :param sampling_rate:
-    :type sampling_rate:
-    :param buffer_size_sec:
-    :type buffer_size_sec:
-    :param title:
-    :type title:
-    :param vertical:
-    :type vertical:
-    :param reverse:
-    :type reverse:
-    :param placement:
-    :type placement:
-    :param fig_size:
-    :type fig_size:
-    :param render:
-    :type render:"""
+        :param n_fft:
+        :type n_fft:
+        :param sampling_rate:
+        :type sampling_rate:
+        :param buffer_size_sec:
+        :type buffer_size_sec:
+        :param title:
+        :type title:
+        :param vertical:
+        :type vertical:
+        :param reverse:
+        :type reverse:
+        :param placement:
+        :type placement:
+        :param fig_size:
+        :type fig_size:
+        :param render:
+        :type render:"""
         super().__init__(render=render, figure_size=figure_size, **kwargs)
 
         if not render:
@@ -140,9 +138,9 @@ class FastFourierTransformSpectrogramPlot(MplDrawer):
     def _draw(self, signal_sample: float, delta: float = 1 / 120) -> None:
         """
 
-    :param signal_sample:
-    :param delta: 1 / 60 for 60fps
-    :return:"""
+        :param signal_sample:
+        :param delta: 1 / 60 for 60fps
+        :return:"""
         y_data = self.raw_line2d.get_ydata()
 
         if not self.reverse:
@@ -215,8 +213,7 @@ class FastFourierTransformSpectrogramPlot(MplDrawer):
 if __name__ == "__main__":
 
     def a():
-        """
-    """
+        """ """
         duration_sec = 4
         mul = 1000
         sampling_Hz = 44.1

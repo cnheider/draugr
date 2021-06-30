@@ -4,9 +4,8 @@ import contextlib
 from time import sleep
 from typing import Callable, Iterable
 
-from pynput.keyboard import KeyCode
-
 from draugr.python_utilities.styling import sprint
+from pynput.keyboard import KeyCode
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""

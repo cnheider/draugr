@@ -21,11 +21,10 @@ def fix_edge_gridlines(
     ax: Axes = None,
 ) -> None:  # TODO: make a wrapper version of the function
     """
-Fixes gridlines when using zero margins round_number number ticks
+    Fixes gridlines when using zero margins round_number number ticks
 
-:param ax:
-:return:
-"""
+    :param ax:
+    :return:"""
     if ax is None:
         ax = pyplot.gca()
     ax.xaxis.get_gridlines()[-1].set_clip_on(False)  # last gridline
@@ -34,11 +33,10 @@ Fixes gridlines when using zero margins round_number number ticks
 
 def auto_post_print_dpi(scalar: Number = 5) -> None:
     """
-auto scale dpi of lines for print
+    auto scale dpi of lines for print
 
-:param scalar:
-:return:
-"""
+    :param scalar:
+    :return:"""
     dpi = rcParams["figure.dpi"]
     line_width = 1.0 / dpi * scalar
     rcParams["hatch.linewidth"] = line_width * 2
@@ -49,12 +47,11 @@ def auto_post_hatch(
     ax: Axes = None, hatch_cycler: cycler = simple_hatch_cycler
 ) -> None:
     """
-Auto hatches patch-types because matplotlib's prop-cycler does not iterate hatch_props
+    Auto hatches patch-types because matplotlib's prop-cycler does not iterate hatch_props
 
-:param ax:
-:param hatch_cycler:
-:return:
-"""
+    :param ax:
+    :param hatch_cycler:
+    :return:"""
     if ax is None:
         ax = pyplot.gca()
     for p, d in zip(ax.patches, hatch_cycler):

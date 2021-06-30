@@ -19,14 +19,14 @@ def to_scalar(
     aggregation: callable = torch.mean,
 ) -> Number:
     """
-  Always detaches from computation graph
+    Always detaches from computation graph
 
-  default behaviour is obj.cpu().mean().item()
+    default behaviour is obj.cpu().mean().item()
 
-  :param aggregation:
-  :param obj:
-  :param device:
-  :return:"""
+    :param aggregation:
+    :param obj:
+    :param device:
+    :return:"""
 
     if not torch.is_tensor(obj):
         obj = to_tensor(obj)

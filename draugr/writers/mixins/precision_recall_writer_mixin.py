@@ -14,7 +14,7 @@ from warg import drop_unused_kws
 
 class PrecisionRecallCurveWriterMixin(ABC):
     """
-  Writer mixin that provides an interface for 'writing' instantiation"""
+    Writer mixin that provides an interface for 'writing' instantiation"""
 
     @drop_unused_kws
     @abstractmethod
@@ -26,7 +26,5 @@ class PrecisionRecallCurveWriterMixin(ABC):
         step: int,
         num_thresholds: int = 11,
     ) -> None:
-        """
-
-    """
+        """ """
         raise NotImplementedError

@@ -20,7 +20,7 @@ if not START_VISDOM_SERVER:
 
 
 class VisdomWriter(Writer):
-    """"""
+    """ """
 
     def _scalar(self, tag: str, value: float, step: int):
         pass

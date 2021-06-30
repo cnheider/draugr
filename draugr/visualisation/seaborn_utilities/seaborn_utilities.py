@@ -11,7 +11,6 @@ from typing import Iterable, List
 
 import numpy.random
 import seaborn
-
 from warg import Number
 
 __all__ = [
@@ -48,8 +47,8 @@ def exponential_moving_average(
     """
     Like is usual in tensorboard visual rep just weight is inverse
 
+    :param decay:
     :param scalars:
-    :param weight: between 0 and 1
     :return:
     """
     if isinstance(scalars, numpy.ndarray):
@@ -75,7 +74,7 @@ class VisualisationErrorStyle(Enum):
 if __name__ == "__main__":
 
     def stest_box_plot_props():
-        PROPS = {
+        props = {
             "boxprops": {"facecolor": "none", "edgecolor": "red"},
             "medianprops": {"color": "green"},
             "whiskerprops": {"color": "blue"},
@@ -83,7 +82,7 @@ if __name__ == "__main__":
         }
 
         seaborn.boxplot(
-            x="variable", y="value", data=[], showfliers=False, linewidth=0.75, **PROPS
+            x="variable", y="value", data=[], showfliers=False, linewidth=0.75, **props
         )
 
     def stest_ema():
@@ -93,7 +92,7 @@ if __name__ == "__main__":
 
     def stest_ema2():
 
-        e = numpy.random.random((1000))
+        e = numpy.random.random(1000)
         end = exponential_moving_average(e, 1 - 0.6)[-1]
         assert numpy.isclose(end, 0.5, 0.1, 0.1), end  # Not guaranteed, may fail
 

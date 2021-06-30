@@ -6,3 +6,6 @@ __doc__ = r"""
 
            Created on 03-05-2021
            """
+
+from .dlib_utilities import *
+from .facealigner import *

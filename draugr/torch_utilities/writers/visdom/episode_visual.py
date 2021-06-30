@@ -25,18 +25,18 @@ def update_visualiser(
 ):
     """
 
-  :param moving_loss:
-  :param signal:
-  :param moving_reward:
-  :param moving_length:
-  :param configuration:
-  :param visualiser:
-  :param episode:
-  :param loss:
-  :param episode_length:
-  :param rgb_array:
-  :param windows:
-  :return:"""
+    :param moving_loss:
+    :param signal:
+    :param moving_reward:
+    :param moving_length:
+    :param configuration:
+    :param visualiser:
+    :param episode:
+    :param loss:
+    :param episode_length:
+    :param rgb_array:
+    :param windows:
+    :return:"""
     if "loss" in windows:
         loss_window = windows["loss"]
         visualiser.line(

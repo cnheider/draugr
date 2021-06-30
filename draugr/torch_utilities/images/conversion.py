@@ -18,7 +18,8 @@ def quick_to_pil_image(tensor: torch.Tensor, mode: str = "RGB") -> Image.Image:
 
     LOTS OF ASSUMPTIONS!
 
-    :param inp:
+    :param tensor:
+    :param mode:
     :return:"""
 
     return Image.fromarray(tensor.cpu().numpy().astype(numpy.uint8), mode)

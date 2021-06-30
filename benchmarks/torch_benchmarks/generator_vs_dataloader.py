@@ -4,10 +4,9 @@ import time
 
 import numpy
 import torch
-from torch.utils.data import Dataset
-
 from draugr import batched_recycle
 from draugr.torch_utilities import to_tensor_generator
+from torch.utils.data import Dataset
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -194,8 +193,7 @@ def test_d4():
     ).to(device)
 
     class RandomDataset(Dataset):
-        """
-        """
+        """ """
 
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
@@ -264,8 +262,7 @@ def test_d5():
     batch_shape = torch.Size([batch_size, channels_in, 224, 224])
 
     class RandomDataset(Dataset):
-        """
-        """
+        """ """
 
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
@@ -332,8 +329,7 @@ def test_d6():
     batch_shape = torch.Size([batch_size, channels_in, 224, 224])
 
     class RandomDataset(Dataset):
-        """
-        """
+        """ """
 
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
@@ -389,8 +385,7 @@ def test_d7():
     dtype = torch.float
 
     class RandomDataset(Dataset):
-        """
-        """
+        """ """
 
         def __init__(self):
             self.d = numpy.random.sample(data_shape)

@@ -17,24 +17,23 @@ __all__ = ["get_strides_f", "get_strides_c"]
 def get_strides_f(shape: Sequence) -> List:
     """Get strides of a F like array, for numpy array need to multiply by itemsize
 
-Parameters
-----------
-shape : tuple of int or iterable
-    shape of the array
-Returns
--------
-s :  tuple of int or iterable
-    strides of the array
+    Parameters
+    ----------
+    shape : tuple of int or iterable
+      shape of the array
+    Returns
+    -------
+    s :  tuple of int or iterable
+      strides of the array
 
-Examples
---------
->>> get_strides_f((2, 3, 3))
-[1, 2, 6]
+    Examples
+    --------
+    >>> get_strides_f((2, 3, 3))
+    [1, 2, 6]
 
-References
-----------
-https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html
-"""
+    References
+    ----------
+    https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html"""
 
     # $s_k = \Prod_{j=0}^{k-1} d_j$
     s = numpy.cumprod((1,) + shape[0:-1]).tolist()
@@ -45,23 +44,22 @@ https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html
 def get_strides_c(shape):
     """Get strides of a C like array. For numpy array need to be multiply by itemsize
 
-Parameters
-----------
-shape : tuple of int or iterable
-    shape of the array
-Returns
--------
-s :  tuple of int or iterable
-    strides of the array
+    Parameters
+    ----------
+    shape : tuple of int or iterable
+      shape of the array
+    Returns
+    -------
+    s :  tuple of int or iterable
+      strides of the array
 
-Examples
---------
->>> get_strides_c((2, 3, 3))
-[9, 3, 1]
-References
-----------
-https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html
-"""
+    Examples
+    --------
+    >>> get_strides_c((2, 3, 3))
+    [9, 3, 1]
+    References
+    ----------
+    https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html"""
 
     n = len(shape)
 

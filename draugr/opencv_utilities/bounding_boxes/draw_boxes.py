@@ -10,10 +10,8 @@ __doc__ = r"""
 from pathlib import Path
 from typing import Optional, Sequence, Tuple, Union
 
-
 import numpy
 from PIL import Image, ImageDraw, ImageFont
-
 from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.opencv_utilities.opencv_draw import draw_masks
 from draugr.python_utilities.colors import RGB
@@ -36,8 +34,7 @@ def draw_single_box(
     outline_alpha: float = 0.5,
     color_fill_score: bool = False,
 ) -> Image.Image:
-    """
-  """
+    """ """
     if not isinstance(image, ImageDraw.ImageDraw):
         assert isinstance(image, Image.Image)
         if image.mode != "RGBA":
@@ -104,19 +101,19 @@ def draw_bounding_boxes(
     mode="RGBA",
 ) -> numpy.ndarray:
     """Draw bounding boxes(labels, scores) on image
-  Args:
-  image: numpy array image, shape should be (height, width, channel)
-  boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax), NOT NORMALISED!
-  labels: labels, shape: (N, )
-  scores: label scores, shape: (N, )
-  class_name_map: list or dict, map class id to class name for visualization.
-  width: box width
-  alpha: text background alpha
-  fill: fill box or not
-  font: text font
-  score_format: score format
-  Returns:
-  An image with information drawn on it."""
+    Args:
+    image: numpy array image, shape should be (height, width, channel)
+    boxes: bboxes, shape should be (N, 4), and each row is (xmin, ymin, xmax, ymax), NOT NORMALISED!
+    labels: labels, shape: (N, )
+    scores: label scores, shape: (N, )
+    class_name_map: list or dict, map class id to class name for visualization.
+    width: box width
+    alpha: text background alpha
+    fill: fill box or not
+    font: text font
+    score_format: score format
+    Returns:
+    An image with information drawn on it."""
     boxes = numpy.array(boxes)
     num_boxes = boxes.shape[0]
     if isinstance(image, Image.Image):
@@ -161,8 +158,7 @@ def draw_bounding_boxes(
 if __name__ == "__main__":
 
     def a():
-        """
-    """
+        """ """
         from matplotlib import pyplot
         import pickle
         from neodroidvision.data.datasets.supervised.detection.coco import COCODataset
@@ -186,8 +182,7 @@ if __name__ == "__main__":
         pyplot.show()
 
     def b():
-        """
-    """
+        """ """
         from matplotlib import pyplot
 
         data_root = Path.home() / "Data" / "PennFudanPed" / "PNGImages"

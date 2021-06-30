@@ -17,8 +17,6 @@ def test_root_mean_square_signed(asad: int = 60):
 
 
 def test_root_mean_square_unsigned(asad: int = 60):
-    from statistics import mean
-
     s = [i + asad // 2 for i in range(asad)]
     a = root_mean_square(s)
     # assert a == mean(s)..

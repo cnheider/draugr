@@ -2,7 +2,7 @@ name: publish_conda
 
 on:
   release:
-    types: [published]
+    types: [ published ]
 
 jobs:
   publish:
@@ -12,8 +12,8 @@ jobs:
       - name: publish-to-conda
         uses: MichaelsJP/conda-package-publish-action@v1.0.0
         with:
-          subDir: '.conda'
+          subDir:        '.conda'
           AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}
-          platforms: 'all'
-          override: true
-          dry_run: true
+          platforms:     'all'
+          override:      true
+          dry_run:       true

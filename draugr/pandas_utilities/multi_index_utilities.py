@@ -8,8 +8,8 @@ __doc__ = r"""
            """
 
 from typing import Any
-import numpy
 
+import numpy
 import pandas
 
 __all__ = ["add_index_level"]

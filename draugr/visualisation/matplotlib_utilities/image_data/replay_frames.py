@@ -18,14 +18,13 @@ def replay_frames(
     frames: Sequence, interval: int = 100, is_ipython: bool = False
 ) -> None:
     """
-  Displays a list of frames as a gif, with controls"""
+    Displays a list of frames as a gif, with controls"""
     # pyplot.figure(figsize=(frames[0].shape[1] / 72.0, frames[0].shape[0] / 72.0), dpi = 72)
     patch = pyplot.imshow(frames[0])
     pyplot.axis("off")
 
     def animate(start_episode):
-        """
-    """
+        """ """
         patch.set_data(frames[start_episode])
 
     anim = animation.FuncAnimation(
@@ -42,8 +41,7 @@ def replay_frames(
 if __name__ == "__main__":
 
     def main():
-        """
-    """
+        """ """
         import gym
 
         env = gym.make("Pendulum-v0")

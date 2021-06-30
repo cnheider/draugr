@@ -17,10 +17,10 @@ __all__ = ["metrics"]
 def metrics(array: numpy.ndarray) -> collections.OrderedDict:
     """
 
-  :param array:
-  :type array:
-  :return:
-  :rtype:"""
+    :param array:
+    :type array:
+    :return:
+    :rtype:"""
     d = collections.OrderedDict()
     d["mean"] = numpy.mean(array)
     d["std"] = numpy.std(array)

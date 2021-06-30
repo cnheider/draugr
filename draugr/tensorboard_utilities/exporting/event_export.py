@@ -26,8 +26,7 @@ TagTypeEnum = TypeVar("TagTypeEnum")
 
 class TensorboardEventExporter:
     """
-  Reads event files and exports the requested tags.
-"""
+    Reads event files and exports the requested tags."""
 
     # class TagTypeEnum(Enum): #Static version, does not adapt to plugins!
     #    images = 'images'
@@ -49,10 +48,9 @@ class TensorboardEventExporter:
     ):
         """
 
-:param path_to_events_file_s:
-:param size_guidance:
-:param save_to_disk:
-"""
+        :param path_to_events_file_s:
+        :param size_guidance:
+        :param save_to_disk:"""
         if size_guidance is None:
             size_guidance = 0
 
@@ -96,10 +94,9 @@ class TensorboardEventExporter:
     def tag_test(self, *tags, type_str: Union[str, TagTypeEnum]) -> bool:
         """
 
-:param tags:
-:param type_str:
-:return:
-"""
+        :param tags:
+        :param type_str:
+        :return:"""
         if not len(tags):
             print("No tags requested")
             # raise Exception #TODO: maybe
@@ -130,10 +127,9 @@ class TensorboardEventExporter:
     ) -> Tuple[pyplot.Figure]:
         """
 
-:param tags:
-:param out_dir:
-:return:
-"""
+        :param tags:
+        :param out_dir:
+        :return:"""
         self.tag_test(*tags, type_str="scalars")
         out = []
         for t in tags:
@@ -150,10 +146,9 @@ class TensorboardEventExporter:
     ) -> Tuple[Image]:
         """
 
-:param tags:
-:param out_dir:
-:return:
-"""
+        :param tags:
+        :param out_dir:
+        :return:"""
         self.tag_test(*tags, type_str="images")
         out = []
         for t in tags:
@@ -168,12 +163,11 @@ class TensorboardEventExporter:
         self, *tags: Iterable[str], out_dir: Path = Path.cwd()
     ) -> Iterable:
         """
-if save to files it pickles tags values with file ending .pkl
+        if save to files it pickles tags values with file ending .pkl
 
-:param tags:
-:param out_dir:
-:return:
-"""
+        :param tags:
+        :param out_dir:
+        :return:"""
         self.tag_test(*tags, type_str="scalars")
         out = []
         for t in tags:
@@ -187,9 +181,8 @@ if save to files it pickles tags values with file ending .pkl
     def export_distribution(self, *tags: Iterable[str], out_dir: Path = Path.cwd()):
         """
 
-:param tags:
-:param out_dir:
-"""
+        :param tags:
+        :param out_dir:"""
         self.tag_test(*tags, type_str="distributions")
         raise NotImplemented("not implemented yet!")
         out = []
@@ -203,10 +196,9 @@ if save to files it pickles tags values with file ending .pkl
     ) -> Iterable:
         """
 
-:param tags:
-:param out_dir:
-:return:
-"""
+        :param tags:
+        :param out_dir:
+        :return:"""
         self.tag_test(*tags, type_str="tensors")
         out = []
         for t in tags:
@@ -222,10 +214,9 @@ if save to files it pickles tags values with file ending .pkl
     ) -> Iterable:
         """
 
-:param tags:
-:param out_dir:
-:return:
-"""
+        :param tags:
+        :param out_dir:
+        :return:"""
         out = []
         w_times, step_nums, vals = zip(*self.event_acc.Graph())
         if self.save_to_disk:
@@ -239,10 +230,9 @@ if save to files it pickles tags values with file ending .pkl
     ) -> Iterable:
         """
 
-:param tags:
-:param out_dir:
-:return:
-"""
+        :param tags:
+        :param out_dir:
+        :return:"""
         self.tag_test(*tags, type_str="audio")
         out = []
         for t in tags:
@@ -258,12 +248,11 @@ if save to files it pickles tags values with file ending .pkl
     ) -> Iterable:
         """
 
-https://www.tensorflow.org/api_docs/python/tf/summary/histogram
+        https://www.tensorflow.org/api_docs/python/tf/summary/histogram
 
-:param tags:
-:param out_dir:
-:return:
-"""
+        :param tags:
+        :param out_dir:
+        :return:"""
         self.tag_test(*tags, type_str="histograms")
 
         out = []
@@ -284,12 +273,12 @@ https://www.tensorflow.org/api_docs/python/tf/summary/histogram
         **kwargs,
     ) -> Tuple[pandas.DataFrame]:
         """
-size_guidance = 0 means all events, no aggregation or dropping
+        size_guidance = 0 means all events, no aggregation or dropping
 
-:return:
-:param tags:
-:param out_dir:
-"""
+            :param index_label:
+        :return:
+        :param tags:
+        :param out_dir:"""
         if not len(tags):
             print("No tags requested")  # TODO: maybe just return
             # return tuple()
@@ -331,14 +320,14 @@ size_guidance = 0 means all events, no aggregation or dropping
         **kwargs,
     ) -> Tuple[pandas.DataFrame]:
         """
-#TODO only supports a single step and tag for now
+        #TODO only supports a single step and tag for now
 
-size_guidance = 0 means all events, no aggregation or dropping
+        size_guidance = 0 means all events, no aggregation or dropping
 
-:return:
-:param tags:
-:param out_dir:
-"""
+            :param index_label:
+        :return:
+        :param tags:
+        :param out_dir:"""
         if not len(tags):
             print("No tags requested")  # TODO: maybe just return
             # return tuple()
@@ -395,12 +384,12 @@ size_guidance = 0 means all events, no aggregation or dropping
     ) -> Tuple[pandas.DataFrame]:
         """
 
-size_guidance = 0 means all events, no aggregation or dropping
+        size_guidance = 0 means all events, no aggregation or dropping
 
-:return:
-:param tags:
-:param out_dir:
-"""
+            :param index_label:
+        :return:
+        :param tags:
+        :param out_dir:"""
         if not len(tags):
             print("No tags requested")  # TODO: maybe just return
             # return tuple()
@@ -442,8 +431,7 @@ size_guidance = 0 means all events, no aggregation or dropping
 if __name__ == "__main__":
 
     def a():
-        """
-"""
+        """ """
         _path_to_events_file = next(
             AppPath("Draugr", "Christian Heider Nielsen").user_log.rglob(
                 "events.out.tfevents.*"

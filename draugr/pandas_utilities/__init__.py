@@ -10,6 +10,6 @@ __doc__ = r"""
 from .formatting import *
 from .from_dict import *
 from .latex_mean_std import *
-from .multi_index_utilities import *
 from .misc_utilities import *
+from .multi_index_utilities import *
 from .styling import *

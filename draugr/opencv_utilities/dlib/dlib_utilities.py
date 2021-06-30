@@ -9,14 +9,21 @@ __doc__ = r"""
 
 from enum import Enum
 from typing import Sequence, Tuple
-import numpy
 
+import numpy
 from scipy.spatial import distance
 
-__all__ = ["mouth_aspect_ratio"]
+__all__ = [
+    "mouth_aspect_ratio",
+    "Dlib68faciallandmarksindices",
+    "Dlib5faciallandmarksindices",
+    "rect_to_bounding_box",
+    "shape_to_ndarray",
+    "eye_aspect_ratio",
+]
 
 
-class dlib68FacialLandmarksIndices(Enum):
+class Dlib68faciallandmarksindices(Enum):
     mouth = (48, 67 + 1)
     inner_mouth = (60, 67 + 1)
     right_eyebrow = (17, 21 + 1)
@@ -32,11 +39,10 @@ class dlib68FacialLandmarksIndices(Enum):
         return seq[start:end]
 
 
-class dlib5FacialLandmarksIndices(Enum):
+class Dlib5faciallandmarksindices(Enum):
     """
-  dlib’s 5-point facial landmark detector
-
-  """
+    dlib’s 5-point facial landmark detector
+    """
 
     right_eye = (2, 3 + 1)
     left_eye = (0, 1 + 1)
@@ -50,16 +56,15 @@ class dlib5FacialLandmarksIndices(Enum):
 
 def rect_to_bounding_box(rect) -> Tuple[float, float, float, float]:
     """
-  # take a bounding predicted by dlib and convert it
-  # to the format (x, y, w, h)
-  """
+    # take a bounding predicted by dlib and convert it
+    # to the format (x, y, w, h)"""
     x = rect.left()
     y = rect.top()
 
-    return (x, y, rect.right() - x, rect.bottom() - y)  # return a tuple of (x, y, w, h)
+    return x, y, rect.right() - x, rect.bottom() - y  # return a tuple of (x, y, w, h)
 
 
-def shape_to_ndarray(shape, dtype="int"):
+def shape_to_ndarray(shape, dtype: str = "int"):
     coordinates = numpy.zeros(
         (shape.num_parts, 2), dtype=dtype
     )  # initialize the list of (x, y)-coordinates
@@ -75,9 +80,8 @@ def shape_to_ndarray(shape, dtype="int"):
 def mouth_aspect_ratio(coordinates: Sequence[Sequence]) -> float:
     """
 
-  :param coordinates:
-  :return:
-  """
+    :param coordinates:
+    :return:"""
     average = (
         distance.euclidean(coordinates[3], coordinates[9])
         + distance.euclidean(coordinates[2], coordinates[10])

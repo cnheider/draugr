@@ -21,10 +21,9 @@ class MplDrawer(
     Drawer
 ):
     """
-  Real time plotting base class
+    Real time plotting base class
 
-  for Matplotlib
-  """
+    for Matplotlib"""
 
     # @drop_unused_kws
     def __init__(
@@ -37,10 +36,10 @@ class MplDrawer(
     ):
         """
 
-    :param default_delta:
-    :param render:
-    :param placement:
-    :param kwargs:"""
+        :param default_delta:
+        :param render:
+        :param placement:
+        :param kwargs:"""
         super().__init__(**kwargs)
         self.fig = None
 
@@ -67,13 +66,12 @@ fig_manager.window.SetPosition((500, 0))
 def __post_init__(self,*, figure_size: Tuple[int, int] = None):
 if self.fig is None:
 if figure_size is None:
-  figure_size = (4, 4)
+figure_size = (4, 4)
 self.fig = pyplot.figure(figsize=figure_size)
 """
 
     def draw(self, data: Any, delta: float = None):
-        """
-    """
+        """ """
         if not self.fig:
             raise NotImplementedError(
                 "Figure was not instantiated check specialisation of MplDrawer"
@@ -95,8 +93,7 @@ self.fig = pyplot.figure(figsize=figure_size)
     @staticmethod
     def move_figure(figure: pyplot.Figure, x: int = 0, y: int = 0):
         r"""
-    Move figure's upper left corner to pixel (x, y)
-    """
+        Move figure's upper left corner to pixel (x, y)"""
         backend = matplotlib.get_backend()
         if hasattr(figure.canvas.manager, "window"):
             window = figure.canvas.manager.window
@@ -128,21 +125,18 @@ self.fig = pyplot.figure(figsize=figure_size)
     def _draw(self, data: Any) -> None:
         """
 
-    :param data:
-    :type data:
-    """
+        :param data:
+        :type data:"""
         raise NotImplementedError
 
 
 class MockDrawer(MplDrawer):
     """
-  Mock for drawer, accepts data but draws nothing
-  """
+    Mock for drawer, accepts data but draws nothing"""
 
     def _draw(self, data: Sequence) -> None:
         """
 
-    :param data:
-    :type data:
-    """
+        :param data:
+        :type data:"""
         pass

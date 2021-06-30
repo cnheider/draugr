@@ -17,7 +17,7 @@ __all__ = ["MeshWriterMixin"]
 
 class MeshWriterMixin(ABC):
     """
-  Writer subclass that provides an interface for 'writing' meshes"""
+    Writer subclass that provides an interface for 'writing' meshes"""
 
     @abstractmethod
     def mesh(
@@ -29,12 +29,12 @@ class MeshWriterMixin(ABC):
     ) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param data:
-    :type data:
-    :param step:
-    :type step:
-    :param kwargs:
-    :type kwargs:"""
+        :param tag:
+        :type tag:
+        :param data:
+        :type data:
+        :param step:
+        :type step:
+        :param kwargs:
+        :type kwargs:"""
         raise NotImplementedError

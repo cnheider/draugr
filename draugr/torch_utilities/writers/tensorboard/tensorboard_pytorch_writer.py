@@ -8,9 +8,6 @@ import PIL
 import numpy
 import torch
 from PIL import Image
-from matplotlib import pyplot
-from matplotlib.figure import Figure
-
 from draugr import PROJECT_APP_PATH
 from draugr.python_utilities import sprint
 from draugr.torch_utilities import to_tensor
@@ -42,6 +39,8 @@ from draugr.writers.mixins.precision_recall_writer_mixin import (
 )
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
 from draugr.writers.writer import Writer
+from matplotlib import pyplot
+from matplotlib.figure import Figure
 from warg import drop_unused_kws, passes_kws_to
 
 with suppress(FutureWarning):
@@ -56,7 +55,6 @@ Created on 27/04/2019
 __all__ = ["TensorBoardPytorchWriter", "PTW"]
 
 from pathlib import Path
-
 
 GIF_FPS_UPPER_LIMIT = 50  # https://wunkolo.github.io/post/2020/02/buttery-smooth-10fps/ ... Browser-engine image decoders will automatically reset the frame rate to 10fps if not requested fps is not supported
 

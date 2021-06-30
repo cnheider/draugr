@@ -10,12 +10,11 @@ __doc__ = r"""
 from typing import Sequence
 
 import cv2
-
 from draugr.drawers.drawer import Drawer
 
 
 class OpencvImageStream(Drawer):
-    """"""
+    """ """
 
     def __init__(self, title: str = "", render: bool = True, **kwargs):
 
@@ -28,8 +27,8 @@ class OpencvImageStream(Drawer):
     def draw(self, data: Sequence):
         """
 
-    :param data:
-    :return:"""
+        :param data:
+        :return:"""
         if cv2.waitKey(1) == 27:  # esc to quit
             cv2.destroyWindow(self.window_id)
             raise StopIteration
@@ -40,8 +39,7 @@ class OpencvImageStream(Drawer):
 if __name__ == "__main__":
 
     def asdasf():
-        """
-    """
+        """ """
         from draugr.opencv_utilities import frame_generator, AsyncVideoStream
         from draugr.tqdm_utilities import progress_bar
 

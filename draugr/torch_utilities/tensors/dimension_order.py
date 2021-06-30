@@ -9,7 +9,6 @@ __doc__ = r"""
            Created on 28-03-2021
            """
 
-import numpy
 import torch
 
 __all__ = [
@@ -25,8 +24,7 @@ __all__ = [
 def hwc_to_chw_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-    :param inp:
-    :type inp:
+    :param tensor:
     :return:
     :rtype:"""
     assert len(tensor.shape) == 3
@@ -36,8 +34,7 @@ def hwc_to_chw_tensor(tensor: torch.Tensor) -> torch.Tensor:
 def chw_to_hwc_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-    :param inp:
-    :type inp:
+    :param tensor:
     :return:
     :rtype:"""
     assert len(tensor.shape) == 3
@@ -47,8 +44,7 @@ def chw_to_hwc_tensor(tensor: torch.Tensor) -> torch.Tensor:
 def nhwc_to_nchw_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-    :param inp:
-    :type inp:
+    :param tensor:
     :return:
     :rtype:"""
     assert len(tensor.shape) == 4
@@ -58,8 +54,7 @@ def nhwc_to_nchw_tensor(tensor: torch.Tensor) -> torch.Tensor:
 def nchw_to_nhwc_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-    :param inp:
-    :type inp:
+    :param tensor:
     :return:
     :rtype:"""
     assert len(tensor.shape) == 4
@@ -69,8 +64,7 @@ def nchw_to_nhwc_tensor(tensor: torch.Tensor) -> torch.Tensor:
 def nthwc_to_ntchw_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-    :param inp:
-    :type inp:
+    :param tensor:
     :return:
     :rtype:"""
     assert len(tensor.shape) == 5
@@ -80,8 +74,7 @@ def nthwc_to_ntchw_tensor(tensor: torch.Tensor) -> torch.Tensor:
 def ntchw_to_nthwc_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
 
-    :param inp:
-    :type inp:
+    :param tensor:
     :return:
     :rtype:"""
     assert len(tensor.shape) == 5

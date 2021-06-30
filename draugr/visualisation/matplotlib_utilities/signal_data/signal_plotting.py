@@ -29,8 +29,7 @@ def overlay_channel_plot(
     max_resolution: int = 20000,
     color_func=pyplot.cm.rainbow,
 ) -> None:
-    """
-  """
+    """ """
     n_channels = len(signal)
     sub_time, sub_signal = fft_subsample(signal, max_resolution, sampling_rate)
 
@@ -66,8 +65,7 @@ def dissected_channel_plot(
     max_resolution: int = 20000,
     color_func=pyplot.cm.rainbow,
 ) -> None:
-    """
-  """
+    """ """
     n_channels = len(signal)
     f, axs = pyplot.subplots(
         n_channels, 1, sharex="all", sharey="all", figsize=(n_channels, col_size)
@@ -89,10 +87,12 @@ def dissected_channel_plot(
 
 
 def orthogonal_stereo_channel_3d_plot(
-    signal: numpy.ndarray, *, max_resolution: int = 20000, sampling_rate: int = 16000,
+    signal: numpy.ndarray,
+    *,
+    max_resolution: int = 20000,
+    sampling_rate: int = 16000,
 ) -> None:
-    """
-  """
+    """ """
     fig = pyplot.figure()
     ax = fig.add_subplot(111, projection="3d")
 
@@ -103,8 +103,7 @@ def orthogonal_stereo_channel_3d_plot(
 
 
 def deinterleaved_channel_plot_file(wav_file):
-    """
-  """
+    """ """
     import wave
 
     with wave.open(wav_file, "r") as wav_file:
@@ -136,8 +135,7 @@ def deinterleaved_channel_plot_file(wav_file):
 if __name__ == "__main__":
 
     def iushjaqdfu():
-        """
-    """
+        """ """
         sr = 1000
         max_res = sr * 4
         t = numpy.arange(sr * 4) / sr
@@ -153,8 +151,7 @@ if __name__ == "__main__":
         pyplot.show()
 
     def decimate_stest():
-        """
-    """
+        """ """
         sr = 1000
         max_res = sr * 4
         t = numpy.arange(sr * 4) / sr
@@ -167,8 +164,15 @@ if __name__ == "__main__":
         print(sub_signal[:10])
         assert numpy.equal(signal, sub_signal).all()
 
-    # iushjaqdfu()
+    def iushjaqsfaddfu():
+        sr = 1000
+        max_res = sr * 4
+        t = numpy.arange(sr * 4) / sr
+        # noise = numpy.random.rand(sr * 2) * 0.001
+        signal = numpy.sin(200 * 2 * numpy.pi * t)  # + noise
+        deinterleaved_channel_plot_file(signal)
+        pyplot.show()
 
-    deinterleaved_channel_plot_file()
-    pyplot.show()
+    # iushjaqdfu()
+    iushjaqsfaddfu()
     # decimate_stest()

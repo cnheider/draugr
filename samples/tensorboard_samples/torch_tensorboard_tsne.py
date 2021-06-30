@@ -21,12 +21,10 @@ from PIL import Image
 if __name__ == "__main__":
 
     def main(im_path="images"):
-        """
-        """
+        """ """
 
         def get_vector(input_image):
-            """
-            """
+            """ """
             image = input_image.convert(
                 "RGB"
             )  # in case input image is not in RGB format
@@ -35,8 +33,7 @@ if __name__ == "__main__":
             my_embedding = torch.zeros([1, 512, 1, 1])
 
             def copy_data(m, i, o):
-                """
-                """
+                """ """
                 my_embedding.copy_(o.data)
 
             h = layer.register_forward_hook(copy_data)
