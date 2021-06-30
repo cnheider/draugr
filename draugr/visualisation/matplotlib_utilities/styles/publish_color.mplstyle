@@ -1,0 +1,81 @@
+font.size                 : 10
+font.family               : serif
+#font.serif               : Computer Modern Roman       # Times, Palatino, New Century Schoolbook, Bookman
+#font.sans-serif          : Computer Modern Sans serif  # Helvetica, Avant Garde,
+#font.cursive             : Zapf Chancery
+#font.monospace           : Computer Modern Typewriter  # Courier
+
+text.usetex               : true
+
+legend.fontsize           : 10
+
+hatch.linewidth           : 0.5         # in points
+
+figure.facecolor          : white
+figure.edgecolor          : 0.50
+
+#patch.facecolor          : b
+#patch.force_edgecolor    : True
+#patch.linewidth          : 0
+#patch.edgecolor          : 'none'
+patch.linewidth           : 0.5
+patch.facecolor           :  348ABD  # blue
+patch.edgecolor           : EEEEEE
+patch.antialiased         : True
+
+#grid.color               : white
+grid.linestyle            : :            # '-' or 'solid', '--' or 'dashed',  '-.' or 'dashdot', ':' or 'dotted'
+grid.linewidth            : 0.5          # in points
+grid.alpha                : 0.9          # [0..1]
+
+xtick.color               : 555555
+xtick.labelsize           : 8
+xtick.bottom              : True
+xtick.top                 : True
+xtick.direction           : inout
+
+ytick.color               : 555555
+ytick.left                : True
+ytick.right               : True
+ytick.direction           : inout
+ytick.labelsize           : 8
+
+axes.autolimit_mode       : round_numbers #
+axes.xmargin              : 0.00
+axes.ymargin              : 0.01
+axes.grid                 : True
+axes.spines.top           : False
+axes.spines.left          : False
+axes.spines.right         : False
+axes.spines.bottom        : False
+#axes.facecolor           : E5E5E5
+#axes.edgecolor           : white
+axes.linewidth            : 1
+axes.titlesize            : x-large
+axes.labelsize            : large
+axes.labelcolor           : 555555
+axes.axisbelow            : True       # grid/ticks are below elements (e.g., lines, text)
+axes.prop_cycle           : cycler('color', ['E24A33', '348ABD', '988ED5', '777777', 'FBC15E', '8EBA42', 'FFB5B8'])
+                                     # E24A33 : red
+                                     # 348ABD : blue
+                                     # 988ED5 : purple
+                                     # 777777 : gray
+                                     # FBC15E : yellow
+                                     # 8EBA42 : green
+                                     # FFB5B8 : pink
+
+
+#lines.linewidth        : 1.0
+#lines.dashed_pattern   : 6, 6
+#lines.dashdot_pattern  : 3, 5, 1, 5
+#lines.dotted_pattern   : 1, 3
+#lines.scale_dashes     : False
+lines.markersize        : 6
+
+errorbar.capsize        : 3.0
+
+# Seaborn colorblind palette
+#axes.prop_cycle        : cycler('color', ['0072B2', '009E73', 'D55E00', 'CC79A7', 'F0E442', '56B4E9'])
+#patch.facecolor        : 0072B2
+
+image.cmap              : inferno

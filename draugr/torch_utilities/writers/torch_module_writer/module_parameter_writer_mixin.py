@@ -14,18 +14,18 @@ import torch
 
 class ModuleParameterWriterMixin(ABC):
     """
-  Writer mixin that provides an interface for 'writing' torch Module parameters"""
+    Writer mixin that provides an interface for 'writing' torch Module parameters"""
 
     @abstractmethod
     def parameters(self, tag: str, model: torch.nn.Module, step: int, **kwargs) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param model:
-    :type model:
-    :param step:
-    :type step:
-    :param kwargs:
-    :type kwargs:"""
+        :param tag:
+        :type tag:
+        :param model:
+        :type model:
+        :param step:
+        :type step:
+        :param kwargs:
+        :type kwargs:"""
         raise NotImplementedError

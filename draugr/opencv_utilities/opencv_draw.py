@@ -12,7 +12,6 @@ from typing import Sequence, Tuple, Union
 import cv2
 import numpy
 from PIL import Image
-
 from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.python_utilities.colors import RGB
 
@@ -21,9 +20,9 @@ __all__ = ["find_contours", "draw_masks"]
 
 def find_contours(*args, **kwargs) -> Tuple:
     """
-  Wraps cv2.findContours to maintain compatibility between versions 3 and 4
-  Returns:
-  contours, hierarchy"""
+    Wraps cv2.findContours to maintain compatibility between versions 3 and 4
+    Returns:
+    contours, hierarchy"""
     if cv2.__version__.startswith("4"):
         contours, hierarchy = cv2.findContours(*args, **kwargs)
     elif cv2.__version__.startswith("3"):
@@ -44,17 +43,17 @@ def draw_masks(
     color: Tuple = None,
 ) -> numpy.ndarray:
     """
-  Args:
-  image: numpy array image, shape should be (height, width, channel)
-  masks: (N, 1, Height, Width)
-  labels: mask label
-  border: draw border on mask
-  border_width: border width
-  border_color: border color
-  alpha: mask alpha
-  color: mask color
-  Returns:
-  numpy.ndarray"""
+    Args:
+    image: numpy array image, shape should be (height, width, channel)
+    masks: (N, 1, Height, Width)
+    labels: mask label
+    border: draw border on mask
+    border_width: border width
+    border_color: border color
+    alpha: mask alpha
+    color: mask color
+    Returns:
+    numpy.ndarray"""
     if isinstance(image, Image.Image):
         image = numpy.array(image)
     assert isinstance(image, numpy.ndarray)

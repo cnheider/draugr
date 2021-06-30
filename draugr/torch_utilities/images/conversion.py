@@ -13,22 +13,22 @@ import torch
 from PIL import Image
 
 
-def quick_to_pil_image(inp: torch.Tensor, mode="RGB") -> Image.Image:
+def quick_to_pil_image(tensor: torch.Tensor, mode: str = "RGB") -> Image.Image:
     """
 
-  LOTS OF ASSUMPTIONS!
+    LOTS OF ASSUMPTIONS!
 
-  :param inp:
-  :return:"""
+    :param tensor:
+    :param mode:
+    :return:"""
 
-    return Image.fromarray(inp.cpu().numpy().astype(numpy.uint8), mode)
+    return Image.fromarray(tensor.cpu().numpy().astype(numpy.uint8), mode)
 
 
 if __name__ == "__main__":
 
     def asd2():
-        """
-    """
+        """ """
         import cv2
         import torch
         from PIL import Image
@@ -40,7 +40,8 @@ if __name__ == "__main__":
         with torch.no_grad():
             for image in tqdm(
                 to_tensor_generator(
-                    frame_generator(cv2.VideoCapture(0)), device=global_torch_device(),
+                    frame_generator(cv2.VideoCapture(0)),
+                    device=global_torch_device(),
                 )
             ):
                 cv2.namedWindow("window_name", cv2.WINDOW_NORMAL)

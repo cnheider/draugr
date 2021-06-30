@@ -23,10 +23,10 @@ from warg.typing_extension import StrictNumbers
 def rgb_drop_alpha_hwc(inp: StrictNumbers) -> StrictNumbers:
     """
 
-  :param inp:
-  :type inp:
-  :return:
-  :rtype:"""
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
     assert len(inp[-1, -1]) >= 3, f"not enough channels, only had {len(inp[-1, -1])}"
     return inp[..., :3]
 
@@ -35,10 +35,10 @@ def rgb_drop_alpha_hwc(inp: StrictNumbers) -> StrictNumbers:
 def rgb_drop_alpha_batch_nhwc(inp: StrictNumbers) -> StrictNumbers:
     """
 
-  :param inp:
-  :type inp:
-  :return:
-  :rtype:"""
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
     assert (
         len(inp[-1, -1, -1]) >= 3
     ), f"not enough channels, only had {len(inp[-1, -1, -1])}"
@@ -49,12 +49,12 @@ def rgb_drop_alpha_batch_nhwc(inp: StrictNumbers) -> StrictNumbers:
 def torch_vision_normalize_batch_nchw(inp: StrictNumbers) -> StrictNumbers:
     """
 
-    WARNING INPLACE!
+      WARNING INPLACE!
 
-  :param inp:
-  :type inp:
-  :return:
-  :rtype:"""
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
     mean = (0.485, 0.456, 0.406)
     std = (0.229, 0.224, 0.225)
     assert len(inp[-1]) == 3, f"was {len(inp[-1])}"
@@ -70,10 +70,10 @@ def torch_vision_normalize_batch_nchw(inp: StrictNumbers) -> StrictNumbers:
 def reverse_torch_vision_normalize_batch_nchw(inp: StrictNumbers) -> StrictNumbers:
     """
 
-  :param inp:
-  :type inp:
-  :return:
-  :rtype:"""
+    :param inp:
+    :type inp:
+    :return:
+    :rtype:"""
     mean = (0.485, 0.456, 0.406)
     std = (0.229, 0.224, 0.225)
     assert len(inp[-1]) == 3, f"was {len(inp[-1])}"
@@ -89,8 +89,7 @@ if __name__ == "__main__":
     import numpy
 
     def asda():
-        """
-    """
+        """ """
         a = numpy.ones((1, 4, 4, 4))
         b = numpy.ones((1, 4, 4, 3))
         c = numpy.ones((4, 4, 3))
@@ -113,8 +112,7 @@ if __name__ == "__main__":
             pass
 
     def asbsdfdsa():
-        """
-    """
+        """ """
         a = numpy.ones((1, 3, 4, 4))
         ba = torch_vision_normalize_batch_nchw(a)
         print(ba)

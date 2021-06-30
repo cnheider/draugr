@@ -18,8 +18,7 @@ from pandas.core.dtypes.missing import array_equivalent
 
 class ExportMethodEnum(enum.Enum):
     """
-  Available Pandas Dataframe Export methods
-  """
+    Available Pandas Dataframe Export methods"""
 
     parquet = "parquet"
     pickle = "pickle"  # 'dataframe'
@@ -43,10 +42,9 @@ class ExportMethodEnum(enum.Enum):
 
 class ChainedAssignmentOptionEnum(enum.Enum):
     """
-  from contextlib import suppress
-from pandas.core.common import SettingWithCopyWarning
-
-  """
+    from contextlib import suppress
+    from pandas.core.common import SettingWithCopyWarning
+    """
 
     warn = "warn"  # the default, means a SettingWithCopyWarning is printed.
     raises = "raise"  # means pandas will raise a SettingWithCopyException you have to deal with.
@@ -54,8 +52,7 @@ from pandas.core.common import SettingWithCopyWarning
 
 
 def duplicate_columns(frame: pandas.DataFrame) -> List[str]:
-    """
-"""
+    """ """
     groups = frame.columns.to_series().groupby(frame.dtypes).groups
     dups = []
 

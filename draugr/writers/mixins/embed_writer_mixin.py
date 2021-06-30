@@ -14,7 +14,7 @@ from typing import Any, Sequence
 
 class EmbedWriterMixin(ABC):
     """
-  Writer mixin that provides an interface for 'writing' embeds/projections(2d,3d) for interactive visualisation"""
+    Writer mixin that provides an interface for 'writing' embeds/projections(2d,3d) for interactive visualisation"""
 
     @abstractmethod
     def embed(
@@ -27,12 +27,15 @@ class EmbedWriterMixin(ABC):
         **kwargs
     ) -> None:
         """
-        eg. visualising for projections in lower dimensional space
+            eg. visualising for projections in lower dimensional space
 
-    :param tag:
-    :type tag:
-    :param step:
-    :type step:
-    :param kwargs:
-    :type kwargs:"""
+            :param response:
+            :param metadata:
+            :param label_img:
+        :param tag:
+        :type tag:
+        :param step:
+        :type step:
+        :param kwargs:
+        :type kwargs:"""
         raise NotImplementedError

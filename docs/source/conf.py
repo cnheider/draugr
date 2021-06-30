@@ -18,10 +18,10 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 
-from draugr import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_YEAR, PROJECT_VERSION
-
 import sys
 from pathlib import Path
+
+from draugr import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_VERSION, PROJECT_YEAR
 
 PACKAGE_ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(PACKAGE_ROOT.absolute()))
@@ -217,16 +217,15 @@ from sphinx.util.docfields import TypedField
 
 
 def patched_make_field(self, types, domain, items, **kw) -> nodes.field:
-    """
-    """
+    """ """
+
     # `kw` catches `env=None` needed for newer sphinx while maintaining
     #  backwards compatibility when passed along further down!
 
     ## type: (List, unicode, Tuple) -> nodes.field
 
     def handle_item(fieldarg, content):
-        """
-        """
+        """ """
         par = nodes.paragraph()
         par += addnodes.literal_strong("", fieldarg)  # Patch: this line added
         # par.extend(self.make_xrefs(self.rolename, domain, fieldarg,

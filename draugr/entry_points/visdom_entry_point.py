@@ -9,7 +9,7 @@ __author__ = "Christian Heider Nielsen"
 
 def main():
     """
-  Will start a visdom server"""
+    Will start a visdom server"""
     import visdom.server as server
 
     server.main()

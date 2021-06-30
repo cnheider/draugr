@@ -14,7 +14,7 @@ from torch import nn
 
 
 class RegLossWrapper(torch.nn.Module):
-    """"""
+    """ """
 
     def __init__(self, loss, model: torch.nn.Module, factor: float = 0.0005):
         super().__init__()
@@ -28,16 +28,14 @@ class RegLossWrapper(torch.nn.Module):
                 self.params.append(param)
 
     def forward(self, *loss, **kwargs) -> torch.Tensor:
-        """
-    """
+        """ """
         return self.loss(*loss) + self.factor * sum(
             [self.l1_crit(p, self.a) for p in self.params]
         )
 
 
 def orthogonal_reg(model, reg=1e-6):
-    """
-  """
+    """ """
     with torch.enable_grad():
         orth_loss = torch.zeros(1)
         for name, param in model.named_parameters():
@@ -51,8 +49,7 @@ def orthogonal_reg(model, reg=1e-6):
 if __name__ == "__main__":
 
     def bb():
-        """
-    """
+        """ """
         from draugr.torch_utilities.optimisation.parameters.initialisation import (
             normal_init_weights,
         )
@@ -64,8 +61,7 @@ if __name__ == "__main__":
         loss_fn = RegLossWrapper(nn.CrossEntropyLoss(), model)
 
         def a(m):
-            """
-      """
+            """ """
             loss = loss_fn(m(input), target)
             print(loss)
             loss.backward()

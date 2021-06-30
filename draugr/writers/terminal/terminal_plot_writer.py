@@ -5,8 +5,6 @@ from typing import Union
 import numpy
 import torch
 from PIL import Image
-from tqdm import tqdm
-
 from draugr.metrics import MetricCollection
 from draugr.writers.mixins import ImageWriterMixin
 from draugr.writers.terminal.terminal_image_renderer import (
@@ -18,6 +16,7 @@ from draugr.writers.terminal.terminal_plot import (
     terminal_plot,
 )
 from draugr.writers.writer import Writer
+from tqdm import tqdm
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -29,7 +28,7 @@ __all__ = ["TerminalPlotWriter"]
 
 
 class TerminalPlotWriter(Writer, ImageWriterMixin):
-    """"""
+    """ """
 
     def image(
         self,
@@ -40,8 +39,7 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
         dataformats: str = "NCHW",
         **kwargs,
     ) -> None:
-        """
-    """
+        """ """
         self.E.write(terminalise_image(render_image(data, scale=(28, 28))))
 
     def _open(self):
@@ -60,7 +58,8 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
     def stats(self, value: MetricCollection, step_i: int = None):
         """
 
-    :type value: object"""
+            :param step_i:
+        :type value: object"""
         if step_i:
             if self.filter(self._stats_tag):
                 self._stats(value, self._counter[self._stats_tag])
@@ -95,14 +94,14 @@ if __name__ == "__main__":
 
     '''
 def train_episodically_old(self,
-         env,
-         test_env,
-         *,
-         rollouts=2000,
-         render=False,
-         render_frequency=100,
-         stat_frequency=10,
-         ):
+       env,
+       test_env,
+       *,
+       rollouts=2000,
+       render=False,
+       render_frequency=100,
+       stat_frequency=10,
+       ):
 
 E = range(1, rollouts)
 E = tqdm(E, f"Episode: {1}", leave=False, disable=not render)
@@ -139,14 +138,14 @@ return NOD(model=self._distribution_parameter_regressor, stats=stats)
 
 
 def train_episodically_old(self,
-         _environment,
-         *,
-         rollouts=10000,
-         render=False,
-         render_frequency=100,
-         stat_frequency=100,
-         **kwargs,
-         ):
+       _environment,
+       *,
+       rollouts=10000,
+       render=False,
+       render_frequency=100,
+       stat_frequency=100,
+       **kwargs,
+       ):
 """
 :param _environment:
 :type _environment:,0

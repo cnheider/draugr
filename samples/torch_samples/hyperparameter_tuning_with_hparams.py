@@ -107,8 +107,7 @@ with tf.summary.create_file_writer("logs/hparam_tuning").as_default():
 
 # %%
 def train_test_model(hparams):
-    """
-    """
+    """ """
     model = tf.keras.models.Sequential(
         [
             tf.keras.layers.Flatten(),
@@ -135,8 +134,7 @@ def train_test_model(hparams):
 
 # %%
 def run(run_dir, hparams):
-    """
-    """
+    """ """
     with tf.summary.create_file_writer(run_dir).as_default():
         hp.hparams(hparams)  # record the values used in this trial
         accuracy = train_test_model(hparams)

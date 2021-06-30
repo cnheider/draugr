@@ -17,13 +17,11 @@ from apppath import ensure_existence
 if __name__ == "__main__":
 
     def inner():
-        """
-        """
+        """ """
         torch.nn.Linear(100, 100).cuda()
 
     def outer():
-        """
-        """
+        """ """
         linear = torch.nn.Linear(100, 100).cuda()
         linear2 = torch.nn.Linear(100, 100).cuda()
         inner()

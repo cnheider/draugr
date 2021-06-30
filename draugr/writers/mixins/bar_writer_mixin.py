@@ -12,7 +12,7 @@ __all__ = ["BarWriterMixin"]
 
 class BarWriterMixin(ABC):
     """
-  Writer mixin that provides an interface for 'writing' bar charts"""
+    Writer mixin that provides an interface for 'writing' bar charts"""
 
     @abstractmethod
     def bar(
@@ -20,22 +20,23 @@ class BarWriterMixin(ABC):
         tag: str,
         values: list,
         step: int,
-        yerr=None,
+        y_error=None,
         x_labels=None,
-        y_label="Probs",
+        y_label="Probability",
         x_label="Action Categorical Distribution",
         **kwargs
     ) -> None:
         """
 
-    :param tag:
-    :type tag:
-    :param data:
-    :type data:
-    :param step:
-    :type step:
-    :param dataformats:
-    :type dataformats:
-    :param kwargs:
-    :type kwargs:"""
+            :param values:
+            :param y_error:
+            :param x_labels:
+            :param y_label:
+            :param x_label:
+        :param tag:
+        :type tag:
+        :param step:
+        :type step:
+        :param kwargs:
+        :type kwargs:"""
         raise NotImplementedError

@@ -4,8 +4,8 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 26-01-2021
+           Created on 26-06-2021
            """
 
-from .pandas_utilties import *
+from .seaborn_enums import *
 from .seaborn_utilities import *

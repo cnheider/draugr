@@ -7,6 +7,6 @@ __doc__ = r"""
            Created on 17-05-2021
            """
 
+from .all import *
 from .cpu import *
 from .ram import *
-from .all import *

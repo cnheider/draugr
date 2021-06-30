@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     def alt():
         import tensorflow as tf
-        import numpy as np
+        import numpy
 
         import textwrap
         import re
@@ -25,18 +25,18 @@ if __name__ == "__main__":
 
         class SaverHook(tf.train.SessionRunHook):
             """
-      Saves a confusion matrix as a Summary so that it can be shown in tensorboard
-      """
+            Saves a confusion matrix as a Summary so that it can be shown in tensorboard
+            """
 
             def __init__(self, labels, confusion_matrix_tensor_name, summary_writer):
                 """Initializes a `SaveConfusionMatrixHook`.
 
-        :param labels: Iterable of String containing the labels to print for each
-                       row/column in the confusion matrix.
-        :param confusion_matrix_tensor_name: The name of the tensor containing the confusion
-                                             matrix
-        :param summary_writer: The summary writer that will save the summary
-        """
+                :param labels: Iterable of String containing the labels to print for each
+                               row/column in the confusion matrix.
+                :param confusion_matrix_tensor_name: The name of the tensor containing the confusion
+                                                     matrix
+                :param summary_writer: The summary writer that will save the summary
+                """
                 self.confusion_matrix_tensor_name = confusion_matrix_tensor_name
                 self.labels = labels
                 self._summary_writer = summary_writer
@@ -55,12 +55,12 @@ if __name__ == "__main__":
 
             def _figure_to_summary(self, fig):
                 """
-        Converts a matplotlib figure ``fig`` into a TensorFlow Summary object
-        that can be directly fed into ``Summary.FileWriter``.
-        :param fig: A ``matplotlib.figure.Figure`` object.
-        :return: A TensorFlow ``Summary`` protobuf object containing the plot image
-                 as a image summary.
-        """
+                Converts a matplotlib figure ``fig`` into a TensorFlow Summary object
+                that can be directly fed into ``Summary.FileWriter``.
+                :param fig: A ``matplotlib.figure.Figure`` object.
+                :return: A TensorFlow ``Summary`` protobuf object containing the plot image
+                         as a image summary.
+                """
 
                 # attach a new canvas if not exists
                 if fig.canvas is None:
@@ -92,9 +92,9 @@ if __name__ == "__main__":
 
             def _plot_confusion_matrix(self, cm):
                 """
-        :param cm: A confusion matrix: A square ```numpy array``` of the same size as self.labels
-    `   :return:  A ``matplotlib.figure.Figure`` object with a numerical and graphical representation of the cm array
-        """
+                    :param cm: A confusion matrix: A square ```numpy array``` of the same size as self.labels
+                `   :return:  A ``matplotlib.figure.Figure`` object with a numerical and graphical representation of the cm array
+                """
                 numClasses = len(self.labels)
 
                 fig = matplotlib.figure.Figure(
@@ -112,7 +112,7 @@ if __name__ == "__main__":
                 ]
                 classes = ["\n".join(textwrap.wrap(l, 20)) for l in classes]
 
-                tick_marks = np.arange(len(classes))
+                tick_marks = numpy.arange(len(classes))
 
                 ax.set_xlabel("Predicted")
                 ax.set_xticks(tick_marks)
@@ -147,7 +147,7 @@ if __name__ == "__main__":
         import tensorflow as tf
 
         import matplotlib.pyplot as plt
-        import numpy as np
+        import numpy
 
         test_pred_raw = []
         test_labels = []
@@ -157,7 +157,7 @@ if __name__ == "__main__":
 
         def plot_to_image(figure):
             """Converts the matplotlib plot specified by 'figure' to a PNG image and
-      returns it. The supplied figure is closed and inaccessible after this call."""
+            returns it. The supplied figure is closed and inaccessible after this call."""
             # Save the plot to a PNG in memory.
             buf = io.BytesIO()
             plt.savefig(buf, format="png")
@@ -187,23 +187,23 @@ if __name__ == "__main__":
 
         def plot_confusion_matrix(cm, class_names):
             """
-      Returns a matplotlib figure containing the plotted confusion matrix.
+            Returns a matplotlib figure containing the plotted confusion matrix.
 
-      Args:
-        cm (array, shape = [n, n]): a confusion matrix of integer classes
-        class_names (array, shape = [n]): String names of the integer classes
-      """
+            Args:
+              cm (array, shape = [n, n]): a confusion matrix of integer classes
+              class_names (array, shape = [n]): String names of the integer classes
+            """
             figure = plt.figure(figsize=(8, 8))
             plt.imshow(cm, interpolation="nearest", cmap=plt.cm.Blues)
             plt.title("Confusion matrix")
             plt.colorbar()
-            tick_marks = np.arange(len(class_names))
+            tick_marks = numpy.arange(len(class_names))
             plt.xticks(tick_marks, class_names, rotation=45)
             plt.yticks(tick_marks, class_names)
 
             # Compute the labels from the normalized confusion matrix.
-            labels = np.around(
-                cm.astype("float") / cm.sum(axis=1)[:, np.newaxis], decimals=2
+            labels = numpy.around(
+                cm.astype("float") / cm.sum(axis=1)[:, numpy.newaxis], decimals=2
             )
 
             # Use white text if squares are dark; otherwise black.
@@ -220,15 +220,15 @@ if __name__ == "__main__":
         """
 
 
-        test_pred = np.argmax(test_pred_raw, axis=1)
+    test_pred = numpy.argmax(test_pred_raw, axis=1)
 
-        # Calculate the confusion matrix.
-        cm = sklearn.metrics.confusion_matrix(test_labels, test_pred)
-        # Log the confusion matrix as an image summary.
-        figure = plot_confusion_matrix(cm, class_names=class_names)
-        cm_image = plot_to_image(figure)
+    # Calculate the confusion matrix.
+    cm = sklearn.metrics.confusion_matrix(test_labels, test_pred)
+    # Log the confusion matrix as an image summary.
+    figure = plot_confusion_matrix(cm, class_names=class_names)
+    cm_image = plot_to_image(figure)
 
-        # Log the confusion matrix as an image summary.
-        with file_writer_cm.as_default():
-            tf.summary.image("Confusion Matrix", cm_image, step=epoch)
-        """
+    # Log the confusion matrix as an image summary.
+    with file_writer_cm.as_default():
+        tf.summary.image("Confusion Matrix", cm_image, step=epoch)
+    """

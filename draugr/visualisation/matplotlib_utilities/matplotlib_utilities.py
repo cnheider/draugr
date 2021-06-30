@@ -12,9 +12,6 @@ from typing import Any, Sequence, Union
 
 import numpy
 from cycler import Cycler
-from matplotlib import patches, pyplot, rcParams
-from matplotlib.legend_handler import HandlerErrorbar
-
 from draugr.visualisation.matplotlib_utilities.quirks import auto_post_hatch
 from draugr.visualisation.matplotlib_utilities.styles.annotation import (
     rt_ann_transform,
@@ -25,6 +22,8 @@ from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
     monochrome_line_cycler,
     simple_hatch_cycler,
 )
+from matplotlib import patches, pyplot, rcParams
+from matplotlib.legend_handler import HandlerErrorbar
 
 __all__ = [
     "denormalise_minusoneone",
@@ -32,7 +31,7 @@ __all__ = [
     "remove_decoration",
     "use_monochrome_style",
     "decolorise_plot",
-    "save_pdf_embed_fig",
+    "save_embed_fig",
     "latex_clean_label",
     "make_errorbar_legend",
     "annotate_point",
@@ -54,12 +53,12 @@ from matplotlib.axes import Axes, ErrorbarContainer
 
 
 def latex_clean_label(s: str) -> str:
-    """ Clean label for troublesome symbols """
+    """Clean label for troublesome symbols"""
     return s.replace("_", " ")  # .replace('\\',' ').replace('/',' ')
 
 
 def make_errorbar_legend(ax: Axes = None) -> None:
-    """ size adjusted legend for error bars, default does not work well with different linestyles """
+    """size adjusted legend for error bars, default does not work well with different linestyles"""
 
     if ax is None:
         ax = pyplot.gca()
@@ -73,12 +72,12 @@ def make_errorbar_legend(ax: Axes = None) -> None:
 def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Any) -> None:
     """
 
-  :param ax:
-  :param x:
-  :param y:
-  :param t:
-  :return:
-  """
+    :param ax:
+    :param x:
+    :param y:
+    :param t:
+    :return:
+    """
     if ax is None:
         ax = pyplot.gca()
     ax.annotate(
@@ -94,17 +93,17 @@ def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Any) -> None:
 
 
 @passes_kws_to(pyplot.savefig)
-def save_pdf_embed_fig(
-    path: Union[Path, str] = "foo.pdf",
+def save_embed_fig(
+    path: Union[Path, str],
     bbox_inches: Union[Number, str] = "tight",
     transparent: bool = True,
     attempt_fix_empty_white_space: bool = False,
     post_process_crop: bool = False,
     ax: Axes = None,
+    suffix: str = ".pdf",
     **kwargs,
 ) -> None:
-    """Save fig for latex pdf embedding
-"""
+    """Save fig for latex pdf embedding"""
 
     if attempt_fix_empty_white_space:  # remove it
         # pyplot.gca().set_axis_off()
@@ -121,22 +120,25 @@ def save_pdf_embed_fig(
     """
 clip_box = Bbox(((0,0),(300,300)))
 for o in pyplot.findobj():
-  o.set_clip_on(True)
-  o.set_clip_box(clip_box)
+o.set_clip_on(True)
+o.set_clip_box(clip_box)
 
 """
 
     if not isinstance(path, Path):
         path = Path(path)
 
-    path_str = str(path.with_suffix(".pdf"))
+    path_str = str(path.with_suffix(suffix))
     pyplot.savefig(
-        path_str, bbox_inches=bbox_inches, transparent=transparent, **kwargs,
+        path_str,
+        bbox_inches=bbox_inches,
+        transparent=transparent,
+        **kwargs,
     )
 
     if (
-        post_process_crop
-    ):  # Good idea since matplotlib does not exclude invisible parts(eg. data points or anchors) of the plot.
+        post_process_crop and suffix == ".pdf"
+    ):  # Generally a good idea since matplotlib does not exclude invisible parts(eg. data points or anchors) of the plot.
         from pdfCropMargins import crop
 
         crop(
@@ -151,8 +153,7 @@ for o in pyplot.findobj():
 
 
 def remove_decoration(ax: Axes) -> None:
-    """
-"""
+    """ """
     transparent = (1.0, 1.0, 1.0, 0.0)
 
     ax.w_xaxis.set_pane_color(transparent)
@@ -171,17 +172,15 @@ def remove_decoration(ax: Axes) -> None:
 def denormalise_minusoneone(
     t: Union[numpy.ndarray, Number], coordinates: Union[numpy.ndarray, Number]
 ) -> Union[numpy.ndarray, Number]:
-    """
-"""
+    """ """
     return 0.5 * ((coordinates + 1.0) * t)
 
 
 def decolorise_plot(ax_: Axes, inverted: bool = False) -> None:
     """
 
-set black and white edge colors and face colors respectively. Converse if inverted.
-
-"""
+    set black and white edge colors and face colors respectively. Converse if inverted.
+    """
     edge_color = "k"
     face_color = "w"
     if inverted:
@@ -193,8 +192,7 @@ set black and white edge colors and face colors respectively. Converse if invert
 def matplotlib_bounding_box(
     x: Number, y: Number, size: Number, color: str = "w"
 ) -> Rectangle:
-    """
-"""
+    """ """
     x = int(x - (size / 2))
     y = int(y - (size / 2))
     rect = patches.Rectangle(
@@ -204,7 +202,8 @@ def matplotlib_bounding_box(
 
 
 def use_monochrome_style(
-    prop_cycler: Cycler = monochrome_line_cycler,  # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
+    prop_cycler: Cycler = monochrome_line_cycler,
+    # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
 ) -> None:
     # from matplotlib.pyplot import axes, grid
 

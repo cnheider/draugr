@@ -13,12 +13,9 @@ import numpy
 from draugr import PROJECT_APP_PATH
 from draugr.torch_utilities import (
     TensorBoardPytorchWriter,
-    float_nchw_to_nhwc_uint_batch,
     to_tensor,
 )
 from draugr.torch_utilities.tensors.dimension_order import (
-    hwc_to_chw_tensor,
-    nchw_to_nhwc_tensor,
     nhwc_to_nchw_tensor,
 )
 from draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer import (
@@ -28,8 +25,7 @@ from draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer impor
 if __name__ == "__main__":
 
     def main():
-        """
-"""
+        """ """
         import gym
 
         env = gym.make("Pendulum-v0")

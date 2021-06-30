@@ -39,13 +39,13 @@ from draugr.opencv_utilities.bounding_boxes.evaluation import (
 
 class CV2Compose(object):
     """Composes several augmentations together.
-  Args:
-  transforms (List[Transform]): list of transforms to compose.
-  Example:
-  >>> augmentations.Compose([
-  >>>     transforms.CenterCrop(10),
-  >>>     transforms.ToTensor(),
-  >>> ])"""
+    Args:
+    transforms (List[Transform]): list of transforms to compose.
+    Example:
+    >>> augmentations.Compose([
+    >>>     transforms.CenterCrop(10),
+    >>>     transforms.ToTensor(),
+    >>> ])"""
 
     def __init__(self, transforms: List[Transform]):
         self._transforms = transforms
@@ -75,8 +75,7 @@ class ConvertFromInts(object):
 
 
 class SubtractMeans(object):
-    """
-  """
+    """ """
 
     def __init__(self, mean: Tuple):
         self.mean = numpy.array(mean, dtype=numpy.float32)
@@ -115,8 +114,7 @@ class CV2ToPercentCoords(object):
 
 
 class CV2Resize(object):
-    """
-  """
+    """ """
 
     def __init__(self, size: int = 300):
         self._size = size
@@ -132,8 +130,7 @@ class CV2Resize(object):
 
 
 class CV2RandomSaturation(object):
-    """
-  """
+    """ """
 
     def __init__(self, lower: float = 0.5, upper: float = 1.5):
         self.lower = lower
@@ -154,8 +151,7 @@ class CV2RandomSaturation(object):
 
 
 class CV2RandomHue(object):
-    """
-  """
+    """ """
 
     def __init__(self, delta: float = 18.0):
         assert delta >= 0.0 and delta <= 360.0
@@ -175,8 +171,7 @@ class CV2RandomHue(object):
 
 
 class CV2RandomLightingNoise(object):
-    """
-  """
+    """ """
 
     def __init__(self):
         self.perms = ((0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0))
@@ -195,8 +190,7 @@ class CV2RandomLightingNoise(object):
 
 
 class CV2ConvertColor(object):
-    """
-  """
+    """ """
 
     def __init__(self, current, transform):
         self.transform = transform
@@ -224,8 +218,7 @@ class CV2ConvertColor(object):
 
 
 class CV2RandomContrast(object):
-    """
-  """
+    """ """
 
     def __init__(self, lower: float = 0.5, upper: float = 1.5):
         self.lower = lower
@@ -247,8 +240,7 @@ class CV2RandomContrast(object):
 
 
 class CV2RandomBrightness(object):
-    """
-  """
+    """ """
 
     def __init__(self, delta: float = 32):
         assert delta >= 0.0
@@ -297,16 +289,16 @@ class CV2ToTensor(object):
 
 class CV2RandomSampleCrop(object):
     """Crop
-  Arguments:
-  img (Image): the image being input during training
-  boxes (Tensor): the original bounding boxes in pt form
-  labels (Tensor): the class labels for each bbox
-  mode (float tuple): the min and max jaccard overlaps
-  Return:
-  (img, boxes, classes)
-  img (Image): the cropped image
-  boxes (Tensor): the adjusted bounding boxes in pt form
-  labels (Tensor): the class labels for each bbox"""
+    Arguments:
+    img (Image): the image being input during training
+    boxes (Tensor): the original bounding boxes in pt form
+    labels (Tensor): the class labels for each bbox
+    mode (float tuple): the min and max jaccard overlaps
+    Return:
+    (img, boxes, classes)
+    img (Image): the cropped image
+    boxes (Tensor): the adjusted bounding boxes in pt form
+    labels (Tensor): the class labels for each bbox"""
 
     def __init__(self):
         self.sample_options = (
@@ -405,8 +397,7 @@ class CV2RandomSampleCrop(object):
 
 
 class CV2Expand(object):
-    """
-  """
+    """ """
 
     def __init__(self, mean: float):
         self.mean = mean
@@ -452,20 +443,20 @@ class CV2RandomMirror(object):
 
 class CV2SwapChannels(object):
     """Transforms a tensorized image by swapping the channels in the order
-  specified in the swap tuple.
-  Args:
-  swaps (int triple): final order of channels
-  eg: (2, 1, 0)"""
+    specified in the swap tuple.
+    Args:
+    swaps (int triple): final order of channels
+    eg: (2, 1, 0)"""
 
     def __init__(self, swaps: TripleNumber):
         self.swaps = swaps
 
     def __call__(self, image: numpy.ndarray) -> numpy.ndarray:
         """
-    Args:
-    image (Tensor): image tensor to be transformed
-    Return:
-    a tensor with channels swapped according to swap"""
+        Args:
+        image (Tensor): image tensor to be transformed
+        Return:
+        a tensor with channels swapped according to swap"""
         # if torch.is_tensor(image):
         #     image = image.data.cpu().numpy()
         # else:
@@ -475,8 +466,7 @@ class CV2SwapChannels(object):
 
 
 class CV2PhotometricDistort(object):
-    """
-  """
+    """ """
 
     def __init__(self):
         self.pd = [

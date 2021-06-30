@@ -20,8 +20,7 @@ from warg import Number
 
 class VideoInputDimsEnum(Enum):
     """
-  Input mode
-  """
+    Input mode"""
 
     thw = "THW"
     tchw = "TCHW"
@@ -34,7 +33,7 @@ class VideoInputDimsEnum(Enum):
 
 class VideoWriterMixin(ABC):
     """
-  Writer subclass that provides an interface for 'writing' video clips"""
+    Writer subclass that provides an interface for 'writing' video clips"""
 
     @abstractmethod
     def video(
@@ -48,13 +47,14 @@ class VideoWriterMixin(ABC):
     ) -> None:
         """
 
-:param tag:
-:type tag:
-:param data:
-:type data:
-:param step:
-:type step:
-:param kwargs:
-:type kwargs:
-  """
+            :param frame_rate:
+            :param input_dims:
+        :param tag:
+        :type tag:
+        :param data:
+        :type data:
+        :param step:
+        :type step:
+        :param kwargs:
+        :type kwargs:"""
         raise NotImplementedError

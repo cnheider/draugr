@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 import logging
 import sys
+from typing import Any
 
-from apppath import ensure_existence
 from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
+
+from apppath import ensure_existence
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -19,23 +21,24 @@ from pathlib import Path
 
 
 class LogWriter(Writer):
-    """"""
+    """ """
 
     def _scalar(self, tag: str, value: float, step: int) -> None:
         self.logger.info(f"{step} [{tag}] {value}")
 
     @staticmethod
     def get_logger(
-        path: Path = Path.cwd() / "0.log", write_to_std_out: bool = False,
+        path: Path = Path.cwd() / "0.log",
+        write_to_std_out: bool = False,
     ) -> logging.Logger:
         """
 
-    :param path:
-    :type path:
-    :param write_to_std_out:
-    :type write_to_std_out:
-    :return:
-    :rtype:"""
+        :param path:
+        :type path:
+        :param write_to_std_out:
+        :type write_to_std_out:
+        :return:
+        :rtype:"""
         ensure_existence(path, declare_file=True, overwrite_on_wrong_type=True)
 
         handlers = [logging.FileHandler(filename=str(path))]
@@ -52,14 +55,14 @@ class LogWriter(Writer):
         self.log_path = path
         self.logger: logging.Logger = None
 
-    def _open(self):
+    def _open(self) -> Any:
         self.logger = self.get_logger(self.log_path)
         return self
 
-    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None) -> None:
         del self.logger
 
-    def __getattr__(self, item):
+    def __getattr__(self, item) -> Any:
         return getattr(self.logger, item)
 
     def __call__(self, msg):

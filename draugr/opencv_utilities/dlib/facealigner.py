@@ -1,10 +1,12 @@
 import cv2
 import numpy
-from draugr.opencv_utilities.dlib_utilities import (
-    dlib5FacialLandmarksIndices,
+from draugr.opencv_utilities.dlib.dlib_utilities import (
+    Dlib5faciallandmarksindices,
+    Dlib68faciallandmarksindices,
     shape_to_ndarray,
-    dlib68FacialLandmarksIndices,
 )
+
+__all__ = ["align_face"]
 
 
 def align_face(
@@ -19,9 +21,9 @@ def align_face(
     face_shape = shape_to_ndarray(predictor(gray, rect))
 
     if len(face_shape) == 68:
-        slicer = dlib68FacialLandmarksIndices
+        slicer = Dlib68faciallandmarksindices
     else:
-        slicer = dlib5FacialLandmarksIndices
+        slicer = Dlib5faciallandmarksindices
 
     left_eye_pts = slicer.slice(face_shape, slicer.left_eye)
     right_eye_pts = slicer.slice(face_shape, slicer.right_eye)
@@ -33,7 +35,7 @@ def align_face(
     # compute the angle between the eye centroids
     d_y = right_eye_center[1] - left_eye_center[1]
     d_x = right_eye_center[0] - left_eye_center[0]
-    angle = numpy.degrees(numpy.arctan2(d_y, d_x)) - 180
+    angle = (numpy.degrees(numpy.arctan2(d_y, d_x)) - 180).item()
 
     # compute the desired right eye x-coordinate based on the
     # desired x-coordinate of the left eye
@@ -46,13 +48,13 @@ def align_face(
     dist = numpy.sqrt((d_x ** 2) + (d_y ** 2))
     desired_dist = desired_right_eye_x - desired_left_eye[0]
     desired_dist *= desired_face_width
-    scale = desired_dist / dist
+    scale = (desired_dist / dist).item()
 
     # compute center (x, y)-coordinates (i.e., the median point)
     # between the two eyes in the input image
     eyes_center = (
-        (left_eye_center[0] + right_eye_center[0]) // 2,
-        (left_eye_center[1] + right_eye_center[1]) // 2,
+        ((left_eye_center[0] + right_eye_center[0]) // 2).item(),
+        ((left_eye_center[1] + right_eye_center[1]) // 2).item(),
     )
 
     rot_m = cv2.getRotationMatrix2D(

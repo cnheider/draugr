@@ -10,15 +10,14 @@ __doc__ = r"""
 import matlab
 import numpy
 
-from draugr.matlab_utilities import matlab_to_ndarray, ndarray_to_matlab, dict_to_sparse
+from draugr.matlab_utilities import dict_to_sparse, matlab_to_ndarray, ndarray_to_matlab
 
 
 def asiduj_test():
     """
-  Test of the module
+    Test of the module
 
-  It runs the doctest and create other tests with matlab engine calls.
-  """
+    It runs the doctest and create other tests with matlab engine calls."""
     import scipy.linalg as spl
 
     print("Run matlab engine...")
@@ -67,7 +66,14 @@ def asiduj_test():
     # check results
     # ------------------------------------------------------------------------
     npcc = numpy.array(
-        [[1.0, 1.1 + 1j], [1.12 + 0.13j, 22.1,]], dtype=numpy.complex
+        [
+            [1.0, 1.1 + 1j],
+            [
+                1.12 + 0.13j,
+                22.1,
+            ],
+        ],
+        dtype=numpy.complex,
     )  # assume C
     mcc = ndarray_to_matlab(npcc)
     npcc_inv = spl.inv(npcc)
@@ -93,8 +99,7 @@ def asiduj_test():
 
 
 def doctest_test():
-    """ run test procedure with doctest
-  """
+    """run test procedure with doctest"""
     import doctest
 
     # invoke the testmod function to run tests contained in docstring

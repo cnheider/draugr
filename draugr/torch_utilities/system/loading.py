@@ -14,13 +14,11 @@ from typing import Union
 
 import numpy
 import torch
-
 from draugr.torch_utilities.system.device import global_torch_device
 
 
 def default_worker_init_fn() -> None:
-    """
-  """
+    """ """
     worker_seed = torch.initial_seed()
     torch.random.seed(worker_seed)
     random.seed(worker_seed)
@@ -34,13 +32,12 @@ def global_pin_memory(
 ) -> bool:
     """
 
-  #Some weird behaviour of when copying to pinned memory with more workers observed
-    :param num_workers:
-    :param preference:
-    :param update_num_thread_for_pinned_loader:
-    :return:
-
-  """
+    #Some weird behaviour of when copying to pinned memory with more workers observed
+      :param num_workers:
+      :param preference:
+      :param update_num_thread_for_pinned_loader:
+      :return:
+    """
     if isinstance(preference, (torch.device, str)):
         if isinstance(preference, torch.device):
             res = True if "cuda" in torch.device.type else False
@@ -67,8 +64,7 @@ def global_pin_memory(
 if __name__ == "__main__":
 
     def main():
-        """
-    """
+        """ """
         print(global_pin_memory(0))
         print(global_pin_memory(1))
         print(global_pin_memory(2))

@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 07-02-2021
            """
 
-
 if __name__ == "__main__":
 
     import numpy

@@ -23,8 +23,7 @@ from warg import drop_unused_kws
 
 class SupervisedDataset(Dataset):
     """
-  Supervised Dataset is comprised of separate Splits
-  """
+    Supervised Dataset is comprised of separate Splits"""
 
     @drop_unused_kws
     def __init__(self):
@@ -34,20 +33,20 @@ class SupervisedDataset(Dataset):
     def split_names(self) -> Dict[Split, str]:
         """
 
-    :return:
-    :rtype:"""
+        :return:
+        :rtype:"""
         return SplitIndexer.default_split_names
 
     @property
     @abstractmethod
     def response_shape(self) -> Tuple[int, ...]:
-        """"""
+        """ """
         raise NotImplementedError
 
     @property
     @abstractmethod
     def predictor_shape(self) -> Tuple[int, ...]:
-        """"""
+        """ """
         raise NotImplementedError
 
     @abstractmethod

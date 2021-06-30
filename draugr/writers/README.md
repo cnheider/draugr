@@ -2,7 +2,7 @@
 
 Metrics writers for continuously writing tracked metrics to outputs.
 
-- Comma Seperated Value files
+- Comma Separated Value files
 - Log files
 - Visdom servers
 - Terminal streams

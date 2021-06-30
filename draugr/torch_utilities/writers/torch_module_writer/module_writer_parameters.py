@@ -29,17 +29,17 @@ def weight_bias_histograms(
 ) -> None:
     """
 
-:param recurse:
-:param writer:
-:type writer:
-:param model:
-:type model:
-:param prefix:
-:type prefix:
-:param step:
-:type step:
-:param kwargs:
-:type kwargs:"""
+    :param recurse:
+    :param writer:
+    :type writer:
+    :param model:
+    :type model:
+    :param prefix:
+    :type prefix:
+    :param step:
+    :type step:
+    :param kwargs:
+    :type kwargs:"""
     for name, param in model.named_parameters(prefix=prefix, recurse=recurse):
         writer.histogram(name, param.clone().cpu().data.numpy(), step, **kwargs)
 
@@ -47,8 +47,7 @@ def weight_bias_histograms(
 if __name__ == "__main__":
 
     def a():
-        """
-"""
+        """ """
         from draugr.torch_utilities import TensorBoardPytorchWriter
 
         with TensorBoardPytorchWriter(
@@ -66,8 +65,7 @@ if __name__ == "__main__":
             weight_bias_histograms(writer, model)
 
     def baa():
-        """
-"""
+        """ """
         from draugr.torch_utilities import TensorBoardPytorchWriter
 
         with TensorBoardPytorchWriter(

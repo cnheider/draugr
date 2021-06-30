@@ -11,11 +11,10 @@ from typing import Sequence
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import numpy
+from draugr.python_utilities.powers import next_pow_2
 from matplotlib import animation, cm, pyplot
 from mpl_toolkits.mplot3d import axes3d
 from scipy.signal import chirp, spectrogram
-
-from draugr.python_utilities.powers import next_pow_2
 
 __all__ = ["spectral_plot3d", "spectrum_plot3d"]
 
@@ -27,7 +26,7 @@ def spectral_plot3d(
     time: numpy.ndarray, frequencies: numpy.ndarray, fxt: numpy.ndarray
 ) -> pyplot.Figure:
     """
-  return new figure"""
+    return new figure"""
     assert fxt.shape == (*frequencies.shape, *time.shape)
     assert fxt.dtype == numpy.complex
 
@@ -70,7 +69,7 @@ def spectral_plot3d(
 def spectrum_plot3d(
     signal: Sequence, sampling_rate: int, window_length_ms=(20 / 1000)
 ) -> pyplot.Figure:
-    """"""
+    """ """
     n_per_seg = next_pow_2(
         sampling_rate * window_length_ms
     )  # 20 ms, next_pow_2 per seg == n_fft
@@ -89,8 +88,7 @@ def spectrum_plot3d(
 if __name__ == "__main__":
 
     def asdijaisd():
-        """
-    """
+        """ """
         sr = 1000
         t = numpy.arange(sr * 4) / sr
         # noise = numpy.random.rand(sr * 2) * 0.001
@@ -101,22 +99,19 @@ if __name__ == "__main__":
         pyplot.show()
 
     def aisjd():
-        """
-    """
+        """ """
         fig = pyplot.figure()
         ax = axes3d.Axes3D(fig)
 
         def gen(n):
-            """
-      """
+            """ """
             phi = 0
             while phi < 2 * numpy.pi:
                 yield numpy.array([numpy.cos(phi), numpy.sin(phi), phi])
                 phi += 2 * numpy.pi / n
 
         def update(num, data, line):
-            """
-      """
+            """ """
             line.set_data(data[:2, :num])
             line.set_3d_properties(data[2, :num])
 

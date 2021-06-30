@@ -11,7 +11,6 @@ from collections import OrderedDict
 from itertools import tee
 
 import torch
-
 from draugr.torch_utilities.optimisation.parameters.freezing import freeze_parameters
 from warg import AlsoDecorator
 
@@ -25,8 +24,7 @@ __all__ = [
 
 class TorchEvalSession(AlsoDecorator):
     """
-  # speed up evaluating after training finished
-  """
+    # speed up evaluating after training finished"""
 
     def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model
@@ -48,8 +46,7 @@ class TorchEvalSession(AlsoDecorator):
 
 class TorchTrainSession(AlsoDecorator):
     """
-  # speed up evaluating after training finished
-  """
+    # speed up evaluating after training finished"""
 
     def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model
@@ -72,7 +69,7 @@ TorchTrainingSession = TorchTrainSession
 
 
 class TorchFrozenModelSession(AlsoDecorator):
-    """"""
+    """ """
 
     def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model
@@ -95,8 +92,7 @@ class TorchFrozenModelSession(AlsoDecorator):
 if __name__ == "__main__":
 
     def main():
-        """
-    """
+        """ """
         a = torch.nn.Sequential(
             OrderedDict(l1=torch.nn.Linear(3, 5), l2=torch.nn.Linear(5, 2))
         )
@@ -106,21 +102,18 @@ if __name__ == "__main__":
         l1_bias.requires_grad_(False)
 
         def initial():
-            """
-      """
+            """ """
             for p in a.parameters(True):
                 print(p.requires_grad)
 
         @TorchFrozenModelSession(a)
         def frozen():
-            """
-      """
+            """ """
             for p in a.parameters(True):
                 print(p.requires_grad)
 
         def frozen_session():
-            """
-      """
+            """ """
             with TorchFrozenModelSession(a):
                 for p in a.parameters(True):
                     print(p.requires_grad)

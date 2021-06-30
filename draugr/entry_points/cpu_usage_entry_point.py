@@ -9,8 +9,7 @@ __doc__ = r"""
 
 
 def main():
-    """
-  """
+    """ """
     # from draugr import TerminalPlotWriter
     from draugr.drawers import SeriesScrollPlot
     import psutil

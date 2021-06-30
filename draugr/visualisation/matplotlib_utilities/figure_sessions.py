@@ -8,10 +8,10 @@ __doc__ = r"""
            """
 
 from pathlib import Path
-from typing import Iterable, Sequence, Tuple, Union
+from typing import Iterable, Optional, Sequence, Tuple, Union
 
+from cycler import Cycler
 from matplotlib import pyplot
-
 from warg import AlsoDecorator, passes_kws_to
 
 __all__ = [
@@ -20,6 +20,7 @@ __all__ = [
     "MonoChromeStyleSession",
     "NoOutlineSession",
     "OutlineSession",
+    "StyleSession",
 ]
 
 from draugr.visualisation.matplotlib_utilities.matplotlib_utilities import (
@@ -29,8 +30,7 @@ from draugr.visualisation.matplotlib_utilities.quirks import fix_edge_gridlines
 
 
 class FigureSession(AlsoDecorator):
-    """
-"""
+    """ """
 
     @passes_kws_to(pyplot.figure)
     def __init__(self, **kws):
@@ -46,8 +46,7 @@ class FigureSession(AlsoDecorator):
 
 
 class SubplotSession(AlsoDecorator):
-    """
-"""
+    """ """
 
     @passes_kws_to(pyplot.subplots)
     def __init__(self, return_self: bool = False, **kws):
@@ -71,19 +70,27 @@ class SubplotSession(AlsoDecorator):
         pyplot.close(self.fig)
 
 
-class MonoChromeStyleSession(AlsoDecorator):
-    """
-"""
+class StyleSession(AlsoDecorator):
+    """ """
 
-    def __init__(self, prop_cycler=monochrome_line_cycler):
-        self.ctx = pyplot.style.context(
-            Path(__file__).parent / "styles" / "monochrome.mplstyle"
-        )
+    def __init__(
+        self,
+        style_path: Path = Path(__file__).parent / "styles" / "publish_color.mplstyle",
+        prop_cycler: Optional[Cycler] = None,
+    ):
+        """
+        Set styling for context
+
+        :param style_path: path to style file
+        :param prop_cycler: overwrite prop_cycler with a programmatically defined one
+        """
+        self.ctx = pyplot.style.context(style_path)
         self.prop_cycler = prop_cycler
 
     def __enter__(self) -> pyplot.Figure:
         a = self.ctx.__enter__()
-        pyplot.rcParams.update({"axes.prop_cycle": self.prop_cycler})
+        if self.prop_cycler:
+            pyplot.rcParams.update({"axes.prop_cycle": self.prop_cycler})
         return a
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -91,6 +98,22 @@ class MonoChromeStyleSession(AlsoDecorator):
         # pyplot.tight_layout()
         # auto_post_hatch(pyplot.gca(),hatch_cycler)
         self.ctx.__exit__(exc_type, exc_val, exc_tb)
+
+
+class MonoChromeStyleSession(StyleSession):
+    """ """
+
+    def __init__(
+        self,
+        style_path=Path(__file__).parent / "styles" / "monochrome.mplstyle",
+        prop_cycler: Optional[Cycler] = monochrome_line_cycler,
+    ):
+        """
+
+        :param style_path:
+        :param prop_cycler:
+        """
+        super().__init__(style_path, prop_cycler)
 
 
 class NoOutlineSession(AlsoDecorator):
@@ -132,9 +155,8 @@ class OutlineSession(AlsoDecorator):
 if __name__ == "__main__":
 
     def deiajsd():
-        """
-"""
-        for a in range(100):
+        """ """
+        for _ in range(100):
             with SubplotSession() as a:
                 fig, (ax1,) = a
                 ax1.set_ylabel("test")

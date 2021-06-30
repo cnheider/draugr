@@ -17,9 +17,8 @@ from draugr.python_utilities.powers import prev_pow_2
 def min_length_truncate_batch(batch: Iterable[Sequence]) -> Iterable:
     """
 
-  :param batch:
-  :return:
-  """
+    :param batch:
+    :return:"""
     min_seq_len = min([s.shape[-1] for s in batch])
     return [last_dim_truncate(s, min_seq_len) for s in batch]
 
@@ -27,9 +26,8 @@ def min_length_truncate_batch(batch: Iterable[Sequence]) -> Iterable:
 def min_length_truncate_batch_2d(batch: Iterable[Sequence]) -> Iterable:
     """
 
-  :param batch:
-  :return:
-  """
+    :param batch:
+    :return:"""
     min_seq_len = min([len(s) for s in batch])
     return [last_dim_truncate(s, min_seq_len) for s in batch]
 
@@ -37,24 +35,21 @@ def min_length_truncate_batch_2d(batch: Iterable[Sequence]) -> Iterable:
 def last_dim_truncate(sequence: Sequence, min_length: int) -> Sequence:
     """
 
-  :param sequence:
-  :param min_length:
-  :return:
-  """
+    :param sequence:
+    :param min_length:
+    :return:"""
     return sequence[..., :min_length]
 
 
 def truncate_to_power_2(signal: Sequence) -> Sequence:
-    """
-  """
+    """ """
     return last_dim_truncate(signal, prev_pow_2(len(signal)))
 
 
 if __name__ == "__main__":
 
     def gasdasa():
-        """
-    """
+        """ """
         from draugr.torch_utilities import to_tensor
 
         base = 5
@@ -65,8 +60,7 @@ if __name__ == "__main__":
         print(to_tensor(trunc))
 
     def basdiuj():
-        """
-    """
+        """ """
         import numpy
 
         asda = numpy.arange(2 ** 5 - 1)

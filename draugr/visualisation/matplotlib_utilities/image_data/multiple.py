@@ -21,12 +21,12 @@ __all__ = [
 def plot_img_array(img_array: numpy.ndarray, n_col: int = 3) -> None:
     """
 
-:param img_array:
-:type img_array:
-:param n_col:
-:type n_col:
-:return:
-:rtype:"""
+    :param img_array:
+    :type img_array:
+    :param n_col:
+    :type n_col:
+    :return:
+    :rtype:"""
     n_row = len(img_array) // n_col
 
     f, plots = pyplot.subplots(
@@ -38,8 +38,7 @@ def plot_img_array(img_array: numpy.ndarray, n_col: int = 3) -> None:
 
 
 def plot_side_by_side(img_arrays: numpy.ndarray) -> None:
-    """
-"""
+    """ """
     flatten_list = reduce(lambda x, y: x + y, zip(*img_arrays))
 
     plot_img_array(numpy.array(flatten_list), n_col=len(img_arrays))

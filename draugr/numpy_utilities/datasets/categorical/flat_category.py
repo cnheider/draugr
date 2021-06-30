@@ -24,11 +24,12 @@ def build_flat_dataset(
 ) -> dict:
     """
 
-  :param directory:
-  :param extensions:
-  :param is_valid_file:
-  :return:
-  """
+      :param validation_percentage:
+      :param testing_percentage:
+    :param directory:
+    :param extensions:
+    :param is_valid_file:
+    :return:"""
     if not isinstance(directory, Path):
         directory = Path(directory)
 
@@ -44,8 +45,7 @@ def build_flat_dataset(
     if extensions is not None:
 
         def is_valid_file(x: Union[Path, str]) -> bool:
-            """
-      """
+            """ """
             return str(x) in extensions
 
     elif is_valid_file is None:
@@ -66,8 +66,7 @@ def build_flat_dataset(
 if __name__ == "__main__":
 
     def absa():
-        """
-    """
+        """ """
         from draugr.visualisation import indent_lines
         from draugr.numpy_utilities.datasets.splitting import Split
 
