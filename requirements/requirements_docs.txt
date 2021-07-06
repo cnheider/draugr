@@ -1,4 +1,4 @@
-sphinx==4.0.1 # -e git://github.com/snide/sphinx_rtd_theme.git#egg=sphinx_rtd_theme
+sphinx==4.0.3 # -e git://github.com/snide/sphinx_rtd_theme.git#egg=sphinx_rtd_theme
 m2r2
 sphinxcontrib-programoutput
 draugr
