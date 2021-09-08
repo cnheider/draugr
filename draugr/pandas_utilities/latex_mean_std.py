@@ -12,9 +12,10 @@ from functools import partial
 
 import numpy
 import pandas
+from warg import Number, drop_unused_kws, passes_kws_to
+
 from draugr import indent_lines
 from draugr.pandas_utilities.formatting import pandas_mean_std_bold_formatter
-from warg import Number, drop_unused_kws, passes_kws_to
 
 __all__ = [
     "pandas_mean_std",
@@ -139,12 +140,12 @@ def pandas_to_latex_clean(
             ]
             """
 entry_provider_df.columns = pandas.MultiIndex(levels=[
-    [col.replace('_', '\_') for col in lvl]
-    for lvl in entry_provider_df.columns.levels
-    ],
-    codes=entry_provider_df.columns.codes,
-    names=entry_provider_df.columns.names
-    )
+[col.replace('_', '\_') for col in lvl]
+for lvl in entry_provider_df.columns.levels
+],
+codes=entry_provider_df.columns.codes,
+names=entry_provider_df.columns.names
+)
 """
 
         if not isinstance(entry_provider_df.index, pandas.MultiIndex):

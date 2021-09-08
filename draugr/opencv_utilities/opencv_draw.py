@@ -12,6 +12,7 @@ from typing import Sequence, Tuple, Union
 import cv2
 import numpy
 from PIL import Image
+
 from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.python_utilities.colors import RGB
 

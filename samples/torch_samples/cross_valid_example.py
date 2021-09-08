@@ -1,6 +1,7 @@
 import torch
-from draugr.torch_utilities import cross_validation_generator, to_tensor
 from torch.utils.data import TensorDataset
+
+from draugr.torch_utilities import cross_validation_generator, to_tensor
 
 
 def asdasidoj():

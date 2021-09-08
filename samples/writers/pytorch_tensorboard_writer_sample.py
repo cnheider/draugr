@@ -10,6 +10,9 @@ __doc__ = r"""
 import librosa
 import numpy
 import torch
+from librosa.display import specshow
+from matplotlib import pyplot
+
 from draugr import PROJECT_APP_PATH
 from draugr.torch_utilities import (
     TensorBoardPytorchWriter,
@@ -19,8 +22,6 @@ from draugr.torch_utilities import (
     weight_bias_histograms,
     xavier_init,
 )
-from librosa.display import specshow
-from matplotlib import pyplot
 
 if __name__ == "__main__":
     NFFT = 256

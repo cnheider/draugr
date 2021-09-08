@@ -1,5 +1,6 @@
 import cv2
 import numpy
+
 from draugr.opencv_utilities.dlib.dlib_utilities import (
     Dlib5faciallandmarksindices,
     Dlib68faciallandmarksindices,

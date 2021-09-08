@@ -11,8 +11,9 @@ from collections import OrderedDict
 from itertools import tee
 
 import torch
-from draugr.torch_utilities.optimisation.parameters.freezing import freeze_parameters
 from warg import AlsoDecorator
+
+from draugr.torch_utilities.optimisation.parameters.freezing import freeze_parameters
 
 __all__ = [
     "TorchEvalSession",

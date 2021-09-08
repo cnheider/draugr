@@ -1893,8 +1893,8 @@
                                                 (diff = nodeIndex = 0) || start.pop())) {
 
                                                 if ((ofType ?
-                                                    node.nodeName.toLowerCase() === name :
-                                                    node.nodeType === 1) &&
+                                                        node.nodeName.toLowerCase() === name :
+                                                        node.nodeType === 1) &&
                                                     ++diff) {
 
                                                     // Cache the index of each encountered element
@@ -2496,8 +2496,8 @@
                             return setMatcher(
                                 i > 1 && elementMatcher(matchers),
                                 i > 1 && toSelector(
-                                // If the preceding token was a descendant combinator, insert an implicit any-element `*`
-                                tokens.slice(0, i - 1).concat({value: tokens[i - 2].type === " " ? "*" : ""})
+                                    // If the preceding token was a descendant combinator, insert an implicit any-element `*`
+                                    tokens.slice(0, i - 1).concat({value: tokens[i - 2].type === " " ? "*" : ""})
                                 ).replace(rtrim, "$1"),
                                 matcher,
                                 i < j && matcherFromTokens(tokens.slice(i, j)),
@@ -8204,7 +8204,7 @@
             if (!onlyHandlers && !event.isDefaultPrevented()) {
 
                 if ((!special._default ||
-                    special._default.apply(eventPath.pop(), data) === false) &&
+                        special._default.apply(eventPath.pop(), data) === false) &&
                     acceptData(elem)) {
 
                     // Call a native DOM method on the target with the same name as the event.
@@ -8267,8 +8267,8 @@
 
 
     jQuery.each(("blur focus focusin focusout resize scroll click dblclick " +
-        "mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
-        "change select submit keydown keypress keyup contextmenu").split(" "),
+            "mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+            "change select submit keydown keypress keyup contextmenu").split(" "),
         function (i, name) {
 
             // Handle event binding

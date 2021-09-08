@@ -8,11 +8,12 @@ __doc__ = r"""
            """
 
 import torch
-from draugr.torch_utilities.sessions.model_sessions import TorchEvalSession
-from draugr.torch_utilities.system.device import global_torch_device
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from warg import kws_sink
+
+from draugr.torch_utilities.sessions.model_sessions import TorchEvalSession
+from draugr.torch_utilities.system.device import global_torch_device
 
 __all__ = ["find_n_misclassified"]
 

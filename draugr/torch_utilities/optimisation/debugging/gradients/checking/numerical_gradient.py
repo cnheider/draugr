@@ -13,13 +13,14 @@ import copy
 import math
 
 import torch
+from warg import ContextWrapper
+
 from draugr.torch_utilities.optimisation.parameters import (
     named_trainable_parameters,
     normal_init_weights,
     trainable_parameters,
 )
 from draugr.torch_utilities.sessions import TorchEvalSession
-from warg import ContextWrapper
 
 
 def loss_grad_check(

@@ -13,3 +13,4 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 from .windows_settings import *
+from .task_scheduler import *

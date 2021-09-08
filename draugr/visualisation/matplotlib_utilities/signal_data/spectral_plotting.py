@@ -10,10 +10,11 @@ __doc__ = r"""
 from typing import Sequence
 
 import numpy
-from draugr.python_utilities import next_pow_2
 from matplotlib import pyplot
 from scipy.signal import spectrogram, welch
 from warg import Number, drop_unused_kws, passes_kws_to
+
+from draugr.python_utilities import next_pow_2
 
 __all__ = ["spectral_plot", "ltas_plot", "spectrum_plot", "fft_plot"]
 

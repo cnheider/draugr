@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 from typing import Sequence
 
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
+
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
