@@ -27,6 +27,10 @@ from draugr.visualisation.matplotlib_utilities.matplotlib_utilities import (
     monochrome_line_cycler,
 )
 from draugr.visualisation.matplotlib_utilities.quirks import fix_edge_gridlines
+from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
+    color_cycler,
+    line_cycler,
+)
 
 
 class FigureSession(AlsoDecorator):
@@ -76,7 +80,7 @@ class StyleSession(AlsoDecorator):
     def __init__(
         self,
         style_path: Path = Path(__file__).parent / "styles" / "publish_color.mplstyle",
-        prop_cycler: Optional[Cycler] = None,
+        prop_cycler: Optional[Cycler] = line_cycler + color_cycler,
     ):
         """
         Set styling for context
