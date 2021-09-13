@@ -49,16 +49,16 @@ class SpectrogramWriterMixin(ABC):
     '''
 @abstractmethod
 def mfcc_spectrogram(self,
-    tag: str,
-    values: list,
-    sample_rate:int,
-    step: int,
-    num_fft:int=512,
-    x_labels: Sequence = None,
-    y_label: str = "Magnitude",
-    x_label: str = "Sequence",
-    plot_kws: Mapping = {},  # Separate as parameters name collisions might occur
-    **kwargs) -> None:
+  tag: str,
+  values: list,
+  sample_rate:int,
+  step: int,
+  num_fft:int=512,
+  x_labels: Sequence = None,
+  y_label: str = "Magnitude",
+  x_label: str = "Sequence",
+  plot_kws: Mapping = {},  # Separate as parameters name collisions might occur
+  **kwargs) -> None:
 """
 
 :param tag:

@@ -230,5 +230,5 @@ cm_image = plot_to_image(figure)
 
 # Log the confusion matrix as an image summary.
 with file_writer_cm.as_default():
-    tf.summary.image("Confusion Matrix", cm_image, step=epoch)
+tf.summary.image("Confusion Matrix", cm_image, step=epoch)
 """

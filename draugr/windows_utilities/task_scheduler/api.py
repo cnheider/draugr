@@ -21,7 +21,7 @@ def get_scheduler() -> win32com.client.CDispatch:
 
 def register_task(
     task_folder: win32com.client.CDispatch,
-    task_def: win32com.client.CDispatch,
+    task_definition: win32com.client.CDispatch,
     name: str,
     *,
     user: str = "",
@@ -30,8 +30,8 @@ def register_task(
     task_logon_type=TaskLogonTypeEnum.TASK_LOGON_NONE.value,
 ) -> None:
     task_folder.RegisterTaskDefinition(
-        name, task_def, task_creation_type, user, password, task_logon_type
-    )  # If task already exists, it will be updated
+        name, task_definition, task_creation_type, user, password, task_logon_type
+    )
 
 
 def new_execute_action(
@@ -73,7 +73,7 @@ def new_logon_trigger(
 def new_boot_trigger(task_def: win32com.client.CDispatch) -> None:
     trigger = task_def.Triggers.Create(TaskTriggerEnum.TASK_TRIGGER_BOOT.value)
     trigger.Id = "BootTriggerId"
-    trigger.Delay = "PT30S"  # 30 Seconds
+    # trigger.Delay = "PT30S"  # 30 Seconds
 
 
 def new_user_logon_execute_task(
@@ -89,10 +89,13 @@ def new_user_logon_execute_task(
     root_folder = scheduler.GetFolder(task_folder)
     task_def = scheduler.NewTask(0)
     task_def.RegistrationInfo.Description = desc
+    task_def.RegistrationInfo.Author = getpass.getuser()
     task_def.Settings.Enabled = True
+    task_def.Settings.StartWhenAvailable = True
     task_def.Settings.StopIfGoingOnBatteries = stop_if_on_battery
 
     new_logon_trigger(task_def)
+    # new_boot_trigger(task_def)
     new_execute_action(task_def, action_path, action_arguments)
     register_task(root_folder, task_def, name)
 
