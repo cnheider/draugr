@@ -48,7 +48,6 @@ def size_of_tensor(obj: torch.Tensor) -> int:
 
 
 if __name__ == "__main__":
-
     module = torch.nn.Linear(20, 20)
     bias = 20 * 4  # in bytes
     weights = 20 * 20 * 4  # in bytes

@@ -12,9 +12,9 @@ from typing import Sequence
 import numpy
 from matplotlib import pyplot
 from scipy.signal import spectrogram, welch
-from warg import Number, drop_unused_kws, passes_kws_to
 
 from draugr.python_utilities import next_pow_2
+from warg import Number, drop_unused_kws, passes_kws_to
 
 __all__ = ["spectral_plot", "ltas_plot", "spectrum_plot", "fft_plot"]
 

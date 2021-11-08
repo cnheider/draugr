@@ -30,5 +30,4 @@ def evaluate_context(x: Any, *args, **kwargs) -> Tuple:
 
 
 if __name__ == "__main__":
-
     print(evaluate_context(2, 2))

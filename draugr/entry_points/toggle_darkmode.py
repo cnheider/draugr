@@ -9,7 +9,7 @@ __doc__ = r"""
 
 __all__ = []
 
-from draugr.gtk_utilities import GtkThemePreferences
+from draugr.os_utilities.linux_utilities import GtkThemePreferences
 
 
 def main():

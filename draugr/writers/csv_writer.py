@@ -61,6 +61,5 @@ class CSVWriter(Writer):
 
 
 if __name__ == "__main__":
-
     with CSVWriter(PROJECT_APP_PATH.user_log / "test") as p:
         p.scalar("s", 2)

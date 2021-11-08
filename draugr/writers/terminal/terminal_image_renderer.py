@@ -86,5 +86,4 @@ def entry_point():
 
 
 if __name__ == "__main__":
-
     render_file(Path.home() / "OneDrive" / "Billeder" / "pompey.jpg", scale=(20, 20))

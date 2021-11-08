@@ -240,7 +240,6 @@ class DraugrPackage:
 
 
 if __name__ == "__main__":
-
     pkg = DraugrPackage()
 
     setup(

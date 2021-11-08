@@ -277,7 +277,6 @@ if __name__ == "__main__":
                 """ """
 
                 def __init__(self, data):
-
                     threading.Thread.__init__(self)
 
                     self._data = data

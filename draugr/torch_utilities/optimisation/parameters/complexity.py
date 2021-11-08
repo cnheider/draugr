@@ -463,7 +463,6 @@ def conv_flops_counter_hook(conv_module: torch.nn.Module, input, output) -> None
     bias_flops = 0
 
     if conv_module.bias is not None:
-
         bias_flops = out_channels * active_elements_count
 
     overall_flops = overall_conv_flops + bias_flops

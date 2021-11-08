@@ -14,12 +14,12 @@ from typing import Optional, Tuple, Union
 import torch
 from torch.nn.modules.module import Module
 from torch.optim import Optimizer
-from warg.decorators.kw_passing import drop_unused_kws
 
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
+from warg.decorators.kw_passing import drop_unused_kws
 
 parameter_extension = ".parameters"
 config_extension = ".py"

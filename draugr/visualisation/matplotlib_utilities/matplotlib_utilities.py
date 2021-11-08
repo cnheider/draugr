@@ -87,7 +87,8 @@ def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Any) -> None:
         textcoords="offset points",
         fontsize="xx-small",
         bbox=semi_opaque_round_tight_bbox,
-        annotation_clip=True,  # see details https://github.com/matplotlib/matplotlib/issues/14354#issuecomment-523630316
+        annotation_clip=True,
+        # see details https://github.com/matplotlib/matplotlib/issues/14354#issuecomment-523630316
         clip_on=True,
         **rt_ann_transform,
     )

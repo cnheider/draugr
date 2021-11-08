@@ -46,7 +46,6 @@ def test_d1():
                 preload_next=False,
             ),
         ):
-
             model(a)
 
         s2 = time.time()

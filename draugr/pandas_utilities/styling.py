@@ -12,9 +12,9 @@ from pathlib import Path
 from typing import List, Union
 
 from pandas.core.generic import NDFrame
-from warg import Number
 
 from apppath import ensure_existence
+from warg import Number
 
 __all__ = [
     "color_highlight_extreme",

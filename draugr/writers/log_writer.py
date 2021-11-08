@@ -64,11 +64,16 @@ class LogWriter(Writer):
     def __getattr__(self, item) -> Any:
         return getattr(self.logger, item)
 
-    def __call__(self, msg):
+    def __call__(self, msg: str) -> None:
         self.logger.info(msg)
+
+    def text(self, msg: str) -> None:
+        self(msg)
+
+    def log(self, msg: str) -> None:
+        self(msg)
 
 
 if __name__ == "__main__":
-
     with LogWriter(PROJECT_APP_PATH.user_log / "test") as w:
         w.scalar("What", 4)

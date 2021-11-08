@@ -12,6 +12,7 @@ from typing import Iterable, Optional, Sequence, Tuple, Union
 
 from cycler import Cycler
 from matplotlib import pyplot
+
 from warg import AlsoDecorator, passes_kws_to
 
 __all__ = [

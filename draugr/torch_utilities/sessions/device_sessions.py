@@ -9,9 +9,9 @@ __doc__ = r"""
 
 import torch
 from torch.nn import Module
-from warg import AlsoDecorator
 
 from draugr.torch_utilities import global_torch_device
+from warg import AlsoDecorator
 
 __all__ = ["TorchCpuSession", "TorchCudaSession", "TorchDeviceSession"]
 

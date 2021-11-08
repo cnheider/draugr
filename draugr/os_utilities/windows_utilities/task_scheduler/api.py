@@ -3,7 +3,8 @@ import getpass
 import socket
 
 import win32com.client
-from draugr.windows_utilities.task_scheduler.enums import (
+
+from draugr.os_utilities.windows_utilities.task_scheduler.enums import (
     TaskActionTypeEnum,
     TaskCreationEnum,
     TaskLogonTypeEnum,

@@ -51,6 +51,5 @@ def bar_plot():
 
 
 if __name__ == "__main__":
-
     line_plot()
     bar_plot()

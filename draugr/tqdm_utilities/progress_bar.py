@@ -12,6 +12,7 @@ from typing import Any, Generator, Iterable
 
 import tqdm
 from notus.notification import JobNotificationSession
+
 from warg import drop_unused_kws, passes_kws_to
 
 __all__ = ["progress_bar"]

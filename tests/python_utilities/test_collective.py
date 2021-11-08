@@ -7,9 +7,8 @@ __doc__ = r"""
            Created on 09/03/2020
            """
 
-from warg import kws_sink, prod, sink
-
 from draugr.python_utilities.debug import evaluate_context
+from warg import kws_sink, prod, sink
 
 
 def test_a():

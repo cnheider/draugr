@@ -12,10 +12,10 @@ from functools import partial
 
 import numpy
 import pandas
-from warg import Number, drop_unused_kws, passes_kws_to
 
 from draugr import indent_lines
 from draugr.pandas_utilities.formatting import pandas_mean_std_bold_formatter
+from warg import Number, drop_unused_kws, passes_kws_to
 
 __all__ = [
     "pandas_mean_std",
@@ -263,7 +263,6 @@ def pandas_mean_std_latex_table8(df: pandas.DataFrame,
 if __name__ == "__main__":
 
     def asuhda():
-
         isjda = "dx_sijdai_iahjdaw-_sdioja_sakodwada_soakd_aoskdiojwd_s"
         df = pandas.DataFrame(
             numpy.random.randint(0, 100, size=(15, 3)),

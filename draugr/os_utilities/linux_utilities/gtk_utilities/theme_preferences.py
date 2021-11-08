@@ -9,7 +9,7 @@ __doc__ = r"""
 
 __all__ = ["GtkThemePreferences"]
 
-from draugr.gtk_utilities.gtk_settings import GtkSettings
+from draugr.os_utilities.linux_utilities.gtk_utilities.gtk_settings import GtkSettings
 
 
 class GtkThemePreferences(GtkSettings):

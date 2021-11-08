@@ -7,8 +7,8 @@ __doc__ = r"""
            Created on 17-05-2021
            """
 
-from draugr.python_utilities.resource_utilities.cpu import worker_cores_available
-from draugr.python_utilities.resource_utilities.ram import num_instance_no_paging
+from draugr.os_utilities.resource_utilities.cpu import worker_cores_available
+from draugr.os_utilities.resource_utilities.ram import num_instance_no_paging
 
 
 def get_num_instances(expected_size: int = 1024) -> int:

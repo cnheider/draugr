@@ -26,5 +26,6 @@ matplotlib
 -r requirements_writers.txt
 -r requirements_tqdm.txt
 -r requirements_visualisation.txt
+-r requirements_linux.txt
 
 # full install
