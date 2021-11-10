@@ -7,7 +7,10 @@ __doc__ = r"""
            Created on 30-08-2020
            """
 
-import winreg
+try:
+    import winreg
+except ModuleNotFoundError as e:
+    raise ModuleNotFoundError((e, "missing winreg"))
 
 from warg import SingletonMeta
 
@@ -28,7 +31,7 @@ class WindowsSettings(metaclass=SingletonMeta):
             self.registry,
             r"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize",
         )
-        return False if winreg.QueryValueEx(key, "AppsUseLightTheme")[0] else "black"
+        return False if winreg.QueryValueEx(key, "AppsUseLightTheme")[0] else True
 
     def set_dark_mode(self, value: bool) -> None:
         """ """

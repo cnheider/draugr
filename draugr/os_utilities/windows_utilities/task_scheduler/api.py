@@ -2,7 +2,11 @@ import datetime
 import getpass
 import socket
 
-import win32com.client
+
+try:
+    import win32com.client
+except ModuleNotFoundError as e:
+    raise ModuleNotFoundError((e, "missing win32com.client"))
 
 from draugr.os_utilities.windows_utilities.task_scheduler.enums import (
     TaskActionTypeEnum,

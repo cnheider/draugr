@@ -13,6 +13,7 @@ from enum import Enum
 from pathlib import Path
 
 import sh
+from sorcery import assigned_names
 
 from draugr import PROJECT_NAME
 from draugr.os_utilities.linux_utilities.user_utilities import make_user, remove_user
@@ -22,6 +23,11 @@ __all__ = [
     "remove_service",
     "enable_service",
     "disable_service",
+    "start_service",
+    "stop_service",
+    "restart_service",
+    "status_service",
+    "RunAsEnum",
 ]
 
 from draugr.os_utilities.linux_utilities.systemd_utilities.service_template import (
@@ -33,30 +39,30 @@ from warg import ContextWrapper
 class RunAsEnum(Enum):
     """ """
 
-    user = "user"
-    app_user = "app_user"
-    root = "root"
+    user, app_user, root = assigned_names()
 
 
-def target_service_path(service_name):
+def target_service_path(service_name, run_as: RunAsEnum = RunAsEnum.user):
     """ """
-    return f"/lib/systemd/system/{service_name}.service"
-    # ~/.config/systemd/user/ for user
-
-    # /etc/systemd/system/ also an option
-    # sudo chown root:root /etc/systemd/system/python_demo_service.service
-    # sudo chmod 644 /etc/systemd/system/python_demo_service.service
+    if run_as == RunAsEnum.user:
+        return Path.home() / ".config" / "systemd" / "user" / f"{service_name}.service"
+    elif run_as == run_as.root:
+        return Path("/") / "etc" / "systemd" / "system" / f"{service_name}.service"
+    return Path("/") / "lib" / "systemd" / "system" / f"{service_name}.service"
 
 
 def install_service(
     service_entry_point_path: Path,
     service_name: str,
+    *,
     description: str = None,
     auto_enable: bool = True,
-    run_as: RunAsEnum = RunAsEnum.app_user,
+    get_sudo: bool = False,
+    run_as: RunAsEnum = RunAsEnum.user,
 ) -> None:
     """
     Args:
+        :param get_sudo:
         :param service_entry_point_path:
         :param service_name:
         :param description:
@@ -70,10 +76,20 @@ def install_service(
     project_service_name = f"{PROJECT_NAME}_service_{service_name}"
     user = getpass.getuser()
 
-    systemd_service_file_path = target_service_path(project_service_name)
+    systemd_service_file_path = target_service_path(project_service_name, run_as=run_as)
     print(f"Installing {systemd_service_file_path}")
-    with sh.contrib.sudo(
-        password=getpass.getpass(prompt=f"[sudo] password for {user}: "), _with=True
+    # get_sudo = not run_as == RunAsEnum.user
+    with ContextWrapper(
+        sh.contrib.sudo,
+        construction_kwargs=dict(
+            password=(
+                getpass.getpass(prompt=f"[sudo] password for {user}: ")
+                if get_sudo
+                else None
+            ),
+            _with=True,
+        ),
+        enabled=get_sudo,
     ):
         if run_as == RunAsEnum.app_user:
             service_user = service_name + "_user"
@@ -92,9 +108,12 @@ def install_service(
             raise ValueError
 
         sh.touch(systemd_service_file_path)
-        sh.chown(
-            f"{user}:", systemd_service_file_path
-        )  # If a colon but no group name follows the user name, that user is made the owner of the files and the group of the files is changed to that user's login group.
+        current_owner = sh.ls("-l", systemd_service_file_path).split(" ")[2]
+        if current_owner != user:
+            print(f"Changing owner of service file from {current_owner} to {user}")
+            sh.chown(
+                f"{user}:", systemd_service_file_path
+            )  # If a colon but no group name follows the user name, that user is made the owner of the files and the group of the files is changed to that user's login group.
         if not description:
             description = f"heimdallr service for {service_name}"
         with open(systemd_service_file_path, "w") as f:
@@ -110,37 +129,46 @@ def install_service(
                 )
             )
         sh.chmod("644", systemd_service_file_path)
-        sh.systemctl("daemon-reload")
+        sh.systemctl("daemon-reload")  # TODO: Requires sudo?
 
         if auto_enable:
-            enable_service(service_name, False)
+            enable_service(service_name, get_sudo=False, run_as=run_as)
 
 
 def remove_service(
     service_name: str,
+    *,
     remove_app_user: bool = True,
-    run_as: RunAsEnum = RunAsEnum.app_user,
+    get_sudo: bool = False,
+    run_as: RunAsEnum = RunAsEnum.user,
 ) -> None:
     """
 
     Args:
-
+        :param get_sudo:
         :param service_name:
         :param remove_app_user:
         :param run_as:
     """
 
     try:
-        with sh.contrib.sudo(
-            password=getpass.getpass(
-                prompt=f"[sudo] password for {getpass.getuser()}: "
+        # get_sudo = not run_as == RunAsEnum.user
+        with ContextWrapper(
+            sh.contrib.sudo,
+            construction_kwargs=dict(
+                password=(
+                    getpass.getpass(prompt=f"[sudo] password for {getpass.getuser()}: ")
+                    if get_sudo
+                    else None
+                ),
+                _with=True,
             ),
-            _with=True,
+            enabled=get_sudo,
         ):
-            disable_service(service_name, get_sudo=False)
+            disable_service(service_name, get_sudo=False, run_as=run_as)
             project_service_name = f"{PROJECT_NAME}_service_{service_name}"
-            target_service_file_path = (
-                f"/lib/systemd/system/{project_service_name}.service"
+            target_service_file_path = target_service_path(
+                project_service_name, run_as=run_as
             )
             print(f"Removing {target_service_file_path}")
 
@@ -149,16 +177,20 @@ def remove_service(
 
             if run_as == RunAsEnum.app_user and remove_app_user:
                 # DO CLEAN UP!
-                remove_user(service_name + "_user", get_sudo=False)
+                remove_user(service_name + "_user", get_sudo=False, run_as=run_as)
     except sh.ErrorReturnCode_1:
         pass
 
 
-def enable_service(service_name: str, get_sudo: bool = True) -> None:
+def enable_service(
+    service_name: str, *, get_sudo: bool = False, run_as: RunAsEnum = RunAsEnum.user
+) -> None:
     """
 
     Args:
         service_name:
+        :param service_name:
+        :param run_as:
         :param get_sudo:
     """
     project_service_name = f"{PROJECT_NAME}_service_{service_name}"
@@ -166,24 +198,31 @@ def enable_service(service_name: str, get_sudo: bool = True) -> None:
     with ContextWrapper(
         sh.contrib.sudo,
         construction_kwargs=dict(
-            password=getpass.getpass(
-                prompt=f"[sudo] password for {getpass.getuser()}: "
-            )
-            if get_sudo
-            else None,
+            password=(
+                getpass.getpass(prompt=f"[sudo] password for {getpass.getuser()}: ")
+                if get_sudo
+                else None
+            ),
             _with=True,
         ),
         enabled=get_sudo,
     ):
-        sh.systemctl(f"enable", f"{project_service_name}.service")
-        start_service(service_name, False)
+        sh.systemctl(
+            (["--user"] if run_as == RunAsEnum.user else [])
+            + [f"enable", f"{project_service_name}.service"]
+        )
+        start_service(service_name, get_sudo=False, run_as=run_as)
 
 
-def disable_service(service_name: str, get_sudo: bool = True) -> None:
+def disable_service(
+    service_name: str, *, get_sudo: bool = False, run_as: RunAsEnum = RunAsEnum.user
+) -> None:
     """
 
     Args:
         service_name:
+        :param service_name:
+        :param run_as:
         :param get_sudo:
     """
     project_service_name = f"{PROJECT_NAME}_service_{service_name}"
@@ -192,26 +231,33 @@ def disable_service(service_name: str, get_sudo: bool = True) -> None:
         with ContextWrapper(
             sh.contrib.sudo,
             construction_kwargs=dict(
-                password=getpass.getpass(
-                    prompt=f"[sudo] password for {getpass.getuser()}: "
-                )
-                if get_sudo
-                else None,
+                password=(
+                    getpass.getpass(prompt=f"[sudo] password for {getpass.getuser()}: ")
+                    if get_sudo
+                    else None
+                ),
                 _with=True,
             ),
             enabled=get_sudo,
         ):
-            stop_service(service_name, False)
-            sh.systemctl("disable", f"{project_service_name}.service")
+            stop_service(service_name, get_sudo=False, run_as=run_as)
+            sh.systemctl(
+                (["--user"] if run_as == RunAsEnum.user else [])
+                + ["disable", f"{project_service_name}.service"]
+            )
     except sh.ErrorReturnCode_5:
         pass
 
 
-def stop_service(service_name: str, get_sudo: bool = True) -> None:
+def stop_service(
+    service_name: str, *, get_sudo: bool = False, run_as: RunAsEnum = RunAsEnum.user
+) -> None:
     """
 
     Args:
         service_name:
+        :param service_name:
+        :param run_as:
         :param get_sudo:
     """
     project_service_name = f"{PROJECT_NAME}_service_{service_name}"
@@ -220,25 +266,32 @@ def stop_service(service_name: str, get_sudo: bool = True) -> None:
         with ContextWrapper(
             sh.contrib.sudo,
             construction_kwargs=dict(
-                password=getpass.getpass(
-                    prompt=f"[sudo] password for {getpass.getuser()}: "
-                )
-                if get_sudo
-                else None,
+                password=(
+                    getpass.getpass(prompt=f"[sudo] password for {getpass.getuser()}: ")
+                    if get_sudo
+                    else None
+                ),
                 _with=True,
             ),
             enabled=get_sudo,
         ):
-            sh.systemctl("stop", f"{project_service_name}.service")
+            sh.systemctl(
+                (["--user"] if run_as == RunAsEnum.user else [])
+                + ["stop", f"{project_service_name}.service"]
+            )
     except sh.ErrorReturnCode_5:
         pass
 
 
-def start_service(service_name: str, get_sudo: bool = True) -> None:
+def start_service(
+    service_name: str, *, get_sudo: bool = False, run_as: RunAsEnum = RunAsEnum.user
+) -> None:
     """
 
     Args:
         service_name:
+        :param service_name:
+        :param run_as:
         :param get_sudo:
     """
     project_service_name = f"{PROJECT_NAME}_service_{service_name}"
@@ -247,25 +300,32 @@ def start_service(service_name: str, get_sudo: bool = True) -> None:
         with ContextWrapper(
             sh.contrib.sudo,
             construction_kwargs=dict(
-                password=getpass.getpass(
-                    prompt=f"[sudo] password for {getpass.getuser()}: "
-                )
-                if get_sudo
-                else None,
+                password=(
+                    getpass.getpass(prompt=f"[sudo] password for {getpass.getuser()}: ")
+                    if get_sudo
+                    else None
+                ),
                 _with=True,
             ),
             enabled=get_sudo,
         ):
-            sh.systemctl("start", f"{project_service_name}.service")
+            sh.systemctl(
+                (["--user"] if run_as == RunAsEnum.user else [])
+                + ["start", f"{project_service_name}.service"]
+            )
     except sh.ErrorReturnCode_5:
         pass
 
 
-def restart_service(service_name: str, get_sudo: bool = True) -> None:
+def restart_service(
+    service_name: str, *, get_sudo: bool = False, run_as: RunAsEnum = RunAsEnum.user
+) -> None:
     """
 
     Args:
         service_name:
+        :param service_name:
+        :param run_as:
         :param get_sudo:
     """
     project_service_name = f"{PROJECT_NAME}_service_{service_name}"
@@ -274,25 +334,32 @@ def restart_service(service_name: str, get_sudo: bool = True) -> None:
         with ContextWrapper(
             sh.contrib.sudo,
             construction_kwargs=dict(
-                password=getpass.getpass(
-                    prompt=f"[sudo] password for {getpass.getuser()}: "
-                )
-                if get_sudo
-                else None,
+                password=(
+                    getpass.getpass(prompt=f"[sudo] password for {getpass.getuser()}: ")
+                    if get_sudo
+                    else None
+                ),
                 _with=True,
             ),
             enabled=get_sudo,
         ):
-            sh.systemctl("restart", f"{project_service_name}.service")
+            sh.systemctl(
+                (["--user"] if run_as == RunAsEnum.user else [])
+                + ["restart", f"{project_service_name}.service"]
+            )
     except sh.ErrorReturnCode_5:
         pass
 
 
-def status_service(service_name: str, get_sudo: bool = False) -> None:
+def status_service(
+    service_name: str, *, get_sudo: bool = False, run_as: RunAsEnum = RunAsEnum.user
+) -> None:
     """
 
     Args:
         service_name:
+        :param service_name:
+        :param run_as:
         :param get_sudo:
     """
     project_service_name = f"{PROJECT_NAME}_service_{service_name}"
@@ -301,22 +368,27 @@ def status_service(service_name: str, get_sudo: bool = False) -> None:
         with ContextWrapper(
             sh.contrib.sudo,
             construction_kwargs=dict(
-                password=getpass.getpass(
-                    prompt=f"[sudo] password for {getpass.getuser()}: "
-                )
-                if get_sudo
-                else None,
+                password=(
+                    getpass.getpass(prompt=f"[sudo] password for {getpass.getuser()}: ")
+                    if get_sudo
+                    else None
+                ),
                 _with=True,
             ),
             enabled=get_sudo,
         ):
-            sh.systemctl("status", f"{project_service_name}.service")
+            sh.systemctl(
+                (["--user"] if run_as == RunAsEnum.user else [])
+                + ["status", f"{project_service_name}.service"]
+            )
     except sh.ErrorReturnCode_3 as e:
-        print(e)
+        print(e, e.stdout)
 
 
 if __name__ == "__main__":
-    remove_service("busy_script")
+    pass
+    print(RunAsEnum.user.value)
+    # remove_service("busy_script")
     # install_service('busy_script')
     # status_service('busy_script')
     # restart_service('busy_script')

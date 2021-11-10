@@ -14,3 +14,4 @@ def test_get_dark_mode():
     ws = WindowsSettings()
     dark_mode = ws.get_dark_mode()
     print(dark_mode)
+    assert isinstance(dark_mode, bool)

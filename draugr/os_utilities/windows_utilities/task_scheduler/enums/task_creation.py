@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class TaskCreationEnum(Enum):
+    """ """
+
     TASK_VALIDATE_ONLY = 1
     TASK_CREATE = 2
     TASK_UPDATE = 4

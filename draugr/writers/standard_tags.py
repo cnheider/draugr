@@ -11,43 +11,44 @@ __all__ = [
     "should_smooth_series",
 ]
 
+from sorcery import assigned_names
+
 
 class TrainingScalars(Enum):
-    training_loss = "training_loss"
-    validation_loss = "validation_loss"
-    validation_accuracy = "validation_accuracy"
-    new_best_model = "new_best_model"
+    (
+        training_loss,
+        validation_loss,
+        validation_accuracy,
+        new_best_model,
+    ) = assigned_names()
 
 
 class TrainingCurves(Enum):
-    validation_precision_recall = "validation_precision_recall"
-    validation_receiver_operator_characteristic = (
-        "validation_receiver_operator_characteristic"
-    )
+    (
+        validation_precision_recall,
+        validation_receiver_operator_characteristic,
+    ) = assigned_names()
 
 
 class TrainingTables(Enum):
-    validation_confusion_matrix = "validation_confusion_matrix"
-    validation_support = "validation_support"
+    validation_confusion_matrix, validation_support = assigned_names()
 
 
 class TestingScalars(Enum):
-    test_accuracy = "test_accuracy"
-    test_precision = "test_precision"
-    test_recall = "test_recall"
-    test_receiver_operator_characteristic_auc = (
-        "test_receiver_operator_characteristic_auc"
-    )
+    (
+        test_accuracy,
+        test_precision,
+        test_recall,
+        test_receiver_operator_characteristic_auc,
+    ) = assigned_names()
 
 
 class TestingCurves(Enum):
-    test_precision_recall = "test_precision_recall"
-    test_receiver_operator_characteristic = "test_receiver_operator_characteristic"
+    test_precision_recall, test_receiver_operator_characteristic = assigned_names()
 
 
 class TestingTables(Enum):
-    test_confusion_matrix = "test_confusion_matrix"
-    test_support = "test_support"
+    test_confusion_matrix, test_support = assigned_names()
 
 
 def should_plot_y_log_scale(tag: Enum) -> bool:

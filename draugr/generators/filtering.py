@@ -8,15 +8,15 @@ __doc__ = r"""
            """
 
 from enum import Enum
-from typing import Iterable
+from typing import Iterable, Any
 
 __all__ = ["FilterModeEnum", "symbol_filter"]
 
+from sorcery import assigned_names
+
 
 class FilterModeEnum(Enum):
-    exclude_postfix = "exclude_postfix"
-    exclude_prefix = "exclude_prefix"
-    exclude_fully = "exclude_fully"
+    exclude_postfix, exclude_prefix, exclude_fully = assigned_names()
     # TODO: Include variants
 
 
@@ -25,7 +25,7 @@ def symbol_filter(
     symbol: str = "#",
     *,
     exclusion_mode: FilterModeEnum = FilterModeEnum.exclude_postfix,
-):
+) -> Any:
     """ """
     if exclusion_mode == FilterModeEnum.exclude_fully:
         yield from filter(lambda s: symbol not in s, string_stream)

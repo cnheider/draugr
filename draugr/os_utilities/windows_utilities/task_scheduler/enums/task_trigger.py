@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class TaskTriggerEnum(Enum):
+    """ """
+
     TASK_TRIGGER_EVENT = 0
     TASK_TRIGGER_TIME = 1
     TASK_TRIGGER_DAILY = 2
