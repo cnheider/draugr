@@ -5,10 +5,10 @@ After = network.target
  
 [Service]
 Type = simple
-ExecStart = {executable} {service_entry_point_path}
 User = {service_user}
 Group = {service_group}
-Restart = on-failure 
+ExecStart = {executable} {service_entry_point_path}
+Restart = {restart} 
 SyslogIdentifier = {service_name}
 RestartSec = 5
 TimeoutStartSec = infinity

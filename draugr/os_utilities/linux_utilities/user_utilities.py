@@ -31,7 +31,8 @@ def make_user(
         if int(user_id):
             if not allow_existing_user:
                 raise FileExistsError
-            print(f"user {username} exists with id {user_id}")
+            group_id = sh.id(["-g", username])
+            print(f"user {username} exists with id {user_id} and {group_id}")
     except (ValueError, sh.ErrorReturnCode_1):
         pass
         with ContextWrapper(
