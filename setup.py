@@ -16,6 +16,9 @@ def python_version_check(major: int = 3, minor: int = 7):
 python_version_check()
 
 from pathlib import Path
+import re
+
+from setuptools import find_packages, setup
 
 
 def read_reqs(file: str, path: Path) -> List[str]:
@@ -63,10 +66,6 @@ def read_reqs(file: str, path: Path) -> List[str]:
     req_set.discard("")
     return list(req_set)
 
-
-import re
-
-from setuptools import find_packages, setup
 
 with open(Path(__file__).parent / "draugr" / "__init__.py", "r") as project_init_file:
     content = project_init_file.read()  # get strings from module
@@ -241,7 +240,6 @@ class DraugrPackage:
 
 
 if __name__ == "__main__":
-
     pkg = DraugrPackage()
 
     setup(

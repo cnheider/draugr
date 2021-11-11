@@ -26,7 +26,6 @@ class MyNdArray(numpy.ndarray):
 
 
 if __name__ == "__main__":
-
     print(recursive_flatten_numpy([[numpy.zeros((2, 2))], [numpy.zeros((2, 2))]]))
     print(recursive_flatten_numpy(numpy.zeros((2, 2))))
     print(numpy.random.random((3, 3)).view(MyNdArray).conjugate_transpose)

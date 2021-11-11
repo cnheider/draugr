@@ -11,6 +11,7 @@ from typing import Iterable, List
 
 import numpy.random
 import seaborn
+
 from warg import Number
 
 __all__ = [
@@ -86,12 +87,10 @@ if __name__ == "__main__":
         )
 
     def stest_ema():
-
         e = range(100)
         print(len(exponential_moving_average(e)))
 
     def stest_ema2():
-
         e = numpy.random.random(1000)
         end = exponential_moving_average(e, 1 - 0.6)[-1]
         assert numpy.isclose(end, 0.5, 0.1, 0.1), end  # Not guaranteed, may fail

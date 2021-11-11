@@ -14,30 +14,33 @@ from typing import List
 
 import pandas
 from pandas.core.dtypes.missing import array_equivalent
+from sorcery import assigned_names
 
 
 class ExportMethodEnum(enum.Enum):
     """
     Available Pandas Dataframe Export methods"""
 
-    parquet = "parquet"
-    pickle = "pickle"  # 'dataframe'
-    csv = "csv"
-    hdf = "hdf"
-    sql = "sql"
-    dict = "dict"
-    excel = "excel"
-    json = "json"
-    html = "html"
-    feather = "feather"
-    latex = "latex"
-    stata = "stata"
-    gbq = "gbq"
-    records = "records"
-    string = "string"
-    clipboard = "clipboard"
-    markdown = "markdown"
-    xarray = "xarray"
+    (
+        parquet,
+        pickle,  # also 'dataframe'
+        csv,
+        hdf,
+        sql,
+        dict,
+        excel,
+        json,
+        html,
+        feather,
+        latex,
+        stata,
+        gbq,
+        records,
+        string,
+        clipboard,
+        markdown,
+        xarray,
+    ) = assigned_names()
 
 
 class ChainedAssignmentOptionEnum(enum.Enum):
@@ -46,15 +49,17 @@ class ChainedAssignmentOptionEnum(enum.Enum):
     from pandas.core.common import SettingWithCopyWarning
     """
 
-    warn = "warn"  # the default, means a SettingWithCopyWarning is printed.
-    raises = "raise"  # means pandas will raise a SettingWithCopyException you have to deal with.
+    (
+        warn,  # the default, means a SettingWithCopyWarning is printed.
+        raises,  # means pandas will raise a SettingWithCopyException you have to deal with.
+    ) = assigned_names()
     none = None  # will suppress the warnings entirely.
 
 
 def duplicate_columns(frame: pandas.DataFrame) -> List[str]:
     """ """
     groups = frame.columns.to_series().groupby(frame.dtypes).groups
-    dups = []
+    duplicates = []
 
     for t, v in groups.items():
 
@@ -67,7 +72,12 @@ def duplicate_columns(frame: pandas.DataFrame) -> List[str]:
             for j in range(i + 1, lcs):
                 ja = vs.iloc[:, j].values
                 if array_equivalent(ia, ja):
-                    dups.append(cs[i])
+                    duplicates.append(cs[i])
                     break
 
-    return dups
+    return duplicates
+
+
+if __name__ == "__main__":
+    for e in ExportMethodEnum:
+        print(e.value)

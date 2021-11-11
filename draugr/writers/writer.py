@@ -130,6 +130,9 @@ class Writer(metaclass=ABCMeta):
     def _open(self):
         return self
 
+    def __call__(self, *args, **kwargs):
+        self.scalar(*args, *kwargs)
+
 
 GLOBAL_WRITER_STACK = deque()
 GLOBAL_WRITER = None

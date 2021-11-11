@@ -11,9 +11,9 @@ from itertools import tee
 from typing import Any, Generator, Iterable
 
 import tqdm
-from warg import drop_unused_kws, passes_kws_to
-
 from notus.notification import JobNotificationSession
+
+from warg import drop_unused_kws, passes_kws_to
 
 __all__ = ["progress_bar"]
 

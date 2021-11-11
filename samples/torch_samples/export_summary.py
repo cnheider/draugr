@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from draugr import PROJECT_APP_PATH
-from draugr.tensorboard_utilities import TensorboardEventExporter
-from draugr.writers import TrainingScalars
 from matplotlib import pyplot
 
 from apppath import ensure_existence
+from draugr import PROJECT_APP_PATH
+from draugr.tensorboard_utilities import TensorboardEventExporter
+from draugr.writers import TrainingScalars
 
 if __name__ == "__main__":
     save = False

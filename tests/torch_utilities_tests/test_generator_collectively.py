@@ -5,6 +5,7 @@ import time
 import numpy
 import pytest
 import torch
+
 from draugr import batched_recycle
 from draugr.torch_utilities import to_tensor_generator
 
@@ -45,7 +46,6 @@ def test_d1():
                 preload_next=False,
             ),
         ):
-
             model(a)
 
         s2 = time.time()

@@ -220,15 +220,15 @@ if __name__ == "__main__":
         """
 
 
-    test_pred = numpy.argmax(test_pred_raw, axis=1)
+test_pred = numpy.argmax(test_pred_raw, axis=1)
 
-    # Calculate the confusion matrix.
-    cm = sklearn.metrics.confusion_matrix(test_labels, test_pred)
-    # Log the confusion matrix as an image summary.
-    figure = plot_confusion_matrix(cm, class_names=class_names)
-    cm_image = plot_to_image(figure)
+# Calculate the confusion matrix.
+cm = sklearn.metrics.confusion_matrix(test_labels, test_pred)
+# Log the confusion matrix as an image summary.
+figure = plot_confusion_matrix(cm, class_names=class_names)
+cm_image = plot_to_image(figure)
 
-    # Log the confusion matrix as an image summary.
-    with file_writer_cm.as_default():
-        tf.summary.image("Confusion Matrix", cm_image, step=epoch)
-    """
+# Log the confusion matrix as an image summary.
+with file_writer_cm.as_default():
+tf.summary.image("Confusion Matrix", cm_image, step=epoch)
+"""

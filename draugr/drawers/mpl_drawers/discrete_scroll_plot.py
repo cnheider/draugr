@@ -3,9 +3,10 @@
 
 from typing import Iterator, Sequence, Tuple
 
+from matplotlib import animation
+
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from draugr.numpy_utilities import recursive_flatten_numpy
-from matplotlib import animation
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -276,7 +277,6 @@ if __name__ == "__main__":
                 """ """
 
                 def __init__(self, data):
-
                     threading.Thread.__init__(self)
 
                     self._data = data

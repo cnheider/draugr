@@ -17,7 +17,6 @@ def to_latex_table(m: torch.nn.Module) -> str:
 
 
 if __name__ == "__main__":
-
     from torch import nn
     from torch.nn import functional as F
 

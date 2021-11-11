@@ -10,6 +10,7 @@ __doc__ = r"""
 import csv
 import os
 import re
+from pathlib import Path
 
 import numpy
 import pandas as pd
@@ -56,7 +57,7 @@ if __name__ == "__main__":
         )
 
         im_names = [
-            os.path.join(root, name)
+            str(Path(root) / name)
             for root, dirs, files in os.walk(im_path)
             for name in files
             if name.endswith(".jpg")

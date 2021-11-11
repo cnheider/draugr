@@ -6,6 +6,7 @@
 # %%
 
 import torch
+
 from draugr.torch_utilities import register_bad_grad_hooks
 
 x = torch.randn(10, 10, requires_grad=True)

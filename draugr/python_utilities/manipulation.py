@@ -22,6 +22,5 @@ def recursive_flatten(seq: Sequence) -> Sequence:
 
 
 if __name__ == "__main__":
-
     print(recursive_flatten((((2,), 2), (2,), 2)))
     print(recursive_flatten((([[None]], 2), (2,), 2)))

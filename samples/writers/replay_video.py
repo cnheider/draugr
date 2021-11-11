@@ -10,6 +10,7 @@ __doc__ = r"""
 import time
 
 import numpy
+
 from draugr import PROJECT_APP_PATH
 from draugr.torch_utilities import (
     TensorBoardPytorchWriter,

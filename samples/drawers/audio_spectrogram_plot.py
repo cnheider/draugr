@@ -10,9 +10,10 @@ __doc__ = r"""
 from pathlib import Path
 
 import numpy
-from draugr.drawers import FastFourierTransformPlot, FastFourierTransformSpectrogramPlot
 from matplotlib import pyplot
 from scipy.io import wavfile
+
+from draugr.drawers import FastFourierTransformPlot, FastFourierTransformSpectrogramPlot
 
 if __name__ == "__main__":
 

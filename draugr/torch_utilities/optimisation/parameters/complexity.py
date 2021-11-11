@@ -12,8 +12,9 @@ from typing import Sequence, TextIO, Tuple, Union
 
 import numpy
 import torch
-from draugr.torch_utilities.optimisation.parameters.counting import get_num_parameters
 from torch import nn
+
+from draugr.torch_utilities.optimisation.parameters.counting import get_num_parameters
 
 __all__ = ["get_model_complexity_info", "MODULES_MAPPING"]
 
@@ -462,7 +463,6 @@ def conv_flops_counter_hook(conv_module: torch.nn.Module, input, output) -> None
     bias_flops = 0
 
     if conv_module.bias is not None:
-
         bias_flops = out_channels * active_elements_count
 
     overall_flops = overall_conv_flops + bias_flops

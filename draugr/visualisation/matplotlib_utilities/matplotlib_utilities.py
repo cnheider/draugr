@@ -12,6 +12,9 @@ from typing import Any, Sequence, Union
 
 import numpy
 from cycler import Cycler
+from matplotlib import patches, pyplot, rcParams
+from matplotlib.legend_handler import HandlerErrorbar
+
 from draugr.visualisation.matplotlib_utilities.quirks import auto_post_hatch
 from draugr.visualisation.matplotlib_utilities.styles.annotation import (
     rt_ann_transform,
@@ -22,8 +25,6 @@ from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
     monochrome_line_cycler,
     simple_hatch_cycler,
 )
-from matplotlib import patches, pyplot, rcParams
-from matplotlib.legend_handler import HandlerErrorbar
 
 __all__ = [
     "denormalise_minusoneone",
@@ -86,7 +87,8 @@ def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Any) -> None:
         textcoords="offset points",
         fontsize="xx-small",
         bbox=semi_opaque_round_tight_bbox,
-        annotation_clip=True,  # see details https://github.com/matplotlib/matplotlib/issues/14354#issuecomment-523630316
+        annotation_clip=True,
+        # see details https://github.com/matplotlib/matplotlib/issues/14354#issuecomment-523630316
         clip_on=True,
         **rt_ann_transform,
     )

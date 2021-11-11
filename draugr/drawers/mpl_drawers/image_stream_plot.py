@@ -9,8 +9,9 @@ __doc__ = r"""
 
 from typing import Sequence
 
-from draugr.drawers import MplDrawer
 from matplotlib import pyplot
+
+from draugr.drawers import MplDrawer
 from warg import passes_kws_to
 
 
@@ -20,12 +21,8 @@ class ImageStreamPlot(MplDrawer):
     @passes_kws_to(MplDrawer.__init__)
     @passes_kws_to(pyplot.imshow)
     def __init__(
-        self,
-        image,  # size:Tuple[int,...],
-        title: str = "",
-        render: bool = True,
-        **kwargs
-    ):
+        self, image, title: str = "", render: bool = True, **kwargs
+    ):  # size:Tuple[int,...],
         super().__init__(render=render, **kwargs)
 
         if not render:

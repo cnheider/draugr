@@ -5,6 +5,8 @@ from typing import Union
 import numpy
 import torch
 from PIL import Image
+from tqdm import tqdm
+
 from draugr.metrics import MetricCollection
 from draugr.writers.mixins import ImageWriterMixin
 from draugr.writers.terminal.terminal_image_renderer import (
@@ -16,7 +18,6 @@ from draugr.writers.terminal.terminal_plot import (
     terminal_plot,
 )
 from draugr.writers.writer import Writer
-from tqdm import tqdm
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -87,21 +88,20 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
 
 
 if __name__ == "__main__":
-
     with TerminalPlotWriter() as w:
         w.scalar("What", 4)
         w.image("bro", numpy.random.randint(0, 255, (28, 28, 3)), 0)
 
     '''
 def train_episodically_old(self,
-       env,
-       test_env,
-       *,
-       rollouts=2000,
-       render=False,
-       render_frequency=100,
-       stat_frequency=10,
-       ):
+ env,
+ test_env,
+ *,
+ rollouts=2000,
+ render=False,
+ render_frequency=100,
+ stat_frequency=10,
+ ):
 
 E = range(1, rollouts)
 E = tqdm(E, f"Episode: {1}", leave=False, disable=not render)
@@ -138,14 +138,14 @@ return NOD(model=self._distribution_parameter_regressor, stats=stats)
 
 
 def train_episodically_old(self,
-       _environment,
-       *,
-       rollouts=10000,
-       render=False,
-       render_frequency=100,
-       stat_frequency=100,
-       **kwargs,
-       ):
+ _environment,
+ *,
+ rollouts=10000,
+ render=False,
+ render_frequency=100,
+ stat_frequency=100,
+ **kwargs,
+ ):
 """
 :param _environment:
 :type _environment:,0

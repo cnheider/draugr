@@ -13,6 +13,7 @@ import copy
 import math
 
 import torch
+
 from draugr.torch_utilities.optimisation.parameters import (
     named_trainable_parameters,
     normal_init_weights,

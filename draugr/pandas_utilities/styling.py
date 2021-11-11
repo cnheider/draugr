@@ -12,9 +12,10 @@ from pathlib import Path
 from typing import List, Union
 
 from pandas.core.generic import NDFrame
-from warg import Number
+from sorcery import assigned_names
 
 from apppath import ensure_existence
+from warg import Number
 
 __all__ = [
     "color_highlight_extreme",
@@ -26,9 +27,7 @@ __all__ = [
 
 
 class ColorEnum(Enum):
-    yellow = "yellow"
-    red = "red"
-    green = "green"
+    yellow, red, green = assigned_names()
 
 
 class NDFrameExtremeEnum(Enum):
@@ -51,7 +50,9 @@ def color_highlight_extreme(
     highlight the maximum in a Series yellow.
     """
     if isinstance(color, ColorEnum):
-        color = color.value
+        color = (
+            color.value.lower()
+        )  # TODO: LOWER IN THE CURRENT CASE no matter assigned names
     if isinstance(attr_template, AttrEnum):
         attr_template = attr_template.value
 

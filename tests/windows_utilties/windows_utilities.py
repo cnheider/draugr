@@ -7,10 +7,11 @@ __doc__ = r"""
            Created on 30-09-2020
            """
 
-from draugr.windows_utilities import WindowsSettings
+from draugr.os_utilities.windows_utilities import WindowsSettings
 
 
 def test_get_dark_mode():
     ws = WindowsSettings()
     dark_mode = ws.get_dark_mode()
     print(dark_mode)
+    assert isinstance(dark_mode, bool)
