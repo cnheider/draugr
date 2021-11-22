@@ -1,12 +1,12 @@
 pip>=20.2.3
 wheel>=0.35.1
 twine>=3.2.0
-black>=18.9b0
+black
 pytest>=6.1.0
 pytest-cov>=2.10.1
 coveralls>=2.1.2
 tox>=3.20.0
-packaging
+#packaging # ISSUES!
 pyperf
 pre-commit
 pydocstyle
