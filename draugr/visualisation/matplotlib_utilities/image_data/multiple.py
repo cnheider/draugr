@@ -32,9 +32,12 @@ def plot_img_array(img_array: numpy.ndarray, n_col: int = 3) -> None:
     f, plots = pyplot.subplots(
         n_row, n_col, sharex="all", sharey="all", figsize=(n_col * 4, n_row * 4)
     )
-
-    for i in range(len(img_array)):
-        plots[i // n_col, i % n_col].imshow(img_array[i])
+    if n_row > 1:
+        for i in range(len(img_array)):
+            plots[i // n_col, i % n_col].imshow(img_array[i])
+    else:
+        for i in range(len(img_array)):
+            plots[i].imshow(img_array[i])
 
 
 def plot_side_by_side(img_arrays: numpy.ndarray) -> None:

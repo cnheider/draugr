@@ -12,7 +12,7 @@ import sys
 from enum import Enum
 from pathlib import Path
 
-import sh
+import sh  # pip install sh
 from sorcery import assigned_names
 
 from draugr import PROJECT_NAME

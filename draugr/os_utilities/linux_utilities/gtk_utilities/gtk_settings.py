@@ -11,6 +11,19 @@ __all__ = ["GtkSettings"]
 
 import gi  # PyGObject lib
 
+#  Ubuntu / Debian
+## system
+### sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0
+
+## conda
+### conda install -c conda-forge pygobject
+### conda install -c conda-forge gtk3
+
+## pip
+### sudo apt install libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
+### pip3 install pycairo
+### pip3 install PyGObject
+
 gi.require_version("Gtk", "3.0")
 gi.require_version("Gdk", "3.0")
 

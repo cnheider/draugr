@@ -9,29 +9,30 @@ __doc__ = r"""
 
 __all__ = ["GtkThemePreferences"]
 
+from typing import Union
+
 from draugr.os_utilities.linux_utilities.gtk_utilities.gtk_settings import GtkSettings
 
 
 class GtkThemePreferences(GtkSettings):
+    """
+    Presents a slim series of properties for manipulation of GTK settings
+    """
+
     @property
-    def theme(self):
-        """ """
+    def theme(self) -> Union[str, bytes]:
         return self.settings.get_property("gtk-theme-name")
 
     @theme.setter
-    def theme(self, theme_name: str):
+    def theme(self, theme_name: str) -> None:
         self.settings.set_property("gtk-theme-name", theme_name)
 
     @property
     def prefer_dark_mode(self) -> bool:
-        """
-
-        :return:
-        :rtype:"""
         return self.settings.get_property("gtk-application-prefer-dark-theme")
 
     @prefer_dark_mode.setter
-    def prefer_dark_mode(self, enabled: bool):
+    def prefer_dark_mode(self, enabled: bool) -> None:
         self.settings.set_property("gtk-application-prefer-dark-theme", enabled)
 
 
