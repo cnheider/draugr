@@ -19,7 +19,7 @@ __all__ = ["DictDatasetFolder", "SplitDictDatasetFolder"]
 from torchvision.datasets.folder import has_file_allowed_extension
 
 from draugr.numpy_utilities import (
-    Split,
+    SplitEnum,
     build_flat_dataset,
     build_shallow_categorical_dataset,
     select_split,
@@ -62,7 +62,7 @@ class SplitDictDatasetFolder(VisionDataset):
         extensions: Iterable = None,
         transform: callable = None,
         target_transform: callable = None,
-        split: Split = Split.Training,
+        split: SplitEnum = SplitEnum.training,
         valid_percentage: float = 15,
         test_percentage: float = 0,
         is_valid_file: callable = has_file_allowed_extension,

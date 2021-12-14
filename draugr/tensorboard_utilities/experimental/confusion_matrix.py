@@ -14,6 +14,10 @@ __doc__ = r"""
 if __name__ == "__main__":
 
     def alt():
+        """
+
+        :return:
+        """
         import tensorflow as tf
         import numpy
 
@@ -42,6 +46,10 @@ if __name__ == "__main__":
                 self._summary_writer = summary_writer
 
             def end(self, session):
+                """
+
+                :param session:
+                """
                 cm = (
                     tf.get_default_graph()
                     .get_tensor_by_name(self.confusion_matrix_tensor_name + ":0")
@@ -139,7 +147,10 @@ if __name__ == "__main__":
                 return fig
 
     def asda():
+        """
 
+        :return:
+        """
         import io
         import itertools
         from packaging import version

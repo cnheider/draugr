@@ -165,6 +165,7 @@ if __name__ == "__main__":
         assert numpy.equal(signal, sub_signal).all()
 
     def iushjaqsfaddfu():
+        """ """
         sr = 1000
         max_res = sr * 4
         t = numpy.arange(sr * 4) / sr

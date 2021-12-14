@@ -17,22 +17,22 @@ from typing import Any, Dict, Iterable, OrderedDict, Sequence
 
 import numpy
 
-__all__ = ["Split", "SplitIndexer", "train_valid_test_split", "select_split"]
+__all__ = ["SplitEnum", "SplitIndexer", "train_valid_test_split", "select_split"]
+
+from sorcery import assigned_names
 
 
-class Split(Enum):
+class SplitEnum(Enum):
     """
     Split Enum class for selecting splits"""
 
-    Training = "training"
-    Validation = "validation"
-    Testing = "testing"
+    (training, validation, testing) = assigned_names()
 
 
 class SplitIndexer:
-    """ """
+    """Splits dataset in to 3 parts based on percentages, returns indices for the data set sequence"""
 
-    default_split_names = {i: i.value for i in Split}
+    default_split_names = {i: i.value for i in SplitEnum}
 
     def __init__(
         self,
@@ -58,9 +58,9 @@ class SplitIndexer:
         split_indices = numpy.random.permutation(self.total_num).tolist()
 
         return {
-            Split.Training: self.select_train_indices(split_indices),
-            Split.Validation: self.select_validation_indices(split_indices),
-            Split.Testing: self.select_testing_indices(split_indices),
+            SplitEnum.training: self.select_train_indices(split_indices),
+            SplitEnum.validation: self.select_validation_indices(split_indices),
+            SplitEnum.testing: self.select_testing_indices(split_indices),
         }
 
     def select_train_indices(self, ind: Sequence) -> Sequence:
@@ -100,16 +100,18 @@ class SplitIndexer:
             {k: n for k, n in zip(self.default_split_names, self.normalised_split)}
         )
 
-    def select_shuffled_split_indices(self, split: Split, seed: int = 0) -> Sequence:
+    def select_shuffled_split_indices(
+        self, split: SplitEnum, seed: int = 0
+    ) -> Sequence:
         """ """
         numpy.random.seed(seed)
         split_indices = numpy.random.permutation(self.total_num).tolist()
 
-        if split == Split.Training:
+        if split == SplitEnum.training:
             return self.select_train_indices(split_indices)
-        elif split == Split.Validation:
+        elif split == SplitEnum.validation:
             return self.select_validation_indices(split_indices)
-        elif split == Split.Testing:
+        elif split == SplitEnum.testing:
             return self.select_testing_indices(split_indices)
         elif split is None:
             return split_indices
@@ -156,17 +158,17 @@ def train_valid_test_split(
                 training_images.append(file_name)
 
         result[c] = {
-            Split.Training: training_images,
-            Split.Validation: validation_images,
-            Split.Testing: testing_images,
+            SplitEnum.training: training_images,
+            SplitEnum.validation: validation_images,
+            SplitEnum.testing: testing_images,
         }
 
     return result
 
 
 def select_split(
-    data_cat_split: Dict[Any, Dict[Split, Sequence]],
-    split: Split,
+    data_cat_split: Dict[Any, Dict[SplitEnum, Sequence]],
+    split: SplitEnum,
     verbose: bool = False,
 ) -> Dict[Any, Sequence]:
     """
@@ -194,6 +196,6 @@ if __name__ == "__main__":
     split_by_p = SplitIndexer(100)
     print(split_by_p.default_split_names)
     print(split_by_p.shuffled_indices())
-    print(split_by_p.select_shuffled_split_indices(Split.Training))
+    print(split_by_p.select_shuffled_split_indices(SplitEnum.training))
     a = split_by_p.select_shuffled_split_indices(None)
     print(a, len(a))

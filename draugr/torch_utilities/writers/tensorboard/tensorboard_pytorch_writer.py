@@ -144,6 +144,13 @@ class TensorBoardPytorchWriter(
     def parameters(
         self, model: torch.nn.Module, step: int, tag: str = "", **kwargs
     ) -> None:
+        """
+
+        :param model:
+        :param step:
+        :param tag:
+        :param kwargs:
+        """
         weight_bias_histograms(self, model, prefix=tag, step=step, **kwargs)
 
     @passes_kws_to(SummaryWriter.add_embedding)

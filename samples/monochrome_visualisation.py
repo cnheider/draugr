@@ -4,6 +4,10 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
+            on ubuntu ensure to run:
+             sudo apt install dvipng texlive-latex-extra texlive-fonts-recommended
+
+
            Created on 24-02-2021
            """
 
@@ -21,6 +25,7 @@ from draugr.visualisation import (
 
 
 def line_plot():
+    """ """
     with MonoChromeStyleSession():
         fig, ax = pyplot.subplots(1, 1)
         for x in range(3):
@@ -35,6 +40,7 @@ def line_plot():
 
 
 def bar_plot():
+    """ """
     use_monochrome_style(prop_cycler=monochrome_hatch_cycler)
 
     fig, ax = pyplot.subplots(1, 1)

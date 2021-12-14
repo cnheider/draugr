@@ -48,6 +48,7 @@ def add_index_level(
 if __name__ == "__main__":
 
     def stest_add_index_level():
+        """ """
         df = pandas.DataFrame(data=numpy.random.normal(size=(6, 3)))
         i1 = add_index_level(df.index, "foo")
 

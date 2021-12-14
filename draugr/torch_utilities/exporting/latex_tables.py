@@ -21,6 +21,7 @@ rows = [
 
 
 def asijd():
+    """ """
     from tabulate import tabulate
 
     print("\nTabulate Latex:")
@@ -28,6 +29,7 @@ def asijd():
 
 
 def adasdassijd():
+    """ """
     from texttable import Texttable
 
     table = Texttable()
@@ -43,6 +45,7 @@ def adasdassijd():
 
 
 def iasjduh():
+    """ """
     from texttable import Texttable
 
     table = Texttable()

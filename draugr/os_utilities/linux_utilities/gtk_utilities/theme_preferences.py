@@ -21,6 +21,10 @@ class GtkThemePreferences(GtkSettings):
 
     @property
     def theme(self) -> Union[str, bytes]:
+        """
+
+        :return:
+        """
         return self.settings.get_property("gtk-theme-name")
 
     @theme.setter
@@ -29,6 +33,10 @@ class GtkThemePreferences(GtkSettings):
 
     @property
     def prefer_dark_mode(self) -> bool:
+        """
+
+        :return:
+        """
         return self.settings.get_property("gtk-application-prefer-dark-theme")
 
     @prefer_dark_mode.setter

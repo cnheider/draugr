@@ -12,7 +12,7 @@ from typing import Sequence
 import numpy
 
 from apppath import ensure_existence
-from draugr.numpy_utilities.datasets.splitting import Split
+from draugr.numpy_utilities.datasets.splitting import SplitEnum
 from draugr.numpy_utilities.signal_utilities.signal_statistics import root_mean_square
 from draugr.numpy_utilities.signal_utilities.truncation import min_length_truncate_batch
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
         libri_speech = LibriSpeech(
             path=Path.home() / "Data" / "Audio" / "Speech" / "LibriSpeech",
-            split=Split.Testing,
+            split=SplitEnum.testing,
         )
         files, sr = zip(
             *[(v[0].numpy(), v[1]) for _, v in zip(range(20), libri_speech)]

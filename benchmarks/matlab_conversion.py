@@ -11,6 +11,7 @@ import timeit
 
 
 def conversion_benchmark():
+    """ """
     # Numpy to matlab
     print(
         "\nCompare Numpy to matlab conversion strategy : (a bit long with several matlab.engine opening)"

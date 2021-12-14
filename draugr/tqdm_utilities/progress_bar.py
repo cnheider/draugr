@@ -101,6 +101,7 @@ if __name__ == "__main__":
             sleep(1)
 
     def send_example():
+        """ """
         from itertools import count
 
         pb = progress_bar(count())

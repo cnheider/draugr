@@ -9,10 +9,10 @@ __doc__ = r"""
 
 __all__ = ["evaluate_context"]
 
-from typing import Any, Callable, Tuple
+from typing import Any, Callable, Iterable, MutableMapping, Tuple
 
 
-def evaluate_context(x: Any, *args, **kwargs) -> Tuple:
+def evaluate_context(x: Any, *args: Iterable, **kwargs: MutableMapping) -> Tuple:
     """
 
     :param x:

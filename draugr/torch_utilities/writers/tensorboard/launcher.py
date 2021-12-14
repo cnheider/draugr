@@ -21,6 +21,11 @@ def launch_tensorboard(log_dir: Path, port: int = 6006) -> str:
     :rtype:"""
 
     def port_is_in_use(port_):
+        """
+
+        :param port_:
+        :return:
+        """
         import socket
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:

@@ -35,6 +35,12 @@ class Dlib68faciallandmarksindices(Enum):
 
     @staticmethod
     def slice(seq, eqs):
+        """
+
+        :param seq:
+        :param eqs:
+        :return:
+        """
         start, end = eqs.value
         return seq[start:end]
 
@@ -50,6 +56,12 @@ class Dlib5faciallandmarksindices(Enum):
 
     @staticmethod
     def slice(seq, eqs):
+        """
+
+        :param seq:
+        :param eqs:
+        :return:
+        """
         start, end = eqs.value
         return seq[start:end]
 
@@ -65,6 +77,12 @@ def rect_to_bounding_box(rect) -> Tuple[float, float, float, float]:
 
 
 def shape_to_ndarray(shape, dtype: str = "int"):
+    """
+
+    :param shape:
+    :param dtype:
+    :return:
+    """
     coordinates = numpy.zeros(
         (shape.num_parts, 2), dtype=dtype
     )  # initialize the list of (x, y)-coordinates
@@ -91,6 +109,11 @@ def mouth_aspect_ratio(coordinates: Sequence[Sequence]) -> float:
 
 
 def eye_aspect_ratio(coordinates: Sequence[Sequence]) -> float:
+    """
+
+    :param coordinates:
+    :return:
+    """
     # compute the euclidean distances between the two sets of
     # vertical eye landmarks (x, y)-coordinates
     A = distance.euclidean(coordinates[1], coordinates[5])

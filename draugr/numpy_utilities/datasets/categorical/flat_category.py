@@ -68,19 +68,19 @@ if __name__ == "__main__":
     def absa():
         """ """
         from draugr.visualisation import indent_lines
-        from draugr.numpy_utilities.datasets.splitting import Split
+        from draugr.numpy_utilities.datasets.splitting import SplitEnum
 
         a = build_flat_dataset(Path.home() / "Data" / "mnist_png" / "training")
 
         for k in a.keys():
             total = (
-                len(a[k][Split.Training])
-                + len(a[k][Split.Validation])
-                + len(a[k][Split.Testing])
+                len(a[k][SplitEnum.training])
+                + len(a[k][SplitEnum.validation])
+                + len(a[k][SplitEnum.testing])
             )
             print(f"\n{k}:")
-            print(indent_lines(len(a[k][Split.Training]) / total))
-            print(indent_lines(len(a[k][Split.Validation]) / total))
-            print(indent_lines(len(a[k][Split.Testing]) / total))
+            print(indent_lines(len(a[k][SplitEnum.training]) / total))
+            print(indent_lines(len(a[k][SplitEnum.validation]) / total))
+            print(indent_lines(len(a[k][SplitEnum.testing]) / total))
 
     absa()

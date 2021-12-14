@@ -207,6 +207,10 @@ def use_monochrome_style(
     prop_cycler: Cycler = monochrome_line_cycler,
     # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
 ) -> None:
+    """
+
+    :param prop_cycler:
+    """
     # from matplotlib.pyplot import axes, grid
 
     # from matplotlib import lines, markers
@@ -226,6 +230,7 @@ def use_monochrome_style(
 if __name__ == "__main__":
 
     def asiuhda():
+        """ """
         use_monochrome_style()
         bar_styles = monochrome_hatch_cycler()
         fig, ax = pyplot.subplots(1, 1)
@@ -240,6 +245,7 @@ if __name__ == "__main__":
         pyplot.show()
 
     def asiuh214da():
+        """ """
         pyplot.style.use(Path(__file__).parent / "styles" / "monochrome.mplstyle")
         line_styles = monochrome_line_cycler()
         fig, ax = pyplot.subplots(1, 1)
@@ -254,6 +260,7 @@ if __name__ == "__main__":
         pyplot.show()
 
     def asiuasdashda():
+        """ """
         use_monochrome_style(prop_cycler=monochrome_hatch_cycler)
 
         fig, ax = pyplot.subplots(1, 1)
@@ -269,7 +276,7 @@ if __name__ == "__main__":
         pyplot.show()
 
     def asiuhdsada_non():
-
+        """ """
         fig, ax = pyplot.subplots(1, 1)
         for x in range(3):
             ax.plot(numpy.random.rand(10), label=f"{x}")
@@ -278,6 +285,7 @@ if __name__ == "__main__":
         pyplot.show()
 
     def asiuhd21412sada():
+        """ """
         use_monochrome_style()
         fig, ax = pyplot.subplots(1, 1)
 

@@ -20,6 +20,14 @@ def latest_file(
     recurse: bool = False,
     raise_on_failure: bool = True,
 ):
+    """
+
+    :param directory:
+    :param extension:
+    :param recurse:
+    :param raise_on_failure:
+    :return:
+    """
     a = f"*{extension}"
     if recurse:
         path_gen = directory.rglob(a)

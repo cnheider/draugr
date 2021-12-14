@@ -15,6 +15,8 @@ from warg import drop_unused_kws
 
 
 class Drawer(object):
+    """ """
+
     @drop_unused_kws
     def __init__(self, verbose: bool = False):
         self._verbose = verbose

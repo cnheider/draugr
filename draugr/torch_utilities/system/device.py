@@ -11,6 +11,8 @@ __doc__ = r"""
            Created on 15/11/2019
            """
 
+from sorcery import assigned_names
+
 GLOBAL_DEVICE: torch.device = None
 
 __all__ = [
@@ -25,9 +27,7 @@ __all__ = [
 
 
 class TorchDeviceEnum(Enum):
-    cpu = "cpu"
-    cuda = "cuda"
-    vulkan = "vulkan"
+    (cpu, cuda, vulkan) = assigned_names()
 
 
 def global_torch_device(

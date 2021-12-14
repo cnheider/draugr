@@ -15,7 +15,9 @@ __all__ = ["get_backend_module"]
 from types import ModuleType
 
 
-def get_backend_module(project_name: str, backend_name: str) -> ModuleType:
+def get_backend_module(
+    project_name: str, backend_name: str = sys.platform
+) -> ModuleType:
     """Returns the backend module."""
     import importlib
 
@@ -39,3 +41,7 @@ def get_backend_module(project_name: str, backend_name: str) -> ModuleType:
     raise ImportError(
         f'{sys.platform} platform is not supported: {"; ".join(str(e) for e in errors)}'
     )
+
+
+if __name__ == "__main__":
+    print(get_backend_module("draugr"))

@@ -12,6 +12,11 @@ from draugr.os_utilities.resource_utilities.ram import num_instance_no_paging
 
 
 def get_num_instances(expected_size: int = 1024) -> int:
+    """
+
+    :param expected_size:
+    :return:
+    """
     return min(worker_cores_available(), num_instance_no_paging(expected_size))
 
 

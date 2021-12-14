@@ -211,6 +211,10 @@ def extract_tensors_as_csv(
 
 
 def extract_metrics(only_extract_latest=False):
+    """
+
+    :param only_extract_latest:
+    """
     extract_scalars_as_csv(only_extract_from_latest_event_file=only_extract_latest)
     extract_tensors_as_csv(only_extract_from_latest_event_file=only_extract_latest)
 

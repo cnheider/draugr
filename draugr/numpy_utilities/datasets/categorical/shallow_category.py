@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Dict, Sequence, Iterable, Union
 
 from draugr.numpy_utilities.datasets.splitting import (
-    Split,
+    SplitEnum,
     train_valid_test_split,
 )
 from draugr.numpy_utilities.datasets.defaults import DEFAULT_ACCEPTED_FILE_FORMATS
@@ -27,7 +27,7 @@ def build_shallow_categorical_dataset(
     extensions: Iterable = DEFAULT_ACCEPTED_FILE_FORMATS,
     is_valid_file: callable = None,
     verbose: bool = False,
-) -> Dict[str, Dict[Split, Sequence]]:
+) -> Dict[str, Dict[SplitEnum, Sequence]]:
     """
     Returns:
     An OrderedDict containing an entry for each label subfolder, with images
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     def asd():
         """ """
         from draugr.visualisation import indent_lines
-        from draugr.numpy_utilities.datasets.splitting import Split
+        from draugr.numpy_utilities.datasets.splitting import SplitEnum
 
         a = build_shallow_categorical_dataset(
             Path.home() / "Data" / "mnist_png" / "training", testing_percentage=0
@@ -88,13 +88,13 @@ if __name__ == "__main__":
 
         for k in a.keys():
             total = (
-                len(a[k][Split.Training])
-                + len(a[k][Split.Validation])
-                + len(a[k][Split.Testing])
+                len(a[k][SplitEnum.training])
+                + len(a[k][SplitEnum.validation])
+                + len(a[k][SplitEnum.testing])
             )
             print(f"\n{k}:")
-            print(indent_lines(len(a[k][Split.Training]) / total))
-            print(indent_lines(len(a[k][Split.Validation]) / total))
-            print(indent_lines(len(a[k][Split.Testing]) / total))
+            print(indent_lines(len(a[k][SplitEnum.training]) / total))
+            print(indent_lines(len(a[k][SplitEnum.validation]) / total))
+            print(indent_lines(len(a[k][SplitEnum.testing]) / total))
 
     asd()

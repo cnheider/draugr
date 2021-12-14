@@ -27,6 +27,10 @@ from matplotlib.axes import Axes
 
 
 def despine_all(ax: Axes = None) -> None:
+    """
+
+    :param ax:
+    """
     if ax is None:
         ax = pyplot.gca()
 
@@ -36,6 +40,10 @@ def despine_all(ax: Axes = None) -> None:
 
 
 def set_y_log_scale(ax: Axes = None) -> None:
+    """
+
+    :param ax:
+    """
     if ax is None:
         ax = pyplot.gca()
 
@@ -68,13 +76,14 @@ def exponential_moving_average(
 
 
 class VisualisationErrorStyle(Enum):
-    Band = "band"
-    Bar = "bars"
+    band = "band"
+    bar = "bars"
 
 
 if __name__ == "__main__":
 
     def stest_box_plot_props():
+        """ """
         props = {
             "boxprops": {"facecolor": "none", "edgecolor": "red"},
             "medianprops": {"color": "green"},
@@ -87,10 +96,12 @@ if __name__ == "__main__":
         )
 
     def stest_ema():
+        """ """
         e = range(100)
         print(len(exponential_moving_average(e)))
 
     def stest_ema2():
+        """ """
         e = numpy.random.random(1000)
         end = exponential_moving_average(e, 1 - 0.6)[-1]
         assert numpy.isclose(end, 0.5, 0.1, 0.1), end  # Not guaranteed, may fail

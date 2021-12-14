@@ -122,6 +122,8 @@ class MonoChromeStyleSession(StyleSession):
 
 
 class NoOutlineSession(AlsoDecorator):
+    """ """
+
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()
 
@@ -140,6 +142,8 @@ class NoOutlineSession(AlsoDecorator):
 
 
 class OutlineSession(AlsoDecorator):
+    """ """
+
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()
 
@@ -167,7 +171,7 @@ if __name__ == "__main__":
                 ax1.set_ylabel("test")
 
     def asiuhdsada():
-
+        """ """
         with MonoChromeStyleSession():
             fig, ax = pyplot.subplots(1, 1)
             for x in range(3):
@@ -181,6 +185,7 @@ if __name__ == "__main__":
         pyplot.show()
 
     def no_border_boxplot():
+        """ """
         with NoOutlineSession():
             import numpy
 
@@ -189,6 +194,7 @@ if __name__ == "__main__":
         pyplot.show()
 
     def border_boxplot():
+        """ """
         with OutlineSession():
             import numpy
 

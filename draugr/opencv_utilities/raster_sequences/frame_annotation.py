@@ -28,6 +28,16 @@ def blit_numbering_raster_sequence(
     font_scale: Number = 1,
     font: int = cv2.FONT_HERSHEY_COMPLEX,
 ) -> numpy.ndarray:
+    """
+
+    :param seq:
+    :param placement:
+    :param color:
+    :param thickness:
+    :param font_scale:
+    :param font:
+    :return:
+    """
     result = numpy.empty_like(seq)
     n = len(seq)
     for i in range(n):
@@ -52,6 +62,18 @@ def blit_fps(
     font_scale: Number = 1,
     font: int = cv2.FONT_HERSHEY_COMPLEX,
 ) -> numpy.ndarray:
+    """
+
+    :param seq:
+    :param fps:
+    :param placement:
+    :param format_str:
+    :param color:
+    :param thickness:
+    :param font_scale:
+    :param font:
+    :return:
+    """
     result = numpy.empty_like(seq)
     n = len(seq)
     if placement[0] < 0:
@@ -75,6 +97,7 @@ def blit_fps(
 if __name__ == "__main__":
 
     def asd7ad():
+        """ """
         from pathlib import Path
         from apppath import ensure_existence
         from matplotlib import pyplot
@@ -87,6 +110,7 @@ if __name__ == "__main__":
         base = ensure_existence(Path("exclude"))
 
         def gen():
+            """ """
             for i, t in enumerate(numpy.linspace(0, numpy.pi, n_frames)):
                 pyplot.plot(x, numpy.cos(x + t))
                 pyplot.plot(x, numpy.sin(2 * x - t))
@@ -96,12 +120,14 @@ if __name__ == "__main__":
                 pyplot.clf()
 
         def asijsd():
+            """ """
             files = [base / f"frame{yu}.png" for yu in range(n_frames)]
             frames = [imageio.imread(f) for f in files]
             frames = blit_numbering_raster_sequence(frames)
             imageio.mimsave(base / "output.gif", frames, fps=(n_frames / 2.0))
 
         def sadasf():
+            """ """
             files = [base / f"frame{yu}.png" for yu in range(n_frames)]
             a = [imageio.imread(f) for f in files]
             frames = numpy.array([a, a])  # copy of itself, just for test

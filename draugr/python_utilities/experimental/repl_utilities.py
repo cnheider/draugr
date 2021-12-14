@@ -70,12 +70,18 @@ class TurtleShell(cmd.Cmd):
             self.cmdqueue.extend(f.read().splitlines())
 
     def precmd(self, line):
+        """
+
+        :param line:
+        :return:
+        """
         line = line.lower()
         if self.file and "playback" not in line:
             print(line, file=self.file)
         return line
 
     def close(self):
+        """ """
         if self.file:
             self.file.close()
             self.file = None

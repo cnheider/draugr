@@ -7,7 +7,11 @@ __doc__ = r"""
            Created on 12-05-2021
            """
 
-__all__ = ["min_interval_wrapper", "min_interval_wrapper_global"]
+__all__ = ["min_interval_wrapper", "min_interval_wrapper_global", "wrap_args"]
+
+from collections import namedtuple
+from typing import MutableMapping, Tuple
+import wrapt
 
 
 def min_interval_wrapper(f: callable, min_interval: int = 100) -> callable:
@@ -18,7 +22,17 @@ def min_interval_wrapper(f: callable, min_interval: int = 100) -> callable:
     :return:
     """
 
-    def s(last_exec, *, step_i, verbose: bool = False, **kwargs) -> int:
+    def s(
+        last_exec: int, *, step_i: int, verbose: bool = False, **kwargs: MutableMapping
+    ) -> int:
+        """
+
+        :param last_exec:
+        :param step_i:
+        :param verbose:
+        :param kwargs:
+        :return:
+        """
         if verbose:
             print(f"{f, last_exec, step_i, min_interval}")
         if step_i - last_exec >= min_interval:
@@ -42,7 +56,13 @@ def min_interval_wrapper_global(f: callable, min_interval: int = 100) -> callabl
 
     _GLOBAL_COUNTERS[f] = 0
 
-    def s(*, step_i, verbose: bool = False, **kwargs) -> None:
+    def s(*, step_i: int, verbose: bool = False, **kwargs: MutableMapping) -> None:
+        """
+
+        :param step_i:
+        :param verbose:
+        :param kwargs:
+        """
         if verbose:
             print(f"{f, _GLOBAL_COUNTERS[f], step_i, min_interval}")
         if step_i - _GLOBAL_COUNTERS[f] >= min_interval:
@@ -52,18 +72,103 @@ def min_interval_wrapper_global(f: callable, min_interval: int = 100) -> callabl
     return s
 
 
+def wrap_args(n_tuple: namedtuple):
+    """
+
+    :param n_tuple:
+    :type n_tuple:
+    :return:
+    :rtype:"""
+
+    @wrapt.decorator(adapter=n_tuple)
+    def wrapper(wrapped, instance, args, kwargs):
+        """
+
+        :param wrapped:
+        :type wrapped:
+        :param instance:
+        :type instance:
+        :param args:
+        :type args:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:"""
+        if isinstance(args[0], n_tuple):
+            n = args[0]
+        else:
+            n = n_tuple(*args, **kwargs)
+        return wrapped(n)
+
+    return wrapper
+
+
+def str_to_bool(s: str, preds: Tuple[str, ...] = ("true", "1")) -> bool:
+    """
+
+
+    :param preds:
+    :param s:
+    :return:"""
+    return s.lower() in preds
+
+
+str2bool = str_to_bool
+
 if __name__ == "__main__":
 
+    c = namedtuple("C", ("a", "b"))
+
+    @wrap_args(c)
+    def add(v):
+        """
+
+        :param v:
+        :type v:
+        :return:
+        :rtype:"""
+        return v.a + v.b
+
+    def add2(a, b):
+        """
+
+        :param a:
+        :type a:
+        :param b:
+        :type b:
+        :return:
+        :rtype:"""
+        return a + b
+
+    h = add(2, 2)
+    print(h)
+
+    j = add(c(1, 4))
+    print(j)
+
+    wq = add2(2, 4)
+    print(wq)
+
+    wc = add2(*c(4, 3))
+    print(wc)
+
     def a(step_i, **kwargs):
+        """
+
+        :param step_i:
+        :param kwargs:
+        """
         print(step_i)
 
     def uhsud():
+        """ """
         b = min_interval_wrapper(a)
         c = 0
         for i in range(1000 + 1):
             c = b(c, step_i=i)
 
     def uhsud23():
+        """ """
         from random import random
 
         b = min_interval_wrapper_global(a)
@@ -73,6 +178,7 @@ if __name__ == "__main__":
                 b(step_i=i)
 
     def uhsud123():
+        """ """
         from random import random
 
         b = min_interval_wrapper_global(a, 0)

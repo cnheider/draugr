@@ -110,6 +110,7 @@ self.fig = pyplot.figure(figsize=figure_size)
         return self
 
     def close(self):
+        """ """
         if self._verbose:
             print("mlpdrawer close was called")
         if self.fig:

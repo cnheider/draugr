@@ -15,23 +15,19 @@ from matplotlib import patheffects, pyplot
 
 __all__ = ["plot_median_labels", "show_values_on_bars"]
 
+from sorcery import assigned_names
+
 from draugr.visualisation.matplotlib_utilities.styles.annotation import (
     semi_opaque_round_tight_bbox,
 )
 
 
 class MatplotlibHorizontalAlignment(Enum):
-    Center = "center"
-    Right = "right"
-    Left = "left"
+    (center, right, left) = assigned_names()
 
 
 class MatplotlibVerticalAlignment(Enum):
-    Center = "center"
-    Top = "top"
-    Bottom = "bottom"
-    Baseline = "baseline"
-    CenterBaseline = "center_baseline"
+    (center, top, bottom, baseline, center_baseline) = assigned_names()
 
 
 def plot_median_labels(

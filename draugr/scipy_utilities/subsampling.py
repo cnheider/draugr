@@ -93,6 +93,7 @@ def mag_decimation_subsample(
 
 
 def grad_decimation_subsample():
+    """ """
     # Gradient based windowed subsampling
     raise NotImplemented()
 

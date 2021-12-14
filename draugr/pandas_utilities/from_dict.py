@@ -17,6 +17,11 @@ __all__ = [
 
 
 def nested_dict_to_two_level_column_df(df):  # TODO: MAKE ANY LEVEL!
+    """
+
+    :param df:
+    :return:
+    """
     cols, data = [], []
     index = None
     for k, v in df.items():
@@ -36,6 +41,11 @@ def nested_dict_to_two_level_column_df(df):  # TODO: MAKE ANY LEVEL!
 
 
 def nested_dict_to_three_level_column_df(df):  # TODO: MAKE ANY LEVEL!
+    """
+
+    :param df:
+    :return:
+    """
     cols, data = [], []
     index = None
     for k, v in df.items():
@@ -52,6 +62,11 @@ def nested_dict_to_three_level_column_df(df):  # TODO: MAKE ANY LEVEL!
 
 
 def nested_dict_to_four_level_column_df(df):  # TODO: MAKE ANY LEVEL!
+    """
+
+    :param df:
+    :return:
+    """
     cols, data = [], []
     index = None
     for k, v in df.items():

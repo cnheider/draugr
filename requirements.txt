@@ -1,6 +1,7 @@
 apppath
 warg
-numpy>=1.20.2
+numpy #>=1.20.2
 psutil
 six
+wrapt
 # minimal installation

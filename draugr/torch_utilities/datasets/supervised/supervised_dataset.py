@@ -15,7 +15,7 @@ from torch.utils.data import Dataset
 __all__ = ["SupervisedDataset"]
 
 from draugr.numpy_utilities.datasets.splitting import (
-    Split,
+    SplitEnum,
     SplitIndexer,
 )
 from warg import drop_unused_kws
@@ -30,7 +30,7 @@ class SupervisedDataset(Dataset):
         pass
 
     @property
-    def split_names(self) -> Dict[Split, str]:
+    def split_names(self) -> Dict[SplitEnum, str]:
         """
 
         :return:

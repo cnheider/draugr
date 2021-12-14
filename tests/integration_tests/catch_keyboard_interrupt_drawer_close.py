@@ -19,11 +19,13 @@ if __name__ == "__main__":
     stopped = False
 
     def stop():
+        """ """
         global stopped
         stopped = True
 
     @pytest.mark.skip
     def asidhsa():
+        """ """
         with DiscreteScrollPlot(num_bins=2) as rollout_drawer:
             with IgnoreInterruptSignal():
                 with CaptureEarlyStop(stop, verbose=True):

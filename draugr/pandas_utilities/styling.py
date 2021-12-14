@@ -27,15 +27,33 @@ __all__ = [
 
 
 class ColorEnum(Enum):
-    yellow, red, green = assigned_names()
+    """ """
+
+    (
+        purple,
+        cyan,
+        yellow,
+        red,
+        green,
+        blue,
+        magenta,
+        pink,
+        orange,
+        black,
+        white,
+    ) = assigned_names()
 
 
 class NDFrameExtremeEnum(Enum):
+    """ """
+
     min = NDFrame.min
     max = NDFrame.max
 
 
 class AttrEnum(Enum):
+    """ """
+
     color = "color: {}"
     bg = "background-color: {}"
 
