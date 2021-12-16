@@ -99,7 +99,7 @@ def install_service(
 ) -> None:
     """
     Args:
-        :param get_sudo:
+        :param restart:
         :param service_entry_point_path:
         :param service_name:
         :param description:

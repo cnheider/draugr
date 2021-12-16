@@ -48,7 +48,19 @@ __all__ = [
 def correlation_matrix_plot(
     cor: Sequence, labels: Sequence = None, title: str = "", **kwargs
 ) -> Figure:
-    """ """
+    """
+
+    :param cor:
+    :type cor:
+    :param labels:
+    :type labels:
+    :param title:
+    :type title:
+    :param kwargs:
+    :type kwargs:
+    :return:
+    :rtype:
+    """
     if labels is None:
         labels = [f"P{i}" for i in range(len(cor))]
 

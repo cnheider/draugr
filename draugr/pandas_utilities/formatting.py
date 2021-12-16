@@ -22,6 +22,8 @@ def pandas_mean_std_bold_formatter(entry, value, *, precision: int = 3):
 
     Returns:
         String converted output.
+        :param entry:
+        :param value:
         :param precision:
 
     """
@@ -49,6 +51,8 @@ def pandas_mean_std_color_formatter(
 
     Returns:
         String converted output.
+        :param entry:
+        :param value:
         :param color:
         :param precision:
 

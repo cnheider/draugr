@@ -20,6 +20,10 @@ def recursive_flatten_numpy(nested: Sequence) -> numpy.ndarray:
 
 
 class MyNdArray(numpy.ndarray):
+    """
+    Small extension
+    """
+
     @property
     def conjugate_transpose(self):
         """

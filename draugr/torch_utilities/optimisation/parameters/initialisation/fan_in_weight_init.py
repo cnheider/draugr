@@ -54,11 +54,11 @@ def constant_init(model: Module, constant: float = 1):
 def normal_init(model: Module, mean: float = 0, std: float = 1.0):
     """
 
-      :param mean:
-      :param std:
     :param model:
-    :type model:
-    :type constant:"""
+    :param mean:
+    :param std:
+    :return:
+    """
     for m in model.modules():
         if isinstance(m, (Conv2d, Linear)):
             torch.nn.init.normal_(m.weight, mean, std)

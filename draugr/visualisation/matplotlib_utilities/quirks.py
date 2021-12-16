@@ -74,9 +74,9 @@ def scatter_auto_mark(x, y, c, ax=None, m=("|", "_"), fillstyle="none", **kw):
     :param c:
     :param ax:
     :param m:
+    :param fillstyle:
     :param kw:
     :return:
-    @param fillstyle:
     """
     import matplotlib.markers as mmarkers
 
