@@ -13,6 +13,8 @@ __doc__ = r"""
            """
 __all__ = ["torch_seed"]
 
+from torch import Tensor
+
 
 def torch_seed(s: int = 72163) -> torch.Generator:
     """
@@ -101,17 +103,23 @@ class Seed:
 if __name__ == "__main__":
 
     @Seed(1)  # Seed only within function
-    def foo():
-        """ """
+    def foo() -> Tensor:
+        """
+        :rtype: None
+        """
         return torch.randint(5, (2, 2))
 
-    def bar():
-        """ """
+    def bar() -> Tensor:
+        """
+        :rtype: None
+        """
         with Seed(1):
             return torch.randint(5, (2, 2))
 
-    def buzz():
-        """ """
+    def buzz() -> Tensor:
+        """
+        :rtype: None
+        """
         Seed(1)
         return torch.randint(5, (2, 2))
 

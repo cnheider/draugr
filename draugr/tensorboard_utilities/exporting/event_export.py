@@ -430,8 +430,10 @@ class TensorboardEventExporter:
 
 if __name__ == "__main__":
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         _path_to_events_file = next(
             AppPath("Draugr", "Christian Heider Nielsen").user_log.rglob(
                 "events.out.tfevents.*"

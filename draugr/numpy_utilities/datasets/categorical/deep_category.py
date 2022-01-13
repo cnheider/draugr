@@ -74,8 +74,10 @@ def build_deep_categorical_dataset(
 
 if __name__ == "__main__":
 
-    def aiusdj():
-        """ """
+    def aiusdj() -> None:
+        """
+        :rtype: None
+        """
         from draugr.visualisation import indent_lines
         from draugr.numpy_utilities.datasets.splitting import SplitEnum
 

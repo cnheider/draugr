@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 04-01-2021
            """
 
-import os
 import sys
 
 __all__ = ["get_backend_module"]

@@ -13,21 +13,20 @@ from typing import Tuple
 import numpy
 from matplotlib import patheffects, pyplot
 
-__all__ = ["plot_median_labels", "show_values_on_bars"]
-
-from sorcery import assigned_names
+__all__ = [
+    "plot_median_labels",
+    "show_values_on_bars",
+    "VisualisationErrorStyle",
+]
 
 from draugr.visualisation.matplotlib_utilities.styles.annotation import (
     semi_opaque_round_tight_bbox,
 )
 
 
-class MatplotlibHorizontalAlignment(Enum):
-    (center, right, left) = assigned_names()
-
-
-class MatplotlibVerticalAlignment(Enum):
-    (center, top, bottom, baseline, center_baseline) = assigned_names()
+class VisualisationErrorStyle(Enum):
+    band = "band"
+    bar = "bars"
 
 
 def plot_median_labels(

@@ -61,8 +61,10 @@ if __name__ == "__main__":
             return gather
         return node
 
-    def aasda():
-        """ """
+    def aasda() -> None:
+        """
+        :rtype: None
+        """
         r = range(4)
 
         print(0)
@@ -84,8 +86,10 @@ if __name__ == "__main__":
 
         print(2)
 
-    def skad23():
-        """ """
+    def skad23() -> None:
+        """
+        :rtype: None
+        """
         print(0)
         zippy_once = zip(range(6), range(3))
         dsadsa = list(deepcopy(zippy_once))
@@ -122,8 +126,10 @@ if __name__ == "__main__":
 
         print(6)
 
-    def skad():
-        """ """
+    def skad() -> None:
+        """
+        :rtype: None
+        """
         print(0)
         zippy_once = zip(zip(range(6), range(3)))
         zippy_once_copy = deepcopy(zippy_once)

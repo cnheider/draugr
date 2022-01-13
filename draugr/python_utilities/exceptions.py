@@ -49,8 +49,10 @@ class IncompatiblePackageVersions(Exception):
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         raise IncompatiblePackageVersions(
             "numpy",
             "scipy",
@@ -60,8 +62,10 @@ if __name__ == "__main__":
             some_other_packge="0.5.0",
         )
 
-    def main2():
-        """ """
+    def main2() -> None:
+        """
+        :rtype: None
+        """
         import numpy
         import scipy
 

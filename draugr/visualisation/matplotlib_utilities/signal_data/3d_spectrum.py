@@ -88,8 +88,10 @@ def spectrum_plot3d(
 
 if __name__ == "__main__":
 
-    def asdijaisd():
-        """ """
+    def asdijaisd() -> None:
+        """
+        :rtype: None
+        """
         sr = 1000
         t = numpy.arange(sr * 4) / sr
         # noise = numpy.random.rand(sr * 2) * 0.001
@@ -99,8 +101,10 @@ if __name__ == "__main__":
         spectrum_plot3d(signal, sr)
         pyplot.show()
 
-    def aisjd():
-        """ """
+    def aisjd() -> None:
+        """
+        :rtype: None
+        """
         fig = pyplot.figure()
         ax = axes3d.Axes3D(fig)
 

@@ -46,8 +46,10 @@ class GtkThemePreferences(GtkSettings):
 
 if __name__ == "__main__":
 
-    def asdad():
-        """ """
+    def asdad() -> None:
+        """
+        :rtype: None
+        """
         a = GtkThemePreferences()
 
         print(a.prefer_dark_mode)
@@ -56,8 +58,10 @@ if __name__ == "__main__":
         a.prefer_dark_mode = not a.prefer_dark_mode
         print(a.prefer_dark_mode)
 
-    def asdad2312():
-        """ """
+    def asdad2312() -> None:
+        """
+        :rtype: None
+        """
         with GtkThemePreferences() as a:
             print(a.prefer_dark_mode)
 
@@ -69,8 +73,10 @@ if __name__ == "__main__":
         with GtkThemePreferences() as a:
             print(a.prefer_dark_mode)
 
-    def asda213sad2312d():
-        """ """
+    def asda213sad2312d() -> None:
+        """
+        :rtype: None
+        """
         a = GtkThemePreferences()
 
         print(a.prefer_dark_mode)

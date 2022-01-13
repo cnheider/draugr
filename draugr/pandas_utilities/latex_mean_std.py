@@ -312,8 +312,10 @@ def pandas_mean_std_latex_table8(df: pandas.DataFrame,
 
 if __name__ == "__main__":
 
-    def asuhda():
-        """ """
+    def asuhda() -> None:
+        """
+        :rtype: None
+        """
         isjda = "dx_sijdai_iahjdaw-_sdioja_sakodwada_soakd_aoskdiojwd_s"
         df = pandas.DataFrame(
             numpy.random.randint(0, 100, size=(15, 3)),

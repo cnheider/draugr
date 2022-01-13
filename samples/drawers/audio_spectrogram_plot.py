@@ -17,8 +17,10 @@ from draugr.drawers import FastFourierTransformPlot, FastFourierTransformSpectro
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         sampling_rate, audio = wavfile.read(
             str(Path.home() / "Data" / "Audio" / "Nightingale-sound.wav")
         )

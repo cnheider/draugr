@@ -134,8 +134,10 @@ def deinterleaved_channel_plot_file(wav_file):
 
 if __name__ == "__main__":
 
-    def iushjaqdfu():
-        """ """
+    def iushjaqdfu() -> None:
+        """
+        :rtype: None
+        """
         sr = 1000
         max_res = sr * 4
         t = numpy.arange(sr * 4) / sr
@@ -150,8 +152,10 @@ if __name__ == "__main__":
         )
         pyplot.show()
 
-    def decimate_stest():
-        """ """
+    def decimate_stest() -> None:
+        """
+        :rtype: None
+        """
         sr = 1000
         max_res = sr * 4
         t = numpy.arange(sr * 4) / sr
@@ -164,8 +168,10 @@ if __name__ == "__main__":
         print(sub_signal[:10])
         assert numpy.equal(signal, sub_signal).all()
 
-    def iushjaqsfaddfu():
-        """ """
+    def iushjaqsfaddfu() -> None:
+        """
+        :rtype: None
+        """
         sr = 1000
         max_res = sr * 4
         t = numpy.arange(sr * 4) / sr

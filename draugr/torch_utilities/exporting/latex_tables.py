@@ -20,16 +20,20 @@ rows = [
 ]
 
 
-def asijd():
-    """ """
+def asijd() -> None:
+    """
+    :rtype: None
+    """
     from tabulate import tabulate
 
     print("\nTabulate Latex:")
     print(tabulate(rows, headers="firstrow", tablefmt="latex"))
 
 
-def adasdassijd():
-    """ """
+def adasdassijd() -> None:
+    """
+    :rtype: None
+    """
     from texttable import Texttable
 
     table = Texttable()
@@ -44,8 +48,10 @@ def adasdassijd():
     print(latextable.draw_latex(table, caption="A comparison of rocket features."))
 
 
-def iasjduh():
-    """ """
+def iasjduh() -> None:
+    """
+    :rtype: None
+    """
     from texttable import Texttable
 
     table = Texttable()

@@ -80,8 +80,10 @@ def annotate_lines(
 
 if __name__ == "__main__":
 
-    def hsdh():
-        """ """
+    def hsdh() -> None:
+        """
+        :rtype: None
+        """
         from matplotlib import pyplot
 
         a = [*range(0, 10), *range(10, -10, -1), *range(-10, 0)]

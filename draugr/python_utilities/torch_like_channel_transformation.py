@@ -88,8 +88,10 @@ def reverse_torch_vision_normalize_batch_nchw(inp: StrictNumbers) -> StrictNumbe
 if __name__ == "__main__":
     import numpy
 
-    def asda():
-        """ """
+    def asda() -> None:
+        """
+        :rtype: None
+        """
         a = numpy.ones((1, 4, 4, 4))
         b = numpy.ones((1, 4, 4, 3))
         c = numpy.ones((4, 4, 3))
@@ -111,8 +113,10 @@ if __name__ == "__main__":
         except:
             pass
 
-    def asbsdfdsa():
-        """ """
+    def asbsdfdsa() -> None:
+        """
+        :rtype: None
+        """
         a = numpy.ones((1, 3, 4, 4))
         ba = torch_vision_normalize_batch_nchw(a)
         print(ba)

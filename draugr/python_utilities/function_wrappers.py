@@ -11,6 +11,7 @@ __all__ = ["min_interval_wrapper", "min_interval_wrapper_global", "wrap_args"]
 
 from collections import namedtuple
 from typing import MutableMapping, Tuple
+
 import wrapt
 
 
@@ -160,15 +161,19 @@ if __name__ == "__main__":
         """
         print(step_i)
 
-    def uhsud():
-        """ """
+    def uhsud() -> None:
+        """
+        :rtype: None
+        """
         b = min_interval_wrapper(a)
         c = 0
         for i in range(1000 + 1):
             c = b(c, step_i=i)
 
-    def uhsud23():
-        """ """
+    def uhsud23() -> None:
+        """
+        :rtype: None
+        """
         from random import random
 
         b = min_interval_wrapper_global(a)
@@ -177,8 +182,10 @@ if __name__ == "__main__":
             if random() > 0.8:
                 b(step_i=i)
 
-    def uhsud123():
-        """ """
+    def uhsud123() -> None:
+        """
+        :rtype: None
+        """
         from random import random
 
         b = min_interval_wrapper_global(a, 0)

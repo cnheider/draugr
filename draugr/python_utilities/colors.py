@@ -80,8 +80,10 @@ def color_to_str(t: COLOR_INT, seperator: str = " ") -> str:
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         a = RGB(1, 50, 100)
         b = color_to_str(a)
         c = color_from_str(b)

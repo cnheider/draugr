@@ -46,8 +46,10 @@ def symbol_filter(
 
 if __name__ == "__main__":
 
-    def asijsda():
-        """ """
+    def asijsda() -> None:
+        """
+        :rtype: None
+        """
         strings = [
             " # aasd # sad ",
             " faojasasd # oiwaos ",

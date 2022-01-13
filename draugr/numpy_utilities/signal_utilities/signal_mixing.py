@@ -49,8 +49,10 @@ def mix_ratio(
 
 if __name__ == "__main__":
 
-    def asad():
-        """ """
+    def asad() -> None:
+        """
+        :rtype: None
+        """
         from neodroidaudition.data.recognition.libri_speech import LibriSpeech
         from neodroidaudition.noise_generation.gaussian_noise import white_noise
 
@@ -65,8 +67,10 @@ if __name__ == "__main__":
         mixed = mix_ratio(files[0], white_noise(files[0].shape[-1]))
         print(mixed)
 
-    def asadsa():
-        """ """
+    def asadsa() -> None:
+        """
+        :rtype: None
+        """
         from draugr.torch_utilities import to_tensor
         from neodroidaudition.data.recognition.libri_speech import LibriSpeech
         from neodroidaudition.noise_generation.gaussian_noise import white_noise
@@ -100,8 +104,10 @@ if __name__ == "__main__":
                 int(sr[0]),
             )
 
-    def asadsa2():
-        """ """
+    def asadsa2() -> None:
+        """
+        :rtype: None
+        """
         from draugr.torch_utilities import to_tensor
         from neodroidaudition.data.recognition.libri_speech import LibriSpeech
         from neodroidaudition.noise_generation.gaussian_noise import white_noise

@@ -478,8 +478,10 @@ def confusion_matrix_plot(
 
 if __name__ == "__main__":
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         from sklearn import datasets
 
         iris = datasets.load_iris()

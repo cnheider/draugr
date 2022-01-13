@@ -240,8 +240,10 @@ def discrete_scroll_plot(
 
 if __name__ == "__main__":
 
-    def siajdisajd():
-        """ """
+    def siajdisajd() -> None:
+        """
+        :rtype: None
+        """
         import queue
         import threading
 

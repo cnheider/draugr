@@ -63,8 +63,10 @@ class GtkSettings(metaclass=SingletonMeta):
 
 if __name__ == "__main__":
 
-    def abvdfj():
-        """ """
+    def abvdfj() -> None:
+        """
+        :rtype: None
+        """
         a = GtkSettings()
 
         def ofgof():

@@ -96,8 +96,10 @@ def blit_fps(
 
 if __name__ == "__main__":
 
-    def asd7ad():
-        """ """
+    def asd7ad() -> None:
+        """
+        :rtype: None
+        """
         from pathlib import Path
         from apppath import ensure_existence
         from matplotlib import pyplot

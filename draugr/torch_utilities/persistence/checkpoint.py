@@ -73,14 +73,18 @@ def load_checkpoint(PATH: Path, model, optimizer):
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         pass
         # model = TheModelClass(args, **kwargs)
         # optimizer = TheOptimizerClass(args, **kwargs)
 
-    def multi():
-        """ """
+    def multi() -> None:
+        """
+        :rtype: None
+        """
         pass
 
     # checkpoint = torch.load(PATH)

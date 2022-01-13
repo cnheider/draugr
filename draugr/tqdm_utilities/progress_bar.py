@@ -11,8 +11,8 @@ from itertools import tee
 from typing import Any, Generator, Iterable
 
 import tqdm
-from notus.notification import JobNotificationSession
 
+from notus.notification import JobNotificationSession
 from warg import drop_unused_kws, passes_kws_to
 
 __all__ = ["progress_bar"]
@@ -74,15 +74,19 @@ def progress_bar(
 
 if __name__ == "__main__":
 
-    def dsad3123():
-        """ """
+    def dsad3123() -> None:
+        """
+        :rtype: None
+        """
         from time import sleep
 
         for a in progress_bar([2.13, 8921.9123, 923], notifications=False):
             sleep(1)
 
-    def asd21sa():
-        """ """
+    def asd21sa() -> None:
+        """
+        :rtype: None
+        """
         from time import sleep
 
         pb = progress_bar  # Aliased!
@@ -90,8 +94,10 @@ if __name__ == "__main__":
         for a in pb([2.13, 8921.9123, 923], notifications=False):
             sleep(1)
 
-    def dict_items():
-        """ """
+    def dict_items() -> None:
+        """
+        :rtype: None
+        """
         from time import sleep
 
         class exp_v:
@@ -100,8 +106,10 @@ if __name__ == "__main__":
         for a in progress_bar(exp_v.Test_Sets.items()):
             sleep(1)
 
-    def send_example():
-        """ """
+    def send_example() -> None:
+        """
+        :rtype: None
+        """
         from itertools import count
 
         pb = progress_bar(count())

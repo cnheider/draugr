@@ -35,8 +35,10 @@ if __name__ == "__main__":
         2 * numpy.pi * 120 * time_
     )
 
-    def module_param_histograms():
-        """ """
+    def module_param_histograms() -> None:
+        """
+        :rtype: None
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -66,23 +68,29 @@ if __name__ == "__main__":
                 fan_in_init(model)
                 weight_bias_histograms(writer, model, step=i, prefix="fan_in")
 
-    def signal_plot():
-        """ """
+    def signal_plot() -> None:
+        """
+        :rtype: None
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
             writer.line("Signal", SIGNAL, step=0)
 
-    def fft_plot():
-        """ """
+    def fft_plot() -> None:
+        """
+        :rtype: None
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
             spectral = numpy.fft.fft(SIGNAL, NFFT)
             writer.line("FFT", spectral, title="Frequency", step=0)
 
-    def spectral_plot():
-        """ """
+    def spectral_plot() -> None:
+        """
+        :rtype: None
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -90,8 +98,10 @@ if __name__ == "__main__":
                 "STFT", SIGNAL, int(1 / DELTA), step=0, n_fft=NFFT, step_size=STEP_SIZE
             )
 
-    def spectral_plot_scipy():
-        """ """
+    def spectral_plot_scipy() -> None:
+        """
+        :rtype: None
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -104,8 +114,10 @@ if __name__ == "__main__":
                 step_size=STEP_SIZE,
             )
 
-    def cepstral_plot():
-        """ """
+    def cepstral_plot() -> None:
+        """
+        :rtype: None
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:
@@ -115,8 +127,10 @@ if __name__ == "__main__":
             pyplot.colorbar()
             writer.figure("STFT_Rosa", fig, step=0)
 
-    def mel_cepstral_plot():
-        """ """
+    def mel_cepstral_plot() -> None:
+        """
+        :rtype: None
+        """
         with TensorBoardPytorchWriter(
             PROJECT_APP_PATH.user_log / "Tests" / "Writers"
         ) as writer:

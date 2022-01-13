@@ -46,8 +46,10 @@ def weight_bias_histograms(
 
 if __name__ == "__main__":
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         from draugr.torch_utilities import TensorBoardPytorchWriter
 
         with TensorBoardPytorchWriter(
@@ -64,8 +66,10 @@ if __name__ == "__main__":
             )
             weight_bias_histograms(writer, model)
 
-    def baa():
-        """ """
+    def baa() -> None:
+        """
+        :rtype: None
+        """
         from draugr.torch_utilities import TensorBoardPytorchWriter
 
         with TensorBoardPytorchWriter(

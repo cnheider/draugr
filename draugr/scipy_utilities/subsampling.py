@@ -92,8 +92,10 @@ def mag_decimation_subsample(
     return signal[s_mag]
 
 
-def grad_decimation_subsample():
-    """ """
+def grad_decimation_subsample() -> None:
+    """
+    :rtype: None
+    """
     # Gradient based windowed subsampling
     raise NotImplemented()
 
@@ -132,8 +134,10 @@ def fft_subsample(
 
 if __name__ == "__main__":
 
-    def aisjd():
-        """ """
+    def aisjd() -> None:
+        """
+        :rtype: None
+        """
         t = numpy.linspace(-1, 1, 200)
         a = (
             numpy.sin(2 * numpy.pi * 0.75 * t * (1 - t) + 2.1)

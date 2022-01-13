@@ -12,8 +12,10 @@ __all__ = []
 from draugr.os_utilities.linux_utilities import GtkThemePreferences
 
 
-def main():
-    """ """
+def main() -> None:
+    """
+    :rtype: None
+    """
     with GtkThemePreferences() as a:
         a.prefer_dark_mode = not a.prefer_dark_mode
 

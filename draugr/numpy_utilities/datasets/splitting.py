@@ -100,9 +100,7 @@ class SplitIndexer:
             {k: n for k, n in zip(self.default_split_names, self.normalised_split)}
         )
 
-    def select_shuffled_split_indices(
-        self, split: SplitEnum, seed: int = 0
-    ) -> Sequence:
+    def select_shuffled_split_indices(self, split: SplitEnum, seed: int = 0) -> object:
         """ """
         numpy.random.seed(seed)
         split_indices = numpy.random.permutation(self.total_num).tolist()

@@ -99,7 +99,7 @@ def draw_bounding_boxes(
     score_color_fill: bool = False,
     score_font: ImageFont = ImageFont.load_default(),
     score_format: str = ": {:.2f}",
-    mode="RGBA",
+    mode="RGBA",  # TODO: make assertion on the channel size
 ) -> numpy.ndarray:
     """Draw bounding boxes(labels, scores) on image
     Args:
@@ -117,14 +117,13 @@ def draw_bounding_boxes(
     An image with information drawn on it."""
     boxes = numpy.array(boxes)
     num_boxes = boxes.shape[0]
+
     if isinstance(image, Image.Image):
         draw_image = image
     elif isinstance(image, numpy.ndarray):
         draw_image = Image.fromarray(image, mode)
     else:
         raise AttributeError(f"Unsupported images type {type(image)}")
-
-    draw = ImageDraw.Draw(image, mode="RGBA")
 
     for i in range(num_boxes):
         display_str = ""
@@ -158,8 +157,10 @@ def draw_bounding_boxes(
 
 if __name__ == "__main__":
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         from matplotlib import pyplot
         import pickle
         from neodroidvision.data.datasets.supervised.detection.coco import COCODataset
@@ -182,11 +183,13 @@ if __name__ == "__main__":
         pyplot.imshow(img)
         pyplot.show()
 
-    def b():
-        """ """
+    def b() -> None:
+        """
+        :rtype: None
+        """
         from matplotlib import pyplot
 
-        data_root = Path.home() / "Data" / "PennFudanPed" / "PNGImages"
+        data_root = Path.home() / "Data" / "Datasets" / "PennFudanPed" / "PNGImages"
 
         img = Image.open(str(data_root / f"FudanPed00001.png"))
         img_width, _ = img.size

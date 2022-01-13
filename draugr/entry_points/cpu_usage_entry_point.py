@@ -8,8 +8,10 @@ __doc__ = r"""
            """
 
 
-def main():
-    """ """
+def main() -> None:
+    """
+    :rtype: None
+    """
     # from draugr import TerminalPlotWriter
     from draugr.drawers import SeriesScrollPlot
     import psutil

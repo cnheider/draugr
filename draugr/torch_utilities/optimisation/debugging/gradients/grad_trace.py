@@ -143,8 +143,10 @@ def print_grad_trace(var_grad_fn):
 
 if __name__ == "__main__":
 
-    def asdifiejsf():
-        """ """
+    def asdifiejsf() -> None:
+        """
+        :rtype: None
+        """
         x = torch.randn(10, 10, requires_grad=True)
         y = torch.randn(10, 10, requires_grad=True)
 

@@ -48,8 +48,10 @@ def orthogonal_reg(model, reg=1e-6):
 
 if __name__ == "__main__":
 
-    def bb():
-        """ """
+    def bb() -> None:
+        """
+        :rtype: None
+        """
         from draugr.torch_utilities.optimisation.parameters.initialisation import (
             normal_init_weights,
         )

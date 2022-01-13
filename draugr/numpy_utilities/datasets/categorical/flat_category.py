@@ -65,8 +65,10 @@ def build_flat_dataset(
 
 if __name__ == "__main__":
 
-    def absa():
-        """ """
+    def absa() -> None:
+        """
+        :rtype: None
+        """
         from draugr.visualisation import indent_lines
         from draugr.numpy_utilities.datasets.splitting import SplitEnum
 

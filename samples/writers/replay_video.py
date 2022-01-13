@@ -25,8 +25,10 @@ from draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer impor
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         import gym
 
         env = gym.make("Pendulum-v0")

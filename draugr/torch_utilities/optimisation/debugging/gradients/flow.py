@@ -93,8 +93,10 @@ def plot_grad_flow(
 
 if __name__ == "__main__":
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         input = torch.randn(10, 50, requires_grad=True)
         target = torch.empty(10, dtype=torch.long).random_(2)
         model = torch.nn.Sequential(

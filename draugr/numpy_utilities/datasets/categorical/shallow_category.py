@@ -77,8 +77,10 @@ def build_shallow_categorical_dataset(
 
 if __name__ == "__main__":
 
-    def asd():
-        """ """
+    def asd() -> None:
+        """
+        :rtype: None
+        """
         from draugr.visualisation import indent_lines
         from draugr.numpy_utilities.datasets.splitting import SplitEnum
 

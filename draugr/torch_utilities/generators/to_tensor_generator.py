@@ -80,16 +80,20 @@ if __name__ == "__main__":
     from draugr.generators.recycling_generator import batched_recycle
     from draugr import inner_map
 
-    def s():
-        """ """
+    def s() -> None:
+        """
+        :rtype: None
+        """
         a = iter(numpy.random.sample((5, 5, 5)))
         for a in to_device_iterator(a, "cpu"):
             d, *_ = a
             print(d)
             print(type(d))
 
-    def sdiaj():
-        """ """
+    def sdiaj() -> None:
+        """
+        :rtype: None
+        """
         # a = numpy.random.sample((5, 5, 5))
         from draugr.torch_utilities.datasets import RandomDataset
 
@@ -100,8 +104,10 @@ if __name__ == "__main__":
                 print(d)
                 print(type(d))
 
-    def asijda():
-        """ """
+    def asijda() -> None:
+        """
+        :rtype: None
+        """
         a_transform = transforms.Compose(
             [
                 transforms.ToPILImage("RGB"),

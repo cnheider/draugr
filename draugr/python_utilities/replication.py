@@ -32,8 +32,10 @@ def replicate(x: Union[Sequence, Number], times: int = 2) -> Sequence:
 
 if __name__ == "__main__":
 
-    def asdaa():
-        """ """
+    def asdaa() -> None:
+        """
+        :rtype: None
+        """
         print(replicate(2))
         print(replicate(2, 4))
 

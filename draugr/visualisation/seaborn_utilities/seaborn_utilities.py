@@ -9,21 +9,18 @@ __doc__ = r"""
 
 from typing import Iterable, List
 
-import numpy.random
+import pandas
+import numpy
 import seaborn
-
+from matplotlib import pyplot
+from matplotlib.axes import Axes
 from warg import Number
 
 __all__ = [
     "despine_all",
     "set_y_log_scale",
-    "VisualisationErrorStyle",
     "exponential_moving_average",
 ]
-
-from matplotlib import pyplot
-from enum import Enum
-from matplotlib.axes import Axes
 
 
 def despine_all(ax: Axes = None) -> None:
@@ -75,15 +72,12 @@ def exponential_moving_average(
     return smoothed
 
 
-class VisualisationErrorStyle(Enum):
-    band = "band"
-    bar = "bars"
-
-
 if __name__ == "__main__":
 
-    def stest_box_plot_props():
-        """ """
+    def stest_box_plot_props() -> None:
+        """
+        :rtype: None
+        """
         props = {
             "boxprops": {"facecolor": "none", "edgecolor": "red"},
             "medianprops": {"color": "green"},
@@ -92,18 +86,15 @@ if __name__ == "__main__":
         }
 
         seaborn.boxplot(
-            x="variable", y="value", data=[], showfliers=False, linewidth=0.75, **props
+            x="variable",
+            y="value",
+            data=pandas.DataFrame(
+                [range(3), range(3)], columns=("variable", "value", "value2")
+            ),
+            showfliers=False,
+            linewidth=0.75,
+            **props
         )
+        pyplot.show()
 
-    def stest_ema():
-        """ """
-        e = range(100)
-        print(len(exponential_moving_average(e)))
-
-    def stest_ema2():
-        """ """
-        e = numpy.random.random(1000)
-        end = exponential_moving_average(e, 1 - 0.6)[-1]
-        assert numpy.isclose(end, 0.5, 0.1, 0.1), end  # Not guaranteed, may fail
-
-    stest_ema2()
+    stest_box_plot_props()

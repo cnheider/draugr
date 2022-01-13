@@ -190,8 +190,10 @@ torch.cuda.memory_stats(dev_idx)
 
 if __name__ == "__main__":
 
-    def stest_override():
-        """ """
+    def stest_override() -> None:
+        """
+        :rtype: None
+        """
         print(global_torch_device(verbose=True))
         print(
             global_torch_device(
@@ -209,13 +211,17 @@ if __name__ == "__main__":
         )
         print(global_torch_device())
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         print(global_torch_device())
         print(auto_select_available_cuda_device())
 
-    def b():
-        """ """
+    def b() -> None:
+        """
+        :rtype: None
+        """
         print(global_torch_device(TorchDeviceEnum.vulkan))
 
     # stest_override()

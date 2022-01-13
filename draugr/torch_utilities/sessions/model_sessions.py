@@ -92,8 +92,10 @@ class TorchFrozenModelSession(AlsoDecorator):
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         a = torch.nn.Sequential(
             OrderedDict(l1=torch.nn.Linear(3, 5), l2=torch.nn.Linear(5, 2))
         )

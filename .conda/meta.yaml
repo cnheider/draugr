@@ -2,11 +2,11 @@
   { % set version = "1.0" % }
 
 package:
-  name:    "{{ name|lower }}"
+  name: "{{ name|lower }}"
   version: "{{ version }}"
 
 source:
-  url:    https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7
 
 build:
@@ -25,7 +25,7 @@ test:
     - click
 
 about:
-  home:           https://github.com/cnheider/draugr/
-  license:        BSD
+  home: https://github.com/cnheider/draugr/
+  license: BSD
   license_family: BSD
-  summary:        Composable command line interface toolkit
+  summary: Composable command line interface toolkit
