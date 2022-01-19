@@ -462,6 +462,7 @@ pyplot.title(tag)
             self._writer.close()
             delattr(self, "_writer")
 
+    @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_image)
     def image(
         self,

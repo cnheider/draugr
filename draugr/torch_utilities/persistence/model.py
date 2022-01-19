@@ -50,8 +50,8 @@ def load_latest_model(
         raise_on_failure=raise_on_failure,
     )
     print(f"loading previous model: {latest_model_}")
-
-    return torch.load(str(latest_model_))
+    if latest_model_:
+        return torch.load(str(latest_model_))
 
 
 load_model = load_latest_model

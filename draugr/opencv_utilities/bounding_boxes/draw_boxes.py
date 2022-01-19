@@ -53,6 +53,7 @@ def draw_single_box(
         width=outline_width,
     )
     if display_str:
+        display_str = str(display_str)
         if font_type is None or not isinstance(
             font_type,
             (ImageFont.FreeTypeFont, ImageFont.ImageFont, ImageFont.TransposedFont),
