@@ -9,10 +9,19 @@ __doc__ = r"""
 
 import warnings
 from typing import Any
-
+import numpy
 from skimage import color, img_as_ubyte
 
-__all__ = ["rgb_to_grayscale"]
+__all__ = ["rgb_to_grayscale", "mix_channels"]
+
+
+def mix_channels(raster: numpy.ndarray) -> numpy.ndarray:
+    # TODO: MAYBE ASSERT SHAPE?
+    num_channels = raster.shape[-1]
+    return numpy.dot(
+        raster[..., :num_channels],
+        numpy.ones(num_channels) / num_channels,
+    )
 
 
 def rgb_to_grayscale(obs: Any) -> Any:
@@ -30,3 +39,16 @@ def rgb_to_grayscale(obs: Any) -> Any:
         # from float64 to uint8
         warnings.simplefilter("ignore")
         return img_as_ubyte(color.rgb2gray(obs))
+
+
+if __name__ == "__main__":
+
+    def asuijhd():
+        a = numpy.expand_dims(numpy.eye(5), -1)
+        b = numpy.expand_dims(numpy.flip(numpy.eye(5), 0), -1)
+        c = numpy.expand_dims(numpy.ones((5, 5)), -1)
+        stacked = numpy.swapaxes(numpy.array((a, b, c)), 0, -1)
+        print(stacked.shape)
+        print(mix_channels(stacked))
+
+    asuijhd()

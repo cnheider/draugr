@@ -18,6 +18,7 @@ from draugr.torch_utilities.tensors.dimension_order import (
     nhwc_to_nchw_tensor,
     nthwc_to_ntchw_tensor,
 )
+from draugr.opencv_utilities import draw_masks
 from draugr.torch_utilities.writers.torch_module_writer.module_parameter_writer_mixin import (
     ModuleParameterWriterMixin,
 )
@@ -40,6 +41,7 @@ from draugr.writers.mixins.line_writer_mixin import LineWriterMixin
 from draugr.writers.mixins.precision_recall_writer_mixin import (
     PrecisionRecallCurveWriterMixin,
 )
+from draugr.extensions.skimage_utilities import mix_channels
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
 from draugr.writers.writer import Writer
 from warg import drop_unused_kws, passes_kws_to
@@ -470,7 +472,10 @@ pyplot.title(tag)
         data: Union[numpy.ndarray, torch.Tensor, PIL.Image.Image],
         step,
         *,
-        data_formats="NCHW",
+        data_formats: str = "NCHW",
+        multi_channel_method: ImageWriterMixin.MultiChannelMethodEnum = ImageWriterMixin.MultiChannelMethodEnum.seperate,
+        seperate_channel_postfix: str = "channel",
+        seperate_image_postfix: str = "image",
         **kwargs,
     ) -> None:
         """
@@ -485,7 +490,59 @@ pyplot.title(tag)
         :type data_formats:
         :param kwargs:
         :type kwargs:"""
-        self.writer.add_image(tag, data, step, dataformats=data_formats, **kwargs)
+        if data_formats == "NCHW":
+            num_channels = data.shape[-3]
+            if num_channels == 2 or num_channels > 3:
+                if (
+                    multi_channel_method
+                    == ImageWriterMixin.MultiChannelMethodEnum.seperate
+                ):
+                    for i in range(num_channels):
+                        self.writer.add_image(
+                            f"{tag}_{seperate_channel_postfix}_{i}",
+                            data[:, i].unsqueeze(-3),
+                            step,
+                            dataformats=data_formats,
+                            **kwargs,
+                        )
+                elif (
+                    multi_channel_method == ImageWriterMixin.MultiChannelMethodEnum.mix
+                ):
+                    # TODO: Merge channels into a single channel of overlapping values'
+                    mixed = mix_channels(data)
+                    self.writer.add_image(
+                        tag,
+                        mixed.unsqueeze(-3),
+                        step,
+                        dataformats=data_formats,
+                        **kwargs,
+                    )
+                elif (
+                    multi_channel_method
+                    == ImageWriterMixin.MultiChannelMethodEnum.project
+                ):
+                    # TODO: Project channels into RGB space,NOT DONE
+                    for i in range(data.shape[0]):
+                        img = numpy.zeros(3, *data.shape[-2:])
+                        img = draw_masks(img, data[i])
+                        self.writer.add_image(
+                            f"{tag}_{seperate_image_postfix}_{i}",
+                            img,
+                            step,
+                            dataformats="CHW",
+                            **kwargs,
+                        )
+                else:
+
+                    raise NotImplementedError(
+                        f"{multi_channel_method} is not implemented"
+                    )
+            else:
+                self.writer.add_image(
+                    tag, data, step, dataformats=data_formats, **kwargs
+                )
+        else:
+            self.writer.add_image(tag, data, step, dataformats=data_formats, **kwargs)
 
     @property
     def writer(self) -> SummaryWriter:

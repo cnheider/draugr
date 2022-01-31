@@ -61,6 +61,7 @@ def draw_masks(
     if isinstance(masks, Image.Image):
         masks = numpy.array(masks)
     assert isinstance(masks, numpy.ndarray)
+    # TODO: ASSERT 3/4 CHANNELS!
     for i, mask in enumerate(masks):
         mask = mask.squeeze()[..., None].astype(numpy.bool)
 
