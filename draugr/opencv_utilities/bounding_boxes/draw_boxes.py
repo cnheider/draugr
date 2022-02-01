@@ -13,9 +13,8 @@ from typing import Optional, Sequence, Tuple, Union
 import numpy
 from PIL import Image, ImageDraw, ImageFont
 
-from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.opencv_utilities.opencv_draw import draw_masks
-from draugr.python_utilities.colors import RGB
+from draugr.python_utilities.colors import RGB, compute_color_for_labels
 
 __all__ = ["draw_bounding_boxes"]
 

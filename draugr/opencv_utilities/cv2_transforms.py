@@ -30,11 +30,11 @@ __all__ = [
     "CV2PhotometricDistort",
 ]
 
-from draugr.opencv_utilities.bounding_boxes.colors import TripleNumber
 from draugr.opencv_utilities.bounding_boxes.evaluation import (
     jaccard_overlap_numpy,
     remove_null_boxes,
 )
+from warg import TripleNumber
 
 
 class CV2Compose(object):

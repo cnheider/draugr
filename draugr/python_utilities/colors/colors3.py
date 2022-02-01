@@ -8,11 +8,10 @@ __doc__ = r"""
            Created on 01/02/2022
            """
 
-__all__ = []
+__all__ = ["color"]
 
-
+from functools import partial
 import re
-import sys
 
 string_types = str
 
@@ -198,8 +197,6 @@ def parse_rgb(s):
 
     raise ValueError("Could not parse color '{0}'".format(s))
 
-
-from functools import partial
 
 # ANSI color names. There is also a "default"
 COLORS = ("black", "red", "green", "yellow", "blue", "magenta", "cyan", "white")
