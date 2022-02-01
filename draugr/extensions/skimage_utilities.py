@@ -12,16 +12,9 @@ from typing import Any
 import numpy
 from skimage import color, img_as_ubyte
 
-__all__ = ["rgb_to_grayscale", "mix_channels"]
+__all__ = ["rgb_to_grayscale"]
 
-
-def mix_channels(raster: numpy.ndarray) -> numpy.ndarray:
-    # TODO: MAYBE ASSERT SHAPE?
-    num_channels = raster.shape[-1]
-    return numpy.dot(
-        raster[..., :num_channels],
-        numpy.ones(num_channels) / num_channels,
-    )
+from draugr.numpy_utilities.mixing import mix_channels
 
 
 def rgb_to_grayscale(obs: Any) -> Any:

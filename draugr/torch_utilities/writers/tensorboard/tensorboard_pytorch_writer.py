@@ -41,7 +41,7 @@ from draugr.writers.mixins.line_writer_mixin import LineWriterMixin
 from draugr.writers.mixins.precision_recall_writer_mixin import (
     PrecisionRecallCurveWriterMixin,
 )
-from draugr.extensions.skimage_utilities import mix_channels
+from draugr.numpy_utilities.mixing import mix_channels
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
 from draugr.writers.writer import Writer
 from warg import drop_unused_kws, passes_kws_to
