@@ -54,7 +54,8 @@ def loss_grad_check(
 
     loss = loss_fn(model(input), target)
     loss.backward()
-    with ContextWrapper(torch.no_gra, True):
+    compute_gradients = False
+    with ContextWrapper(torch.no_grad, not compute_gradients):
         with TorchEvalSession(model):
             for (n, c_p), p in zip(
                 named_trainable_parameters(c_model).items(), trainable_parameters(model)

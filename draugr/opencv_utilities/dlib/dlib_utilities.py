@@ -7,8 +7,8 @@ __doc__ = r"""
            Created on 03-05-2021
            """
 
-from enum import Enum
-from typing import Sequence, Tuple
+from enum import Enum, Flag
+from typing import Sequence, Tuple, Union
 
 import numpy
 from scipy.spatial import distance
@@ -23,7 +23,16 @@ __all__ = [
 ]
 
 
+class ExtendTuple(Tuple):
+    def __or__(self, *other) -> "ExtendTuple":
+        return ExtendTuple((*self, *other))
+
+    def __and__(self, *other) -> "ExtendTuple":
+        return ExtendTuple((*self, *other))
+
+
 class Dlib68faciallandmarksindices(Enum):
+
     mouth = (48, 67 + 1)
     inner_mouth = (60, 67 + 1)
     right_eyebrow = (17, 21 + 1)
@@ -34,15 +43,39 @@ class Dlib68faciallandmarksindices(Enum):
     jaw = (0, 16 + 1)
 
     @staticmethod
-    def slice(seq, eqs):
+    def slice(
+        seq: Sequence,
+        ind: Union[
+            "Dlib68faciallandmarksindices", Tuple["Dlib68faciallandmarksindices"]
+        ],
+    ):
         """
 
         :param seq:
-        :param eqs:
+        :param ind:
         :return:
         """
-        start, end = eqs.value
+        if isinstance(ind, Tuple):
+            agg = []
+            for (
+                i
+            ) in (
+                ind
+            ):  # Some flag implementation would probably be faster and more valid.
+                agg.extend(Dlib68faciallandmarksindices.slice(seq, i))
+            return agg
+        start, end = ind.value
         return seq[start:end]
+
+    def __or__(
+        self, other: "Dlib68faciallandmarksindices"
+    ) -> Tuple["Dlib68faciallandmarksindices"]:
+        return ExtendTuple().__or__(self, other)
+
+    def __and__(
+        self, other: "Dlib68faciallandmarksindices"
+    ) -> Tuple["Dlib68faciallandmarksindices"]:
+        return ExtendTuple().__and__(self, other)
 
 
 class Dlib5faciallandmarksindices(Enum):
@@ -55,15 +88,37 @@ class Dlib5faciallandmarksindices(Enum):
     nose = (4, 4 + 1)
 
     @staticmethod
-    def slice(seq, eqs):
+    def slice(
+        seq: Sequence,
+        ind: Union["Dlib5faciallandmarksindices", Tuple["Dlib5faciallandmarksindices"]],
+    ):
         """
 
         :param seq:
-        :param eqs:
+        :param ind:
         :return:
         """
-        start, end = eqs.value
+        if isinstance(ind, Tuple):
+            agg = []
+            for (
+                i
+            ) in (
+                ind
+            ):  # Some flag implementation would probably be faster and more valid.
+                agg.extend(Dlib5faciallandmarksindices.slice(seq, i))
+            return agg
+        start, end = ind.value
         return seq[start:end]
+
+    def __or__(
+        self, other: "Dlib5faciallandmarksindices"
+    ) -> Tuple["Dlib5faciallandmarksindices"]:
+        return ExtendTuple().__or__(self, other)
+
+    def __and__(
+        self, other: "Dlib5faciallandmarksindices"
+    ) -> Tuple["Dlib5faciallandmarksindices"]:
+        return ExtendTuple().__and__(self, other)
 
 
 def rect_to_bounding_box(rect) -> Tuple[float, float, float, float]:
@@ -128,3 +183,23 @@ def eye_aspect_ratio(coordinates: Sequence[Sequence]) -> float:
 
 
 # To improve our blink detector, Soukupová and Čech recommend constructing a 13-dim feature vector of eye aspect ratios (N-th frame, N – 6 frames, and N + 6 frames), followed by feeding this feature vector into a Linear SVM for classification.
+
+if __name__ == "__main__":
+
+    def asud():
+        a = list(range(99))
+        slices = (
+            Dlib68faciallandmarksindices.left_eye
+            | Dlib68faciallandmarksindices.right_eye
+            | Dlib68faciallandmarksindices.nose & Dlib68faciallandmarksindices.mouth
+        )
+        print(Dlib68faciallandmarksindices.slice(a, slices))
+
+    def as34ud():
+        a = list(range(99))
+        print(
+            Dlib68faciallandmarksindices.slice(a, Dlib68faciallandmarksindices.left_eye)
+        )
+
+    asud()
+    as34ud()
