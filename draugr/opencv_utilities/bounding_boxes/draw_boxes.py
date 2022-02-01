@@ -164,7 +164,7 @@ if __name__ == "__main__":
         """
         from matplotlib import pyplot
         import pickle
-        from neodroidvision.data.datasets.supervised.detection.coco import COCODataset
+        from neodroidvision.data.detection.coco import COCODataset
 
         name = "000000308476"
         data_root = Path.home() / "Data" / "Coco"
@@ -211,4 +211,5 @@ if __name__ == "__main__":
         pyplot.imshow(img)
         pyplot.show()
 
-    b()
+    a()
+    # b()

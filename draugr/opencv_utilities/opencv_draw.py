@@ -84,3 +84,7 @@ def draw_masks(
                 lineType=cv2.LINE_AA,
             )
     return image.astype(numpy.uint8)
+
+
+if __name__ == "__main__":
+    pass

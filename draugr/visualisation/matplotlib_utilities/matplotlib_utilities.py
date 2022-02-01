@@ -157,7 +157,7 @@ o.set_clip_box(clip_box)
     if (
         post_process_crop and suffix == ".pdf"
     ):  # Generally a good idea since matplotlib does not exclude invisible parts(eg. data points or anchors) of the plot.
-        from pdfCropMargins import crop
+        from pdfCropMargins import crop  # pip install pdfCropMargins
 
         crop(
             [

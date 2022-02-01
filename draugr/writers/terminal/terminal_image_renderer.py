@@ -4,7 +4,7 @@ from typing import Any, List, Tuple
 
 import numpy
 from PIL import Image
-from colors import color  # ansicolors
+from draugr.writers.terminal.colors import color
 
 
 def get_pixel(col: Tuple) -> Any:
