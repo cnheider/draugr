@@ -14,6 +14,9 @@ class Meter:
     """Stores current value"""
 
     def __init__(self):
+        self.val = 0
+        self.sum = 0
+        self.count = 0
         self.reset()
 
     def reset(self):
@@ -37,10 +40,13 @@ class Meter:
 class AverageMeter(Meter):
     """Computes and stores the average and current value"""
 
+    def __init__(self):
+        super().__init__()
+        self.avg = 0
+
     def reset(self):
         """ """
         super().reset()
-        self.avg = 0
 
     def update(self, val, n: int = 1):
         """

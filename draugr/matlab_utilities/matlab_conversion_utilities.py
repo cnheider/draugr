@@ -7,14 +7,14 @@ __doc__ = r"""
            Created on 14-02-2021
            """
 
-from typing import List, Sequence
+from typing import Sequence
 
 import numpy
 
 __all__ = ["get_strides_f", "get_strides_c"]
 
 
-def get_strides_f(shape: Sequence) -> List:
+def get_strides_f(shape: Sequence) -> object:
     """Get strides of a F like array, for numpy array need to multiply by itemsize
 
     Parameters

@@ -49,16 +49,20 @@ def frozen_parameters(params: Iterator[Parameter], enabled=True) -> None:
 if __name__ == "__main__":
     from torch import nn
 
-    def asd21312a():
-        """ """
+    def asd21312a() -> None:
+        """
+        :rtype: None
+        """
         a = nn.Linear(10, 5)
         print(a.weight.requires_grad)
         with frozen_parameters(a.parameters()):
             print(a.weight.requires_grad)
         print(a.weight.requires_grad)
 
-    def afsda32():
-        """ """
+    def afsda32() -> None:
+        """
+        :rtype: None
+        """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -66,8 +70,10 @@ if __name__ == "__main__":
             print(a.weight.requires_grad)
         print(a.weight.requires_grad)
 
-    def afsda12332_toogle():
-        """ """
+    def afsda12332_toogle() -> None:
+        """
+        :rtype: None
+        """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -76,8 +82,10 @@ if __name__ == "__main__":
         freeze_parameters(a.parameters())
         print(a.weight.requires_grad)
 
-    def afsda12332_explicit():
-        """ """
+    def afsda12332_explicit() -> None:
+        """
+        :rtype: None
+        """
         a = nn.Linear(10, 5)
 
         print(a.weight.requires_grad)
@@ -86,8 +94,10 @@ if __name__ == "__main__":
         freeze_parameters(a.parameters(), False)
         print(a.weight.requires_grad)
 
-    def seq_no_context():
-        """ """
+    def seq_no_context() -> None:
+        """
+        :rtype: None
+        """
         a = nn.Sequential(nn.Linear(10, 5), nn.Linear(5, 5))
 
         print(next(a.parameters()).requires_grad)
@@ -96,8 +106,10 @@ if __name__ == "__main__":
         freeze_parameters(a.parameters(), False)
         print(next(a.parameters()).requires_grad)
 
-    def seq_context():
-        """ """
+    def seq_context() -> None:
+        """
+        :rtype: None
+        """
         a = nn.Sequential(nn.Linear(10, 5), nn.Linear(5, 5))
 
         print(next(a.parameters()).requires_grad)

@@ -50,8 +50,10 @@ def frozen_model(model: Module, recurse: bool = True, enabled: bool = True) -> N
 if __name__ == "__main__":
     from torch import nn
 
-    def asda():
-        """ """
+    def asda() -> None:
+        """
+        :rtype: None
+        """
         a = nn.Linear(10, 5)
         print(a.weight.requires_grad)
         with frozen_model(a):

@@ -59,8 +59,10 @@ class DisplaySampler(object):
 
 if __name__ == "__main__":
 
-    def asdsad():
-        """ """
+    def asdsad() -> None:
+        """
+        :rtype: None
+        """
         from matplotlib import pyplot
 
         # Create a signal

@@ -16,12 +16,16 @@ from apppath import ensure_existence
 
 if __name__ == "__main__":
 
-    def inner():
-        """ """
+    def inner() -> None:
+        """
+        :rtype: None
+        """
         torch.nn.Linear(100, 100).cuda()
 
-    def outer():
-        """ """
+    def outer() -> None:
+        """
+        :rtype: None
+        """
         linear = torch.nn.Linear(100, 100).cuda()
         linear2 = torch.nn.Linear(100, 100).cuda()
         inner()

@@ -128,8 +128,10 @@ def sequential_map(
 
 if __name__ == "__main__":
 
-    def asdasd():
-        """ """
+    def asdasd() -> None:
+        """
+        :rtype: None
+        """
 
         def add(a, b, *c):
             """ """

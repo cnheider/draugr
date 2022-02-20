@@ -104,8 +104,10 @@ class CaptureEarlyStop(contextlib.AbstractContextManager):
 
 if __name__ == "__main__":
 
-    def c():
-        """ """
+    def c() -> None:
+        """
+        :rtype: None
+        """
         print("start")
         RUN = True
 

@@ -144,8 +144,10 @@ class SeriesScrollPlot(MplDrawer):
 
 if __name__ == "__main__":
 
-    def asidjas():
-        """ """
+    def asidjas() -> None:
+        """
+        :rtype: None
+        """
         from math import cos, sin
 
         def multi_series():

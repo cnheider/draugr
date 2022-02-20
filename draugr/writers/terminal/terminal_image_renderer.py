@@ -4,7 +4,7 @@ from typing import Any, List, Tuple
 
 import numpy
 from PIL import Image
-from colors import color  # ansicolors
+from draugr.python_utilities.colors import color
 
 
 def get_pixel(col: Tuple) -> Any:
@@ -63,8 +63,10 @@ def render_file(path: Path, scale=(60, 60)):
     print(terminalise_image(output))
 
 
-def entry_point():
-    """ """
+def entry_point() -> None:
+    """
+    :rtype: None
+    """
     parser = argparse.ArgumentParser(description="Render images on the command line")
     parser.add_argument("path", metavar="path", type=str, help="the image path")
     parser.add_argument(

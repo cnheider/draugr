@@ -121,8 +121,10 @@ class IntermediateLayerGetter:
 
 if __name__ == "__main__":
 
-    def adsad():
-        """ """
+    def adsad() -> None:
+        """
+        :rtype: None
+        """
 
         class Model(nn.Module):
             """ """
@@ -165,8 +167,10 @@ if __name__ == "__main__":
         print(model_output)
         print(mid_outputs)
 
-    def adsad2():
-        """ """
+    def adsad2() -> None:
+        """
+        :rtype: None
+        """
 
         class Model(nn.Module):
             """ """

@@ -32,6 +32,14 @@ def save_optimiser(
 
 
 def save_checkpoint(PATH: Path, epoch, model, optimiser, loss):
+    """
+
+    :param PATH:
+    :param epoch:
+    :param model:
+    :param optimiser:
+    :param loss:
+    """
     torch.save(
         {
             "epoch": epoch,
@@ -46,6 +54,13 @@ def save_checkpoint(PATH: Path, epoch, model, optimiser, loss):
 
 
 def load_checkpoint(PATH: Path, model, optimizer):
+    """
+
+    :param PATH:
+    :param model:
+    :param optimizer:
+    :return:
+    """
     checkpoint = torch.load(PATH)
 
     epoch = checkpoint["epoch"]
@@ -58,12 +73,18 @@ def load_checkpoint(PATH: Path, model, optimizer):
 
 if __name__ == "__main__":
 
-    def main():
+    def main() -> None:
+        """
+        :rtype: None
+        """
         pass
         # model = TheModelClass(args, **kwargs)
         # optimizer = TheOptimizerClass(args, **kwargs)
 
-    def multi():
+    def multi() -> None:
+        """
+        :rtype: None
+        """
         pass
 
     # checkpoint = torch.load(PATH)

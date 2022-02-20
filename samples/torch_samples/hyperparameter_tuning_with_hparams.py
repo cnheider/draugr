@@ -173,10 +173,10 @@ for num_units in HP_NUM_UNITS.domain.values:
                 HP_DROPOUT: dropout_rate,
                 HP_OPTIMIZER: optimizer,
             }
-            run_name = "run-%d" % session_num
-            print("--- Starting trial: %s" % run_name)
+            run_name = f"run-{session_num:d}"
+            print(f"--- Starting trial: {run_name}")
             print({h.name: hparams[h] for h in hparams})
-            run("logs/hparam_tuning/" + run_name, hparams)
+            run(f"logs/hparam_tuning/{run_name}", hparams)
             session_num += 1
 
 # %% [markdown]

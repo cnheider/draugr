@@ -11,6 +11,8 @@ __doc__ = r"""
            Created on 15/11/2019
            """
 
+from sorcery import assigned_names
+
 GLOBAL_DEVICE: torch.device = None
 
 __all__ = [
@@ -25,9 +27,7 @@ __all__ = [
 
 
 class TorchDeviceEnum(Enum):
-    cpu = "cpu"
-    cuda = "cuda"
-    vulkan = "vulkan"
+    (cpu, cuda, vulkan) = assigned_names()
 
 
 def global_torch_device(
@@ -184,14 +184,19 @@ torch.cuda.memory_stats(dev_idx)
             if cuda_capability > highest_capability:
                 highest_capability = cuda_capability
                 preferred_idx = dev_idx
-
+    if preferred_idx is None:
+        raise FileNotFoundError(
+            f"No device with {expected_memory_usage_mb} mb memory found"
+        )
     return select_cuda_device(preferred_idx)
 
 
 if __name__ == "__main__":
 
-    def stest_override():
-        """ """
+    def stest_override() -> None:
+        """
+        :rtype: None
+        """
         print(global_torch_device(verbose=True))
         print(
             global_torch_device(
@@ -209,13 +214,17 @@ if __name__ == "__main__":
         )
         print(global_torch_device())
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         print(global_torch_device())
         print(auto_select_available_cuda_device())
 
-    def b():
-        """ """
+    def b() -> None:
+        """
+        :rtype: None
+        """
         print(global_torch_device(TorchDeviceEnum.vulkan))
 
     # stest_override()

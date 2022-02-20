@@ -13,11 +13,10 @@ from typing import Optional, Sequence, Tuple, Union
 import numpy
 from PIL import Image, ImageDraw, ImageFont
 
-from draugr.opencv_utilities.bounding_boxes.colors import compute_color_for_labels
 from draugr.opencv_utilities.opencv_draw import draw_masks
-from draugr.python_utilities.colors import RGB
+from draugr.python_utilities.colors import RGB, compute_color_for_labels
 
-__all__ = ["draw_bounding_boxes"]
+__all__ = ["draw_single_box", "draw_bounding_boxes"]
 
 
 def draw_single_box(
@@ -53,6 +52,7 @@ def draw_single_box(
         width=outline_width,
     )
     if display_str:
+        display_str = str(display_str)
         if font_type is None or not isinstance(
             font_type,
             (ImageFont.FreeTypeFont, ImageFont.ImageFont, ImageFont.TransposedFont),
@@ -99,7 +99,7 @@ def draw_bounding_boxes(
     score_color_fill: bool = False,
     score_font: ImageFont = ImageFont.load_default(),
     score_format: str = ": {:.2f}",
-    mode="RGBA",
+    mode="RGBA",  # TODO: make assertion on the channel size
 ) -> numpy.ndarray:
     """Draw bounding boxes(labels, scores) on image
     Args:
@@ -117,14 +117,13 @@ def draw_bounding_boxes(
     An image with information drawn on it."""
     boxes = numpy.array(boxes)
     num_boxes = boxes.shape[0]
+
     if isinstance(image, Image.Image):
         draw_image = image
     elif isinstance(image, numpy.ndarray):
         draw_image = Image.fromarray(image, mode)
     else:
         raise AttributeError(f"Unsupported images type {type(image)}")
-
-    draw = ImageDraw.Draw(image, mode="RGBA")
 
     for i in range(num_boxes):
         display_str = ""
@@ -158,11 +157,13 @@ def draw_bounding_boxes(
 
 if __name__ == "__main__":
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         from matplotlib import pyplot
         import pickle
-        from neodroidvision.data.datasets.supervised.detection.coco import COCODataset
+        from neodroidvision.data.detection.coco import COCODataset
 
         name = "000000308476"
         data_root = Path.home() / "Data" / "Coco"
@@ -170,7 +171,7 @@ if __name__ == "__main__":
             data = pickle.load(f)
 
         img = Image.open(str(data_root / f"{name}.jpg"))
-        img = draw_masks(img, data.masks, data.labels)
+        img = draw_masks(img, data.masks, labels=data.labels)
         img = draw_bounding_boxes(
             img,
             boxes=data.boxes,
@@ -182,11 +183,13 @@ if __name__ == "__main__":
         pyplot.imshow(img)
         pyplot.show()
 
-    def b():
-        """ """
+    def b() -> None:
+        """
+        :rtype: None
+        """
         from matplotlib import pyplot
 
-        data_root = Path.home() / "Data" / "PennFudanPed" / "PNGImages"
+        data_root = Path.home() / "Data" / "Datasets" / "PennFudanPed" / "PNGImages"
 
         img = Image.open(str(data_root / f"FudanPed00001.png"))
         img_width, _ = img.size
@@ -207,4 +210,5 @@ if __name__ == "__main__":
         pyplot.imshow(img)
         pyplot.show()
 
-    b()
+    a()
+    # b()

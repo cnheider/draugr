@@ -28,6 +28,10 @@ from draugr.visualisation.matplotlib_utilities.matplotlib_utilities import (
     monochrome_line_cycler,
 )
 from draugr.visualisation.matplotlib_utilities.quirks import fix_edge_gridlines
+from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
+    color_cycler,
+    line_cycler,
+)
 
 
 class FigureSession(AlsoDecorator):
@@ -77,7 +81,7 @@ class StyleSession(AlsoDecorator):
     def __init__(
         self,
         style_path: Path = Path(__file__).parent / "styles" / "publish_color.mplstyle",
-        prop_cycler: Optional[Cycler] = None,
+        prop_cycler: Optional[Cycler] = line_cycler + color_cycler,
     ):
         """
         Set styling for context
@@ -118,6 +122,8 @@ class MonoChromeStyleSession(StyleSession):
 
 
 class NoOutlineSession(AlsoDecorator):
+    """ """
+
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()
 
@@ -136,6 +142,8 @@ class NoOutlineSession(AlsoDecorator):
 
 
 class OutlineSession(AlsoDecorator):
+    """ """
+
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()
 
@@ -155,15 +163,19 @@ class OutlineSession(AlsoDecorator):
 
 if __name__ == "__main__":
 
-    def deiajsd():
-        """ """
+    def deiajsd() -> None:
+        """
+        :rtype: None
+        """
         for _ in range(100):
             with SubplotSession() as a:
                 fig, (ax1,) = a
                 ax1.set_ylabel("test")
 
-    def asiuhdsada():
-
+    def asiuhdsada() -> None:
+        """
+        :rtype: None
+        """
         with MonoChromeStyleSession():
             fig, ax = pyplot.subplots(1, 1)
             for x in range(3):
@@ -176,7 +188,10 @@ if __name__ == "__main__":
         legend()
         pyplot.show()
 
-    def no_border_boxplot():
+    def no_border_boxplot() -> None:
+        """
+        :rtype: None
+        """
         with NoOutlineSession():
             import numpy
 
@@ -184,7 +199,10 @@ if __name__ == "__main__":
             pyplot.bar(range(num), numpy.random.rand(num))
         pyplot.show()
 
-    def border_boxplot():
+    def border_boxplot() -> None:
+        """
+        :rtype: None
+        """
         with OutlineSession():
             import numpy
 

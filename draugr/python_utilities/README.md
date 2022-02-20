@@ -7,5 +7,5 @@ General utilities for Python
 - General utility exceptions
 - Debugging
 - General utility functions
-- Date time formating
+- Date time formatting
 - Socket utilities

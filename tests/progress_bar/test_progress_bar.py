@@ -32,8 +32,10 @@ def test_asudhwea213si23jdq():
 
 
 def test_asudhweasi23jdq():
-    def sas():
-        """ """
+    def sas() -> None:
+        """
+        :rtype: None
+        """
         yield from range(100)
 
     for a in progress_bar(sas(), notifications=False):

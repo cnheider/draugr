@@ -58,8 +58,10 @@ class TorchJitSession(AlsoDecorator):
 
 if __name__ == "__main__":
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
 
         @torch.jit.script
         def scripted_fn(x: torch.Tensor):

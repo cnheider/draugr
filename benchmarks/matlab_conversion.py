@@ -10,7 +10,10 @@ __doc__ = r"""
 import timeit
 
 
-def conversion_benchmark():
+def conversion_benchmark() -> None:
+    """
+    :rtype: None
+    """
     # Numpy to matlab
     print(
         "\nCompare Numpy to matlab conversion strategy : (a bit long with several matlab.engine opening)"

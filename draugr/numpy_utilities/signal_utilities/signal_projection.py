@@ -52,8 +52,10 @@ def heaviside(signal: numpy.ndarray) -> numpy.ndarray:
 
 if __name__ == "__main__":
 
-    def asiudha():
-        """ """
+    def asiudha() -> None:
+        """
+        :rtype: None
+        """
         a = numpy.random.random(9) - 0.5
         print(
             normalise_signal_minmax(a),

@@ -9,7 +9,22 @@ __doc__ = r"""
 
 __all__ = ["GtkSettings"]
 
+from sys import stderr
+
 import gi  # PyGObject lib
+
+#  Ubuntu / Debian
+## system
+### sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0
+
+## conda
+### conda install -c conda-forge pygobject
+### conda install -c conda-forge gtk3
+
+## pip
+### sudo apt install libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
+### pip3 install pycairo
+### pip3 install PyGObject
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Gdk", "3.0")
@@ -21,13 +36,19 @@ class GtkSettings(metaclass=SingletonMeta):
     """ """
 
     def __init__(self):
-        from gi.repository import Gtk
-        from gi.repository import Gdk
+        try:
+            from gi.repository import Gtk, Gdk  # , GObject, Gio, GLib
+        except (ImportError, ImportWarning):
+            stderr.write("Could not import GTK. Please install it.")
 
-        # self.settings = Gtk.Settings.get_default()
-        self.settings = Gtk.Settings.get_for_screen(
-            Gdk.get_default_root_window().get_screen()
-        )
+        # a = Gio.Settings("org.gnome.gedit.preferences.editor")
+        # print(a.get_string("wrap-mode"))
+        # settings = Gio.Settings('org.my.font')
+        # face = settings.get_string('default-face')
+        # size = settings.get_double('default-size')
+
+        self.settings = Gtk.Settings.get_default()
+        # self.settings = Gtk.Settings.get_for_screen(Gdk.get_default_root_window().get_screen())
 
     def __getitem__(self, item):
         return self.settings.get_property(item)
@@ -50,8 +71,10 @@ class GtkSettings(metaclass=SingletonMeta):
 
 if __name__ == "__main__":
 
-    def abvdfj():
-        """ """
+    def abvdfj() -> None:
+        """
+        :rtype: None
+        """
         a = GtkSettings()
 
         def ofgof():

@@ -13,7 +13,4 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 from .batching_generator import *
-from .mapping_generator import *
 from .recycling_generator import *
-from .zipping_generator import *
-from .filtering import *

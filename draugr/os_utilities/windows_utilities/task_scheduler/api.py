@@ -2,7 +2,6 @@ import datetime
 import getpass
 import socket
 
-
 try:
     import win32com.client
 except ModuleNotFoundError as e:

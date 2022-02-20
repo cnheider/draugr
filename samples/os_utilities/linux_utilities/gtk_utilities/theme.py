@@ -3,3 +3,7 @@
 #  Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
 #  Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
 #  Vestibulum commodo. Ut rhoncus gravida arcu.
+from draugr.os_utilities.linux_utilities.gtk_utilities import GtkThemePreferences
+
+if __name__ == "__main__":
+    print(GtkThemePreferences().theme)

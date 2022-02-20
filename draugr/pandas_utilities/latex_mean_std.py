@@ -26,6 +26,12 @@ __all__ = [
 
 
 def pandas_mean_std(df: pandas.DataFrame, group_by: str) -> pandas.DataFrame:
+    """
+
+    :param df:
+    :param group_by:
+    :return:
+    """
     return df.groupby(group_by).agg([numpy.mean, numpy.std])
 
 
@@ -62,6 +68,14 @@ def pandas_mean_std_latex_tabular(
     precision: int = 3,
     header_rotation: Number = 0,
 ) -> str:
+    """
+
+    :param df:
+    :param group_by:
+    :param precision:
+    :param header_rotation:
+    :return:
+    """
     mean_std = pandas_mean_std(df, group_by)
     mean_std_str = pandas_mean_std_to_str(mean_std, precision=precision)
 
@@ -78,6 +92,15 @@ def pandas_format_bold_max_column_latex(
     header_rotation: Number = 0,
     max_colwidth: int = 1000,
 ):
+    """
+
+    :param max_provider_df:
+    :param entry_provider_df:
+    :param precision:
+    :param header_rotation:
+    :param max_colwidth:
+    :return:
+    """
     formatters = {
         column[0]: partial(
             pandas_mean_std_bold_formatter,
@@ -104,6 +127,15 @@ def pandas_format_bold_max_row_latex(
     header_rotation: Number = 0,
     max_colwidth=1000,
 ):
+    """
+
+    :param max_provider_df:
+    :param entry_provider_df:
+    :param precision:
+    :param header_rotation:
+    :param max_colwidth:
+    :return:
+    """
     formatters = {
         column[0]: partial(
             pandas_mean_std_bold_formatter,
@@ -130,6 +162,15 @@ def pandas_to_latex_clean(
     max_colwidth=1000,
     formatters=None,
 ) -> str:
+    """
+
+    :param entry_provider_df:
+    :param header_rotation:
+    :param precision:
+    :param max_colwidth:
+    :param formatters:
+    :return:
+    """
     if True:
         if not isinstance(entry_provider_df.columns, pandas.MultiIndex):
             entry_provider_df.columns = entry_provider_df.columns.str.replace("_", "\_")
@@ -205,6 +246,15 @@ def pandas_mean_std_latex_table(
     truncate_n_tabular_symbols: int = 2,
     **kwargs,
 ) -> str:
+    """
+
+    :param df:
+    :param group_by:
+    :param tab_label:
+    :param truncate_n_tabular_symbols:
+    :param kwargs:
+    :return:
+    """
     return (
         f"""\\begin{{table}}
   \caption{{{tab_label.replace('_', ' ')}}}
@@ -262,7 +312,10 @@ def pandas_mean_std_latex_table8(df: pandas.DataFrame,
 
 if __name__ == "__main__":
 
-    def asuhda():
+    def asuhda() -> None:
+        """
+        :rtype: None
+        """
         isjda = "dx_sijdai_iahjdaw-_sdioja_sakodwada_soakd_aoskdiojwd_s"
         df = pandas.DataFrame(
             numpy.random.randint(0, 100, size=(15, 3)),
@@ -273,9 +326,11 @@ if __name__ == "__main__":
         ]
 
         def asodjiasj():
+            """ """
             print(pandas_mean_std(df, "c_asd"))
 
         def asidj():
+            """ """
             print(pandas_mean_std_latex_table(df, "c_asd", "some_table"))
 
         asodjiasj()

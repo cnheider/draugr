@@ -27,8 +27,10 @@ def quick_to_pil_image(tensor: torch.Tensor, mode: str = "RGB") -> Image.Image:
 
 if __name__ == "__main__":
 
-    def asd2():
-        """ """
+    def asd2() -> None:
+        """
+        :rtype: None
+        """
         import cv2
         import torch
         from PIL import Image

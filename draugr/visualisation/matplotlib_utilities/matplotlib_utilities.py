@@ -7,6 +7,7 @@ __doc__ = r"""
            Created on 17/07/2020
            """
 
+from enum import Enum
 from pathlib import Path
 from typing import Any, Sequence, Union
 
@@ -14,6 +15,7 @@ import numpy
 from cycler import Cycler
 from matplotlib import patches, pyplot, rcParams
 from matplotlib.legend_handler import HandlerErrorbar
+from sorcery import assigned_names
 
 from draugr.visualisation.matplotlib_utilities.quirks import auto_post_hatch
 from draugr.visualisation.matplotlib_utilities.styles.annotation import (
@@ -36,6 +38,8 @@ __all__ = [
     "latex_clean_label",
     "make_errorbar_legend",
     "annotate_point",
+    "MatplotlibHorizontalAlignment",
+    "MatplotlibVerticalAlignment",
 ]
 
 from matplotlib.patches import Rectangle
@@ -51,6 +55,18 @@ from warg import Number, passes_kws_to
 ###which gives the ‘outer product’ of the two cycles (same as itertools.prod() )
 
 from matplotlib.axes import Axes, ErrorbarContainer
+
+
+class MatplotlibHorizontalAlignment(Enum):
+    """ """
+
+    (center, right, left) = assigned_names()
+
+
+class MatplotlibVerticalAlignment(Enum):
+    """ """
+
+    (center, top, bottom, baseline, center_baseline) = assigned_names()
 
 
 def latex_clean_label(s: str) -> str:
@@ -109,7 +125,7 @@ def save_embed_fig(
 
     if attempt_fix_empty_white_space:  # remove it
         # pyplot.gca().set_axis_off()
-        # plt.axis('off') # this rows the rectangular frame
+        # pyplot.axis('off') # this rows the rectangular frame
         # ax.get_xaxis().set_visible(False) # this removes the ticks and numbers for x axis
         # ax.get_yaxis().set_visible(False) # this removes the ticks and numbers for y axis
         if ax is None:
@@ -141,7 +157,7 @@ o.set_clip_box(clip_box)
     if (
         post_process_crop and suffix == ".pdf"
     ):  # Generally a good idea since matplotlib does not exclude invisible parts(eg. data points or anchors) of the plot.
-        from pdfCropMargins import crop
+        from pdfCropMargins import crop  # pip install pdfCropMargins
 
         crop(
             [
@@ -207,6 +223,10 @@ def use_monochrome_style(
     prop_cycler: Cycler = monochrome_line_cycler,
     # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
 ) -> None:
+    """
+
+    :param prop_cycler:
+    """
     # from matplotlib.pyplot import axes, grid
 
     # from matplotlib import lines, markers
@@ -225,7 +245,10 @@ def use_monochrome_style(
 
 if __name__ == "__main__":
 
-    def asiuhda():
+    def asiuhda() -> None:
+        """
+        :rtype: None
+        """
         use_monochrome_style()
         bar_styles = monochrome_hatch_cycler()
         fig, ax = pyplot.subplots(1, 1)
@@ -239,7 +262,10 @@ if __name__ == "__main__":
         fix_edge_gridlines(ax)
         pyplot.show()
 
-    def asiuh214da():
+    def asiuh214da() -> None:
+        """
+        :rtype: None
+        """
         pyplot.style.use(Path(__file__).parent / "styles" / "monochrome.mplstyle")
         line_styles = monochrome_line_cycler()
         fig, ax = pyplot.subplots(1, 1)
@@ -253,7 +279,10 @@ if __name__ == "__main__":
         fix_edge_gridlines(ax)
         pyplot.show()
 
-    def asiuasdashda():
+    def asiuasdashda() -> None:
+        """
+        :rtype: None
+        """
         use_monochrome_style(prop_cycler=monochrome_hatch_cycler)
 
         fig, ax = pyplot.subplots(1, 1)
@@ -268,8 +297,10 @@ if __name__ == "__main__":
         auto_post_hatch(ax, simple_hatch_cycler)
         pyplot.show()
 
-    def asiuhdsada_non():
-
+    def asiuhdsada_non() -> None:
+        """
+        :rtype: None
+        """
         fig, ax = pyplot.subplots(1, 1)
         for x in range(3):
             ax.plot(numpy.random.rand(10), label=f"{x}")
@@ -277,7 +308,10 @@ if __name__ == "__main__":
         legend()
         pyplot.show()
 
-    def asiuhd21412sada():
+    def asiuhd21412sada() -> None:
+        """
+        :rtype: None
+        """
         use_monochrome_style()
         fig, ax = pyplot.subplots(1, 1)
 

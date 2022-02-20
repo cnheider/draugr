@@ -17,6 +17,12 @@ __all__ = ["GuidedBackPropReLUModel", "GuidedBackPropReLU"]
 class GuidedBackPropReLU(Function):
     @staticmethod
     def forward(self, input_img):
+        """
+
+        :param self:
+        :param input_img:
+        :return:
+        """
         positive_mask = (input_img > 0).type_as(input_img)
         output = torch.addcmul(
             torch.zeros(input_img.size()).type_as(input_img), input_img, positive_mask
@@ -26,6 +32,12 @@ class GuidedBackPropReLU(Function):
 
     @staticmethod
     def backward(self, grad_output):
+        """
+
+        :param self:
+        :param grad_output:
+        :return:
+        """
         input_img, output = self.saved_tensors
 
         positive_mask_1 = (input_img > 0).type_as(grad_output)
@@ -43,14 +55,20 @@ class GuidedBackPropReLU(Function):
 
 
 class GuidedBackPropReLUModel:
+    """ """
+
     def __init__(self, model, use_cuda):
         self._model = model
         self._model.eval()
         self._use_cuda = use_cuda
         if self._use_cuda:
-            self._model = self._model._use_cuda()
+            self._model = self._model.cuda()
 
         def recursive_relu_apply(module_top):
+            """
+
+            :param module_top:
+            """
             for idx, module in module_top._modules.items():
                 recursive_relu_apply(module)
                 if module.__class__.__name__ == "ReLU":
@@ -59,6 +77,11 @@ class GuidedBackPropReLUModel:
         recursive_relu_apply(self._model)  # replace ReLU with GuidedBackpropReLU
 
     def forward(self, input_img):
+        """
+
+        :param input_img:
+        :return:
+        """
         return self._model(input_img)
 
     def __call__(self, input_img, target_category=None):

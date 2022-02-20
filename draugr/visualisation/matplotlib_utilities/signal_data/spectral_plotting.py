@@ -99,8 +99,10 @@ def fft_plot(signal: Sequence, *, line_width: float = 0.2) -> pyplot.Figure:
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         sr = 1000
         t = numpy.arange(sr * 4) / sr
         # noise = numpy.random.rand(sr * 2) * 0.001

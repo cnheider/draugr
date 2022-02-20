@@ -68,9 +68,17 @@ class LogWriter(Writer):
         self.logger.info(msg)
 
     def text(self, msg: str) -> None:
+        """
+
+        :param msg:
+        """
         self(msg)
 
     def log(self, msg: str) -> None:
+        """
+
+        :param msg:
+        """
         self(msg)
 
 

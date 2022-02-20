@@ -15,6 +15,11 @@ __all__ = ["num_instance_no_paging"]
 
 
 def num_instance_no_paging(expected_size_mb: int = 1024) -> int:
+    """
+
+    :param expected_size_mb:
+    :return:
+    """
     return int(
         (psutil.virtual_memory().available - PAGING_BUFFER_SIZE)
         / expected_size_mb

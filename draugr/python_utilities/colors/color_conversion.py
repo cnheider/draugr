@@ -13,39 +13,45 @@ COLOR_RGB = Tuple[int, int, int]
 COLOR_RGBA = Tuple[int, int, int, int]
 COLOR_INT = Tuple[int, ...]
 
-__all__ = ["RGB", "RGBA", "color_to_str", "color_from_str"]
+__all__ = ["rgb", "rgba", "RGB", "RGBA", "color_to_str", "color_from_str"]
 
 
-def RGB(R: int, G: int, B: int) -> COLOR_RGB:
+def rgb(r: int, g: int, b: int) -> COLOR_RGB:
     """
 
-    :param R:
-    :type R:
-    :param G:
-    :type G:
-    :param B:
-    :type B:
+    :param r:
+    :type r:
+    :param g:
+    :type g:
+    :param b:
+    :type b:
     :return:
     :rtype:"""
-    assert 0 <= R <= 255 and 0 <= G <= 255 and 0 <= B <= 255
-    return R, G, B
+    assert 0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255
+    return r, g, b
 
 
-def RGBA(R: int, G: int, B: int, A: int) -> COLOR_RGBA:
+RGB = rgb
+
+
+def rgba(r: int, g: int, b: int, a: int) -> COLOR_RGBA:
     """
 
-    :param R:
-    :type R:
-    :param G:
-    :type G:
-    :param B:
-    :type B:
-    :param A:
-    :type A:
+    :param r:
+    :type r:
+    :param g:
+    :type g:
+    :param b:
+    :type b:
+    :param a:
+    :type a:
     :return:
     :rtype:"""
-    assert 0 <= R <= 255 and 0 <= G <= 255 and 0 <= B <= 255 and 0 <= A <= 255
-    return R, G, B, A
+    assert 0 <= r <= 255 and 0 <= g <= 255 and 0 <= b <= 255 and 0 <= a <= 255
+    return r, g, b, a
+
+
+RGBA = rgba
 
 
 def color_from_str(s: str, seperator: str = " ") -> COLOR_INT:
@@ -80,8 +86,10 @@ def color_to_str(t: COLOR_INT, seperator: str = " ") -> str:
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         a = RGB(1, 50, 100)
         b = color_to_str(a)
         c = color_from_str(b)

@@ -62,7 +62,7 @@ if __name__ == "__main__":
             for name in files
             if name.endswith(".jpg")
         ]
-        existing_images_df = pd.DataFrame(
+        existing_images_df = pandas.DataFrame(
             [re.findall(r"[\w']+", im_name)[1:3] for im_name in im_names],
             columns=["cat_id", "pid"],
         )

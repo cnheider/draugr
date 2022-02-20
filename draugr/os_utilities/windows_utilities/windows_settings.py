@@ -72,8 +72,10 @@ class WindowsSettings(metaclass=SingletonMeta):
 
 if __name__ == "__main__":
 
-    def a():
-        """ """
+    def a() -> None:
+        """
+        :rtype: None
+        """
         ws = WindowsSettings()
         dark_mode = ws.get_dark_mode()
         ws.set_dark_mode(not dark_mode)

@@ -105,7 +105,7 @@ class DraugrPackage:
     @property
     def download_url(self) -> str:
         """ """
-        return self.url + "/releases"
+        return f"{self.url}/releases"
 
     @property
     def readme_type(self) -> str:

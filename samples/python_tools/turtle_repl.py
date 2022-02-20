@@ -1,28 +1,28 @@
-import cmd
 from turtle import *
 
+from draugr import str_to_tuple, PlaybackShell
 
-class TurtleShell(cmd.Cmd):
+
+class TurtleShell(PlaybackShell):
     intro = "Welcome to the turtle shell.   Type help or ? to list commands.\n"
     prompt = "(turtle) "
-    file = None
 
     # ----- basic turtle commands -----
     def do_forward(self, arg):
         """Move the turtle forward by the specified distance:  FORWARD 10"""
-        forward(*parse(arg))
+        forward(*str_to_tuple(arg))
 
     def do_right(self, arg):
         """Turn turtle right by given number of degrees:  RIGHT 20"""
-        right(*parse(arg))
+        right(*str_to_tuple(arg))
 
     def do_left(self, arg):
         """Turn turtle left by given number of degrees:  LEFT 90"""
-        left(*parse(arg))
+        left(*str_to_tuple(arg))
 
     def do_goto(self, arg):
         """Move turtle to an absolute position with changing orientation.  GOTO 100 200"""
-        goto(*parse(arg))
+        goto(*str_to_tuple(arg))
 
     def do_home(self, arg):
         """Return turtle to the home position:  HOME"""
@@ -30,7 +30,7 @@ class TurtleShell(cmd.Cmd):
 
     def do_circle(self, arg):
         """Draw circle with given radius an options extent and steps:  CIRCLE 50"""
-        circle(*parse(arg))
+        circle(*str_to_tuple(arg))
 
     def do_position(self, arg):
         """Print the current turtle position:  POSITION"""
@@ -57,33 +57,6 @@ class TurtleShell(cmd.Cmd):
         self.close()
         bye()
         return True
-
-    # ----- record and playback -----
-    def do_record(self, arg):
-        """Save future commands to filename:  RECORD rose.cmd"""
-        self.file = open(arg, "w")
-
-    def do_playback(self, arg):
-        """Playback commands from a file:  PLAYBACK rose.cmd"""
-        self.close()
-        with open(arg) as f:
-            self.cmdqueue.extend(f.read().splitlines())
-
-    def precmd(self, line):
-        line = line.lower()
-        if self.file and "playback" not in line:
-            print(line, file=self.file)
-        return line
-
-    def close(self):
-        if self.file:
-            self.file.close()
-            self.file = None
-
-
-def parse(arg):
-    """Convert a series of zero or more numbers to an argument tuple"""
-    return tuple(map(int, arg.split()))
 
 
 if __name__ == "__main__":

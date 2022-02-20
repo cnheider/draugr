@@ -48,8 +48,10 @@ def truncate_to_power_2(signal: Sequence) -> Sequence:
 
 if __name__ == "__main__":
 
-    def gasdasa():
-        """ """
+    def gasdasa() -> None:
+        """
+        :rtype: None
+        """
         from draugr.torch_utilities import to_tensor
 
         base = 5
@@ -59,8 +61,10 @@ if __name__ == "__main__":
         trunc = [last_dim_truncate(s, base) for s in stair]
         print(to_tensor(trunc))
 
-    def basdiuj():
-        """ """
+    def basdiuj() -> None:
+        """
+        :rtype: None
+        """
         import numpy
 
         asda = numpy.arange(2 ** 5 - 1)

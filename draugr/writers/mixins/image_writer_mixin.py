@@ -6,6 +6,8 @@ from typing import Union
 import numpy
 import torch
 from PIL import Image
+from enum import Enum
+from sorcery import assigned_names
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -17,7 +19,14 @@ __all__ = ["ImageWriterMixin"]
 
 class ImageWriterMixin(ABC):
     """
-    Writer subclass that provides an interface for 'writing' images"""
+    Writer subclass that provides an interface for 'writing' images
+    +Bonus points for handling other multichannel rasters C!=1 and C!=3
+    """
+
+    class MultiChannelMethodEnum(
+        Enum
+    ):  # TODO: MAYBE RENAME TO something with REDUCTIONMETHODS
+        seperate, mix, project = assigned_names()
 
     @abstractmethod
     def image(

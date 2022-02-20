@@ -39,8 +39,10 @@ class OpencvImageStream(Drawer):
 
 if __name__ == "__main__":
 
-    def asdasf():
-        """ """
+    def asdasf() -> None:
+        """
+        :rtype: None
+        """
         from draugr.opencv_utilities import frame_generator, AsyncVideoStream
         from draugr.tqdm_utilities import progress_bar
 

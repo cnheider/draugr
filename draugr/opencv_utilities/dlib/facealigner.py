@@ -18,6 +18,16 @@ def align_face(
     desired_left_eye=(0.35, 0.35),
     desired_face_size=(256, 256),
 ):
+    """
+
+    :param image:
+    :param gray:
+    :param rect:
+    :param predictor:
+    :param desired_left_eye:
+    :param desired_face_size:
+    :return:
+    """
     desired_face_width, desired_face_height = desired_face_size
     face_shape = shape_to_ndarray(predictor(gray, rect))
 

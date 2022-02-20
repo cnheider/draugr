@@ -27,15 +27,33 @@ __all__ = [
 
 
 class ColorEnum(Enum):
-    yellow, red, green = assigned_names()
+    """ """
+
+    (
+        purple,
+        cyan,
+        yellow,
+        red,
+        green,
+        blue,
+        magenta,
+        pink,
+        orange,
+        black,
+        white,
+    ) = assigned_names()
 
 
 class NDFrameExtremeEnum(Enum):
+    """ """
+
     min = NDFrame.min
     max = NDFrame.max
 
 
 class AttrEnum(Enum):
+    """ """
+
     color = "color: {}"
     bg = "background-color: {}"
 
@@ -61,8 +79,8 @@ def color_highlight_extreme(
         mask = s == extreme_func(s)
         if s.ndim == 1:  # Series from .apply(axis=0) or axis=1
             return [attr if v else "" for v in mask]
-        return pd.DataFrame(
-            np.where(mask, attr, ""), index=s.index, columns=s.columns
+        return pandas.DataFrame(
+            numpy.where(mask, attr, ""), index=s.index, columns=s.columns
         )  # from .apply(axis=None)
     return attr
 
@@ -82,23 +100,23 @@ def color_negative_red(value):
     else:
         color = "black"
 
-    return "color: %s" % color
+    return f"color: {color}"
 
 
 if __name__ == "__main__":
-    import pandas as pd
-    import numpy as np
+    import numpy
+    import pandas
+    import seaborn
 
-    np.random.seed(24)
-    df = pd.DataFrame({"A": np.linspace(1, 10, 10)})
-    df = pd.concat(
-        [df, pd.DataFrame(np.random.randn(10, 4), columns=list("BCDE"))], axis=1
+    numpy.random.seed(24)
+    df = pandas.DataFrame({"A": numpy.linspace(1, 10, 10)})
+    df = pandas.concat(
+        [df, pandas.DataFrame(numpy.random.randn(10, 4), columns=list("BCDE"))], axis=1
     )
-    df.iloc[3, 3] = np.nan
-    df.iloc[0, 2] = np.nan
-    import seaborn as sns
+    df.iloc[3, 3] = numpy.nan
+    df.iloc[0, 2] = numpy.nan
 
-    cm = sns.light_palette("green", as_cmap=True)
+    cm = seaborn.light_palette("green", as_cmap=True)
     df = df.style.background_gradient(cmap=cm).highlight_null(
         null_color="red"
     )  # element wise

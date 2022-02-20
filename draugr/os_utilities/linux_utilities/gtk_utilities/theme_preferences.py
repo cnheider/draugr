@@ -9,17 +9,26 @@ __doc__ = r"""
 
 __all__ = ["GtkThemePreferences"]
 
+from typing import Union
+
 from draugr.os_utilities.linux_utilities.gtk_utilities.gtk_settings import GtkSettings
 
 
 class GtkThemePreferences(GtkSettings):
+    """
+    Presents a slim series of properties for manipulation of GTK settings
+    """
+
     @property
-    def theme(self):
-        """ """
+    def theme(self) -> Union[str, bytes]:
+        """
+
+        :return:
+        """
         return self.settings.get_property("gtk-theme-name")
 
     @theme.setter
-    def theme(self, theme_name: str):
+    def theme(self, theme_name: str) -> None:
         self.settings.set_property("gtk-theme-name", theme_name)
 
     @property
@@ -27,18 +36,20 @@ class GtkThemePreferences(GtkSettings):
         """
 
         :return:
-        :rtype:"""
+        """
         return self.settings.get_property("gtk-application-prefer-dark-theme")
 
     @prefer_dark_mode.setter
-    def prefer_dark_mode(self, enabled: bool):
+    def prefer_dark_mode(self, enabled: bool) -> None:
         self.settings.set_property("gtk-application-prefer-dark-theme", enabled)
 
 
 if __name__ == "__main__":
 
-    def asdad():
-        """ """
+    def asdad() -> None:
+        """
+        :rtype: None
+        """
         a = GtkThemePreferences()
 
         print(a.prefer_dark_mode)
@@ -47,8 +58,10 @@ if __name__ == "__main__":
         a.prefer_dark_mode = not a.prefer_dark_mode
         print(a.prefer_dark_mode)
 
-    def asdad2312():
-        """ """
+    def asdad2312() -> None:
+        """
+        :rtype: None
+        """
         with GtkThemePreferences() as a:
             print(a.prefer_dark_mode)
 
@@ -60,8 +73,10 @@ if __name__ == "__main__":
         with GtkThemePreferences() as a:
             print(a.prefer_dark_mode)
 
-    def asda213sad2312d():
-        """ """
+    def asda213sad2312d() -> None:
+        """
+        :rtype: None
+        """
         a = GtkThemePreferences()
 
         print(a.prefer_dark_mode)

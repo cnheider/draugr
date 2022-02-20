@@ -48,8 +48,10 @@ def set_global_torch_dtype(dtype: torch.dtype) -> None:
 
 if __name__ == "__main__":
 
-    def stest_override():
-        """ """
+    def stest_override() -> None:
+        """
+        :rtype: None
+        """
         print(global_torch_dtype(verbose=True))
         print(global_torch_dtype(override=torch.double, verbose=True))
         print(global_torch_dtype(verbose=True))

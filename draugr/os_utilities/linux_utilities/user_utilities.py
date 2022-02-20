@@ -93,11 +93,21 @@ def change_passwd(
     username: str = "demo_user",
     password: str = None,
 ) -> None:
+    """
+
+    :param username:
+    :param password:
+    """
     raise NotImplementedError
     pass  # ./passwd
 
 
 def change_home_dir(username: str = "demo_user", new_home: str = None) -> None:
+    """
+
+    :param username:
+    :param new_home:
+    """
     raise NotImplementedError
     pass  # ./mkhomedir_helper username
 

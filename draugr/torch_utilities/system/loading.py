@@ -64,8 +64,10 @@ def global_pin_memory(
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         print(global_pin_memory(0))
         print(global_pin_memory(1))
         print(global_pin_memory(2))

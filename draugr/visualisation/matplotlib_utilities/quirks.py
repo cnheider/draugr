@@ -10,11 +10,17 @@ __doc__ = r"""
 from matplotlib import cycler, pyplot, rcParams
 from matplotlib.axes import Axes
 
-from .styles import simple_hatch_cycler
+from draugr.visualisation.matplotlib_utilities.styles.cyclers import simple_hatch_cycler
 
-__all__ = ["fix_edge_gridlines", "auto_post_print_dpi", "auto_post_hatch"]
+__all__ = [
+    "fix_edge_gridlines",
+    "auto_post_print_dpi",
+    "auto_post_hatch",
+    "scatter_auto_mark",
+]
 
-from warg import Number
+from warg import Number, drop_unused_kws, passes_kws_to
+import numpy
 
 
 def fix_edge_gridlines(
@@ -56,3 +62,52 @@ def auto_post_hatch(
         ax = pyplot.gca()
     for p, d in zip(ax.patches, hatch_cycler):
         p.set_hatch(next(iter(d.values())))
+
+
+@drop_unused_kws
+@passes_kws_to(pyplot.scatter)
+def scatter_auto_mark(x, y, c, ax=None, m=("|", "_"), fillstyle="none", **kw):
+    """
+    TODO:Quick hack, can be generalised further
+    :param x:
+    :param y:
+    :param c:
+    :param ax:
+    :param m:
+    :param fillstyle:
+    :param kw:
+    :return:
+    """
+    import matplotlib.markers as mmarkers
+
+    if not ax:
+        ax = pyplot.gca()
+    sc = ax.scatter(x, y, c=c, **kw)
+    if m is not None and len(m) == len(x):
+        paths = []
+        for marker in m:
+            if isinstance(marker, mmarkers.MarkerStyle):
+                marker_obj = marker
+            else:
+                marker_obj = mmarkers.MarkerStyle(marker, fillstyle=fillstyle)
+            path = marker_obj.get_path().transformed(marker_obj.get_transform())
+            paths.append(path)
+        sc.set_paths(paths)
+    elif (
+        c is not None and isinstance(c[0], (int, numpy.ndarray)) and len(c) == len(x)
+    ):  # TODO: HANDLE numpy ndarray
+        # better
+        paths = []
+        for c_ in c:
+            if isinstance(c_, numpy.ndarray):
+                c_ = c_.item()
+            if isinstance(m[c_], mmarkers.MarkerStyle):
+                marker_obj = m[c_]
+            else:
+                marker_obj = mmarkers.MarkerStyle(m[c_], fillstyle=fillstyle)
+            paths.append(marker_obj.get_path().transformed(marker_obj.get_transform()))
+        sc.set_paths(paths)
+    else:
+        pass
+        # raise NotImplemented
+    return sc

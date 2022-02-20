@@ -26,3 +26,4 @@ from .powers import *
 from .contexts import *
 from .path_utilities import *
 from .function_wrappers import *
+from .config_shell import *

@@ -40,6 +40,17 @@ def annotate_lines(
     va: str = "center",
     **kwargs,
 ) -> None:
+    """
+
+    :param ax_:
+    :param num_lines:
+    :param index_decimator:
+    :param color:
+    :param xycoords:
+    :param ha:
+    :param va:
+    :param kwargs:
+    """
     lines = ax_.lines
     if not num_lines:
         num_lines = len(lines)
@@ -69,7 +80,10 @@ def annotate_lines(
 
 if __name__ == "__main__":
 
-    def hsdh():
+    def hsdh() -> None:
+        """
+        :rtype: None
+        """
         from matplotlib import pyplot
 
         a = [*range(0, 10), *range(10, -10, -1), *range(-10, 0)]

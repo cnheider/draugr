@@ -40,8 +40,10 @@ def replay_frames(
 
 if __name__ == "__main__":
 
-    def main():
-        """ """
+    def main() -> None:
+        """
+        :rtype: None
+        """
         import gym
 
         env = gym.make("Pendulum-v0")

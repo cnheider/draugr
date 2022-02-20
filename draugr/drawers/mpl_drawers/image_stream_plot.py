@@ -52,8 +52,10 @@ class ImageStreamPlot(MplDrawer):
 
 if __name__ == "__main__":
 
-    def asdasf():
-        """ """
+    def asdasf() -> None:
+        """
+        :rtype: None
+        """
         import cv2
         from draugr.opencv_utilities import frame_generator
         from draugr.tqdm_utilities import progress_bar

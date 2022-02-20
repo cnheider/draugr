@@ -50,8 +50,10 @@ def torch_to_numpy_dtype(torch_dtype: torch.dtype) -> numpy.dtype:
 
 if __name__ == "__main__":
 
-    def iusahdu():
-        """ """
+    def iusahdu() -> None:
+        """
+        :rtype: None
+        """
         a = numpy.zeros((1, 1))
         print(a.dtype)
         b = numpy_to_torch_dtype(a.dtype)
