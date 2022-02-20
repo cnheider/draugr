@@ -6,7 +6,7 @@ __doc__ = r"""
 
            Created on 18/03/2020
            """
-__all__ = ["get_host_ip", "find_unclaimed_port"]
+__all__ = ["get_host_ip", "find_unclaimed_port", "is_port_in_use"]
 
 
 def get_host_ip() -> str:
@@ -28,7 +28,7 @@ def get_host_ip() -> str:
     return ip
 
 
-def find_unclaimed_port():
+def find_unclaimed_port() -> int:
     """
     # NOTE: there is still a chance the port could be taken by other processes.
     :return:
@@ -42,6 +42,18 @@ def find_unclaimed_port():
     port = sock.getsockname()[1]
     sock.close()
     return port
+
+
+def is_port_in_use(port: int) -> bool:
+    """
+
+    :param port_:
+    :return:
+    """
+    import socket
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(("localhost", port)) == 0
 
 
 if __name__ == "__main__":

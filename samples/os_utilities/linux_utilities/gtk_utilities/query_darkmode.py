@@ -13,6 +13,9 @@ __doc__ = r"""
            Created on 01/02/2022
            """
 
-from .color_conversion import *
-from .label_colors import *
-from .css_colors import *
+__all__ = []
+
+from draugr.os_utilities.linux_utilities.gtk_utilities import GtkThemePreferences
+
+if __name__ == "__main__":
+    print(GtkThemePreferences().prefer_dark_mode)

@@ -13,8 +13,6 @@ __all__ = ["color"]
 from functools import partial
 import re
 
-string_types = str
-
 """
 Map of CSS color names to RGB integer values.
 """
@@ -169,9 +167,26 @@ css_colors = {
     "yellowgreen": (154, 205, 50),
 }
 
+# ANSI color names. There is also a "default"
+COLORS = ("black", "red", "green", "yellow", "blue", "magenta", "cyan", "white")
+
+# ANSI style names
+STYLES = (
+    "none",
+    "bold",
+    "faint",
+    "italic",
+    "underline",
+    "blink",
+    "blink2",
+    "negative",
+    "concealed",
+    "crossed",
+)
+
 
 def parse_rgb(s):
-    if not isinstance(s, string_types):
+    if not isinstance(s, str):
         raise ValueError("Could not parse color '{0}'".format(s))
     s = s.strip().replace(" ", "").lower()
     # simple lookup
@@ -198,29 +213,11 @@ def parse_rgb(s):
     raise ValueError("Could not parse color '{0}'".format(s))
 
 
-# ANSI color names. There is also a "default"
-COLORS = ("black", "red", "green", "yellow", "blue", "magenta", "cyan", "white")
-
-# ANSI style names
-STYLES = (
-    "none",
-    "bold",
-    "faint",
-    "italic",
-    "underline",
-    "blink",
-    "blink2",
-    "negative",
-    "concealed",
-    "crossed",
-)
-
-
 def is_string(obj):
     """
     Is the given object a string?
     """
-    return isinstance(obj, string_types)
+    return isinstance(obj, str)
 
 
 def _join(*values):

@@ -8,21 +8,24 @@ __doc__ = r"""
            """
 
 import itertools
+from typing import Sequence
 
 import numpy
 from matplotlib import pyplot
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 
+__all__ = ["pretty_print_conf_matrix"]
+
 
 def pretty_print_conf_matrix(
-    y_true,
-    y_pred,
-    classes,
-    normalize=False,
-    title="Confusion matrix",
+    y_true: Sequence,
+    y_pred: Sequence,
+    classes: Sequence,
+    normalize: bool = False,
+    title: str = "Confusion matrix",
     cmap=pyplot.cm.Blues,
-):
+) -> None:
     """
     Mostly stolen from: http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html#sphx-glr-auto-examples-model-selection-plot-confusion-matrix-py
 

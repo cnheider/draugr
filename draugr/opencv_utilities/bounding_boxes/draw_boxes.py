@@ -16,7 +16,7 @@ from PIL import Image, ImageDraw, ImageFont
 from draugr.opencv_utilities.opencv_draw import draw_masks
 from draugr.python_utilities.colors import RGB, compute_color_for_labels
 
-__all__ = ["draw_bounding_boxes"]
+__all__ = ["draw_single_box", "draw_bounding_boxes"]
 
 
 def draw_single_box(
@@ -171,7 +171,7 @@ if __name__ == "__main__":
             data = pickle.load(f)
 
         img = Image.open(str(data_root / f"{name}.jpg"))
-        img = draw_masks(img, data.masks, data.labels)
+        img = draw_masks(img, data.masks, labels=data.labels)
         img = draw_bounding_boxes(
             img,
             boxes=data.boxes,

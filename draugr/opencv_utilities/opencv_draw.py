@@ -8,6 +8,7 @@ __doc__ = r"""
            """
 
 from typing import Sequence, Tuple, Union
+from enum import Enum
 
 import cv2
 import numpy
@@ -16,6 +17,13 @@ from PIL import Image
 from draugr.python_utilities.colors import RGB, compute_color_for_labels
 
 __all__ = ["find_contours", "draw_masks"]
+
+
+class LineTypesEnum(Enum):
+    filled = cv2.FILLED
+    line4 = cv2.LINE_4  # 4-connected line
+    line8 = cv2.LINE_8  # 8-connected line
+    anti_aliased = cv2.LINE_AA  # antialiased line
 
 
 def find_contours(*args, **kwargs) -> Tuple:
@@ -35,12 +43,14 @@ def find_contours(*args, **kwargs) -> Tuple:
 def draw_masks(
     image: Union[Image.Image, numpy.ndarray],
     masks: Union[Image.Image, numpy.ndarray],
+    *,
     labels: Sequence = None,
     border: bool = True,
-    border_width: float = 2,
+    border_width: int = 1,  # If it is negative, the contour interiors are drawn.
     border_color: Tuple = RGB(255, 255, 255),
     alpha: float = 0.5,
     color: Tuple = None,
+    line_type: LineTypesEnum = LineTypesEnum.anti_aliased
 ) -> numpy.ndarray:
     """
     Args:
@@ -54,6 +64,8 @@ def draw_masks(
     color: mask color
     Returns:
     numpy.ndarray"""
+
+    line_type = LineTypesEnum(line_type)
     if isinstance(image, Image.Image):
         image = numpy.array(image)
     assert isinstance(image, numpy.ndarray)
@@ -61,14 +73,16 @@ def draw_masks(
         masks = numpy.array(masks)
     assert isinstance(masks, numpy.ndarray)
     # TODO: ASSERT 3/4 CHANNELS!
+    if labels is None:
+        labels = list(range(masks.shape[0]))
     for i, mask in enumerate(masks):
         mask = mask.squeeze()[..., None].astype(numpy.bool)
 
-        label = labels[i] if labels is not None else 1
-        _color = compute_color_for_labels(label) if color is None else tuple(color)
+        label = labels[i]
+        mask_color = compute_color_for_labels(label) if color is None else tuple(color)
 
         image = numpy.where(
-            mask, mask * numpy.array(_color) * alpha + image * (1 - alpha), image
+            mask, mask * numpy.array(mask_color) * alpha + image * (1 - alpha), image
         )
         if border:
             contours, hierarchy = find_contours(
@@ -80,7 +94,7 @@ def draw_masks(
                 -1,
                 border_color,
                 thickness=border_width,
-                lineType=cv2.LINE_AA,
+                lineType=line_type.value,
             )
     return image.astype(numpy.uint8)
 

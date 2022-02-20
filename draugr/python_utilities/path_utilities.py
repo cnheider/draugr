@@ -19,7 +19,7 @@ def latest_file(
     *,
     recurse: bool = False,
     raise_on_failure: bool = True,
-):
+) -> Path:
     """
 
     :param directory:
