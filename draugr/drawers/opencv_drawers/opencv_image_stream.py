@@ -12,13 +12,17 @@ from typing import Sequence
 import cv2
 
 from draugr.drawers.drawer import Drawer
+from warg import drop_unused_kws, passes_kws_to
 
 
 class OpencvImageStream(Drawer):
     """ """
 
+    @drop_unused_kws
+    @passes_kws_to(Drawer.__init__)
     def __init__(self, title: str = "", render: bool = True, **kwargs):
 
+        super().__init__(**kwargs)
         if not render:
             return
 

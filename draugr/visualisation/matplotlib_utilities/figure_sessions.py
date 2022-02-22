@@ -32,6 +32,7 @@ from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
     color_cycler,
     line_cycler,
 )
+import subprocess
 
 
 class FigureSession(AlsoDecorator):
@@ -94,6 +95,14 @@ class StyleSession(AlsoDecorator):
 
     def __enter__(self) -> pyplot.Figure:
         a = self.ctx.__enter__()
+        if pyplot.rcParams["text.usetex"]:
+            try:
+                report = subprocess.check_output("latex", stderr=subprocess.STDOUT)
+            except FileNotFoundError as exc:
+                msg = f'No tex: {"latex"}'
+                # raise RuntimeError(msg)
+                print(f"{msg}, disabling")
+                pyplot.rcParams.update({"text.usetex": False})
         if self.prop_cycler:
             pyplot.rcParams.update({"axes.prop_cycle": self.prop_cycler})
         return a

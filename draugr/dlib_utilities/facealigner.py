@@ -1,7 +1,7 @@
 import cv2
 import numpy
 
-from draugr.opencv_utilities.dlib.dlib_utilities import (
+from draugr.dlib_utilities.dlib_utilities import (
     Dlib5faciallandmarksindices,
     Dlib68faciallandmarksindices,
     shape_to_ndarray,

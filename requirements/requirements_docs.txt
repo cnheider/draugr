@@ -1,5 +1,5 @@
-sphinx==4.4.0 # -e git://github.com/snide/sphinx_rtd_theme.git#egg=sphinx_rtd_theme
+sphinx>=4.4.0 # -e git://github.com/snide/sphinx_rtd_theme.git#egg=sphinx_rtd_theme
 m2r2
 sphinxcontrib-programoutput
 draugr
-mistune<2.0.0
+mistune>=2.0.0

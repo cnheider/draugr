@@ -91,10 +91,15 @@ class ConfigShell(PlaybackShell):
             self.add_option(p, getter=getter, setter=setter, deleter=deleter)
 
     def add_option(self, key, *, getter, setter, deleter=None):
-        self.__setattr__(f"do_get_{key}", getter)
-        self.__setattr__(f"do_set_{key}", setter)
+        self.add_func(f"get_{key}", getter)
+        self.add_func(f"set_{key}", setter)
         if deleter:
-            self.__setattr__(f"do_del_{key}", deleter)
+            self.add_func(f"del_{key}", deleter)
+
+    def add_func(self, key, func):
+        k = f"do_{key}"
+        assert k not in self.get_names()
+        self.__setattr__(k, func)
 
 
 if __name__ == "__main__":

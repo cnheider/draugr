@@ -80,7 +80,7 @@ class Dlib68faciallandmarksindices(Enum):
 
 class Dlib5faciallandmarksindices(Enum):
     """
-    dlib’s 5-point facial landmark detector
+    dlib_utilities’s 5-point facial landmark detector
     """
 
     right_eye = (2, 3 + 1)
@@ -123,7 +123,7 @@ class Dlib5faciallandmarksindices(Enum):
 
 def rect_to_bounding_box(rect) -> Tuple[float, float, float, float]:
     """
-    # take a bounding predicted by dlib and convert it
+    # take a bounding predicted by dlib_utilities and convert it
     # to the format (x, y, w, h)"""
     x = rect.left()
     y = rect.top()

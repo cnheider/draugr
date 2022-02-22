@@ -7,6 +7,7 @@ __doc__ = r"""
            Created on 17/07/2020
            """
 
+import subprocess
 from enum import Enum
 from pathlib import Path
 from typing import Any, Sequence, Union
@@ -239,6 +240,14 @@ def use_monochrome_style(
     # print(matplotlib.matplotlib_fname())
 
     pyplot.style.use(Path(__file__).parent / "styles" / "monochrome.mplstyle")
+    if pyplot.rcParams["text.usetex"]:
+        try:
+            report = subprocess.check_output("latex", stderr=subprocess.STDOUT)
+        except FileNotFoundError as exc:
+            msg = f'No tex: {"latex"}'
+            # raise RuntimeError(msg)
+            print(f"{msg}, disabling")
+            pyplot.rcParams.update({"text.usetex": False})
     rcParams.update({"axes.prop_cycle": prop_cycler})
     # auto_post_print_dpi()
 
