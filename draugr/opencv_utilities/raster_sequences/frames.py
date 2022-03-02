@@ -14,6 +14,7 @@ import cv2
 
 __all__ = ["frame_generator"]
 
+from draugr.opencv_utilities.enums import WindowFlagEnum
 from warg import identity
 
 
@@ -44,7 +45,7 @@ if __name__ == "__main__":
         from tqdm import tqdm
 
         for image in tqdm(frame_generator(cv2.VideoCapture(0), None)):
-            cv2.namedWindow("window_name", cv2.WINDOW_NORMAL)
+            cv2.namedWindow("window_name", WindowFlagEnum.normal.value)
             cv2.imshow("window_name", image)
 
             if cv2.waitKey(1) == 27:

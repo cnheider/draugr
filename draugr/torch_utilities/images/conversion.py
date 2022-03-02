@@ -12,6 +12,8 @@ import numpy
 import torch
 from PIL import Image
 
+from draugr.opencv_utilities import WindowFlagEnum
+
 
 def quick_to_pil_image(tensor: torch.Tensor, mode: str = "RGB") -> Image.Image:
     """
@@ -46,7 +48,7 @@ if __name__ == "__main__":
                     device=global_torch_device(),
                 )
             ):
-                cv2.namedWindow("window_name", cv2.WINDOW_NORMAL)
+                cv2.namedWindow("window_name", WindowFlagEnum.normal.value)
                 cv2.imshow("window_name", numpy.array(quick_to_pil_image(image)))
 
                 if cv2.waitKey(1) == 27:

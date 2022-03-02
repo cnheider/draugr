@@ -28,4 +28,5 @@ def launch_tensorboard(log_dir: Path, port: int = 6006) -> str:
     tb = program.TensorBoard()
     # tb.configure(argv=['', '--logdir', log_dir, '--port', port])
     tb.configure(logdir=str(log_dir), port=port)
+    tb._fix_mime_types()
     return tb.launch()

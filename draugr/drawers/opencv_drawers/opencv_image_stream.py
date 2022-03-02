@@ -12,6 +12,7 @@ from typing import Sequence
 import cv2
 
 from draugr.drawers.drawer import Drawer
+from draugr.opencv_utilities import WindowFlagEnum
 from warg import drop_unused_kws, passes_kws_to
 
 
@@ -27,7 +28,7 @@ class OpencvImageStream(Drawer):
             return
 
         self.window_id = title
-        cv2.namedWindow(self.window_id, cv2.WINDOW_NORMAL)
+        cv2.namedWindow(self.window_id, WindowFlagEnum.normal.value)
 
     def draw(self, data: Sequence):
         """

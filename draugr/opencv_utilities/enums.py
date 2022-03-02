@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-#  Copyright (c) 2022. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-#  Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
-#  Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
-#  Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
-#  Vestibulum commodo. Ut rhoncus gravida arcu.
-
 __author__ = "heider"
 __doc__ = r"""
 
@@ -63,7 +57,7 @@ class DistanceTransformLabelTypesEnum(Enum):
 
     ccomp = cv2.DIST_LABEL_CCOMP
     """each connected component of zeros in src (as well as all the non-zero pixels closest to the connected component) will be assigned the same label
-    """
+  """
 
     pixel = cv2.DIST_LABEL_PIXEL
     """each zero pixel (and all the non-zero pixels closest to it) gets its own label."""
@@ -121,6 +115,29 @@ class WindowFlagEnum(Enum):
     keep_ratio = cv2.WINDOW_KEEPRATIO  # the ratio of the image is respected.
     gui_expanded = cv2.WINDOW_GUI_EXPANDED  # status bar and tool bar
     gui_normal = cv2.WINDOW_GUI_NORMAL  # old fashious way
+
+
+class MorphShapesEnum(Enum):
+    rect = cv2.MORPH_RECT  # a rectangular structuring element: Eij=1
+    cross = (
+        cv2.MORPH_CROSS
+    )  # a cross-shaped structuring element: Eij={10if i=anchor.y or j=anchor.x otherwise
+    ellipse = (
+        cv2.MORPH_ELLIPSE
+    )  # an elliptic structuring element, that is, a filled ellipse inscribed into the rectangle Rect(0, 0, esize.width, 0.esize.height)
+
+
+class MorphTypesEnum(Enum):
+    erode = cv2.MORPH_ERODE
+    dilate = cv2.MORPH_DILATE
+    open = cv2.MORPH_OPEN  # dst=open(src,element)=dilate(erode(src,element))
+    close = cv2.MORPH_CLOSE  # dst=close(src,element)=erode(dilate(src,element))
+    gradient = (
+        cv2.MORPH_GRADIENT
+    )  # dst=morph_grad(src,element)=dilate(src,element)−erode(src,element)
+    tophat = cv2.MORPH_TOPHAT  # dst=tophat(src,element)=src−open(src,element)
+    blackhat = cv2.MORPH_BLACKHAT  # dst=blackhat(src,element)=close(src,element)−src
+    hitmiss = cv2.MORPH_HITMISS  # Only supported for CV_8UC1 binary images.
 
 
 class WindowPropertyFlag(Flag):
