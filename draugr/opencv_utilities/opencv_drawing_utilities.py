@@ -11,6 +11,7 @@ __doc__ = r"""
 
 __all__ = ["draw_cube", "draw_axis", "cube_3d_matrix"]
 
+from draugr.opencv_utilities.windows.default import show_image
 from warg import Number
 
 
@@ -118,4 +119,9 @@ def draw_cube(
 
 
 if __name__ == "__main__":
-    draw_cube()
+
+    show_image(
+        draw_cube(
+            numpy.zeros((50, 50)),
+        )
+    )

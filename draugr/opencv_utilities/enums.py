@@ -57,7 +57,7 @@ class DistanceTransformLabelTypesEnum(Enum):
 
     ccomp = cv2.DIST_LABEL_CCOMP
     """each connected component of zeros in src (as well as all the non-zero pixels closest to the connected component) will be assigned the same label
-  """
+"""
 
     pixel = cv2.DIST_LABEL_PIXEL
     """each zero pixel (and all the non-zero pixels closest to it) gets its own label."""
@@ -74,14 +74,46 @@ class DistanceTransformMasksEnum(Enum):
 
 
 class ThresholdTypeFlag(Flag):
-    binary = cv2.THRESH_BINARY
-    inverse_binary = cv2.THRESH_BINARY_INV
-    truncate = cv2.THRESH_TRUNC
-    to_zero = cv2.THRESH_TOZERO
-    inverse_to_zero = cv2.THRESH_TOZERO_INV
+    binary = cv2.THRESH_BINARY  # dst(x,y)={maxval0if src(x,y)>threshotherwise
+    inverse_binary = (
+        cv2.THRESH_BINARY_INV
+    )  # dst(x,y)={0maxvalif src(x,y)>threshotherwise
+    truncate = (
+        cv2.THRESH_TRUNC
+    )  # dst(x,y)={thresholdsrc(x,y)if src(x,y)>threshotherwise
+    to_zero = cv2.THRESH_TOZERO  # dst(x,y)={src(x,y)0if src(x,y)>threshotherwise
+    inverse_to_zero = (
+        cv2.THRESH_TOZERO_INV
+    )  # dst(x,y)={0src(x,y)if src(x,y)>threshotherwise
     mask = cv2.THRESH_MASK
-    otsu = cv2.THRESH_OTSU
-    triangle = cv2.THRESH_TRIANGLE
+    otsu = (
+        cv2.THRESH_OTSU
+    )  # flag, use Otsu algorithm to choose the optimal threshold value
+    triangle = (
+        cv2.THRESH_TRIANGLE
+    )  # flag, use Triangle algorithm to choose the optimal threshold value
+
+
+class TermCriteriaEnum(Flag):
+    count = (
+        cv2.TERM_CRITERIA_COUNT
+    )  # the maximum number of iterations or elements to compute
+    eps = (
+        cv2.TERM_CRITERIA_EPS
+    )  # the desired accuracy or change in parameters at which the iterative algorithm stops
+    max_iter = cv2.TERM_CRITERIA_MAX_ITER  # the maximum number of iterations to compute
+
+
+class KmeansEnum(Enum):
+    random_centers = (
+        cv2.KMEANS_RANDOM_CENTERS
+    )  # Select random initial centers in each attempt.
+    pp_centers = (
+        cv2.KMEANS_PP_CENTERS
+    )  # Use kmeans++ center initialization by Arthur and Vassilvitskii [Arthur2007].
+    use_initial_labels = (
+        cv2.KMEANS_USE_INITIAL_LABELS
+    )  # During the first (and possibly the only) attempt, use the user-supplied labels instead of computing them from the initial centers. For the second and further attempts, use the random or semi-random centers. Use one of KMEANS_*_CENTERS flag to specify the exact method.
 
 
 class HoughModeEnum(Enum):
