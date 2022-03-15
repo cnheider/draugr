@@ -128,3 +128,5 @@ logs/*.csv
 pip-wheel-metadata
 .pytest_cache
 build/
+
+.dccache

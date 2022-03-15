@@ -97,7 +97,7 @@ class StyleSession(AlsoDecorator):
         a = self.ctx.__enter__()
         if pyplot.rcParams["text.usetex"]:
             try:
-                report = subprocess.check_output("latex", stderr=subprocess.STDOUT)
+                report = subprocess.check_output("latex -v", stderr=subprocess.STDOUT)
             except FileNotFoundError as exc:
                 msg = f'No tex: {"latex"}'
                 # raise RuntimeError(msg)

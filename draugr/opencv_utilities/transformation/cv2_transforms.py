@@ -3,7 +3,6 @@ from typing import Any, List, Tuple
 
 import cv2
 import numpy
-import torch
 from PIL.ImageTransform import Transform
 from numpy import random
 
@@ -21,8 +20,6 @@ __all__ = [
     "CV2ConvertColor",
     "CV2RandomContrast",
     "CV2RandomBrightness",
-    "CV2ToImage",
-    "CV2ToTensor",
     "CV2RandomSampleCrop",
     "CV2Expand",
     "CV2RandomMirror",
@@ -257,34 +254,6 @@ class CV2RandomBrightness(object):
             delta = random.uniform(-self.delta, self.delta)
             image += delta
         return image, boxes, labels
-
-
-class CV2ToImage(object):
-    def __call__(
-        self,
-        tensor: torch.Tensor,
-        boxes: numpy.ndarray = None,
-        labels: numpy.ndarray = None,
-    ) -> Tuple:
-        return (
-            tensor.cpu().numpy().astype(numpy.float32).transpose((1, 2, 0)),
-            boxes,
-            labels,
-        )
-
-
-class CV2ToTensor(object):
-    def __call__(
-        self,
-        cvimage: numpy.ndarray,
-        boxes: numpy.ndarray = None,
-        labels: numpy.ndarray = None,
-    ) -> Tuple:
-        return (
-            torch.from_numpy(cvimage.astype(numpy.float32)).permute(2, 0, 1),
-            boxes,
-            labels,
-        )
 
 
 class CV2RandomSampleCrop(object):

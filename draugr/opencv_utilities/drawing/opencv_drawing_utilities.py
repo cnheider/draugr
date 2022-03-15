@@ -11,7 +11,7 @@ __doc__ = r"""
 
 __all__ = ["draw_cube", "draw_axis", "cube_3d_matrix"]
 
-from draugr.opencv_utilities.windows.default import show_image
+from draugr.opencv_utilities.windows.image import show_image
 from warg import Number
 
 

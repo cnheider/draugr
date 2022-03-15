@@ -13,7 +13,7 @@ from typing import Optional, Sequence, Tuple, Union
 import numpy
 from PIL import Image, ImageDraw, ImageFont
 
-from draugr.opencv_utilities.opencv_draw import draw_masks
+from draugr.opencv_utilities.drawing.opencv_draw import draw_masks
 from draugr.python_utilities.colors import RGB, compute_color_for_labels
 
 __all__ = ["draw_single_box", "draw_bounding_boxes"]
@@ -46,7 +46,7 @@ def draw_single_box(
     left, right, top, bottom = x_min, x_max, y_min, y_max
     alpha_color = outline_color + (int(255 * outline_alpha),)
     draw.rectangle(
-        [(left, top), (right, bottom)],
+        ((left, top), (right, bottom)),
         outline=outline_color,
         fill=alpha_color if color_fill_score else None,
         width=outline_width,
@@ -65,13 +65,13 @@ def draw_single_box(
         text_width, text_height = font_type.getsize(display_str)
         margin = numpy.ceil(0.05 * text_height)
         draw.rectangle(
-            xy=[
+            xy=(
                 (
                     left + outline_width,
                     text_bottom - text_height - 2 * margin - outline_width,
                 ),
                 (left + text_width + outline_width, text_bottom - outline_width),
-            ],
+            ),
             fill=alpha_color,
         )
         draw.text(

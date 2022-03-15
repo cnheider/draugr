@@ -9,20 +9,159 @@ __doc__ = r"""
 
 __all__ = [
     "MarkerTypesEnum",
-    "DistanceTypesEnum",
-    "ThresholdTypeFlag",
+    "DistanceTypeEnum",
     "HoughModeEnum",
     "WindowFlagEnum",
-    "WindowPropertyFlag",
     "ContourRetrievalModeEnum",
+    "ContourApproximationModesEnum",
     "MouseEventEnum",
-    "MouseEventFlag",
     "FontEnum",
+    "DataTypeEnum",
+    "ComparisonEnum",
+    "TermCriteriaEnum",
+    "LineTypesEnum",
+    "MorphTypesEnum",
+    "MorphShapesEnum",
+    "DistanceTransformMasksEnum",
+    "DistanceTransformLabelTypesEnum",
+    "KmeansEnum",
+    "CameraPropertyEnum",
+    "RectanglesIntersectTypes",
+    "BorderTypesEnum",
 ]
 
 from enum import Enum, Flag
 
 import cv2
+
+
+class ComparisonEnum(Enum):
+    eq = cv2.CMP_EQ  # equal
+    gt = cv2.CMP_GT  # greater than
+    ge = cv2.CMP_GE  # # greater equal
+    lt = cv2.CMP_LT  # less than
+    le = cv2.CMP_LE  # less equal
+    ne = cv2.CMP_NE  # unequal
+
+
+class DataTypeEnum(Enum):
+    # Unsigned 8bits # 	uchar	0 ~ 255
+    u8 = cv2.CV_8U
+    u8c1 = cv2.CV_8UC1
+    u8c2 = cv2.CV_8UC2
+    u8c3 = cv2.CV_8UC3
+    u8c4 = cv2.CV_8UC4
+    # u8cN
+    # Signed 8bits	char	-128 ~ 127
+    s8 = cv2.CV_8S
+    s8c1 = cv2.CV_8SC1
+    s8c2 = cv2.CV_8SC2
+    s8c3 = cv2.CV_8SC3
+    s8c4 = cv2.CV_8SC4
+    # s8cN
+    # Unsigned 16bits	ushort	0 ~ 65535
+    u16 = cv2.CV_16U
+    u16c1 = cv2.CV_16UC1
+    u16c2 = cv2.CV_16UC2
+    u16c3 = cv2.CV_16UC3
+    u16c4 = cv2.CV_16UC4
+    # u16cN
+    # Signed 16bits	short	-32768 ~ 32767
+    s16 = cv2.CV_16S
+    s16c1 = cv2.CV_16SC1
+    s16c2 = cv2.CV_16SC2
+    s16c3 = cv2.CV_16SC3
+    s16c4 = cv2.CV_16SC4
+    # s16cN
+    # Signed 32bits	int	-2147483648 ~ 2147483647
+    s32 = cv2.CV_32S
+    s32c1 = cv2.CV_32SC1
+    s32c2 = cv2.CV_32SC2
+    s32c3 = cv2.CV_32SC3
+    s32c4 = cv2.CV_32SC4
+    # s32cN
+    # Float 32bits	float	-1.18e-38 ~ 3.40e-38
+    f32 = cv2.CV_32F
+    f32c1 = cv2.CV_32FC1
+    f32c2 = cv2.CV_32FC2
+    f32c3 = cv2.CV_32FC3
+    f32c4 = cv2.CV_32FC4
+    # f32cN
+    # Double 64bits	double	-1.7e+308 ~ +1.7e+308
+    f64 = cv2.CV_64F
+    f64c1 = cv2.CV_64FC1
+    f64c2 = cv2.CV_64FC2
+    f64c3 = cv2.CV_64FC3
+    f64c4 = cv2.CV_64FC4
+    # f64cN
+
+
+class CameraPropertyEnum(Enum):
+    settings = cv2.CAP_PROP_SETTINGS
+    auto_focus = cv2.CAP_PROP_AUTOFOCUS
+    pos_msec = (
+        cv2.CAP_PROP_POS_MSEC
+    )  # Current position of the video file in milliseconds.
+    pos_frames = (
+        cv2.CAP_PROP_POS_FRAMES
+    )  # 0-based index of the frame to be decoded/captured next.
+    avi_ratio = (
+        cv2.CAP_PROP_POS_AVI_RATIO
+    )  # Relative position of the video file: 0 - start of the film, 1 - end of the film.
+    frame_width = cv2.CAP_PROP_FRAME_WIDTH  # Width of the frames in the video stream.
+    frame_height = (
+        cv2.CAP_PROP_FRAME_HEIGHT
+    )  # Height of the frames in the video stream.
+    fps = cv2.CAP_PROP_FPS  # Frame rate.
+    fourcc = cv2.CAP_PROP_FOURCC  # 4-character code of codec.
+    frame_count = cv2.CAP_PROP_FRAME_COUNT  # Number of frames in the video file.
+    format = cv2.CAP_PROP_FORMAT  # Format of the Mat objects returned by retrieve() .
+    mode = (
+        cv2.CAP_PROP_MODE
+    )  # Backend-specific value indicating the current capture mode.
+    brightness = cv2.CAP_PROP_BRIGHTNESS  # Brightness of the image (only for cameras).
+    contrast = cv2.CAP_PROP_CONTRAST  # Contrast of the image (only for cameras).
+    saturation = cv2.CAP_PROP_SATURATION  # Saturation of the image (only for cameras).
+    hue = cv2.CAP_PROP_HUE  # Hue of the image (only for cameras).
+    gain = cv2.CAP_PROP_GAIN  # Gain of the image (only for cameras).
+    exposure = cv2.CAP_PROP_EXPOSURE  # Exposure (only for cameras).
+    convert_rgb = (
+        cv2.CAP_PROP_CONVERT_RGB
+    )  # Boolean flags indicating whether images should be converted to RGB.
+    white_balance_blue = cv2.CAP_PROP_WHITE_BALANCE_BLUE_U  # Currently unsupported
+    white_balance_red = cv2.CAP_PROP_WHITE_BALANCE_RED_V  # Currently unsupported
+    white_balance_ios = cv2.CAP_PROP_IOS_DEVICE_WHITEBALANCE  # Currently unsupported
+    rectification = (
+        cv2.CAP_PROP_RECTIFICATION
+    )  # Rectification flag for stereo cameras (note: only supported by DC1394 v 2.x backend currently)
+    monochrome = cv2.CAP_PROP_MONOCHROME
+    sharpness = cv2.CAP_PROP_SHARPNESS
+    gamma = cv2.CAP_PROP_GAMMA
+    temperature = cv2.CAP_PROP_TEMPERATURE
+    trigger = cv2.CAP_PROP_TRIGGER
+    trigger_delay = cv2.CAP_PROP_TRIGGER_DELAY
+    zoom = cv2.CAP_PROP_ZOOM
+    focus = cv2.CAP_PROP_FOCUS
+    guid = cv2.CAP_PROP_GUID
+    iso_speed = cv2.CAP_PROP_ISO_SPEED
+    backlight = cv2.CAP_PROP_BACKLIGHT
+    pan = cv2.CAP_PROP_PAN
+    tilt = cv2.CAP_PROP_TILT
+    roll = cv2.CAP_PROP_ROLL
+    iris = cv2.CAP_PROP_IRIS
+    buffer_size = cv2.CAP_PROP_BUFFERSIZE
+    sar_num = cv2.CAP_PROP_SAR_NUM
+    sar_den = cv2.CAP_PROP_SAR_DEN
+    backend = cv2.CAP_PROP_BACKEND
+    channel = cv2.CAP_PROP_CHANNEL
+    auto_wb = cv2.CAP_PROP_AUTO_WB
+    wb_temperature = cv2.CAP_PROP_WB_TEMPERATURE
+    codec_pixel_format = cv2.CAP_PROP_CODEC_PIXEL_FORMAT
+    bitrate = cv2.CAP_PROP_BITRATE
+    orientation_meta = cv2.CAP_PROP_ORIENTATION_META
+    orientation_auto = cv2.CAP_PROP_ORIENTATION_AUTO
+    open_timeout_msec = cv2.CAP_PROP_OPEN_TIMEOUT_MSEC
+    read_timeout_msec = cv2.CAP_PROP_READ_TIMEOUT_MSEC
 
 
 class MarkerTypesEnum(Enum):
@@ -39,7 +178,7 @@ class MarkerTypesEnum(Enum):
     )  # A downwards pointing triangle marker shape.
 
 
-class DistanceTypesEnum(Enum):
+class DistanceTypeEnum(Enum):
     user = cv2.DIST_USER  # User defined distance.
     l1 = cv2.DIST_L1  # distance = |x1-x2| + |y1-y2|
     l2 = cv2.DIST_L2  # the simple euclidean distance
@@ -63,6 +202,22 @@ class DistanceTransformLabelTypesEnum(Enum):
     """each zero pixel (and all the non-zero pixels closest to it) gets its own label."""
 
 
+class BorderTypesEnum(Enum):
+    """
+    Various border types, image boundaries are denoted with |
+    """
+
+    constant = cv2.BORDER_CONSTANT  # iiiiii|abcdefgh|iiiiiii with some specified i
+    replicate = cv2.BORDER_REPLICATE  # aaaaaa|abcdefgh|hhhhhhh
+    reflect = cv2.BORDER_REFLECT  # fedcba|abcdefgh|hgfedcb
+    wrap = cv2.BORDER_WRAP  # cdefgh|abcdefgh|abcdefg
+    reflect_101 = cv2.BORDER_REFLECT_101  # gfedcb|abcdefgh|gfedcba
+    transparent = cv2.BORDER_TRANSPARENT  # uvwxyz|abcdefgh|ijklmno
+    reflect101 = cv2.BORDER_REFLECT101  # same as BORDER_REFLECT_101
+    default = cv2.BORDER_DEFAULT  # same as BORDER_REFLECT_101
+    isolated = cv2.BORDER_ISOLATED  # do not look outside of ROI
+
+
 class DistanceTransformMasksEnum(Enum):
     """
     Mask size for distance transform.
@@ -71,27 +226,6 @@ class DistanceTransformMasksEnum(Enum):
     mask_3 = cv2.DIST_MASK_3
     mask_5 = cv2.DIST_MASK_5
     mask_precise = cv2.DIST_MASK_PRECISE
-
-
-class ThresholdTypeFlag(Flag):
-    binary = cv2.THRESH_BINARY  # dst(x,y)={maxval0if src(x,y)>threshotherwise
-    inverse_binary = (
-        cv2.THRESH_BINARY_INV
-    )  # dst(x,y)={0maxvalif src(x,y)>threshotherwise
-    truncate = (
-        cv2.THRESH_TRUNC
-    )  # dst(x,y)={thresholdsrc(x,y)if src(x,y)>threshotherwise
-    to_zero = cv2.THRESH_TOZERO  # dst(x,y)={src(x,y)0if src(x,y)>threshotherwise
-    inverse_to_zero = (
-        cv2.THRESH_TOZERO_INV
-    )  # dst(x,y)={0src(x,y)if src(x,y)>threshotherwise
-    mask = cv2.THRESH_MASK
-    otsu = (
-        cv2.THRESH_OTSU
-    )  # flag, use Otsu algorithm to choose the optimal threshold value
-    triangle = (
-        cv2.THRESH_TRIANGLE
-    )  # flag, use Triangle algorithm to choose the optimal threshold value
 
 
 class TermCriteriaEnum(Flag):
@@ -159,6 +293,21 @@ class MorphShapesEnum(Enum):
     )  # an elliptic structuring element, that is, a filled ellipse inscribed into the rectangle Rect(0, 0, esize.width, 0.esize.height)
 
 
+class RectanglesIntersectTypes(Enum):
+    """
+    types of intersection between rectangles
+    """
+
+    none = cv2.INTERSECT_NONE
+    # No intersection.
+
+    partial = cv2.INTERSECT_PARTIAL
+    # There is a partial intersection.
+
+    full = cv2.INTERSECT_FULL
+    # One of the rectangle is fully enclosed in the other.
+
+
 class MorphTypesEnum(Enum):
     erode = cv2.MORPH_ERODE
     dilate = cv2.MORPH_DILATE
@@ -170,23 +319,6 @@ class MorphTypesEnum(Enum):
     tophat = cv2.MORPH_TOPHAT  # dst=tophat(src,element)=src−open(src,element)
     blackhat = cv2.MORPH_BLACKHAT  # dst=blackhat(src,element)=close(src,element)−src
     hitmiss = cv2.MORPH_HITMISS  # Only supported for CV_8UC1 binary images.
-
-
-class WindowPropertyFlag(Flag):
-    fullscreen = (
-        cv2.WND_PROP_FULLSCREEN
-    )  # fullscreen property (can be WINDOW_NORMAL or WINDOW_FULLSCREEN).
-    autosize = (
-        cv2.WND_PROP_AUTOSIZE
-    )  # autosize property (can be WINDOW_NORMAL or WINDOW_AUTOSIZE).
-    keep_ratio = (
-        cv2.WND_PROP_ASPECT_RATIO
-    )  # window's aspect ration (can be set to WINDOW_FREERATIO or WINDOW_KEEPRATIO).
-    opengl = cv2.WND_PROP_OPENGL  # opengl support.
-    visible = cv2.WND_PROP_VISIBLE  # checks whether the window exists and is visible
-    topmost = (
-        cv2.WND_PROP_TOPMOST
-    )  # property to toggle normal window being topmost or not
 
 
 class FontEnum(Enum):
@@ -235,6 +367,24 @@ class ContourRetrievalModeEnum(Enum):
     tree = cv2.RETR_TREE
 
 
+class ContourApproximationModesEnum(Enum):
+    """
+    the contour approximation algorithm
+    """
+
+    none = cv2.CHAIN_APPROX_NONE
+    # stores absolutely all the contour points. That is, any 2 subsequent points (x1,y1) and (x2,y2) of the contour will be either horizontal, vertical or diagonal neighbors, that is, max(abs(x1-x2),abs(y2-y1))==1.
+
+    simple = cv2.CHAIN_APPROX_SIMPLE
+    # compresses horizontal, vertical, and diagonal segments and leaves only their end points. For example, an up-right rectangular contour is encoded with 4 points.
+
+    tc89_l1 = cv2.CHAIN_APPROX_TC89_L1
+    # applies one of the flavors of the Teh-Chin chain approximation algorithm [244]
+
+    tc89_kcos = cv2.CHAIN_APPROX_TC89_KCOS
+    # applies one of the flavors of the Teh-Chin chain approximation algorithm [244]
+
+
 class MouseEventEnum(Enum):
     move = (
         cv2.EVENT_MOUSEMOVE
@@ -268,14 +418,8 @@ class MouseEventEnum(Enum):
     )  # positive and negative values mean right and left scrolling, respectively.
 
 
-class MouseEventFlag(Flag):
-    ctrl_down = cv2.EVENT_FLAG_CTRLKEY  # indicates that CTRL Key is pressed.
-    shift_down = cv2.EVENT_FLAG_SHIFTKEY  # indicates that SHIFT Key is pressed.
-    alt_down = cv2.EVENT_FLAG_ALTKEY  # indicates that ALT Key is pressed.
-    left_down = cv2.EVENT_FLAG_LBUTTON  # indicates that the left mouse button is down.
-    right_down = (
-        cv2.EVENT_FLAG_RBUTTON
-    )  # indicates that the right mouse button is down.
-    middle_down = (
-        cv2.EVENT_FLAG_MBUTTON
-    )  # indicates that the middle mouse button is down.
+class LineTypesEnum(Enum):
+    filled = cv2.FILLED
+    line4 = cv2.LINE_4  # 4-connected line
+    line8 = cv2.LINE_8  # 8-connected line
+    anti_aliased = cv2.LINE_AA  # antialiased line

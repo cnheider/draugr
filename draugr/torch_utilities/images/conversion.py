@@ -12,7 +12,8 @@ import numpy
 import torch
 from PIL import Image
 
-from draugr.opencv_utilities import WindowFlagEnum
+from draugr.opencv_utilities import WindowFlagEnum, to_rgb
+from draugr.opencv_utilities.windows.image import show_image
 
 
 def quick_to_pil_image(tensor: torch.Tensor, mode: str = "RGB") -> Image.Image:
@@ -44,14 +45,11 @@ if __name__ == "__main__":
         with torch.no_grad():
             for image in tqdm(
                 to_tensor_generator(
-                    frame_generator(cv2.VideoCapture(0)),
+                    frame_generator(cv2.VideoCapture(0), coder=to_rgb),
                     device=global_torch_device(),
                 )
             ):
-                cv2.namedWindow("window_name", WindowFlagEnum.normal.value)
-                cv2.imshow("window_name", numpy.array(quick_to_pil_image(image)))
-
-                if cv2.waitKey(1) == 27:
+                if show_image(numpy.array(quick_to_pil_image(image)), wait=1):
                     break  # esc to quit
 
     asd2()

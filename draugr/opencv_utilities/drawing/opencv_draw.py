@@ -7,23 +7,20 @@ __doc__ = r"""
            Created on 19/03/2020
            """
 
+
 from typing import Sequence, Tuple, Union
-from enum import Enum
 
 import cv2
 import numpy
 from PIL import Image
+from draugr.opencv_utilities.namespaces.enums import (
+    LineTypesEnum,
+    ContourRetrievalModeEnum,
+)
 
 from draugr.python_utilities.colors import RGB, compute_color_for_labels
 
 __all__ = ["find_contours", "draw_masks"]
-
-
-class LineTypesEnum(Enum):
-    filled = cv2.FILLED
-    line4 = cv2.LINE_4  # 4-connected line
-    line8 = cv2.LINE_8  # 8-connected line
-    anti_aliased = cv2.LINE_AA  # antialiased line
 
 
 def find_contours(*args, **kwargs) -> Tuple:
@@ -86,7 +83,9 @@ def draw_masks(
         )
         if border:
             contours, hierarchy = find_contours(
-                mask.astype(numpy.uint8), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
+                mask.astype(numpy.uint8),
+                ContourRetrievalModeEnum.tree.value,
+                cv2.CHAIN_APPROX_SIMPLE,
             )
             image = cv2.drawContours(
                 image,

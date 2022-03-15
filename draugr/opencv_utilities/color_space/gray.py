@@ -3,7 +3,9 @@ from enum import Enum
 import cv2
 from sorcery import assigned_names
 
-from draugr.opencv_utilities.color_conversion_enum import ColorConversionCodesEnum
+from draugr.opencv_utilities.namespaces.color_conversion_enum import (
+    ColorConversionCodesEnum,
+)
 
 __all__ = ["ToGrayMethodEnum", "to_gray"]
 
@@ -30,6 +32,7 @@ def to_gray(
     :return:
     :rtype:
     """
+    to_gray_method = ToGrayMethodEnum(to_gray_method)
     if to_gray_method == to_gray_method.gray:
         components = (cv2.cvtColor(image, ColorConversionCodesEnum.bgr2gray.value),)
     elif to_gray_method == ToGrayMethodEnum.rgb:

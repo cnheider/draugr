@@ -4,21 +4,18 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 17-09-2020
+           Created on 14/01/2020
            """
 
 from pathlib import Path
 
-from .. import INCLUDE_PROJECT_READMES
-
-if INCLUDE_PROJECT_READMES:
-    with open(Path(__file__).parent / "README.md", "r") as this_init_file:
-        __doc__ += this_init_file.read()
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
 
 try:
-    from .conversion import *
-    from .singleton_engine import *
-    from .matlab_conversion_utilities import *
+    from .cv2_transforms import *
+    from .resize import *
+    from .torch_conversion import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = (
@@ -28,5 +25,5 @@ except ImportError as ix:
     )
     print(
         f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
-    )  # TODO: PARSE WHAT is missing and print
+    )  # TODO: PARSE ALL! of WHAT is missing and print
     raise ix

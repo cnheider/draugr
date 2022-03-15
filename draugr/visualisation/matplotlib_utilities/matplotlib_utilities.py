@@ -242,7 +242,7 @@ def use_monochrome_style(
     pyplot.style.use(Path(__file__).parent / "styles" / "monochrome.mplstyle")
     if pyplot.rcParams["text.usetex"]:
         try:
-            report = subprocess.check_output("latex", stderr=subprocess.STDOUT)
+            report = subprocess.check_output("latex -v", stderr=subprocess.STDOUT)
         except FileNotFoundError as exc:
             msg = f'No tex: {"latex"}'
             # raise RuntimeError(msg)

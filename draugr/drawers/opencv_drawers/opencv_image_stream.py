@@ -13,7 +13,11 @@ import cv2
 
 from draugr.drawers.drawer import Drawer
 from draugr.opencv_utilities import WindowFlagEnum
+from draugr.opencv_utilities.windows.default import ret_val_comp
 from warg import drop_unused_kws, passes_kws_to
+
+
+__all__ = ["OpencvImageStream"]
 
 
 class OpencvImageStream(Drawer):
@@ -35,7 +39,7 @@ class OpencvImageStream(Drawer):
 
         :param data:
         :return:"""
-        if cv2.waitKey(1) == 27:  # esc to quit
+        if ret_val_comp(cv2.waitKey(1)):  # esc to quit
             cv2.destroyWindow(self.window_id)
             raise StopIteration
         else:
@@ -53,9 +57,7 @@ if __name__ == "__main__":
 
         with AsyncVideoStream() as vc:
             with OpencvImageStream() as s:
-                for i in progress_bar(
-                    frame_generator(vc, coder=None), auto_total_generator=False
-                ):
+                for i in progress_bar(frame_generator(vc), auto_total_generator=False):
                     s.draw(i)
 
     asdasf()

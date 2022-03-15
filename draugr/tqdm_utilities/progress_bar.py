@@ -31,6 +31,7 @@ def progress_bar(
     auto_describe_iterator: bool = True,  # DOES NOT WORK IS THIS FUNCTION IS ALIAS does not match!
     alias="progress_bar",
     disable: bool = False,
+    verbose: bool = False,
     **kwargs,
 ) -> Any:
     """
@@ -41,7 +42,7 @@ def progress_bar(
         if description is None and auto_describe_iterator:
             from warg import get_first_arg_name
 
-            description = get_first_arg_name(alias)
+            description = get_first_arg_name(alias, verbose=verbose)
 
         if total is None and isinstance(iterable, Generator) and auto_total_generator:
             iterable, ic = tee(iterable, 2)

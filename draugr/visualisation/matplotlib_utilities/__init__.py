@@ -15,3 +15,4 @@ from .metric_overview_plot import *
 from .quirks import *
 from .signal_data import *
 from .styles import *
+from .color_utilities import *

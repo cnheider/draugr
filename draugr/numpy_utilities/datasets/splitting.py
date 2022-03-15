@@ -191,9 +191,19 @@ def select_split(
 
 
 if __name__ == "__main__":
-    split_by_p = SplitIndexer(100)
-    print(split_by_p.default_split_names)
-    print(split_by_p.shuffled_indices())
-    print(split_by_p.select_shuffled_split_indices(SplitEnum.training))
-    a = split_by_p.select_shuffled_split_indices(None)
-    print(a, len(a))
+
+    def asd():
+        split_by_p = SplitIndexer(100)
+        print(split_by_p.default_split_names)
+        print(split_by_p.shuffled_indices())
+        print(split_by_p.select_shuffled_split_indices(SplitEnum.training))
+        a = split_by_p.select_shuffled_split_indices(None)
+        print(a, len(a))
+
+    def uihsad():
+        a = None
+        if a:
+            a = SplitEnum(a)
+        print(a)
+
+    uihsad()
