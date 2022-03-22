@@ -1,12 +1,12 @@
 import cv2
 import numpy
-from warg import Number
 
 from draugr.dlib_utilities.dlib_utilities import (
     Dlib5faciallandmarksindices,
     Dlib68faciallandmarksindices,
     shape_to_ndarray,
 )
+from warg import Number
 
 __all__ = ["align_face"]
 
@@ -68,7 +68,7 @@ def align_face(
     # the ratio of the distance between eyes in the *current*
     # image to the ratio of distance between eyes in the
     # *desired* image
-    dist = numpy.sqrt((d_x ** 2) + (d_y ** 2))
+    dist = numpy.sqrt((d_x**2) + (d_y**2))
     desired_dist = desired_right_eye_x - desired_left_eye[0]
     desired_dist *= desired_face_width
     scale = (desired_dist / dist).item()

@@ -22,8 +22,8 @@ from .sockets import *
 from .styling import *
 from .torch_like_channel_transformation import *
 from .strings import *
-from .powers import *
 from .contexts import *
 from .path_utilities import *
 from .function_wrappers import *
 from .config_shell import *
+from .colors import *

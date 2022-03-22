@@ -10,13 +10,14 @@ __doc__ = r"""
 from pathlib import Path
 from typing import Optional, Sequence, Tuple, Union
 
+import cv2
 import numpy
 from PIL import Image, ImageDraw, ImageFont
 
 from draugr.opencv_utilities.drawing.opencv_draw import draw_masks
 from draugr.python_utilities.colors import RGB, compute_color_for_labels
 
-__all__ = ["draw_single_box", "draw_bounding_boxes"]
+__all__ = ["draw_single_box", "draw_bounding_boxes", "draw_single_rect"]
 
 
 def draw_single_box(
@@ -85,6 +86,14 @@ def draw_single_box(
         )
 
     return image
+
+
+def draw_single_rect(img, rect):
+    # draw_single_box(img, rect)
+    box = cv2.boxPoints(rect)
+    box = numpy.int0(box)
+    cv2.drawContours(img, [box], 0, (255, 255, 255), -1)
+    return img
 
 
 def draw_bounding_boxes(

@@ -7,15 +7,22 @@ __doc__ = r"""
            Created on 08-12-2020
            """
 
+import time
+from enum import Enum
 from itertools import tee
 from typing import Any, Generator, Iterable
 
 import tqdm
+from sorcery import assigned_names
 
 from notus.notification import JobNotificationSession
-from warg import drop_unused_kws, passes_kws_to
+from warg import drop_unused_kws, passes_kws_to, empty_str
 
 __all__ = ["progress_bar"]
+
+
+class TimestampModeEnum(Enum):
+    none, prefix, postfix = assigned_names()
 
 
 @drop_unused_kws
@@ -32,6 +39,7 @@ def progress_bar(
     alias="progress_bar",
     disable: bool = False,
     verbose: bool = False,
+    timestamp_mode: TimestampModeEnum = TimestampModeEnum.none,
     **kwargs,
 ) -> Any:
     """
@@ -58,17 +66,37 @@ def progress_bar(
             disable=disable,  # redundant
             **kwargs,
         )
+        prefix = empty_str
+        postfix = empty_str
+        update_timestamp = True
+        if timestamp_mode == TimestampModeEnum.prefix:
+            prefix = time.time
+        elif timestamp_mode == TimestampModeEnum.postfix:
+            postfix = time.time
+        else:
+            update_timestamp = False
+
         if notifications:
             with JobNotificationSession(description):
                 for val in generator:
                     a = yield val
-                    if a:
-                        generator.set_description(a)
+                    if update_timestamp or a:
+                        if a:
+                            description = str(a)
+                        generator.set_description(
+                            " ".join(
+                                (str(prefix()), description, str(postfix()))
+                            ).strip()
+                        )
             return
         for val in generator:
             a = yield val
-            if a:
-                generator.set_description(a)
+            if update_timestamp or a:
+                if a:
+                    description = str(a)
+                generator.set_description(
+                    " ".join((str(prefix()), description, str(postfix()))).strip()
+                )
     else:
         yield from iterable
 
@@ -90,7 +118,7 @@ if __name__ == "__main__":
         """
         from time import sleep
 
-        pb = progress_bar  # Aliased!
+        pb = progress_bar  # Aliased! does not find description at the moment
 
         for a in pb([2.13, 8921.9123, 923], notifications=False):
             sleep(1)
@@ -107,13 +135,46 @@ if __name__ == "__main__":
         for a in progress_bar(exp_v.Test_Sets.items()):
             sleep(1)
 
+    def named() -> None:
+        """
+        :rtype: None
+        """
+        from time import sleep
+
+        list_items = [2.13, 8921.9123, 923]
+
+        for a in progress_bar(list_items):
+            sleep(1)
+
+    def named_time() -> None:
+        """
+        :rtype: None
+        """
+        from time import sleep
+
+        list_items = [2.13, 8921.9123, 923]
+
+        for a in progress_bar(list_items, timestamp_mode=TimestampModeEnum.prefix):
+            sleep(1)
+
     def send_example() -> None:
         """
         :rtype: None
         """
         from itertools import count
 
-        pb = progress_bar(count())
+        pb = progress_bar(count(), timestamp_mode=TimestampModeEnum.none)
+        next(pb)
+        for a in range(100000):
+            pb.send(f"step_{a}")
+
+    def send_example_time() -> None:
+        """
+        :rtype: None
+        """
+        from itertools import count
+
+        pb = progress_bar(count(), timestamp_mode=TimestampModeEnum.postfix)
         next(pb)
         for a in range(100000):
             pb.send(f"step_{a}")
@@ -121,4 +182,7 @@ if __name__ == "__main__":
     # dsad3123()
     # asd21sa()
     # dict_items()
-    send_example()
+    # send_example()
+    # named()
+    named_time()
+    # send_example_time()

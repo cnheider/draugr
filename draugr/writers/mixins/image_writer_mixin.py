@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
+from enum import Enum
 from typing import Union
 
 import numpy
 import torch
 from PIL import Image
-from enum import Enum
 from sorcery import assigned_names
 
 __author__ = "Christian Heider Nielsen"

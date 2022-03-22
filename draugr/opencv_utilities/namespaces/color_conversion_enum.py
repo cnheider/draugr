@@ -2,10 +2,10 @@ from enum import Enum
 
 import cv2
 
-__all__ = ["ColorConversionCodesEnum"]
+__all__ = ["ColorConversionEnum"]
 
 
-class ColorConversionCodesEnum(Enum):
+class ColorConversionEnum(Enum):
     """
     the color conversion codes
     """
@@ -513,4 +513,4 @@ class ColorConversionCodesEnum(Enum):
 
 
 if __name__ == "__main__":
-    print(ColorConversionCodesEnum.rgb2rgba)
+    print(ColorConversionEnum.rgb2rgba, ColorConversionEnum.rgb2rgba.value)

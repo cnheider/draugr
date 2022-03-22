@@ -9,11 +9,12 @@ __doc__ = r"""
 
 from typing import Iterable, List
 
-import pandas
 import numpy
+import pandas
 import seaborn
 from matplotlib import pyplot
 from matplotlib.axes import Axes
+
 from warg import Number
 
 __all__ = [

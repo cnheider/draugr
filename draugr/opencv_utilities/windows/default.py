@@ -1,18 +1,14 @@
-import os
-from pathlib import Path
+from enum import Enum
 from typing import Iterable
 
-
-from enum import Enum
-import numpy
 from sorcery import assigned_names
 
-__all__ = ["ExtensionEnum", "ret_val_comp"]
+__all__ = ["ExtensionEnum", "match_return_code"]
 
 ESC_CHAR = chr(27)
 
 
-def ret_val_comp(ret_val, chars: Iterable[str] = ("q", ESC_CHAR)):
+def match_return_code(ret_val, chars: Iterable[str] = ("q", ESC_CHAR)):
     return any(ret_val & 0xFF == ord(c) for c in chars)
 
 

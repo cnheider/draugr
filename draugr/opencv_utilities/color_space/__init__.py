@@ -18,3 +18,4 @@ from .noise import *
 from .threshold import *
 from .edge import *
 from .clean import *
+from .color import *

@@ -9,6 +9,7 @@ __doc__ = r"""
 
 import warnings
 from typing import Any
+
 import numpy
 from skimage import color, img_as_ubyte
 

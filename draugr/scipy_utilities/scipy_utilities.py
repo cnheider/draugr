@@ -34,7 +34,7 @@ def read_normalised_wave(wav_file_name: Union[str, Path]) -> Tuple[int, numpy.nd
         raise NotImplementedError(f"{signal.dtype} is not supported")
     return (
         sampling_rate,
-        (signal / (2 ** num_bits)).astype(numpy.float),
+        (signal / (2**num_bits)).astype(numpy.float),
     )  # normalise by max possible val of dtype
 
 
@@ -62,5 +62,5 @@ def write_normalised_wave(
     else:
         raise NotImplementedError(f"{signal.dtype} is not supported")
     wavfile.write(
-        str(wav_file_name), sampling_rate, signal * (2 ** num_bits)
+        str(wav_file_name), sampling_rate, signal * (2**num_bits)
     )  # unnormalise by max possible val of dtype

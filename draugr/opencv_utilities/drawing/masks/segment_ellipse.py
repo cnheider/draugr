@@ -4,7 +4,7 @@ if __name__ == "__main__":
 
         from matplotlib import pyplot
         import cv2
-        from draugr.opencv_utilities import LineTypesEnum
+        from draugr.opencv_utilities import LineTypeEnum
         import numpy
         import random
 
@@ -26,7 +26,7 @@ if __name__ == "__main__":
                     angle,
                     angle + ANGLE_DELTA,
                     (r, g, b),
-                    LineTypesEnum.filled.value,
+                    LineTypeEnum.filled.value,
                 )
 
         pyplot.gcf().set_size_inches((8, 8))

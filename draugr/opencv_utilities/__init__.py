@@ -20,7 +20,6 @@ try:
     from .transformation import *
     from .drawing import *
 
-    # from .color_conversion_enum import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = (

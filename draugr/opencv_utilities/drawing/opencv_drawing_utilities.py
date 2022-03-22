@@ -119,7 +119,6 @@ def draw_cube(
 
 
 if __name__ == "__main__":
-
     show_image(
         draw_cube(
             numpy.zeros((50, 50)),

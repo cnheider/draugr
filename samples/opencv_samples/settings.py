@@ -1,11 +1,14 @@
 import cv2
 
-from draugr.opencv_utilities.namespaces.enums import CameraPropertyEnum
+from draugr.opencv_utilities.namespaces.enums import (
+    CameraPropertyEnum,
+    VideoCaptureAPIEnum,
+)
 
 cameraNumber = 1
 # fourcc = cv2.VideoWriter_fourcc('M','J','P','G')
 cap = cv2.VideoCapture()
-cap.open(cameraNumber + cv2.CAP_DSHOW)
+cap.open(cameraNumber + VideoCaptureAPIEnum.dshow.value)
 # cap.set(cv2.CAP_PROP_FOURCC, fourcc)
 # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920) # 3840
 # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)  # 2160
@@ -16,7 +19,7 @@ cap.set(CameraPropertyEnum.auto_focus.value, 0)
 cap.set(CameraPropertyEnum.settings.value, 1)
 # cap.set(CameraPropertyEnum.mode.value, 0)
 
-from draugr.opencv_utilities import frame_generator, to_gray
+from draugr.opencv_utilities import frame_generator
 from draugr.opencv_utilities.windows.image import show_image
 from draugr.tqdm_utilities import progress_bar
 

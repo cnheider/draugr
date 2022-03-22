@@ -1,4 +1,5 @@
 import cv2
+
 from draugr.opencv_utilities import frame_generator, to_gray
 from draugr.opencv_utilities.windows.image import show_image
 from draugr.tqdm_utilities import progress_bar

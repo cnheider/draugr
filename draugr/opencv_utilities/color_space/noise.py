@@ -1,8 +1,8 @@
-import cv2
 from enum import Enum
-from sorcery import assigned_names
 from typing import Any
-
+from warg import ceil_odd
+import cv2
+from sorcery import assigned_names
 
 __all__ = ["noise_filter", "NoiseFilterMethodEnum"]
 
@@ -12,16 +12,32 @@ class NoiseFilterMethodEnum(Enum):
 
 
 def noise_filter(
-    img: Any, method: NoiseFilterMethodEnum = NoiseFilterMethodEnum.bilateral_filter
+    img: Any,
+    method: NoiseFilterMethodEnum = NoiseFilterMethodEnum.bilateral_filter,
+    **kwargs
 ) -> Any:
     method = NoiseFilterMethodEnum(method)
+
     if method == NoiseFilterMethodEnum.none:
         return img
-    elif method == NoiseFilterMethodEnum.median_blur:
-        return cv2.medianBlur(img, 3)
+
+    ksize = kwargs.get("ksize", max(ceil_odd(max(*(img.shape)) // 100), 5))
+    if method == NoiseFilterMethodEnum.median_blur:
+        return cv2.medianBlur(img, ksize=ksize)
     elif method == NoiseFilterMethodEnum.bilateral_filter:
-        return cv2.bilateralFilter(img, 11, 2, 220)
+        return cv2.bilateralFilter(
+            img,
+            d=kwargs.get("d", 11),
+            sigmaColor=kwargs.get("sigmaColor", 17),
+            sigmaSpace=kwargs.get("sigmaSpace", 17),
+        )
     elif method == NoiseFilterMethodEnum.gaussian_blur:
-        return cv2.GaussianBlur(img, (5, 5), 1.4)
+
+        return cv2.GaussianBlur(
+            img,
+            ksize=(ksize, ksize),
+            sigmaX=kwargs.get("sigmaX", 5),
+            borderType=kwargs.get("borderType", None),
+        )
 
     raise NoiseFilterMethodEnum

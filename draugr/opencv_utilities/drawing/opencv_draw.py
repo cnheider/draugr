@@ -7,17 +7,16 @@ __doc__ = r"""
            Created on 19/03/2020
            """
 
-
 from typing import Sequence, Tuple, Union
 
 import cv2
 import numpy
 from PIL import Image
+
 from draugr.opencv_utilities.namespaces.enums import (
-    LineTypesEnum,
+    LineTypeEnum,
     ContourRetrievalModeEnum,
 )
-
 from draugr.python_utilities.colors import RGB, compute_color_for_labels
 
 __all__ = ["find_contours", "draw_masks"]
@@ -47,7 +46,7 @@ def draw_masks(
     border_color: Tuple = RGB(255, 255, 255),
     alpha: float = 0.5,
     color: Tuple = None,
-    line_type: LineTypesEnum = LineTypesEnum.anti_aliased
+    line_type: LineTypeEnum = LineTypeEnum.anti_aliased
 ) -> numpy.ndarray:
     """
     Args:
@@ -62,7 +61,7 @@ def draw_masks(
     Returns:
     numpy.ndarray"""
 
-    line_type = LineTypesEnum(line_type)
+    line_type = LineTypeEnum(line_type)
     if isinstance(image, Image.Image):
         image = numpy.array(image)
     assert isinstance(image, numpy.ndarray)

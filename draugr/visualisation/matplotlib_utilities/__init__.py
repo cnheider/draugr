@@ -8,6 +8,7 @@ __doc__ = r"""
            """
 
 from .annotate import *
+from .color_utilities import *
 from .figure_sessions import *
 from .image_data import *
 from .matplotlib_utilities import *
@@ -15,4 +16,3 @@ from .metric_overview_plot import *
 from .quirks import *
 from .signal_data import *
 from .styles import *
-from .color_utilities import *

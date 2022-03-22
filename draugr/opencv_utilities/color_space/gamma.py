@@ -42,7 +42,7 @@ def gamma_correct_fast_to_byte(image: numpy.ndarray) -> numpy.ndarray:
     :type image:
     :return:
     :rtype:"""
-    return ((image ** 0.454545) * 255).astype(numpy.uint8)
+    return ((image**0.454545) * 255).astype(numpy.uint8)
 
 
 # @njit
@@ -72,7 +72,7 @@ def linear_correct_float_to_byte(
     :type gamma:
     :return:
     :rtype:"""
-    return ((image ** gamma) * 255).astype(numpy.uint8)
+    return ((image**gamma) * 255).astype(numpy.uint8)
 
 
 # @njit

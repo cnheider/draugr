@@ -8,29 +8,29 @@ __doc__ = r"""
            """
 
 __all__ = [
-    "MarkerTypesEnum",
+    "MarkerTypeEnum",
     "DistanceTypeEnum",
     "HoughModeEnum",
     "WindowFlagEnum",
     "ContourRetrievalModeEnum",
-    "ContourApproximationModesEnum",
+    "ContourApproximationModeEnum",
     "MouseEventEnum",
     "FontEnum",
     "DataTypeEnum",
     "ComparisonEnum",
-    "TermCriteriaEnum",
-    "LineTypesEnum",
-    "MorphTypesEnum",
-    "MorphShapesEnum",
-    "DistanceTransformMasksEnum",
-    "DistanceTransformLabelTypesEnum",
+    "LineTypeEnum",
+    "MorphTypeEnum",
+    "MorphShapeEnum",
+    "DistanceTransformMaskEnum",
+    "DistanceTransformLabelTypeEnum",
     "KmeansEnum",
     "CameraPropertyEnum",
     "RectanglesIntersectTypes",
-    "BorderTypesEnum",
+    "BorderTypeEnum",
+    "VideoCaptureAPIEnum",
 ]
 
-from enum import Enum, Flag
+from enum import Enum
 
 import cv2
 
@@ -94,6 +94,111 @@ class DataTypeEnum(Enum):
     f64c3 = cv2.CV_64FC3
     f64c4 = cv2.CV_64FC4
     # f64cN
+
+
+class VideoCaptureAPIEnum(Enum):
+    """
+
+
+
+    VideoCapture API backends identifier.
+    """
+
+    any = cv2.CAP_ANY
+    # Auto detect == 0.
+
+    vfw = cv2.CAP_VFW
+    # Video For Windows (platform native)
+
+    v4l = cv2.CAP_V4L
+    # V4L/V4L2 capturing support via libv4l.
+
+    v4l2 = cv2.CAP_V4L2
+    # Same as CAP_V4L.
+
+    firewire = cv2.CAP_FIREWIRE
+    # IEEE 1394 drivers.
+
+    fireware = cv2.CAP_FIREWARE
+    # Same as CAP_FIREWIRE.
+
+    ieee1394 = cv2.CAP_IEEE1394
+    # Same as CAP_FIREWIRE.
+
+    dc1394 = cv2.CAP_DC1394
+    # Same as CAP_FIREWIRE.
+
+    cmu1394 = cv2.CAP_CMU1394
+    # Same as CAP_FIREWIRE.
+
+    qt = cv2.CAP_QT
+    # QuickTime.
+
+    unicap = cv2.CAP_UNICAP
+    # Unicap drivers.
+
+    dshow = cv2.CAP_DSHOW
+    # DirectShow (via videoInput)
+
+    pvapi = cv2.CAP_PVAPI
+    # PvAPI, Prosilica GigE SDK.
+
+    openni = cv2.CAP_OPENNI
+    # OpenNI (for Kinect)
+
+    openni_asus = cv2.CAP_OPENNI_ASUS
+    # OpenNI (for Asus Xtion)
+
+    android = cv2.CAP_ANDROID
+    # Android - not used.
+
+    xiapi = cv2.CAP_XIAPI
+    # XIMEA Camera API.
+
+    avfoundation = cv2.CAP_AVFOUNDATION
+    # AVFoundation framework for iOS (OS X Lion will have the same API)
+
+    giganetix = cv2.CAP_GIGANETIX
+    # Smartek Giganetix GigEVisionSDK.
+
+    msmf = cv2.CAP_MSMF
+    # Microsoft Media Foundation (via videoInput)
+
+    winrt = cv2.CAP_WINRT
+    # Microsoft Windows Runtime using Media Foundation.
+
+    intelperc = cv2.CAP_INTELPERC
+    # Intel Perceptual Computing SDK.
+
+    openni2 = cv2.CAP_OPENNI2
+    # OpenNI2 (for Kinect)
+
+    openni2_asus = cv2.CAP_OPENNI2_ASUS
+    # OpenNI2 (for Asus Xtion and Occipital Structure sensors)
+
+    gphoto2 = cv2.CAP_GPHOTO2
+    # gPhoto2 connection
+
+    gstreamer = cv2.CAP_GSTREAMER
+    # GStreamer.
+
+    ffmpeg = cv2.CAP_FFMPEG
+    # Open and record video file or stream using the FFMPEG library.
+
+    images = cv2.CAP_IMAGES
+    # OpenCV Image Sequence (e.g. img_%02d.jpg)
+
+    aravis = cv2.CAP_ARAVIS
+    # Aravis SDK.
+
+    opencv_mjpeg = cv2.CAP_OPENCV_MJPEG
+    # Built-in OpenCV MotionJPEG codec.
+
+    intel_mfx = cv2.CAP_INTEL_MFX
+    # Intel MediaSDK.
+
+    xine = cv2.CAP_XINE
+    # XINE engine (Linux)
 
 
 class CameraPropertyEnum(Enum):
@@ -164,7 +269,7 @@ class CameraPropertyEnum(Enum):
     read_timeout_msec = cv2.CAP_PROP_READ_TIMEOUT_MSEC
 
 
-class MarkerTypesEnum(Enum):
+class MarkerTypeEnum(Enum):
     cross = cv2.MARKER_CROSS  # A crosshair marker shape.
     tilted_cross = cv2.MARKER_TILTED_CROSS  # A 45 degree tilted crosshair marker shape.
     star = (
@@ -189,7 +294,7 @@ class DistanceTypeEnum(Enum):
     huber = cv2.DIST_HUBER  # distance = |x|<c ? x^2/2 : c(|x|-c/2), c=1.345
 
 
-class DistanceTransformLabelTypesEnum(Enum):
+class DistanceTransformLabelTypeEnum(Enum):
     """
     distanceTransform algorithm flags
     """
@@ -202,7 +307,7 @@ class DistanceTransformLabelTypesEnum(Enum):
     """each zero pixel (and all the non-zero pixels closest to it) gets its own label."""
 
 
-class BorderTypesEnum(Enum):
+class BorderTypeEnum(Enum):
     """
     Various border types, image boundaries are denoted with |
     """
@@ -218,7 +323,7 @@ class BorderTypesEnum(Enum):
     isolated = cv2.BORDER_ISOLATED  # do not look outside of ROI
 
 
-class DistanceTransformMasksEnum(Enum):
+class DistanceTransformMaskEnum(Enum):
     """
     Mask size for distance transform.
     """
@@ -226,16 +331,6 @@ class DistanceTransformMasksEnum(Enum):
     mask_3 = cv2.DIST_MASK_3
     mask_5 = cv2.DIST_MASK_5
     mask_precise = cv2.DIST_MASK_PRECISE
-
-
-class TermCriteriaEnum(Flag):
-    count = (
-        cv2.TERM_CRITERIA_COUNT
-    )  # the maximum number of iterations or elements to compute
-    eps = (
-        cv2.TERM_CRITERIA_EPS
-    )  # the desired accuracy or change in parameters at which the iterative algorithm stops
-    max_iter = cv2.TERM_CRITERIA_MAX_ITER  # the maximum number of iterations to compute
 
 
 class KmeansEnum(Enum):
@@ -283,7 +378,7 @@ class WindowFlagEnum(Enum):
     gui_normal = cv2.WINDOW_GUI_NORMAL  # old fashious way
 
 
-class MorphShapesEnum(Enum):
+class MorphShapeEnum(Enum):
     rect = cv2.MORPH_RECT  # a rectangular structuring element: Eij=1
     cross = (
         cv2.MORPH_CROSS
@@ -308,7 +403,7 @@ class RectanglesIntersectTypes(Enum):
     # One of the rectangle is fully enclosed in the other.
 
 
-class MorphTypesEnum(Enum):
+class MorphTypeEnum(Enum):
     erode = cv2.MORPH_ERODE
     dilate = cv2.MORPH_DILATE
     open = cv2.MORPH_OPEN  # dst=open(src,element)=dilate(erode(src,element))
@@ -367,7 +462,7 @@ class ContourRetrievalModeEnum(Enum):
     tree = cv2.RETR_TREE
 
 
-class ContourApproximationModesEnum(Enum):
+class ContourApproximationModeEnum(Enum):
     """
     the contour approximation algorithm
     """
@@ -418,7 +513,7 @@ class MouseEventEnum(Enum):
     )  # positive and negative values mean right and left scrolling, respectively.
 
 
-class LineTypesEnum(Enum):
+class LineTypeEnum(Enum):
     filled = cv2.FILLED
     line4 = cv2.LINE_4  # 4-connected line
     line8 = cv2.LINE_8  # 8-connected line

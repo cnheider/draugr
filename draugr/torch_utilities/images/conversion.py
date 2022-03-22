@@ -12,7 +12,7 @@ import numpy
 import torch
 from PIL import Image
 
-from draugr.opencv_utilities import WindowFlagEnum, to_rgb
+from draugr.opencv_utilities import to_rgb
 from draugr.opencv_utilities.windows.image import show_image
 
 

@@ -15,7 +15,7 @@ from matplotlib import animation, cm, pyplot
 from mpl_toolkits.mplot3d import axes3d
 from scipy.signal import chirp, spectrogram
 
-from draugr.python_utilities.powers import next_pow_2
+from warg import next_pow_2
 
 __all__ = ["spectral_plot3d", "spectrum_plot3d"]
 

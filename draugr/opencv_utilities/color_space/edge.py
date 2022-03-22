@@ -2,36 +2,51 @@ from enum import Enum
 
 import cv2
 from sorcery import assigned_names
-from draugr.opencv_utilities.namespaces.enums import MorphShapesEnum
 
-__all__ = ["to_edge", "ToEdgeMethodEnum"]
+from draugr.opencv_utilities.namespaces.enums import MorphShapeEnum, MorphTypeEnum
+from warg import next_odd
+
+__all__ = ["to_edge", "ToEdgeMethodEnum", "CannyApertureSize"]
 
 
 class ToEdgeMethodEnum(Enum):
     canny, laplacian, sobel_vh, sobel_h, sobel_v, morph_gradient = assigned_names()
 
 
-def to_edge(img, method: ToEdgeMethodEnum = ToEdgeMethodEnum.canny):
+class CannyApertureSize(Enum):
+    a3, a5, a7 = 3, 5, 7
+
+
+def to_edge(img, method: ToEdgeMethodEnum = ToEdgeMethodEnum.canny, **kwargs):
     method = ToEdgeMethodEnum(method)
     if method == ToEdgeMethodEnum.canny:
-        return cv2.Canny(img, 40, 180, 5)
-    elif method == ToEdgeMethodEnum.morph_gradient:
+        return cv2.Canny(
+            img,
+            threshold1=kwargs.get("threshold1", 60),
+            threshold2=kwargs.get("threshold2", 180),
+            apertureSize=kwargs.get("apertureSize", CannyApertureSize.a3).value,
+            L2gradient=kwargs.get("L2gradient", None),
+        )
+
+    ksize = kwargs.get("ksize", max(next_odd(max(*(img.shape)) // 100), 5))
+    if method == ToEdgeMethodEnum.morph_gradient:
+
         return cv2.morphologyEx(
             img,
-            cv2.MORPH_GRADIENT,
-            cv2.getStructuringElement(MorphShapesEnum.rect.value, (7, 4)),
+            MorphTypeEnum.gradient.value,
+            cv2.getStructuringElement(MorphShapeEnum.rect.value, ksize=(ksize, ksize)),
         )
     elif method == ToEdgeMethodEnum.laplacian:
         return cv2.Laplacian(
-            img, cv2.CV_8UC1, ksize=3  # ,cv2.CV_16UC1, #cv2.CV_16S, # cv2.CV_64F
+            img, cv2.CV_8UC1, ksize=ksize  # ,cv2.CV_16UC1, #cv2.CV_16S, # cv2.CV_64F
         )
     elif method == ToEdgeMethodEnum.sobel_h:
-        return cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=5)
+        return cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=ksize)
     elif method == ToEdgeMethodEnum.sobel_v:
-        return cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=5)
+        return cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=ksize)
     elif method == ToEdgeMethodEnum.sobel_vh:
-        sobelx = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=5)
-        sobely = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=5)
+        sobelx = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=ksize)
+        sobely = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=ksize)
         return sobelx + sobely
 
     raise NotImplementedError

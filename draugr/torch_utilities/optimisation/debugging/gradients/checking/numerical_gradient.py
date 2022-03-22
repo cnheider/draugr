@@ -85,7 +85,7 @@ def loss_grad_check(
                             ):  # TODO: make check based on the entire set of parameters at once
                                 grad_approx = (loss_p - loss_n) / (2 * epsilon)
 
-                                denom = math.sqrt(grad_approx ** 2) + math.sqrt(
+                                denom = math.sqrt(grad_approx**2) + math.sqrt(
                                     p.grad[i][j] ** 2
                                 )
                                 if denom > 0:

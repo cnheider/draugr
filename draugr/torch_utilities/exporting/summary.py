@@ -22,7 +22,6 @@ def to_latex_table(m: nn.Module) -> str:
 
 
 if __name__ == "__main__":
-
     from torch.nn import functional
 
     def aiasujd():

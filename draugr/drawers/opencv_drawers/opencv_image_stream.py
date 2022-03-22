@@ -13,9 +13,8 @@ import cv2
 
 from draugr.drawers.drawer import Drawer
 from draugr.opencv_utilities import WindowFlagEnum
-from draugr.opencv_utilities.windows.default import ret_val_comp
+from draugr.opencv_utilities.windows.default import match_return_code
 from warg import drop_unused_kws, passes_kws_to
-
 
 __all__ = ["OpencvImageStream"]
 
@@ -39,7 +38,7 @@ class OpencvImageStream(Drawer):
 
         :param data:
         :return:"""
-        if ret_val_comp(cv2.waitKey(1)):  # esc to quit
+        if match_return_code(cv2.waitKey(1)):  # esc to quit
             cv2.destroyWindow(self.window_id)
             raise StopIteration
         else:

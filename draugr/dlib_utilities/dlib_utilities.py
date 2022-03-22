@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 03-05-2021
            """
 
-from enum import Enum, Flag
+from enum import Enum
 from typing import Sequence, Tuple, Union
 
 import numpy
@@ -32,7 +32,6 @@ class ExtendTuple(Tuple):
 
 
 class Dlib68faciallandmarksindices(Enum):
-
     mouth = (48, 67 + 1)
     inner_mouth = (60, 67 + 1)
     right_eyebrow = (17, 21 + 1)

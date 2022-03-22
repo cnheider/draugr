@@ -11,7 +11,7 @@ from typing import Iterable, Sequence
 
 __all__ = ["last_dim_truncate", "min_length_truncate_batch", "truncate_to_power_2"]
 
-from draugr.python_utilities.powers import prev_pow_2
+from warg.math.powers import prev_pow_2
 
 
 def min_length_truncate_batch(batch: Iterable[Sequence]) -> Iterable:
@@ -67,7 +67,7 @@ if __name__ == "__main__":
         """
         import numpy
 
-        asda = numpy.arange(2 ** 5 - 1)
+        asda = numpy.arange(2**5 - 1)
         print(asda, len(asda))
         trunc = truncate_to_power_2(asda)
         print(trunc, len(trunc))

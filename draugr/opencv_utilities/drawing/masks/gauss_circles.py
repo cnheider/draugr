@@ -1,8 +1,9 @@
 import math
 
 import cv2
-from draugr.opencv_utilities import LineTypesEnum
 import numpy
+
+from draugr.opencv_utilities import LineTypeEnum
 
 
 # ============================================================================
@@ -13,8 +14,8 @@ def ellipse_bbox(h, k, a, b, theta):
     uy = a * math.sin(theta)
     vx = b * math.cos(theta + math.pi / 2)
     vy = b * math.sin(theta + math.pi / 2)
-    box_halfwidth = numpy.ceil(math.sqrt(ux ** 2 + vx ** 2))
-    box_halfheight = numpy.ceil(math.sqrt(uy ** 2 + vy ** 2))
+    box_halfwidth = numpy.ceil(math.sqrt(ux**2 + vx**2))
+    box_halfheight = numpy.ceil(math.sqrt(uy**2 + vy**2))
     return (
         (int(h - box_halfwidth), int(k - box_halfheight)),
         (int(h + box_halfwidth), int(k + box_halfheight)),
@@ -27,7 +28,7 @@ def ellipse_bbox(h, k, a, b, theta):
 def make_gradient_v1(width, height, h, k, a, b, theta):
     # Precalculate constants
     st, ct = math.sin(theta), math.cos(theta)
-    aa, bb = a ** 2, b ** 2
+    aa, bb = a**2, b**2
 
     weights = numpy.zeros((height, width), numpy.float64)
     for y in range(height):
@@ -45,7 +46,7 @@ def make_gradient_v1(width, height, h, k, a, b, theta):
 def make_gradient_v2(width, height, h, k, a, b, theta):
     # Precalculate constants
     st, ct = math.sin(theta), math.cos(theta)
-    aa, bb = a ** 2, b ** 2
+    aa, bb = a**2, b**2
 
     # Generate (x,y) coordinate arrays
     y, x = numpy.mgrid[-k : height - k, -h : width - h]
@@ -82,7 +83,7 @@ if __name__ == "__main__":
         # Generate the transparency layer -- the outer ellipse filled and anti-aliased
         transparency = numpy.zeros((height, width), numpy.uint8)
         cv2.ellipse(
-            transparency, ellipse_outer, 255, -1, LineTypesEnum.anti_aliased.value
+            transparency, ellipse_outer, 255, -1, LineTypeEnum.anti_aliased.value
         )
         if save_intermediate:
             show_image(
@@ -103,7 +104,7 @@ if __name__ == "__main__":
             )
 
         # Draw the inter ellipse filled and anti-aliased
-        cv2.ellipse(intensity, ellipse_inner, 255, -1, LineTypesEnum.anti_aliased.value)
+        cv2.ellipse(intensity, ellipse_inner, 255, -1, LineTypeEnum.anti_aliased.value)
         if save_intermediate:
             show_image(
                 intensity,

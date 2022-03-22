@@ -14,9 +14,7 @@ import cv2
 
 __all__ = ["frame_generator", "to_rgb"]
 
-from draugr.opencv_utilities.namespaces.enums import WindowFlagEnum
 from warg import identity
-
 
 to_rgb = partial(cv2.cvtColor, code=cv2.COLOR_BGR2RGB)
 
