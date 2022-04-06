@@ -15,7 +15,6 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 try:
     from .cv2_transforms import *
     from .resize import *
-    from .torch_conversion import *
     from .cropping import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name

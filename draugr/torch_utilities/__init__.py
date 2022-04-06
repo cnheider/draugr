@@ -21,6 +21,7 @@ try:
     from .writers import *
     from .sessions import *
     from .evaluation import *
+    from .opencv import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = (
