@@ -10,8 +10,8 @@ __doc__ = r"""
 
 __all__ = ["color"]
 
-from functools import partial
 import re
+from functools import partial
 
 """
 Map of CSS color names to RGB integer values.

@@ -8,7 +8,6 @@ __doc__ = r"""
 
 __all__ = []
 
-
 import ctypes
 import ctypes.util
 

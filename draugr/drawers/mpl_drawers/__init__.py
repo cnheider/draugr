@@ -12,10 +12,12 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 try:
-    from draugr.drawers.mpl_drawers.discrete_scroll_plot import *
-    from draugr.drawers.mpl_drawers.mpldrawer import *
-    from draugr.drawers.mpl_drawers.series_scroll_plot import *
-    from draugr.drawers.mpl_drawers.spectral import *
+    from .spectral import *
+    from .mpldrawer import *
+    from .discrete_scroll_plot import *
+    from .series_scroll_plot import *
+    from .distribution_plot import *
+    from .image_stream_plot import *
 except ImportError as ix:
     print(f"Make sure requirements is installed for {Path(__file__).parent.name}")
     raise ix

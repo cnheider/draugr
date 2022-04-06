@@ -1,9 +1,3 @@
-#  Copyright (c) 2022. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-#  Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
-#  Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
-#  Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
-#  Vestibulum commodo. Ut rhoncus gravida arcu.
-
 import cmd
 from pathlib import Path
 
@@ -91,10 +85,15 @@ class ConfigShell(PlaybackShell):
             self.add_option(p, getter=getter, setter=setter, deleter=deleter)
 
     def add_option(self, key, *, getter, setter, deleter=None):
-        self.__setattr__(f"do_get_{key}", getter)
-        self.__setattr__(f"do_set_{key}", setter)
+        self.add_func(f"get_{key}", getter)
+        self.add_func(f"set_{key}", setter)
         if deleter:
-            self.__setattr__(f"do_del_{key}", deleter)
+            self.add_func(f"del_{key}", deleter)
+
+    def add_func(self, key, func):
+        k = f"do_{key}"
+        assert k not in self.get_names()
+        self.__setattr__(k, func)
 
 
 if __name__ == "__main__":

@@ -98,7 +98,8 @@ def reset_worker_tracker() -> None:
 
 class WorkerSession(AlsoDecorator):
     """
-    # speed up evaluating after training finished"""
+    request cores
+    """
 
     @passes_kws_to(request_worker_cores)
     def __init__(self, percentage, **kwargs):

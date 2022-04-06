@@ -4,6 +4,7 @@ from typing import Any, List, Tuple
 
 import numpy
 from PIL import Image
+
 from draugr.python_utilities.colors import color
 
 

@@ -8,6 +8,6 @@ __doc__ = r"""
            """
 
 from .boxes_2d import *
+from .enums import *
 from .sizes import *
 from .torch_transforms import *
-from .enums import *

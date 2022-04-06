@@ -22,5 +22,13 @@ try:
     from .writer import *
     from .standard_tags import *
 except ImportError as ix:
-    print(f"Make sure requirements is installed for {Path(__file__).parent.name}")
+    this_package_name = Path(__file__).parent.name
+    this_package_reqs = (
+        Path(__file__).parent.parent.parent
+        / "requirements"
+        / f"requirements_{this_package_name}.txt"
+    )
+    print(
+        f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
+    )  # TODO: PARSE WHAT is missing and print
     raise ix

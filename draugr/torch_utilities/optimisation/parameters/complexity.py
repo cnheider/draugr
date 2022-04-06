@@ -88,11 +88,11 @@ def flops_to_string(flops: int, units: str = "GMac", precision: int = 2) -> str:
     :return:
     :rtype:"""
     if units is None:
-        if flops // 10 ** 9 > 0:
+        if flops // 10**9 > 0:
             return f"{str(round(flops / 10. ** 9, precision))} GMac"
-        elif flops // 10 ** 6 > 0:
+        elif flops // 10**6 > 0:
             return f"{str(round(flops / 10. ** 6, precision))} MMac"
-        elif flops // 10 ** 3 > 0:
+        elif flops // 10**3 > 0:
             return f"{str(round(flops / 10. ** 3, precision))} KMac"
         else:
             return f"{str(flops)} Mac"
@@ -114,10 +114,10 @@ def params_to_string(params_num) -> str:
     :type params_num:
     :return:
     :rtype:"""
-    if params_num // 10 ** 6 > 0:
-        return str(round(params_num / 10 ** 6, 2)) + " M"
-    elif params_num // 10 ** 3:
-        return str(round(params_num / 10 ** 3, 2)) + " k"
+    if params_num // 10**6 > 0:
+        return str(round(params_num / 10**6, 2)) + " M"
+    elif params_num // 10**3:
+        return str(round(params_num / 10**3, 2)) + " k"
     else:
         return str(params_num)
 

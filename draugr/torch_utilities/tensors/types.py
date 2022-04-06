@@ -19,7 +19,7 @@ __all__ = [
 
 numpy_to_torch_dtype_dict = (
     {  # Dict of NumPy dtype -> torch dtype (when the correspondence exists)
-        numpy.bool: torch.bool,
+        bool: torch.bool,
         numpy.uint8: torch.uint8,
         numpy.int8: torch.int8,
         numpy.int16: torch.int16,

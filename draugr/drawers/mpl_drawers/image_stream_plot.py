@@ -11,8 +11,10 @@ from typing import Sequence
 
 from matplotlib import pyplot
 
-from draugr.drawers import MplDrawer
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
+
+__all__ = ["ImageStreamPlot"]
 
 
 class ImageStreamPlot(MplDrawer):

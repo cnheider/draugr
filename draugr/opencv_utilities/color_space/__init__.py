@@ -13,3 +13,9 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
 from .gamma import *
+from .gray import *
+from .noise import *
+from .threshold import *
+from .edge import *
+from .clean import *
+from .color import *

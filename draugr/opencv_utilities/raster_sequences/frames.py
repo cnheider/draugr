@@ -12,14 +12,16 @@ from typing import Callable, Iterable, Optional
 
 import cv2
 
-__all__ = ["frame_generator"]
+__all__ = ["frame_generator", "to_rgb"]
 
 from warg import identity
+
+to_rgb = partial(cv2.cvtColor, code=cv2.COLOR_BGR2RGB)
 
 
 def frame_generator(
     video_stream: cv2.VideoCapture,
-    coder: Optional[Callable] = partial(cv2.cvtColor, code=cv2.COLOR_BGR2RGB),
+    coder: Optional[Callable] = identity,
 ) -> Iterable:
     """
 
@@ -41,13 +43,11 @@ if __name__ == "__main__":
         """
         :rtype: None
         """
-        from tqdm import tqdm
+        from draugr.opencv_utilities.windows.image import show_image
+        from draugr.tqdm_utilities import progress_bar
 
-        for image in tqdm(frame_generator(cv2.VideoCapture(0), None)):
-            cv2.namedWindow("window_name", cv2.WINDOW_NORMAL)
-            cv2.imshow("window_name", image)
-
-            if cv2.waitKey(1) == 27:
+        for image in progress_bar(frame_generator(cv2.VideoCapture(0))):
+            if show_image(image, "frame", wait=1):
                 break  # esc to quit
 
     asd()

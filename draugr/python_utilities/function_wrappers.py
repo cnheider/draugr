@@ -7,10 +7,15 @@ __doc__ = r"""
            Created on 12-05-2021
            """
 
-__all__ = ["min_interval_wrapper", "min_interval_wrapper_global", "wrap_args"]
+__all__ = [
+    "min_interval_wrapper",
+    "min_interval_wrapper_global",
+    "max_frequency",
+    "wrap_args",
+]
 
 from collections import namedtuple
-from typing import MutableMapping, Tuple
+from typing import MutableMapping, Tuple, Any
 
 import wrapt
 
@@ -44,6 +49,8 @@ def min_interval_wrapper(f: callable, min_interval: int = 100) -> callable:
     return s
 
 
+max_frequency_wrapper = min_interval_wrapper
+
 _GLOBAL_COUNTERS = {}
 
 
@@ -71,6 +78,46 @@ def min_interval_wrapper_global(f: callable, min_interval: int = 100) -> callabl
             f(step_i=step_i, verbose=verbose, **kwargs)
 
     return s
+
+
+max_frequency_wrapper_global = min_interval_wrapper_global
+
+
+def max_frequency(key: Any, min_interval: int = 100, verbose: bool = False) -> callable:
+    """
+    initially returns recallable func later bools
+        :param f:
+    :param min_interval:
+    :return:
+    """
+
+    if key in _GLOBAL_COUNTERS:
+        if verbose:
+            print(f"{key, _GLOBAL_COUNTERS[key], min_interval}")
+        if _GLOBAL_COUNTERS[key] >= min_interval:
+            _GLOBAL_COUNTERS[key] = 1
+            return True
+        _GLOBAL_COUNTERS[key] += 1
+        return False
+    else:
+        _GLOBAL_COUNTERS[key] = min_interval
+
+        def s() -> bool:
+            """
+
+            :param step_i:
+            :param verbose:
+            :param kwargs:
+            """
+            if verbose:
+                print(f"{key, _GLOBAL_COUNTERS[key], min_interval}")
+            if _GLOBAL_COUNTERS[key] >= min_interval:
+                _GLOBAL_COUNTERS[key] = 1
+                return True
+            _GLOBAL_COUNTERS[key] += 1
+            return False
+
+        return s
 
 
 def wrap_args(n_tuple: namedtuple):
@@ -194,4 +241,27 @@ if __name__ == "__main__":
             if random() > 0.8 or True:
                 b(step_i=i)
 
-    uhsud123()
+    # uhsud123()
+
+    def iuhasd():
+        from random import random
+
+        a = 0
+        for i in range(1000 + 1):
+            if True:
+                if max_frequency("key1", 100):
+                    a += 1
+                    print(i, a)
+
+    def iuhasd2():
+        from random import random
+
+        f = max_frequency("key2", 100)
+        a = 0
+        for i in range(1000 + 1):
+            if f():
+                a += 1
+                print(i, a)
+
+    iuhasd()
+    iuhasd2()

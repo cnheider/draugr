@@ -8,6 +8,7 @@ __doc__ = r"""
            """
 
 from .annotate import *
+from .color_utilities import *
 from .figure_sessions import *
 from .image_data import *
 from .matplotlib_utilities import *
