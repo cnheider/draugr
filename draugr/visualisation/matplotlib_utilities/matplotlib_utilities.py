@@ -44,7 +44,6 @@ __all__ = [
 ]
 
 from matplotlib.patches import Rectangle
-
 from matplotlib.pyplot import legend
 
 from warg import Number, passes_kws_to

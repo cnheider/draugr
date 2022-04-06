@@ -1,8 +1,10 @@
 from enum import Enum
 from typing import Any
-from warg import ceil_odd
+
 import cv2
 from sorcery import assigned_names
+
+from warg import ceil_odd
 
 __all__ = ["noise_filter", "NoiseFilterMethodEnum"]
 

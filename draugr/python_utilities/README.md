@@ -10,5 +10,4 @@ General utilities for Python
 - Date time formatting
 - Socket utilities
 
-For even more general tools see Pything/Warg @Github @Pypi
-Once mature enough, modules here may migrate to warg
+For even more general tools see Pything/Warg @Github @Pypi Once mature enough, modules here may migrate to warg

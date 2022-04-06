@@ -38,8 +38,8 @@ def to_edge(img, method: ToEdgeMethodEnum = ToEdgeMethodEnum.canny, **kwargs):
         )
     elif method == ToEdgeMethodEnum.laplacian:
         return cv2.Laplacian(
-            img, cv2.CV_8UC1, ksize=ksize  # ,cv2.CV_16UC1, #cv2.CV_16S, # cv2.CV_64F
-        )
+            img, cv2.CV_8UC1, ksize=ksize
+        )  # ,cv2.CV_16UC1, #cv2.CV_16S, # cv2.CV_64F
     elif method == ToEdgeMethodEnum.sobel_h:
         return cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=ksize)
     elif method == ToEdgeMethodEnum.sobel_v:
