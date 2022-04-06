@@ -267,6 +267,20 @@ class CameraPropertyEnum(Enum):
     orientation_auto = cv2.CAP_PROP_ORIENTATION_AUTO
     open_timeout_msec = cv2.CAP_PROP_OPEN_TIMEOUT_MSEC
     read_timeout_msec = cv2.CAP_PROP_READ_TIMEOUT_MSEC
+    stream_open_time_usec = cv2.CAP_PROP_STREAM_OPEN_TIME_USEC
+    video_total_channels = cv2.CAP_PROP_VIDEO_TOTAL_CHANNELS
+    video_stream = cv2.CAP_PROP_VIDEO_STREAM
+    audio_stream = cv2.CAP_PROP_AUDIO_STREAM
+    audio_pos = cv2.CAP_PROP_AUDIO_POS
+    audio_shift_nsec = cv2.CAP_PROP_AUDIO_SHIFT_NSEC
+    audio_data_depth = cv2.CAP_PROP_AUDIO_DATA_DEPTH
+    audio_samples_per_second = cv2.CAP_PROP_AUDIO_SAMPLES_PER_SECOND
+    audio_base_index = cv2.CAP_PROP_AUDIO_BASE_INDEX
+    audio_total_channels = cv2.CAP_PROP_AUDIO_TOTAL_CHANNELS
+    audio_total_streams = cv2.CAP_PROP_AUDIO_TOTAL_STREAMS
+    audio_synchronize = cv2.CAP_PROP_AUDIO_SYNCHRONIZE
+    lrf_has_key_frame = cv2.CAP_PROP_LRF_HAS_KEY_FRAME
+    codec_extradata_index = cv2.CAP_PROP_CODEC_EXTRADATA_INDEX
 
 
 class MarkerTypeEnum(Enum):
@@ -518,3 +532,7 @@ class LineTypeEnum(Enum):
     line4 = cv2.LINE_4  # 4-connected line
     line8 = cv2.LINE_8  # 8-connected line
     anti_aliased = cv2.LINE_AA  # antialiased line
+
+
+if __name__ == "__main__":
+    pass

@@ -18,6 +18,13 @@ def test_import():
     print(draugr.__version__)
 
 
+@pytest.mark.skip
+def test_import_dlib_utilities():
+    import draugr.dlib_utilities
+
+    print(draugr.dlib_utilities.__author__)
+
+
 def test_import_torch_utilities():
     import draugr.torch_utilities
 
