@@ -36,7 +36,7 @@ jobs:
         if: env.test_pypi_password != null && endsWith(github.ref, 'master') && github.repository_owner == 'pything'
         uses: pypa/gh-action-pypi-publish@master
         with:
-          password: ${{ secrets.pypi_password }}
+          password: ${{ secrets.test_pypi_password }}
           repository_url: https://test.pypi.org/legacy/
       - name: Publish distribution 📦 to PyPI
         env:

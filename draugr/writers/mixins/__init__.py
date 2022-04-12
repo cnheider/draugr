@@ -15,7 +15,6 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 from .bar_writer_mixin import *
 from .embed_writer_mixin import *
 from .figure_writer_mixin import *
-from .graph_writer_mixin import *
 from .histogram_writer_mixin import *
 from .image_writer_mixin import *
 from .line_writer_mixin import *

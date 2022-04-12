@@ -3,3 +3,5 @@ m2r2
 sphinxcontrib-programoutput
 draugr
 mistune==0.8.4
+
+-r requirements_dev.txt

@@ -15,7 +15,8 @@ from draugr import PROJECT_APP_PATH
 from draugr.numpy_utilities.mixing import mix_channels
 from draugr.opencv_utilities import draw_masks
 from draugr.python_utilities import sprint
-from draugr.torch_utilities import to_tensor
+from draugr.torch_utilities.tensors.to_tensor import to_tensor
+from draugr.torch_utilities.writers.mixins.graph_writer_mixin import GraphWriterMixin
 from draugr.torch_utilities.tensors.dimension_order import (
     nhwc_to_nchw_tensor,
     nthwc_to_ntchw_tensor,
@@ -29,7 +30,6 @@ from draugr.torch_utilities.writers.torch_module_writer.module_writer_parameters
 from draugr.writers.mixins import (
     BarWriterMixin,
     EmbedWriterMixin,
-    GraphWriterMixin,
     HistogramWriterMixin,
     ImageWriterMixin,
     MeshWriterMixin,
