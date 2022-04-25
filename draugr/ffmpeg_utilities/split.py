@@ -4,6 +4,8 @@ from pathlib import Path
 
 from apppath import ensure_existence
 
+__all__ = ["spilt_video"]
+
 
 def spilt_video(
     video_path: Path,

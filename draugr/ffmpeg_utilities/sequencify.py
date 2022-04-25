@@ -8,6 +8,9 @@ from draugr.ffmpeg_utilities.extract import FORMAT_LIST, AUDIO_FORMAT
 from warg import Number, identity
 
 
+__all__ = ["sequencify_files"]
+
+
 def sequencify_files(frames_dir: Path):
 
     for i, f in enumerate(sorted(frames_dir.iterdir(), key=lambda x: x.name)):

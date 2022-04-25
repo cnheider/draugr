@@ -233,7 +233,9 @@ if __name__ == "__main__":
         a_size = (1,)
         model = MLP(input_shape=pos_size, output_shape=a_size)
 
-        pos_1 = to_tensor(numpy.random.rand(64, pos_size[0]), device="cpu")
+        pos_1 = to_tensor(
+            numpy.random.rand(64, pos_size[0]), device="cpu", dtype=torch.float
+        )
         print(model(pos_1)[0].shape)
 
     def stest_hidden_dim():
@@ -280,7 +282,9 @@ if __name__ == "__main__":
         constant_init(model3, 0.142)
         print(model, model2, model3)
 
-        pos_1 = to_tensor(numpy.random.rand(64, pos_size[0]), device="cpu")
+        pos_1 = to_tensor(
+            numpy.random.rand(64, pos_size[0]), device="cpu", dtype=torch.float
+        )
         print(model(pos_1)[0].shape)
         print(model2(pos_1).shape)
         print(model3(pos_1).shape)
@@ -291,8 +295,12 @@ if __name__ == "__main__":
         a_size = (2, 4, 5)
         model = MLP(input_shape=pos_size, output_shape=a_size)
 
-        pos_1 = to_tensor(numpy.random.rand(64, prod(pos_size[1:])), device="cpu")
-        pos_2 = to_tensor(numpy.random.rand(64, prod(pos_size[1:])), device="cpu")
+        pos_1 = to_tensor(
+            numpy.random.rand(64, prod(pos_size[1:])), device="cpu", dtype=torch.float
+        )
+        pos_2 = to_tensor(
+            numpy.random.rand(64, prod(pos_size[1:])), device="cpu", dtype=torch.float
+        )
         print(model(pos_1, pos_2)[0].shape)
 
     def stest_multi_dim_out():
@@ -301,7 +309,9 @@ if __name__ == "__main__":
         a_size = (2, 1)
         model = MLP(input_shape=pos_size, hidden_layers=(100,), output_shape=a_size)
 
-        pos_1 = to_tensor(numpy.random.rand(64, *pos_size), device="cpu")
+        pos_1 = to_tensor(
+            numpy.random.rand(64, *pos_size), device="cpu", dtype=torch.float
+        )
         res = model(pos_1)
         print(model)
         print(len(res), res[0].shape, res[1].shape)
@@ -312,8 +322,12 @@ if __name__ == "__main__":
         a_size = (2, 4, 5)
         model = MLP(input_shape=pos_size, output_shape=a_size)
 
-        pos_1 = to_tensor(numpy.random.rand(64, pos_size[0]), device="cpu")
-        pos_2 = to_tensor(numpy.random.rand(64, pos_size[1]), device="cpu")
+        pos_1 = to_tensor(
+            numpy.random.rand(64, pos_size[0]), device="cpu", dtype=torch.float
+        )
+        pos_2 = to_tensor(
+            numpy.random.rand(64, pos_size[1]), device="cpu", dtype=torch.float
+        )
         res = model(pos_1, pos_2)
         print(model)
         print(len(res), res[0].shape, res[1].shape, res[2].shape)
@@ -324,7 +338,9 @@ if __name__ == "__main__":
         a_size = (2,)
         model = MLP(input_shape=pos_size, output_shape=a_size)
 
-        pos_1 = to_tensor(numpy.random.rand(64, pos_size[0]), device="cpu")
+        pos_1 = to_tensor(
+            numpy.random.rand(64, pos_size[0]), device="cpu", dtype=torch.float
+        )
         res = model(pos_1)
         print(model)
         print(len(res), res[0].shape)

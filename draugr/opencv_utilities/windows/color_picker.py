@@ -6,34 +6,32 @@ import numpy
 
 from draugr.opencv_utilities.color_space.threshold import hsv_min_max_clip_mask
 from draugr.opencv_utilities.windows.image import show_image
+from draugr.opencv_utilities.windows.elements import add_trackbar
 
 
 def interative_hsv_color_picker(ps: Iterable, waitTime=33, verbose=False):
-    def nothing(x):
-        pass
 
     show_image(numpy.zeros((600, 600)), "image")
 
-    # create trackbars for color change
-    cv2.createTrackbar("HMin", "image", 0, 179, nothing)  # Hue is from 0-179 for Opencv
-    cv2.createTrackbar("HMax", "image", 0, 179, nothing)
+    add_trackbar(
+        "image", "HMin", default=0, max_val=179
+    )  # Hue is from 0-179 for Opencv
+    add_trackbar("image", "HMax", default=179, max_val=179)
 
-    cv2.createTrackbar("SMin", "image", 0, 255, nothing)
-    cv2.createTrackbar("SMax", "image", 0, 255, nothing)
+    add_trackbar("image", "SMin", default=0)
+    add_trackbar("image", "SMax", default=255)
 
-    cv2.createTrackbar("VMin", "image", 0, 255, nothing)
-    cv2.createTrackbar("VMax", "image", 0, 255, nothing)
-
-    # Set default value for MAX HSV trackbars.
-    cv2.setTrackbarPos("HMax", "image", 179)
-    cv2.setTrackbarPos("SMax", "image", 255)
-    cv2.setTrackbarPos("VMax", "image", 255)
+    add_trackbar("image", "VMin", default=0)
+    add_trackbar("image", "VMax", default=255)
 
     # Initialize to check if HSV min/max value changes
     h_min = s_min = v_min = h_max = s_max = v_max = 0
     ph_min = ps_min = pv_min = ph_max = ps_max = pv_max = 0
 
     for p in ps:
+        if not p.exists():
+            continue
+
         img = cv2.imread(str(p))
         output = img
         while 1:
@@ -106,6 +104,10 @@ if __name__ == "__main__":
     pss = (
         Path.home()
         / "ProjectsWin/AiBitbucket/Internal/OptikosPrime/exclude/new_images/adam_plus0p5/215asd.jpg",
+        Path(r"C:\Users\Christian\OneDrive\Billeder\buh\7BIsT.png"),
+        Path(r"C:\Users\Christian\OneDrive\Billeder\Portraits\thomas.jpg"),
     )
-
-    interative_hsv_color_picker(iter(pss))
+    if any(p.exists() for p in pss):
+        interative_hsv_color_picker(iter(pss))
+    else:
+        print(f"{pss} does not exist")
