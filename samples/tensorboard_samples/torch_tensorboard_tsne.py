@@ -15,6 +15,7 @@ from pathlib import Path
 import numpy
 import torch
 from PIL import Image
+import pandas
 from torchvision import models, transforms
 
 if __name__ == "__main__":

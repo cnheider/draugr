@@ -27,7 +27,7 @@ def extract_frames(
     if frame_out_dir is None:
         frame_out_dir = ensure_existence(root_dir / "frames")
     if audio_out_dir is None:
-        audio_out_dir = ensure_existence(root_dir / "audio")
+        audio_out_dir = ensure_existence(frame_out_dir.parent / "audio")
 
     if file_path.is_file() and file_path.suffix in FORMAT_LIST:
         print(f"start extracting {file_path} frames")
