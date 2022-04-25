@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+
+__project__ = "Draugr"
+__author__ = "Christian Heider Nielsen"
+__version__ = "0.9.6"
+__doc__ = """
+Created on 27/04/2019
+
+@author: cnheider
+
+"""
+
+
 import datetime
 import os
 from logging import warning
@@ -8,22 +21,6 @@ from pathlib import Path
 import pkg_resources
 
 from apppath import AppPath
-
-__project__ = "Draugr"
-__author__ = "Christian Heider Nielsen"
-__version__ = "0.9.5"
-__doc__ = """
-Created on 27/04/2019
-
-@author: cnheider
-
-"""
-
-with open(Path(__file__).parent / "README.md", "r") as this_init_file:
-    __doc__ += this_init_file.read()
-
-# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
-
 
 from typing import Any
 
@@ -39,9 +36,15 @@ from .generators import *
 from .python_utilities import *
 
 
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
+
+# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
+
+
 def dist_is_editable(dist: Any) -> bool:
     """
-    Return True if given Distribution is an editable install."""
+    Return True if given Distribution is an editable installation."""
     import sys
 
     for path_item in sys.path:

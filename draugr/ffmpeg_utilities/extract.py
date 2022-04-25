@@ -10,6 +10,9 @@ FORMAT_LIST = [".mp4", ".avi", ".mkv", ".flv", ".mov"]
 AUDIO_FORMAT = ".aac"
 
 
+__all__ = ["extract_frames"]
+
+
 def extract_frames(
     file_path: Path,
     frame_out_dir: Optional[Path] = None,

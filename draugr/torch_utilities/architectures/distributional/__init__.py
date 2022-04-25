@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "Christian Heider Nielsen"
+__doc__ = ""
 
-from .episode_visual import *
-from .plotting import *
-from .visdom_writer import *
+from .categorical import *
+from .normal import *

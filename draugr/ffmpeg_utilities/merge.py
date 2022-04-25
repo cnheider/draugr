@@ -7,6 +7,8 @@ from apppath import ensure_existence
 from draugr.ffmpeg_utilities.extract import FORMAT_LIST, AUDIO_FORMAT
 from warg import Number, identity
 
+__all__ = ["merge_video"]
+
 
 def get_short_name(vid_dir) -> str:
     for file_ in vid_dir.iterdir():

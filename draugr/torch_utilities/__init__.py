@@ -22,6 +22,7 @@ try:
     from .sessions import *
     from .evaluation import *
     from .opencv import *
+    from .architectures import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = (

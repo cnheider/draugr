@@ -70,6 +70,13 @@ def to_tensor(
         elif isinstance(obj[0], list):
             obj = [to_tensor(o) for o in obj]
             return torch.stack(obj).to(dtype=use_dtype, device=device, **kwargs)
+        elif isinstance(
+            obj[0], numpy.ndarray
+        ):  # TODO: ASSERT ALL SAME DTYPE and shape and is array at all
+            obj = numpy.stack(obj)
+            # obj = numpy.ndarray(obj) # does not stack!
+            # obj = [to_tensor(o) for o in obj]
+            # return torch.stack(obj).to(dtype=use_dtype, device=device, **kwargs)
 
     return torch.tensor(obj, dtype=use_dtype, device=device, **kwargs)
 
