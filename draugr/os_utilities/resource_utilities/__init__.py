@@ -10,3 +10,4 @@ __doc__ = r"""
 from .all import *
 from .cpu import *
 from .ram import *
+from .gpu import *

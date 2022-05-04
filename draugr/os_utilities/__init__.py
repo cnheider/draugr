@@ -8,3 +8,6 @@ __doc__ = r"""
            """
 
 from .platform_selection import *
+from .cuda_device import *
+from .screen_resolution import *
+from .resource_utilities import *
