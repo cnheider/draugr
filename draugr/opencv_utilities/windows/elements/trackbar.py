@@ -15,7 +15,7 @@ def add_trackbar(
     *,
     min_val: int = 0,
     max_val: int = 255,
-    callback=sink
+    callback: callable = sink
 ) -> None:
     """
     Adds a trackbar to a window.

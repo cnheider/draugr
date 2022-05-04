@@ -219,5 +219,34 @@ if __name__ == "__main__":
         pyplot.imshow(img)
         pyplot.show()
 
-    a()
+    def c() -> None:
+        """
+        :rtype: None
+        """
+        from matplotlib import pyplot
+
+        res = 999
+        num_channels = 3
+
+        img = Image.fromarray(numpy.zeros((res, res, num_channels), dtype=numpy.uint8))
+        img_width, _ = img.size
+        img = draw_bounding_boxes(
+            img,
+            boxes=(
+                (0 * img_width, 0 * img_width, 0.2 * img_width, 0.2 * img_width),
+                (0.3 * img_width, 0.3 * img_width, 0.5 * img_width, 0.5 * img_width),
+                (0.1 * img_width, 0.1 * img_width, 0.7 * img_width, 0.7 * img_width),
+            ),
+            labels=(0, 55, 78),
+            scores=(0.2, 1.0, 0.4),
+            categories=(*[f"cat{i}" for i in range(99)],),
+            score_format=": {:.2f}",
+            outline_width=5,
+            score_color_fill=False,
+        )
+        pyplot.imshow(img)
+        pyplot.show()
+
+    # a()
     # b()
+    c()

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import cv2
 import numpy
+from typing import Tuple, List, Union
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -16,14 +17,14 @@ from warg import Number
 
 
 def draw_axis(
-    img,
-    corners,
+    img: numpy.ndarray,
+    corners: numpy.ndarray,
     rotation_vectors,
     translation_vectors,
     camera_matrix,
     dist_coef,
     size: Number = 1,
-):
+) -> numpy.ndarray:
     """
 
     :param img:
@@ -56,7 +57,7 @@ def draw_axis(
     return img
 
 
-def cube_3d_matrix():
+def cube_3d_matrix() -> List[List[int]]:
     """
 
     :return:
@@ -74,13 +75,13 @@ def cube_3d_matrix():
 
 
 def draw_cube(
-    img,
-    rotation_vectors,
-    translation_vectors,
-    camera_matrix,
-    dist_coef,
+    img: numpy.ndarray,
+    rotation_vectors: numpy.ndarray = None,
+    translation_vectors: numpy.ndarray = None,
+    camera_matrix: numpy.ndarray = None,
+    dist_coef: float = None,
     size: Number = 6,
-):
+) -> numpy.ndarray:
     """
 
     :param img:
@@ -97,6 +98,16 @@ def draw_cube(
     :type size:
     :return:
     :rtype:"""
+
+    if rotation_vectors is None:
+        rotation_vectors = numpy.eye(3, 3)
+    if translation_vectors is None:
+        translation_vectors = numpy.zeros(3)
+    if camera_matrix is None:
+        camera_matrix = numpy.eye(3, 3)
+    if dist_coef is None:
+        dist_coef = numpy.zeros(5)
+
     cube_size = numpy.float32(cube_3d_matrix()) * size
 
     img_pts, jac2 = cv2.projectPoints(
@@ -122,5 +133,6 @@ if __name__ == "__main__":
     show_image(
         draw_cube(
             numpy.zeros((50, 50)),
-        )
+        ),
+        wait=True,
     )

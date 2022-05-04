@@ -15,8 +15,10 @@ class ThresholdMethodEnum(Enum):
 
 
 def threshold_channel(
-    gray, method: ThresholdMethodEnum = ThresholdMethodEnum.simple, **kwargs
-):
+    gray: numpy.ndarray,
+    method: ThresholdMethodEnum = ThresholdMethodEnum.simple,
+    **kwargs
+) -> numpy.ndarray:
     method = ThresholdMethodEnum(method)
 
     if method == ThresholdMethodEnum.simple:
@@ -40,12 +42,14 @@ def threshold_channel(
 
 
 def hsv_min_max_clip_mask(
-    inputImage,
-    lower_bound=numpy.array([0, 0, 0]),
-    upper_bound=numpy.array([179, 255, 255]),  # Hue is from 0-179 for Opencv
-):
+    input_image: numpy.ndarray,
+    lower_bound: numpy.ndarray = numpy.array([0, 0, 0]),
+    upper_bound: numpy.ndarray = numpy.array(
+        [179, 255, 255]
+    ),  # Hue is from 0-179 for Opencv
+) -> numpy.ndarray:
     return cv2.inRange(
-        cv2.cvtColor(inputImage, ColorConversionEnum.bgr2hsv.value),
+        cv2.cvtColor(input_image, ColorConversionEnum.bgr2hsv.value),
         lowerb=lower_bound,
         upperb=upper_bound,
     )
