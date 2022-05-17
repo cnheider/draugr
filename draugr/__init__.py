@@ -12,17 +12,15 @@ Created on 27/04/2019
 
 """
 
-
 import datetime
 import os
 from logging import warning
-from pathlib import Path
+from typing import Any
 
 import pkg_resources
 
 from apppath import AppPath
 
-from typing import Any
 
 # from .drawers import *
 # from .writers import *
@@ -32,12 +30,12 @@ from typing import Any
 # from .numpy_utilities import *
 # from .visualisation import *
 from .metrics import *
-from .generators import *
 from .python_utilities import *
 
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
+
 
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
 

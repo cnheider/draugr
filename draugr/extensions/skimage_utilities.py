@@ -29,7 +29,7 @@ def rgb_to_grayscale(obs: Any) -> Any:
 
     """
     with warnings.catch_warnings():
-        # Suppressing warning for possible precision loss when converting
+        # Suppressing warning for possible precision value when converting
         # from float64 to uint8
         warnings.simplefilter("ignore")
         return img_as_ubyte(color.rgb2gray(obs))

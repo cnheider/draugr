@@ -7,13 +7,14 @@ __doc__ = r"""
            Created on 09-02-2021
            """
 
-import contextlib
+from warg import AlsoDecorator
 import signal
+import contextlib
 
 __all__ = ["IgnoreInterruptSignal"]
 
 
-class IgnoreInterruptSignal(contextlib.AbstractContextManager):
+class IgnoreInterruptSignal(contextlib.AbstractContextManager, AlsoDecorator):
     def __enter__(self) -> bool:
         signal.signal(signal.SIGINT, signal.SIG_IGN)
         # signal.getsignal() No sideeffect options for exit

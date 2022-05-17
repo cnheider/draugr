@@ -28,7 +28,7 @@ def plot_grad_flow(
     Plots the gradients flowing through different layers in the net during training.
     Can be used for checking for possible gradient vanishing / exploding problems.
 
-    Usage: After loss.backwards(), use plot_grad_flow(model) to visualize the gradient flow of model
+    Usage: After value.backwards(), use plot_grad_flow(model) to visualize the gradient flow of model
 
     :param model:
     :type model:

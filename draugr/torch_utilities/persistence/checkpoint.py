@@ -45,7 +45,7 @@ def save_checkpoint(PATH: Path, epoch, model, optimiser, loss):
             "epoch": epoch,
             "model_state_dict": model.state_dict(),
             "optimiser_state_dict": optimiser.state_dict(),
-            "loss": loss,
+            "value": loss,
         },
         PATH,
     )
@@ -66,7 +66,7 @@ def load_checkpoint(PATH: Path, model, optimizer):
     epoch = checkpoint["epoch"]
     model.load_state_dict(checkpoint["model_state_dict"])
     optimizer.load_state_dict(checkpoint["optimiser_state_dict"])
-    loss = checkpoint["loss"]
+    loss = checkpoint["value"]
 
     return epoch, model, optimizer, loss
 
