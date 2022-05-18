@@ -48,6 +48,7 @@ ExecStart={executable} {service_entry_point_path}
 WantedBy=multi-user.target
 """
 
+
 if __name__ == "__main__":
     print(
         SERVICE_TEMPLATE.format(

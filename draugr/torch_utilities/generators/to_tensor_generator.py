@@ -77,7 +77,7 @@ def batch_generator_torch(
 if __name__ == "__main__":
     from torchvision.transforms import transforms
     import numpy
-    from draugr.generators.recycling_generator import batched_recycle
+    from draugr.python_utilities.generators import batched_recycle
     from draugr import inner_map
 
     def s() -> None:

@@ -27,3 +27,5 @@ from .path_utilities import *
 from .function_wrappers import *
 from .config_shell import *
 from .colors import *
+from .http import *
+from .generators import *

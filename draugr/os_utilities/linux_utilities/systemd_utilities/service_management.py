@@ -96,6 +96,7 @@ def install_service(
     run_as: RunAsEnum = RunAsEnum.user,
     # get_sudo: bool = False,
     restart: RestartServiceEnum = RestartServiceEnum.on_failure,
+    template: str = SERVICE_TEMPLATE,  # Formatable string
 ) -> None:
     """
     Args:
@@ -172,7 +173,7 @@ def install_service(
             description = f"heimdallr service for {service_name}"
         with open(systemd_service_file_path, "w") as f:
             f.writelines(
-                SERVICE_TEMPLATE.format(
+                template.format(
                     service_name=project_service_name,
                     service_user=service_user,
                     executable=sys.executable,

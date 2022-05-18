@@ -100,7 +100,7 @@ def test_import_metrics():
 
 
 def test_import_generators():
-    import draugr.generators
+    import draugr.python_utilities.generators
 
     print(draugr.generators.__author__)
 

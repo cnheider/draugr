@@ -37,8 +37,8 @@ def update_visualiser(
     :param rgb_array:
     :param windows:
     :return:"""
-    if "loss" in windows:
-        loss_window = windows["loss"]
+    if "value" in windows:
+        loss_window = windows["value"]
         visualiser.line(
             X=numpy.array([episode]),
             Y=numpy.array([moving_loss]),
@@ -47,7 +47,7 @@ def update_visualiser(
             update="append",
         )
     else:
-        windows["loss"] = visualiser.line(
+        windows["value"] = visualiser.line(
             X=numpy.array([episode]),
             Y=numpy.array([moving_loss]),
             env=configuration.CONFIG_NAME,
