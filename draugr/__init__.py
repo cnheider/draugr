@@ -4,7 +4,7 @@
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.9.7"
+__version__ = "0.9.8"
 __doc__ = """
 Created on 27/04/2019
 
