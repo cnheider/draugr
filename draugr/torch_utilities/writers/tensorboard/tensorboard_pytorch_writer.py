@@ -449,6 +449,7 @@ pyplot.title(tag)
         model: torch.nn.Module,
         input_to_model: torch.Tensor,
         verbose: bool = False,
+        use_strict_trace: bool = True,
     ) -> None:
         """
 
@@ -457,7 +458,9 @@ pyplot.title(tag)
         :type model:
         :param input_to_model:
         :type input_to_model:"""
-        self.writer.add_graph(model, input_to_model, verbose)
+        self.writer.add_graph(
+            model, input_to_model, verbose=verbose, use_strict_trace=use_strict_trace
+        )
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
         if hasattr(self, "_writer"):

@@ -8,8 +8,12 @@ from draugr.opencv_utilities.color_space.threshold import hsv_min_max_clip_mask
 from draugr.opencv_utilities.windows.image import show_image
 from draugr.opencv_utilities.windows.elements import add_trackbar
 
+__all__ = ["interactive_hsv_color_picker"]
 
-def interative_hsv_color_picker(ps: Iterable, waitTime=33, verbose=False):
+
+def interactive_hsv_color_picker(
+    ps: Iterable, wait_time: int = 33, verbose: bool = False
+) -> None:
 
     show_image(numpy.zeros((600, 600)), "image")
 
@@ -94,7 +98,7 @@ def interative_hsv_color_picker(ps: Iterable, waitTime=33, verbose=False):
                 ps_max = s_max
                 pv_max = v_max
 
-            if show_image(output, "image", wait=waitTime):
+            if show_image(output, "image", wait=wait_time):
                 break
 
     cv2.destroyAllWindows()
@@ -108,6 +112,6 @@ if __name__ == "__main__":
         Path(r"C:\Users\Christian\OneDrive\Billeder\Portraits\thomas.jpg"),
     )
     if any(p.exists() for p in pss):
-        interative_hsv_color_picker(iter(pss))
+        interactive_hsv_color_picker(iter(pss))
     else:
         print(f"{pss} does not exist")
