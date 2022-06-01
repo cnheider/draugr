@@ -10,6 +10,7 @@ Created on 27/04/2019
 
 from abc import ABCMeta, abstractmethod
 from collections import Counter, deque
+from draugr.writers.mixins.scalar_writer_mixin import ScalarWriterMixin
 
 __all__ = ["Writer", "global_writer", "set_global_writer"]
 
@@ -20,7 +21,7 @@ from warg import is_none_or_zero_or_negative_or_mod_zero
 from warg import Number, drop_unused_kws
 
 
-class Writer(metaclass=ABCMeta):
+class Writer(ScalarWriterMixin, metaclass=ABCMeta):
     """ """
 
     @drop_unused_kws
@@ -37,7 +38,7 @@ class Writer(metaclass=ABCMeta):
         :param filters:
         :param verbose:"""
         self._counter = Counter()
-        self._blip_values = iter(cycle(range(2)))
+
         self._interval = interval
         self.filters = filters
         self._verbose = verbose
@@ -78,38 +79,6 @@ class Writer(metaclass=ABCMeta):
             GLOBAL_WRITER = None
         return self._close(exc_type, exc_val, exc_tb)
 
-    def scalar(self, tag: str, value: Number, step_i: int = None) -> None:
-        """
-
-        :param tag:
-        :type tag:
-        :param value:
-        :type value:
-        :param step_i:
-        :type step_i:"""
-        if step_i:
-            if self.filter(tag):
-                self._scalar(tag, value, self._counter[tag])
-            self._counter[tag] = step_i
-        else:
-            if self.filter(tag):
-                self._scalar(tag, value, self._counter[tag])
-            self._counter[tag] += 1
-
-    def blip(self, tag: str, step_i: int = None) -> None:
-        """
-
-        :param tag:
-        :type tag:
-        :param step_i:
-        :type step_i:"""
-        if step_i:
-            self.scalar(tag, next(self._blip_values), step_i)
-            self.scalar(tag, next(self._blip_values), step_i)
-        else:
-            self.scalar(tag, next(self._blip_values))
-            self.scalar(tag, next(self._blip_values), self._counter[tag])
-
     def close(self) -> Any:
         """ """
         self._close()
@@ -117,10 +86,6 @@ class Writer(metaclass=ABCMeta):
     def open(self) -> Any:
         """ """
         self._open()
-
-    @abstractmethod
-    def _scalar(self, tag: str, value: float, step: int):
-        raise NotImplementedError
 
     @abstractmethod
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):

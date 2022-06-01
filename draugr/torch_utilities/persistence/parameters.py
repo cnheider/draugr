@@ -53,6 +53,8 @@ def load_latest_model_parameters(
     :param model_directory:
     :param model_name:
     :return:"""
+    model_loaded = False
+    optimiser_loaded = False
     if model:
         model_path = model_directory / model_name
         list_of_files = list(model_path.glob(f"*{parameter_extension}"))
@@ -65,6 +67,7 @@ def load_latest_model_parameters(
             print(f"loading previous model parameters: {latest_model_parameter_file}")
 
             model.load_state_dict(torch.load(str(latest_model_parameter_file)))
+            model_loaded = True
 
             if optimiser:
                 opt_st_d_file = latest_model_parameter_file.with_suffix(
@@ -73,12 +76,11 @@ def load_latest_model_parameters(
                 if opt_st_d_file.exists():
                     optimiser.load_state_dict(torch.load(str(opt_st_d_file)))
                     print(f"loading previous optimiser state: {opt_st_d_file}")
-                return (model, optimiser), True
-            else:
-                return model, True
+                    optimiser_loaded = True
+
     if optimiser:
-        return (model, optimiser), False
-    return model, False
+        return (model, optimiser), (model_loaded, optimiser_loaded)
+    return model, model_loaded
 
 
 load_model_parameters = load_latest_model_parameters

@@ -14,7 +14,7 @@ class ImprovementDetector(contextlib.AbstractContextManager):
         callback: callable = None,
     ):
         """
-        NOTE: equality is not checked, only greater or less than
+        NOTE: strictly greater or less than is considered as improvement
 
         :param patience:
         :type patience:
@@ -27,36 +27,42 @@ class ImprovementDetector(contextlib.AbstractContextManager):
         self._writer = writer
         self._count = 0
         self._minimization = minimization  # as opposed to maximization
-        self._last_value = None
+        self._best_value = None
         self._callback = (lambda: True) if callback is None else callback
+        self._best_idx = None
 
     def __call__(self, value: Number) -> bool:
-        if self._last_value is None:
-            self._last_value = value
+        if self._best_value is None:
+            self._best_value = value
             return True
 
         if self._minimization:
-            if value > self._last_value:
+            if value >= self._best_value:
                 self._count += 1
+                if self._verbose:
+                    self._writer(
+                        f"No improvement since last update: {value}>{self._best_value}"
+                    )
             else:
                 self._count = 0
+                self._best_value = value
         else:
-            if value < self._last_value:
+            if value <= self._best_value:
                 self._count += 1
             else:
                 self._count = 0
+                self._best_value = value
 
-        self._last_value = value
         if self._count >= self._patience:
-            self._writer(f"Overfit detected, patience reached")
+            self._writer(f"No improvement detected, patience reached")
             return False
         else:
             return self._callback()
 
     def reset(self) -> None:
         self._count = 0
-        self._last_value = None
-        self._writer(f"Overfit detector reset")
+        self._best_value = None
+        self._writer(f"Improvement detector reset")
 
     def __enter__(self):
         return self
@@ -72,9 +78,10 @@ class OverfitDetector(contextlib.AbstractContextManager):
         writer: callable = print,
         minimization: bool = True,
         callback: callable = None,
+        verbose: bool = False,
     ):
         """
-        NOTE: equality is not checked, only greater or less than
+        NOTE: equality, greater or less than
 
         :param patience:
         :type patience:
@@ -87,29 +94,35 @@ class OverfitDetector(contextlib.AbstractContextManager):
         self._writer = writer
         self._count = 0
         self._minimization = minimization  # as opposed to maximization
-        self._last_value = None
+        self._best_value = None
         self._callback = sink if callback is None else callback
+        self._verbose = verbose
 
     def __call__(self, value: Number) -> bool:
-        if self._last_value is None:
-            self._last_value = value
+        if self._best_value is None:
+            self._best_value = value
             return False
 
         if self._minimization:
-            if value > self._last_value:
+            if value > self._best_value:
                 self._count += 1
+                if self._verbose:
+                    self._writer(f"Worse than last update: {value}>{self._best_value}")
             else:
                 self._count = 0
+                self._best_value = value
         else:
-            if value < self._last_value:
+            if value < self._best_value:
                 self._count += 1
+                if self._verbose:
+                    self._writer(f"Worse than last update: {value}<{self._best_value}")
             else:
                 self._count = 0
+                self._best_value = value
 
-        self._last_value = value
         if self._count >= self._patience:
             self._writer(
-                f"Overfit detected, patience reached {self._patience}, loss {value}"
+                f"Overfit detected, patience reached {value}>{self._best_value} with patience {self._patience}"
             )
             return True
         else:
@@ -118,7 +131,7 @@ class OverfitDetector(contextlib.AbstractContextManager):
 
     def reset(self) -> None:
         self._count = 0
-        self._last_value = None
+        self._best_value = None
         self._writer(f"Overfit detector reset")
 
     def __enter__(self):
@@ -129,37 +142,35 @@ class OverfitDetector(contextlib.AbstractContextManager):
 
 
 if __name__ == "__main__":
-    with OverfitDetector(patience=3, writer=print) as overfit_detector:
+    with OverfitDetector(patience=3, writer=print) as is_overfitting:
         for i in range(10):
-            overfit_detector(i)
-        overfit_detector.reset()
+            is_overfitting(i)
+        is_overfitting.reset()
         for i in range(10):
-            overfit_detector(i)
-        overfit_detector.reset()
-        for i in range(10):
-            overfit_detector(-i)
-        print("start training")
-        for i in range(2):
-            overfit_detector(i)
-        overfit_detector(0)
-        for i in range(2):
-            overfit_detector(i)
-        print("start overfitting")
-        for i in range(10):
-            overfit_detector(i)
+            is_overfitting(-i)
 
-    with ImprovementDetector(patience=3, writer=print) as improvement_detector:
-        for i in range(10):
-            improvement_detector(i)
-        improvement_detector.reset()
-        for i in range(10):
-            improvement_detector(-i)
+        is_overfitting.reset()
         print("start training")
         for i in range(2):
-            improvement_detector(i)
-        improvement_detector(0)
-        for i in range(2):
-            print(improvement_detector(i))
+            is_overfitting(i)
+        is_overfitting(0)
         print("start overfitting")
         for i in range(10):
-            print(improvement_detector(i))
+            print(is_overfitting(i), i)
+
+    print("\n\n")
+
+    with ImprovementDetector(patience=3, writer=print) as is_improving:
+        for i in range(10):
+            is_improving(i)
+        is_improving.reset()
+        for i in range(10):
+            is_improving(-i)
+        is_improving.reset()
+        print("start training")
+        for i in range(2):
+            is_improving(i)
+        is_improving(0)
+        print("start not improving")
+        for i in range(10):
+            print(is_improving(i), i)
