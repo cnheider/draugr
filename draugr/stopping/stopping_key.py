@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+
+__author__ = "Christian Heider Nielsen"
+__doc__ = ""
+
+__all__ = ["add_early_stopping_key_combination", "CaptureEarlyStop"]
+
 import contextlib
 from time import sleep
 from typing import Callable, Iterable
 
 from pynput.keyboard import KeyCode
 
-from draugr.python_utilities.styling import sprint
+from warg import GDKC, drop_unused_kws, passes_kws_to, sprint
 
-__author__ = "Christian Heider Nielsen"
-__doc__ = ""
-
-from warg import GDKC, drop_unused_kws, passes_kws_to
 
 # import keyboard
-
-__all__ = ["add_early_stopping_key_combination", "CaptureEarlyStop"]
 
 
 @drop_unused_kws

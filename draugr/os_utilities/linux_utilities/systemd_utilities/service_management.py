@@ -7,17 +7,6 @@ __doc__ = r"""
            Created on 17/03/2020
            """
 
-import getpass
-import sys
-from enum import Enum
-from pathlib import Path
-
-import sh  # pip install sh
-from sorcery import assigned_names
-
-from draugr import PROJECT_NAME
-from draugr.os_utilities.linux_utilities.user_utilities import make_user, remove_user
-
 __all__ = [
     "install_service",
     "remove_service",
@@ -30,9 +19,19 @@ __all__ = [
     "RunAsEnum",
 ]
 
+import getpass
+import sys
+from enum import Enum
+from pathlib import Path
+
+import sh  # pip install sh
+from sorcery import assigned_names
+
+from draugr import PROJECT_NAME
 from draugr.os_utilities.linux_utilities.systemd_utilities.service_template import (
     SERVICE_TEMPLATE,
 )
+from draugr.os_utilities.linux_utilities.user_utilities import make_user, remove_user
 from warg import ContextWrapper
 
 

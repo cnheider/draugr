@@ -4,6 +4,7 @@ from shutil import rmtree
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
+__all__ = []
 
 
 def main(keep_alive: bool = True, use_asyncio: bool = True) -> str:

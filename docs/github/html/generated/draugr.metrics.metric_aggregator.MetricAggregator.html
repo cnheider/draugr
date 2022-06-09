@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.metrics.metric_aggregator.MetricAggregator &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="draugr.github.io/generated/draugr.metrics.metric_aggregator.MetricAggregator.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="draugr.metrics.metric_collection" href="draugr.metrics.metric_collection.html" />
+    <link rel="prev" title="draugr.metrics.metric_aggregator.save_metric" href="draugr.metrics.metric_aggregator.save_metric.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="draugr-metrics-metric-aggregator-metricaggregator">
+<h1>draugr.metrics.metric_aggregator.MetricAggregator<a class="headerlink" href="#draugr-metrics-metric-aggregator-metricaggregator" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.metrics.metric_aggregator.</span></span><span class="sig-name descname"><span class="pre">MetricAggregator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measures</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['StatisticsError',</span> <span class="pre">'fmean',</span> <span class="pre">'geometric_mean',</span> <span class="pre">'harmonic_mean',</span> <span class="pre">'mean',</span> <span class="pre">'median',</span> <span class="pre">'median_grouped',</span> <span class="pre">'median_high',</span> <span class="pre">'median_low',</span> <span class="pre">'mode',</span> <span class="pre">'multimode',</span> <span class="pre">'pstdev',</span> <span class="pre">'pvariance',</span> <span class="pre">'quantiles',</span> <span class="pre">'stdev',</span> <span class="pre">'variance']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_measure_history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_disk_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/metric_aggregator.html#MetricAggregator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measures</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['StatisticsError',</span> <span class="pre">'fmean',</span> <span class="pre">'geometric_mean',</span> <span class="pre">'harmonic_mean',</span> <span class="pre">'mean',</span> <span class="pre">'median',</span> <span class="pre">'median_grouped',</span> <span class="pre">'median_high',</span> <span class="pre">'median_low',</span> <span class="pre">'mode',</span> <span class="pre">'multimode',</span> <span class="pre">'pstdev',</span> <span class="pre">'pvariance',</span> <span class="pre">'quantiles',</span> <span class="pre">'stdev',</span> <span class="pre">'variance']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_measure_history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_disk_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/metric_aggregator.html#MetricAggregator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.__init__" title="draugr.metrics.metric_aggregator.MetricAggregator.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([measures, keep_measure_history, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.add" title="draugr.metrics.metric_aggregator.MetricAggregator.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(values)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param values</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.append" title="draugr.metrics.metric_aggregator.MetricAggregator.append"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append</span></code></a>(values)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param values</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.calc_moving_average" title="draugr.metrics.metric_aggregator.MetricAggregator.calc_moving_average"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calc_moving_average</span></code></a>([window_size])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param window_size</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.calc_running_value" title="draugr.metrics.metric_aggregator.MetricAggregator.calc_running_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calc_running_value</span></code></a>([new_val, lambd])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param new_val</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.save" title="draugr.metrics.metric_aggregator.MetricAggregator.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(*, stat_name[, project_name, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param stat_name</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.max" title="draugr.metrics.metric_aggregator.MetricAggregator.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max</span></code></a></p></td>
+<td><p>return: :rtype:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.measures" title="draugr.metrics.metric_aggregator.MetricAggregator.measures"><code class="xref py py-obj docutils literal notranslate"><span class="pre">measures</span></code></a></p></td>
+<td><p>return: :rtype:</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.min" title="draugr.metrics.metric_aggregator.MetricAggregator.min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min</span></code></a></p></td>
+<td><p>return: :rtype:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.metrics.metric_aggregator.MetricAggregator.values" title="draugr.metrics.metric_aggregator.MetricAggregator.values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code></a></p></td>
+<td><p>return: :rtype:</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/metric_aggregator.html#MetricAggregator.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.add" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/metric_aggregator.html#MetricAggregator.append"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.append" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.calc_moving_average">
+<span class="sig-name descname"><span class="pre">calc_moving_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/metric_aggregator.html#MetricAggregator.calc_moving_average"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.calc_moving_average" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>window_size</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.calc_running_value">
+<span class="sig-name descname"><span class="pre">calc_running_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/metric_aggregator.html#MetricAggregator.calc_running_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.calc_running_value" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_val</strong> – </p></li>
+<li><p><strong>lambd</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.max">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max</span></span><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.max" title="Permalink to this definition">¶</a></dt>
+<dd><p>return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.measures">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">measures</span></span><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.measures" title="Permalink to this definition">¶</a></dt>
+<dd><p>return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.min">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">min</span></span><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stat_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'non'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'non'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logs'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/metric_aggregator.html#MetricAggregator.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.save" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stat_name</strong> – </p></li>
+<li><p><strong>project_name</strong> – </p></li>
+<li><p><strong>config_name</strong> – </p></li>
+<li><p><strong>directory</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="draugr.metrics.metric_aggregator.MetricAggregator.values">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values</span></span><a class="headerlink" href="#draugr.metrics.metric_aggregator.MetricAggregator.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>return:
+:rtype:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="draugr.html">draugr</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="draugr.dist_is_editable.html">draugr.dist_is_editable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.get_version.html">draugr.get_version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.dlib_utilities.html">draugr.dlib_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.entry_points.html">draugr.entry_points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.ffmpeg_utilities.html">draugr.ffmpeg_utilities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="draugr.metrics.html">draugr.metrics</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="draugr.metrics.accumulation.html">draugr.metrics.accumulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.metrics.meters.html">draugr.metrics.meters</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="draugr.metrics.metric_aggregator.html">draugr.metrics.metric_aggregator</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="draugr.metrics.metric_aggregator.save_metric.html">draugr.metrics.metric_aggregator.save_metric</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.metrics.metric_aggregator.MetricAggregator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.metrics.metric_collection.html">draugr.metrics.metric_collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.metrics.metric_summary.html">draugr.metrics.metric_summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.metrics.plotting.html">draugr.metrics.plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.multiprocessing_utilities.html">draugr.multiprocessing_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.os_utilities.html">draugr.os_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.pygame_utilities.html">draugr.pygame_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.python_utilities.html">draugr.python_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.random_utilities.html">draugr.random_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.scipy_utilities.html">draugr.scipy_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.stopping.html">draugr.stopping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.threading_utilities.html">draugr.threading_utilities</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="draugr.html">draugr</a><ul>
+  <li><a href="draugr.metrics.html">draugr.metrics</a><ul>
+  <li><a href="draugr.metrics.metric_aggregator.html">draugr.metrics.metric_aggregator</a><ul>
+      <li>Previous: <a href="draugr.metrics.metric_aggregator.save_metric.html" title="previous chapter">draugr.metrics.metric_aggregator.save_metric</a></li>
+      <li>Next: <a href="draugr.metrics.metric_collection.html" title="next chapter">draugr.metrics.metric_collection</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/generated/draugr.metrics.metric_aggregator.MetricAggregator.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

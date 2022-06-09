@@ -62,4 +62,18 @@ if __name__ == "__main__":
         time.sleep(4)
         S.stop()
 
-    yhhgsady()
+    def yhhgsad2y():
+        import time
+
+        def worker(wid):
+            print(f"Worker {wid} Start")
+            time.sleep(1)
+            print(f"Worker {wid} END")
+
+        S = Skipper(worker)
+        S(1)
+        time.sleep(4)
+        S.stop()
+
+    # yhhgsady()
+    yhhgsad2y()

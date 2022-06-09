@@ -1,4 +1,3 @@
-import os
 import subprocess
 from pathlib import Path
 from typing import Optional
@@ -8,7 +7,6 @@ from warg import Number
 
 FORMAT_LIST = [".mp4", ".avi", ".mkv", ".flv", ".mov"]
 AUDIO_FORMAT = ".aac"
-
 
 __all__ = ["extract_frames"]
 
@@ -22,7 +20,6 @@ def extract_frames(
     extract_sound: bool = True,
     ffmpeg_path: Path = "ffmpeg",
 ):
-
     root_dir = file_path.parent
     if frame_out_dir is None:
         frame_out_dir = ensure_existence(root_dir / "frames")

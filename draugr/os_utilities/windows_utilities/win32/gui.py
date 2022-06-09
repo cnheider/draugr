@@ -1,6 +1,5 @@
 import win32gui
 
-
 __all__ = ["list_window_names", "get_inner_windows", "find_all_windows"]
 
 verbose = False

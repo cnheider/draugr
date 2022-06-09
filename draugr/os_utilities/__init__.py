@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 14/01/2020
            """
 
-from .platform_selection import *
 from .cuda_device import *
-from .screen_resolution import *
+from .platform_selection import *
 from .resource_utilities import *
+from .screen_resolution import *

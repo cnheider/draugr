@@ -6,6 +6,9 @@ __doc__ = r"""
 
            Created on 25-05-2021
            """
+
+from pathlib import Path
+
 try:
     from .formatting import *
     from .from_dict import *

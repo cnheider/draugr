@@ -15,7 +15,7 @@ import numpy
 from PIL import Image, ImageDraw, ImageFont
 
 from draugr.opencv_utilities.drawing.opencv_draw import draw_masks
-from draugr.python_utilities.colors import RGB, compute_color_for_labels
+from warg import RGB, compute_color_for_labels
 
 __all__ = ["draw_single_box", "draw_bounding_boxes", "draw_single_rect"]
 

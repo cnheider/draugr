@@ -1,3 +1,7 @@
+__author__ = "Christian Heider Nielsen"
+__doc__ = r""""""
+__all__ = ["make_user", "remove_user", "change_passwd", "change_home_dir"]
+
 from pathlib import Path
 
 from warg import ContextWrapper

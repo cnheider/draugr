@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Sequence
-
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
-from warg import passes_kws_to
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -12,9 +8,13 @@ __doc__ = r"""
 
            """
 
-from matplotlib import pyplot
+from typing import Sequence
 
 import numpy
+from matplotlib import pyplot
+
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
+from warg import passes_kws_to
 
 __all__ = ["DistributionPlot"]
 

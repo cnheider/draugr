@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from typing import Sequence, Union
-
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
-from draugr.numpy_utilities import recursive_flatten_numpy
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -13,9 +9,13 @@ __doc__ = r"""
 
            """
 
-from matplotlib import pyplot
+from typing import Sequence, Union
 
 import numpy
+from matplotlib import pyplot
+
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
+from draugr.numpy_utilities import recursive_flatten_numpy
 
 __all__ = ["SeriesScrollPlot"]
 

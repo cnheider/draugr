@@ -21,10 +21,13 @@
 import sys
 from pathlib import Path
 
-from draugr import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_VERSION, PROJECT_YEAR
 
-PACKAGE_ROOT = Path(__file__).parent.parent.parent
+from warg import cprint
+
+PACKAGE_ROOT = Path(__file__).parent.parent.parent  # / "draugr"
+cprint(PACKAGE_ROOT)
 sys.path.insert(0, str(PACKAGE_ROOT.absolute()))
+# sys.path.insert(0, str(PACKAGE_ROOT.absolute() / PROJECT_NAME))
 
 # -- General configuration ------------------------------------------------
 
@@ -36,8 +39,16 @@ sys.path.insert(0, str(PACKAGE_ROOT.absolute()))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 
+from draugr import (
+    PROJECT_AUTHOR,
+    PROJECT_NAME,
+    PROJECT_VERSION,
+    PROJECT_YEAR,
+    __project__,
+)
+
 extensions = [
-    "m2r2",
+    # "m2r2",
     # 'recommonmark',
     "sphinxcontrib.programoutput",
     "sphinx.ext.autodoc",
@@ -54,9 +65,14 @@ extensions = [
 ]
 
 napoleon_use_ivar = True
+autosummary_generate = True
+# autosummary_imported_members = False
+autosummary_ignore_module_all = False
+autosummary_generate_overwrite = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = ["../templates"]
+# templates_path = []
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -73,7 +89,7 @@ source_suffix = {".rst": "restructuredtext", ".txt": "markdown", ".md": "markdow
 master_doc = "index"
 
 # General information about the project.
-project = PROJECT_NAME
+project = __project__  # PROJECT_NAME
 author = PROJECT_AUTHOR
 copyright_text = f"{PROJECT_YEAR}, {PROJECT_AUTHOR}"
 
@@ -117,7 +133,8 @@ html_theme = "alabaster"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named 'default.css' will overwrite the builtin 'default.css'.
-html_static_path = ["_static"]
+# html_static_path = ["_static"]
+html_static_path = []
 
 html_baseurl = f"{PROJECT_NAME}.github.io"
 
@@ -205,7 +222,7 @@ epub_exclude_files = ["search.html"]
 intersphinx_mapping = {
     "python": ("https://docs.python.org/", None),
     "numpy": ("http://docs.scipy.org/doc/numpy/", None),
-    "torch": ("https://pytorch.org/docs/", None),
+    # "torch": ("https://pytorch.org/docs/", None),
 }
 
 # -- A patch that prevents Sphinx from cross-referencing ivar tags -------

@@ -13,7 +13,6 @@ from typing import Sequence, Tuple
 import torch
 from torch import nn
 
-
 __all__ = ["DisjunctMLP"]
 
 from draugr.torch_utilities.architectures.mlp import MLP

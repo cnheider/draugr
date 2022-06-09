@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Any, Iterable, List, Sequence
+from typing import Iterable, List, Sequence
 
 import numpy
 import torch
-from draugr.torch_utilities.tensors.to_tensor import to_tensor
+
 from draugr.torch_utilities.architectures.mlp import MLP
+from draugr.torch_utilities.tensors.to_tensor import to_tensor
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = "Fusion variant of MLPs"

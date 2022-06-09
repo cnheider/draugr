@@ -1,3 +1,11 @@
+__author__ = "Christian Heider Nielsen"
+__doc__ = r""""""
+__all__ = [
+    "SERVICE_TEMPLATE",
+    "SERVICE_TEMPLATE_USER_SIMPLE",
+    "SERVICE_TEMPLATE_SIMPLE",
+]
+
 SERVICE_TEMPLATE = """
 [Unit]
 Description = {description}
@@ -47,7 +55,6 @@ ExecStart={executable} {service_entry_point_path}
 [Install]
 WantedBy=multi-user.target
 """
-
 
 if __name__ == "__main__":
     print(

@@ -1,6 +1,7 @@
+from typing import Sequence
+
 import cv2
 import numpy
-from typing import Tuple, Union, Sequence
 
 __all__ = ["circle_crop"]
 

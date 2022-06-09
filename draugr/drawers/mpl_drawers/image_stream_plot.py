@@ -7,14 +7,14 @@ __doc__ = r"""
            Created on 22-01-2021
            """
 
+__all__ = ["ImageStreamPlot"]
+
 from typing import Sequence
 
 from matplotlib import pyplot
 
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
-
-__all__ = ["ImageStreamPlot"]
 
 
 class ImageStreamPlot(MplDrawer):

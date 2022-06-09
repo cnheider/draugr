@@ -10,7 +10,7 @@ __doc__ = r"""
 import math
 from typing import Tuple, Union
 
-from draugr import replicate
+from warg import replicate
 
 __all__ = ["max_pool2d_hw_shape"]
 

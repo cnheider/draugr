@@ -7,9 +7,9 @@ __doc__ = r"""
            Created on 25-01-2021
            """
 
-from abc import abstractmethod
-
 __all__ = ["Drawer"]
+
+from abc import abstractmethod
 
 from warg import drop_unused_kws
 

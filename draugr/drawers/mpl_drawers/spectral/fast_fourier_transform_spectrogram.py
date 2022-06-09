@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import math
 
-import numpy
-from matplotlib.gridspec import GridSpec
-
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -16,8 +11,13 @@ Created on 27/04/2019
 
 __all__ = ["FastFourierTransformSpectrogramPlot"]
 
-from matplotlib import pyplot
+import math
 
+import numpy
+from matplotlib import pyplot
+from matplotlib.gridspec import GridSpec
+
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from draugr.tqdm_utilities import progress_bar
 
 FLOAT_EPS = numpy.finfo(float).eps

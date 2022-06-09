@@ -1,0 +1,11 @@
+name: draugr
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  - -r requirements/requirements_dev.txt
+  #- matplotlib
+  # Core scientific python
+  #- numpy

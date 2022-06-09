@@ -7,13 +7,13 @@ __doc__ = r"""
            Created on 17-09-2020
            """
 
+__all__ = ["ndarray_to_matlab", "matlab_to_ndarray", "dict_to_sparse"]
+
 from typing import Any
 
 import matlab
 import numpy
 from scipy import sparse
-
-__all__ = ["ndarray_to_matlab", "matlab_to_ndarray", "dict_to_sparse"]
 
 from draugr.matlab_utilities.matlab_conversion_utilities import (
     get_strides_c,

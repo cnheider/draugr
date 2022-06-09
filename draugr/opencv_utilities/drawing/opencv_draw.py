@@ -17,7 +17,7 @@ from draugr.opencv_utilities.namespaces.enums import (
     LineTypeEnum,
     ContourRetrievalModeEnum,
 )
-from draugr.python_utilities.colors import RGB, compute_color_for_labels
+from warg import RGB, compute_color_for_labels
 
 __all__ = ["find_contours", "draw_masks"]
 

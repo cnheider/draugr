@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.os_utilities.windows_utilities.task_scheduler.api &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="draugr.github.io/_modules/draugr/os_utilities/windows_utilities/task_scheduler/api.html" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.os_utilities.windows_utilities.task_scheduler.api</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">win32com.client</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">((</span><span class="n">e</span><span class="p">,</span> <span class="s2">&quot;missing win32com.client&quot;</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">draugr.os_utilities.windows_utilities.task_scheduler.enums</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">TaskActionTypeEnum</span><span class="p">,</span>
+    <span class="n">TaskCreationEnum</span><span class="p">,</span>
+    <span class="n">TaskLogonTypeEnum</span><span class="p">,</span>
+    <span class="n">TaskTriggerEnum</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;new_user_logon_execute_task&quot;</span><span class="p">,</span> <span class="s2">&quot;delete_task&quot;</span><span class="p">,</span> <span class="s2">&quot;set_task_activity&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">get_scheduler</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CDispatch</span><span class="p">:</span>
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Dispatch</span><span class="p">(</span><span class="s2">&quot;Schedule.Service&quot;</span><span class="p">)</span>
+    <span class="n">scheduler</span><span class="o">.</span><span class="n">Connect</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">scheduler</span>
+
+
+<span class="k">def</span> <span class="nf">register_task</span><span class="p">(</span>
+    <span class="n">task_folder</span><span class="p">:</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CDispatch</span><span class="p">,</span>
+    <span class="n">task_definition</span><span class="p">:</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CDispatch</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">user</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">task_creation_type</span><span class="o">=</span><span class="n">TaskCreationEnum</span><span class="o">.</span><span class="n">TASK_CREATE_OR_UPDATE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <span class="n">task_logon_type</span><span class="o">=</span><span class="n">TaskLogonTypeEnum</span><span class="o">.</span><span class="n">TASK_LOGON_NONE</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">task_folder</span><span class="o">.</span><span class="n">RegisterTaskDefinition</span><span class="p">(</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">task_definition</span><span class="p">,</span> <span class="n">task_creation_type</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">task_logon_type</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">new_execute_action</span><span class="p">(</span>
+    <span class="n">task_def</span><span class="p">:</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CDispatch</span><span class="p">,</span>
+    <span class="n">action_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">action_arguments</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">action_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;action0&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">task_def</span><span class="o">.</span><span class="n">Actions</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">TaskActionTypeEnum</span><span class="o">.</span><span class="n">TASK_ACTION_EXEC</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">action</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">action_id</span>
+    <span class="n">action</span><span class="o">.</span><span class="n">Path</span> <span class="o">=</span> <span class="n">action_path</span>
+    <span class="n">action</span><span class="o">.</span><span class="n">Arguments</span> <span class="o">=</span> <span class="n">action_arguments</span>
+
+
+<span class="k">def</span> <span class="nf">new_time_trigger</span><span class="p">(</span>
+    <span class="n">task_def</span><span class="p">:</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CDispatch</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">end_time</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">trigger</span> <span class="o">=</span> <span class="n">task_def</span><span class="o">.</span><span class="n">Triggers</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">TaskTriggerEnum</span><span class="o">.</span><span class="n">TASK_TRIGGER_TIME</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">trigger</span><span class="o">.</span><span class="n">StartBoundary</span> <span class="o">=</span> <span class="n">start_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">trigger</span><span class="o">.</span><span class="n">EndBoundary</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">trigger</span><span class="o">.</span><span class="n">ExecutionTimeLimit</span> <span class="o">=</span> <span class="s2">&quot;PT5M&quot;</span>  <span class="c1"># Five minutes</span>
+
+
+<span class="k">def</span> <span class="nf">new_logon_trigger</span><span class="p">(</span>
+    <span class="n">task_def</span><span class="p">:</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CDispatch</span><span class="p">,</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">(),</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">(),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">trigger</span> <span class="o">=</span> <span class="n">task_def</span><span class="o">.</span><span class="n">Triggers</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">TaskTriggerEnum</span><span class="o">.</span><span class="n">TASK_TRIGGER_LOGON</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">trigger</span><span class="o">.</span><span class="n">Id</span> <span class="o">=</span> <span class="s2">&quot;LogonTriggerId&quot;</span>
+    <span class="n">trigger</span><span class="o">.</span><span class="n">UserId</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s2">\</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span>  <span class="c1"># Must be a valid user account</span>
+
+
+<span class="k">def</span> <span class="nf">new_boot_trigger</span><span class="p">(</span><span class="n">task_def</span><span class="p">:</span> <span class="n">win32com</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CDispatch</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">trigger</span> <span class="o">=</span> <span class="n">task_def</span><span class="o">.</span><span class="n">Triggers</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">TaskTriggerEnum</span><span class="o">.</span><span class="n">TASK_TRIGGER_BOOT</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">trigger</span><span class="o">.</span><span class="n">Id</span> <span class="o">=</span> <span class="s2">&quot;BootTriggerId&quot;</span>
+    <span class="c1"># trigger.Delay = &quot;PT30S&quot;  # 30 Seconds</span>
+
+
+<div class="viewcode-block" id="new_user_logon_execute_task"><a class="viewcode-back" href="../../../../../generated/draugr.os_utilities.windows_utilities.task_scheduler.api.new_user_logon_execute_task.html#draugr.os_utilities.windows_utilities.task_scheduler.api.new_user_logon_execute_task">[docs]</a><span class="k">def</span> <span class="nf">new_user_logon_execute_task</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">desc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;No description&quot;</span><span class="p">,</span>
+    <span class="n">action_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cmd.exe&quot;</span><span class="p">,</span>
+    <span class="n">action_arguments</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;/c &quot;exit&quot;&#39;</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">task_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">User&quot;</span><span class="p">,</span>
+    <span class="n">stop_if_on_battery</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">get_scheduler</span><span class="p">()</span>
+    <span class="n">root_folder</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">GetFolder</span><span class="p">(</span><span class="n">task_folder</span><span class="p">)</span>
+    <span class="n">task_def</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">NewTask</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">task_def</span><span class="o">.</span><span class="n">RegistrationInfo</span><span class="o">.</span><span class="n">Description</span> <span class="o">=</span> <span class="n">desc</span>
+    <span class="n">task_def</span><span class="o">.</span><span class="n">RegistrationInfo</span><span class="o">.</span><span class="n">Author</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>
+    <span class="n">task_def</span><span class="o">.</span><span class="n">Settings</span><span class="o">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">task_def</span><span class="o">.</span><span class="n">Settings</span><span class="o">.</span><span class="n">StartWhenAvailable</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">task_def</span><span class="o">.</span><span class="n">Settings</span><span class="o">.</span><span class="n">StopIfGoingOnBatteries</span> <span class="o">=</span> <span class="n">stop_if_on_battery</span>
+
+    <span class="n">new_logon_trigger</span><span class="p">(</span><span class="n">task_def</span><span class="p">)</span>
+    <span class="c1"># new_boot_trigger(task_def)</span>
+    <span class="n">new_execute_action</span><span class="p">(</span><span class="n">task_def</span><span class="p">,</span> <span class="n">action_path</span><span class="p">,</span> <span class="n">action_arguments</span><span class="p">)</span>
+    <span class="n">register_task</span><span class="p">(</span><span class="n">root_folder</span><span class="p">,</span> <span class="n">task_def</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="delete_task"><a class="viewcode-back" href="../../../../../generated/draugr.os_utilities.windows_utilities.task_scheduler.api.delete_task.html#draugr.os_utilities.windows_utilities.task_scheduler.api.delete_task">[docs]</a><span class="k">def</span> <span class="nf">delete_task</span><span class="p">(</span><span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">task_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">User&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">get_scheduler</span><span class="p">()</span>
+    <span class="n">task_folder</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">GetFolder</span><span class="p">(</span><span class="n">task_folder</span><span class="p">)</span>
+    <span class="n">task_folder</span><span class="o">.</span><span class="n">DeleteTask</span><span class="p">(</span><span class="n">task_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="set_task_activity"><a class="viewcode-back" href="../../../../../generated/draugr.os_utilities.windows_utilities.task_scheduler.api.set_task_activity.html#draugr.os_utilities.windows_utilities.task_scheduler.api.set_task_activity">[docs]</a><span class="k">def</span> <span class="nf">set_task_activity</span><span class="p">(</span><span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">enable</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">task_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">User&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">get_scheduler</span><span class="p">()</span>
+    <span class="n">task_folder</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="n">GetFolder</span><span class="p">(</span><span class="n">task_folder</span><span class="p">)</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">task_folder</span><span class="o">.</span><span class="n">GetTask</span><span class="p">(</span><span class="n">task_name</span><span class="p">)</span>
+    <span class="n">task</span><span class="o">.</span><span class="n">Enabled</span> <span class="o">=</span> <span class="n">enable</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">()</span><span class="si">}</span><span class="s2">\</span><span class="si">{</span><span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">delete_task</span><span class="p">(</span><span class="s2">&quot;test_task&quot;</span><span class="p">)</span>
+        <span class="n">new_user_logon_execute_task</span><span class="p">(</span><span class="s2">&quot;test_task&quot;</span><span class="p">)</span>
+        <span class="n">set_task_activity</span><span class="p">(</span><span class="s2">&quot;test_task&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../index.html">Module code</a><ul>
+  <li><a href="../../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

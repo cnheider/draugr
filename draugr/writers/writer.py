@@ -10,15 +10,15 @@ Created on 27/04/2019
 
 from abc import ABCMeta, abstractmethod
 from collections import Counter, deque
+
 from draugr.writers.mixins.scalar_writer_mixin import ScalarWriterMixin
 
 __all__ = ["Writer", "global_writer", "set_global_writer"]
 
-from itertools import cycle
 from typing import Any, Iterable, Optional
 
 from warg import is_none_or_zero_or_negative_or_mod_zero
-from warg import Number, drop_unused_kws
+from warg import drop_unused_kws
 
 
 class Writer(ScalarWriterMixin, metaclass=ABCMeta):

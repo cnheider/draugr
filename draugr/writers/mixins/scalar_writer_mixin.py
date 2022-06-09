@@ -1,6 +1,7 @@
-from warg import Number
 from abc import ABC, abstractmethod
 from itertools import cycle
+
+from warg import Number
 
 __all__ = ["ScalarWriterMixin"]
 

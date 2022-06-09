@@ -6,8 +6,7 @@ __doc__ = r"""
 
            Created on 26-06-2021
            """
-
-from draugr.misc_utilities import latextable
+__all__ = []
 
 table_row_name = "tablerow"
 
@@ -45,6 +44,8 @@ def adasdassijd() -> None:
     print(table.draw())
 
     print("\nTexttable Latex:")
+    import latextable
+
     print(latextable.draw_latex(table, caption="A comparison of rocket features."))
 
 
@@ -66,6 +67,8 @@ def iasjduh() -> None:
         ]
     )
     print(table.draw() + "\n")
+    import latextable
+
     print(latextable.draw_latex(table, caption="An example table.") + "\n")
 
     table = Texttable()
