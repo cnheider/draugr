@@ -4,7 +4,6 @@ import cv2
 
 from warg import sink
 
-
 __all__ = ["add_trackbar"]
 
 

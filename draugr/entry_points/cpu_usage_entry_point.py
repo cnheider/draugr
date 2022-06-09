@@ -6,6 +6,7 @@ __doc__ = r"""
 
            Created on 16-09-2020
            """
+__all__ = []
 
 
 def main() -> None:

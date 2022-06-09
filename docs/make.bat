@@ -7,9 +7,9 @@ REM Command file for Sphinx documentation
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
-set SOURCEDIR=source
-set BUILDDIR=build
-set SPHINXPROJ=Agent
+set SOURCEDIR   = source
+set BUILDDIR    = ../docs/github
+set SPHINXPROJ  = Draugr
 
 if "%1" == "" goto help
 

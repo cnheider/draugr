@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import List
+
 import cv2
 import numpy
-from typing import Tuple, List, Union
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

@@ -8,7 +8,7 @@ __doc__ = r"""
            Created on 03/02/2022
            """
 
-__all__ = []
+__all__ = ["is_dark_mode_active"]
 
 import subprocess
 

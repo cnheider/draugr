@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr.python_utilities.styling import (
+from draugr.writers.terminal.terminal_utilities import scale
+from warg import (
     COLORS,
     PrintStyle,
     generate_style,
     get_terminal_size,
-    scale,
 )
 
 __author__ = "Christian Heider Nielsen"

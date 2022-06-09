@@ -5,7 +5,7 @@ from typing import Any, List, Tuple
 import numpy
 from PIL import Image
 
-from draugr.python_utilities.colors import color
+from warg import color
 
 
 def get_pixel(col: Tuple) -> Any:

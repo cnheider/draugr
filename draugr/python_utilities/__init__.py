@@ -7,25 +7,12 @@ __doc__ = r"""
            Created on 14/01/2020
            """
 
-from pathlib import Path
+# with open(Path(__file__).parent / "README.md", "r") as this_init_file:
+#    __doc__ += this_init_file.read()  # .replace("#", "")  # .encode("ascii", "ignore")
 
-with open(Path(__file__).parent / "README.md", "r") as this_init_file:
-    __doc__ += this_init_file.read()
 
-from .business import *
-from .datetimes import *
-from .debug import *
-from .exceptions import *
-from .manipulation import *
-from .replication import *
-from .sockets import *
-from .styling import *
-from .torch_like_channel_transformation import *
-from .strings import *
-from .contexts import *
-from .path_utilities import *
 from .function_wrappers import *
-from .config_shell import *
-from .colors import *
-from .http import *
 from .generators import *
+from .http import *
+from .sockets import *
+from .torch_like_channel_transformation import *

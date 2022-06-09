@@ -9,7 +9,7 @@ __doc__ = r"""
 
 from typing import Sequence, Tuple, Union
 
-from draugr import replicate
+from warg import replicate
 
 __all__ = ["pad2d_hw_shape"]
 

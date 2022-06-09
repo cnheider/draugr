@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Optional
 
 from apppath import ensure_existence
-from draugr.ffmpeg_utilities.extract import FORMAT_LIST, AUDIO_FORMAT
+from draugr.ffmpeg_utilities.extract import AUDIO_FORMAT
 from warg import Number, identity
 
 __all__ = ["merge_video"]

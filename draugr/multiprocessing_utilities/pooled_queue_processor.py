@@ -2,17 +2,14 @@
 # -*- coding: utf-8 -*-
 __author__ = "Christian Heider Nielsen"
 
-
+import multiprocessing
 import pickle
+import queue
 import time
 from abc import ABC, abstractmethod
 from typing import Any, Iterable
 
 import cloudpickle
-
-
-import multiprocessing
-import queue
 
 __all__ = ["CloudPickleBase", "PooledQueueTask", "PooledQueueProcessor"]
 

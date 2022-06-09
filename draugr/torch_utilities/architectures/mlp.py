@@ -5,17 +5,17 @@ from typing import Sequence
 
 import numpy
 import torch
+from numpy import prod
+from torch import nn
+from torch.nn import Module
+
+from draugr.random_utilities import seed_stack
+from draugr.torch_utilities.architectures.architecture import Architecture
 from draugr.torch_utilities.optimisation.parameters.initialisation import (
     constant_init,
     fan_in_init,
 )
 from draugr.torch_utilities.tensors.to_tensor import to_tensor
-from draugr.torch_utilities.architectures.architecture import Architecture
-from draugr.random_utilities import seed_stack
-
-from numpy import prod
-from torch import nn
-from torch.nn import Module
 from warg import NOD
 
 __author__ = "Christian Heider Nielsen"

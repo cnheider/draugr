@@ -6,6 +6,7 @@ __doc__ = r"""
 
            Created on 25-01-2021
            """
+__all__ = ["OpencvImageStream"]
 
 from typing import Sequence
 
@@ -15,8 +16,6 @@ from draugr.drawers.drawer import Drawer
 from draugr.opencv_utilities import WindowFlagEnum
 from draugr.opencv_utilities.windows.default import match_return_code
 from warg import drop_unused_kws, passes_kws_to
-
-__all__ = ["OpencvImageStream"]
 
 
 class OpencvImageStream(Drawer):

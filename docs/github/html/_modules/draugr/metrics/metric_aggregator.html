@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.metrics.metric_aggregator &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="canonical" href="draugr.github.io/_modules/draugr/metrics/metric_aggregator.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.metrics.metric_aggregator</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Christian Heider Nielsen&quot;</span>
+
+<span class="kn">import</span> <span class="nn">statistics</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MetricAggregator&quot;</span><span class="p">,</span> <span class="s2">&quot;save_metric&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="MetricAggregator"><a class="viewcode-back" href="../../../generated/draugr.metrics.metric_aggregator.MetricAggregator.html#draugr.metrics.metric_aggregator.MetricAggregator">[docs]</a><span class="k">class</span> <span class="nc">MetricAggregator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MetricAggregator.__init__"><a class="viewcode-back" href="../../../generated/draugr.metrics.metric_aggregator.MetricAggregator.html#draugr.metrics.metric_aggregator.MetricAggregator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">measures</span><span class="o">=</span><span class="n">statistics</span><span class="o">.</span><span class="n">__all__</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+        <span class="n">keep_measure_history</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">use_disk_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_running_value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_running_value_key</span> <span class="o">=</span> <span class="s2">&quot;running_value&quot;</span>
+
+        <span class="c1"># for key in self._measure_keys:</span>
+        <span class="c1">#  setattr(self,key,None)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stat_measure_keys</span> <span class="o">=</span> <span class="n">measures</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_keep_measure_history</span> <span class="o">=</span> <span class="n">keep_measure_history</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keep_measure_history</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stat_measure_keys</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_running_value_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">measures</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keep_measure_history</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stat_measure_keys</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="n">key</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">statistics</span><span class="o">.</span><span class="n">StatisticsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="c1"># TODO: warn(f&#39;{e}&#39;)</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">out</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="k">return</span> <span class="n">out</span>
+
+<div class="viewcode-block" id="MetricAggregator.add"><a class="viewcode-back" href="../../../generated/draugr.metrics.metric_aggregator.MetricAggregator.html#draugr.metrics.metric_aggregator.MetricAggregator.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param values:</span>
+<span class="sd">        :type values:&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MetricAggregator.append"><a class="viewcode-back" href="../../../generated/draugr.metrics.metric_aggregator.MetricAggregator.html#draugr.metrics.metric_aggregator.MetricAggregator.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param values:</span>
+<span class="sd">        :type values:&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">calc_running_value</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keep_measure_history</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stat_measure_keys</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="n">key</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+                    <span class="k">except</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># warn(f&#39;Length of statistical values are &lt;=1, measure &quot;{key}&quot; maybe ill-defined&#39;)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="n">key</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="n">statistics</span><span class="o">.</span><span class="n">StatisticsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="c1"># TODO: warn(f&#39;{e}&#39;)</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></div>
+
+    <span class="c1"># def __setitem__(self, key, value):</span>
+    <span class="c1">#    if self._keep_measure_history:</span>
+    <span class="c1">#        self.</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stat_measure_keys</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keep_measure_history</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="n">item</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="n">statistics</span><span class="o">.</span><span class="n">StatisticsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Length of statistical values are &lt;=1, measure &quot;</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&quot; maybe ill-defined&#39;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="n">item</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">statistics</span><span class="o">.</span><span class="n">StatisticsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">item</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_value_key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span>
+
+    <span class="c1"># def __call__(self, *args, **kwargs):</span>
+    <span class="c1">#  return self._values</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;StatisticAggregator&gt; values: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="si">}</span><span class="s2">, measures: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">measures</span><span class="si">}</span><span class="s2"> &lt;/StatisticAggregator&gt;&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MetricAggregator.calc_moving_average"><a class="viewcode-back" href="../../../generated/draugr.metrics.metric_aggregator.MetricAggregator.html#draugr.metrics.metric_aggregator.MetricAggregator.calc_moving_average">[docs]</a>    <span class="k">def</span> <span class="nf">calc_moving_average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param window_size:</span>
+<span class="sd">        :type window_size:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">&gt;=</span> <span class="n">window_size</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="o">-</span><span class="n">window_size</span><span class="p">:])</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="MetricAggregator.calc_running_value"><a class="viewcode-back" href="../../../generated/draugr.metrics.metric_aggregator.MetricAggregator.html#draugr.metrics.metric_aggregator.MetricAggregator.calc_running_value">[docs]</a>    <span class="k">def</span> <span class="nf">calc_running_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">lambd</span><span class="o">=</span><span class="mf">0.99</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param new_val:</span>
+<span class="sd">        :type new_val:</span>
+<span class="sd">        :param lambd:</span>
+<span class="sd">        :type lambd:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">new_val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_value</span>
+
+        <span class="k">if</span> <span class="n">new_val</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">nw</span> <span class="ow">in</span> <span class="n">new_val</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">calc_running_value</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">lambd</span><span class="o">=</span><span class="n">lambd</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_running_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_value</span> <span class="o">*</span> <span class="n">lambd</span> <span class="o">+</span> <span class="n">new_val</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">lambd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_running_value</span> <span class="o">=</span> <span class="n">new_val</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keep_measure_history</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_measures</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_running_value_key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_running_value</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_value</span></div>
+
+<div class="viewcode-block" id="MetricAggregator.save"><a class="viewcode-back" href="../../../generated/draugr.metrics.metric_aggregator.MetricAggregator.html#draugr.metrics.metric_aggregator.MetricAggregator.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">stat_name</span><span class="p">,</span> <span class="n">project_name</span><span class="o">=</span><span class="s2">&quot;non&quot;</span><span class="p">,</span> <span class="n">config_name</span><span class="o">=</span><span class="s2">&quot;non&quot;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="s2">&quot;logs&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param stat_name:</span>
+<span class="sd">        :type stat_name:</span>
+<span class="sd">        :param project_name:</span>
+<span class="sd">        :type project_name:</span>
+<span class="sd">        :param config_name:</span>
+<span class="sd">        :type config_name:</span>
+<span class="sd">        :param directory:</span>
+<span class="sd">        :type directory:&quot;&quot;&quot;</span>
+        <span class="n">save_metric</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">,</span>
+            <span class="n">metric_name</span><span class="o">=</span><span class="n">stat_name</span><span class="p">,</span>
+            <span class="n">project_name</span><span class="o">=</span><span class="n">project_name</span><span class="p">,</span>
+            <span class="n">config_name</span><span class="o">=</span><span class="n">config_name</span><span class="p">,</span>
+            <span class="n">directory</span><span class="o">=</span><span class="n">directory</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="save_metric"><a class="viewcode-back" href="../../../generated/draugr.metrics.metric_aggregator.save_metric.html#draugr.metrics.metric_aggregator.save_metric">[docs]</a><span class="k">def</span> <span class="nf">save_metric</span><span class="p">(</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MetricAggregator</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">metric_name</span><span class="p">,</span>
+    <span class="n">project_name</span><span class="p">,</span>
+    <span class="n">config_name</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;logs&quot;</span><span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param metric:</span>
+<span class="sd">    :type metric:</span>
+<span class="sd">    :param metric_name:</span>
+<span class="sd">    :type metric_name:</span>
+<span class="sd">    :param project_name:</span>
+<span class="sd">    :type project_name:</span>
+<span class="sd">    :param config_name:</span>
+<span class="sd">    :type config_name:</span>
+<span class="sd">    :param directory:</span>
+<span class="sd">    :type directory:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    :rtype:&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">csv</span>
+    <span class="kn">import</span> <span class="nn">datetime</span>
+
+    <span class="k">if</span> <span class="n">metric</span><span class="p">:</span>
+        <span class="n">_file_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">_file_name</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">config_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">-&#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">_file_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%y%m</span><span class="si">%d</span><span class="s2">%H%M&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s1">.csv&#39;</span>
+        <span class="p">)</span>
+        <span class="n">_file_path</span> <span class="o">=</span> <span class="n">directory</span> <span class="o">/</span> <span class="n">_file_name</span>
+
+        <span class="n">stat</span> <span class="o">=</span> <span class="p">[[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">metric</span><span class="p">]</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">_file_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">w</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">stat</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved metric at </span><span class="si">{</span><span class="n">_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">signals</span> <span class="o">=</span> <span class="n">MetricAggregator</span><span class="p">(</span><span class="n">keep_measure_history</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">signals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">signals</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">signals</span><span class="o">.</span><span class="n">measures</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">signals</span><span class="o">.</span><span class="n">variance</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">signals</span><span class="o">.</span><span class="n">calc_moving_average</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">signals</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">signals</span><span class="o">.</span><span class="n">min</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  <li><a href="../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

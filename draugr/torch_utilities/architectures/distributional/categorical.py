@@ -4,12 +4,11 @@ from typing import List, Tuple
 
 import numpy
 import torch
-
 from torch.distributions import Categorical
 from torch.nn import functional
 
-from draugr.torch_utilities.tensors.to_tensor import to_tensor
 from draugr.torch_utilities.architectures.mlp import MLP
+from draugr.torch_utilities.tensors.to_tensor import to_tensor
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""

@@ -1,6 +1,14 @@
-import pygame
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
+__author__ = "Christian Heider Nielsen"
+__doc__ = r"""
+
+           Created on 17-09-2020
+           """
 __all__ = ["get_screen_resolution"]
+
+import pygame
 
 
 def get_screen_resolution():

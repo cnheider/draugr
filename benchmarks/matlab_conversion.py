@@ -7,6 +7,8 @@ __doc__ = r"""
            Created on 14-02-2021
            """
 
+__all__ = []
+
 import timeit
 
 

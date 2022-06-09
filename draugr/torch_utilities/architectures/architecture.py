@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import Any, Sequence
 
 import torch
@@ -13,7 +13,7 @@ __all__ = ["Architecture"]
 
 from draugr.torch_utilities.optimisation.parameters import get_num_parameters
 from warg import drop_unused_kws
-from draugr import indent_lines
+from warg import indent_lines
 
 
 class Architecture(nn.Module, ABC):

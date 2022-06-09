@@ -100,7 +100,7 @@ class DraugrPackage:
     @property
     def url(self) -> str:
         """ """
-        return "https://github.com/cnheider/draugr"
+        return "https://github.com/pything/draugr"
 
     @property
     def download_url(self) -> str:

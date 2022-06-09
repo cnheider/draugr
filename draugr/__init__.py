@@ -4,8 +4,8 @@
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "0.9.9"
-__doc__ = """
+__version__ = "1.0.0"
+__doc__ = r"""
 Created on 27/04/2019
 
 @author: cnheider
@@ -21,7 +21,6 @@ import pkg_resources
 
 from apppath import AppPath
 
-
 # from .drawers import *
 # from .writers import *
 # from .opencv_utilities import *
@@ -32,10 +31,12 @@ from apppath import AppPath
 from .metrics import *
 from .python_utilities import *
 
-
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 
+
+# with open(Path(__file__).parent.parent / "README.md", "r") as this_init_file:
+#    __doc__ += this_init_file.read()
 
 # __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
 

@@ -7,11 +7,11 @@ __doc__ = r"""
            Created on 14-02-2021
            """
 
+__all__ = ["get_strides_f", "get_strides_c"]
+
 from typing import Sequence
 
 import numpy
-
-__all__ = ["get_strides_f", "get_strides_c"]
 
 
 def get_strides_f(shape: Sequence) -> object:

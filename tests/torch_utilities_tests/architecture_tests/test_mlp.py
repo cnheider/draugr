@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import numpy
-
-import torch
 import pytest
+import torch
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
@@ -11,7 +10,6 @@ __doc__ = ""
 from torch import nn
 
 from draugr.torch_utilities import to_tensor, MLP, constant_init
-from warg import prod
 
 
 def test_single_dim():

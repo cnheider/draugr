@@ -4,10 +4,9 @@ from typing import Iterable
 import cv2
 import numpy
 
-from draugr.opencv_utilities.color_space.threshold import hsv_min_max_clip_mask
-from draugr.opencv_utilities.windows.image import show_image
-from draugr.opencv_utilities.windows.elements import add_trackbar
 from draugr.opencv_utilities.color_space import to_gray
+from draugr.opencv_utilities.windows.elements import add_trackbar
+from draugr.opencv_utilities.windows.image import show_image
 
 __all__ = ["interactive_hough_circles"]
 
@@ -15,7 +14,6 @@ __all__ = ["interactive_hough_circles"]
 def interactive_hough_circles(
     ps: Iterable, wait_time: int = 33, verbose: bool = False
 ) -> None:
-
     # show_image(numpy.zeros((600, 600)), "canny")
 
     # add_trackbar("canny", "canny_t1", default=30, max_val=1000, min_val=1.0)
@@ -88,7 +86,6 @@ def interactive_hough_circles(
                 | (pminRadius != minRadius)
                 | (pmaxRadius != maxRadius)
             ):
-
                 # cv2.setTrackbarPos("canny_t1", "canny", canny_t1)
                 # cv2.setTrackbarPos("canny_t2", "canny", canny_t2)
 

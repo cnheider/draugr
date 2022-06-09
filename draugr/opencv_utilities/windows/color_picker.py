@@ -5,8 +5,8 @@ import cv2
 import numpy
 
 from draugr.opencv_utilities.color_space.threshold import hsv_min_max_clip_mask
-from draugr.opencv_utilities.windows.image import show_image
 from draugr.opencv_utilities.windows.elements import add_trackbar
+from draugr.opencv_utilities.windows.image import show_image
 
 __all__ = ["interactive_hsv_color_picker"]
 
@@ -14,7 +14,6 @@ __all__ = ["interactive_hsv_color_picker"]
 def interactive_hsv_color_picker(
     ps: Iterable, wait_time: int = 33, verbose: bool = False
 ) -> None:
-
     show_image(numpy.zeros((600, 600)), "image")
 
     add_trackbar(
