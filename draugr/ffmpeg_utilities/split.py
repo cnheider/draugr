@@ -50,10 +50,10 @@ def spilt_video(
 
 if __name__ == "__main__":
     spilt_video(
-        Path.home() / "Downloads" / "brandt.mp4",
+        Path.home() / "DataWin" / "DeepFake" / "Frontier" / "brandt.mp4",
         ffmpeg_path=Path.home()
-        / "Downloads"
-        / "ffmpeg-5.0-essentials_build"
+        / "OneDrive - Alexandra Instituttet"
+        / "Applications"
         / "ffmpeg-5.0-essentials_build"
         / "bin"
         / "ffmpeg.exe",

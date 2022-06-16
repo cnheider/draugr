@@ -22,7 +22,7 @@ def extract_frames(
 ):
     root_dir = file_path.parent
     if frame_out_dir is None:
-        frame_out_dir = ensure_existence(root_dir / "frames")
+        frame_out_dir = ensure_existence(root_dir / file_path.stem / "frames")
     if audio_out_dir is None:
         audio_out_dir = ensure_existence(frame_out_dir.parent / "audio")
 
@@ -40,7 +40,7 @@ def extract_frames(
                 "-y",
                 "-qscale:v",
                 "2",
-                str(frame_out_dir / f"{file_path.name}-%05d.{frame_format}"),
+                str(frame_out_dir / f"%d.{frame_format}"),
             ]
         )
         print(f"end extracting {file_path} frames")
@@ -56,7 +56,7 @@ def extract_frames(
                     "-acodec",
                     "copy",
                     "-y",
-                    str(audio_out_dir / f"{file_path.name}{AUDIO_FORMAT}"),
+                    str(audio_out_dir / f"track{AUDIO_FORMAT}"),
                 ]
             )
             print(f"end extracting {file_path} audio")
@@ -66,10 +66,15 @@ def extract_frames(
 
 if __name__ == "__main__":
     extract_frames(
-        Path.home() / "Downloads" / "brandt.mp4",
+        Path.home()
+        / "DataWin"
+        / "DeepFake"
+        / "Frontier"
+        / "Originals"
+        / "thomas_old_high_res.mp4",
         ffmpeg_path=Path.home()
-        / "Downloads"
-        / "ffmpeg-5.0-essentials_build"
+        / "OneDrive - Alexandra Instituttet"
+        / "Applications"
         / "ffmpeg-5.0-essentials_build"
         / "bin"
         / "ffmpeg.exe",

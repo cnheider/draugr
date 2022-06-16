@@ -21,7 +21,6 @@
 import sys
 from pathlib import Path
 
-
 from warg import cprint
 
 PACKAGE_ROOT = Path(__file__).parent.parent.parent  # / "draugr"

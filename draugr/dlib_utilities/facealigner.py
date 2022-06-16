@@ -23,6 +23,10 @@ def align_face(
 ):
     """
 
+    :param padding:
+    :type padding:
+    :param debug:
+    :type debug:
     :param image:
     :param gray:
     :param rect:

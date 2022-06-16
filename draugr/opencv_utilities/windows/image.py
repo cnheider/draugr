@@ -34,6 +34,10 @@ def show_image(
     """
     ! if a title is not provided ( None) , title will be inferred. Caution in real time imshow / animations this will hurt performance.
 
+    :param min_default_size:
+    :type min_default_size:
+    :param max_default_size:
+    :type max_default_size:
     :param image:
     :type image:
     :param title:

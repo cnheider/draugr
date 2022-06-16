@@ -97,7 +97,7 @@ if __name__ == "__main__":
         """
         :rtype: None
         """
-        input = torch.randn(10, 50, requires_grad=True)
+        i = torch.randn(10, 50, requires_grad=True)
         target = torch.empty(10, dtype=torch.long).random_(2)
         model = torch.nn.Sequential(
             torch.nn.Linear(50, 50),
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         )
         normal_init_weights(model, std=1.2)
         criterion = torch.nn.CrossEntropyLoss()
-        outputs = model(input)
+        outputs = model(i)
         loss = criterion(outputs, target)
         loss.backward()
         plot_grad_flow(model)

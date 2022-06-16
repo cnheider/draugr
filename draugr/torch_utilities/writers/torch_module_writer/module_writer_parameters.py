@@ -84,9 +84,9 @@ if __name__ == "__main__":
                 torch.nn.Linear(20, n_classes),
                 torch.nn.LogSoftmax(-1),
             )
-            for id in range(2):
+            for iid in range(2):
                 for i in range(3):
-                    writer.parameters(model, i, tag=f"m{id}")
+                    writer.parameters(model, i, tag=f"m{iid}")
 
     # a()
     baa()

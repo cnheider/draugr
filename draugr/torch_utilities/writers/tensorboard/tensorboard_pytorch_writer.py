@@ -453,6 +453,8 @@ pyplot.title(tag)
     ) -> None:
         """
 
+        :param use_strict_trace:
+        :type use_strict_trace:
         :param verbose:
         :param model:
         :type model:
@@ -483,6 +485,14 @@ pyplot.title(tag)
     ) -> None:
         """
 
+        :param self:
+        :type self:
+        :param multi_channel_method:
+        :type multi_channel_method:
+        :param seperate_channel_postfix:
+        :type seperate_channel_postfix:
+        :param seperate_image_postfix:
+        :type seperate_image_postfix:
         :param tag:
         :type tag:
         :param data:

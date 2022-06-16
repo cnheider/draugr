@@ -30,3 +30,11 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+#  - repo: local
+#    hooks:
+#      - id: sphinx-check
+#        name: sphinx-check
+#        entry: docs/make.sh
+#        language: script
+#        types: [ python ]
+#        pass_filenames: false

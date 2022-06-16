@@ -21,12 +21,10 @@ def to_color(image, conversion: ColorConversionEnum = ColorConversionEnum.gray2b
     """
     convert from the default bgr cv2 format to gray, using a single component
 
+    :param conversion:
+    :type conversion:
     :param image:
     :type image:
-    :param component:
-    :type component:
-    :param to_gray_method:
-    :type to_gray_method:
     :return:
     :rtype:
     """

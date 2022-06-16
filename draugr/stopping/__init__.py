@@ -9,5 +9,6 @@ from pathlib import Path
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
+del Path
 
 from .stopping_key import *

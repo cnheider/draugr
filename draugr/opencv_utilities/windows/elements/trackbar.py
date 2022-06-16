@@ -18,9 +18,14 @@ def add_trackbar(
 ) -> None:
     """
     Adds a trackbar to a window.
+    :param default:
+    :type default:
+    :param min_val:
+    :type min_val:
+    :param max_val:
+    :type max_val:
     :param window_name: Name of the window to add the trackbar to.
     :param trackbar_name: Name of the trackbar.
-    :param trackbar_max: Maximum value of the trackbar.
     :param callback: Callback function to be called when the trackbar is moved.
     :return: None
     """

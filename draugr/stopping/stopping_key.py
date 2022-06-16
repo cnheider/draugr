@@ -21,7 +21,7 @@ from warg import GDKC, drop_unused_kws, passes_kws_to, sprint
 
 @drop_unused_kws
 def add_early_stopping_key_combination(
-    *callbacks: Iterable[Callable], has_x_server: bool = True, verbose: bool = False
+    *callbacks: Callable, has_x_server: bool = True, verbose: bool = False
 ):  # -> keyboard.Listener:
 
     """

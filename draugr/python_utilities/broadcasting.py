@@ -10,7 +10,6 @@ NOT VERY USEFUL! as an equals chain does the same thing as this function
 
 __all__ = ["BroadcastNone"]
 
-
 import sorcery
 from sorcery.core import FrameInfo
 

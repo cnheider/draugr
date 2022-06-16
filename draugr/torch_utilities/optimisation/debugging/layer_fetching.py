@@ -78,7 +78,7 @@ class IntermediateLayerGetter:
 
                 def hook(
                     module,
-                    input,
+                    i,
                     output,
                     *,
                     new_name_=new_name,  # Hack for new func, otherwise func is overriden. # BUG?
@@ -88,8 +88,8 @@ class IntermediateLayerGetter:
                               :param new_name_:
                     :param module:
                     :type module:
-                    :param input:
-                    :type input:
+                    :param i:
+                    :type i:
                     :param output:
                     :type output:"""
                     if new_name_ in ret:

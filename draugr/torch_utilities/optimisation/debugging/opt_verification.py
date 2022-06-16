@@ -53,10 +53,10 @@ def init_softmax_loss():
     for p in model.parameters():
         torch.nn.init.constant_(p, 1)
 
-    input = to_tensor([range(input_f) for _ in range(batch_size)])
+    i = to_tensor([range(input_f) for _ in range(batch_size)])
 
-    print(input)  # Visualise input just before forward
-    out = model(input)
+    print(i)  # Visualise input just before forward
+    out = model(i)
     print(out)
 
     target = to_tensor(
@@ -83,10 +83,10 @@ def overfit_single_batch():
         torch.nn.LogSoftmax(-1),
     )
 
-    input = to_tensor([range(input_f)])
+    i = to_tensor([range(input_f)])
 
-    print(input)  # Visualise input just before forward
-    out = model(input)
+    print(i)  # Visualise input just before forward
+    out = model(i)
     print(out)
 
     target = torch.zeros(n_classes)

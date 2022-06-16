@@ -34,7 +34,7 @@ class RegLossWrapper(torch.nn.Module):
         )
 
 
-def orthogonal_reg(model, reg=1e-6):
+def orthogonal_reg(model, reg: float = 1e-6) -> None:
     """ """
     with torch.enable_grad():
         orth_loss = torch.zeros(1)
@@ -56,7 +56,7 @@ if __name__ == "__main__":
             normal_init_weights,
         )
 
-        input = torch.randn(3, 5, requires_grad=True)
+        i = torch.randn(3, 5, requires_grad=True)
         model = torch.nn.Linear(5, 5)
         normal_init_weights(model)
         target = torch.empty(3, dtype=torch.long).random_(5)
@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
         def a(m):
             """ """
-            loss = loss_fn(m(input), target)
+            loss = loss_fn(m(i), target)
             print(loss)
             loss.backward()
 

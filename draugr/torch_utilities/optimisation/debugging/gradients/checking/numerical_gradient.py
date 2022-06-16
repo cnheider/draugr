@@ -26,7 +26,7 @@ from warg import ContextWrapper
 def loss_grad_check(
     model: torch.nn.Module,
     loss_fn: callable,
-    input: torch.Tensor,
+    iinput: torch.Tensor,
     target: torch.Tensor,
     epsilon: float = 1e-6,
     error_tolerance: float = 1e-5,
@@ -35,8 +35,8 @@ def loss_grad_check(
     two sided gradient numerical approximation
     DOES not work, please refer to torch/autograd/gradcheck.py
 
-    :param input:
-    :type input:
+    :param iinput:
+    :type iinput:
     :param target:
     :type target:
     :param error_tolerance:
@@ -52,7 +52,7 @@ def loss_grad_check(
     assert epsilon > 0.0
     c_model = copy.deepcopy(model)
 
-    loss = loss_fn(model(input), target)
+    loss = loss_fn(model(iinput), target)
     loss.backward()
     compute_gradients = False
     with ContextWrapper(torch.no_grad, not compute_gradients):
@@ -68,14 +68,14 @@ def loss_grad_check(
 
                             c_p[i][j] += epsilon  # positive
                             loss_p = loss_fn(
-                                c_model(input.clone()), target.clone()
+                                c_model(iinput.clone()), target.clone()
                             ).clone()
 
                             c_p.data = cp_orig
 
                             c_p[i][j] -= epsilon  # negative
                             loss_n = loss_fn(
-                                c_model(input.clone()), target.clone()
+                                c_model(iinput.clone()), target.clone()
                             ).clone()
 
                             c_p.data = cp_orig
@@ -137,7 +137,7 @@ if __name__ == "__main__":
         """
         #    from torch.testing import _get_default_tolerance
 
-        input = torch.randn(5, 5, requires_grad=True, dtype=torch.double)
+        i = torch.randn(5, 5, requires_grad=True, dtype=torch.double)
         target = torch.randn(5, 5, requires_grad=False, dtype=torch.double)
         model = torch.nn.Sequential(
             torch.nn.Linear(5, 50),
@@ -147,8 +147,8 @@ if __name__ == "__main__":
         ).double()
         normal_init_weights(model)
         criterion = torch.nn.MSELoss()
-        # _get_default_tolerance(input)
-        loss_grad_check(model, criterion, input, target)
+        # _get_default_tolerance(i)
+        loss_grad_check(model, criterion, i, target)
 
     # a()
     stest_return_duplicate()

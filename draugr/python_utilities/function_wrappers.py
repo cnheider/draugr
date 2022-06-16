@@ -86,7 +86,10 @@ max_frequency_wrapper_global = min_interval_wrapper_global
 def max_frequency(key: Any, min_interval: int = 100, verbose: bool = False) -> callable:
     """
     initially returns recallable func later bools
-        :param f:
+    :param key:
+    :type key:
+    :param verbose:
+    :type verbose:
     :param min_interval:
     :return:
     """
@@ -103,12 +106,7 @@ def max_frequency(key: Any, min_interval: int = 100, verbose: bool = False) -> c
         _GLOBAL_COUNTERS[key] = min_interval
 
         def s() -> bool:
-            """
-
-            :param step_i:
-            :param verbose:
-            :param kwargs:
-            """
+            """ """
             if verbose:
                 print(f"{key, _GLOBAL_COUNTERS[key], min_interval}")
             if _GLOBAL_COUNTERS[key] >= min_interval:

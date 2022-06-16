@@ -48,8 +48,8 @@ class CV2Compose(object):
         self._transforms = transforms
 
     def __call__(self, img, boxes=None, labels=None) -> Tuple:
-        for transform in self._transforms:
-            img, boxes, labels = transform(img, boxes, labels)
+        for t in self._transforms:
+            img, boxes, labels = t(img, boxes, labels)
             if boxes is not None:
                 boxes, labels = remove_null_boxes(boxes, labels)
         return img, boxes, labels
@@ -151,7 +151,7 @@ class CV2RandomHue(object):
     """ """
 
     def __init__(self, delta: float = 18.0):
-        assert delta >= 0.0 and delta <= 360.0
+        assert 0.0 <= delta <= 360.0
         self.delta = delta
 
     def __call__(

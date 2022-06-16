@@ -149,10 +149,10 @@ def print_model_with_flops(
         if is_supported_instance(self):
             return self.__flops__ / model.__batch_counter__
         else:
-            sum = 0
+            s = 0
             for m in self.children():
-                sum += m.accumulate_flops()
-            return sum
+                s += m.accumulate_flops()
+            return s
 
     def flops_repr(self) -> str:
         """
@@ -300,25 +300,29 @@ def remove_flops_mask(module: torch.nn.Module) -> None:
 
 
 # ---- Internal functions
-def empty_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
+def empty_flops_counter_hook(module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param module:
     :type module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
     module.__flops__ += 0
 
 
-def upsample_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
+def upsample_flops_counter_hook(module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param module:
     :type module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
     output_size = output[0]
@@ -329,78 +333,88 @@ def upsample_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
     module.__flops__ += int(output_elements_count)
 
 
-def relu_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
+def relu_flops_counter_hook(module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param module:
     :type module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
     active_elements_count = output.numel()
     module.__flops__ += int(active_elements_count)
 
 
-def linear_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
+def linear_flops_counter_hook(module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param module:
     :type module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
-    input = input[0]
-    batch_size = input.shape[0]
-    module.__flops__ += int(batch_size * input.shape[1] * output.shape[1])
+    i = i[0]
+    batch_size = i.shape[0]
+    module.__flops__ += int(batch_size * i.shape[1] * output.shape[1])
 
 
-def pool_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
+def pool_flops_counter_hook(module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param module:
     :type module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
-    input = input[0]
-    module.__flops__ += int(numpy.prod(input.shape))
+    i = i[0]
+    module.__flops__ += int(numpy.prod(i.shape))
 
 
-def bn_flops_counter_hook(module: torch.nn.Module, input, output) -> None:
+def bn_flops_counter_hook(module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param module:
     :type module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
     # module.affine
-    input = input[0]
+    i = i[0]
 
-    batch_flops = numpy.prod(input.shape)
+    batch_flops = numpy.prod(i.shape)
     if module.affine:
         batch_flops *= 2
     module.__flops__ += int(batch_flops)
 
 
-def deconv_flops_counter_hook(conv_module: torch.nn.Module, input, output) -> None:
+def deconv_flops_counter_hook(conv_module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param conv_module:
     :type conv_module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
     # Can have multiple inputs, getting the first one
-    input = input[0]
+    i = i[0]
 
-    batch_size = input.shape[0]
-    input_height, input_width = input.shape[2:]
+    batch_size = i.shape[0]
+    input_height, input_width = i.shape[2:]
 
     kernel_height, kernel_width = conv_module.kernel_size
     in_channels = conv_module.in_channels
@@ -423,19 +437,21 @@ def deconv_flops_counter_hook(conv_module: torch.nn.Module, input, output) -> No
     conv_module.__flops__ += int(overall_flops)
 
 
-def conv_flops_counter_hook(conv_module: torch.nn.Module, input, output) -> None:
+def conv_flops_counter_hook(conv_module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param conv_module:
     :type conv_module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
     # Can have multiple inputs, getting the first one
-    input = input[0]
+    i = i[0]
 
-    batch_size = input.shape[0]
+    batch_size = i.shape[0]
     output_dims = list(output.shape[2:])
 
     kernel_dims = list(conv_module.kernel_size)
@@ -470,20 +486,22 @@ def conv_flops_counter_hook(conv_module: torch.nn.Module, input, output) -> None
     conv_module.__flops__ += int(overall_flops)
 
 
-def batch_counter_hook(module: torch.nn.Module, input, output) -> None:
+def batch_counter_hook(module: torch.nn.Module, i, output) -> None:
     """
 
+    :param i:
+    :type i:
+    :param i:
+    :type i:
     :param module:
     :type module:
-    :param input:
-    :type input:
     :param output:
     :type output:"""
     batch_size = 1
-    if len(input) > 0:
+    if len(i) > 0:
         # Can have multiple inputs, getting the first one
-        input = input[0]
-        batch_size = len(input)
+        i = i[0]
+        batch_size = len(i)
     else:
         print(
             "Warning! No positional inputs found for a module, assuming batch size is 1."

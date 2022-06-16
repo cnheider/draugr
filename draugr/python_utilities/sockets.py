@@ -47,7 +47,8 @@ def find_unclaimed_port() -> int:
 def is_port_in_use(port: int) -> bool:
     """
 
-    :param port_:
+    :param port:
+    :type port:
     :return:
     """
     import socket

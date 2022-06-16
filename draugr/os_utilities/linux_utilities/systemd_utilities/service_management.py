@@ -99,6 +99,8 @@ def install_service(
 ) -> None:
     """
     Args:
+        :param template:
+        :type template:
         :param restart:
         :param service_entry_point_path:
         :param service_name:

@@ -10,13 +10,6 @@ from warg import Number, identity
 __all__ = ["merge_video"]
 
 
-def get_short_name(vid_dir) -> str:
-    for file_ in vid_dir.iterdir():
-        return file_.stem.split("-")[0]
-        # if os.path.splitext(file_)[-1].lower() in FORMAT_LIST:
-        #    return os.path.splitext(file_)[0]
-
-
 def get_frame_format(frames_dir) -> str:
     for file_ in os.listdir(frames_dir):
         if os.path.splitext(file_)[-1].lower() in [".jpg", ".png"]:
@@ -25,7 +18,7 @@ def get_frame_format(frames_dir) -> str:
 
 def merge_video(
     frames_dir: Path,
-    merge_audio: bool = False,
+    merge_audio: bool = True,
     audio_dir: Optional[Path] = None,
     merge_dir: Optional[Path] = None,
     merge_rate: Number = 25,
@@ -33,25 +26,23 @@ def merge_video(
 ):
     postfix = ""  # "_00"
     vid_dir = frames_dir.parent
+
     if audio_dir is None:
         audio_dir = vid_dir / "audio"
 
     if merge_dir is None:
         merge_dir = ensure_existence(vid_dir / "merge", sanitisation_func=identity)
 
-    shortname = get_short_name(frames_dir)
-
-    # a = f"{shortname}-%05d{postfix}{get_frame_format(frames_dir)}"  # 05d is for 5 digits in ids
-    # a = "brandt.mp4-%*_00.png"
-    a = f"%05d{get_frame_format(frames_dir)}"
     temp_out = str(merge_dir / "temp.mp4")
     subprocess.call(
         [
             str(ffmpeg_path),
             "-r",
             str(merge_rate),
+            # "-pattern_type",
+            # "glob",
             "-i",
-            str(frames_dir / a),
+            str(frames_dir / f"%d{get_frame_format(frames_dir)}"),
             "-y",
             "-c:v",
             "libx264",
@@ -62,12 +53,13 @@ def merge_video(
     )
 
     a = []
+    shortname = frames_dir.parent.name
     if merge_audio:
-        sound_dir = audio_dir / (shortname + AUDIO_FORMAT)
-        a.extend(["-i", str(sound_dir)])
-
-    while (merge_dir / f"{shortname}out.mp4").exists():
-        shortname = shortname + "_1"
+        sound_dir = audio_dir / ("track" + AUDIO_FORMAT)
+        if sound_dir.exists():
+            a.extend(["-i", str(sound_dir)])
+        else:
+            print(f"No audio found in {sound_dir}")
 
     subprocess.call(
         [
@@ -80,16 +72,20 @@ def merge_video(
             "-acodec",
             "copy",
             "-y",
-            str(merge_dir / shortname),
+            str(merge_dir / f"out.mp4"),
         ]
     )
 
 
 if __name__ == "__main__":
     merge_video(
-        # Path.home() / "Downloads" / "brandt" / "frames",
-        # Path(r"G:/") / "Mit drev" / "upscaled" / "restored_faces",
-        Path(r"G:/") / "Mit drev" / "upscaled" / "restored_imgs",
+        Path.home()
+        / "DataWin"
+        / "DeepFake"
+        / "Frontier"
+        / "Originals"
+        / "thomas_old_high_res"
+        / "frames",
         ffmpeg_path=Path.home()
         / "OneDrive - Alexandra Instituttet"
         / "Applications"

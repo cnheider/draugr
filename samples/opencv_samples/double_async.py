@@ -27,9 +27,9 @@ if __name__ == "__main__":
                 return next(g), next(i)
 
         async def run():
-            async for image, id in AsyncIterator():
+            async for image, idd in AsyncIterator():
                 # await asyncio.sleep(0.1)
-                if show_image(image, id, wait=1):
+                if show_image(image, idd, wait=1):
                     break
 
         import asyncio

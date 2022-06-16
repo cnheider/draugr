@@ -11,4 +11,11 @@ from draugr.writers import Writer
 
 
 class HdfWriter(Writer):
-    pass  # TODO:
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
+        pass
+
+    def _open(self):
+        pass
+
+    def _scalar(self, tag: str, value: float, step: int):
+        pass

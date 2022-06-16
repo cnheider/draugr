@@ -40,7 +40,7 @@ def init():
     }
 
 
-def filter(img):
+def ffilter(img):
     gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gray_image = cv2.GaussianBlur(
         gray_image, (config["gaussian_default"], config["gaussian_default"]), 0
@@ -90,12 +90,12 @@ def filter(img):
             # draw the center of the circle
             cv2.circle(img, (i[0], i[1]), 2, blue, 3)
 
-        # plt.title(title)
-        # plt.imshow(img, cmap='gray', interpolation='bicubic')
-        # plt.show()
-        # plt.title(title)
-        # plt.imshow(imgray, cmap='gray', interpolation='bicubic')
-        # plt.show()
+        # pyplot.title(title)
+        # pyplot.imshow(img, cmap='gray', interpolation='bicubic')
+        # pyplot.show()
+        # pyplot.title(title)
+        # pyplot.imshow(imgray, cmap='gray', interpolation='bicubic')
+        # pyplot.show()
 
     return img, circles
 
@@ -157,7 +157,7 @@ def load_next():
         show_info(f"Processing {title}", False)
         try:
             to_be_saved["img"] = numpy.copy(arr_img)
-            cv_img, circles = filter(arr_img)
+            cv_img, circles = ffilter(arr_img)
             tk_img = ImageTk.PhotoImage(image=Image.fromarray(cv_img))
             show_info(
                 f"{title} Circles found: {(0 if circles is None else str(len(circles[0, :])))}"
@@ -219,12 +219,12 @@ def save():
         ET.SubElement(size, "depth").text = str(img.shape[2])
 
         for i in circles[0, :]:
-            object = ET.SubElement(annotation, "object")
-            ET.SubElement(object, "name").text = "pvc_pipe"
-            ET.SubElement(object, "pose").text = "Unspecified"
-            ET.SubElement(object, "truncated").text = "0"
-            ET.SubElement(object, "difficult").text = "0"
-            bndbox = ET.SubElement(object, "bndbox")
+            o = ET.SubElement(annotation, "object")
+            ET.SubElement(o, "name").text = "pvc_pipe"
+            ET.SubElement(o, "pose").text = "Unspecified"
+            ET.SubElement(o, "truncated").text = "0"
+            ET.SubElement(o, "difficult").text = "0"
+            bndbox = ET.SubElement(o, "bndbox")
             ET.SubElement(bndbox, "xmin").text = str(i[0] - i[2] - config["threshold"])
             ET.SubElement(bndbox, "ymin").text = str(i[1] - i[2] - config["threshold"])
             ET.SubElement(bndbox, "xmax").text = str(i[0] + i[2] + config["threshold"])
