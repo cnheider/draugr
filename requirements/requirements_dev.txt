@@ -33,4 +33,5 @@ matplotlib>=3.5.2
 -r requirements_tests.txt
 -r requirements_windows.txt
 -r requirements_extensions.txt
+-r requirements_multiprocessing.txt
 # full install
