@@ -11,23 +11,31 @@ __all__ = ["GtkSettings"]
 
 from sys import stderr
 
-import gi  # PyGObject lib
+try:
+    import gi  # PyGObject lib
 
-#  Ubuntu / Debian
-## system
-### sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0
+    #  Ubuntu / Debian
+    ## system
+    ### sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0
 
-## conda
-### conda install -c conda-forge pygobject
-### conda install -c conda-forge gtk3
+    ## conda
+    ### conda install -c conda-forge pygobject
+    ### conda install -c conda-forge gtk3
 
-## pip
-### sudo apt install libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
-### pip3 install pycairo
-### pip3 install PyGObject
+    ## pip
+    ### sudo apt install libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0
+    ### pip3 install pycairo
+    ### pip3 install PyGObject
 
-gi.require_version("Gtk", "3.0")
-gi.require_version("Gdk", "3.0")
+    gi.require_version("Gtk", "3.0")
+    gi.require_version("Gdk", "3.0")
+
+except ImportError as ix:
+    print(
+        "Make sure gi is installed, see https://lazka.github.io/pgi-docs/index.html",
+        file=stderr,
+    )
+    raise ix
 
 from warg import SingletonMeta
 
