@@ -40,14 +40,33 @@ def _utf8(s):
 
 
 def n(name):
+    """
+
+    :param name:
+    :type name:
+    :return:
+    :rtype:
+    """
     return objc.sel_registerName(_utf8(name))
 
 
 def C(classname):
+    """
+
+    :param classname:
+    :type classname:
+    :return:
+    :rtype:
+    """
     return objc.objc_getClass(_utf8(classname))
 
 
 def is_dark_mode_active():
+    """
+
+    :return:
+    :rtype:
+    """
     NSAutoreleasePool = objc.objc_getClass("NSAutoreleasePool")
     pool = msg(NSAutoreleasePool, n("alloc"))
     pool = msg(pool, n("init"))

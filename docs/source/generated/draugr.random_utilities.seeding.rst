@@ -1,4 +1,4 @@
-draugr.random\_utilities.seeding
+﻿draugr.random\_utilities.seeding
 ================================
 
 .. automodule:: draugr.random_utilities.seeding
@@ -14,6 +14,8 @@ draugr.random\_utilities.seeding
    .. autosummary::
       :toctree:
    
+      numpy_seed
+      python_seed
       seed_stack
    
    

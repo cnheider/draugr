@@ -39,6 +39,7 @@ sys.path.insert(0, str(PACKAGE_ROOT.absolute()))
 # ones.
 
 from draugr import (
+    PROJECT_ORGANISATION,
     PROJECT_AUTHOR,
     PROJECT_NAME,
     PROJECT_VERSION,
@@ -47,8 +48,6 @@ from draugr import (
 )
 
 extensions = [
-    # "m2r2",
-    # 'recommonmark',
     "sphinxcontrib.programoutput",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -103,7 +102,7 @@ release = version  # 'master'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set 'language' from the command line for these cases.
-language = None
+language = "en"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -134,8 +133,9 @@ html_theme = "alabaster"
 # so a file named 'default.css' will overwrite the builtin 'default.css'.
 # html_static_path = ["_static"]
 html_static_path = []
+language = "en"
 
-html_baseurl = f"{PROJECT_NAME}.github.io"
+html_baseurl = f"{PROJECT_ORGANISATION}.github.io/{PROJECT_NAME}"
 
 # -- Options for HTMLHelp output ------------------------------------------
 

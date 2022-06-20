@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="draugr.torch_utilities.datasets.supervised.supervised_dataset" href="draugr.torch_utilities.datasets.supervised.supervised_dataset.html" />
+    <link rel="prev" title="draugr.torch_utilities.datasets.supervised.categorical_dataset" href="draugr.torch_utilities.datasets.supervised.categorical_dataset.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="draugr-torch-utilities-datasets-supervised-categorical-dataset-categoricaldataset">
+<h1>draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset<a class="headerlink" href="#draugr-torch-utilities-datasets-supervised-categorical-dataset-categoricaldataset" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.datasets.supervised.categorical_dataset.</span></span><span class="sig-name descname"><span class="pre">CategoricalDataset</span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/datasets/supervised/categorical_dataset.html#CategoricalDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Generic" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.utils.data.dataset.T_co</span></code>]</p>
+<p>Categorical Dataset for discrete learning problems.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.__init__" title="draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">idx_to_str</span></code>(idx)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_datapipe_as_function</span></code>(function_name, …)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_function</span></code>(function_name, function)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str_to_idx</span></code>(s)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">categories</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">functions</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predictor_shape</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">response_shape</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.split_names" title="draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.split_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_names</span></code></a></p></td>
+<td><p>return: :rtype:</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py property">
+<dt class="sig sig-object py" id="draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.split_names">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">split_names</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict[draugr.numpy_utilities.datasets.splitting.SplitEnum,</span> <span class="pre">str]</span></em><a class="headerlink" href="#draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.split_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>return:
+:rtype:</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="draugr.html">draugr</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="draugr.dist_is_editable.html">draugr.dist_is_editable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.get_version.html">draugr.get_version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.dlib_utilities.html">draugr.dlib_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.drawers.html">draugr.drawers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.entry_points.html">draugr.entry_points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.extensions.html">draugr.extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.ffmpeg_utilities.html">draugr.ffmpeg_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.jax_utilities.html">draugr.jax_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.metrics.html">draugr.metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.multiprocessing_utilities.html">draugr.multiprocessing_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.numpy_utilities.html">draugr.numpy_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.opencv_utilities.html">draugr.opencv_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.os_utilities.html">draugr.os_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.pandas_utilities.html">draugr.pandas_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.pygame_utilities.html">draugr.pygame_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.python_utilities.html">draugr.python_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.random_utilities.html">draugr.random_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.scipy_utilities.html">draugr.scipy_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.stopping.html">draugr.stopping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.threading_utilities.html">draugr.threading_utilities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="draugr.torch_utilities.html">draugr.torch_utilities</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.architectures.html">draugr.torch_utilities.architectures</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="draugr.torch_utilities.datasets.html">draugr.torch_utilities.datasets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.datasets.non_sequential_dataset.html">draugr.torch_utilities.datasets.non_sequential_dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.datasets.random_dataset.html">draugr.torch_utilities.datasets.random_dataset</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="draugr.torch_utilities.datasets.supervised.html">draugr.torch_utilities.datasets.supervised</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="draugr.torch_utilities.datasets.supervised.categorical_dataset.html">draugr.torch_utilities.datasets.supervised.categorical_dataset</a><ul class="current">
+<li class="toctree-l6 current"><a class="current reference internal" href="#">draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.datasets.supervised.supervised_dataset.html">draugr.torch_utilities.datasets.supervised.supervised_dataset</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.datasets.supervised.vision_datasets.html">draugr.torch_utilities.datasets.supervised.vision_datasets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.distributions.html">draugr.torch_utilities.distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.evaluation.html">draugr.torch_utilities.evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.exporting.html">draugr.torch_utilities.exporting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.generators.html">draugr.torch_utilities.generators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.images.html">draugr.torch_utilities.images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.opencv.html">draugr.torch_utilities.opencv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.operations.html">draugr.torch_utilities.operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.optimisation.html">draugr.torch_utilities.optimisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.persistence.html">draugr.torch_utilities.persistence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.sessions.html">draugr.torch_utilities.sessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.system.html">draugr.torch_utilities.system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.tensors.html">draugr.torch_utilities.tensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="draugr.torch_utilities.writers.html">draugr.torch_utilities.writers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.tqdm_utilities.html">draugr.tqdm_utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.visualisation.html">draugr.visualisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="draugr.writers.html">draugr.writers</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="draugr.html">draugr</a><ul>
+  <li><a href="draugr.torch_utilities.html">draugr.torch_utilities</a><ul>
+  <li><a href="draugr.torch_utilities.datasets.html">draugr.torch_utilities.datasets</a><ul>
+  <li><a href="draugr.torch_utilities.datasets.supervised.html">draugr.torch_utilities.datasets.supervised</a><ul>
+  <li><a href="draugr.torch_utilities.datasets.supervised.categorical_dataset.html">draugr.torch_utilities.datasets.supervised.categorical_dataset</a><ul>
+      <li>Previous: <a href="draugr.torch_utilities.datasets.supervised.categorical_dataset.html" title="previous chapter">draugr.torch_utilities.datasets.supervised.categorical_dataset</a></li>
+      <li>Next: <a href="draugr.torch_utilities.datasets.supervised.supervised_dataset.html" title="next chapter">draugr.torch_utilities.datasets.supervised.supervised_dataset</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/generated/draugr.torch_utilities.datasets.supervised.categorical_dataset.CategoricalDataset.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

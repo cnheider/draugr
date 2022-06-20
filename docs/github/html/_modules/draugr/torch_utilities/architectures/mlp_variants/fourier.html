@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.torch_utilities.architectures.mlp_variants.fourier &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/torch_utilities/architectures/mlp_variants/fourier.html" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.torch_utilities.architectures.mlp_variants.fourier</h1><div class="highlight"><pre>
+<span></span><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;BaseFourierFeatureMLP&quot;</span><span class="p">]</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;&quot;Module containing models based upon the Fourier Feature Networks template.&quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+
+<div class="viewcode-block" id="BaseFourierFeatureMLP"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.architectures.mlp_variants.fourier.BaseFourierFeatureMLP.html#draugr.torch_utilities.architectures.mlp_variants.fourier.BaseFourierFeatureMLP">[docs]</a><span class="k">class</span> <span class="nc">BaseFourierFeatureMLP</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;MLP which uses Fourier features as a preprocessing step.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BaseFourierFeatureMLP.__init__"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.architectures.mlp_variants.fourier.BaseFourierFeatureMLP.html#draugr.torch_utilities.architectures.mlp_variants.fourier.BaseFourierFeatureMLP.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">num_inputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">num_outputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">a_values</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span>
+        <span class="n">b_values</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span>
+        <span class="n">layer_channels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_inputs (int): Number of dimensions in the input</span>
+<span class="sd">            num_outputs (int): Number of dimensions in the output</span>
+<span class="sd">            a_values (torch.Tensor): a values for encoding</span>
+<span class="sd">            b_values (torch.Tensor): b values for encoding</span>
+<span class="sd">            layer_channels (List[int]): Number of channels per layer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;num_inputs&quot;</span><span class="p">:</span> <span class="n">num_inputs</span><span class="p">,</span>
+            <span class="s2">&quot;num_outputs&quot;</span><span class="p">:</span> <span class="n">num_outputs</span><span class="p">,</span>
+            <span class="s2">&quot;a_values&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">a_values</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">a_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;b_values&quot;</span><span class="p">:</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">b_values</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">b_values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;layer_channels&quot;</span><span class="p">:</span> <span class="n">layer_channels</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_inputs</span> <span class="o">=</span> <span class="n">num_inputs</span>
+        <span class="k">if</span> <span class="n">b_values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">a_values</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">b_values</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">num_inputs</span> <span class="o">=</span> <span class="n">num_inputs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">b_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">num_inputs</span>
+            <span class="k">assert</span> <span class="n">a_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">b_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">a_values</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">a_values</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">b_values</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">b_values</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">num_inputs</span> <span class="o">=</span> <span class="n">b_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">num_channels</span> <span class="ow">in</span> <span class="n">layer_channels</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">num_inputs</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">))</span>
+            <span class="n">num_inputs</span> <span class="o">=</span> <span class="n">num_channels</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">num_inputs</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_view</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep_activations</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activations</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+<div class="viewcode-block" id="BaseFourierFeatureMLP.forward"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.architectures.mlp_variants.fourier.BaseFourierFeatureMLP.html#draugr.torch_utilities.architectures.mlp_variants.fourier.BaseFourierFeatureMLP.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Predicts outputs from the provided uv input.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">inputs</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># NB: the below should be 2*math.pi, but the values</span>
+            <span class="c1"># coming in are already in the range of -1 to 1 or</span>
+            <span class="c1"># 0 to 2, so we want to keep the range so that it does</span>
+            <span class="c1"># not exceed 2pi</span>
+            <span class="n">encoded</span> <span class="o">=</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">inputs</span><span class="p">)</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_values</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span>
+                <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">a_values</span> <span class="o">*</span> <span class="n">encoded</span><span class="o">.</span><span class="n">cos</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_values</span> <span class="o">*</span> <span class="n">encoded</span><span class="o">.</span><span class="n">sin</span><span class="p">()],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">layer</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_activations</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">](</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="BaseFourierFeatureMLP.save"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.architectures.mlp_variants.fourier.BaseFourierFeatureMLP.html#draugr.torch_utilities.architectures.mlp_variants.fourier.BaseFourierFeatureMLP.save">[docs]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saves the model to the specified path.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path (str): Path to the model file on disk</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">state_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+        <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;fourier&quot;</span>
+        <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;params&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">MLP</span><span class="p">(</span><span class="n">BaseFourierFeatureMLP</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Unencoded FFN, essentially a standard MLP.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">num_inputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="mi">256</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_inputs (int): Number of dimensions in the input</span>
+<span class="sd">            num_outputs (int): Number of dimensions in the output</span>
+<span class="sd">            num_layers (int, optional): Number of layers in the MLP.</span>
+<span class="sd">                                        Defaults to 4.</span>
+<span class="sd">            num_channels (int, optional): Number of channels in the MLP.</span>
+<span class="sd">                                          Defaults to 256.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">num_inputs</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="n">num_channels</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_layers</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">BasicFMLP</span><span class="p">(</span><span class="n">BaseFourierFeatureMLP</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Basic version of FFN in which inputs are projected onto the unit circle.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">num_inputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_outputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="mi">256</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_inputs (int): Number of dimensions in the input</span>
+<span class="sd">            num_outputs (int): Number of dimensions in the output</span>
+<span class="sd">            num_layers (int, optional): Number of layers in the MLP.</span>
+<span class="sd">                                        Defaults to 4.</span>
+<span class="sd">            num_channels (int, optional): Number of channels in the MLP.</span>
+<span class="sd">                                          Defaults to 256.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">a_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_inputs</span><span class="p">)</span>
+        <span class="n">b_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">num_inputs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">num_inputs</span><span class="p">,</span>
+            <span class="n">num_outputs</span><span class="p">,</span>
+            <span class="n">a_values</span><span class="p">,</span>
+            <span class="n">b_values</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">num_channels</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_layers</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PositionalFMLP</span><span class="p">(</span><span class="n">BaseFourierFeatureMLP</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Version of FFN with positional encoding.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">num_inputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">num_outputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">max_log_scale</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">num_channels</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+        <span class="n">embedding_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_inputs (int): Number of dimensions in the input</span>
+<span class="sd">            num_outputs (int): Number of dimensions in the output</span>
+<span class="sd">            max_log_scale (float): Maximum log scale for embedding</span>
+<span class="sd">            num_layers (int, optional): Number of layers in the MLP.</span>
+<span class="sd">                                        Defaults to 4.</span>
+<span class="sd">            num_channels (int, optional): Number of channels in the MLP.</span>
+<span class="sd">                                          Defaults to 256.</span>
+<span class="sd">            embedding_size (int, optional): The size of the feature embedding.</span>
+<span class="sd">                                            Defaults to 256.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">b_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span><span class="p">(</span><span class="n">max_log_scale</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">num_inputs</span><span class="p">)</span>
+        <span class="n">a_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">b_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">num_inputs</span><span class="p">,</span>
+            <span class="n">num_outputs</span><span class="p">,</span>
+            <span class="n">a_values</span><span class="p">,</span>
+            <span class="n">b_values</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">num_channels</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_layers</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_encoding</span><span class="p">(</span><span class="n">max_log_scale</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_inputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Produces the encoding b_values matrix.&quot;&quot;&quot;</span>
+        <span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span> <span class="o">//</span> <span class="n">num_inputs</span>
+        <span class="n">frequencies_matrix</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_log_scale</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
+        <span class="n">frequencies_matrix</span> <span class="o">=</span> <span class="n">frequencies_matrix</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">frequencies_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">num_inputs</span><span class="p">)</span> <span class="o">*</span> <span class="n">frequencies_matrix</span>
+        <span class="n">frequencies_matrix</span> <span class="o">=</span> <span class="n">frequencies_matrix</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_inputs</span><span class="p">)</span>
+        <span class="n">frequencies_matrix</span> <span class="o">=</span> <span class="n">frequencies_matrix</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">frequencies_matrix</span>
+
+
+<span class="k">class</span> <span class="nc">GaussianFMLP</span><span class="p">(</span><span class="n">BaseFourierFeatureMLP</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Version of a FFN using a full Gaussian matrix for encoding.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">num_inputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">num_outputs</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">num_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">num_channels</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+        <span class="n">embedding_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_inputs (int): Number of dimensions in the input</span>
+<span class="sd">            num_outputs (int): Number of dimensions in the output</span>
+<span class="sd">            sigma (float): Standard deviation of the Gaussian distribution</span>
+<span class="sd">            num_layers (int, optional): Number of layers in the MLP.</span>
+<span class="sd">                                        Defaults to 4.</span>
+<span class="sd">            num_channels (int, optional): Number of channels in the MLP.</span>
+<span class="sd">                                          Defaults to 256.</span>
+<span class="sd">            embedding_size (int, optional): Number of frequencies to use for</span>
+<span class="sd">                                             the encoding. Defaults to 256.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">b_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_inputs</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">))</span>
+        <span class="n">a_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">b_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">num_inputs</span><span class="p">,</span>
+            <span class="n">num_outputs</span><span class="p">,</span>
+            <span class="n">a_values</span><span class="p">,</span>
+            <span class="n">b_values</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">num_channels</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_layers</span><span class="p">,</span>
+        <span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../index.html">Module code</a><ul>
+  <li><a href="../../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

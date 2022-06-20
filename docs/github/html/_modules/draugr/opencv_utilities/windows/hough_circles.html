@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.opencv_utilities.windows.hough_circles &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/windows/hough_circles.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.opencv_utilities.windows.hough_circles</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="kn">from</span> <span class="nn">draugr.opencv_utilities.color_space</span> <span class="kn">import</span> <span class="n">to_gray</span>
+<span class="kn">from</span> <span class="nn">draugr.opencv_utilities.windows.elements</span> <span class="kn">import</span> <span class="n">add_trackbar</span>
+<span class="kn">from</span> <span class="nn">draugr.opencv_utilities.windows.image</span> <span class="kn">import</span> <span class="n">show_image</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;interactive_hough_circles&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="interactive_hough_circles"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.windows.hough_circles.interactive_hough_circles.html#draugr.opencv_utilities.windows.hough_circles.interactive_hough_circles">[docs]</a><span class="k">def</span> <span class="nf">interactive_hough_circles</span><span class="p">(</span><span class="n">ps</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">33</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param ps:</span>
+<span class="sd">    :type ps:</span>
+<span class="sd">    :param wait_time:</span>
+<span class="sd">    :type wait_time:</span>
+<span class="sd">    :param verbose:</span>
+<span class="sd">    :type verbose:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># show_image(numpy.zeros((600, 600)), &quot;canny&quot;)</span>
+
+    <span class="c1"># add_trackbar(&quot;canny&quot;, &quot;canny_t1&quot;, default=30, max_val=1000, min_val=1.0)</span>
+    <span class="c1"># add_trackbar(&quot;canny&quot;, &quot;canny_t2&quot;, default=100, max_val=1000, min_val=1.0)</span>
+
+    <span class="n">show_image</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">)),</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span>
+
+    <span class="n">add_trackbar</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;dp&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">add_trackbar</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;minDist&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">add_trackbar</span><span class="p">(</span>
+        <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;param1&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">1.0</span>
+    <span class="p">)</span>  <span class="c1"># param1 (passed as argument into cvHoughCircles()) and the lower (second) threshold is set to half of this value.</span>
+    <span class="n">add_trackbar</span><span class="p">(</span>
+        <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">1.0</span>
+    <span class="p">)</span>  <span class="c1"># accumulator threshold. This value is used in the accumulator plane that must be reached so that a line is retrieved.</span>
+    <span class="n">add_trackbar</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;minRadius&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">add_trackbar</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;maxRadius&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="n">canny_t1</span> <span class="o">=</span> <span class="n">canny_t2</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">minDist</span> <span class="o">=</span> <span class="n">param1</span> <span class="o">=</span> <span class="n">param2</span> <span class="o">=</span> <span class="n">minRadius</span> <span class="o">=</span> <span class="n">maxRadius</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">pcanny_t1</span> <span class="o">=</span> <span class="n">pcanny_t2</span> <span class="o">=</span> <span class="n">pdp</span> <span class="o">=</span> <span class="n">pminDist</span> <span class="o">=</span> <span class="n">pparam1</span> <span class="o">=</span> <span class="n">pparam2</span> <span class="o">=</span> <span class="n">pminRadius</span> <span class="o">=</span> <span class="n">pmaxRadius</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">continue</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+            <span class="c1"># canny_t1 = cv2.getTrackbarPos(&quot;canny_t1&quot;, &quot;canny&quot;)</span>
+            <span class="c1"># canny_t2 = cv2.getTrackbarPos(&quot;canny_t2&quot;, &quot;canny&quot;)</span>
+
+            <span class="n">dp</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTrackbarPos</span><span class="p">(</span><span class="s2">&quot;dp&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+            <span class="n">minDist</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTrackbarPos</span><span class="p">(</span><span class="s2">&quot;minDist&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span>
+            <span class="n">param1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTrackbarPos</span><span class="p">(</span><span class="s2">&quot;param1&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span>
+            <span class="n">param2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTrackbarPos</span><span class="p">(</span><span class="s2">&quot;param2&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span>
+            <span class="n">minRadius</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTrackbarPos</span><span class="p">(</span><span class="s2">&quot;minRadius&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span>
+            <span class="n">maxRadius</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTrackbarPos</span><span class="p">(</span><span class="s2">&quot;maxRadius&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span>
+
+            <span class="c1"># imgray = cv2.Canny(output, canny_t1, canny_t2)</span>
+            <span class="n">imgray</span> <span class="o">=</span> <span class="n">to_gray</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+            <span class="n">circles</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">HoughCircles</span><span class="p">(</span>
+                <span class="n">imgray</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">HOUGH_GRADIENT</span><span class="p">,</span>
+                <span class="n">dp</span><span class="o">=</span><span class="n">dp</span><span class="p">,</span>
+                <span class="n">minDist</span><span class="o">=</span><span class="n">minDist</span><span class="p">,</span>
+                <span class="n">param1</span><span class="o">=</span><span class="n">param1</span><span class="p">,</span>
+                <span class="n">param2</span><span class="o">=</span><span class="n">param2</span><span class="p">,</span>
+                <span class="n">minRadius</span><span class="o">=</span><span class="n">minRadius</span><span class="p">,</span>
+                <span class="n">maxRadius</span><span class="o">=</span><span class="n">maxRadius</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">circles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">circles</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">uint16</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">circles</span><span class="p">))</span>
+                <span class="n">blue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+                <span class="n">green</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">circles</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">blue</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+            <span class="c1"># Print if there is a change in HSV value</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="p">(</span><span class="n">pcanny_t1</span> <span class="o">!=</span> <span class="n">canny_t1</span><span class="p">)</span>
+                <span class="o">|</span> <span class="p">(</span><span class="n">pcanny_t2</span> <span class="o">!=</span> <span class="n">canny_t2</span><span class="p">)</span>
+                <span class="o">|</span> <span class="p">(</span><span class="n">pdp</span> <span class="o">!=</span> <span class="n">dp</span><span class="p">)</span>
+                <span class="o">|</span> <span class="p">(</span><span class="n">pminDist</span> <span class="o">!=</span> <span class="n">minDist</span><span class="p">)</span>
+                <span class="o">|</span> <span class="p">(</span><span class="n">pparam1</span> <span class="o">!=</span> <span class="n">param1</span><span class="p">)</span>
+                <span class="o">|</span> <span class="p">(</span><span class="n">pparam2</span> <span class="o">!=</span> <span class="n">param2</span><span class="p">)</span>
+                <span class="o">|</span> <span class="p">(</span><span class="n">pminRadius</span> <span class="o">!=</span> <span class="n">minRadius</span><span class="p">)</span>
+                <span class="o">|</span> <span class="p">(</span><span class="n">pmaxRadius</span> <span class="o">!=</span> <span class="n">maxRadius</span><span class="p">)</span>
+            <span class="p">):</span>
+                <span class="c1"># cv2.setTrackbarPos(&quot;canny_t1&quot;, &quot;canny&quot;, canny_t1)</span>
+                <span class="c1"># cv2.setTrackbarPos(&quot;canny_t2&quot;, &quot;canny&quot;, canny_t2)</span>
+
+                <span class="n">cv2</span><span class="o">.</span><span class="n">setTrackbarPos</span><span class="p">(</span><span class="s2">&quot;dp&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">dp</span> <span class="o">*</span> <span class="mi">10</span><span class="p">))</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">setTrackbarPos</span><span class="p">(</span><span class="s2">&quot;minDist&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">minDist</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">setTrackbarPos</span><span class="p">(</span><span class="s2">&quot;param1&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">param1</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">setTrackbarPos</span><span class="p">(</span><span class="s2">&quot;param2&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">param2</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">setTrackbarPos</span><span class="p">(</span><span class="s2">&quot;minRadius&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">minRadius</span><span class="p">)</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">setTrackbarPos</span><span class="p">(</span><span class="s2">&quot;maxRadius&quot;</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">maxRadius</span><span class="p">)</span>
+
+                <span class="n">pcanny_t1</span> <span class="o">=</span> <span class="n">canny_t1</span>
+                <span class="n">pcanny_t1</span> <span class="o">=</span> <span class="n">canny_t1</span>
+                <span class="n">pdp</span> <span class="o">=</span> <span class="n">dp</span>
+                <span class="n">pminDist</span> <span class="o">=</span> <span class="n">minDist</span>
+                <span class="n">pparam1</span> <span class="o">=</span> <span class="n">param1</span>
+                <span class="n">pparam2</span> <span class="o">=</span> <span class="n">param2</span>
+                <span class="n">pminRadius</span> <span class="o">=</span> <span class="n">minRadius</span>
+                <span class="n">pmaxRadius</span> <span class="o">=</span> <span class="n">maxRadius</span>
+
+            <span class="c1"># show_image(imgray, &quot;canny&quot;)</span>
+
+            <span class="k">if</span> <span class="n">show_image</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="n">wait_time</span><span class="p">):</span>
+                <span class="k">break</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">pss</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+        <span class="o">/</span> <span class="s2">&quot;ProjectsWin/AiBitbucket/Internal/OptikosPrime/exclude/new_images/adam_plus0p5/215asd.jpg&quot;</span><span class="p">,</span>
+        <span class="n">Path</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Christian\OneDrive\Billeder\buh\7BIsT.png&quot;</span><span class="p">),</span>
+        <span class="n">Path</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Christian\OneDrive\Billeder\Portraits\thomas.jpg&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pss</span><span class="p">):</span>
+        <span class="n">interactive_hough_circles</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">pss</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pss</span><span class="si">}</span><span class="s2"> does not exist&quot;</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  <li><a href="../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

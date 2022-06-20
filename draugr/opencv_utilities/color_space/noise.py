@@ -18,6 +18,17 @@ def noise_filter(
     method: NoiseFilterMethodEnum = NoiseFilterMethodEnum.bilateral_filter,
     **kwargs
 ) -> Any:
+    """
+
+    :param img:
+    :type img:
+    :param method:
+    :type method:
+    :param kwargs:
+    :type kwargs:
+    :return:
+    :rtype:
+    """
     method = NoiseFilterMethodEnum(method)
 
     if method == NoiseFilterMethodEnum.none:

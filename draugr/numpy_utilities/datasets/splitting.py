@@ -193,6 +193,7 @@ def select_split(
 if __name__ == "__main__":
 
     def asd():
+        """ """
         split_by_p = SplitIndexer(100)
         print(split_by_p.default_split_names)
         print(split_by_p.shuffled_indices())
@@ -201,6 +202,7 @@ if __name__ == "__main__":
         print(a, len(a))
 
     def uihsad():
+        """ """
         a = None
         if a:
             a = SplitEnum(a)

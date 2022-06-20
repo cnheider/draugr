@@ -20,6 +20,23 @@ def extract_frames(
     extract_sound: bool = True,
     ffmpeg_path: Path = "ffmpeg",
 ):
+    """
+
+    :param file_path:
+    :type file_path:
+    :param frame_out_dir:
+    :type frame_out_dir:
+    :param audio_out_dir:
+    :type audio_out_dir:
+    :param rate:
+    :type rate:
+    :param frame_format:
+    :type frame_format:
+    :param extract_sound:
+    :type extract_sound:
+    :param ffmpeg_path:
+    :type ffmpeg_path:
+    """
     root_dir = file_path.parent
     if frame_out_dir is None:
         frame_out_dir = ensure_existence(root_dir / file_path.stem / "frames")

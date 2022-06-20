@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.opencv_utilities.namespaces.color_conversion_enum &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/namespaces/color_conversion_enum.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.opencv_utilities.namespaces.color_conversion_enum</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ColorConversionEnum&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ColorConversionEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.color_conversion_enum.ColorConversionEnum.html#draugr.opencv_utilities.namespaces.color_conversion_enum.ColorConversionEnum">[docs]</a><span class="k">class</span> <span class="nc">ColorConversionEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    the color conversion codes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">bgr2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2BGRA</span>  <span class="c1"># add alpha channel to RGB or BGR image</span>
+    <span class="n">rgb2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2RGBA</span>
+
+    <span class="n">bgra2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2BGR</span>  <span class="c1"># remove alpha channel from RGB or BGR image</span>
+    <span class="n">rgba2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2RGB</span>
+
+    <span class="c1"># ---</span>
+    <span class="n">bgr2rgba</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGBA</span>
+    <span class="p">)</span>  <span class="c1"># convert between RGB and BGR color spaces (with or without alpha channel)</span>
+    <span class="n">rgb2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGRA</span>
+
+    <span class="n">rgba2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2BGR</span>
+    <span class="n">bgra2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2RGB</span>
+
+    <span class="n">bgr2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span>
+    <span class="n">rgb2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGR</span>
+
+    <span class="n">bgra2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2RGBA</span>
+    <span class="n">rgba2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2BGRA</span>
+
+    <span class="c1"># ---</span>
+    <span class="n">bgr2gray</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span>
+    <span class="p">)</span>  <span class="c1"># convert between RGB/BGR and grayscale, color conversions</span>
+    <span class="n">rgb2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span>
+    <span class="n">bgra2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2GRAY</span>
+    <span class="n">rgba2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2GRAY</span>
+
+    <span class="n">gray2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR</span>  <span class="c1"># grayscale, color conversions</span>
+    <span class="n">gray2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2RGB</span>
+    <span class="n">gray2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGRA</span>
+    <span class="n">gray2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2RGBA</span>
+    <span class="c1"># ---</span>
+
+    <span class="n">bgr2bgr565</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2BGR565</span>
+    <span class="p">)</span>  <span class="c1"># convert between RGB/BGR and BGR565 (16-bit images)</span>
+    <span class="n">rgb2bgr565</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGR565</span>
+    <span class="n">bgr5652bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5652BGR</span>
+    <span class="n">bgr5652rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5652RGB</span>
+    <span class="n">bgra2bgr565</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2BGR565</span>
+    <span class="n">rgba2bgr565</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2BGR565</span>
+    <span class="n">bgr5652bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5652BGRA</span>
+    <span class="n">bgr5652rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5652RGBA</span>
+    <span class="c1"># -----</span>
+
+    <span class="n">gray2bgr565</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR565</span>
+    <span class="p">)</span>  <span class="c1"># convert between grayscale to BGR565 (16-bit images)</span>
+    <span class="n">bgr5652gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5652GRAY</span>
+
+    <span class="c1"># --- ---</span>
+    <span class="n">bgr2bgr555</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2BGR555</span>
+    <span class="p">)</span>  <span class="c1"># convert between RGB/BGR and BGR555 (16-bit images)</span>
+    <span class="n">rgb2bgr555</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2BGR555</span>
+    <span class="n">bgr5552bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5552BGR</span>
+    <span class="n">bgr5552rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5552RGB</span>
+    <span class="n">bgra2bgr555</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2BGR555</span>
+    <span class="n">rgba2bgr555</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2BGR555</span>
+    <span class="n">bgr5552bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5552BGRA</span>
+    <span class="n">bgr5552rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5552RGBA</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">gray2bgr555</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_GRAY2BGR555</span>
+    <span class="p">)</span>  <span class="c1"># convert between grayscale and BGR555 (16-bit images)</span>
+
+    <span class="n">bgr5552gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR5552GRAY</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">bgr2xyz</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2XYZ</span>  <span class="c1"># convert RGB/BGR to CIE XYZ, color conversions</span>
+    <span class="n">rgb2xyz</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2XYZ</span>
+    <span class="n">xyz2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_XYZ2BGR</span>
+    <span class="n">xyz2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_XYZ2RGB</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">bgr2ycrcb</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YCrCb</span>
+    <span class="p">)</span>  <span class="c1"># convert RGB/BGR to luma-chroma (aka YCC), color conversions</span>
+    <span class="n">rgb2ycrcb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2YCrCb</span>
+    <span class="n">ycrcb2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YCrCb2BGR</span>
+    <span class="n">ycrcb2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YCrCb2RGB</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">bgr2hsv</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span>
+    <span class="p">)</span>  <span class="c1"># convert RGB/BGR to HSV (hue saturation value) with H range 0..180 if 8 bit image, color conversions</span>
+    <span class="n">rgb2hsv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2HSV</span>
+
+    <span class="c1"># 37 ---</span>
+    <span class="n">bgr2lab</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2Lab</span>  <span class="c1"># convert RGB/BGR to CIE Lab, color conversions</span>
+    <span class="n">rgb2lab</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2Lab</span>
+
+    <span class="c1"># 40 --</span>
+    <span class="n">bgr2luv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2Luv</span>  <span class="c1"># convert RGB/BGR to CIE Luv, color conversions</span>
+    <span class="n">rgb2luv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2Luv</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">bgr2hls</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HLS</span>
+    <span class="p">)</span>  <span class="c1"># convert RGB/BGR to HLS (hue lightness saturation) with H range 0..180 if 8 bit image, color conversions</span>
+    <span class="n">rgb2hls</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2HLS</span>
+
+    <span class="c1"># --- ---</span>
+    <span class="n">hsv2bgr</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HSV2BGR</span>
+    <span class="p">)</span>  <span class="c1"># backward conversions HSV to RGB/BGR with H range 0..180 if 8 bit image</span>
+    <span class="n">hsv2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HSV2RGB</span>
+    <span class="n">lab2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_Lab2BGR</span>
+    <span class="n">lab2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_Lab2RGB</span>
+    <span class="n">luv2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_Luv2BGR</span>
+    <span class="n">luv2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_Luv2RGB</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">hls2bgr</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HLS2BGR</span>
+    <span class="p">)</span>  <span class="c1"># backward conversions HLS to RGB/BGR with H range 0..180 if 8 bit image</span>
+    <span class="n">hls2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HLS2RGB</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">bgr2hsv_full</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV_FULL</span>
+    <span class="p">)</span>  <span class="c1"># convert RGB/BGR to HSV (hue saturation value) with H range 0..255 if 8 bit image, color conversions</span>
+    <span class="n">rgb2hsv_full</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2HSV_FULL</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">bgr2hls_full</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HLS_FULL</span>
+    <span class="p">)</span>  <span class="c1"># convert RGB/BGR to HLS (hue lightness saturation) with H range 0..255 if 8 bit image, color conversions</span>
+
+    <span class="n">rgb2hls_full</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2HLS_FULL</span>
+
+    <span class="c1"># --- ---</span>
+    <span class="n">hsv2bgr_full</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HSV2BGR_FULL</span>
+    <span class="p">)</span>  <span class="c1"># backward conversions HSV to RGB/BGR with H range 0..255 if 8 bit image</span>
+
+    <span class="n">hsv2rgb_full</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HSV2RGB_FULL</span>
+
+    <span class="c1"># --- ---</span>
+    <span class="n">hls2bgr_full</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HLS2BGR_FULL</span>
+    <span class="p">)</span>  <span class="c1"># backward conversions HLS to RGB/BGR with H range 0..255 if 8 bit image</span>
+
+    <span class="n">hls2rgb_full</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HLS2RGB_FULL</span>
+
+    <span class="n">lbgr2lab</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_LBGR2Lab</span>
+
+    <span class="n">lrgb2lab</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_LRGB2Lab</span>
+
+    <span class="n">lbgr2luv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_LBGR2Luv</span>
+
+    <span class="n">lrgb2luv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_LRGB2Luv</span>
+
+    <span class="n">lab2lbgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_Lab2LBGR</span>
+
+    <span class="n">lab2lrgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_Lab2LRGB</span>
+
+    <span class="n">luv2lbgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_Luv2LBGR</span>
+
+    <span class="n">luv2lrgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_Luv2LRGB</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">bgr2yuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YUV</span>  <span class="c1"># convert between RGB/BGR and YUV</span>
+
+    <span class="n">rgb2yuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2YUV</span>
+
+    <span class="n">yuv2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR</span>
+
+    <span class="n">yuv2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB</span>
+
+    <span class="c1"># ------</span>
+    <span class="n">yuv2rgb_nv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_NV12</span>  <span class="c1"># YUV 4:2:0 family to RGB.</span>
+
+    <span class="n">yuv2bgr_nv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_NV12</span>
+
+    <span class="n">yuv2rgb_nv21</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_NV21</span>
+
+    <span class="n">yuv2bgr_nv21</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_NV21</span>
+
+    <span class="n">yuv420sp2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420sp2RGB</span>
+
+    <span class="n">yuv420sp2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420sp2BGR</span>
+
+    <span class="n">yuv2rgba_nv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_NV12</span>
+
+    <span class="n">yuv2bgra_nv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_NV12</span>
+
+    <span class="n">yuv2rgba_nv21</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_NV21</span>
+
+    <span class="n">yuv2bgra_nv21</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_NV21</span>
+
+    <span class="n">yuv420sp2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420sp2RGBA</span>
+
+    <span class="n">yuv420sp2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420sp2BGRA</span>
+
+    <span class="n">yuv2rgb_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_YV12</span>
+
+    <span class="n">yuv2bgr_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_YV12</span>
+
+    <span class="n">yuv2rgb_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_IYUV</span>
+
+    <span class="n">yuv2bgr_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_IYUV</span>
+
+    <span class="n">yuv2rgb_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_I420</span>
+
+    <span class="n">yuv2bgr_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_I420</span>
+
+    <span class="n">yuv420p2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420p2RGB</span>
+
+    <span class="n">yuv420p2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420p2BGR</span>
+
+    <span class="n">yuv2rgba_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_YV12</span>
+
+    <span class="n">yuv2bgra_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_YV12</span>
+
+    <span class="n">yuv2rgba_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_IYUV</span>
+
+    <span class="n">yuv2bgra_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_IYUV</span>
+
+    <span class="n">yuv2rgba_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_I420</span>
+
+    <span class="n">yuv2bgra_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_I420</span>
+
+    <span class="n">yuv420p2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420p2RGBA</span>
+
+    <span class="n">yuv420p2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420p2BGRA</span>
+
+    <span class="n">yuv2gray_420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_420</span>
+
+    <span class="n">yuv2gray_nv21</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_NV21</span>
+
+    <span class="n">yuv2gray_nv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_NV12</span>
+
+    <span class="n">yuv2gray_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_YV12</span>
+
+    <span class="n">yuv2gray_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_IYUV</span>
+
+    <span class="n">yuv2gray_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_I420</span>
+
+    <span class="n">yuv420sp2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420sp2GRAY</span>
+
+    <span class="n">yuv420p2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV420p2GRAY</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">yuv2rgb_uyvy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_UYVY</span>  <span class="c1"># YUV 4:2:2 family to RGB.</span>
+
+    <span class="n">yuv2bgr_uyvy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_UYVY</span>
+
+    <span class="n">yuv2rgb_y422</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_Y422</span>
+
+    <span class="n">yuv2bgr_y422</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_Y422</span>
+
+    <span class="n">yuv2rgb_uynv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_UYNV</span>
+
+    <span class="n">yuv2bgr_uynv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_UYNV</span>
+
+    <span class="n">yuv2rgba_uyvy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_UYVY</span>
+
+    <span class="n">yuv2bgra_uyvy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_UYVY</span>
+
+    <span class="n">yuv2rgba_y422</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_Y422</span>
+
+    <span class="n">yuv2bgra_y422</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_Y422</span>
+
+    <span class="n">yuv2rgba_uynv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_UYNV</span>
+
+    <span class="n">yuv2bgra_uynv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_UYNV</span>
+
+    <span class="n">yuv2rgb_yuy2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_YUY2</span>
+
+    <span class="n">yuv2bgr_yuy2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_YUY2</span>
+
+    <span class="n">yuv2rgb_yvyu</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_YVYU</span>
+
+    <span class="n">yuv2bgr_yvyu</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_YVYU</span>
+
+    <span class="n">yuv2rgb_yuyv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_YUYV</span>
+
+    <span class="n">yuv2bgr_yuyv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_YUYV</span>
+
+    <span class="n">yuv2rgb_yunv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGB_YUNV</span>
+
+    <span class="n">yuv2bgr_yunv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGR_YUNV</span>
+
+    <span class="n">yuv2rgba_yuy2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_YUY2</span>
+
+    <span class="n">yuv2bgra_yuy2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_YUY2</span>
+
+    <span class="n">yuv2rgba_yvyu</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_YVYU</span>
+
+    <span class="n">yuv2bgra_yvyu</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_YVYU</span>
+
+    <span class="n">yuv2rgba_yuyv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_YUYV</span>
+
+    <span class="n">yuv2bgra_yuyv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_YUYV</span>
+
+    <span class="n">yuv2rgba_yunv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2RGBA_YUNV</span>
+
+    <span class="n">yuv2bgra_yunv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2BGRA_YUNV</span>
+
+    <span class="n">yuv2gray_uyvy</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_UYVY</span>
+
+    <span class="n">yuv2gray_yuy2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_YUY2</span>
+
+    <span class="n">yuv2gray_y422</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_Y422</span>
+    <span class="n">yuv2gray_uynv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_UYNV</span>
+
+    <span class="n">yuv2gray_yvyu</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_YVYU</span>
+
+    <span class="n">yuv2gray_yuyv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_YUYV</span>
+
+    <span class="n">yuv2gray_yunv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_YUV2GRAY_YUNV</span>
+
+    <span class="c1"># -----</span>
+    <span class="n">rgba2mrgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2mRGBA</span>  <span class="c1"># alpha premultiplication</span>
+
+    <span class="n">mrgba2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_mRGBA2RGBA</span>
+
+    <span class="c1"># -- ---</span>
+    <span class="n">rgb2yuv_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2YUV_I420</span>  <span class="c1"># RGB to YUV 4:2:0 family.</span>
+
+    <span class="n">bgr2yuv_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YUV_I420</span>
+
+    <span class="n">rgb2yuv_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2YUV_IYUV</span>
+
+    <span class="n">bgr2yuv_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YUV_IYUV</span>
+
+    <span class="n">rgba2yuv_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2YUV_I420</span>
+
+    <span class="n">bgra2yuv_i420</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2YUV_I420</span>
+
+    <span class="n">rgba2yuv_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2YUV_IYUV</span>
+
+    <span class="n">bgra2yuv_iyuv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2YUV_IYUV</span>
+
+    <span class="n">rgb2yuv_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2YUV_YV12</span>
+
+    <span class="n">bgr2yuv_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2YUV_YV12</span>
+
+    <span class="n">rgba2yuv_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGBA2YUV_YV12</span>
+
+    <span class="n">bgra2yuv_yv12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGRA2YUV_YV12</span>
+
+    <span class="c1"># --- ---</span>
+    <span class="n">bayerbg2bgr</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2BGR</span>
+    <span class="p">)</span>  <span class="c1"># Demosaicing, see color conversions for additional information. #equivalent to RGGB Bayer pattern</span>
+
+    <span class="n">bayergb2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2BGR</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+
+    <span class="n">bayerrg2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2BGR</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+
+    <span class="n">bayergr2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2BGR</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="n">bayerrggb2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2BGR</span>
+
+    <span class="n">bayergrbg2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2BGR</span>
+
+    <span class="n">bayerbggr2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2BGR</span>
+
+    <span class="n">bayergbrg2bgr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2BGR</span>
+
+    <span class="n">bayerrggb2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2RGB</span>
+
+    <span class="n">bayergrbg2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2RGB</span>
+
+    <span class="n">bayerbggr2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2RGB</span>
+
+    <span class="n">bayergbrg2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2RGB</span>
+
+    <span class="n">bayerbg2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2RGB</span>  <span class="c1"># equivalent to RGGB Bayer pattern</span>
+
+    <span class="n">bayergb2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2RGB</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+
+    <span class="n">bayerrg2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2RGB</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+
+    <span class="n">bayergr2rgb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2RGB</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="n">bayerbg2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2GRAY</span>  <span class="c1"># equivalent to RGGB Bayer pattern</span>
+
+    <span class="n">bayergb2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2GRAY</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+
+    <span class="n">bayerrg2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2GRAY</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+
+    <span class="n">bayergr2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2GRAY</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="n">bayerrggb2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2GRAY</span>
+
+    <span class="n">bayergrbg2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2GRAY</span>
+
+    <span class="n">bayerbggr2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2GRAY</span>
+
+    <span class="n">bayergbrg2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2GRAY</span>
+
+    <span class="c1"># --- ---</span>
+    <span class="n">bayerbg2bgr_vng</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2BGR_VNG</span>
+    <span class="p">)</span>  <span class="c1"># Demosaicing using Variable Number of Gradients. #equivalent to RGGB Bayer pattern</span>
+
+    <span class="n">bayergb2bgr_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2BGR_VNG</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+
+    <span class="n">bayerrg2bgr_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2BGR_VNG</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+
+    <span class="n">bayergr2bgr_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2BGR_VNG</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="n">bayerrggb2bgr_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2BGR_VNG</span>
+
+    <span class="n">bayergrbg2bgr_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2BGR_VNG</span>
+
+    <span class="n">bayerbggr2bgr_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2BGR_VNG</span>
+
+    <span class="n">bayergbrg2bgr_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2BGR_VNG</span>
+
+    <span class="n">bayerrggb2rgb_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2RGB_VNG</span>
+
+    <span class="n">bayergrbg2rgb_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2RGB_VNG</span>
+
+    <span class="n">bayerbggr2rgb_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2RGB_VNG</span>
+
+    <span class="n">bayergbrg2rgb_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2RGB_VNG</span>
+
+    <span class="n">bayerbg2rgb_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2RGB_VNG</span>  <span class="c1"># equivalent to RGGB Bayer pattern</span>
+
+    <span class="n">bayergb2rgb_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2RGB_VNG</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+
+    <span class="n">bayerrg2rgb_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2RGB_VNG</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+
+    <span class="n">bayergr2rgb_vng</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2RGB_VNG</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="n">bayerbg2bgr_ea</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2BGR_EA</span>
+    <span class="p">)</span>  <span class="c1"># Edge-Aware Demosaicing. #equivalent to RGGB Bayer pattern</span>
+
+    <span class="n">bayergb2bgr_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2BGR_EA</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+
+    <span class="n">bayerrg2bgr_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2BGR_EA</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+
+    <span class="n">bayergr2bgr_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2BGR_EA</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="n">bayerrggb2bgr_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2BGR_EA</span>
+
+    <span class="n">bayergrbg2bgr_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2BGR_EA</span>
+
+    <span class="n">bayerbggr2bgr_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2BGR_EA</span>
+
+    <span class="n">bayergbrg2bgr_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2BGR_EA</span>
+
+    <span class="n">bayerrggb2rgb_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2RGB_EA</span>
+
+    <span class="n">bayergrbg2rgb_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2RGB_EA</span>
+
+    <span class="n">bayerbggr2rgb_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2RGB_EA</span>
+
+    <span class="n">bayergbrg2rgb_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2RGB_EA</span>
+
+    <span class="n">bayerbg2rgb_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2RGB_EA</span>  <span class="c1"># equivalent to RGGB Bayer pattern</span>
+
+    <span class="n">bayergb2rgb_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2RGB_EA</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+
+    <span class="n">bayerrg2rgb_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2RGB_EA</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+
+    <span class="n">bayergr2rgb_ea</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2RGB_EA</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="c1"># --- ---</span>
+    <span class="n">bayerbg2bgra</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2BGRA</span>
+    <span class="p">)</span>  <span class="c1"># Demosaicing with alpha channel. #equivalent to RGGB Bayer pattern</span>
+
+    <span class="n">bayergb2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2BGRA</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+
+    <span class="n">bayerrg2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2BGRA</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+
+    <span class="n">bayergr2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2BGRA</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="n">bayerrggb2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2BGRA</span>
+
+    <span class="n">bayergrbg2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2BGRA</span>
+
+    <span class="n">bayerbggr2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2BGRA</span>
+
+    <span class="n">bayergbrg2bgra</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2BGRA</span>
+
+    <span class="n">bayerrggb2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRGGB2RGBA</span>
+
+    <span class="n">bayergrbg2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGRBG2RGBA</span>
+
+    <span class="n">bayerbggr2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBGGR2RGBA</span>
+
+    <span class="n">bayergbrg2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGBRG2RGBA</span>
+
+    <span class="n">bayerbg2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerBG2RGBA</span>  <span class="c1"># equivalent to RGGB Bayer pattern</span>
+    <span class="n">bayergb2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGB2RGBA</span>  <span class="c1"># equivalent to GRBG Bayer pattern</span>
+    <span class="n">bayerrg2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerRG2RGBA</span>  <span class="c1"># equivalent to BGGR Bayer pattern</span>
+    <span class="n">bayergr2rgba</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BayerGR2RGBA</span>  <span class="c1"># equivalent to GBRG Bayer pattern</span>
+
+    <span class="c1"># -----</span>
+    <span class="n">colorcvt_max</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_COLORCVT_MAX</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">rgb2rgba</span><span class="p">,</span> <span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">rgb2rgba</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  <li><a href="../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -121,6 +121,7 @@ if __name__ == "__main__":
             line.set_3d_properties(data[2, :num])
 
         def asudh():
+            """ """
             N = 100
             data = numpy.array(list(gen(N))).T
             (line,) = ax.plot(data[0, 0:1], data[1, 0:1], data[2, 0:1])

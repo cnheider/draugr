@@ -14,6 +14,15 @@ __all__ = ["interactive_hough_circles"]
 def interactive_hough_circles(
     ps: Iterable, wait_time: int = 33, verbose: bool = False
 ) -> None:
+    """
+
+    :param ps:
+    :type ps:
+    :param wait_time:
+    :type wait_time:
+    :param verbose:
+    :type verbose:
+    """
     # show_image(numpy.zeros((600, 600)), "canny")
 
     # add_trackbar("canny", "canny_t1", default=30, max_val=1000, min_val=1.0)

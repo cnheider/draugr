@@ -7,6 +7,8 @@ __all__ = ["ScalarWriterMixin"]
 
 
 class ScalarWriterMixin(ABC):
+    """ """
+
     @abstractmethod
     def _scalar(self, tag: str, value: float, step: int):
         raise NotImplementedError

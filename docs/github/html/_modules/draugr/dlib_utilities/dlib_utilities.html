@@ -1,54 +1,49 @@
+
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>draugr.dlib_utilities.dlib_utilities &#8212; Draugr 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css"/>
-    <script data-url_root="../../../" id="documentation_options"
-            src="../../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <link rel="canonical" href="draugr.github.io/_modules/draugr/dlib_utilities/dlib_utilities.html"/>
-    <link rel="index" title="Index" href="../../../genindex.html"/>
-    <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/dlib_utilities/dlib_utilities.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css"/>
+  </head><body>
+  
 
-
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
-
-</head>
-<body>
-
-
-<div class="document">
-    <div class="documentwrapper">
+    <div class="document">
+      <div class="documentwrapper">
         <div class="bodywrapper">
+          
 
-
-            <div class="body" role="main">
-
-                <h1>Source code for draugr.dlib_utilities.dlib_utilities</h1>
-                <div class="highlight"><pre>
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.dlib_utilities.dlib_utilities</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Christian Heider Nielsen&quot;</span>
-<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span
-                        class="s2">&quot;&quot;&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
 
 <span class="s2">           Created on 03-05-2021</span>
 <span class="s2">           &quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span
-                        class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span
-                        class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">distance</span>
@@ -63,61 +58,28 @@
 <span class="p">]</span>
 
 
-<span class="k">class</span> <span class="nc">ExtendTuple</span><span class="p">(</span><span
-                        class="n">Tuple</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span
-                        class="p">,</span> <span class="o">*</span><span class="n">other</span><span class="p">)</span> <span
-                        class="o">-&gt;</span> <span class="s2">&quot;ExtendTuple&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">((</span><span
-                        class="o">*</span><span class="bp">self</span><span class="p">,</span> <span
-                        class="o">*</span><span class="n">other</span><span class="p">))</span>
+<div class="viewcode-block" id="ExtendTuple"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.ExtendTuple.html#draugr.dlib_utilities.dlib_utilities.ExtendTuple">[docs]</a><span class="k">class</span> <span class="nc">ExtendTuple</span><span class="p">(</span><span class="n">Tuple</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ExtendTuple&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">((</span><span class="o">*</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">other</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span
-                        class="p">,</span> <span class="o">*</span><span class="n">other</span><span class="p">)</span> <span
-                        class="o">-&gt;</span> <span class="s2">&quot;ExtendTuple&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">((</span><span
-                        class="o">*</span><span class="bp">self</span><span class="p">,</span> <span
-                        class="o">*</span><span class="n">other</span><span class="p">))</span>
+    <span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ExtendTuple&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">((</span><span class="o">*</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">other</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="Dlib68faciallandmarksindices"><a class="viewcode-back"
-                                                                 href="../../../generated/draugr.dlib_utilities.dlib_utilities.Dlib68faciallandmarksindices.html#draugr.dlib_utilities.dlib_utilities.Dlib68faciallandmarksindices">[docs]</a><span
-        class="k">class</span> <span class="nc">Dlib68faciallandmarksindices</span><span class="p">(</span><span
-        class="n">Enum</span><span class="p">):</span>
-    <span class="n">mouth</span> <span class="o">=</span> <span class="p">(</span><span class="mi">48</span><span
-            class="p">,</span> <span class="mi">67</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
-    <span class="n">inner_mouth</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60</span><span
-            class="p">,</span> <span class="mi">67</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
-    <span class="n">right_eyebrow</span> <span class="o">=</span> <span class="p">(</span><span
-            class="mi">17</span><span class="p">,</span> <span class="mi">21</span> <span class="o">+</span> <span
-            class="mi">1</span><span class="p">)</span>
-    <span class="n">left_eyebrow</span> <span class="o">=</span> <span class="p">(</span><span class="mi">22</span><span
-            class="p">,</span> <span class="mi">26</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
-    <span class="n">right_eye</span> <span class="o">=</span> <span class="p">(</span><span class="mi">36</span><span
-            class="p">,</span> <span class="mi">41</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
-    <span class="n">left_eye</span> <span class="o">=</span> <span class="p">(</span><span class="mi">42</span><span
-            class="p">,</span> <span class="mi">47</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
-    <span class="n">nose</span> <span class="o">=</span> <span class="p">(</span><span class="mi">27</span><span
-            class="p">,</span> <span class="mi">35</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
-    <span class="n">jaw</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span
-            class="p">,</span> <span class="mi">16</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
+<div class="viewcode-block" id="Dlib68faciallandmarksindices"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.Dlib68faciallandmarksindices.html#draugr.dlib_utilities.dlib_utilities.Dlib68faciallandmarksindices">[docs]</a><span class="k">class</span> <span class="nc">Dlib68faciallandmarksindices</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">mouth</span> <span class="o">=</span> <span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">67</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">inner_mouth</span> <span class="o">=</span> <span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">67</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">right_eyebrow</span> <span class="o">=</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">21</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">left_eyebrow</span> <span class="o">=</span> <span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">26</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">right_eye</span> <span class="o">=</span> <span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">41</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">left_eye</span> <span class="o">=</span> <span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">47</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">nose</span> <span class="o">=</span> <span class="p">(</span><span class="mi">27</span><span class="p">,</span> <span class="mi">35</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">jaw</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Dlib68faciallandmarksindices.slice"><a class="viewcode-back"
-                                                                       href="../../../generated/draugr.dlib_utilities.dlib_utilities.Dlib68faciallandmarksindices.html#draugr.dlib_utilities.dlib_utilities.Dlib68faciallandmarksindices.slice">[docs]</a>    <span
-        class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Dlib68faciallandmarksindices.slice"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.Dlib68faciallandmarksindices.html#draugr.dlib_utilities.dlib_utilities.Dlib68faciallandmarksindices.slice">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">slice</span><span class="p">(</span>
         <span class="n">seq</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">,</span>
-        <span class="n">ind</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span
-            class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">,</span> <span
-            class="n">Tuple</span><span class="p">[</span><span
-            class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">]],</span>
+        <span class="n">ind</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">]],</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
@@ -125,65 +87,34 @@
 <span class="sd">        :param ind:</span>
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span
-            class="n">ind</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">):</span>
             <span class="n">agg</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span
-            class="n">ind</span><span class="p">:</span>  <span class="c1"># Some flag implementation would probably be faster and more valid.</span>
-                <span class="n">agg</span><span class="o">.</span><span class="n">extend</span><span
-            class="p">(</span><span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span
-            class="n">slice</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span
-            class="n">i</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind</span><span class="p">:</span>  <span class="c1"># Some flag implementation would probably be faster and more valid.</span>
+                <span class="n">agg</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">agg</span>
-        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span
-            class="n">ind</span><span class="o">.</span><span class="n">value</span>
-        <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span
-            class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span></div>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span></div>
 
-    <span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span
-            class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span
-            class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">()</span><span
-            class="o">.</span><span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">other</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">()</span><span class="o">.</span><span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span
-            class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span
-            class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">()</span><span
-            class="o">.</span><span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;Dlib68faciallandmarksindices&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">()</span><span class="o">.</span><span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Dlib5faciallandmarksindices"><a class="viewcode-back"
-                                                                href="../../../generated/draugr.dlib_utilities.dlib_utilities.Dlib5faciallandmarksindices.html#draugr.dlib_utilities.dlib_utilities.Dlib5faciallandmarksindices">[docs]</a><span
-        class="k">class</span> <span class="nc">Dlib5faciallandmarksindices</span><span class="p">(</span><span
-        class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="Dlib5faciallandmarksindices"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.Dlib5faciallandmarksindices.html#draugr.dlib_utilities.dlib_utilities.Dlib5faciallandmarksindices">[docs]</a><span class="k">class</span> <span class="nc">Dlib5faciallandmarksindices</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    dlib_utilities’s 5-point facial landmark detector</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">right_eye</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span
-            class="p">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
-    <span class="n">left_eye</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span
-            class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
-    <span class="n">nose</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span
-            class="p">,</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span
-            class="p">)</span>
+    <span class="n">right_eye</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">left_eye</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">nose</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Dlib5faciallandmarksindices.slice"><a class="viewcode-back"
-                                                                      href="../../../generated/draugr.dlib_utilities.dlib_utilities.Dlib5faciallandmarksindices.html#draugr.dlib_utilities.dlib_utilities.Dlib5faciallandmarksindices.slice">[docs]</a>    <span
-        class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Dlib5faciallandmarksindices.slice"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.Dlib5faciallandmarksindices.html#draugr.dlib_utilities.dlib_utilities.Dlib5faciallandmarksindices.slice">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">slice</span><span class="p">(</span>
         <span class="n">seq</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">,</span>
-        <span class="n">ind</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span
-            class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">,</span> <span
-            class="n">Tuple</span><span class="p">[</span><span
-            class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">]],</span>
+        <span class="n">ind</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">]],</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
@@ -191,128 +122,62 @@
 <span class="sd">        :param ind:</span>
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span
-            class="n">ind</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">):</span>
             <span class="n">agg</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span
-            class="n">ind</span><span class="p">:</span>  <span class="c1"># Some flag implementation would probably be faster and more valid.</span>
-                <span class="n">agg</span><span class="o">.</span><span class="n">extend</span><span
-            class="p">(</span><span class="n">Dlib5faciallandmarksindices</span><span class="o">.</span><span class="n">slice</span><span
-            class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">i</span><span
-            class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ind</span><span class="p">:</span>  <span class="c1"># Some flag implementation would probably be faster and more valid.</span>
+                <span class="n">agg</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">Dlib5faciallandmarksindices</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">agg</span>
-        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span
-            class="n">ind</span><span class="o">.</span><span class="n">value</span>
-        <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span
-            class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span></div>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">ind</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span></div>
 
-    <span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span
-            class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span
-            class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">()</span><span
-            class="o">.</span><span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">other</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">()</span><span class="o">.</span><span class="fm">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span
-            class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span
-            class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">()</span><span
-            class="o">.</span><span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span
-            class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;Dlib5faciallandmarksindices&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">ExtendTuple</span><span class="p">()</span><span class="o">.</span><span class="fm">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="rect_to_bounding_box"><a class="viewcode-back"
-                                                         href="../../../generated/draugr.dlib_utilities.dlib_utilities.rect_to_bounding_box.html#draugr.dlib_utilities.dlib_utilities.rect_to_bounding_box">[docs]</a><span
-        class="k">def</span> <span class="nf">rect_to_bounding_box</span><span class="p">(</span><span
-        class="n">rect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span
-        class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span
-        class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span
-        class="p">]:</span>
+<div class="viewcode-block" id="rect_to_bounding_box"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.rect_to_bounding_box.html#draugr.dlib_utilities.dlib_utilities.rect_to_bounding_box">[docs]</a><span class="k">def</span> <span class="nf">rect_to_bounding_box</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    # take a bounding predicted by dlib_utilities and convert it</span>
 <span class="sd">    # to the format (x, y, w, h)&quot;&quot;&quot;</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span
-            class="n">left</span><span class="p">()</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span
-            class="n">top</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">left</span><span class="p">()</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">top</span><span class="p">()</span>
 
-    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span
-            class="p">,</span> <span class="n">rect</span><span class="o">.</span><span class="n">right</span><span
-            class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span
-            class="n">rect</span><span class="o">.</span><span class="n">bottom</span><span class="p">()</span> <span
-            class="o">-</span> <span class="n">y</span>  <span class="c1"># return a tuple of (x, y, w, h)</span></div>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rect</span><span class="o">.</span><span class="n">right</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="n">rect</span><span class="o">.</span><span class="n">bottom</span><span class="p">()</span> <span class="o">-</span> <span class="n">y</span>  <span class="c1"># return a tuple of (x, y, w, h)</span></div>
 
 
-<div class="viewcode-block" id="shape_to_ndarray"><a class="viewcode-back"
-                                                     href="../../../generated/draugr.dlib_utilities.dlib_utilities.shape_to_ndarray.html#draugr.dlib_utilities.dlib_utilities.shape_to_ndarray">[docs]</a><span
-        class="k">def</span> <span class="nf">shape_to_ndarray</span><span class="p">(</span><span
-        class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span
-        class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;int&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="shape_to_ndarray"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.shape_to_ndarray.html#draugr.dlib_utilities.dlib_utilities.shape_to_ndarray">[docs]</a><span class="k">def</span> <span class="nf">shape_to_ndarray</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;int&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    :param shape:</span>
 <span class="sd">    :param dtype:</span>
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">numpy</span><span
-            class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">shape</span><span
-            class="o">.</span><span class="n">num_parts</span><span class="p">,</span> <span class="mi">2</span><span
-            class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span
-            class="p">)</span>  <span class="c1"># initialize the list of (x, y)-coordinates</span>
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">shape</span><span class="o">.</span><span class="n">num_parts</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>  <span class="c1"># initialize the list of (x, y)-coordinates</span>
 
     <span class="c1"># loop over all facial landmarks and convert them</span>
     <span class="c1"># to a 2-tuple of (x, y)-coordinates</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span
-            class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">shape</span><span
-            class="o">.</span><span class="n">num_parts</span><span class="p">):</span>
-        <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span
-            class="o">=</span> <span class="p">(</span><span class="n">shape</span><span class="o">.</span><span
-            class="n">part</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span
-            class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">shape</span><span
-            class="o">.</span><span class="n">part</span><span class="p">(</span><span class="n">i</span><span
-            class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">shape</span><span class="o">.</span><span class="n">num_parts</span><span class="p">):</span>
+        <span class="n">coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape</span><span class="o">.</span><span class="n">part</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">shape</span><span class="o">.</span><span class="n">part</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">coordinates</span>  <span class="c1"># return the list of (x, y)-coordinates</span></div>
 
 
-<div class="viewcode-block" id="mouth_aspect_ratio"><a class="viewcode-back"
-                                                       href="../../../generated/draugr.dlib_utilities.dlib_utilities.mouth_aspect_ratio.html#draugr.dlib_utilities.dlib_utilities.mouth_aspect_ratio">[docs]</a><span
-        class="k">def</span> <span class="nf">mouth_aspect_ratio</span><span class="p">(</span><span class="n">coordinates</span><span
-        class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span
-        class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="viewcode-block" id="mouth_aspect_ratio"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.mouth_aspect_ratio.html#draugr.dlib_utilities.dlib_utilities.mouth_aspect_ratio">[docs]</a><span class="k">def</span> <span class="nf">mouth_aspect_ratio</span><span class="p">(</span><span class="n">coordinates</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    :param coordinates:</span>
 <span class="sd">    :return:&quot;&quot;&quot;</span>
     <span class="n">average</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span
-            class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">3</span><span
-            class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">9</span><span
-            class="p">])</span>
-        <span class="o">+</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span
-            class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">2</span><span
-            class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span
-            class="mi">10</span><span class="p">])</span>
-        <span class="o">+</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span
-            class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">4</span><span
-            class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">8</span><span
-            class="p">])</span>
+        <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+        <span class="o">+</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+        <span class="o">+</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
     <span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
-    <span class="k">return</span> <span class="n">average</span> <span class="o">/</span> <span
-            class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span
-            class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span
-            class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">6</span><span
-            class="p">])</span></div>
+    <span class="k">return</span> <span class="n">average</span> <span class="o">/</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="eye_aspect_ratio"><a class="viewcode-back"
-                                                     href="../../../generated/draugr.dlib_utilities.dlib_utilities.eye_aspect_ratio.html#draugr.dlib_utilities.dlib_utilities.eye_aspect_ratio">[docs]</a><span
-        class="k">def</span> <span class="nf">eye_aspect_ratio</span><span class="p">(</span><span
-        class="n">coordinates</span><span class="p">:</span> <span class="n">Sequence</span><span
-        class="p">[</span><span class="n">Sequence</span><span class="p">])</span> <span class="o">-&gt;</span> <span
-        class="nb">float</span><span class="p">:</span>
+<div class="viewcode-block" id="eye_aspect_ratio"><a class="viewcode-back" href="../../../generated/draugr.dlib_utilities.dlib_utilities.eye_aspect_ratio.html#draugr.dlib_utilities.dlib_utilities.eye_aspect_ratio">[docs]</a><span class="k">def</span> <span class="nf">eye_aspect_ratio</span><span class="p">(</span><span class="n">coordinates</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    :param coordinates:</span>
@@ -320,129 +185,108 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># compute the euclidean distances between the two sets of</span>
     <span class="c1"># vertical eye landmarks (x, y)-coordinates</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span
-            class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span
-            class="mi">1</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span
-            class="mi">5</span><span class="p">])</span>
-    <span class="n">B</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span
-            class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span
-            class="mi">2</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span
-            class="mi">4</span><span class="p">])</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
 
     <span class="c1"># compute the euclidean distance between the horizontal</span>
     <span class="c1"># eye landmark (x, y)-coordinates</span>
-    <span class="n">C</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span
-            class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span
-            class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span
-            class="mi">3</span><span class="p">])</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">euclidean</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 
     <span class="c1"># compute the eye aspect ratio</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span
-            class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span
-            class="mf">2.0</span> <span class="o">*</span> <span class="n">C</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">C</span><span class="p">)</span></div>
 
 
 <span class="c1"># To improve our blink detector, Soukupová and Čech recommend constructing a 13-dim feature vector of eye aspect ratios (N-th frame, N – 6 frames, and N + 6 frames), followed by feeding this feature vector into a Linear SVM for classification.</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span
-                        class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">asud</span><span class="p">():</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span
-                        class="nb">range</span><span class="p">(</span><span class="mi">99</span><span
-                        class="p">))</span>
+        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">99</span><span class="p">))</span>
         <span class="n">slices</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span class="n">left_eye</span>
-            <span class="o">|</span> <span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span
-                        class="n">right_eye</span>
-            <span class="o">|</span> <span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span
-                        class="n">nose</span> <span class="o">&amp;</span> <span
-                        class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span
-                        class="n">mouth</span>
+            <span class="o">|</span> <span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span class="n">right_eye</span>
+            <span class="o">|</span> <span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span class="n">nose</span> <span class="o">&amp;</span> <span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span class="n">mouth</span>
         <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">Dlib68faciallandmarksindices</span><span
-                        class="o">.</span><span class="n">slice</span><span class="p">(</span><span
-                        class="n">a</span><span class="p">,</span> <span class="n">slices</span><span
-                        class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">slices</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">as34ud</span><span class="p">():</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span
-                        class="nb">range</span><span class="p">(</span><span class="mi">99</span><span
-                        class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">Dlib68faciallandmarksindices</span><span
-                        class="o">.</span><span class="n">slice</span><span class="p">(</span><span
-                        class="n">a</span><span class="p">,</span> <span
-                        class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span
-                        class="n">left_eye</span><span class="p">))</span>
+        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">99</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Dlib68faciallandmarksindices</span><span class="o">.</span><span class="n">left_eye</span><span class="p">))</span>
 
     <span class="n">asud</span><span class="p">()</span>
     <span class="n">as34ud</span><span class="p">()</span>
-</pre>
-                </div>
+</pre></div>
 
-            </div>
-
+          </div>
+          
         </div>
-    </div>
-    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-            <h1 class="logo"><a href="../../../index.html">Draugr</a></h1>
+<h1 class="logo"><a href="../../../index.html">Draugr</a></h1>
 
 
-            <h3>Navigation</h3>
-            <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../generated/draugr.html">draugr</a>
-                </li>
-            </ul>
-            <p class="caption" role="heading"><span class="caption-text">Notes</span></p>
-            <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting
-                    Started</a></li>
-            </ul>
 
-            <div class="relations">
-                <h3>Related Topics</h3>
-                <ul>
-                    <li><a href="../../../index.html">Documentation overview</a>
-                        <ul>
-                            <li><a href="../../index.html">Module code</a>
-                                <ul>
-                                    <li><a href="../../draugr.html">draugr</a>
-                                        <ul>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div id="searchbox" style="display: none" role="search">
-                <h3 id="searchlabel">Quick search</h3>
-                <div class="searchformwrapper">
-                    <form class="search" action="../../../search.html" method="get">
-                        <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off"
-                               autocapitalize="off" spellcheck="false"/>
-                        <input type="submit" value="Go"/>
-                    </form>
-                </div>
-            </div>
-            <script>$('#searchbox').show(0);</script>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  <li><a href="../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
 
 
         </div>
+      </div>
+      <div class="clearer"></div>
     </div>
-    <div class="clearer"></div>
-</div>
-<div class="footer">
-    &copy;.
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
 
-    |
-    Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
-    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+    
 
-</div>
-
-
-</body>
+    
+  </body>
 </html>

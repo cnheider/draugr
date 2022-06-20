@@ -41,6 +41,7 @@
    draugr.entry_points
    draugr.extensions
    draugr.ffmpeg_utilities
+   draugr.jax_utilities
    draugr.matlab_utilities
    draugr.metrics
    draugr.multiprocessing_utilities

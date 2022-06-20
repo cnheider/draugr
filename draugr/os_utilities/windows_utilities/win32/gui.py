@@ -6,9 +6,21 @@ verbose = False
 
 
 def list_window_names():
+    """
+
+    :return:
+    :rtype:
+    """
     result = []
 
     def win_enum_handler(hwnd, ctx):
+        """
+
+        :param hwnd:
+        :type hwnd:
+        :param ctx:
+        :type ctx:
+        """
         if win32gui.IsWindowVisible(hwnd):
             if verbose:
                 print(hex(hwnd), f'"{str(win32gui.GetWindowText(hwnd))}"')
@@ -19,7 +31,24 @@ def list_window_names():
 
 
 def get_inner_windows(whndl):
+    """
+
+    :param whndl:
+    :type whndl:
+    :return:
+    :rtype:
+    """
+
     def callback(hwnd, hwnds):
+        """
+
+        :param hwnd:
+        :type hwnd:
+        :param hwnds:
+        :type hwnds:
+        :return:
+        :rtype:
+        """
         if win32gui.IsWindowVisible(hwnd) and win32gui.IsWindowEnabled(hwnd):
             hwnds[win32gui.GetClassName(hwnd)] = hwnd
         return True
@@ -30,9 +59,23 @@ def get_inner_windows(whndl):
 
 
 def find_all_windows(name):
+    """
+
+    :param name:
+    :type name:
+    :return:
+    :rtype:
+    """
     result = []
 
     def win_enum_handler(hwnd, ctx):
+        """
+
+        :param hwnd:
+        :type hwnd:
+        :param ctx:
+        :type ctx:
+        """
         if win32gui.IsWindowVisible(hwnd) and win32gui.GetWindowText(hwnd) == name:
             result.append(hwnd)
 

@@ -6,6 +6,8 @@ __all__ = ["ImprovementDetector", "OverfitDetector"]
 
 
 class ImprovementDetector(contextlib.AbstractContextManager):
+    """ """
+
     def __init__(
         self,
         patience: int,
@@ -60,6 +62,7 @@ class ImprovementDetector(contextlib.AbstractContextManager):
             return self._callback()
 
     def reset(self) -> None:
+        """ """
         self._count = 0
         self._best_value = None
         self._writer(f"Improvement detector reset")
@@ -72,6 +75,8 @@ class ImprovementDetector(contextlib.AbstractContextManager):
 
 
 class OverfitDetector(contextlib.AbstractContextManager):
+    """ """
+
     def __init__(
         self,
         patience: int,
@@ -130,6 +135,7 @@ class OverfitDetector(contextlib.AbstractContextManager):
             return False
 
     def reset(self) -> None:
+        """ """
         self._count = 0
         self._best_value = None
         self._writer(f"Overfit detector reset")

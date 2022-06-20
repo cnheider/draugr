@@ -7,6 +7,17 @@ __all__ = ["circle_crop"]
 
 
 def circle_crop(image: numpy.ndarray, center: Sequence, radius: int) -> numpy.ndarray:
+    """
+
+    :param image:
+    :type image:
+    :param center:
+    :type center:
+    :param radius:
+    :type radius:
+    :return:
+    :rtype:
+    """
     mask = numpy.zeros(image.shape[:2], dtype="uint8")
     cv2.circle(mask, center, radius, 255, -1)
     masked = cv2.bitwise_and(image, image, mask=mask)

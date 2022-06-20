@@ -1,4 +1,4 @@
-draugr.python\_utilities.generators.recycling\_generator
+﻿draugr.python\_utilities.generators.recycling\_generator
 ========================================================
 
 .. automodule:: draugr.python_utilities.generators.recycling_generator
@@ -14,8 +14,8 @@ draugr.python\_utilities.generators.recycling\_generator
    .. autosummary::
       :toctree:
    
-      recycle
       batched_recycle
+      recycle
    
    
 

@@ -1,103 +1,88 @@
+
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>draugr.ffmpeg_utilities.extract &#8212; Draugr 1.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css"/>
-    <script data-url_root="../../../" id="documentation_options"
-            src="../../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
-    <link rel="canonical" href="draugr.github.io/_modules/draugr/ffmpeg_utilities/extract.html"/>
-    <link rel="index" title="Index" href="../../../genindex.html"/>
-    <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/ffmpeg_utilities/extract.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css"/>
+  </head><body>
+  
 
-
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
-
-</head>
-<body>
-
-
-<div class="document">
-    <div class="documentwrapper">
+    <div class="document">
+      <div class="documentwrapper">
         <div class="bodywrapper">
+          
 
-
-            <div class="body" role="main">
-
-                <h1>Source code for draugr.ffmpeg_utilities.extract</h1>
-                <div class="highlight"><pre>
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.ffmpeg_utilities.extract</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span
-                        class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">apppath</span> <span class="kn">import</span> <span class="n">ensure_existence</span>
 <span class="kn">from</span> <span class="nn">warg</span> <span class="kn">import</span> <span class="n">Number</span>
 
-<span class="n">FORMAT_LIST</span> <span class="o">=</span> <span class="p">[</span><span
-                        class="s2">&quot;.mp4&quot;</span><span class="p">,</span> <span
-                        class="s2">&quot;.avi&quot;</span><span class="p">,</span> <span
-                        class="s2">&quot;.mkv&quot;</span><span class="p">,</span> <span
-                        class="s2">&quot;.flv&quot;</span><span class="p">,</span> <span
-                        class="s2">&quot;.mov&quot;</span><span class="p">]</span>
+<span class="n">FORMAT_LIST</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;.mp4&quot;</span><span class="p">,</span> <span class="s2">&quot;.avi&quot;</span><span class="p">,</span> <span class="s2">&quot;.mkv&quot;</span><span class="p">,</span> <span class="s2">&quot;.flv&quot;</span><span class="p">,</span> <span class="s2">&quot;.mov&quot;</span><span class="p">]</span>
 <span class="n">AUDIO_FORMAT</span> <span class="o">=</span> <span class="s2">&quot;.aac&quot;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;extract_frames&quot;</span><span
-                        class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;extract_frames&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="extract_frames"><a class="viewcode-back"
-                                                   href="../../../generated/draugr.ffmpeg_utilities.extract.extract_frames.html#draugr.ffmpeg_utilities.extract.extract_frames">[docs]</a><span
-        class="k">def</span> <span class="nf">extract_frames</span><span class="p">(</span>
+<div class="viewcode-block" id="extract_frames"><a class="viewcode-back" href="../../../generated/draugr.ffmpeg_utilities.extract.extract_frames.html#draugr.ffmpeg_utilities.extract.extract_frames">[docs]</a><span class="k">def</span> <span class="nf">extract_frames</span><span class="p">(</span>
     <span class="n">file_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
-    <span class="n">frame_out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span
-            class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span
-            class="p">,</span>
-    <span class="n">audio_out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span
-            class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span
-            class="p">,</span>
-    <span class="n">rate</span><span class="p">:</span> <span class="n">Number</span> <span class="o">=</span> <span
-            class="mi">25</span><span class="p">,</span>
-    <span class="n">frame_format</span><span class="p">:</span> <span class="nb">str</span> <span
-            class="o">=</span> <span class="s2">&quot;jpg&quot;</span><span class="p">,</span>
-    <span class="n">extract_sound</span><span class="p">:</span> <span class="nb">bool</span> <span
-            class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">ffmpeg_path</span><span class="p">:</span> <span class="n">Path</span> <span
-            class="o">=</span> <span class="s2">&quot;ffmpeg&quot;</span><span class="p">,</span>
+    <span class="n">frame_out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">audio_out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">rate</span><span class="p">:</span> <span class="n">Number</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="n">frame_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;jpg&quot;</span><span class="p">,</span>
+    <span class="n">extract_sound</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">ffmpeg_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="s2">&quot;ffmpeg&quot;</span><span class="p">,</span>
 <span class="p">):</span>
-    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">file_path</span><span
-            class="o">.</span><span class="n">parent</span>
-    <span class="k">if</span> <span class="n">frame_out_dir</span> <span class="ow">is</span> <span
-            class="kc">None</span><span class="p">:</span>
-        <span class="n">frame_out_dir</span> <span class="o">=</span> <span class="n">ensure_existence</span><span
-            class="p">(</span><span class="n">root_dir</span> <span class="o">/</span> <span class="s2">&quot;frames&quot;</span><span
-            class="p">)</span>
-    <span class="k">if</span> <span class="n">audio_out_dir</span> <span class="ow">is</span> <span
-            class="kc">None</span><span class="p">:</span>
-        <span class="n">audio_out_dir</span> <span class="o">=</span> <span class="n">ensure_existence</span><span
-            class="p">(</span><span class="n">frame_out_dir</span><span class="o">.</span><span class="n">parent</span> <span
-            class="o">/</span> <span class="s2">&quot;audio&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 
-    <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span
-            class="n">is_file</span><span class="p">()</span> <span class="ow">and</span> <span
-            class="n">file_path</span><span class="o">.</span><span class="n">suffix</span> <span
-            class="ow">in</span> <span class="n">FORMAT_LIST</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start extracting </span><span
-            class="si">{</span><span class="n">file_path</span><span class="si">}</span><span
-            class="s2"> frames&quot;</span><span class="p">)</span>
+<span class="sd">    :param file_path:</span>
+<span class="sd">    :type file_path:</span>
+<span class="sd">    :param frame_out_dir:</span>
+<span class="sd">    :type frame_out_dir:</span>
+<span class="sd">    :param audio_out_dir:</span>
+<span class="sd">    :type audio_out_dir:</span>
+<span class="sd">    :param rate:</span>
+<span class="sd">    :type rate:</span>
+<span class="sd">    :param frame_format:</span>
+<span class="sd">    :type frame_format:</span>
+<span class="sd">    :param extract_sound:</span>
+<span class="sd">    :type extract_sound:</span>
+<span class="sd">    :param ffmpeg_path:</span>
+<span class="sd">    :type ffmpeg_path:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">root_dir</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">parent</span>
+    <span class="k">if</span> <span class="n">frame_out_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">frame_out_dir</span> <span class="o">=</span> <span class="n">ensure_existence</span><span class="p">(</span><span class="n">root_dir</span> <span class="o">/</span> <span class="n">file_path</span><span class="o">.</span><span class="n">stem</span> <span class="o">/</span> <span class="s2">&quot;frames&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">audio_out_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">audio_out_dir</span> <span class="o">=</span> <span class="n">ensure_existence</span><span class="p">(</span><span class="n">frame_out_dir</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">&quot;audio&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span> <span class="ow">and</span> <span class="n">file_path</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">in</span> <span class="n">FORMAT_LIST</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start extracting </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> frames&quot;</span><span class="p">)</span>
         <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="nb">str</span><span class="p">(</span><span class="n">ffmpeg_path</span><span
-            class="p">),</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">ffmpeg_path</span><span class="p">),</span>
                 <span class="s2">&quot;-i&quot;</span><span class="p">,</span>
                 <span class="n">file_path</span><span class="p">,</span>
                 <span class="s2">&quot;-r&quot;</span><span class="p">,</span>
@@ -107,127 +92,110 @@
                 <span class="s2">&quot;-y&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;-qscale:v&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-                <span class="nb">str</span><span class="p">(</span><span class="n">frame_out_dir</span> <span class="o">/</span> <span
-            class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span
-            class="n">file_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span
-            class="s2">-%05d.</span><span class="si">{</span><span class="n">frame_format</span><span
-            class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">frame_out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;%d.</span><span class="si">{</span><span class="n">frame_format</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
             <span class="p">]</span>
         <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;end extracting </span><span
-            class="si">{</span><span class="n">file_path</span><span class="si">}</span><span
-            class="s2"> frames&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;end extracting </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> frames&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">extract_sound</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start extracting </span><span
-            class="si">{</span><span class="n">file_path</span><span class="si">}</span><span
-            class="s2"> audio&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start extracting </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> audio&quot;</span><span class="p">)</span>
             <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
                 <span class="p">[</span>
-                    <span class="nb">str</span><span class="p">(</span><span class="n">ffmpeg_path</span><span
-            class="p">),</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">ffmpeg_path</span><span class="p">),</span>
                     <span class="s2">&quot;-i&quot;</span><span class="p">,</span>
                     <span class="n">file_path</span><span class="p">,</span>
                     <span class="s2">&quot;-vn&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;-acodec&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;copy&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;-y&quot;</span><span class="p">,</span>
-                    <span class="nb">str</span><span class="p">(</span><span class="n">audio_out_dir</span> <span
-            class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span
-            class="n">file_path</span><span class="o">.</span><span class="n">name</span><span class="si">}{</span><span
-            class="n">AUDIO_FORMAT</span><span class="si">}</span><span class="s2">&quot;</span><span
-            class="p">),</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">audio_out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;track</span><span class="si">{</span><span class="n">AUDIO_FORMAT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
                 <span class="p">]</span>
             <span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;end extracting </span><span
-            class="si">{</span><span class="n">file_path</span><span class="si">}</span><span
-            class="s2"> audio&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;end extracting </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> audio&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span
-            class="s2">&quot;</span><span class="si">{</span><span class="n">file_path</span><span
-            class="si">}</span><span class="s2"> is not a video file&quot;</span><span class="p">)</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> is not a video file&quot;</span><span class="p">)</span></div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span
-                        class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">extract_frames</span><span class="p">(</span>
-        <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span
-                        class="o">/</span> <span class="s2">&quot;Downloads&quot;</span> <span class="o">/</span> <span
-                        class="s2">&quot;brandt.mp4&quot;</span><span class="p">,</span>
-        <span class="n">ffmpeg_path</span><span class="o">=</span><span class="n">Path</span><span
-                        class="o">.</span><span class="n">home</span><span class="p">()</span>
-        <span class="o">/</span> <span class="s2">&quot;Downloads&quot;</span>
-        <span class="o">/</span> <span class="s2">&quot;ffmpeg-5.0-essentials_build&quot;</span>
+        <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;DataWin&quot;</span> <span class="o">/</span> <span class="s2">&quot;DeepFake&quot;</span> <span class="o">/</span> <span class="s2">&quot;Frontier&quot;</span> <span class="o">/</span> <span class="s2">&quot;Originals&quot;</span> <span class="o">/</span> <span class="s2">&quot;thomas_old_high_res.mp4&quot;</span><span class="p">,</span>
+        <span class="n">ffmpeg_path</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+        <span class="o">/</span> <span class="s2">&quot;OneDrive - Alexandra Instituttet&quot;</span>
+        <span class="o">/</span> <span class="s2">&quot;Applications&quot;</span>
         <span class="o">/</span> <span class="s2">&quot;ffmpeg-5.0-essentials_build&quot;</span>
         <span class="o">/</span> <span class="s2">&quot;bin&quot;</span>
         <span class="o">/</span> <span class="s2">&quot;ffmpeg.exe&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-</pre>
-                </div>
+</pre></div>
 
-            </div>
-
+          </div>
+          
         </div>
-    </div>
-    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-            <h1 class="logo"><a href="../../../index.html">Draugr</a></h1>
+<h1 class="logo"><a href="../../../index.html">Draugr</a></h1>
 
 
-            <h3>Navigation</h3>
-            <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../generated/draugr.html">draugr</a>
-                </li>
-            </ul>
-            <p class="caption" role="heading"><span class="caption-text">Notes</span></p>
-            <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting
-                    Started</a></li>
-            </ul>
 
-            <div class="relations">
-                <h3>Related Topics</h3>
-                <ul>
-                    <li><a href="../../../index.html">Documentation overview</a>
-                        <ul>
-                            <li><a href="../../index.html">Module code</a>
-                                <ul>
-                                    <li><a href="../../draugr.html">draugr</a>
-                                        <ul>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div id="searchbox" style="display: none" role="search">
-                <h3 id="searchlabel">Quick search</h3>
-                <div class="searchformwrapper">
-                    <form class="search" action="../../../search.html" method="get">
-                        <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off"
-                               autocapitalize="off" spellcheck="false"/>
-                        <input type="submit" value="Go"/>
-                    </form>
-                </div>
-            </div>
-            <script>$('#searchbox').show(0);</script>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  <li><a href="../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
 
 
         </div>
+      </div>
+      <div class="clearer"></div>
     </div>
-    <div class="clearer"></div>
-</div>
-<div class="footer">
-    &copy;.
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
 
-    |
-    Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
-    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+    
 
-</div>
-
-
-</body>
+    
+  </body>
 </html>

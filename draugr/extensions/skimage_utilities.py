@@ -38,6 +38,7 @@ def rgb_to_grayscale(obs: Any) -> Any:
 if __name__ == "__main__":
 
     def asuijhd():
+        """ """
         a = numpy.expand_dims(numpy.eye(5), -1)
         b = numpy.expand_dims(numpy.flip(numpy.eye(5), 0), -1)
         c = numpy.expand_dims(numpy.ones((5, 5)), -1)

@@ -13,6 +13,13 @@ __all__ = ["mix_channels"]
 
 
 def mix_channels(raster: numpy.ndarray) -> numpy.ndarray:
+    """
+
+    :param raster:
+    :type raster:
+    :return:
+    :rtype:
+    """
     # TODO: MAYBE ASSERT SHAPE?
     num_channels = raster.shape[-1]
     return numpy.dot(

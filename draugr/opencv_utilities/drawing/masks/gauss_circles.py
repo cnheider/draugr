@@ -10,6 +10,21 @@ from draugr.opencv_utilities import LineTypeEnum
 
 
 def ellipse_bbox(h, k, a, b, theta):
+    """
+
+    :param h:
+    :type h:
+    :param k:
+    :type k:
+    :param a:
+    :type a:
+    :param b:
+    :type b:
+    :param theta:
+    :type theta:
+    :return:
+    :rtype:
+    """
     ux = a * math.cos(theta)
     uy = a * math.sin(theta)
     vx = b * math.cos(theta + math.pi / 2)
@@ -26,6 +41,25 @@ def ellipse_bbox(h, k, a, b, theta):
 
 # Rotated elliptical gradient - slow, Python-only approach
 def make_gradient_v1(width, height, h, k, a, b, theta):
+    """
+
+    :param width:
+    :type width:
+    :param height:
+    :type height:
+    :param h:
+    :type h:
+    :param k:
+    :type k:
+    :param a:
+    :type a:
+    :param b:
+    :type b:
+    :param theta:
+    :type theta:
+    :return:
+    :rtype:
+    """
     # Precalculate constants
     st, ct = math.sin(theta), math.cos(theta)
     aa, bb = a**2, b**2
@@ -44,6 +78,25 @@ def make_gradient_v1(width, height, h, k, a, b, theta):
 
 # Rotated elliptical gradient - faster, vectorized numpy approach
 def make_gradient_v2(width, height, h, k, a, b, theta):
+    """
+
+    :param width:
+    :type width:
+    :param height:
+    :type height:
+    :param h:
+    :type h:
+    :param k:
+    :type k:
+    :param a:
+    :type a:
+    :param b:
+    :type b:
+    :param theta:
+    :type theta:
+    :return:
+    :rtype:
+    """
     # Precalculate constants
     st, ct = math.sin(theta), math.cos(theta)
     aa, bb = a**2, b**2
@@ -66,6 +119,21 @@ if __name__ == "__main__":
     basep = ensure_existence(Path("exclude"))
 
     def draw_image(a, b, theta, inner_scale, save_intermediate=False):
+        """
+
+        :param a:
+        :type a:
+        :param b:
+        :type b:
+        :param theta:
+        :type theta:
+        :param inner_scale:
+        :type inner_scale:
+        :param save_intermediate:
+        :type save_intermediate:
+        :return:
+        :rtype:
+        """
         # Calculate the image size needed to draw this and center the ellipse
         _, (h, k) = ellipse_bbox(0, 0, a, b, theta)  # Ellipse center
         h += 2  # Add small margin

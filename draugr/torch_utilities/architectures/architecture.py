@@ -42,6 +42,11 @@ class Architecture(nn.Module, ABC):
         return self._output_shape
 
     def sample_input(self) -> Any:
+        """
+
+        :return:
+        :rtype:
+        """
         return torch.empty(1, *self.input_shape, device="cpu")
 
     def __repr__(self):

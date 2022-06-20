@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../../_static/jquery.js"></script>
+    <script src="../../../../../../_static/underscore.js"></script>
+    <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/torch_utilities/datasets/supervised/vision_datasets/dict_dataset.html" />
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Christian Heider Nielsen&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">           Created on 21/07/2020</span>
+<span class="s2">           &quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">torchvision.datasets</span> <span class="kn">import</span> <span class="n">VisionDataset</span>  <span class="c1"># TODO: Do not need to be images</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DictDatasetFolder&quot;</span><span class="p">,</span> <span class="s2">&quot;SplitDictDatasetFolder&quot;</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">torchvision.datasets.folder</span> <span class="kn">import</span> <span class="n">has_file_allowed_extension</span>
+
+<span class="kn">from</span> <span class="nn">draugr.numpy_utilities</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SplitEnum</span><span class="p">,</span>
+    <span class="n">build_flat_dataset</span><span class="p">,</span>
+    <span class="n">build_shallow_categorical_dataset</span><span class="p">,</span>
+    <span class="n">select_split</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="SplitDictDatasetFolder"><a class="viewcode-back" href="../../../../../../generated/draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset.SplitDictDatasetFolder.html#draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset.SplitDictDatasetFolder">[docs]</a><span class="k">class</span> <span class="nc">SplitDictDatasetFolder</span><span class="p">(</span><span class="n">VisionDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A generic data loader where the samples are arranged in this way: ::</span>
+
+<span class="sd">    root/class_x/xxx.ext</span>
+<span class="sd">    root/class_x/xxy.ext</span>
+<span class="sd">    root/class_x/xxz.ext</span>
+
+<span class="sd">    root/class_y/123.ext</span>
+<span class="sd">    root/class_y/nsdf3.ext</span>
+<span class="sd">    root/class_y/asd932_.ext</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    root (string): Root directory path.</span>
+<span class="sd">    loader (callable): A function to load a sample given its path.</span>
+<span class="sd">    extensions (tuple[string]): A list of allowed extensions.</span>
+<span class="sd">        both extensions and is_valid_file should not be passed.</span>
+<span class="sd">    transform (callable, optional): A function/transform that takes in</span>
+<span class="sd">        a sample and returns a transformed version.</span>
+<span class="sd">        E.g, ``transforms.RandomCrop`` for images.</span>
+<span class="sd">    target_transform (callable, optional): A function/transform that takes</span>
+<span class="sd">        in the target and transforms it.</span>
+<span class="sd">    is_valid_file (callable, optional): A function that takes path of a file</span>
+<span class="sd">        and check if the file is a valid file (used to check of corrupt files)</span>
+<span class="sd">        both extensions and is_valid_file should not be passed.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    _categories (list): List of the class names sorted alphabetically.</span>
+<span class="sd">    _data_categories (list): List of (sample path, class_index) tuples&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SplitDictDatasetFolder.__init__"><a class="viewcode-back" href="../../../../../../generated/draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset.SplitDictDatasetFolder.html#draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset.SplitDictDatasetFolder.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">root</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+        <span class="n">loader</span><span class="p">:</span> <span class="n">DataLoader</span><span class="p">,</span>
+        <span class="n">extensions</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">transform</span><span class="p">:</span> <span class="n">callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">target_transform</span><span class="p">:</span> <span class="n">callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">split</span><span class="p">:</span> <span class="n">SplitEnum</span> <span class="o">=</span> <span class="n">SplitEnum</span><span class="o">.</span><span class="n">training</span><span class="p">,</span>
+        <span class="n">valid_percentage</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">test_percentage</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">callable</span> <span class="o">=</span> <span class="n">has_file_allowed_extension</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span>
+        <span class="p">)</span>
+        <span class="c1"># TODO: merge Split and non split common in a base class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_categories</span> <span class="o">=</span> <span class="n">select_split</span><span class="p">(</span>
+            <span class="n">build_shallow_categorical_dataset</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span>
+                <span class="n">extensions</span><span class="o">=</span><span class="n">extensions</span><span class="p">,</span>
+                <span class="n">testing_percentage</span><span class="o">=</span><span class="n">test_percentage</span><span class="p">,</span>
+                <span class="n">validation_percentage</span><span class="o">=</span><span class="n">valid_percentage</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">split</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_categories</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Found 0 categories in sub-folders of: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">extensions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Supported extensions are: </span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extensions</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">loader</span> <span class="o">=</span> <span class="n">loader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extensions</span> <span class="o">=</span> <span class="n">extensions</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_categories</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">for</span> <span class="n">cat</span><span class="p">,</span> <span class="n">cl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">cl</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning category </span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s2"> has </span><span class="si">{</span><span class="n">cl</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">category_names</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span><span class="o">.</span><span class="n">keys</span><span class="p">(),)</span></div>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Non-pure implementation! Index maybe not map to the same item as target randomly sampled</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        index (int): Index</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        tuple: (sample, target) where target is class_index of the target class.&quot;&quot;&quot;</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">category_names</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_categories</span><span class="p">[</span><span class="n">target</span><span class="p">][</span><span class="n">index</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span><span class="p">[</span><span class="n">target</span><span class="p">]]</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample</span><span class="p">,</span> <span class="n">target</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span></div>
+
+
+<div class="viewcode-block" id="DictDatasetFolder"><a class="viewcode-back" href="../../../../../../generated/draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset.DictDatasetFolder.html#draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset.DictDatasetFolder">[docs]</a><span class="k">class</span> <span class="nc">DictDatasetFolder</span><span class="p">(</span><span class="n">VisionDataset</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A generic data loader where the samples are arranged in this way: ::</span>
+
+<span class="sd">    root/class_x/xxx.ext</span>
+<span class="sd">    root/class_x/xxy.ext</span>
+<span class="sd">    root/class_x/xxz.ext</span>
+
+<span class="sd">    root/class_y/123.ext</span>
+<span class="sd">    root/class_y/nsdf3.ext</span>
+<span class="sd">    root/class_y/asd932_.ext</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    root (string): Root directory path.</span>
+<span class="sd">    loader (callable): A function to load a sample given its path.</span>
+<span class="sd">    extensions (tuple[string]): A list of allowed extensions.</span>
+<span class="sd">        both extensions and is_valid_file should not be passed.</span>
+<span class="sd">    transform (callable, optional): A function/transform that takes in</span>
+<span class="sd">        a sample and returns a transformed version.</span>
+<span class="sd">        E.g, ``transforms.RandomCrop`` for images.</span>
+<span class="sd">    target_transform (callable, optional): A function/transform that takes</span>
+<span class="sd">        in the target and transforms it.</span>
+<span class="sd">    is_valid_file (callable, optional): A function that takes path of a file</span>
+<span class="sd">        and check if the file is a valid file (used to check of corrupt files)</span>
+<span class="sd">        both extensions and is_valid_file should not be passed.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    _categories (list): List of the class names sorted alphabetically.</span>
+<span class="sd">    _data (list): List of (sample path, class_index) tuples&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DictDatasetFolder.__init__"><a class="viewcode-back" href="../../../../../../generated/draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset.DictDatasetFolder.html#draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset.DictDatasetFolder.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">root</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+        <span class="n">loader</span><span class="p">:</span> <span class="n">DataLoader</span><span class="p">,</span>
+        <span class="n">extensions</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">transform</span><span class="p">:</span> <span class="n">callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">target_transform</span><span class="p">:</span> <span class="n">callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">callable</span> <span class="o">=</span> <span class="n">has_file_allowed_extension</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span>
+        <span class="p">)</span>
+        <span class="c1"># TODO: merge Split and non split common in a base class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">build_flat_dataset</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">extensions</span><span class="o">=</span><span class="n">extensions</span><span class="p">,</span> <span class="n">is_valid_file</span><span class="o">=</span><span class="n">is_valid_file</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Found 0 files in sub-folders of: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">extensions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Supported extensions are: </span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extensions</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">loader</span> <span class="o">=</span> <span class="n">loader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extensions</span> <span class="o">=</span> <span class="n">extensions</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">category_names</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span><span class="o">.</span><span class="n">keys</span><span class="p">(),)</span></div>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Non-pure implementation! Index maybe not map to the same item as target randomly sampled</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        index (int): Index</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        tuple: (sample, target) where target is class_index of the target class.&quot;&quot;&quot;</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">category_names</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">target</span><span class="p">][</span><span class="n">index</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span><span class="p">[</span><span class="n">target</span><span class="p">]])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sample</span><span class="p">,</span> <span class="n">target</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">category_sizes</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../../index.html">Module code</a><ul>
+  <li><a href="../../../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

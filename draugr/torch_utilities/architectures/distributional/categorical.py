@@ -19,6 +19,13 @@ __all__ = ["MultipleCategoricalMLP", "CategoricalMLP"]
 class MultipleCategoricalMLP(MLP):
     @staticmethod
     def sample(distributions) -> Tuple:
+        """
+
+        :param distributions:
+        :type distributions:
+        :return:
+        :rtype:
+        """
         actions = [d.sample() for d in distributions][0]
 
         log_prob = [d.log_prob(action) for d, action in zip(distributions, actions)][0]
@@ -28,9 +35,25 @@ class MultipleCategoricalMLP(MLP):
 
     @staticmethod
     def entropy(distributions) -> torch.tensor:
+        """
+
+        :param distributions:
+        :type distributions:
+        :return:
+        :rtype:
+        """
         return torch.mean(to_tensor([d.entropy() for d in distributions]))
 
     def forward(self, *x, **kwargs) -> List:
+        """
+
+        :param x:
+        :type x:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         out = super().forward(*x, **kwargs)
         outs = []
         for o in out:
@@ -41,6 +64,15 @@ class MultipleCategoricalMLP(MLP):
 
 class CategoricalMLP(MLP):
     def forward(self, *x, **kwargs) -> Categorical:
+        """
+
+        :param x:
+        :type x:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         return Categorical(
             logits=functional.log_softmax(super().forward(*x, **kwargs), dim=-1)
         )
@@ -49,6 +81,7 @@ class CategoricalMLP(MLP):
 if __name__ == "__main__":
 
     def multi_cat():
+        """ """
         s = (2, 2)
         a = (2, 2)
         model = MultipleCategoricalMLP(input_shape=s, output_shape=a)
@@ -57,6 +90,7 @@ if __name__ == "__main__":
         print(model.sample(model(inp, inp)))
 
     def single_cat():
+        """ """
         s = (1, 2)
         a = (2,)
         model = CategoricalMLP(input_shape=s, output_shape=a)
@@ -66,6 +100,7 @@ if __name__ == "__main__":
         print(model(inp, inp2).sample())
 
     def single_cat2():
+        """ """
         s = (4,)
         a = (2,)
         model = CategoricalMLP(input_shape=s, output_shape=a)

@@ -11,6 +11,13 @@ __all__ = ["merge_video"]
 
 
 def get_frame_format(frames_dir) -> str:
+    """
+
+    :param frames_dir:
+    :type frames_dir:
+    :return:
+    :rtype:
+    """
     for file_ in os.listdir(frames_dir):
         if os.path.splitext(file_)[-1].lower() in [".jpg", ".png"]:
             return os.path.splitext(file_)[-1].lower()
@@ -24,6 +31,21 @@ def merge_video(
     merge_rate: Number = 25,
     ffmpeg_path: Path = "ffmpeg",
 ):
+    """
+
+    :param frames_dir:
+    :type frames_dir:
+    :param merge_audio:
+    :type merge_audio:
+    :param audio_dir:
+    :type audio_dir:
+    :param merge_dir:
+    :type merge_dir:
+    :param merge_rate:
+    :type merge_rate:
+    :param ffmpeg_path:
+    :type ffmpeg_path:
+    """
     postfix = ""  # "_00"
     vid_dir = frames_dir.parent
 

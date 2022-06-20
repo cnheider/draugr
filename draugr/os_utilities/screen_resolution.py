@@ -12,6 +12,11 @@ import sys
 
 
 def screen_res_xlib():
+    """
+
+    :return:
+    :rtype:
+    """
     import xlib
 
     root = xlib.display.Display().screen().root
@@ -19,12 +24,22 @@ def screen_res_xlib():
 
 
 def screen_res_pygame():
+    """
+
+    :return:
+    :rtype:
+    """
     import pygame
 
     return pygame.display.Info().current_w, pygame.display.Info().current_h
 
 
 def screen_res_gtk():
+    """
+
+    :return:
+    :rtype:
+    """
     import gtk
 
     screen = gtk.Window().get_screen()
@@ -32,6 +47,11 @@ def screen_res_gtk():
 
 
 def screen_res_tk():
+    """
+
+    :return:
+    :rtype:
+    """
     import Tkinter
 
     root = Tkinter.Tk()
@@ -41,6 +61,11 @@ def screen_res_tk():
 
 
 def screen_res_win():
+    """
+
+    :return:
+    :rtype:
+    """
     import ctypes.wintypes
 
     return ctypes.windll.user32.GetSystemMetrics(
@@ -49,6 +74,11 @@ def screen_res_win():
 
 
 def screen_res_mac():
+    """
+
+    :return:
+    :rtype:
+    """
     try:
         import Quartz
     except:
@@ -62,6 +92,11 @@ def screen_res_mac():
 
 
 def get_screen_resolution():
+    """
+
+    :return:
+    :rtype:
+    """
     if sys.platform == "win32":
         return screen_res_win()
     elif sys.platform == "darwin":

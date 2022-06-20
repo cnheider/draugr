@@ -27,6 +27,7 @@ to_be_saved = {}
 
 
 def init():
+    """ """
     global config
     config = {
         "img_default_width": 600,
@@ -41,6 +42,13 @@ def init():
 
 
 def ffilter(img):
+    """
+
+    :param img:
+    :type img:
+    :return:
+    :rtype:
+    """
     gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     gray_image = cv2.GaussianBlur(
         gray_image, (config["gaussian_default"], config["gaussian_default"]), 0
@@ -101,11 +109,23 @@ def ffilter(img):
 
 
 def set_image(img):
+    """
+
+    :param img:
+    :type img:
+    """
     img_box.configure(image=img)
     img_box.image = img
 
 
 def load_config(directory, file):
+    """
+
+    :param directory:
+    :type directory:
+    :param file:
+    :type file:
+    """
     global config
     try:
 
@@ -125,6 +145,7 @@ def load_config(directory, file):
 
 
 def load_next():
+    """ """
     global to_be_saved
     if files:
         file_path = next(files)
@@ -171,6 +192,11 @@ def load_next():
 
 
 def scales_onchange(event):
+    """
+
+    :param event:
+    :type event:
+    """
     global config
     config["gaussian_default"] = sld_gaussian.get()
     config["median_default"] = sld_median.get()
@@ -181,12 +207,20 @@ def scales_onchange(event):
 
 
 def show_info(msg, remove_image=True):
+    """
+
+    :param msg:
+    :type msg:
+    :param remove_image:
+    :type remove_image:
+    """
     if remove_image:
         set_image("")
     info_box.config(text=msg)
 
 
 def save():
+    """ """
     if (
         "circles" in to_be_saved
         and "file" in to_be_saved
@@ -253,11 +287,13 @@ def save():
 
 
 def save_and_load_next():
+    """ """
     save()
     load_next()
 
 
 def reset():
+    """ """
     init()
     sld_gaussian.set(config["gaussian_default"])
     sld_median.set(config["median_default"])

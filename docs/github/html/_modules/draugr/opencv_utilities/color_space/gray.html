@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.opencv_utilities.color_space.gray &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/color_space/gray.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.opencv_utilities.color_space.gray</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">sorcery</span> <span class="kn">import</span> <span class="n">assigned_names</span>
+
+<span class="kn">from</span> <span class="nn">draugr.opencv_utilities.color_space.color</span> <span class="kn">import</span> <span class="n">is_singular_channel</span>
+<span class="kn">from</span> <span class="nn">draugr.opencv_utilities.namespaces.color_conversion_enum</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ColorConversionEnum</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ToGrayMethodEnum&quot;</span><span class="p">,</span> <span class="s2">&quot;to_gray&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ToGrayMethodEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.color_space.gray.ToGrayMethodEnum.html#draugr.opencv_utilities.color_space.gray.ToGrayMethodEnum">[docs]</a><span class="k">class</span> <span class="nc">ToGrayMethodEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">gray</span><span class="p">,</span> <span class="n">rgb</span><span class="p">,</span> <span class="n">hsv</span><span class="p">,</span> <span class="n">ycrcb</span><span class="p">,</span> <span class="n">yuv</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">luv</span> <span class="o">=</span> <span class="n">assigned_names</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="to_gray"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.color_space.gray.to_gray.html#draugr.opencv_utilities.color_space.gray.to_gray">[docs]</a><span class="k">def</span> <span class="nf">to_gray</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">component</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">to_gray_method</span><span class="p">:</span> <span class="n">ToGrayMethodEnum</span> <span class="o">=</span> <span class="n">ToGrayMethodEnum</span><span class="o">.</span><span class="n">gray</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    convert from the default bgr cv2 format to gray, using a single component</span>
+
+<span class="sd">    :param image:</span>
+<span class="sd">    :type image:</span>
+<span class="sd">    :param component:</span>
+<span class="sd">    :type component:</span>
+<span class="sd">    :param to_gray_method:</span>
+<span class="sd">    :type to_gray_method:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_singular_channel</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+        <span class="n">to_gray_method</span> <span class="o">=</span> <span class="n">ToGrayMethodEnum</span><span class="p">(</span><span class="n">to_gray_method</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_gray_method</span> <span class="o">==</span> <span class="n">to_gray_method</span><span class="o">.</span><span class="n">gray</span><span class="p">:</span>
+            <span class="c1"># Weighted sum of the three channels</span>
+            <span class="c1"># 0.299*R + 0.587*G + 0.114*B</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">bgr2gray</span><span class="o">.</span><span class="n">value</span><span class="p">),)</span>
+        <span class="k">elif</span> <span class="n">to_gray_method</span> <span class="o">==</span> <span class="n">ToGrayMethodEnum</span><span class="o">.</span><span class="n">rgb</span><span class="p">:</span>  <span class="c1"># Red Green Blue</span>
+            <span class="c1"># Pick a single channel</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">bgr2rgb</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span>
+            <span class="n">to_gray_method</span> <span class="o">==</span> <span class="n">ToGrayMethodEnum</span><span class="o">.</span><span class="n">hsv</span>
+        <span class="p">):</span>  <span class="c1"># Hue ( Dominant Wavelength ) S – Saturation ( Purity / shades of the color ) V – Value ( Intensity )</span>
+            <span class="c1"># The H Component is very similar in both the images which indicates the color information is intact even under illumination changes.</span>
+            <span class="c1"># The S component is also very similar in both images.</span>
+            <span class="c1"># The V Component captures the amount of light falling on it thus it changes due to illumination changes.</span>
+            <span class="c1"># There is drastic difference between the values of the red piece of outdoor and Indoor image. This is because Hue is represented as a circle and red is at the starting angle. So, it may take values between [300, 360] and again [0, 60].</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">bgr2hsv</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span>
+            <span class="n">to_gray_method</span> <span class="o">==</span> <span class="n">ToGrayMethodEnum</span><span class="o">.</span><span class="n">ycrcb</span>
+        <span class="p">):</span>  <span class="c1"># Y – Luma ( Luminance ) Cb – Chroma Blue ( Color ) Cr – Chroma Red ( Color )</span>
+            <span class="c1"># Y – Luminance or Luma component obtained from RGB after gamma correction.</span>
+            <span class="c1"># Cr = R – Y ( how far is the red component from Luma ).</span>
+            <span class="c1"># Cb = B – Y ( how far is the blue component from Luma ).</span>
+            <span class="c1"># Similar observations as LAB can be made for Intensity and color components with regard to Illumination changes.</span>
+            <span class="c1"># Perceptual difference between Red and Orange is less even in the outdoor image as compared to LAB.</span>
+            <span class="c1"># White has undergone change in all 3 components.</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">bgr2ycrcb</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">to_gray_method</span> <span class="o">==</span> <span class="n">ToGrayMethodEnum</span><span class="o">.</span><span class="n">yuv</span><span class="p">:</span>
+            <span class="c1"># Y, a measure of overall brightness or luminance. U and V are computed as scaled differences between Y′ and the B and R values.</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">bgr2yuv</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span>
+            <span class="n">to_gray_method</span> <span class="o">==</span> <span class="n">to_gray_method</span><span class="o">.</span><span class="n">lab</span>
+        <span class="p">):</span>  <span class="c1"># L – Lightness ( Brightness ) a – Green-Magenta ( Green - Red ) b – Blue-Yellow ( Blue - Red )</span>
+            <span class="c1"># Illumination has mostly affected the L component.</span>
+            <span class="c1"># The A and B components which contain the color information did not undergo massive changes.</span>
+            <span class="c1"># The respective values of Green, Orange and Red ( which are the extremes of the A Component ) has not changed in the B Component and similarly the respective values of Blue and Yellow ( which are the extremes of the B Component ) has not changed in the A component.</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">bgr2lab</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">to_gray_method</span> <span class="o">==</span> <span class="n">to_gray_method</span><span class="o">.</span><span class="n">luv</span><span class="p">:</span>
+            <span class="c1"># LUV decouple the &quot;color&quot; (chromaticity, the UV part) and &quot;lightness&quot; (luminance, the L part)</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ColorConversionEnum</span><span class="o">.</span><span class="n">bgr2luv</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">return</span> <span class="n">components</span><span class="p">[</span><span class="n">component</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">image</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  <li><a href="../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

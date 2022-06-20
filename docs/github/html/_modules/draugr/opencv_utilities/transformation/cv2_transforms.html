@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.opencv_utilities.transformation.cv2_transforms &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/transformation/cv2_transforms.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.opencv_utilities.transformation.cv2_transforms</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">PIL.ImageTransform</span> <span class="kn">import</span> <span class="n">Transform</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;CV2Compose&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lambda&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ConvertFromInts&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SubtractMeans&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2ToAbsoluteCoords&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2ToPercentCoords&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2Resize&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2RandomSaturation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2RandomHue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2RandomLightingNoise&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2ConvertColor&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2RandomContrast&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2RandomBrightness&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2RandomSampleCrop&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2Expand&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2RandomMirror&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2SwapChannels&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CV2PhotometricDistort&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">draugr.opencv_utilities.bounding_boxes.evaluation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">jaccard_overlap_numpy</span><span class="p">,</span>
+    <span class="n">remove_null_boxes</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">warg</span> <span class="kn">import</span> <span class="n">TripleNumber</span>
+
+
+<div class="viewcode-block" id="CV2Compose"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2Compose.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2Compose">[docs]</a><span class="k">class</span> <span class="nc">CV2Compose</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Composes several augmentations together.</span>
+<span class="sd">    Args:</span>
+<span class="sd">    transforms (List[Transform]): list of transforms to compose.</span>
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; augmentations.Compose([</span>
+<span class="sd">    &gt;&gt;&gt;     transforms.CenterCrop(10),</span>
+<span class="sd">    &gt;&gt;&gt;     transforms.ToTensor(),</span>
+<span class="sd">    &gt;&gt;&gt; ])&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2Compose.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2Compose.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2Compose.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transforms</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transforms</span> <span class="o">=</span> <span class="n">transforms</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transforms</span><span class="p">:</span>
+            <span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">boxes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">remove_null_boxes</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="Lambda"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.Lambda.html#draugr.opencv_utilities.transformation.cv2_transforms.Lambda">[docs]</a><span class="k">class</span> <span class="nc">Lambda</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Applies a lambda as a transform.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Lambda.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.Lambda.html#draugr.opencv_utilities.transformation.cv2_transforms.Lambda.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambd</span><span class="p">:</span> <span class="n">callable</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lambd</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">LambdaType</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambd</span> <span class="o">=</span> <span class="n">lambd</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">boxes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambd</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConvertFromInts"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.ConvertFromInts.html#draugr.opencv_utilities.transformation.cv2_transforms.ConvertFromInts">[docs]</a><span class="k">class</span> <span class="nc">ConvertFromInts</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">boxes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="SubtractMeans"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.SubtractMeans.html#draugr.opencv_utilities.transformation.cv2_transforms.SubtractMeans">[docs]</a><span class="k">class</span> <span class="nc">SubtractMeans</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SubtractMeans.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.SubtractMeans.html#draugr.opencv_utilities.transformation.cv2_transforms.SubtractMeans.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">boxes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span>
+        <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2ToAbsoluteCoords"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2ToAbsoluteCoords.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2ToAbsoluteCoords">[docs]</a><span class="k">class</span> <span class="nc">CV2ToAbsoluteCoords</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">boxes</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">channels</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">width</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*=</span> <span class="n">width</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">height</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*=</span> <span class="n">height</span>
+
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2ToPercentCoords"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2ToPercentCoords.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2ToPercentCoords">[docs]</a><span class="k">class</span> <span class="nc">CV2ToPercentCoords</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">channels</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/=</span> <span class="n">width</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">/=</span> <span class="n">width</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/=</span> <span class="n">height</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">/=</span> <span class="n">height</span>
+
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2Resize"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2Resize.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2Resize">[docs]</a><span class="k">class</span> <span class="nc">CV2Resize</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2Resize.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2Resize.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2Resize.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2RandomSaturation"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomSaturation.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomSaturation">[docs]</a><span class="k">class</span> <span class="nc">CV2RandomSaturation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2RandomSaturation.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomSaturation.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomSaturation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lower</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lower</span> <span class="o">=</span> <span class="n">lower</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upper</span> <span class="o">=</span> <span class="n">upper</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">upper</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="s2">&quot;contrast upper must be &gt;= lower.&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;contrast lower must be non-negative.&quot;</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">upper</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2RandomHue"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomHue.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomHue">[docs]</a><span class="k">class</span> <span class="nc">CV2RandomHue</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2RandomHue.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomHue.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomHue.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">18.0</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">delta</span> <span class="o">&lt;=</span> <span class="mf">360.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta</span> <span class="o">=</span> <span class="n">delta</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">delta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta</span><span class="p">)</span>
+            <span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">360.0</span><span class="p">]</span> <span class="o">-=</span> <span class="mf">360.0</span>
+            <span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">360.0</span>
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2RandomLightingNoise"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomLightingNoise.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomLightingNoise">[docs]</a><span class="k">class</span> <span class="nc">CV2RandomLightingNoise</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2RandomLightingNoise.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomLightingNoise.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomLightingNoise.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">perms</span> <span class="o">=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">swap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">perms</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">perms</span><span class="p">))]</span>
+            <span class="n">shuffle</span> <span class="o">=</span> <span class="n">CV2SwapChannels</span><span class="p">(</span><span class="n">swap</span><span class="p">)</span>  <span class="c1"># shuffle channels</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2ConvertColor"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2ConvertColor.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2ConvertColor">[docs]</a><span class="k">class</span> <span class="nc">CV2ConvertColor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2ConvertColor.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2ConvertColor.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2ConvertColor.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">transform</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">current</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">==</span> <span class="s2">&quot;BGR&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">==</span> <span class="s2">&quot;HSV&quot;</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2HSV</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">==</span> <span class="s2">&quot;RGB&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">==</span> <span class="s2">&quot;HSV&quot;</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2HSV</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">==</span> <span class="s2">&quot;BGR&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">==</span> <span class="s2">&quot;RGB&quot;</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">==</span> <span class="s2">&quot;HSV&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">==</span> <span class="s2">&quot;BGR&quot;</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HSV2BGR</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">==</span> <span class="s2">&quot;HSV&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">==</span> <span class="s2">&quot;RGB&quot;</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_HSV2RGB</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2RandomContrast"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomContrast.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomContrast">[docs]</a><span class="k">class</span> <span class="nc">CV2RandomContrast</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2RandomContrast.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomContrast.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomContrast.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lower</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lower</span> <span class="o">=</span> <span class="n">lower</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upper</span> <span class="o">=</span> <span class="n">upper</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">upper</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="s2">&quot;contrast upper must be &gt;= lower.&quot;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;contrast lower must be non-negative.&quot;</span></div>
+
+    <span class="c1"># expects float image</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">upper</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">*=</span> <span class="n">alpha</span>
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2RandomBrightness"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomBrightness.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomBrightness">[docs]</a><span class="k">class</span> <span class="nc">CV2RandomBrightness</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2RandomBrightness.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomBrightness.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomBrightness.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">32</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">delta</span> <span class="o">&gt;=</span> <span class="mf">0.0</span>
+        <span class="k">assert</span> <span class="n">delta</span> <span class="o">&lt;=</span> <span class="mf">255.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta</span> <span class="o">=</span> <span class="n">delta</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">delta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">+=</span> <span class="n">delta</span>
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2RandomSampleCrop"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomSampleCrop.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomSampleCrop">[docs]</a><span class="k">class</span> <span class="nc">CV2RandomSampleCrop</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Crop</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">    img (Image): the image being input during training</span>
+<span class="sd">    boxes (Tensor): the original bounding boxes in pt form</span>
+<span class="sd">    labels (Tensor): the class labels for each bbox</span>
+<span class="sd">    mode (float tuple): the min and max jaccard overlaps</span>
+<span class="sd">    Return:</span>
+<span class="sd">    (img, boxes, classes)</span>
+<span class="sd">    img (Image): the cropped image</span>
+<span class="sd">    boxes (Tensor): the adjusted bounding boxes in pt form</span>
+<span class="sd">    labels (Tensor): the class labels for each bbox&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2RandomSampleCrop.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomSampleCrop.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomSampleCrop.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_options</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="c1"># using entire original input image</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="c1"># sample a patch s.t. MIN jaccard w/ obj in .1,.3,.4,.7,.9</span>
+            <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="c1"># randomly sample a patch</span>
+            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="c1"># guard against no boxes</span>
+        <span class="k">if</span> <span class="n">boxes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">boxes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># randomly choose a mode</span>
+            <span class="n">mode</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_options</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span>
+
+            <span class="n">min_iou</span><span class="p">,</span> <span class="n">max_iou</span> <span class="o">=</span> <span class="n">mode</span>
+            <span class="k">if</span> <span class="n">min_iou</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">min_iou</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">max_iou</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">max_iou</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+
+            <span class="c1"># max trails (50)</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+                <span class="n">current_image</span> <span class="o">=</span> <span class="n">image</span>
+
+                <span class="n">w</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+                <span class="n">h</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">height</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+                <span class="c1"># aspect ratio constraint b/t .5 &amp; 2</span>
+                <span class="k">if</span> <span class="n">h</span> <span class="o">/</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="ow">or</span> <span class="n">h</span> <span class="o">/</span> <span class="n">w</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">left</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">w</span><span class="p">)</span>
+                <span class="n">top</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">h</span><span class="p">)</span>
+
+                <span class="c1"># convert to integer rect x1,y1,x2,y2</span>
+                <span class="n">rect</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">top</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">w</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">top</span> <span class="o">+</span> <span class="n">h</span><span class="p">)])</span>
+
+                <span class="c1"># calculate IoU (jaccard overlap) b/t the cropped and gt boxes</span>
+                <span class="n">overlap</span> <span class="o">=</span> <span class="n">jaccard_overlap_numpy</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">rect</span><span class="p">)</span>
+
+                <span class="c1"># is min and max overlap constraint satisfied? if not try again</span>
+                <span class="k">if</span> <span class="n">overlap</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">min_iou</span> <span class="ow">or</span> <span class="n">overlap</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">max_iou</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># cut the crop from the image</span>
+                <span class="n">current_image</span> <span class="o">=</span> <span class="n">current_image</span><span class="p">[</span><span class="n">rect</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">:</span> <span class="n">rect</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">rect</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">:</span> <span class="n">rect</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">:]</span>
+
+                <span class="c1"># keep overlap with gt box IF center in sampled patch</span>
+                <span class="n">centers</span> <span class="o">=</span> <span class="p">(</span><span class="n">boxes</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:])</span> <span class="o">/</span> <span class="mf">2.0</span>
+
+                <span class="c1"># mask in all gt boxes that above and to the left of centers</span>
+                <span class="n">m1</span> <span class="o">=</span> <span class="p">(</span><span class="n">rect</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">rect</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+
+                <span class="c1"># mask in all gt boxes that under and to the right of centers</span>
+                <span class="n">m2</span> <span class="o">=</span> <span class="p">(</span><span class="n">rect</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">rect</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">centers</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+
+                <span class="c1"># mask in that both m1 and m2 are true</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">m2</span>
+
+                <span class="c1"># have any valid boxes? try again if not</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                    <span class="k">continue</span>
+
+                <span class="c1"># take only matching gt boxes</span>
+                <span class="n">current_boxes</span> <span class="o">=</span> <span class="n">boxes</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+                <span class="c1"># take only matching gt labels</span>
+                <span class="n">current_labels</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+                <span class="c1"># should we use the box left and top corner or the crop&#39;s</span>
+                <span class="n">current_boxes</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">current_boxes</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">rect</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+                <span class="c1"># adjust to crop (by substracting crop&#39;s left,top)</span>
+                <span class="n">current_boxes</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">-=</span> <span class="n">rect</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+                <span class="n">current_boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">current_boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:],</span> <span class="n">rect</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+                <span class="c1"># adjust to crop (by substracting crop&#39;s left,top)</span>
+                <span class="n">current_boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span> <span class="o">-=</span> <span class="n">rect</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+                <span class="k">return</span> <span class="n">current_image</span><span class="p">,</span> <span class="n">current_boxes</span><span class="p">,</span> <span class="n">current_labels</span></div>
+
+
+<div class="viewcode-block" id="CV2Expand"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2Expand.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2Expand">[docs]</a><span class="k">class</span> <span class="nc">CV2Expand</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2Expand.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2Expand.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2Expand.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span>
+
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span> <span class="o">*</span> <span class="n">ratio</span> <span class="o">-</span> <span class="n">width</span><span class="p">)</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span> <span class="o">*</span> <span class="n">ratio</span> <span class="o">-</span> <span class="n">height</span><span class="p">)</span>
+
+        <span class="n">expand_image</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">),</span> <span class="n">depth</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="p">)</span>
+        <span class="n">expand_image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span>
+        <span class="n">expand_image</span><span class="p">[</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">top</span><span class="p">)</span> <span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">top</span> <span class="o">+</span> <span class="n">height</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">width</span><span class="p">)</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="n">image</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">expand_image</span>
+
+        <span class="n">boxes</span> <span class="o">=</span> <span class="n">boxes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>
+        <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span> <span class="o">+=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span></div>
+
+
+<div class="viewcode-block" id="CV2RandomMirror"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomMirror.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2RandomMirror">[docs]</a><span class="k">class</span> <span class="nc">CV2RandomMirror</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">classes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">boxes</span> <span class="o">=</span> <span class="n">boxes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">width</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">::</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span></div>
+
+
+<div class="viewcode-block" id="CV2SwapChannels"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2SwapChannels.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2SwapChannels">[docs]</a><span class="k">class</span> <span class="nc">CV2SwapChannels</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Transforms a tensorized image by swapping the channels in the order</span>
+<span class="sd">    specified in the swap tuple.</span>
+<span class="sd">    Args:</span>
+<span class="sd">    swaps (int triple): final order of channels</span>
+<span class="sd">    eg: (2, 1, 0)&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2SwapChannels.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2SwapChannels.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2SwapChannels.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swaps</span><span class="p">:</span> <span class="n">TripleNumber</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">swaps</span> <span class="o">=</span> <span class="n">swaps</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">        image (Tensor): image tensor to be transformed</span>
+<span class="sd">        Return:</span>
+<span class="sd">        a tensor with channels swapped according to swap&quot;&quot;&quot;</span>
+        <span class="c1"># if torch.is_tensor(image):</span>
+        <span class="c1">#     image = image.data.cpu().numpy()</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     image = numpy.array(image)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">swaps</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">image</span></div>
+
+
+<div class="viewcode-block" id="CV2PhotometricDistort"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2PhotometricDistort.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2PhotometricDistort">[docs]</a><span class="k">class</span> <span class="nc">CV2PhotometricDistort</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CV2PhotometricDistort.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.transformation.cv2_transforms.CV2PhotometricDistort.html#draugr.opencv_utilities.transformation.cv2_transforms.CV2PhotometricDistort.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pd</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">CV2RandomContrast</span><span class="p">(),</span>  <span class="c1"># RGB</span>
+            <span class="n">CV2ConvertColor</span><span class="p">(</span><span class="n">current</span><span class="o">=</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s2">&quot;HSV&quot;</span><span class="p">),</span>  <span class="c1"># HSV</span>
+            <span class="n">CV2RandomSaturation</span><span class="p">(),</span>  <span class="c1"># HSV</span>
+            <span class="n">CV2RandomHue</span><span class="p">(),</span>  <span class="c1"># HSV</span>
+            <span class="n">CV2ConvertColor</span><span class="p">(</span><span class="n">current</span><span class="o">=</span><span class="s2">&quot;HSV&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s2">&quot;RGB&quot;</span><span class="p">),</span>  <span class="c1"># RGB</span>
+            <span class="n">CV2RandomContrast</span><span class="p">(),</span>  <span class="c1"># RGB</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rand_brightness</span> <span class="o">=</span> <span class="n">CV2RandomBrightness</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rand_light_noise</span> <span class="o">=</span> <span class="n">CV2RandomLightingNoise</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">boxes</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">im</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rand_brightness</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">distort</span> <span class="o">=</span> <span class="n">CV2Compose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">distort</span> <span class="o">=</span> <span class="n">CV2Compose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pd</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">im</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">distort</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rand_light_noise</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  <li><a href="../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

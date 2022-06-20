@@ -89,6 +89,15 @@ def draw_single_box(
 
 
 def draw_single_rect(img, rect):
+    """
+
+    :param img:
+    :type img:
+    :param rect:
+    :type rect:
+    :return:
+    :rtype:
+    """
     # draw_single_box(img, rect)
     box = cv2.boxPoints(rect)
     box = numpy.int0(box)

@@ -9,6 +9,15 @@ ESC_CHAR = chr(27)
 
 
 def match_return_code(ret_val, chars: Iterable[str] = ("q", ESC_CHAR)):
+    """
+
+    :param ret_val:
+    :type ret_val:
+    :param chars:
+    :type chars:
+    :return:
+    :rtype:
+    """
     return any(ret_val & 0xFF == ord(c) for c in chars)
 
 

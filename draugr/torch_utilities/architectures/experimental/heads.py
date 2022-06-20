@@ -10,6 +10,8 @@ from draugr.torch_utilities.architectures.mlp import MLP
 
 
 class MultiHeadedMLP(MLP):
+    """ """
+
     def __init__(self, *, heads_hidden_sizes=(32, 64), heads=(2, 1), **kwargs):
         super().__init__(**kwargs)
 
@@ -37,6 +39,15 @@ class MultiHeadedMLP(MLP):
             raise ValueError("Number of heads must be >0")
 
     def forward(self, x, **kwargs):
+        """
+
+        :param x:
+        :type x:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         x = super().forward(x, **kwargs)
 
         output = []

@@ -18,6 +18,17 @@ class CannyApertureSize(Enum):
 
 
 def to_edge(img, method: ToEdgeMethodEnum = ToEdgeMethodEnum.canny, **kwargs):
+    """
+
+    :param img:
+    :type img:
+    :param method:
+    :type method:
+    :param kwargs:
+    :type kwargs:
+    :return:
+    :rtype:
+    """
     method = ToEdgeMethodEnum(method)
     if method == ToEdgeMethodEnum.canny:
         return cv2.Canny(
@@ -55,6 +66,7 @@ def to_edge(img, method: ToEdgeMethodEnum = ToEdgeMethodEnum.canny, **kwargs):
 if __name__ == "__main__":
 
     def aushd():
+        """ """
         import numpy
         from draugr.opencv_utilities import show_image
 

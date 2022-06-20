@@ -37,11 +37,25 @@ def mnist_raw():
     base_url = "https://storage.googleapis.com/cvdf-datasets/mnist/"
 
     def parse_labels(filename):
+        """
+
+        :param filename:
+        :type filename:
+        :return:
+        :rtype:
+        """
         with gzip.open(filename, "rb") as fh:
             _ = struct.unpack(">II", fh.read(8))
             return numpy.array(array.array("B", fh.read()), dtype=numpy.uint8)
 
     def parse_images(filename):
+        """
+
+        :param filename:
+        :type filename:
+        :return:
+        :rtype:
+        """
         with gzip.open(filename, "rb") as fh:
             _, num_data, rows, cols = struct.unpack(">IIII", fh.read(16))
             return numpy.array(array.array("B", fh.read()), dtype=numpy.uint8).reshape(

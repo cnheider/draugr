@@ -14,6 +14,19 @@ def spilt_video(
     split_dir: Path = None,
     ffmpeg_path: Path = "ffmpeg",
 ) -> None:
+    """
+
+    :param video_path:
+    :type video_path:
+    :param start_time:
+    :type start_time:
+    :param stop_time:
+    :type stop_time:
+    :param split_dir:
+    :type split_dir:
+    :param ffmpeg_path:
+    :type ffmpeg_path:
+    """
     if split_dir is None:
         split_dir = ensure_existence(video_path.parent / "split")
 

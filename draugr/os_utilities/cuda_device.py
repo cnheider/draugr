@@ -11,10 +11,20 @@ class DeviceOrderEnum(Enum):
 
 
 def set_cuda_device_order(order: DeviceOrderEnum = DeviceOrderEnum.pci_bus_id) -> None:
+    """
+
+    :param order:
+    :type order:
+    """
     os.environ["CUDA_DEVICE_ORDER"] = DeviceOrderEnum(order).value
 
 
 def set_cuda_visible_devices(devices: Union[str, int, Iterable[int]]) -> None:
+    """
+
+    :param devices:
+    :type devices:
+    """
     if isinstance(devices, int):
         devices = str(devices)
     elif isinstance(devices, Iterable):

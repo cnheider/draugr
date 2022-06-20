@@ -15,6 +15,8 @@ from sorcery.core import FrameInfo
 
 
 class BroadcastNone(type(None).__class__):
+    """ """
+
     @sorcery.spell
     def __new__(frame_info: FrameInfo, cls):
         num_assignments = len(frame_info.assigned_names(allow_one=True)[0])

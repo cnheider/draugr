@@ -13,6 +13,8 @@ from draugr.torch_utilities.architectures.mlp import MLP
 
 
 class RecurrentCategoricalMLP(MLP):
+    """ """
+
     def __init__(self, r_hidden_layers=10, **kwargs):
         super().__init__(**kwargs)
         self._r_hidden_layers = r_hidden_layers
@@ -26,6 +28,15 @@ class RecurrentCategoricalMLP(MLP):
         self._prev_hidden_x = torch.zeros(r_hidden_layers)
 
     def forward(self, x, **kwargs):
+        """
+
+        :param x:
+        :type x:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         x = super().forward(x, **kwargs)
         combined = torch.cat((x, self._prev_hidden_x), 1)
         out_x = self.out(combined)
@@ -37,6 +48,17 @@ class RecurrentCategoricalMLP(MLP):
 
 class ExposedRecurrentCategoricalMLP(RecurrentCategoricalMLP):
     def forward(self, x, hidden_x, **kwargs):
+        """
+
+        :param x:
+        :type x:
+        :param hidden_x:
+        :type hidden_x:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         self._prev_hidden_x = hidden_x
         out_x = super().forward(x, **kwargs)
 
@@ -44,6 +66,8 @@ class ExposedRecurrentCategoricalMLP(RecurrentCategoricalMLP):
 
 
 class RecurrentBase(nn.Module):
+    """ """
+
     def __init__(self, recurrent, recurrent_input_size, hidden_size):
         super().__init__()
 

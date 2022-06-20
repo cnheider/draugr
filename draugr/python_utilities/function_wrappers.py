@@ -242,6 +242,7 @@ if __name__ == "__main__":
     # uhsud123()
 
     def iuhasd():
+        """ """
         from random import random
 
         a = 0
@@ -252,6 +253,7 @@ if __name__ == "__main__":
                     print(i, a)
 
     def iuhasd2():
+        """ """
         from random import random
 
         f = max_frequency("key2", 100)

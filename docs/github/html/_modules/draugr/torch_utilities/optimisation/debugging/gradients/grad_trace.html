@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.torch_utilities.optimisation.debugging.gradients.grad_trace &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../../_static/jquery.js"></script>
+    <script src="../../../../../../_static/underscore.js"></script>
+    <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/torch_utilities/optimisation/debugging/gradients/grad_trace.html" />
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.torch_utilities.optimisation.debugging.gradients.grad_trace</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Christian Heider Nielsen&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">           Created on 29/07/2020</span>
+<span class="s2">           &quot;&quot;&quot;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;register_bad_grad_hooks&quot;</span><span class="p">,</span> <span class="s2">&quot;print_grad_trace&quot;</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+
+
+<div class="viewcode-block" id="register_bad_grad_hooks"><a class="viewcode-back" href="../../../../../../generated/draugr.torch_utilities.optimisation.debugging.gradients.grad_trace.register_bad_grad_hooks.html#draugr.torch_utilities.optimisation.debugging.gradients.grad_trace.register_bad_grad_hooks">[docs]</a><span class="k">def</span> <span class="nf">register_bad_grad_hooks</span><span class="p">(</span><span class="n">var</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">callable</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param var:</span>
+<span class="sd">    :type var:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    :rtype:&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">iter_graph</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param root:</span>
+<span class="sd">        :type root:</span>
+<span class="sd">        :param callback:</span>
+<span class="sd">        :type callback:&quot;&quot;&quot;</span>
+        <span class="n">queue</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">]</span>
+        <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+            <span class="n">fn</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">next_fn</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">next_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_fn</span><span class="p">)</span>
+            <span class="n">callback</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+
+    <span class="n">fn_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">hook_callback</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param fn:</span>
+<span class="sd">        :type fn:&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">register_grad</span><span class="p">(</span><span class="n">grad_input</span><span class="p">,</span> <span class="n">grad_output</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">            :param grad_input:</span>
+<span class="sd">            :type grad_input:</span>
+<span class="sd">            :param grad_output:</span>
+<span class="sd">            :type grad_output:&quot;&quot;&quot;</span>
+            <span class="n">fn_dict</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span> <span class="o">=</span> <span class="n">grad_input</span>
+
+        <span class="n">fn</span><span class="o">.</span><span class="n">register_hook</span><span class="p">(</span><span class="n">register_grad</span><span class="p">)</span>
+
+    <span class="n">iter_graph</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">,</span> <span class="n">hook_callback</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">is_bad_grad</span><span class="p">(</span><span class="n">grad_output</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param grad_output:</span>
+<span class="sd">        :type grad_output:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">grad_output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">grad_output</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="p">(</span><span class="n">grad_output</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mf">1e6</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">make_dot</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:&quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">graphviz</span> <span class="kn">import</span> <span class="n">Digraph</span>
+
+        <span class="n">node_attr</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">style</span><span class="o">=</span><span class="s2">&quot;filled&quot;</span><span class="p">,</span>
+            <span class="n">shape</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">,</span>
+            <span class="n">align</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;12&quot;</span><span class="p">,</span>
+            <span class="n">ranksep</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="s2">&quot;0.2&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">dot_</span> <span class="o">=</span> <span class="n">Digraph</span><span class="p">(</span><span class="n">node_attr</span><span class="o">=</span><span class="n">node_attr</span><span class="p">,</span> <span class="n">graph_attr</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="s2">&quot;12,12&quot;</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">size_to_str</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">            :param size:</span>
+<span class="sd">            :type size:</span>
+<span class="sd">            :return:</span>
+<span class="sd">            :rtype:&quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span><span class="si">}</span><span class="s1">)&#39;</span>
+
+        <span class="k">def</span> <span class="nf">build_graph</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">            :param fn:</span>
+<span class="sd">            :type fn:&quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">):</span>  <span class="c1"># if GradAccumulator</span>
+                <span class="n">u</span> <span class="o">=</span> <span class="n">fn</span><span class="o">.</span><span class="n">variable</span>
+                <span class="n">node_name</span> <span class="o">=</span> <span class="s2">&quot;Variable</span><span class="se">\n</span><span class="s2"> &quot;</span> <span class="o">+</span> <span class="n">size_to_str</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+                <span class="n">dot_</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">u</span><span class="p">)),</span> <span class="n">node_name</span><span class="p">,</span> <span class="n">fillcolor</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">fn_dict</span><span class="p">,</span> <span class="n">fn</span>
+                <span class="n">fillcolor</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span>
+                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_bad_grad</span><span class="p">(</span><span class="n">gi</span><span class="p">)</span> <span class="k">for</span> <span class="n">gi</span> <span class="ow">in</span> <span class="n">fn_dict</span><span class="p">[</span><span class="n">fn</span><span class="p">]):</span>
+                    <span class="n">fillcolor</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span>
+                <span class="n">dot_</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">fn</span><span class="p">)),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span> <span class="n">fillcolor</span><span class="o">=</span><span class="n">fillcolor</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">next_fn</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">next_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">next_id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">next_fn</span><span class="p">,</span> <span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">next_fn</span><span class="p">))</span>
+                    <span class="n">dot_</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">next_id</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">fn</span><span class="p">)))</span>
+
+        <span class="n">iter_graph</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">,</span> <span class="n">build_graph</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">dot_</span>
+
+    <span class="k">return</span> <span class="n">make_dot</span></div>
+
+
+<div class="viewcode-block" id="print_grad_trace"><a class="viewcode-back" href="../../../../../../generated/draugr.torch_utilities.optimisation.debugging.gradients.grad_trace.print_grad_trace.html#draugr.torch_utilities.optimisation.debugging.gradients.grad_trace.print_grad_trace">[docs]</a><span class="k">def</span> <span class="nf">print_grad_trace</span><span class="p">(</span><span class="n">var_grad_fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">var_grad_fn</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">var_grad_fn</span><span class="o">.</span><span class="n">next_functions</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">tensor</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;variable&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tensor with grad found:&quot;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - gradient:&quot;</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">print_grad_trace</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">asdifiejsf</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="n">get_dot</span> <span class="o">=</span> <span class="n">register_bad_grad_hooks</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+        <span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">dot</span> <span class="o">=</span> <span class="n">get_dot</span><span class="p">()</span>
+        <span class="c1"># dot.save(&#39;tmp.dot&#39;) # to get .dot</span>
+        <span class="c1"># dot.render(&#39;tmp&#39;) # to get SVG</span>
+
+    <span class="n">asdifiejsf</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../../index.html">Module code</a><ul>
+  <li><a href="../../../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

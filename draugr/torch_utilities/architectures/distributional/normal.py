@@ -23,6 +23,8 @@ from warg import passes_kws_to
 
 
 class ShallowStdNormalMLP(MLP):
+    """ """
+
     def __init__(
         self,
         output_shape: Sequence = (2,),
@@ -48,6 +50,19 @@ class ShallowStdNormalMLP(MLP):
     def forward(
         self, *x, min_std=-20, max_std=2, **kwargs
     ) -> torch.distributions.Distribution:
+        """
+
+        :param x:
+        :type x:
+        :param min_std:
+        :type min_std:
+        :param max_std:
+        :type max_std:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         mean = super().forward(*x, min_std=min_std, **kwargs)
         if self.mean_head_activation:
             mean = self.mean_head_activation(mean)
@@ -58,6 +73,8 @@ class ShallowStdNormalMLP(MLP):
 
 
 class ShallowStdMultiVariateNormalMLP(MLP):
+    """ """
+
     def __init__(
         self,
         output_shape: Sequence = (2,),
@@ -79,6 +96,19 @@ class ShallowStdMultiVariateNormalMLP(MLP):
             self.log_std = fixed_log_std
 
     def forward(self, *x, min_std=-20, max_std=2, **kwargs):
+        """
+
+        :param x:
+        :type x:
+        :param min_std:
+        :type min_std:
+        :param max_std:
+        :type max_std:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         mean = super().forward(*x, min_std=min_std, **kwargs)
         if self.mean_head_activation:
             mean = self.mean_head_activation(mean)
@@ -90,6 +120,8 @@ class ShallowStdMultiVariateNormalMLP(MLP):
 
 
 class MultiDimensionalNormalMLP(MLP):
+    """ """
+
     def __init__(
         self,
         output_shape: Sequence = (2,),
@@ -107,6 +139,19 @@ class MultiDimensionalNormalMLP(MLP):
         )
 
     def forward(self, *x, min_std=-20, max_std=2, **kwargs) -> Normal:
+        """
+
+        :param x:
+        :type x:
+        :param min_std:
+        :type min_std:
+        :param max_std:
+        :type max_std:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         mean, log_std = super().forward(*x, min_std=min_std, **kwargs)
         if self.mean_head_activation:
             mean = self.mean_head_activation(mean)
@@ -115,6 +160,8 @@ class MultiDimensionalNormalMLP(MLP):
 
 
 class MultiVariateNormalMLP(MLP):
+    """ """
+
     @passes_kws_to(MLP.__init__)
     def __init__(
         self,
@@ -130,6 +177,19 @@ class MultiVariateNormalMLP(MLP):
 
     @passes_kws_to(MLP.forward)
     def forward(self, *x, min_std=-20, max_std=2, **kwargs) -> MultivariateNormal:
+        """
+
+        :param x:
+        :type x:
+        :param min_std:
+        :type min_std:
+        :param max_std:
+        :type max_std:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         mean, log_std = super().forward(*x, min_std=min_std, **kwargs)
         if self.mean_head_activation:
             mean = self.mean_head_activation(mean)
@@ -141,6 +201,8 @@ class MultiVariateNormalMLP(MLP):
 
 
 class MultipleNormalMLP(MLP):
+    """ """
+
     def __init__(
         self, output_shape: int = 2, mean_head_activation: callable = None, **kwargs
     ):
@@ -151,6 +213,19 @@ class MultipleNormalMLP(MLP):
         fan_in_init(self)
 
     def forward(self, *x, min_std=-20, max_std=2, **kwargs) -> List[Normal]:
+        """
+
+        :param x:
+        :type x:
+        :param min_std:
+        :type min_std:
+        :param max_std:
+        :type max_std:
+        :param kwargs:
+        :type kwargs:
+        :return:
+        :rtype:
+        """
         out = super().forward(*x, min_std=min_std, **kwargs)
         outs = []
         for mean, log_std in out:
@@ -164,6 +239,7 @@ class MultipleNormalMLP(MLP):
 if __name__ == "__main__":
 
     def stest_normal():
+        """ """
         s = (10,)
         a = 10
         model = MultipleNormalMLP(input_shape=s, output_shape=a)
@@ -176,6 +252,7 @@ if __name__ == "__main__":
         print(time.time() - s_, a_)
 
     def stest_multi_dim_normal():
+        """ """
         s = (4,)
         a = (10,)
         model = MultiDimensionalNormalMLP(input_shape=s, output_shape=a)
@@ -188,6 +265,7 @@ if __name__ == "__main__":
         print(time.time() - s_, a_)
 
     def stest_multi_var_normal():
+        """ """
         s = (10,)
         a = (10,)
         model = MultiVariateNormalMLP(input_shape=s, output_shape=a)
@@ -200,6 +278,7 @@ if __name__ == "__main__":
         print(time.time() - s_, a_)
 
     def stest_shallow():
+        """ """
         s = (10,)
         a = (10,)
         model = ShallowStdNormalMLP(input_shape=s, output_shape=a)

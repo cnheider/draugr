@@ -17,6 +17,17 @@ class CleanUpMethod(Enum):
 
 
 def clean_up(img, method: CleanUpMethod = CleanUpMethod.open, **kwargs):
+    """
+
+    :param img:
+    :type img:
+    :param method:
+    :type method:
+    :param kwargs:
+    :type kwargs:
+    :return:
+    :rtype:
+    """
     filter_size = (
         max(int(img.shape[1] * 0.01), kwargs.get("min_filter_size", 3)),
         max(int(img.shape[0] * 0.01), kwargs.get("min_filter_size", 3)),

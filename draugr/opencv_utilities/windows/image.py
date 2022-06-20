@@ -122,6 +122,7 @@ def show_image(
 if __name__ == "__main__":
 
     def assd():
+        """ """
         aasdsad = numpy.zeros((50, 50))
         print(show_image(aasdsad, wait=True))
         asd_a_as = numpy.zeros((50, 50))

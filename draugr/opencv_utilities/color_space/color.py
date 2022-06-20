@@ -10,10 +10,24 @@ __all__ = ["num_channels", "is_singular_channel", "to_color"]
 
 
 def num_channels(image) -> int:
+    """
+
+    :param image:
+    :type image:
+    :return:
+    :rtype:
+    """
     return image.shape[-1] if image.ndim == 3 else 1
 
 
 def is_singular_channel(image) -> bool:
+    """
+
+    :param image:
+    :type image:
+    :return:
+    :rtype:
+    """
     return num_channels(image) == 1
 
 

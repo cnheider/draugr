@@ -8,6 +8,11 @@ from draugr.opencv_utilities.windows.image import show_image
 if __name__ == "__main__":
 
     def variant0():
+        """
+
+        :return:
+        :rtype:
+        """
         cameras = []
         print("open cam1")
         cameras += ((frame_generator(cv2.VideoCapture(0)), cycle("0")),)
@@ -27,6 +32,7 @@ if __name__ == "__main__":
                 return next(g), next(i)
 
         async def run():
+            """ """
             async for image, idd in AsyncIterator():
                 # await asyncio.sleep(0.1)
                 if show_image(image, idd, wait=1):
@@ -41,6 +47,7 @@ if __name__ == "__main__":
             loop.close()
 
     def variant1():
+        """ """
         cameras = []
         print("open cam1")
         # cameras += frame_generator(cv2.VideoCapture(0)),
@@ -49,6 +56,13 @@ if __name__ == "__main__":
         print("opened")
 
         def show(mat, n=0):
+            """
+
+            :param mat:
+            :type mat:
+            :param n:
+            :type n:
+            """
             cv2.imshow(f"{n}", mat)
 
         while 1:
@@ -56,6 +70,7 @@ if __name__ == "__main__":
             cv2.waitKey(1)
 
     def variant1_2():
+        """ """
         cameras = []
         print("open cam1")
         # cameras += frame_generator(cv2.VideoCapture(0)),
@@ -64,6 +79,13 @@ if __name__ == "__main__":
         print("opened")
 
         def show(mat, n=0):
+            """
+
+            :param mat:
+            :type mat:
+            :param n:
+            :type n:
+            """
             cv2.imshow(f"{n}", mat)
 
         while 1:
@@ -73,6 +95,7 @@ if __name__ == "__main__":
             cv2.waitKey(1)
 
     def variant2():
+        """ """
         cameras = []
         print("open cam1")
         cameras += (frame_generator(cv2.VideoCapture(0)),)
@@ -81,6 +104,13 @@ if __name__ == "__main__":
         print("opened")
 
         def show(mat, n):
+            """
+
+            :param mat:
+            :type mat:
+            :param n:
+            :type n:
+            """
             cv2.imshow(f"{n}", mat)
 
         while 1:
@@ -89,6 +119,7 @@ if __name__ == "__main__":
                 cv2.waitKey(1)
 
     def variant3():
+        """ """
         cameras = []
         print("open cam1")
         cameras += (frame_generator(cv2.VideoCapture(0)),)
@@ -98,6 +129,13 @@ if __name__ == "__main__":
         from itertools import count
 
         def show(mat, n):
+            """
+
+            :param mat:
+            :type mat:
+            :param n:
+            :type n:
+            """
             cv2.imshow(f"{n}", mat)
 
         while 1:

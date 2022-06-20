@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.visualisation.pillow_utilities &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/visualisation/pillow_utilities.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.visualisation.pillow_utilities</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Christian Heider Nielsen&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">           Created on 17/07/2020</span>
+<span class="s2">           &quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;pil_merge_images&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pil_img_to_np_array&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;np_array_to_pil_img&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pil_image_to_byte_array&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;byte_array_to_pil_image&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">sorcery</span> <span class="kn">import</span> <span class="n">assigned_names</span>
+
+
+<span class="k">class</span> <span class="nc">PilModesEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      PIL pixel formats:</span>
+
+<span class="sd">    RGB 24bits per pixel, 8-bit-per-channel RGB), 3 channels</span>
+<span class="sd">    RGBA (8-bit-per-channel RGBA), 4 channels</span>
+<span class="sd">    RGBa (8-bit-per-channel RGBA, remultiplied alpha), 4 channels</span>
+<span class="sd">    1 - 1bpp, often for masks, 1 channel</span>
+<span class="sd">    L - 8bpp, grayscale, 1 channel</span>
+<span class="sd">    P - 8bpp, paletted, 1 channel</span>
+<span class="sd">    I - 32-bit integers, grayscale, 1 channel</span>
+<span class="sd">    F - 32-bit floats, grayscale, 1 channel</span>
+<span class="sd">    CMYK - 8 bits per channel, 4 channels</span>
+<span class="sd">    YCbCr - 8 bits per channel, 3 channels</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">OneBpp</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+    <span class="n">CMYK</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">HSV</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">LAB</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">RGB</span><span class="p">,</span> <span class="n">RGBA</span><span class="p">,</span> <span class="n">RGBX</span><span class="p">,</span> <span class="n">YCbCr</span> <span class="o">=</span> <span class="n">assigned_names</span><span class="p">()</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">1 (1-bit pixels, black and white, stored with one pixel per byte)</span>
+
+<span class="sd">L (8-bit pixels, black and white)</span>
+
+<span class="sd">P (8-bit pixels, mapped to any other mode using a color palette)</span>
+
+<span class="sd">RGB (3x8-bit pixels, true color)</span>
+
+<span class="sd">RGBA (4x8-bit pixels, true color with transparency mask)</span>
+
+<span class="sd">CMYK (4x8-bit pixels, color separation)</span>
+
+<span class="sd">YCbCr (3x8-bit pixels, color video format)</span>
+
+<span class="sd">Note that this refers to the JPEG, and not the ITU-R BT.2020, standard</span>
+
+<span class="sd">LAB (3x8-bit pixels, the L*a*b color space)</span>
+
+<span class="sd">HSV (3x8-bit pixels, Hue, Saturation, Value color space)</span>
+
+<span class="sd">I (32-bit signed integer pixels)</span>
+
+<span class="sd">F (32-bit floating point pixels)</span>
+
+<span class="sd"># Pillow also provides limited support for a few additional modes, including:</span>
+
+<span class="sd">LA (L with alpha)</span>
+
+<span class="sd">PA (P with alpha)</span>
+
+<span class="sd">RGBX (true color with padding)</span>
+
+<span class="sd">RGBa (true color with premultiplied alpha)</span>
+
+<span class="sd">La (L with premultiplied alpha)</span>
+
+<span class="sd">I;16 (16-bit unsigned integer pixels)</span>
+
+<span class="sd">I;16L (16-bit little endian unsigned integer pixels)</span>
+
+<span class="sd">I;16B (16-bit big endian unsigned integer pixels)</span>
+
+<span class="sd">I;16N (16-bit native endian unsigned integer pixels)</span>
+
+<span class="sd">BGR;15 (15-bit reversed true colour)</span>
+
+<span class="sd">BGR;16 (16-bit reversed true colour)</span>
+
+<span class="sd">BGR;24 (24-bit reversed true colour)</span>
+
+<span class="sd">BGR;32 (32-bit reversed true colour)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="pil_image_to_byte_array"><a class="viewcode-back" href="../../../generated/draugr.visualisation.pillow_utilities.pil_image_to_byte_array.html#draugr.visualisation.pillow_utilities.pil_image_to_byte_array">[docs]</a><span class="k">def</span> <span class="nf">pil_image_to_byte_array</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">coding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;PNG&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    PNG encoded by default</span>
+<span class="sd">    :param coding:</span>
+<span class="sd">    :param image:</span>
+<span class="sd">    :return:&quot;&quot;&quot;</span>
+    <span class="n">buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">coding</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="byte_array_to_pil_image"><a class="viewcode-back" href="../../../generated/draugr.visualisation.pillow_utilities.byte_array_to_pil_image.html#draugr.visualisation.pillow_utilities.byte_array_to_pil_image">[docs]</a><span class="k">def</span> <span class="nf">byte_array_to_pil_image</span><span class="p">(</span><span class="n">byte_array</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param byte_array:</span>
+<span class="sd">    :return:&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">byte_array</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="pil_img_to_np_array"><a class="viewcode-back" href="../../../generated/draugr.visualisation.pillow_utilities.pil_img_to_np_array.html#draugr.visualisation.pillow_utilities.pil_img_to_np_array">[docs]</a><span class="k">def</span> <span class="nf">pil_img_to_np_array</span><span class="p">(</span>
+    <span class="n">data_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">],</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">desired_size</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">expand</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Util function for loading RGB image into a numpy array.</span>
+
+<span class="sd">    Returns array of shape (1, H, W, C).&quot;&quot;&quot;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">desired_size</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">desired_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">desired_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">expand</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">255.0</span></div>
+
+
+<div class="viewcode-block" id="np_array_to_pil_img"><a class="viewcode-back" href="../../../generated/draugr.visualisation.pillow_utilities.np_array_to_pil_img.html#draugr.visualisation.pillow_utilities.np_array_to_pil_img">[docs]</a><span class="k">def</span> <span class="nf">np_array_to_pil_img</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Util function for converting a numpy array to a PIL img.</span>
+
+<span class="sd">    Returns PIL RGB img.&quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">x_max</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x_max</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">/=</span> <span class="n">x_max</span>
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">((</span><span class="n">x</span> <span class="o">*</span> <span class="mf">255.0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">),</span> <span class="s2">&quot;RGB&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="pil_merge_images"><a class="viewcode-back" href="../../../generated/draugr.visualisation.pillow_utilities.pil_merge_images.html#draugr.visualisation.pillow_utilities.pil_merge_images">[docs]</a><span class="k">def</span> <span class="nf">pil_merge_images</span><span class="p">(</span><span class="n">image1</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">image2</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Merge two images into one, displayed side by side.&quot;&quot;&quot;</span>
+    <span class="p">(</span><span class="n">width1</span><span class="p">,</span> <span class="n">height1</span><span class="p">)</span> <span class="o">=</span> <span class="n">image1</span><span class="o">.</span><span class="n">size</span>
+    <span class="p">(</span><span class="n">width2</span><span class="p">,</span> <span class="n">height2</span><span class="p">)</span> <span class="o">=</span> <span class="n">image2</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">result_width</span> <span class="o">=</span> <span class="n">width1</span> <span class="o">+</span> <span class="n">width2</span>
+    <span class="n">result_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">height1</span><span class="p">,</span> <span class="n">height2</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">result_width</span><span class="p">,</span> <span class="n">result_height</span><span class="p">))</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">im</span><span class="o">=</span><span class="n">image1</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">im</span><span class="o">=</span><span class="n">image2</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="p">(</span><span class="n">width1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  <li><a href="../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

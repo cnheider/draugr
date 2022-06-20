@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.opencv_utilities.namespaces.enums &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/namespaces/enums.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.opencv_utilities.namespaces.enums</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;heider&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">           Created on 01/02/2022</span>
+<span class="s2">           &quot;&quot;&quot;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;MarkerTypeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DistanceTypeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HoughModeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WindowFlagEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ContourRetrievalModeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ContourApproximationModeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MouseEventEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FontEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DataTypeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ComparisonEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LineTypeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MorphTypeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MorphShapeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DistanceTransformMaskEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DistanceTransformLabelTypeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;KmeansEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CameraPropertyEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RectanglesIntersectTypes&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BorderTypeEnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VideoCaptureAPIEnum&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+
+<div class="viewcode-block" id="ComparisonEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.ComparisonEnum.html#draugr.opencv_utilities.namespaces.enums.ComparisonEnum">[docs]</a><span class="k">class</span> <span class="nc">ComparisonEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">eq</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CMP_EQ</span>  <span class="c1"># equal</span>
+    <span class="n">gt</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CMP_GT</span>  <span class="c1"># greater than</span>
+    <span class="n">ge</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CMP_GE</span>  <span class="c1"># # greater equal</span>
+    <span class="n">lt</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CMP_LT</span>  <span class="c1"># less than</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CMP_LE</span>  <span class="c1"># less equal</span>
+    <span class="n">ne</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CMP_NE</span>  <span class="c1"># unequal</span></div>
+
+
+<div class="viewcode-block" id="DataTypeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.DataTypeEnum.html#draugr.opencv_utilities.namespaces.enums.DataTypeEnum">[docs]</a><span class="k">class</span> <span class="nc">DataTypeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="c1"># Unsigned 8bits # 	uchar	0 ~ 255</span>
+    <span class="n">u8</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8U</span>
+    <span class="n">u8c1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8UC1</span>
+    <span class="n">u8c2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8UC2</span>
+    <span class="n">u8c3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8UC3</span>
+    <span class="n">u8c4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8UC4</span>
+    <span class="c1"># u8cN</span>
+    <span class="c1"># Signed 8bits	char	-128 ~ 127</span>
+    <span class="n">s8</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8S</span>
+    <span class="n">s8c1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8SC1</span>
+    <span class="n">s8c2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8SC2</span>
+    <span class="n">s8c3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8SC3</span>
+    <span class="n">s8c4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_8SC4</span>
+    <span class="c1"># s8cN</span>
+    <span class="c1"># Unsigned 16bits	ushort	0 ~ 65535</span>
+    <span class="n">u16</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16U</span>
+    <span class="n">u16c1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16UC1</span>
+    <span class="n">u16c2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16UC2</span>
+    <span class="n">u16c3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16UC3</span>
+    <span class="n">u16c4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16UC4</span>
+    <span class="c1"># u16cN</span>
+    <span class="c1"># Signed 16bits	short	-32768 ~ 32767</span>
+    <span class="n">s16</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16S</span>
+    <span class="n">s16c1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16SC1</span>
+    <span class="n">s16c2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16SC2</span>
+    <span class="n">s16c3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16SC3</span>
+    <span class="n">s16c4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_16SC4</span>
+    <span class="c1"># s16cN</span>
+    <span class="c1"># Signed 32bits	int	-2147483648 ~ 2147483647</span>
+    <span class="n">s32</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32S</span>
+    <span class="n">s32c1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32SC1</span>
+    <span class="n">s32c2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32SC2</span>
+    <span class="n">s32c3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32SC3</span>
+    <span class="n">s32c4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32SC4</span>
+    <span class="c1"># s32cN</span>
+    <span class="c1"># Float 32bits	float	-1.18e-38 ~ 3.40e-38</span>
+    <span class="n">f32</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32F</span>
+    <span class="n">f32c1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32FC1</span>
+    <span class="n">f32c2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32FC2</span>
+    <span class="n">f32c3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32FC3</span>
+    <span class="n">f32c4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_32FC4</span>
+    <span class="c1"># f32cN</span>
+    <span class="c1"># Double 64bits	double	-1.7e+308 ~ +1.7e+308</span>
+    <span class="n">f64</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_64F</span>
+    <span class="n">f64c1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_64FC1</span>
+    <span class="n">f64c2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_64FC2</span>
+    <span class="n">f64c3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_64FC3</span>
+    <span class="n">f64c4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CV_64FC4</span></div>
+    <span class="c1"># f64cN</span>
+
+
+<div class="viewcode-block" id="VideoCaptureAPIEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.VideoCaptureAPIEnum.html#draugr.opencv_utilities.namespaces.enums.VideoCaptureAPIEnum">[docs]</a><span class="k">class</span> <span class="nc">VideoCaptureAPIEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+
+
+<span class="sd">    VideoCapture API backends identifier.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">any</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_ANY</span>
+    <span class="c1"># Auto detect == 0.</span>
+
+    <span class="n">vfw</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_VFW</span>
+    <span class="c1"># Video For Windows (platform native)</span>
+
+    <span class="n">v4l</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_V4L</span>
+    <span class="c1"># V4L/V4L2 capturing support via libv4l.</span>
+
+    <span class="n">v4l2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_V4L2</span>
+    <span class="c1"># Same as CAP_V4L.</span>
+
+    <span class="n">firewire</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_FIREWIRE</span>
+    <span class="c1"># IEEE 1394 drivers.</span>
+
+    <span class="n">fireware</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_FIREWARE</span>
+    <span class="c1"># Same as CAP_FIREWIRE.</span>
+
+    <span class="n">ieee1394</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_IEEE1394</span>
+    <span class="c1"># Same as CAP_FIREWIRE.</span>
+
+    <span class="n">dc1394</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_DC1394</span>
+    <span class="c1"># Same as CAP_FIREWIRE.</span>
+
+    <span class="n">cmu1394</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_CMU1394</span>
+    <span class="c1"># Same as CAP_FIREWIRE.</span>
+
+    <span class="n">qt</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_QT</span>
+    <span class="c1"># QuickTime.</span>
+
+    <span class="n">unicap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_UNICAP</span>
+    <span class="c1"># Unicap drivers.</span>
+
+    <span class="n">dshow</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_DSHOW</span>
+    <span class="c1"># DirectShow (via videoInput)</span>
+
+    <span class="n">pvapi</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PVAPI</span>
+    <span class="c1"># PvAPI, Prosilica GigE SDK.</span>
+
+    <span class="n">openni</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_OPENNI</span>
+    <span class="c1"># OpenNI (for Kinect)</span>
+
+    <span class="n">openni_asus</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_OPENNI_ASUS</span>
+    <span class="c1"># OpenNI (for Asus Xtion)</span>
+
+    <span class="n">android</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_ANDROID</span>
+    <span class="c1"># Android - not used.</span>
+
+    <span class="n">xiapi</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_XIAPI</span>
+    <span class="c1"># XIMEA Camera API.</span>
+
+    <span class="n">avfoundation</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_AVFOUNDATION</span>
+    <span class="c1"># AVFoundation framework for iOS (OS X Lion will have the same API)</span>
+
+    <span class="n">giganetix</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_GIGANETIX</span>
+    <span class="c1"># Smartek Giganetix GigEVisionSDK.</span>
+
+    <span class="n">msmf</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_MSMF</span>
+    <span class="c1"># Microsoft Media Foundation (via videoInput)</span>
+
+    <span class="n">winrt</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_WINRT</span>
+    <span class="c1"># Microsoft Windows Runtime using Media Foundation.</span>
+
+    <span class="n">intelperc</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_INTELPERC</span>
+    <span class="c1"># Intel Perceptual Computing SDK.</span>
+
+    <span class="n">openni2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_OPENNI2</span>
+    <span class="c1"># OpenNI2 (for Kinect)</span>
+
+    <span class="n">openni2_asus</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_OPENNI2_ASUS</span>
+    <span class="c1"># OpenNI2 (for Asus Xtion and Occipital Structure sensors)</span>
+
+    <span class="n">gphoto2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_GPHOTO2</span>
+    <span class="c1"># gPhoto2 connection</span>
+
+    <span class="n">gstreamer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_GSTREAMER</span>
+    <span class="c1"># GStreamer.</span>
+
+    <span class="n">ffmpeg</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_FFMPEG</span>
+    <span class="c1"># Open and record video file or stream using the FFMPEG library.</span>
+
+    <span class="n">images</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_IMAGES</span>
+    <span class="c1"># OpenCV Image Sequence (e.g. img_%02d.jpg)</span>
+
+    <span class="n">aravis</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_ARAVIS</span>
+    <span class="c1"># Aravis SDK.</span>
+
+    <span class="n">opencv_mjpeg</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_OPENCV_MJPEG</span>
+    <span class="c1"># Built-in OpenCV MotionJPEG codec.</span>
+
+    <span class="n">intel_mfx</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_INTEL_MFX</span>
+    <span class="c1"># Intel MediaSDK.</span>
+
+    <span class="n">xine</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_XINE</span></div>
+    <span class="c1"># XINE engine (Linux)</span>
+
+
+<div class="viewcode-block" id="CameraPropertyEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.CameraPropertyEnum.html#draugr.opencv_utilities.namespaces.enums.CameraPropertyEnum">[docs]</a><span class="k">class</span> <span class="nc">CameraPropertyEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_SETTINGS</span>
+    <span class="n">auto_focus</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUTOFOCUS</span>
+    <span class="n">pos_msec</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_POS_MSEC</span>
+    <span class="p">)</span>  <span class="c1"># Current position of the video file in milliseconds.</span>
+    <span class="n">pos_frames</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_POS_FRAMES</span>
+    <span class="p">)</span>  <span class="c1"># 0-based index of the frame to be decoded/captured next.</span>
+    <span class="n">avi_ratio</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_POS_AVI_RATIO</span>
+    <span class="p">)</span>  <span class="c1"># Relative position of the video file: 0 - start of the film, 1 - end of the film.</span>
+    <span class="n">frame_width</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_WIDTH</span>  <span class="c1"># Width of the frames in the video stream.</span>
+    <span class="n">frame_height</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_HEIGHT</span>
+    <span class="p">)</span>  <span class="c1"># Height of the frames in the video stream.</span>
+    <span class="n">fps</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FPS</span>  <span class="c1"># Frame rate.</span>
+    <span class="n">fourcc</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FOURCC</span>  <span class="c1"># 4-character code of codec.</span>
+    <span class="n">frame_count</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FRAME_COUNT</span>  <span class="c1"># Number of frames in the video file.</span>
+    <span class="nb">format</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FORMAT</span>  <span class="c1"># Format of the Mat objects returned by retrieve() .</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_MODE</span>
+    <span class="p">)</span>  <span class="c1"># Backend-specific value indicating the current capture mode.</span>
+    <span class="n">brightness</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_BRIGHTNESS</span>  <span class="c1"># Brightness of the image (only for cameras).</span>
+    <span class="n">contrast</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_CONTRAST</span>  <span class="c1"># Contrast of the image (only for cameras).</span>
+    <span class="n">saturation</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_SATURATION</span>  <span class="c1"># Saturation of the image (only for cameras).</span>
+    <span class="n">hue</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_HUE</span>  <span class="c1"># Hue of the image (only for cameras).</span>
+    <span class="n">gain</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_GAIN</span>  <span class="c1"># Gain of the image (only for cameras).</span>
+    <span class="n">exposure</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_EXPOSURE</span>  <span class="c1"># Exposure (only for cameras).</span>
+    <span class="n">convert_rgb</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_CONVERT_RGB</span>
+    <span class="p">)</span>  <span class="c1"># Boolean flags indicating whether images should be converted to RGB.</span>
+    <span class="n">white_balance_blue</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_WHITE_BALANCE_BLUE_U</span>  <span class="c1"># Currently unsupported</span>
+    <span class="n">white_balance_red</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_WHITE_BALANCE_RED_V</span>  <span class="c1"># Currently unsupported</span>
+    <span class="n">white_balance_ios</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_IOS_DEVICE_WHITEBALANCE</span>  <span class="c1"># Currently unsupported</span>
+    <span class="n">rectification</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_RECTIFICATION</span>
+    <span class="p">)</span>  <span class="c1"># Rectification flag for stereo cameras (note: only supported by DC1394 v 2.x backend currently)</span>
+    <span class="n">monochrome</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_MONOCHROME</span>
+    <span class="n">sharpness</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_SHARPNESS</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_GAMMA</span>
+    <span class="n">temperature</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_TEMPERATURE</span>
+    <span class="n">trigger</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_TRIGGER</span>
+    <span class="n">trigger_delay</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_TRIGGER_DELAY</span>
+    <span class="n">zoom</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_ZOOM</span>
+    <span class="n">focus</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_FOCUS</span>
+    <span class="n">guid</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_GUID</span>
+    <span class="n">iso_speed</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_ISO_SPEED</span>
+    <span class="n">backlight</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_BACKLIGHT</span>
+    <span class="n">pan</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_PAN</span>
+    <span class="n">tilt</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_TILT</span>
+    <span class="n">roll</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_ROLL</span>
+    <span class="n">iris</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_IRIS</span>
+    <span class="n">buffer_size</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_BUFFERSIZE</span>
+    <span class="n">sar_num</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_SAR_NUM</span>
+    <span class="n">sar_den</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_SAR_DEN</span>
+    <span class="n">backend</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_BACKEND</span>
+    <span class="n">channel</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_CHANNEL</span>
+    <span class="n">auto_wb</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUTO_WB</span>
+    <span class="n">wb_temperature</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_WB_TEMPERATURE</span>
+    <span class="n">codec_pixel_format</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_CODEC_PIXEL_FORMAT</span>
+    <span class="n">bitrate</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_BITRATE</span>
+    <span class="n">orientation_meta</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_ORIENTATION_META</span>
+    <span class="n">orientation_auto</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_ORIENTATION_AUTO</span>
+    <span class="n">open_timeout_msec</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_OPEN_TIMEOUT_MSEC</span>
+    <span class="n">read_timeout_msec</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_READ_TIMEOUT_MSEC</span>
+    <span class="n">stream_open_time_usec</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_STREAM_OPEN_TIME_USEC</span>
+    <span class="n">video_total_channels</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_VIDEO_TOTAL_CHANNELS</span>
+    <span class="n">video_stream</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_VIDEO_STREAM</span>
+    <span class="n">audio_stream</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_STREAM</span>
+    <span class="n">audio_pos</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_POS</span>
+    <span class="n">audio_shift_nsec</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_SHIFT_NSEC</span>
+    <span class="n">audio_data_depth</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_DATA_DEPTH</span>
+    <span class="n">audio_samples_per_second</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_SAMPLES_PER_SECOND</span>
+    <span class="n">audio_base_index</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_BASE_INDEX</span>
+    <span class="n">audio_total_channels</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_TOTAL_CHANNELS</span>
+    <span class="n">audio_total_streams</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_TOTAL_STREAMS</span>
+    <span class="n">audio_synchronize</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_AUDIO_SYNCHRONIZE</span>
+    <span class="n">lrf_has_key_frame</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_LRF_HAS_KEY_FRAME</span>
+    <span class="n">codec_extradata_index</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CAP_PROP_CODEC_EXTRADATA_INDEX</span></div>
+
+
+<div class="viewcode-block" id="MarkerTypeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.MarkerTypeEnum.html#draugr.opencv_utilities.namespaces.enums.MarkerTypeEnum">[docs]</a><span class="k">class</span> <span class="nc">MarkerTypeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">cross</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MARKER_CROSS</span>  <span class="c1"># A crosshair marker shape.</span>
+    <span class="n">tilted_cross</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MARKER_TILTED_CROSS</span>  <span class="c1"># A 45 degree tilted crosshair marker shape.</span>
+    <span class="n">star</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">MARKER_STAR</span>
+    <span class="p">)</span>  <span class="c1"># A star marker shape, combination of cross and tilted cross.</span>
+    <span class="n">diamond</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MARKER_DIAMOND</span>  <span class="c1"># A diamond marker shape.</span>
+    <span class="n">square</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MARKER_SQUARE</span>  <span class="c1"># A square marker shape.</span>
+    <span class="n">triangle_up</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MARKER_TRIANGLE_UP</span>  <span class="c1"># An upwards pointing triangle marker shape.</span>
+    <span class="n">triangle_down</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">MARKER_TRIANGLE_DOWN</span>
+    <span class="p">)</span>  <span class="c1"># A downwards pointing triangle marker shape.</span></div>
+
+
+<div class="viewcode-block" id="DistanceTypeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.DistanceTypeEnum.html#draugr.opencv_utilities.namespaces.enums.DistanceTypeEnum">[docs]</a><span class="k">class</span> <span class="nc">DistanceTypeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_USER</span>  <span class="c1"># User defined distance.</span>
+    <span class="n">l1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_L1</span>  <span class="c1"># distance = |x1-x2| + |y1-y2|</span>
+    <span class="n">l2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_L2</span>  <span class="c1"># the simple euclidean distance</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_C</span>  <span class="c1"># distance = max(|x1-x2|,|y1-y2|)</span>
+    <span class="n">l12</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_L12</span>  <span class="c1"># L1-L2 metric: distance = 2(sqrt(1+x*x/2) - 1))</span>
+    <span class="n">fair</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_FAIR</span>  <span class="c1"># distance = c^2(|x|/c-log(1+|x|/c)), c = 1.3998</span>
+    <span class="n">welsch</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_WELSCH</span>  <span class="c1"># distance = c^2/2(1-exp(-(x/c)^2)), c = 2.9846</span>
+    <span class="n">huber</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_HUBER</span>  <span class="c1"># distance = |x|&lt;c ? x^2/2 : c(|x|-c/2), c=1.345</span></div>
+
+
+<div class="viewcode-block" id="DistanceTransformLabelTypeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.DistanceTransformLabelTypeEnum.html#draugr.opencv_utilities.namespaces.enums.DistanceTransformLabelTypeEnum">[docs]</a><span class="k">class</span> <span class="nc">DistanceTransformLabelTypeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    distanceTransform algorithm flags</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ccomp</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_LABEL_CCOMP</span>
+    <span class="sd">&quot;&quot;&quot;each connected component of zeros in src (as well as all the non-zero pixels closest to the connected component) will be assigned the same label</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+    <span class="n">pixel</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_LABEL_PIXEL</span>
+    <span class="sd">&quot;&quot;&quot;each zero pixel (and all the non-zero pixels closest to it) gets its own label.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="BorderTypeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.BorderTypeEnum.html#draugr.opencv_utilities.namespaces.enums.BorderTypeEnum">[docs]</a><span class="k">class</span> <span class="nc">BorderTypeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Various border types, image boundaries are denoted with |</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">constant</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_CONSTANT</span>  <span class="c1"># iiiiii|abcdefgh|iiiiiii with some specified i</span>
+    <span class="n">replicate</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_REPLICATE</span>  <span class="c1"># aaaaaa|abcdefgh|hhhhhhh</span>
+    <span class="n">reflect</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_REFLECT</span>  <span class="c1"># fedcba|abcdefgh|hgfedcb</span>
+    <span class="n">wrap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_WRAP</span>  <span class="c1"># cdefgh|abcdefgh|abcdefg</span>
+    <span class="n">reflect_101</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_REFLECT_101</span>  <span class="c1"># gfedcb|abcdefgh|gfedcba</span>
+    <span class="n">transparent</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_TRANSPARENT</span>  <span class="c1"># uvwxyz|abcdefgh|ijklmno</span>
+    <span class="n">reflect101</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_REFLECT101</span>  <span class="c1"># same as BORDER_REFLECT_101</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_DEFAULT</span>  <span class="c1"># same as BORDER_REFLECT_101</span>
+    <span class="n">isolated</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_ISOLATED</span>  <span class="c1"># do not look outside of ROI</span></div>
+
+
+<div class="viewcode-block" id="DistanceTransformMaskEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.DistanceTransformMaskEnum.html#draugr.opencv_utilities.namespaces.enums.DistanceTransformMaskEnum">[docs]</a><span class="k">class</span> <span class="nc">DistanceTransformMaskEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mask size for distance transform.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mask_3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_MASK_3</span>
+    <span class="n">mask_5</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_MASK_5</span>
+    <span class="n">mask_precise</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">DIST_MASK_PRECISE</span></div>
+
+
+<div class="viewcode-block" id="KmeansEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.KmeansEnum.html#draugr.opencv_utilities.namespaces.enums.KmeansEnum">[docs]</a><span class="k">class</span> <span class="nc">KmeansEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">random_centers</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">KMEANS_RANDOM_CENTERS</span>
+    <span class="p">)</span>  <span class="c1"># Select random initial centers in each attempt.</span>
+    <span class="n">pp_centers</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">KMEANS_PP_CENTERS</span>
+    <span class="p">)</span>  <span class="c1"># Use kmeans++ center initialization by Arthur and Vassilvitskii [Arthur2007].</span>
+    <span class="n">use_initial_labels</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">KMEANS_USE_INITIAL_LABELS</span>
+    <span class="p">)</span>  <span class="c1"># During the first (and possibly the only) attempt, use the user-supplied labels instead of computing them from the initial centers. For the second and further attempts, use the random or semi-random centers. Use one of KMEANS_*_CENTERS flag to specify the exact method.</span></div>
+
+
+<div class="viewcode-block" id="HoughModeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.HoughModeEnum.html#draugr.opencv_utilities.namespaces.enums.HoughModeEnum">[docs]</a><span class="k">class</span> <span class="nc">HoughModeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">standard</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">HOUGH_STANDARD</span>
+    <span class="p">)</span>  <span class="c1"># classical or standard Hough transform. Every line is represented by two floating-point numbers (ρ,θ) , where ρ is a distance between (0,0) point and the line, and θ is the angle between x-axis and the normal to the line. Thus, the matrix must be (the created sequence will be) of CV_32FC2 type</span>
+    <span class="n">gradient</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">HOUGH_GRADIENT</span>  <span class="c1"># basically 21HT</span>
+    <span class="n">probabilistic</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">HOUGH_PROBABILISTIC</span>
+    <span class="p">)</span>  <span class="c1"># probabilistic Hough transform (more efficient in case if the picture contains a few long linear segments). It returns line segments rather than the whole line. Each segment is represented by starting and ending points, and the matrix must be (the created sequence will be) of the CV_32SC4 type.</span>
+    <span class="n">multi_scale</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">HOUGH_MULTI_SCALE</span>
+    <span class="p">)</span>  <span class="c1"># multi-scale variant of the classical Hough transform. The lines are encoded the same way as HOUGH_STANDARD.</span>
+    <span class="n">gradient_alternative</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">HOUGH_GRADIENT_ALT</span>
+    <span class="p">)</span>  <span class="c1"># variation of HOUGH_GRADIENT to get better accuracy</span></div>
+
+
+<div class="viewcode-block" id="WindowFlagEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.WindowFlagEnum.html#draugr.opencv_utilities.namespaces.enums.WindowFlagEnum">[docs]</a><span class="k">class</span> <span class="nc">WindowFlagEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">normal</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_NORMAL</span>
+    <span class="p">)</span>  <span class="c1"># the user can resize the window (no constraint) / also use to switch a fullscreen window to a normal size.</span>
+    <span class="n">autosize</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_AUTOSIZE</span>
+    <span class="p">)</span>  <span class="c1"># the user cannot resize the window, the size is constrainted by the image displayed.</span>
+    <span class="n">opengl</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_OPENGL</span>  <span class="c1"># window with opengl support.</span>
+    <span class="n">fullscreen</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_FULLSCREEN</span>  <span class="c1"># change the window to fullscreen.</span>
+    <span class="n">free_ratio</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_FREERATIO</span>
+    <span class="p">)</span>  <span class="c1"># the image expends as much as it can (no ratio constraint).</span>
+    <span class="n">keep_ratio</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_KEEPRATIO</span>  <span class="c1"># the ratio of the image is respected.</span>
+    <span class="n">gui_expanded</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_GUI_EXPANDED</span>  <span class="c1"># status bar and tool bar</span>
+    <span class="n">gui_normal</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">WINDOW_GUI_NORMAL</span>  <span class="c1"># old fashious way</span></div>
+
+
+<div class="viewcode-block" id="MorphShapeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.MorphShapeEnum.html#draugr.opencv_utilities.namespaces.enums.MorphShapeEnum">[docs]</a><span class="k">class</span> <span class="nc">MorphShapeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_RECT</span>  <span class="c1"># a rectangular structuring element: Eij=1</span>
+    <span class="n">cross</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_CROSS</span>
+    <span class="p">)</span>  <span class="c1"># a cross-shaped structuring element: Eij={10if i=anchor.y or j=anchor.x otherwise</span>
+    <span class="n">ellipse</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_ELLIPSE</span>
+    <span class="p">)</span>  <span class="c1"># an elliptic structuring element, that is, a filled ellipse inscribed into the rectangle Rect(0, 0, esize.width, 0.esize.height)</span></div>
+
+
+<div class="viewcode-block" id="RectanglesIntersectTypes"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.RectanglesIntersectTypes.html#draugr.opencv_utilities.namespaces.enums.RectanglesIntersectTypes">[docs]</a><span class="k">class</span> <span class="nc">RectanglesIntersectTypes</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    types of intersection between rectangles</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">none</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">INTERSECT_NONE</span>
+    <span class="c1"># No intersection.</span>
+
+    <span class="n">partial</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">INTERSECT_PARTIAL</span>
+    <span class="c1"># There is a partial intersection.</span>
+
+    <span class="n">full</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">INTERSECT_FULL</span></div>
+    <span class="c1"># One of the rectangle is fully enclosed in the other.</span>
+
+
+<div class="viewcode-block" id="MorphTypeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.MorphTypeEnum.html#draugr.opencv_utilities.namespaces.enums.MorphTypeEnum">[docs]</a><span class="k">class</span> <span class="nc">MorphTypeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">erode</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_ERODE</span>
+    <span class="n">dilate</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_DILATE</span>
+    <span class="nb">open</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_OPEN</span>  <span class="c1"># dst=open(src,element)=dilate(erode(src,element))</span>
+    <span class="n">close</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_CLOSE</span>  <span class="c1"># dst=close(src,element)=erode(dilate(src,element))</span>
+    <span class="n">gradient</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_GRADIENT</span>
+    <span class="p">)</span>  <span class="c1"># dst=morph_grad(src,element)=dilate(src,element)−erode(src,element)</span>
+    <span class="n">tophat</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_TOPHAT</span>  <span class="c1"># dst=tophat(src,element)=src−open(src,element)</span>
+    <span class="n">blackhat</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_BLACKHAT</span>  <span class="c1"># dst=blackhat(src,element)=close(src,element)−src</span>
+    <span class="n">hitmiss</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_HITMISS</span>  <span class="c1"># Only supported for CV_8UC1 binary images.</span></div>
+
+
+<div class="viewcode-block" id="FontEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.FontEnum.html#draugr.opencv_utilities.namespaces.enums.FontEnum">[docs]</a><span class="k">class</span> <span class="nc">FontEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">hershey_simplex</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span>  <span class="c1"># normal size sans-serif font</span>
+
+    <span class="n">hershey_plain</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_PLAIN</span>  <span class="c1"># small size sans-serif font</span>
+
+    <span class="n">hershey_duplex</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_DUPLEX</span>
+    <span class="p">)</span>  <span class="c1"># normal size sans-serif font (more complex than FONT_HERSHEY_SIMPLEX)</span>
+
+    <span class="n">hershey_complex</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_COMPLEX</span>  <span class="c1"># normal size serif font</span>
+
+    <span class="n">hershey_triplex</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_TRIPLEX</span>
+    <span class="p">)</span>  <span class="c1"># normal size serif font (more complex than FONT_HERSHEY_COMPLEX)</span>
+
+    <span class="n">hershey_complex_small</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_COMPLEX_SMALL</span>
+    <span class="p">)</span>  <span class="c1"># smaller version of FONT_HERSHEY_COMPLEX</span>
+
+    <span class="n">hershey_script_simplex</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SCRIPT_SIMPLEX</span>  <span class="c1"># hand-writing style font</span>
+
+    <span class="n">hershey_script_complex</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SCRIPT_COMPLEX</span>
+    <span class="p">)</span>  <span class="c1"># more complex variant of FONT_HERSHEY_SCRIPT_SIMPLEX</span>
+
+    <span class="n">italic</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_ITALIC</span>  <span class="c1"># flag for italic font</span></div>
+
+
+<div class="viewcode-block" id="ContourRetrievalModeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.ContourRetrievalModeEnum.html#draugr.opencv_utilities.namespaces.enums.ContourRetrievalModeEnum">[docs]</a><span class="k">class</span> <span class="nc">ContourRetrievalModeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">      RETR_EXTERNAL retrieves only the extreme outer contours. It sets hierarchy[i][2]=hierarchy[i][3]=-1 for all the contours.</span>
+<span class="sd">    RETR_LIST retrieves all of the contours without establishing any hierarchical relationships.</span>
+<span class="sd">    RETR_CCOMP retrieves all of the contours and organizes them into a two-level hierarchy. At the top level, there are external boundaries of the components. At the second level, there are boundaries of the holes. If there is another contour inside a hole of a connected component, it is still put at the top level.</span>
+<span class="sd">    RETR_TREE retrieves all of the contours and reconstructs a full hierarchy of nested contours. This full hierarchy is built and shown in the OpenCV contours.c demo.</span>
+
+<span class="sd">      :return:</span>
+<span class="sd">      :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">external</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_EXTERNAL</span>
+    <span class="n">list_all</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_LIST</span>
+    <span class="n">ccomp</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_CCOMP</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RETR_TREE</span></div>
+
+
+<div class="viewcode-block" id="ContourApproximationModeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.ContourApproximationModeEnum.html#draugr.opencv_utilities.namespaces.enums.ContourApproximationModeEnum">[docs]</a><span class="k">class</span> <span class="nc">ContourApproximationModeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    the contour approximation algorithm</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">none</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_NONE</span>
+    <span class="c1"># stores absolutely all the contour points. That is, any 2 subsequent points (x1,y1) and (x2,y2) of the contour will be either horizontal, vertical or diagonal neighbors, that is, max(abs(x1-x2),abs(y2-y1))==1.</span>
+
+    <span class="n">simple</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_SIMPLE</span>
+    <span class="c1"># compresses horizontal, vertical, and diagonal segments and leaves only their end points. For example, an up-right rectangular contour is encoded with 4 points.</span>
+
+    <span class="n">tc89_l1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_TC89_L1</span>
+    <span class="c1"># applies one of the flavors of the Teh-Chin chain approximation algorithm [244]</span>
+
+    <span class="n">tc89_kcos</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CHAIN_APPROX_TC89_KCOS</span></div>
+    <span class="c1"># applies one of the flavors of the Teh-Chin chain approximation algorithm [244]</span>
+
+
+<div class="viewcode-block" id="MouseEventEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.MouseEventEnum.html#draugr.opencv_utilities.namespaces.enums.MouseEventEnum">[docs]</a><span class="k">class</span> <span class="nc">MouseEventEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">move</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_MOUSEMOVE</span>
+    <span class="p">)</span>  <span class="c1"># indicates that the mouse pointer has moved over the window.</span>
+    <span class="n">left_down</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_LBUTTONDOWN</span>
+    <span class="p">)</span>  <span class="c1"># indicates that the left mouse button is pressed.</span>
+    <span class="n">left_up</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_LBUTTONUP</span>  <span class="c1"># indicates that left mouse button is released.</span>
+    <span class="n">left_double</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_LBUTTONDBLCLK</span>
+    <span class="p">)</span>  <span class="c1"># indicates that left mouse button is double clicked.</span>
+    <span class="n">right_down</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_RBUTTONDOWN</span>
+    <span class="p">)</span>  <span class="c1"># indicates that the right mouse button is pressed.</span>
+    <span class="n">right_up</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_RBUTTONUP</span>  <span class="c1"># indicates that right mouse button is released.</span>
+    <span class="n">right_double</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_RBUTTONDBLCLK</span>
+    <span class="p">)</span>  <span class="c1"># indicates that right mouse button is double clicked.</span>
+    <span class="n">middle_down</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_MBUTTONDOWN</span>
+    <span class="p">)</span>  <span class="c1"># indicates that the middle mouse button is pressed.</span>
+    <span class="n">middle_up</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_MBUTTONUP</span>  <span class="c1"># indicates that middle mouse button is released.</span>
+    <span class="n">middle_double</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_MBUTTONDBLCLK</span>
+    <span class="p">)</span>  <span class="c1"># indicates that middle mouse button is double clicked.</span>
+    <span class="n">wheel_ud</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_MOUSEWHEEL</span>
+    <span class="p">)</span>  <span class="c1"># positive and negative values mean forward and backward scrolling, respectively.</span>
+    <span class="n">wheel_rl</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">EVENT_MOUSEHWHEEL</span>
+    <span class="p">)</span>  <span class="c1"># positive and negative values mean right and left scrolling, respectively.</span></div>
+
+
+<div class="viewcode-block" id="LineTypeEnum"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.namespaces.enums.LineTypeEnum.html#draugr.opencv_utilities.namespaces.enums.LineTypeEnum">[docs]</a><span class="k">class</span> <span class="nc">LineTypeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">filled</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FILLED</span>
+    <span class="n">line4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">LINE_4</span>  <span class="c1"># 4-connected line</span>
+    <span class="n">line8</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">LINE_8</span>  <span class="c1"># 8-connected line</span>
+    <span class="n">anti_aliased</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">LINE_AA</span>  <span class="c1"># antialiased line</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  <li><a href="../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

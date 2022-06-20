@@ -14,6 +14,17 @@ from datasets import mnist
 
 
 def init_random_params(scale, layer_sizes, rng=random.RandomState(0)):
+    """
+
+    :param scale:
+    :type scale:
+    :param layer_sizes:
+    :type layer_sizes:
+    :param rng:
+    :type rng:
+    :return:
+    :rtype:
+    """
     return [
         (scale * rng.randn(m, n), scale * rng.randn(n))
         for m, n, in zip(layer_sizes[:-1], layer_sizes[1:])
@@ -21,6 +32,15 @@ def init_random_params(scale, layer_sizes, rng=random.RandomState(0)):
 
 
 def predict(params, inputs):
+    """
+
+    :param params:
+    :type params:
+    :param inputs:
+    :type inputs:
+    :return:
+    :rtype:
+    """
     activations = inputs
     for w, b in params[:-1]:
         outputs = jnp.dot(activations, w) + b
@@ -32,12 +52,30 @@ def predict(params, inputs):
 
 
 def loss(params, batch):
+    """
+
+    :param params:
+    :type params:
+    :param batch:
+    :type batch:
+    :return:
+    :rtype:
+    """
     inputs, targets = batch
     preds = predict(params, inputs)
     return -jnp.mean(jnp.sum(preds * targets, axis=1))
 
 
 def accuracy(params, batch):
+    """
+
+    :param params:
+    :type params:
+    :param batch:
+    :type batch:
+    :return:
+    :rtype:
+    """
     inputs, targets = batch
     target_class = jnp.argmax(targets, axis=1)
     predicted_class = jnp.argmax(predict(params, inputs), axis=1)
@@ -57,6 +95,7 @@ if __name__ == "__main__":
     num_batches = num_complete_batches + bool(leftover)
 
     def data_stream():
+        """ """
         rng = npr.RandomState(0)
         while True:
             perm = rng.permutation(num_train)
@@ -68,6 +107,15 @@ if __name__ == "__main__":
 
     @jit
     def update(params, batch):
+        """
+
+        :param params:
+        :type params:
+        :param batch:
+        :type batch:
+        :return:
+        :rtype:
+        """
         grads = grad(loss)(params, batch)
         return [
             (w - step_size * dw, b - step_size * db)

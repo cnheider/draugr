@@ -18,6 +18,11 @@ __all__ = ["new_user_logon_execute_task", "delete_task", "set_task_activity"]
 
 
 def get_scheduler() -> win32com.client.CDispatch:
+    """
+
+    :return:
+    :rtype:
+    """
     scheduler = win32com.client.Dispatch("Schedule.Service")
     scheduler.Connect()
     return scheduler
@@ -33,6 +38,23 @@ def register_task(
     task_creation_type=TaskCreationEnum.TASK_CREATE_OR_UPDATE.value,
     task_logon_type=TaskLogonTypeEnum.TASK_LOGON_NONE.value,
 ) -> None:
+    """
+
+    :param task_folder:
+    :type task_folder:
+    :param task_definition:
+    :type task_definition:
+    :param name:
+    :type name:
+    :param user:
+    :type user:
+    :param password:
+    :type password:
+    :param task_creation_type:
+    :type task_creation_type:
+    :param task_logon_type:
+    :type task_logon_type:
+    """
     task_folder.RegisterTaskDefinition(
         name, task_definition, task_creation_type, user, password, task_logon_type
     )
@@ -45,6 +67,17 @@ def new_execute_action(
     *,
     action_id: str = "action0",
 ) -> None:
+    """
+
+    :param task_def:
+    :type task_def:
+    :param action_path:
+    :type action_path:
+    :param action_arguments:
+    :type action_arguments:
+    :param action_id:
+    :type action_id:
+    """
     action = task_def.Actions.Create(TaskActionTypeEnum.TASK_ACTION_EXEC.value)
     action.ID = action_id
     action.Path = action_path
@@ -58,6 +91,15 @@ def new_time_trigger(
     end_time: datetime.datetime = datetime.datetime.now()
     + datetime.timedelta(minutes=10),
 ) -> None:
+    """
+
+    :param task_def:
+    :type task_def:
+    :param start_time:
+    :type start_time:
+    :param end_time:
+    :type end_time:
+    """
     trigger = task_def.Triggers.Create(TaskTriggerEnum.TASK_TRIGGER_TIME.value)
     trigger.StartBoundary = start_time.isoformat()
     trigger.EndBoundary = end_time.isoformat()
@@ -69,12 +111,26 @@ def new_logon_trigger(
     domain: str = socket.gethostname(),
     username: str = getpass.getuser(),
 ) -> None:
+    """
+
+    :param task_def:
+    :type task_def:
+    :param domain:
+    :type domain:
+    :param username:
+    :type username:
+    """
     trigger = task_def.Triggers.Create(TaskTriggerEnum.TASK_TRIGGER_LOGON.value)
     trigger.Id = "LogonTriggerId"
     trigger.UserId = f"{domain}\{username}"  # Must be a valid user account
 
 
 def new_boot_trigger(task_def: win32com.client.CDispatch) -> None:
+    """
+
+    :param task_def:
+    :type task_def:
+    """
     trigger = task_def.Triggers.Create(TaskTriggerEnum.TASK_TRIGGER_BOOT.value)
     trigger.Id = "BootTriggerId"
     # trigger.Delay = "PT30S"  # 30 Seconds
@@ -89,6 +145,21 @@ def new_user_logon_execute_task(
     task_folder: str = "\\User",
     stop_if_on_battery: bool = False,
 ) -> None:
+    """
+
+    :param name:
+    :type name:
+    :param desc:
+    :type desc:
+    :param action_path:
+    :type action_path:
+    :param action_arguments:
+    :type action_arguments:
+    :param task_folder:
+    :type task_folder:
+    :param stop_if_on_battery:
+    :type stop_if_on_battery:
+    """
     scheduler = get_scheduler()
     root_folder = scheduler.GetFolder(task_folder)
     task_def = scheduler.NewTask(0)
@@ -105,6 +176,13 @@ def new_user_logon_execute_task(
 
 
 def delete_task(task_name: str, *, task_folder: str = "\\User") -> None:
+    """
+
+    :param task_name:
+    :type task_name:
+    :param task_folder:
+    :type task_folder:
+    """
     scheduler = get_scheduler()
     task_folder = scheduler.GetFolder(task_folder)
     task_folder.DeleteTask(task_name, 0)
@@ -113,6 +191,15 @@ def delete_task(task_name: str, *, task_folder: str = "\\User") -> None:
 def set_task_activity(
     task_name: str, enable: bool, *, task_folder: str = "\\User"
 ) -> None:
+    """
+
+    :param task_name:
+    :type task_name:
+    :param enable:
+    :type enable:
+    :param task_folder:
+    :type task_folder:
+    """
     scheduler = get_scheduler()
     task_folder = scheduler.GetFolder(task_folder)
     task = task_folder.GetTask(task_name)

@@ -53,6 +53,7 @@ def dist_is_editable(dist: Any) -> bool:
     return False
 
 
+PROJECT_ORGANISATION = "pything"
 PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
 PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018

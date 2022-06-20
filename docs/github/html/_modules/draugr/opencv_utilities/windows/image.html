@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.opencv_utilities.windows.image &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/windows/image.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.opencv_utilities.windows.image</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;OPENCV_IO_ENABLE_OPENEXR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="kn">from</span> <span class="nn">apppath</span> <span class="kn">import</span> <span class="n">ensure_existence</span>
+<span class="kn">from</span> <span class="nn">draugr.opencv_utilities.namespaces.enums</span> <span class="kn">import</span> <span class="n">WindowFlagEnum</span><span class="p">,</span> <span class="n">FontEnum</span>
+<span class="kn">from</span> <span class="nn">draugr.opencv_utilities.windows.default</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ESC_CHAR</span><span class="p">,</span>
+    <span class="n">ExtensionEnum</span><span class="p">,</span>
+    <span class="n">match_return_code</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">warg</span> <span class="kn">import</span> <span class="n">get_first_arg_name</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;show_image&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="show_image"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.windows.image.show_image.html#draugr.opencv_utilities.windows.image.show_image">[docs]</a><span class="k">def</span> <span class="nf">show_image</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">flag</span><span class="p">:</span> <span class="n">WindowFlagEnum</span> <span class="o">=</span> <span class="n">WindowFlagEnum</span><span class="o">.</span><span class="n">gui_expanded</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <span class="n">wait</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">draw_title</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">save_path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exit_chars</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">,</span> <span class="n">ESC_CHAR</span><span class="p">),</span>
+    <span class="n">extension</span><span class="p">:</span> <span class="n">ExtensionEnum</span> <span class="o">=</span> <span class="n">ExtensionEnum</span><span class="o">.</span><span class="n">exr</span><span class="p">,</span>  <span class="c1"># &#39;png&#39;</span>
+    <span class="n">min_default_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">max_default_size</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ! if a title is not provided ( None) , title will be inferred. Caution in real time imshow / animations this will hurt performance.</span>
+
+<span class="sd">    :param min_default_size:</span>
+<span class="sd">    :type min_default_size:</span>
+<span class="sd">    :param max_default_size:</span>
+<span class="sd">    :type max_default_size:</span>
+<span class="sd">    :param image:</span>
+<span class="sd">    :type image:</span>
+<span class="sd">    :param title:</span>
+<span class="sd">    :type title:</span>
+<span class="sd">    :param flag:</span>
+<span class="sd">    :type flag:</span>
+<span class="sd">    :param wait:</span>
+<span class="sd">    :type wait:</span>
+<span class="sd">    :param draw_title:</span>
+<span class="sd">    :type draw_title:</span>
+<span class="sd">    :param save_path:</span>
+<span class="sd">    :type save_path:</span>
+<span class="sd">    :param exit_chars:</span>
+<span class="sd">    :type exit_chars:</span>
+<span class="sd">    :param extension:</span>
+<span class="sd">    :type extension:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">get_first_arg_name</span><span class="p">(</span><span class="s2">&quot;show_image&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;image&quot;</span>
+
+    <span class="k">if</span> <span class="n">draw_title</span><span class="p">:</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span>
+            <span class="n">image</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+            <span class="n">title</span><span class="p">,</span>
+            <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">20</span><span class="p">),</span>
+            <span class="n">FontEnum</span><span class="o">.</span><span class="n">hershey_simplex</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="mf">2.0</span><span class="p">,</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="mi">3</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">getWindowProperty</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># is open test</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">namedWindow</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span>
+
+        <span class="n">w_o</span><span class="p">,</span> <span class="n">h_o</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">max_d</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+            <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">w_o</span><span class="p">,</span> <span class="n">max_default_size</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">h_o</span><span class="p">,</span> <span class="n">max_default_size</span><span class="p">)),</span>
+            <span class="n">min_default_size</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">ar_o</span> <span class="o">=</span> <span class="n">h_o</span> <span class="o">/</span> <span class="n">w_o</span>
+        <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">max_d</span><span class="p">,</span> <span class="n">ar_o</span> <span class="o">*</span> <span class="n">max_d</span>
+
+        <span class="n">cv2</span><span class="o">.</span><span class="n">resizeWindow</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">extension</span> <span class="o">=</span> <span class="n">ExtensionEnum</span><span class="p">(</span><span class="n">extension</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">extension</span> <span class="o">==</span> <span class="n">ExtensionEnum</span><span class="o">.</span><span class="n">exr</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENCV_IO_ENABLE_OPENEXR&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span>
+            <span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;Openexr is support not enabled, must be declared before import of cv2, OPENCV_IO_ENABLE_OPENEXR</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENCV_IO_ENABLE_OPENEXR&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+            <span class="c1"># cv2.</span>
+
+        <span class="n">ensure_existence</span><span class="p">(</span><span class="n">save_path</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">save_path</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="n">extension</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)),</span> <span class="n">image</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">wait</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;# WEIRDO PYTHON</span>
+<span class="sd">        if (</span>
+<span class="sd">            wait is int or wait is float and wait &gt;= 0</span>
+<span class="sd">        ):  # DO NOT REFACTOR TO ISINSTANCE as bool is an instance of int!</span>
+<span class="sd">          return ret_val_comp(cv2.waitKey(wait), char)</span>
+<span class="sd">        else:</span>
+<span class="sd">          return ret_val_comp(cv2.waitKey(), char)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wait</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">wait</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">match_return_code</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(),</span> <span class="n">exit_chars</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">wait</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">match_return_code</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="n">wait</span><span class="p">),</span> <span class="n">exit_chars</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">assd</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="n">aasdsad</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">show_image</span><span class="p">(</span><span class="n">aasdsad</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">asd_a_as</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">show_image</span><span class="p">(</span><span class="n">asd_a_as</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;exclude&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;out.exr&quot;</span><span class="p">))</span>
+
+    <span class="n">assd</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  <li><a href="../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

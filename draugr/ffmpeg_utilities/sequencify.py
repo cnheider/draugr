@@ -4,6 +4,11 @@ __all__ = ["sequencify_files"]
 
 
 def sequencify_files(frames_dir: Path):
+    """
+
+    :param frames_dir:
+    :type frames_dir:
+    """
     for i, f in enumerate(sorted(frames_dir.iterdir(), key=lambda x: x.name)):
         if f.is_file():
             suffix = {f.suffix}

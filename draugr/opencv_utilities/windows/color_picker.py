@@ -14,6 +14,15 @@ __all__ = ["interactive_hsv_color_picker"]
 def interactive_hsv_color_picker(
     ps: Iterable, wait_time: int = 33, verbose: bool = False
 ) -> None:
+    """
+
+    :param ps:
+    :type ps:
+    :param wait_time:
+    :type wait_time:
+    :param verbose:
+    :type verbose:
+    """
     show_image(numpy.zeros((600, 600)), "image")
 
     add_trackbar(

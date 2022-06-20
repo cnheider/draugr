@@ -99,13 +99,45 @@ if __name__ == "__main__":
     test_images = jax.device_put(test_images)
 
     def binarize_batch(rng, i, images):
+        """
+
+        :param rng:
+        :type rng:
+        :param i:
+        :type i:
+        :param images:
+        :type images:
+        :return:
+        :rtype:
+        """
         i = i % num_batches
         batch = lax.dynamic_slice_in_dim(images, i * batch_size, batch_size)
         return random.bernoulli(rng, batch)
 
     @jit
     def run_epoch(rng, opt_state, images):
+        """
+
+        :param rng:
+        :type rng:
+        :param opt_state:
+        :type opt_state:
+        :param images:
+        :type images:
+        :return:
+        :rtype:
+        """
+
         def body_fun(i, opt_state):
+            """
+
+            :param i:
+            :type i:
+            :param opt_state:
+            :type opt_state:
+            :return:
+            :rtype:
+            """
             elbo_rng, data_rng = random.split(random.fold_in(rng, i))
             batch = binarize_batch(data_rng, i, images)
             loss = lambda params: -elbo(elbo_rng, params, batch) / batch_size
@@ -116,6 +148,15 @@ if __name__ == "__main__":
 
     @jit
     def evaluate(opt_state, images):
+        """
+
+        :param opt_state:
+        :type opt_state:
+        :param images:
+        :type images:
+        :return:
+        :rtype:
+        """
         params = get_params(opt_state)
         elbo_rng, data_rng, image_rng = random.split(test_rng, 3)
         binarized_test = random.bernoulli(data_rng, images)
