@@ -18,6 +18,7 @@ mccabe
 flake8
 bandit
 matplotlib
+-r ../requirements.txt
 #-r requirements_docs.txt
 -r requirements_drawers.txt
 -r requirements_opencv.txt
