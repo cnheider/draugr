@@ -18,6 +18,7 @@ doc8>=0.11.2
 flake8>=4.0.1
 bandit>=1.7.4
 matplotlib>=3.5.2
+
 -r ../requirements.txt
 -r requirements_docs.txt
 -r requirements_drawers.txt
@@ -31,5 +32,5 @@ matplotlib>=3.5.2
 -r requirements_dlib.txt
 -r requirements_tests.txt
 -r requirements_windows.txt
-
+-r requirements_extensions.txt
 # full install
