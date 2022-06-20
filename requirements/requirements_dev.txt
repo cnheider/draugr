@@ -1,4 +1,4 @@
-pip>=20.2.3
+pip>=22.1.2
 wheel>=0.35.1
 twine>=3.2.0
 black
@@ -7,19 +7,19 @@ pytest-cov>=2.10.1
 coveralls>=2.1.2
 tox>=3.20.0
 #packaging # ISSUES!
-pyperf
-pre-commit
+pyperf>=2.3.1
+pre-commit>=2.19.0
 pydocstyle
 pylint
-isort
-pycodestyle
+isort>=5.10.1
+pycodestyle>=2.8.0
 doc8
 mccabe
 flake8
 bandit
 matplotlib
 -r ../requirements.txt
-#-r requirements_docs.txt
+-r requirements_docs.txt
 -r requirements_drawers.txt
 -r requirements_opencv.txt
 -r requirements_setup.txt

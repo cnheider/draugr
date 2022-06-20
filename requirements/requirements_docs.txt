@@ -6,4 +6,4 @@ warg
 draugr
 #mistune
 
--r requirements_dev.txt
+#-r requirements_dev.txt
