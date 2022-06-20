@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.operations.torch\_transforms.batch\_transforms
+draugr.torch\_utilities.operations.torch\_transforms.batch\_transforms
 ======================================================================
 
 .. automodule:: draugr.torch_utilities.operations.torch_transforms.batch_transforms
@@ -19,10 +19,10 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
+      BatchToTensor
       BatchNormalize
       BatchRandomCrop
       BatchRandomHorizontalFlip
-      BatchToTensor
    
    
 

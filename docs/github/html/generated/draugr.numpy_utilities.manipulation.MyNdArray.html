@@ -13,6 +13,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.numpy_utilities.manipulation.MyNdArray.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,11 +37,11 @@
           <div class="body" role="main">
             
   <section id="draugr-numpy-utilities-manipulation-myndarray">
-<h1>draugr.numpy_utilities.manipulation.MyNdArray<a class="headerlink" href="#draugr-numpy-utilities-manipulation-myndarray" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.numpy_utilities.manipulation.MyNdArray<a class="headerlink" href="#draugr-numpy-utilities-manipulation-myndarray" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.numpy_utilities.manipulation.</span></span><span class="sig-name descname"><span class="pre">MyNdArray</span></span><a class="reference internal" href="../_modules/draugr/numpy_utilities/manipulation.html#MyNdArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.numpy_utilities.manipulation.</span></span><span class="sig-name descname"><span class="pre">MyNdArray</span></span><a class="reference internal" href="../_modules/draugr/numpy_utilities/manipulation.html#MyNdArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
 <p>Small extension</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray.__init__">
@@ -48,7 +49,7 @@
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -130,7 +131,7 @@
 <td><p>Copy an element of an array to a standard Python scalar and return it.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.itemset" title="draugr.numpy_utilities.manipulation.MyNdArray.itemset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">itemset</span></code></a>(*args)</p></td>
-<td><p>Insert scalar into an array (scalar is cast to array’s dtype, if possible)</p></td>
+<td><p>Insert scalar into an array (scalar is cast to array's dtype, if possible)</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.max" title="draugr.numpy_utilities.manipulation.MyNdArray.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max</span></code></a>([axis, out, keepdims, initial, where])</p></td>
 <td><p>Return the maximum along a given axis.</p></td>
@@ -150,7 +151,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.partition" title="draugr.numpy_utilities.manipulation.MyNdArray.partition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partition</span></code></a>(kth[, axis, kind, order])</p></td>
 <td><p>Rearranges the elements in the array in such a way that the value of the element in kth position is in the position it would be in a sorted array.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.prod" title="draugr.numpy_utilities.manipulation.MyNdArray.prod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prod</span></code></a>([axis, dtype, out, keepdims, initial, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.prod" title="draugr.numpy_utilities.manipulation.MyNdArray.prod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prod</span></code></a>([axis, dtype, out, keepdims, initial, ...])</p></td>
 <td><p>Return the product of the array elements over the given axis</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.ptp" title="draugr.numpy_utilities.manipulation.MyNdArray.ptp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ptp</span></code></a>([axis, out, keepdims])</p></td>
@@ -228,7 +229,7 @@
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -247,10 +248,10 @@
 <td><p>An object to simplify the interaction of the array with the ctypes module.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.data" title="draugr.numpy_utilities.manipulation.MyNdArray.data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></a></p></td>
-<td><p>Python buffer object pointing to the start of the array’s data.</p></td>
+<td><p>Python buffer object pointing to the start of the array's data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.dtype" title="draugr.numpy_utilities.manipulation.MyNdArray.dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dtype</span></code></a></p></td>
-<td><p>Data-type of the array’s elements.</p></td>
+<td><p>Data-type of the array's elements.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.flags" title="draugr.numpy_utilities.manipulation.MyNdArray.flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flags</span></code></a></p></td>
 <td><p>Information about the memory layout of the array.</p></td>
@@ -616,7 +617,7 @@ One of max or min must be given.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray.conjugate_transpose">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">conjugate_transpose</span></span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.conjugate_transpose" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">conjugate_transpose</span></span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.conjugate_transpose" title="Permalink to this definition">¶</a></dt>
 <dd><p>return:</p>
 </dd></dl>
 
@@ -1241,7 +1242,7 @@ look-up at each loop iteration.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray.max">
-<span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">axis=None</span></em>, <em class="sig-param"><span class="pre">out=None</span></em>, <em class="sig-param"><span class="pre">keepdims=False</span></em>, <em class="sig-param"><span class="pre">initial=&lt;no</span> <span class="pre">value&gt;</span></em>, <em class="sig-param"><span class="pre">where=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.max" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial=&lt;no</span> <span class="pre">value&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the maximum along a given axis.</p>
 <p>Refer to <cite>numpy.amax</cite> for full documentation.</p>
 <div class="admonition seealso">
@@ -1269,7 +1270,7 @@ look-up at each loop iteration.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray.min">
-<span class="sig-name descname"><span class="pre">min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">axis=None</span></em>, <em class="sig-param"><span class="pre">out=None</span></em>, <em class="sig-param"><span class="pre">keepdims=False</span></em>, <em class="sig-param"><span class="pre">initial=&lt;no</span> <span class="pre">value&gt;</span></em>, <em class="sig-param"><span class="pre">where=True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.min" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial=&lt;no</span> <span class="pre">value&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">where=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.min" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the minimum along a given axis.</p>
 <p>Refer to <cite>numpy.amin</cite> for full documentation.</p>
 <div class="admonition seealso">
@@ -1468,7 +1469,7 @@ they come up in the dtype, to break ties.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray.ravel">
-<span class="sig-name descname"><span class="pre">ravel</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">order</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.ravel" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">ravel</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">order</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.ravel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a flattened array.</p>
 <p>Refer to <cite>numpy.ravel</cite> for full documentation.</p>
 <div class="admonition seealso">
@@ -1547,14 +1548,11 @@ For example, <code class="docutils literal notranslate"><span class="pre">a.resh
 <li><p><strong>refcheck</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – If False, reference count will not be checked. Default is True.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If <cite>a</cite> does not own its own data or references or views to it exist,
     and the data memory must be changed.
     PyPy only: will always raise if the data memory must be changed, since
@@ -1667,11 +1665,8 @@ bytes into the field.</p>
 <li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – The number of bytes into the field at which to place <cite>val</cite>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)">None</a></p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -2454,7 +2449,7 @@ avoided on arrays defined by slices, transposes, fortran-ordering, etc.:</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -2471,7 +2466,7 @@ avoided on arrays defined by slices, transposes, fortran-ordering, etc.:</p>
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

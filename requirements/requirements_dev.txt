@@ -1,11 +1,11 @@
 pip>=22.1.2
-wheel>=0.35.1
-twine>=3.2.0
-black
-pytest>=6.1.0
-pytest-cov>=2.10.1
-coveralls>=2.1.2
-tox>=3.20.0
+wheel>=0.37.1
+twine>=4.0.1
+black>=22.3.0
+pytest>=7.1.2
+pytest-cov>=3.0.0
+coveralls>=3.3.1
+tox>=3.25.0
 #packaging # ISSUES!
 pyperf>=2.3.1
 pre-commit>=2.19.0
@@ -13,11 +13,11 @@ pydocstyle
 pylint
 isort>=5.10.1
 pycodestyle>=2.8.0
-doc8
-mccabe
-flake8
-bandit
-matplotlib
+doc8>=0.11.2
+#mccabe>=0.7.0
+flake8>=4.0.1
+bandit>=1.7.4
+matplotlib>=3.5.2
 -r ../requirements.txt
 -r requirements_docs.txt
 -r requirements_drawers.txt
@@ -28,5 +28,8 @@ matplotlib
 -r requirements_tqdm.txt
 -r requirements_visualisation.txt
 -r requirements_linux.txt
+-r requirements_dlib.txt
+-r requirements_tests.txt
+-r requirements_windows.txt
 
 # full install

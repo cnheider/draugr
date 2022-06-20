@@ -1,4 +1,4 @@
-﻿draugr.drawers.mpl\_drawers.mpldrawer
+draugr.drawers.mpl\_drawers.mpldrawer
 =====================================
 
 .. automodule:: draugr.drawers.mpl_drawers.mpldrawer
@@ -19,8 +19,8 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      MockDrawer
       MplDrawer
+      MockDrawer
    
    
 

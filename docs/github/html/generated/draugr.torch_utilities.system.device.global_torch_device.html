@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.system.device.global_torch_device.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="draugr.torch_utilities.system.device.select_cuda_device" href="draugr.torch_utilities.system.device.select_cuda_device.html" />
-    <link rel="prev" title="draugr.torch_utilities.system.device.get_gpu_usage_mb" href="draugr.torch_utilities.system.device.get_gpu_usage_mb.html" />
+    <link rel="prev" title="draugr.torch_utilities.system.device" href="draugr.torch_utilities.system.device.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="draugr-torch-utilities-system-device-global-torch-device">
-<h1>draugr.torch_utilities.system.device.global_torch_device<a class="headerlink" href="#draugr-torch-utilities-system-device-global-torch-device" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.torch_utilities.system.device.global_torch_device<a class="headerlink" href="#draugr-torch-utilities-system-device-global-torch-device" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="draugr.torch_utilities.system.device.global_torch_device">
-<span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.system.device.</span></span><span class="sig-name descname"><span class="pre">global_torch_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_preference</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="draugr.torch_utilities.system.device.TorchDeviceEnum.html#draugr.torch_utilities.system.device.TorchDeviceEnum" title="draugr.torch_utilities.system.device.TorchDeviceEnum"><span class="pre">draugr.torch_utilities.system.device.TorchDeviceEnum</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">override</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.device</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">torch.device</span></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/system/device.html#global_torch_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.system.device.global_torch_device" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.system.device.</span></span><span class="sig-name descname"><span class="pre">global_torch_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_preference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="draugr.torch_utilities.system.device.TorchDeviceEnum.html#draugr.torch_utilities.system.device.TorchDeviceEnum" title="draugr.torch_utilities.system.device.TorchDeviceEnum"><span class="pre">TorchDeviceEnum</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">override</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><span class="pre">device</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">device</span></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/system/device.html#global_torch_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.system.device.global_torch_device" title="Permalink to this definition">¶</a></dt>
 <dd><p>first time call stores to device for global reference, later call must explicitly manually override!</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -116,10 +117,10 @@
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.system.constants.html">draugr.torch_utilities.system.constants</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.system.data_type.html">draugr.torch_utilities.system.data_type</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="draugr.torch_utilities.system.device.html">draugr.torch_utilities.system.device</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.system.device.auto_select_available_cuda_device.html">draugr.torch_utilities.system.device.auto_select_available_cuda_device</a></li>
-<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.system.device.get_gpu_usage_mb.html">draugr.torch_utilities.system.device.get_gpu_usage_mb</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">draugr.torch_utilities.system.device.global_torch_device</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.system.device.select_cuda_device.html">draugr.torch_utilities.system.device.select_cuda_device</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.system.device.get_gpu_usage_mb.html">draugr.torch_utilities.system.device.get_gpu_usage_mb</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.system.device.auto_select_available_cuda_device.html">draugr.torch_utilities.system.device.auto_select_available_cuda_device</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.system.device.set_global_torch_device.html">draugr.torch_utilities.system.device.set_global_torch_device</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.system.device.torch_clean_up.html">draugr.torch_utilities.system.device.torch_clean_up</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.system.device.TorchDeviceEnum.html">draugr.torch_utilities.system.device.TorchDeviceEnum</a></li>
@@ -153,7 +154,7 @@
   <li><a href="draugr.torch_utilities.html">draugr.torch_utilities</a><ul>
   <li><a href="draugr.torch_utilities.system.html">draugr.torch_utilities.system</a><ul>
   <li><a href="draugr.torch_utilities.system.device.html">draugr.torch_utilities.system.device</a><ul>
-      <li>Previous: <a href="draugr.torch_utilities.system.device.get_gpu_usage_mb.html" title="previous chapter">draugr.torch_utilities.system.device.get_gpu_usage_mb</a></li>
+      <li>Previous: <a href="draugr.torch_utilities.system.device.html" title="previous chapter">draugr.torch_utilities.system.device</a></li>
       <li>Next: <a href="draugr.torch_utilities.system.device.select_cuda_device.html" title="next chapter">draugr.torch_utilities.system.device.select_cuda_device</a></li>
   </ul></li>
   </ul></li>
@@ -171,7 +172,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -188,7 +189,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

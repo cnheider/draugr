@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.writers.mixins.video_writer_mixin.VideoWriterMixin.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.writers.mock_writer" href="draugr.writers.mock_writer.html" />
-    <link rel="prev" title="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum" href="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum.html" />
+    <link rel="next" title="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum" href="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum.html" />
+    <link rel="prev" title="draugr.writers.mixins.video_writer_mixin" href="draugr.writers.mixins.video_writer_mixin.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,11 +37,11 @@
           <div class="body" role="main">
             
   <section id="draugr-writers-mixins-video-writer-mixin-videowritermixin">
-<h1>draugr.writers.mixins.video_writer_mixin.VideoWriterMixin<a class="headerlink" href="#draugr-writers-mixins-video-writer-mixin-videowritermixin" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.writers.mixins.video_writer_mixin.VideoWriterMixin<a class="headerlink" href="#draugr-writers-mixins-video-writer-mixin-videowritermixin" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.writers.mixins.video_writer_mixin.VideoWriterMixin">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.writers.mixins.video_writer_mixin.</span></span><span class="sig-name descname"><span class="pre">VideoWriterMixin</span></span><a class="reference internal" href="../_modules/draugr/writers/mixins/video_writer_mixin.html#VideoWriterMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.writers.mixins.video_writer_mixin.VideoWriterMixin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.writers.mixins.video_writer_mixin.</span></span><span class="sig-name descname"><span class="pre">VideoWriterMixin</span></span><a class="reference internal" href="../_modules/draugr/writers/mixins/video_writer_mixin.html#VideoWriterMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.writers.mixins.video_writer_mixin.VideoWriterMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
 <p>Writer subclass that provides an interface for ‘writing’ video clips</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.writers.mixins.video_writer_mixin.VideoWriterMixin.__init__">
@@ -48,7 +49,7 @@
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -68,7 +69,7 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.writers.mixins.video_writer_mixin.VideoWriterMixin.video">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">,</span> </span><span class="pre">torch.Tensor</span><span class="p"><span class="pre">,</span> </span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dims</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum.html#draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum" title="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum"><span class="pre">draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">VideoInputDimsEnum.ntchw</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/writers/mixins/video_writer_mixin.html#VideoWriterMixin.video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.writers.mixins.video_writer_mixin.VideoWriterMixin.video" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Image</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dims</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum.html#draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum" title="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum"><span class="pre">VideoInputDimsEnum</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">VideoInputDimsEnum.ntchw</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/writers/mixins/video_writer_mixin.html#VideoWriterMixin.video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.writers.mixins.video_writer_mixin.VideoWriterMixin.video" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div><dl class="field-list simple">
 <dt class="field-odd">param frame_rate</dt>
@@ -153,8 +154,8 @@
 <li class="toctree-l4"><a class="reference internal" href="draugr.writers.mixins.scalar_writer_mixin.html">draugr.writers.mixins.scalar_writer_mixin</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.writers.mixins.spectrogram_writer_mixin.html">draugr.writers.mixins.spectrogram_writer_mixin</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="draugr.writers.mixins.video_writer_mixin.html">draugr.writers.mixins.video_writer_mixin</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum.html">draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">draugr.writers.mixins.video_writer_mixin.VideoWriterMixin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum.html">draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum</a></li>
 </ul>
 </li>
 </ul>
@@ -182,8 +183,8 @@
   <li><a href="draugr.writers.html">draugr.writers</a><ul>
   <li><a href="draugr.writers.mixins.html">draugr.writers.mixins</a><ul>
   <li><a href="draugr.writers.mixins.video_writer_mixin.html">draugr.writers.mixins.video_writer_mixin</a><ul>
-      <li>Previous: <a href="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum.html" title="previous chapter">draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum</a></li>
-      <li>Next: <a href="draugr.writers.mock_writer.html" title="next chapter">draugr.writers.mock_writer</a></li>
+      <li>Previous: <a href="draugr.writers.mixins.video_writer_mixin.html" title="previous chapter">draugr.writers.mixins.video_writer_mixin</a></li>
+      <li>Next: <a href="draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum.html" title="next chapter">draugr.writers.mixins.video_writer_mixin.VideoInputDimsEnum</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -200,7 +201,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -217,7 +218,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -14,10 +14,10 @@ draugr.os\_utilities.linux\_utilities.user\_utilities
    .. autosummary::
       :toctree:
    
-      change_home_dir
-      change_passwd
       make_user
       remove_user
+      change_passwd
+      change_home_dir
    
    
 

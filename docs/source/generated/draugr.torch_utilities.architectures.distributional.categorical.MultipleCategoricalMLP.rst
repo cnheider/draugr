@@ -50,6 +50,7 @@ draugr.torch\_utilities.architectures.distributional.categorical.MultipleCategor
       ~MultipleCategoricalMLP.register_forward_hook
       ~MultipleCategoricalMLP.register_forward_pre_hook
       ~MultipleCategoricalMLP.register_full_backward_hook
+      ~MultipleCategoricalMLP.register_module
       ~MultipleCategoricalMLP.register_parameter
       ~MultipleCategoricalMLP.requires_grad_
       ~MultipleCategoricalMLP.sample

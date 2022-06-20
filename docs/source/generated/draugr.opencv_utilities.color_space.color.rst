@@ -1,4 +1,4 @@
-﻿draugr.opencv\_utilities.color\_space.color
+draugr.opencv\_utilities.color\_space.color
 ===========================================
 
 .. automodule:: draugr.opencv_utilities.color_space.color
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      is_singular_channel
       num_channels
+      is_singular_channel
       to_color
    
    

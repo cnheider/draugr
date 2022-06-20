@@ -13,11 +13,12 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.operations.torch_transforms.batch_transforms.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize.html" />
+    <link rel="next" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor.html" />
     <link rel="prev" title="draugr.torch_utilities.operations.torch_transforms" href="draugr.torch_utilities.operations.torch_transforms.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,26 +37,26 @@
           <div class="body" role="main">
             
   <section id="module-draugr.torch_utilities.operations.torch_transforms.batch_transforms">
-<span id="draugr-torch-utilities-operations-torch-transforms-batch-transforms"></span><h1>draugr.torch_utilities.operations.torch_transforms.batch_transforms<a class="headerlink" href="#module-draugr.torch_utilities.operations.torch_transforms.batch_transforms" title="Permalink to this headline">¶</a></h1>
+<span id="draugr-torch-utilities-operations-torch-transforms-batch-transforms"></span><h1>draugr.torch_utilities.operations.torch_transforms.batch_transforms<a class="headerlink" href="#module-draugr.torch_utilities.operations.torch_transforms.batch_transforms" title="Permalink to this heading">¶</a></h1>
 <p>Created on 17/07/2020</p>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize.html#draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatchNormalize</span></code></a>(mean, std[, inplace, dtype, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor.html#draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatchToTensor</span></code></a>()</p></td>
+<td><p>Applies the <code class="xref py py-class docutils literal notranslate"><span class="pre">ToTensor</span></code> transform to a batch of images.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize.html#draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatchNormalize</span></code></a>(mean, std[, inplace, dtype, ...])</p></td>
 <td><p>Applies the <code class="xref py py-class docutils literal notranslate"><span class="pre">Normalize</span></code> transform to a batch of images.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomCrop.html#draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomCrop" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomCrop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatchRandomCrop</span></code></a>(size[, padding, dtype, device])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomCrop.html#draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomCrop" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomCrop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatchRandomCrop</span></code></a>(size[, padding, dtype, device])</p></td>
 <td><p>Applies the <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomCrop</span></code> transform to a batch of images. Args: size (int): Desired output size of the crop. padding (int, optional): Optional padding on each border of the image. Default is None, i.e no padding. dtype (torch.dtype,optional): The data type of tensors to which the transform will be applied. device (torch.device,optional): The device of tensors to which the transform will be applied.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomHorizontalFlip.html#draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomHorizontalFlip" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomHorizontalFlip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatchRandomHorizontalFlip</span></code></a>([p, inplace])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomHorizontalFlip.html#draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomHorizontalFlip" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomHorizontalFlip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatchRandomHorizontalFlip</span></code></a>([p, inplace])</p></td>
 <td><p>Applies the <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomHorizontalFlip</span></code> transform to a batch of images.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor.html#draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor" title="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatchToTensor</span></code></a>()</p></td>
-<td><p>Applies the <code class="xref py py-class docutils literal notranslate"><span class="pre">ToTensor</span></code> transform to a batch of images.</p></td>
 </tr>
 </tbody>
 </table>
@@ -115,10 +116,10 @@
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.operations.sizes.html">draugr.torch_utilities.operations.sizes</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.html">draugr.torch_utilities.operations.torch_transforms</a><ul class="current">
 <li class="toctree-l5 current"><a class="current reference internal" href="#">draugr.torch_utilities.operations.torch_transforms.batch_transforms</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor.html">draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize.html">draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomCrop.html">draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomCrop</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomHorizontalFlip.html">draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchRandomHorizontalFlip</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor.html">draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor</a></li>
 </ul>
 </li>
 </ul>
@@ -153,7 +154,7 @@
   <li><a href="draugr.torch_utilities.operations.html">draugr.torch_utilities.operations</a><ul>
   <li><a href="draugr.torch_utilities.operations.torch_transforms.html">draugr.torch_utilities.operations.torch_transforms</a><ul>
       <li>Previous: <a href="draugr.torch_utilities.operations.torch_transforms.html" title="previous chapter">draugr.torch_utilities.operations.torch_transforms</a></li>
-      <li>Next: <a href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize.html" title="next chapter">draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchNormalize</a></li>
+      <li>Next: <a href="draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor.html" title="next chapter">draugr.torch_utilities.operations.torch_transforms.batch_transforms.BatchToTensor</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -170,7 +171,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -187,7 +188,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

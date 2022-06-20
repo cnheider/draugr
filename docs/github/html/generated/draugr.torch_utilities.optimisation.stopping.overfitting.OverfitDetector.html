@@ -13,6 +13,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,14 +37,14 @@
           <div class="body" role="main">
             
   <section id="draugr-torch-utilities-optimisation-stopping-overfitting-overfitdetector">
-<h1>draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector<a class="headerlink" href="#draugr-torch-utilities-optimisation-stopping-overfitting-overfitdetector" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector<a class="headerlink" href="#draugr-torch-utilities-optimisation-stopping-overfitting-overfitdetector" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.optimisation.stopping.overfitting.</span></span><span class="sig-name descname"><span class="pre">OverfitDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">patience:</span> <span class="pre">int</span></em>, <em class="sig-param"><span class="pre">writer:</span> <span class="pre">callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">print&gt;</span></em>, <em class="sig-param"><span class="pre">minimization:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em>, <em class="sig-param"><span class="pre">callback:</span> <span class="pre">Optional[callable]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">verbose:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/stopping/overfitting.html#OverfitDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/contextlib.html#contextlib.AbstractContextManager" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">contextlib.AbstractContextManager</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.optimisation.stopping.overfitting.</span></span><span class="sig-name descname"><span class="pre">OverfitDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patience:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer:</span> <span class="pre">callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">print&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimization:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback:</span> <span class="pre">~typing.Optional[callable]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/stopping/overfitting.html#OverfitDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/contextlib.html#contextlib.AbstractContextManager" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractContextManager</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">patience:</span> <span class="pre">int</span></em>, <em class="sig-param"><span class="pre">writer:</span> <span class="pre">callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">print&gt;</span></em>, <em class="sig-param"><span class="pre">minimization:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em>, <em class="sig-param"><span class="pre">callback:</span> <span class="pre">Optional[callable]</span> <span class="pre">=</span> <span class="pre">None</span></em>, <em class="sig-param"><span class="pre">verbose:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/stopping/overfitting.html#OverfitDetector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patience:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer:</span> <span class="pre">callable</span> <span class="pre">=</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">print&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimization:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback:</span> <span class="pre">~typing.Optional[callable]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/stopping/overfitting.html#OverfitDetector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>NOTE: equality, greater or less than</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -57,13 +58,13 @@
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.__init__" title="draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(patience[, writer, minimization, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.__init__" title="draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(patience[, writer, minimization, ...])</p></td>
 <td><p>NOTE: equality, greater or less than</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset</span></code>()</p></td>
@@ -185,7 +186,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -202,7 +203,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

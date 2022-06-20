@@ -1,4 +1,4 @@
-﻿draugr.writers.mixins.video\_writer\_mixin
+draugr.writers.mixins.video\_writer\_mixin
 ==========================================
 
 .. automodule:: draugr.writers.mixins.video_writer_mixin
@@ -19,8 +19,8 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      VideoInputDimsEnum
       VideoWriterMixin
+      VideoInputDimsEnum
    
    
 

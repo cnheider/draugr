@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.sessions.model\_sessions
+draugr.torch\_utilities.sessions.model\_sessions
 ================================================
 
 .. automodule:: draugr.torch_utilities.sessions.model_sessions
@@ -20,8 +20,8 @@
       :template: custom_autosummary/class.rst
    
       TorchEvalSession
-      TorchFrozenModelSession
       TorchTrainSession
+      TorchFrozenModelSession
       TorchTrainingSession
    
    

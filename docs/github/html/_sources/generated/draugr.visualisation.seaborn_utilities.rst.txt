@@ -1,4 +1,4 @@
-﻿draugr.visualisation.seaborn\_utilities
+draugr.visualisation.seaborn\_utilities
 =======================================
 
 .. automodule:: draugr.visualisation.seaborn_utilities
@@ -15,8 +15,8 @@
       :toctree:
    
       despine_all
-      exponential_moving_average
       set_y_log_scale
+      exponential_moving_average
    
    
 

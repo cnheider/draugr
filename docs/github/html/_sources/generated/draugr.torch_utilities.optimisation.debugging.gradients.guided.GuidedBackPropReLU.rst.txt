@@ -27,6 +27,7 @@ draugr.torch\_utilities.optimisation.debugging.gradients.guided.GuidedBackPropRe
       ~GuidedBackPropReLU.name
       ~GuidedBackPropReLU.register_hook
       ~GuidedBackPropReLU.save_for_backward
+      ~GuidedBackPropReLU.save_for_forward
       ~GuidedBackPropReLU.set_materialize_grads
       ~GuidedBackPropReLU.vjp
    
@@ -46,6 +47,7 @@ draugr.torch\_utilities.optimisation.debugging.gradients.guided.GuidedBackPropRe
       ~GuidedBackPropReLU.next_functions
       ~GuidedBackPropReLU.non_differentiable
       ~GuidedBackPropReLU.requires_grad
+      ~GuidedBackPropReLU.saved_for_forward
       ~GuidedBackPropReLU.saved_tensors
       ~GuidedBackPropReLU.saved_variables
       ~GuidedBackPropReLU.to_save

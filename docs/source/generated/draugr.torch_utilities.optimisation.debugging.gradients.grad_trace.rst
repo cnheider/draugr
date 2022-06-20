@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.optimisation.debugging.gradients.grad\_trace
+draugr.torch\_utilities.optimisation.debugging.gradients.grad\_trace
 ====================================================================
 
 .. automodule:: draugr.torch_utilities.optimisation.debugging.gradients.grad_trace
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      print_grad_trace
       register_bad_grad_hooks
+      print_grad_trace
    
    
 

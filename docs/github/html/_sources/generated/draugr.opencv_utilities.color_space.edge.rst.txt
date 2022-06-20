@@ -1,4 +1,4 @@
-﻿draugr.opencv\_utilities.color\_space.edge
+draugr.opencv\_utilities.color\_space.edge
 ==========================================
 
 .. automodule:: draugr.opencv_utilities.color_space.edge
@@ -26,8 +26,8 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      CannyApertureSize
       ToEdgeMethodEnum
+      CannyApertureSize
    
    
 

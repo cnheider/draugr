@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.system.info
+draugr.torch\_utilities.system.info
 ===================================
 
 .. automodule:: draugr.torch_utilities.system.info
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      cuda_info
       system_info
+      cuda_info
    
    
 

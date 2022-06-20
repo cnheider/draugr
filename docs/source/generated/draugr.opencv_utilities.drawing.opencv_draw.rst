@@ -1,4 +1,4 @@
-﻿draugr.opencv\_utilities.drawing.opencv\_draw
+draugr.opencv\_utilities.drawing.opencv\_draw
 =============================================
 
 .. automodule:: draugr.opencv_utilities.drawing.opencv_draw
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      draw_masks
       find_contours
+      draw_masks
    
    
 

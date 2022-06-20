@@ -13,11 +13,12 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.os_utilities.linux_utilities.systemd_utilities.service_management.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service.html" />
+    <link rel="next" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service.html" />
     <link rel="prev" title="draugr.os_utilities.linux_utilities.systemd_utilities.exclude.psystemd" href="draugr.os_utilities.linux_utilities.systemd_utilities.exclude.psystemd.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,50 +37,36 @@
           <div class="body" role="main">
             
   <section id="module-draugr.os_utilities.linux_utilities.systemd_utilities.service_management">
-<span id="draugr-os-utilities-linux-utilities-systemd-utilities-service-management"></span><h1>draugr.os_utilities.linux_utilities.systemd_utilities.service_management<a class="headerlink" href="#module-draugr.os_utilities.linux_utilities.systemd_utilities.service_management" title="Permalink to this headline">¶</a></h1>
+<span id="draugr-os-utilities-linux-utilities-systemd-utilities-service-management"></span><h1>draugr.os_utilities.linux_utilities.systemd_utilities.service_management<a class="headerlink" href="#module-draugr.os_utilities.linux_utilities.systemd_utilities.service_management" title="Permalink to this heading">¶</a></h1>
 <p>Created on 17/03/2020</p>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">disable_service</span></code></a>(service_name, *[, get_sudo, …])</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param service_name</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enable_service</span></code></a>(service_name, *[, get_sudo, …])</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param service_name</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">install_service</span></code></a>(service_entry_point_path, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">install_service</span></code></a>(service_entry_point_path, ...)</p></td>
 <td><p>:param : param template: :param : type template: :param : param restart: :param : param service_entry_point_path: :param : param service_name: :param : param description: :param : param auto_enable: :param : param run_as:</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.remove_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.remove_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.remove_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_service</span></code></a>(service_name, *[, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.remove_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.remove_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.remove_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_service</span></code></a>(service_name, *[, ...])</p></td>
 <td><p>:param : param get_sudo: :param : param service_name: :param : param remove_app_user: :param : param run_as:</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">restart_service</span></code></a>(service_name, *[, get_sudo, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enable_service</span></code></a>(service_name, *[, get_sudo, ...])</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param service_name</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.start_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.start_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.start_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_service</span></code></a>(service_name, *[, get_sudo, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">disable_service</span></code></a>(service_name, *[, get_sudo, ...])</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param service_name</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">status_service</span></code></a>(service_name, *[, get_sudo, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.start_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.start_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.start_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_service</span></code></a>(service_name, *[, get_sudo, ...])</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param service_name</dt>
 <dd class="field-odd"><p></p></dd>
@@ -93,26 +80,31 @@
 </dl>
 </p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.target_service_path.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.target_service_path" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.target_service_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">target_service_path</span></code></a>(service_name[, run_as])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">restart_service</span></code></a>(service_name, *[, get_sudo, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param service_name</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service"><code class="xref py py-obj docutils literal notranslate"><span class="pre">status_service</span></code></a>(service_name, *[, get_sudo, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param service_name</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RestartServiceEnum.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RestartServiceEnum" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RestartServiceEnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RestartServiceEnum</span></code></a>(value)</p></td>
-<td><p>Restart settingsExit causes         no       always      on-success            on-failure      on-abnormal on-abort        on-watchdog Clean exit code or signal                   X                 X Unclean exit code                           X                                       X Unclean signal                                X                                     X                     X           X Timeout                                       X                                     X                     X Watchdog                                    X                                       X                     X                           X</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RunAsEnum.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RunAsEnum" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RunAsEnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RunAsEnum</span></code></a>(value)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RunAsEnum.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RunAsEnum" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RunAsEnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RunAsEnum</span></code></a>(value)</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.ServiceTargetEnum.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.ServiceTargetEnum" title="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.ServiceTargetEnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceTargetEnum</span></code></a>(value)</p></td>
-<td><p>Default is default</p></td>
 </tr>
 </tbody>
 </table>
@@ -158,18 +150,15 @@
 <li class="toctree-l4 current"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.html">draugr.os_utilities.linux_utilities.systemd_utilities</a><ul class="current">
 <li class="toctree-l5"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.exclude.html">draugr.os_utilities.linux_utilities.systemd_utilities.exclude</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">draugr.os_utilities.linux_utilities.systemd_utilities.service_management</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.remove_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.remove_service</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service</a></li>
+<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.enable_service</a></li>
+<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.start_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.start_service</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.stop_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.stop_service</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.target_service_path.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.target_service_path</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RestartServiceEnum.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RestartServiceEnum</a></li>
+<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.restart_service</a></li>
+<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.status_service</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RunAsEnum.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RunAsEnum</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.ServiceTargetEnum.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.ServiceTargetEnum</a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.os_utilities.linux_utilities.systemd_utilities.service_template.html">draugr.os_utilities.linux_utilities.systemd_utilities.service_template</a></li>
@@ -213,7 +202,7 @@
   <li><a href="draugr.os_utilities.linux_utilities.html">draugr.os_utilities.linux_utilities</a><ul>
   <li><a href="draugr.os_utilities.linux_utilities.systemd_utilities.html">draugr.os_utilities.linux_utilities.systemd_utilities</a><ul>
       <li>Previous: <a href="draugr.os_utilities.linux_utilities.systemd_utilities.exclude.psystemd.html" title="previous chapter">draugr.os_utilities.linux_utilities.systemd_utilities.exclude.psystemd</a></li>
-      <li>Next: <a href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service.html" title="next chapter">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.disable_service</a></li>
+      <li>Next: <a href="draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service.html" title="next chapter">draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -230,7 +219,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -247,7 +236,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

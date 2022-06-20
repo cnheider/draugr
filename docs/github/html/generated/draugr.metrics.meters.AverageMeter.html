@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.metrics.meters.AverageMeter.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.metrics.meters.Meter" href="draugr.metrics.meters.Meter.html" />
-    <link rel="prev" title="draugr.metrics.meters" href="draugr.metrics.meters.html" />
+    <link rel="next" title="draugr.metrics.metric_aggregator" href="draugr.metrics.metric_aggregator.html" />
+    <link rel="prev" title="draugr.metrics.meters.Meter" href="draugr.metrics.meters.Meter.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,11 +37,11 @@
           <div class="body" role="main">
             
   <section id="draugr-metrics-meters-averagemeter">
-<h1>draugr.metrics.meters.AverageMeter<a class="headerlink" href="#draugr-metrics-meters-averagemeter" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.metrics.meters.AverageMeter<a class="headerlink" href="#draugr-metrics-meters-averagemeter" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.metrics.meters.AverageMeter">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.metrics.meters.</span></span><span class="sig-name descname"><span class="pre">AverageMeter</span></span><a class="reference internal" href="../_modules/draugr/metrics/meters.html#AverageMeter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.meters.AverageMeter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="draugr.metrics.meters.Meter.html#draugr.metrics.meters.Meter" title="draugr.metrics.meters.Meter"><code class="xref py py-class docutils literal notranslate"><span class="pre">draugr.metrics.meters.Meter</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.metrics.meters.</span></span><span class="sig-name descname"><span class="pre">AverageMeter</span></span><a class="reference internal" href="../_modules/draugr/metrics/meters.html#AverageMeter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.meters.AverageMeter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="draugr.metrics.meters.Meter.html#draugr.metrics.meters.Meter" title="draugr.metrics.meters.Meter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Meter</span></code></a></p>
 <p>Computes and stores the average and current value</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.metrics.meters.AverageMeter.__init__">
@@ -48,7 +49,7 @@
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -71,7 +72,7 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.metrics.meters.AverageMeter.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/meters.html#AverageMeter.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.meters.AverageMeter.update" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/metrics/meters.html#AverageMeter.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.metrics.meters.AverageMeter.update" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -116,8 +117,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="draugr.metrics.html">draugr.metrics</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="draugr.metrics.accumulation.html">draugr.metrics.accumulation</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="draugr.metrics.meters.html">draugr.metrics.meters</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.metrics.meters.AverageMeter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.metrics.meters.Meter.html">draugr.metrics.meters.Meter</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.metrics.meters.AverageMeter</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="draugr.metrics.metric_aggregator.html">draugr.metrics.metric_aggregator</a></li>
@@ -156,8 +157,8 @@
   <li><a href="draugr.html">draugr</a><ul>
   <li><a href="draugr.metrics.html">draugr.metrics</a><ul>
   <li><a href="draugr.metrics.meters.html">draugr.metrics.meters</a><ul>
-      <li>Previous: <a href="draugr.metrics.meters.html" title="previous chapter">draugr.metrics.meters</a></li>
-      <li>Next: <a href="draugr.metrics.meters.Meter.html" title="next chapter">draugr.metrics.meters.Meter</a></li>
+      <li>Previous: <a href="draugr.metrics.meters.Meter.html" title="previous chapter">draugr.metrics.meters.Meter</a></li>
+      <li>Next: <a href="draugr.metrics.metric_aggregator.html" title="next chapter">draugr.metrics.metric_aggregator</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -173,7 +174,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -190,7 +191,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

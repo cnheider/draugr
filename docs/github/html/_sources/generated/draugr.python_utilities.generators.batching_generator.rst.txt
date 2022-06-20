@@ -1,4 +1,4 @@
-﻿draugr.python\_utilities.generators.batching\_generator
+draugr.python\_utilities.generators.batching\_generator
 =======================================================
 
 .. automodule:: draugr.python_utilities.generators.batching_generator
@@ -14,10 +14,10 @@
    .. autosummary::
       :toctree:
    
-      batch_generator
-      random_batches
-      shuffled_batches
       sized_batch
+      shuffled_batches
+      random_batches
+      batch_generator
    
    
 

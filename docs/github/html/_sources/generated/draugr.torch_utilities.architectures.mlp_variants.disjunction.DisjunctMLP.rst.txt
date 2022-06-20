@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.mlp\_variants.disjunction.DisjunctMLP
+draugr.torch\_utilities.architectures.mlp\_variants.disjunction.DisjunctMLP
 ===========================================================================
 
 .. currentmodule:: draugr.torch_utilities.architectures.mlp_variants.disjunction
@@ -49,6 +49,7 @@
       ~DisjunctMLP.register_forward_hook
       ~DisjunctMLP.register_forward_pre_hook
       ~DisjunctMLP.register_full_backward_hook
+      ~DisjunctMLP.register_module
       ~DisjunctMLP.register_parameter
       ~DisjunctMLP.requires_grad_
       ~DisjunctMLP.sample_input

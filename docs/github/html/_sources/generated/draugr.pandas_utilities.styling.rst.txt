@@ -1,4 +1,4 @@
-﻿draugr.pandas\_utilities.styling
+draugr.pandas\_utilities.styling
 ================================
 
 .. automodule:: draugr.pandas_utilities.styling
@@ -27,9 +27,9 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      AttrEnum
       ColorEnum
       NDFrameExtremeEnum
+      AttrEnum
    
    
 

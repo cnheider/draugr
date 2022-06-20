@@ -1,4 +1,4 @@
-﻿draugr.metrics.meters
+draugr.metrics.meters
 =====================
 
 .. automodule:: draugr.metrics.meters
@@ -19,8 +19,8 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      AverageMeter
       Meter
+      AverageMeter
    
    
 

@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.persistence.checkpoint
+draugr.torch\_utilities.persistence.checkpoint
 ==============================================
 
 .. automodule:: draugr.torch_utilities.persistence.checkpoint
@@ -14,9 +14,8 @@
    .. autosummary::
       :toctree:
    
-      load_checkpoint
       save_checkpoint
-      save_optimiser
+      load_checkpoint
    
    
 

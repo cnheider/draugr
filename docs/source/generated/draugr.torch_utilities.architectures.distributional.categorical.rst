@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.distributional.categorical
+draugr.torch\_utilities.architectures.distributional.categorical
 ================================================================
 
 .. automodule:: draugr.torch_utilities.architectures.distributional.categorical
@@ -19,8 +19,8 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      CategoricalMLP
       MultipleCategoricalMLP
+      CategoricalMLP
    
    
 

@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.pandas_utilities.latex_mean_std.pandas_to_latex_clean.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="draugr.pandas_utilities.misc_utilities" href="draugr.pandas_utilities.misc_utilities.html" />
-    <link rel="prev" title="draugr.pandas_utilities.latex_mean_std.pandas_mean_std_to_str" href="draugr.pandas_utilities.latex_mean_std.pandas_mean_std_to_str.html" />
+    <link rel="prev" title="draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_row_latex" href="draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_row_latex.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="draugr-pandas-utilities-latex-mean-std-pandas-to-latex-clean">
-<h1>draugr.pandas_utilities.latex_mean_std.pandas_to_latex_clean<a class="headerlink" href="#draugr-pandas-utilities-latex-mean-std-pandas-to-latex-clean" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.pandas_utilities.latex_mean_std.pandas_to_latex_clean<a class="headerlink" href="#draugr-pandas-utilities-latex-mean-std-pandas-to-latex-clean" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="draugr.pandas_utilities.latex_mean_std.pandas_to_latex_clean">
-<span class="sig-prename descclassname"><span class="pre">draugr.pandas_utilities.latex_mean_std.</span></span><span class="sig-name descname"><span class="pre">pandas_to_latex_clean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_provider_df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_rotation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_colwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/draugr/pandas_utilities/latex_mean_std.html#pandas_to_latex_clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.pandas_utilities.latex_mean_std.pandas_to_latex_clean" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">draugr.pandas_utilities.latex_mean_std.</span></span><span class="sig-name descname"><span class="pre">pandas_to_latex_clean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry_provider_df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_colwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/draugr/pandas_utilities/latex_mean_std.html#pandas_to_latex_clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.pandas_utilities.latex_mean_std.pandas_to_latex_clean" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -94,12 +95,9 @@
 <li class="toctree-l3"><a class="reference internal" href="draugr.pandas_utilities.formatting.html">draugr.pandas_utilities.formatting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="draugr.pandas_utilities.from_dict.html">draugr.pandas_utilities.from_dict</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="draugr.pandas_utilities.latex_mean_std.html">draugr.pandas_utilities.latex_mean_std</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_column_latex.html">draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_column_latex</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_row_latex.html">draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_row_latex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.pandas_utilities.latex_mean_std.pandas_mean_std.html">draugr.pandas_utilities.latex_mean_std.pandas_mean_std</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.pandas_utilities.latex_mean_std.pandas_mean_std_latex_table.html">draugr.pandas_utilities.latex_mean_std.pandas_mean_std_latex_table</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.pandas_utilities.latex_mean_std.pandas_mean_std_latex_tabular.html">draugr.pandas_utilities.latex_mean_std.pandas_mean_std_latex_tabular</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.pandas_utilities.latex_mean_std.pandas_mean_std_to_str.html">draugr.pandas_utilities.latex_mean_std.pandas_mean_std_to_str</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_row_latex.html">draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_row_latex</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.pandas_utilities.latex_mean_std.pandas_to_latex_clean</a></li>
 </ul>
 </li>
@@ -133,7 +131,7 @@
   <li><a href="draugr.html">draugr</a><ul>
   <li><a href="draugr.pandas_utilities.html">draugr.pandas_utilities</a><ul>
   <li><a href="draugr.pandas_utilities.latex_mean_std.html">draugr.pandas_utilities.latex_mean_std</a><ul>
-      <li>Previous: <a href="draugr.pandas_utilities.latex_mean_std.pandas_mean_std_to_str.html" title="previous chapter">draugr.pandas_utilities.latex_mean_std.pandas_mean_std_to_str</a></li>
+      <li>Previous: <a href="draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_row_latex.html" title="previous chapter">draugr.pandas_utilities.latex_mean_std.pandas_format_bold_max_row_latex</a></li>
       <li>Next: <a href="draugr.pandas_utilities.misc_utilities.html" title="next chapter">draugr.pandas_utilities.misc_utilities</a></li>
   </ul></li>
   </ul></li>
@@ -150,7 +148,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -167,7 +165,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

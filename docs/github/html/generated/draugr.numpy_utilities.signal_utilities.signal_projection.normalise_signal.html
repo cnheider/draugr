@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_max_abs" href="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_max_abs.html" />
-    <link rel="prev" title="draugr.numpy_utilities.signal_utilities.signal_projection.heaviside" href="draugr.numpy_utilities.signal_utilities.signal_projection.heaviside.html" />
+    <link rel="next" title="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_minmax" href="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_minmax.html" />
+    <link rel="prev" title="draugr.numpy_utilities.signal_utilities.signal_projection" href="draugr.numpy_utilities.signal_utilities.signal_projection.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="draugr-numpy-utilities-signal-utilities-signal-projection-normalise-signal">
-<h1>draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal<a class="headerlink" href="#draugr-numpy-utilities-signal-utilities-signal-projection-normalise-signal" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal<a class="headerlink" href="#draugr-numpy-utilities-signal-utilities-signal-projection-normalise-signal" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal">
-<span class="sig-prename descclassname"><span class="pre">draugr.numpy_utilities.signal_utilities.signal_projection.</span></span><span class="sig-name descname"><span class="pre">normalise_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">variance</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../_modules/draugr/numpy_utilities/signal_utilities/signal_projection.html#normalise_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">draugr.numpy_utilities.signal_utilities.signal_projection.</span></span><span class="sig-name descname"><span class="pre">normalise_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">variance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">ndarray</span></a></span></span><a class="reference internal" href="../_modules/draugr/numpy_utilities/signal_utilities/signal_projection.html#normalise_signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normalise power in y to a (standard normal) white noise signal.
 Optionally normalise to power in signal <cite>x</cite>.
 The mean power of a Gaussian with <cite>mu=0</cite> and <cite>sigma=1</cite> is 1.</p>
@@ -90,10 +91,10 @@ The mean power of a Gaussian with <cite>mu=0</cite> and <cite>sigma=1</cite> is 
 <li class="toctree-l4"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.padding.html">draugr.numpy_utilities.signal_utilities.padding</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.signal_mixing.html">draugr.numpy_utilities.signal_utilities.signal_mixing</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.signal_projection.html">draugr.numpy_utilities.signal_utilities.signal_projection</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.signal_projection.heaviside.html">draugr.numpy_utilities.signal_utilities.signal_projection.heaviside</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal</a></li>
-<li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_max_abs.html">draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_max_abs</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_minmax.html">draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_minmax</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_max_abs.html">draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_max_abs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.signal_projection.heaviside.html">draugr.numpy_utilities.signal_utilities.signal_projection.heaviside</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.numpy_utilities.signal_utilities.signal_statistics.html">draugr.numpy_utilities.signal_utilities.signal_statistics</a></li>
@@ -131,8 +132,8 @@ The mean power of a Gaussian with <cite>mu=0</cite> and <cite>sigma=1</cite> is 
   <li><a href="draugr.numpy_utilities.html">draugr.numpy_utilities</a><ul>
   <li><a href="draugr.numpy_utilities.signal_utilities.html">draugr.numpy_utilities.signal_utilities</a><ul>
   <li><a href="draugr.numpy_utilities.signal_utilities.signal_projection.html">draugr.numpy_utilities.signal_utilities.signal_projection</a><ul>
-      <li>Previous: <a href="draugr.numpy_utilities.signal_utilities.signal_projection.heaviside.html" title="previous chapter">draugr.numpy_utilities.signal_utilities.signal_projection.heaviside</a></li>
-      <li>Next: <a href="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_max_abs.html" title="next chapter">draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_max_abs</a></li>
+      <li>Previous: <a href="draugr.numpy_utilities.signal_utilities.signal_projection.html" title="previous chapter">draugr.numpy_utilities.signal_utilities.signal_projection</a></li>
+      <li>Next: <a href="draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_minmax.html" title="next chapter">draugr.numpy_utilities.signal_utilities.signal_projection.normalise_signal_minmax</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -149,7 +150,7 @@ The mean power of a Gaussian with <cite>mu=0</cite> and <cite>sigma=1</cite> is 
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -166,7 +167,7 @@ The mean power of a Gaussian with <cite>mu=0</cite> and <cite>sigma=1</cite> is 
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

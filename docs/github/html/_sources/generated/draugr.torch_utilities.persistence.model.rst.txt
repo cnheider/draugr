@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.persistence.model
+draugr.torch\_utilities.persistence.model
 =========================================
 
 .. automodule:: draugr.torch_utilities.persistence.model
@@ -14,11 +14,11 @@
    .. autosummary::
       :toctree:
    
-      convert_saved_model_to_cpu
-      load_latest_model
       load_model
-      save_model
+      load_latest_model
       save_model_and_configuration
+      save_model
+      convert_saved_model_to_cpu
    
    
 

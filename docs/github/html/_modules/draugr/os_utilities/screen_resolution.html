@@ -12,6 +12,7 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/os_utilities/screen_resolution.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -103,7 +104,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">ctypes.wintypes</span>
 
-    <span class="k">return</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">GetSystemMetrics</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">GetSystemMetrics</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">GetSystemMetrics</span><span class="p">(</span>
+        <span class="mi">0</span>
+    <span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">GetSystemMetrics</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="screen_res_mac"><a class="viewcode-back" href="../../../generated/draugr.os_utilities.screen_resolution.screen_res_mac.html#draugr.os_utilities.screen_resolution.screen_res_mac">[docs]</a><span class="k">def</span> <span class="nf">screen_res_mac</span><span class="p">():</span>
@@ -119,7 +122,9 @@
             <span class="kc">False</span>
         <span class="p">),</span> <span class="s2">&quot;You must first install pyobjc-core and pyobjc: MACOSX_DEPLOYMENT_TARGET=10.11 pip install pyobjc&quot;</span>
     <span class="n">main_disp_id</span> <span class="o">=</span> <span class="n">Quartz</span><span class="o">.</span><span class="n">CGMainDisplayID</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">Quartz</span><span class="o">.</span><span class="n">CGDisplayPixelsWide</span><span class="p">(</span><span class="n">main_disp_id</span><span class="p">),</span> <span class="n">Quartz</span><span class="o">.</span><span class="n">CGDisplayPixelsHigh</span><span class="p">(</span><span class="n">main_disp_id</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Quartz</span><span class="o">.</span><span class="n">CGDisplayPixelsWide</span><span class="p">(</span><span class="n">main_disp_id</span><span class="p">),</span> <span class="n">Quartz</span><span class="o">.</span><span class="n">CGDisplayPixelsHigh</span><span class="p">(</span>
+        <span class="n">main_disp_id</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_screen_resolution"><a class="viewcode-back" href="../../../generated/draugr.os_utilities.screen_resolution.get_screen_resolution.html#draugr.os_utilities.screen_resolution.get_screen_resolution">[docs]</a><span class="k">def</span> <span class="nf">get_screen_resolution</span><span class="p">():</span>
@@ -186,7 +191,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -203,7 +208,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

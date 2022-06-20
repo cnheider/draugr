@@ -13,11 +13,12 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.visualisation.matplotlib_utilities.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.visualisation.matplotlib_utilities.annotate_point" href="draugr.visualisation.matplotlib_utilities.annotate_point.html" />
+    <link rel="next" title="draugr.visualisation.matplotlib_utilities.denormalise_minusoneone" href="draugr.visualisation.matplotlib_utilities.denormalise_minusoneone.html" />
     <link rel="prev" title="draugr.visualisation.ggplot_utilities" href="draugr.visualisation.ggplot_utilities.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,33 +37,17 @@
           <div class="body" role="main">
             
   <section id="module-draugr.visualisation.matplotlib_utilities">
-<span id="draugr-visualisation-matplotlib-utilities"></span><h1>draugr.visualisation.matplotlib_utilities<a class="headerlink" href="#module-draugr.visualisation.matplotlib_utilities" title="Permalink to this headline">¶</a></h1>
+<span id="draugr-visualisation-matplotlib-utilities"></span><h1>draugr.visualisation.matplotlib_utilities<a class="headerlink" href="#module-draugr.visualisation.matplotlib_utilities" title="Permalink to this heading">¶</a></h1>
 <p>Created on 15-02-2021</p>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.annotate_point.html#draugr.visualisation.matplotlib_utilities.annotate_point" title="draugr.visualisation.matplotlib_utilities.annotate_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">annotate_point</span></code></a>(ax, x, y, t)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param ax</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.decolorise_plot.html#draugr.visualisation.matplotlib_utilities.decolorise_plot" title="draugr.visualisation.matplotlib_utilities.decolorise_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decolorise_plot</span></code></a>(ax_[, inverted])</p></td>
-<td><p>set black and white edge colors and face colors respectively.</p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.denormalise_minusoneone.html#draugr.visualisation.matplotlib_utilities.denormalise_minusoneone" title="draugr.visualisation.matplotlib_utilities.denormalise_minusoneone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">denormalise_minusoneone</span></code></a>(t, coordinates)</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.latex_clean_label.html#draugr.visualisation.matplotlib_utilities.latex_clean_label" title="draugr.visualisation.matplotlib_utilities.latex_clean_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">latex_clean_label</span></code></a>(s)</p></td>
-<td><p>Clean label for troublesome symbols</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.make_errorbar_legend.html#draugr.visualisation.matplotlib_utilities.make_errorbar_legend" title="draugr.visualisation.matplotlib_utilities.make_errorbar_legend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_errorbar_legend</span></code></a>([ax])</p></td>
-<td><p>size adjusted legend for error bars, default does not work well with different linestyles</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box.html#draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box" title="draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib_bounding_box</span></code></a>(x, y, size[, color])</p></td>
 <td><p></p></td>
@@ -70,12 +55,28 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.remove_decoration.html#draugr.visualisation.matplotlib_utilities.remove_decoration" title="draugr.visualisation.matplotlib_utilities.remove_decoration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_decoration</span></code></a>(ax)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.save_embed_fig.html#draugr.visualisation.matplotlib_utilities.save_embed_fig" title="draugr.visualisation.matplotlib_utilities.save_embed_fig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_embed_fig</span></code></a>(path[, bbox_inches, …])</p></td>
-<td><p>Save fig for latex pdf embedding</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.use_monochrome_style.html#draugr.visualisation.matplotlib_utilities.use_monochrome_style" title="draugr.visualisation.matplotlib_utilities.use_monochrome_style"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_monochrome_style</span></code></a>([prop_cycler])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.use_monochrome_style.html#draugr.visualisation.matplotlib_utilities.use_monochrome_style" title="draugr.visualisation.matplotlib_utilities.use_monochrome_style"><code class="xref py py-obj docutils literal notranslate"><span class="pre">use_monochrome_style</span></code></a>([prop_cycler])</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param prop_cycler</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.decolorise_plot.html#draugr.visualisation.matplotlib_utilities.decolorise_plot" title="draugr.visualisation.matplotlib_utilities.decolorise_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decolorise_plot</span></code></a>(ax_[, inverted])</p></td>
+<td><p>set black and white edge colors and face colors respectively.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.save_embed_fig.html#draugr.visualisation.matplotlib_utilities.save_embed_fig" title="draugr.visualisation.matplotlib_utilities.save_embed_fig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_embed_fig</span></code></a>(path[, bbox_inches, ...])</p></td>
+<td><p>Save fig for latex pdf embedding</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.latex_clean_label.html#draugr.visualisation.matplotlib_utilities.latex_clean_label" title="draugr.visualisation.matplotlib_utilities.latex_clean_label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">latex_clean_label</span></code></a>(s)</p></td>
+<td><p>Clean label for troublesome symbols</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.make_errorbar_legend.html#draugr.visualisation.matplotlib_utilities.make_errorbar_legend" title="draugr.visualisation.matplotlib_utilities.make_errorbar_legend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_errorbar_legend</span></code></a>([ax])</p></td>
+<td><p>size adjusted legend for error bars, default does not work well with different linestyles</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.annotate_point.html#draugr.visualisation.matplotlib_utilities.annotate_point" title="draugr.visualisation.matplotlib_utilities.annotate_point"><code class="xref py py-obj docutils literal notranslate"><span class="pre">annotate_point</span></code></a>(ax, x, y, t)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param ax</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
@@ -83,7 +84,7 @@
 </tbody>
 </table>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -143,15 +144,15 @@
 <li class="toctree-l2 current"><a class="reference internal" href="draugr.visualisation.html">draugr.visualisation</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="draugr.visualisation.ggplot_utilities.html">draugr.visualisation.ggplot_utilities</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">draugr.visualisation.matplotlib_utilities</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.annotate_point.html">draugr.visualisation.matplotlib_utilities.annotate_point</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.decolorise_plot.html">draugr.visualisation.matplotlib_utilities.decolorise_plot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.denormalise_minusoneone.html">draugr.visualisation.matplotlib_utilities.denormalise_minusoneone</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.latex_clean_label.html">draugr.visualisation.matplotlib_utilities.latex_clean_label</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.make_errorbar_legend.html">draugr.visualisation.matplotlib_utilities.make_errorbar_legend</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box.html">draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.remove_decoration.html">draugr.visualisation.matplotlib_utilities.remove_decoration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.save_embed_fig.html">draugr.visualisation.matplotlib_utilities.save_embed_fig</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.use_monochrome_style.html">draugr.visualisation.matplotlib_utilities.use_monochrome_style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.decolorise_plot.html">draugr.visualisation.matplotlib_utilities.decolorise_plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.save_embed_fig.html">draugr.visualisation.matplotlib_utilities.save_embed_fig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.latex_clean_label.html">draugr.visualisation.matplotlib_utilities.latex_clean_label</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.make_errorbar_legend.html">draugr.visualisation.matplotlib_utilities.make_errorbar_legend</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.annotate_point.html">draugr.visualisation.matplotlib_utilities.annotate_point</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.MatplotlibHorizontalAlignment.html">draugr.visualisation.matplotlib_utilities.MatplotlibHorizontalAlignment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.MatplotlibVerticalAlignment.html">draugr.visualisation.matplotlib_utilities.MatplotlibVerticalAlignment</a></li>
 </ul>
@@ -176,7 +177,7 @@
   <li><a href="draugr.html">draugr</a><ul>
   <li><a href="draugr.visualisation.html">draugr.visualisation</a><ul>
       <li>Previous: <a href="draugr.visualisation.ggplot_utilities.html" title="previous chapter">draugr.visualisation.ggplot_utilities</a></li>
-      <li>Next: <a href="draugr.visualisation.matplotlib_utilities.annotate_point.html" title="next chapter">draugr.visualisation.matplotlib_utilities.annotate_point</a></li>
+      <li>Next: <a href="draugr.visualisation.matplotlib_utilities.denormalise_minusoneone.html" title="next chapter">draugr.visualisation.matplotlib_utilities.denormalise_minusoneone</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -191,7 +192,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -208,7 +209,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

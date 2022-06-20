@@ -14,15 +14,14 @@ draugr.os\_utilities.linux\_utilities.systemd\_utilities.service\_management
    .. autosummary::
       :toctree:
    
-      disable_service
-      enable_service
       install_service
       remove_service
-      restart_service
+      enable_service
+      disable_service
       start_service
-      status_service
       stop_service
-      target_service_path
+      restart_service
+      status_service
    
    
 
@@ -34,9 +33,7 @@ draugr.os\_utilities.linux\_utilities.systemd\_utilities.service\_management
       :toctree:
       :template: custom_autosummary/class.rst
    
-      RestartServiceEnum
       RunAsEnum
-      ServiceTargetEnum
    
    
 

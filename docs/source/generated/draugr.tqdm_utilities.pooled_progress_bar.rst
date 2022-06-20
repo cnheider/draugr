@@ -1,4 +1,4 @@
-﻿draugr.tqdm\_utilities.pooled\_progress\_bar
+draugr.tqdm\_utilities.pooled\_progress\_bar
 ============================================
 
 .. automodule:: draugr.tqdm_utilities.pooled_progress_bar
@@ -14,12 +14,12 @@
    .. autosummary::
       :toctree:
    
-      parallel_imap
       parallel_map
-      parallel_uimap
+      parallel_imap
       parallel_umap
-      sequential_imap
+      parallel_uimap
       sequential_map
+      sequential_imap
    
    
 

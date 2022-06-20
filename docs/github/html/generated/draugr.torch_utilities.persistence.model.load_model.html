@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.persistence.model.load_model.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.torch_utilities.persistence.model.save_model" href="draugr.torch_utilities.persistence.model.save_model.html" />
-    <link rel="prev" title="draugr.torch_utilities.persistence.model.load_latest_model" href="draugr.torch_utilities.persistence.model.load_latest_model.html" />
+    <link rel="next" title="draugr.torch_utilities.persistence.model.load_latest_model" href="draugr.torch_utilities.persistence.model.load_latest_model.html" />
+    <link rel="prev" title="draugr.torch_utilities.persistence.model" href="draugr.torch_utilities.persistence.model.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="draugr-torch-utilities-persistence-model-load-model">
-<h1>draugr.torch_utilities.persistence.model.load_model<a class="headerlink" href="#draugr-torch-utilities-persistence-model-load-model" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.torch_utilities.persistence.model.load_model<a class="headerlink" href="#draugr-torch-utilities-persistence-model-load-model" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="draugr.torch_utilities.persistence.model.load_model">
-<span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.persistence.model.</span></span><span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">pathlib.Path</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_on_failure</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.nn.modules.module.Module</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#draugr.torch_utilities.persistence.model.load_model" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.persistence.model.</span></span><span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_on_failure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Module</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#draugr.torch_utilities.persistence.model.load_model" title="Permalink to this definition">¶</a></dt>
 <dd><p>load model with the lastest time appendix or in this case creation time</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -111,11 +112,11 @@
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.persistence.checkpoint.html">draugr.torch_utilities.persistence.checkpoint</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.persistence.config.html">draugr.torch_utilities.persistence.config</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="draugr.torch_utilities.persistence.model.html">draugr.torch_utilities.persistence.model</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu.html">draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu</a></li>
-<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.load_latest_model.html">draugr.torch_utilities.persistence.model.load_latest_model</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">draugr.torch_utilities.persistence.model.load_model</a></li>
-<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model.html">draugr.torch_utilities.persistence.model.save_model</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.load_latest_model.html">draugr.torch_utilities.persistence.model.load_latest_model</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model_and_configuration.html">draugr.torch_utilities.persistence.model.save_model_and_configuration</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model.html">draugr.torch_utilities.persistence.model.save_model</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu.html">draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.persistence.naming.html">draugr.torch_utilities.persistence.naming</a></li>
@@ -147,8 +148,8 @@
   <li><a href="draugr.torch_utilities.html">draugr.torch_utilities</a><ul>
   <li><a href="draugr.torch_utilities.persistence.html">draugr.torch_utilities.persistence</a><ul>
   <li><a href="draugr.torch_utilities.persistence.model.html">draugr.torch_utilities.persistence.model</a><ul>
-      <li>Previous: <a href="draugr.torch_utilities.persistence.model.load_latest_model.html" title="previous chapter">draugr.torch_utilities.persistence.model.load_latest_model</a></li>
-      <li>Next: <a href="draugr.torch_utilities.persistence.model.save_model.html" title="next chapter">draugr.torch_utilities.persistence.model.save_model</a></li>
+      <li>Previous: <a href="draugr.torch_utilities.persistence.model.html" title="previous chapter">draugr.torch_utilities.persistence.model</a></li>
+      <li>Next: <a href="draugr.torch_utilities.persistence.model.load_latest_model.html" title="next chapter">draugr.torch_utilities.persistence.model.load_latest_model</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -165,7 +166,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -182,7 +183,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -13,11 +13,12 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.numpy_utilities.datasets.splitting.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.numpy_utilities.datasets.splitting.select_split" href="draugr.numpy_utilities.datasets.splitting.select_split.html" />
+    <link rel="next" title="draugr.numpy_utilities.datasets.splitting.train_valid_test_split" href="draugr.numpy_utilities.datasets.splitting.train_valid_test_split.html" />
     <link rel="prev" title="draugr.numpy_utilities.datasets.defaults" href="draugr.numpy_utilities.datasets.defaults.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,29 +37,29 @@
           <div class="body" role="main">
             
   <section id="module-draugr.numpy_utilities.datasets.splitting">
-<span id="draugr-numpy-utilities-datasets-splitting"></span><h1>draugr.numpy_utilities.datasets.splitting<a class="headerlink" href="#module-draugr.numpy_utilities.datasets.splitting" title="Permalink to this headline">¶</a></h1>
+<span id="draugr-numpy-utilities-datasets-splitting"></span><h1>draugr.numpy_utilities.datasets.splitting<a class="headerlink" href="#module-draugr.numpy_utilities.datasets.splitting" title="Permalink to this heading">¶</a></h1>
 <p>Created on 25/03/2020</p>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.select_split.html#draugr.numpy_utilities.datasets.splitting.select_split" title="draugr.numpy_utilities.datasets.splitting.select_split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_split</span></code></a>(data_cat_split, split[, verbose])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.train_valid_test_split.html#draugr.numpy_utilities.datasets.splitting.train_valid_test_split" title="draugr.numpy_utilities.datasets.splitting.train_valid_test_split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_valid_test_split</span></code></a>(categories, *[, ...])</p></td>
+<td><p>Magic hashing</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.select_split.html#draugr.numpy_utilities.datasets.splitting.select_split" title="draugr.numpy_utilities.datasets.splitting.select_split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_split</span></code></a>(data_cat_split, split[, verbose])</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param verbose</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.train_valid_test_split.html#draugr.numpy_utilities.datasets.splitting.train_valid_test_split" title="draugr.numpy_utilities.datasets.splitting.train_valid_test_split"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train_valid_test_split</span></code></a>(categories, *[, …])</p></td>
-<td><p>Magic hashing</p></td>
-</tr>
 </tbody>
 </table>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -67,7 +68,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.SplitEnum.html#draugr.numpy_utilities.datasets.splitting.SplitEnum" title="draugr.numpy_utilities.datasets.splitting.SplitEnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SplitEnum</span></code></a>(value)</p></td>
 <td><p>Split Enum class for selecting splits</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.SplitIndexer.html#draugr.numpy_utilities.datasets.splitting.SplitIndexer" title="draugr.numpy_utilities.datasets.splitting.SplitIndexer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SplitIndexer</span></code></a>(dataset_length, training, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.SplitIndexer.html#draugr.numpy_utilities.datasets.splitting.SplitIndexer" title="draugr.numpy_utilities.datasets.splitting.SplitIndexer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SplitIndexer</span></code></a>(dataset_length[, training, ...])</p></td>
 <td><p>Splits dataset in to 3 parts based on percentages, returns indices for the data set sequence</p></td>
 </tr>
 </tbody>
@@ -109,8 +110,8 @@
 <li class="toctree-l4"><a class="reference internal" href="draugr.numpy_utilities.datasets.categorical.html">draugr.numpy_utilities.datasets.categorical</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.numpy_utilities.datasets.defaults.html">draugr.numpy_utilities.datasets.defaults</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.numpy_utilities.datasets.splitting</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.select_split.html">draugr.numpy_utilities.datasets.splitting.select_split</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.train_valid_test_split.html">draugr.numpy_utilities.datasets.splitting.train_valid_test_split</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.select_split.html">draugr.numpy_utilities.datasets.splitting.select_split</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.SplitEnum.html">draugr.numpy_utilities.datasets.splitting.SplitEnum</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.SplitIndexer.html">draugr.numpy_utilities.datasets.splitting.SplitIndexer</a></li>
 </ul>
@@ -156,7 +157,7 @@
   <li><a href="draugr.numpy_utilities.html">draugr.numpy_utilities</a><ul>
   <li><a href="draugr.numpy_utilities.datasets.html">draugr.numpy_utilities.datasets</a><ul>
       <li>Previous: <a href="draugr.numpy_utilities.datasets.defaults.html" title="previous chapter">draugr.numpy_utilities.datasets.defaults</a></li>
-      <li>Next: <a href="draugr.numpy_utilities.datasets.splitting.select_split.html" title="next chapter">draugr.numpy_utilities.datasets.splitting.select_split</a></li>
+      <li>Next: <a href="draugr.numpy_utilities.datasets.splitting.train_valid_test_split.html" title="next chapter">draugr.numpy_utilities.datasets.splitting.train_valid_test_split</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -172,7 +173,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -189,7 +190,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.persistence.config
+draugr.torch\_utilities.persistence.config
 ==========================================
 
 .. automodule:: draugr.torch_utilities.persistence.config
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      ensure_directory_exist
       save_config
+      ensure_directory_exist
    
    
 

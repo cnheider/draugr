@@ -12,6 +12,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/numpy_utilities/datasets/splitting.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -84,7 +85,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">validation_percentage</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">testing_percentage</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalised_split</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">training_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">testing_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unnormalised</span><span class="p">(</span><span class="n">dataset_length</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">testing_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unnormalised</span><span class="p">(</span>
+            <span class="n">dataset_length</span>
+        <span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">shuffled_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
@@ -129,7 +132,9 @@
         <span class="k">return</span> <span class="n">unnorm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_split_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalised_split</span><span class="p">)})</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span>
+            <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_split_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalised_split</span><span class="p">)}</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">select_shuffled_split_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">split</span><span class="p">:</span> <span class="n">SplitEnum</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
@@ -175,9 +180,9 @@
 
         <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">vs</span><span class="p">:</span>
             <span class="n">b_rep</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;_nohash_.*$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">c</span><span class="si">}{</span><span class="n">file_name</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
-            <span class="n">percentage_hash</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">b_rep</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span>
-                <span class="mf">100.0</span> <span class="o">/</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span>
-            <span class="p">)</span>
+            <span class="n">percentage_hash</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">int</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">b_rep</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">100.0</span> <span class="o">/</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">percentage_hash</span> <span class="o">&lt;</span> <span class="n">validation_percentage</span> <span class="o">+</span> <span class="n">testing_percentage</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">percentage_hash</span> <span class="o">&lt;</span> <span class="n">testing_percentage</span><span class="p">:</span>
                     <span class="n">testing_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
@@ -286,7 +291,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -303,7 +308,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

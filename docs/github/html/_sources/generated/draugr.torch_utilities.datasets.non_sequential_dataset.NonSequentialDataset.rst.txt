@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.datasets.non\_sequential\_dataset.NonSequentialDataset
+draugr.torch\_utilities.datasets.non\_sequential\_dataset.NonSequentialDataset
 ==============================================================================
 
 .. currentmodule:: draugr.torch_utilities.datasets.non_sequential_dataset
@@ -17,17 +17,9 @@
    .. autosummary::
    
       ~NonSequentialDataset.__init__
-      ~NonSequentialDataset.register_datapipe_as_function
-      ~NonSequentialDataset.register_function
    
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~NonSequentialDataset.functions
    
    

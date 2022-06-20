@@ -12,6 +12,7 @@
     <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/drawing/masks/gauss_circles.html" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
@@ -64,8 +65,8 @@
     <span class="n">uy</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
     <span class="n">vx</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">vy</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">box_halfwidth</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ux</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">vx</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
-    <span class="n">box_halfheight</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uy</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">vy</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">box_halfwidth</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ux</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">vx</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">box_halfheight</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">vy</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
     <span class="k">return</span> <span class="p">(</span>
         <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">h</span> <span class="o">-</span> <span class="n">box_halfwidth</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="n">box_halfheight</span><span class="p">)),</span>
         <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">h</span> <span class="o">+</span> <span class="n">box_halfwidth</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="n">box_halfheight</span><span class="p">)),</span>
@@ -97,7 +98,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Precalculate constants</span>
     <span class="n">st</span><span class="p">,</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-    <span class="n">aa</span><span class="p">,</span> <span class="n">bb</span> <span class="o">=</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">b</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">aa</span><span class="p">,</span> <span class="n">bb</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span>
 
     <span class="n">weights</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
@@ -134,7 +135,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Precalculate constants</span>
     <span class="n">st</span><span class="p">,</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-    <span class="n">aa</span><span class="p">,</span> <span class="n">bb</span> <span class="o">=</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">b</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">aa</span><span class="p">,</span> <span class="n">bb</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span>
 
     <span class="c1"># Generate (x,y) coordinate arrays</span>
     <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="o">-</span><span class="n">k</span> <span class="p">:</span> <span class="n">height</span> <span class="o">-</span> <span class="n">k</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span> <span class="p">:</span> <span class="n">width</span> <span class="o">-</span> <span class="n">h</span><span class="p">]</span>
@@ -185,7 +186,9 @@
 
         <span class="c1"># Generate the transparency layer -- the outer ellipse filled and anti-aliased</span>
         <span class="n">transparency</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-        <span class="n">cv2</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span><span class="n">transparency</span><span class="p">,</span> <span class="n">ellipse_outer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">LineTypeEnum</span><span class="o">.</span><span class="n">anti_aliased</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">ellipse</span><span class="p">(</span>
+            <span class="n">transparency</span><span class="p">,</span> <span class="n">ellipse_outer</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">LineTypeEnum</span><span class="o">.</span><span class="n">anti_aliased</span><span class="o">.</span><span class="n">value</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="n">save_intermediate</span><span class="p">:</span>
             <span class="n">show_image</span><span class="p">(</span>
                 <span class="n">transparency</span><span class="p">,</span>
@@ -194,7 +197,9 @@
             <span class="p">)</span>
 
         <span class="c1"># Generate the gradient and scale it to 8bit grayscale range</span>
-        <span class="n">intensity</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">make_gradient_v1</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span>
+            <span class="n">make_gradient_v1</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="mi">255</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="n">save_intermediate</span><span class="p">:</span>
             <span class="n">show_image</span><span class="p">(</span>
                 <span class="n">intensity</span><span class="p">,</span>
@@ -290,7 +295,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -307,7 +312,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

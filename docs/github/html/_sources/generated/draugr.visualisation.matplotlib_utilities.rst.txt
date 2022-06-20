@@ -1,4 +1,4 @@
-﻿draugr.visualisation.matplotlib\_utilities
+draugr.visualisation.matplotlib\_utilities
 ==========================================
 
 .. automodule:: draugr.visualisation.matplotlib_utilities
@@ -14,15 +14,15 @@
    .. autosummary::
       :toctree:
    
-      annotate_point
-      decolorise_plot
       denormalise_minusoneone
-      latex_clean_label
-      make_errorbar_legend
       matplotlib_bounding_box
       remove_decoration
-      save_embed_fig
       use_monochrome_style
+      decolorise_plot
+      save_embed_fig
+      latex_clean_label
+      make_errorbar_legend
+      annotate_point
    
    
 

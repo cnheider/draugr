@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.tensors.reshaping
+draugr.torch\_utilities.tensors.reshaping
 =========================================
 
 .. automodule:: draugr.torch_utilities.tensors.reshaping
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      flatten_keep_batch
       flatten_tn_dim
+      flatten_keep_batch
       safe_concat
    
    

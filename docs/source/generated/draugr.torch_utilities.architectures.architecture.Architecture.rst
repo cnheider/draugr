@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.architecture.Architecture
+draugr.torch\_utilities.architectures.architecture.Architecture
 ===============================================================
 
 .. currentmodule:: draugr.torch_utilities.architectures.architecture
@@ -46,6 +46,7 @@
       ~Architecture.register_forward_hook
       ~Architecture.register_forward_pre_hook
       ~Architecture.register_full_backward_hook
+      ~Architecture.register_module
       ~Architecture.register_parameter
       ~Architecture.requires_grad_
       ~Architecture.sample_input

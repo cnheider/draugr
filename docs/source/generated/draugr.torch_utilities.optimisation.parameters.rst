@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.optimisation.parameters
+draugr.torch\_utilities.optimisation.parameters
 ===============================================
 
 .. automodule:: draugr.torch_utilities.optimisation.parameters
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      freeze_parameters
       frozen_parameters
+      freeze_parameters
    
    
 

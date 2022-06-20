@@ -12,6 +12,7 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/python_utilities/function_wrappers.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -63,7 +64,9 @@
 <span class="sd">    :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">s</span><span class="p">(</span><span class="n">last_exec</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">step_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">s</span><span class="p">(</span>
+        <span class="n">last_exec</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">step_i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">MutableMapping</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param last_exec:</span>
@@ -182,14 +185,14 @@
     <span class="k">return</span> <span class="n">wrapper</span></div>
 
 
-<div class="viewcode-block" id="str_to_bool"><a class="viewcode-back" href="../../../generated/draugr.python_utilities.function_wrappers.str_to_bool.html#draugr.python_utilities.function_wrappers.str_to_bool">[docs]</a><span class="k">def</span> <span class="nf">str_to_bool</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">preds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">str_to_bool</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">preds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="sd">    :param preds:</span>
 <span class="sd">    :param s:</span>
 <span class="sd">    :return:&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">preds</span></div>
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">preds</span>
 
 
 <span class="n">str2bool</span> <span class="o">=</span> <span class="n">str_to_bool</span>
@@ -344,7 +347,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -361,7 +364,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

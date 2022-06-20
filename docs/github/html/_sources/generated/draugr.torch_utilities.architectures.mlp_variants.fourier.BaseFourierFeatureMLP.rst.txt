@@ -46,6 +46,7 @@ draugr.torch\_utilities.architectures.mlp\_variants.fourier.BaseFourierFeatureML
       ~BaseFourierFeatureMLP.register_forward_hook
       ~BaseFourierFeatureMLP.register_forward_pre_hook
       ~BaseFourierFeatureMLP.register_full_backward_hook
+      ~BaseFourierFeatureMLP.register_module
       ~BaseFourierFeatureMLP.register_parameter
       ~BaseFourierFeatureMLP.requires_grad_
       ~BaseFourierFeatureMLP.save

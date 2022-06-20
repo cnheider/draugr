@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.experimental.heads.MultiHeadedMLP
+draugr.torch\_utilities.architectures.experimental.heads.MultiHeadedMLP
 =======================================================================
 
 .. currentmodule:: draugr.torch_utilities.architectures.experimental.heads
@@ -49,6 +49,7 @@
       ~MultiHeadedMLP.register_forward_hook
       ~MultiHeadedMLP.register_forward_pre_hook
       ~MultiHeadedMLP.register_full_backward_hook
+      ~MultiHeadedMLP.register_module
       ~MultiHeadedMLP.register_parameter
       ~MultiHeadedMLP.requires_grad_
       ~MultiHeadedMLP.sample_input

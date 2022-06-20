@@ -1,4 +1,4 @@
-﻿draugr.numpy\_utilities.datasets.splitting
+draugr.numpy\_utilities.datasets.splitting
 ==========================================
 
 .. automodule:: draugr.numpy_utilities.datasets.splitting
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      select_split
       train_valid_test_split
+      select_split
    
    
 

@@ -1,4 +1,4 @@
-﻿draugr.opencv\_utilities.namespaces.enums
+draugr.opencv\_utilities.namespaces.enums
 =========================================
 
 .. automodule:: draugr.opencv_utilities.namespaces.enums
@@ -19,26 +19,26 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      BorderTypeEnum
-      CameraPropertyEnum
-      ComparisonEnum
-      ContourApproximationModeEnum
-      ContourRetrievalModeEnum
-      DataTypeEnum
-      DistanceTransformLabelTypeEnum
-      DistanceTransformMaskEnum
-      DistanceTypeEnum
-      FontEnum
-      HoughModeEnum
-      KmeansEnum
-      LineTypeEnum
       MarkerTypeEnum
-      MorphShapeEnum
-      MorphTypeEnum
-      MouseEventEnum
-      RectanglesIntersectTypes
-      VideoCaptureAPIEnum
+      DistanceTypeEnum
+      HoughModeEnum
       WindowFlagEnum
+      ContourRetrievalModeEnum
+      ContourApproximationModeEnum
+      MouseEventEnum
+      FontEnum
+      DataTypeEnum
+      ComparisonEnum
+      LineTypeEnum
+      MorphTypeEnum
+      MorphShapeEnum
+      DistanceTransformMaskEnum
+      DistanceTransformLabelTypeEnum
+      KmeansEnum
+      CameraPropertyEnum
+      RectanglesIntersectTypes
+      BorderTypeEnum
+      VideoCaptureAPIEnum
    
    
 

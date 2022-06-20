@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.sessions.jit\_sessions
+draugr.torch\_utilities.sessions.jit\_sessions
 ==============================================
 
 .. automodule:: draugr.torch_utilities.sessions.jit_sessions
@@ -19,8 +19,8 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      TorchIgnoreJitSession
       TorchJitSession
+      TorchIgnoreJitSession
    
    
 

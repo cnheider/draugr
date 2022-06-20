@@ -49,6 +49,7 @@ draugr.torch\_utilities.architectures.distributional.normal.MultiVariateNormalML
       ~MultiVariateNormalMLP.register_forward_hook
       ~MultiVariateNormalMLP.register_forward_pre_hook
       ~MultiVariateNormalMLP.register_full_backward_hook
+      ~MultiVariateNormalMLP.register_module
       ~MultiVariateNormalMLP.register_parameter
       ~MultiVariateNormalMLP.requires_grad_
       ~MultiVariateNormalMLP.sample_input

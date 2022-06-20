@@ -13,11 +13,12 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.python_utilities.function_wrappers.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.python_utilities.function_wrappers.max_frequency" href="draugr.python_utilities.function_wrappers.max_frequency.html" />
+    <link rel="next" title="draugr.python_utilities.function_wrappers.min_interval_wrapper" href="draugr.python_utilities.function_wrappers.min_interval_wrapper.html" />
     <link rel="prev" title="draugr.python_utilities.exclude.worker.spawn" href="draugr.python_utilities.exclude.worker.spawn.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,43 +37,23 @@
           <div class="body" role="main">
             
   <section id="module-draugr.python_utilities.function_wrappers">
-<span id="draugr-python-utilities-function-wrappers"></span><h1>draugr.python_utilities.function_wrappers<a class="headerlink" href="#module-draugr.python_utilities.function_wrappers" title="Permalink to this headline">¶</a></h1>
+<span id="draugr-python-utilities-function-wrappers"></span><h1>draugr.python_utilities.function_wrappers<a class="headerlink" href="#module-draugr.python_utilities.function_wrappers" title="Permalink to this heading">¶</a></h1>
 <p>Created on 12-05-2021</p>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.min_interval_wrapper.html#draugr.python_utilities.function_wrappers.min_interval_wrapper" title="draugr.python_utilities.function_wrappers.min_interval_wrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_interval_wrapper</span></code></a>(f[, min_interval])</p></td>
+<td><p>to ensure that a function is now being called more often than max_freq, TODO: use proper naming for the interval :param f: :param min_interval: :return:</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.min_interval_wrapper_global.html#draugr.python_utilities.function_wrappers.min_interval_wrapper_global" title="draugr.python_utilities.function_wrappers.min_interval_wrapper_global"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_interval_wrapper_global</span></code></a>(f[, min_interval])</p></td>
+<td><p>to ensure that a function is now being called more often than max_freq, TODO: use proper naming for the interval :param f: :param min_interval: :return:</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.max_frequency.html#draugr.python_utilities.function_wrappers.max_frequency" title="draugr.python_utilities.function_wrappers.max_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_frequency</span></code></a>(key[, min_interval, verbose])</p></td>
 <td><p>initially returns recallable func later bools :param key: :type key: :param verbose: :type verbose: :param min_interval: :return:</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.max_frequency_wrapper.html#draugr.python_utilities.function_wrappers.max_frequency_wrapper" title="draugr.python_utilities.function_wrappers.max_frequency_wrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_frequency_wrapper</span></code></a>(f[, min_interval])</p></td>
-<td><p>to ensure that a function is now being called more often than max_freq, TODO: use proper naming for the interval :param f: :param min_interval: :return:</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.max_frequency_wrapper_global.html#draugr.python_utilities.function_wrappers.max_frequency_wrapper_global" title="draugr.python_utilities.function_wrappers.max_frequency_wrapper_global"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_frequency_wrapper_global</span></code></a>(f[, min_interval])</p></td>
-<td><p>to ensure that a function is now being called more often than max_freq, TODO: use proper naming for the interval :param f: :param min_interval: :return:</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.min_interval_wrapper.html#draugr.python_utilities.function_wrappers.min_interval_wrapper" title="draugr.python_utilities.function_wrappers.min_interval_wrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_interval_wrapper</span></code></a>(f[, min_interval])</p></td>
-<td><p>to ensure that a function is now being called more often than max_freq, TODO: use proper naming for the interval :param f: :param min_interval: :return:</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.min_interval_wrapper_global.html#draugr.python_utilities.function_wrappers.min_interval_wrapper_global" title="draugr.python_utilities.function_wrappers.min_interval_wrapper_global"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_interval_wrapper_global</span></code></a>(f[, min_interval])</p></td>
-<td><p>to ensure that a function is now being called more often than max_freq, TODO: use proper naming for the interval :param f: :param min_interval: :return:</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.str2bool.html#draugr.python_utilities.function_wrappers.str2bool" title="draugr.python_utilities.function_wrappers.str2bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str2bool</span></code></a>(s[, preds])</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param preds</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.str_to_bool.html#draugr.python_utilities.function_wrappers.str_to_bool" title="draugr.python_utilities.function_wrappers.str_to_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str_to_bool</span></code></a>(s[, preds])</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param preds</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="draugr.python_utilities.function_wrappers.wrap_args.html#draugr.python_utilities.function_wrappers.wrap_args" title="draugr.python_utilities.function_wrappers.wrap_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wrap_args</span></code></a>(n_tuple)</p></td>
 <td><p><dl class="field-list simple">
@@ -123,13 +104,9 @@
 <li class="toctree-l3"><a class="reference internal" href="draugr.python_utilities.broadcasting.html">draugr.python_utilities.broadcasting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="draugr.python_utilities.exclude.html">draugr.python_utilities.exclude</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">draugr.python_utilities.function_wrappers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.max_frequency.html">draugr.python_utilities.function_wrappers.max_frequency</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.max_frequency_wrapper.html">draugr.python_utilities.function_wrappers.max_frequency_wrapper</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.max_frequency_wrapper_global.html">draugr.python_utilities.function_wrappers.max_frequency_wrapper_global</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.min_interval_wrapper.html">draugr.python_utilities.function_wrappers.min_interval_wrapper</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.min_interval_wrapper_global.html">draugr.python_utilities.function_wrappers.min_interval_wrapper_global</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.str2bool.html">draugr.python_utilities.function_wrappers.str2bool</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.str_to_bool.html">draugr.python_utilities.function_wrappers.str_to_bool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.max_frequency.html">draugr.python_utilities.function_wrappers.max_frequency</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.python_utilities.function_wrappers.wrap_args.html">draugr.python_utilities.function_wrappers.wrap_args</a></li>
 </ul>
 </li>
@@ -162,7 +139,7 @@
   <li><a href="draugr.html">draugr</a><ul>
   <li><a href="draugr.python_utilities.html">draugr.python_utilities</a><ul>
       <li>Previous: <a href="draugr.python_utilities.exclude.worker.spawn.html" title="previous chapter">draugr.python_utilities.exclude.worker.spawn</a></li>
-      <li>Next: <a href="draugr.python_utilities.function_wrappers.max_frequency.html" title="next chapter">draugr.python_utilities.function_wrappers.max_frequency</a></li>
+      <li>Next: <a href="draugr.python_utilities.function_wrappers.min_interval_wrapper.html" title="next chapter">draugr.python_utilities.function_wrappers.min_interval_wrapper</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -177,7 +154,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -194,7 +171,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

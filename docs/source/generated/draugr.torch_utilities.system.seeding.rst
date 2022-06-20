@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.system.seeding
+draugr.torch\_utilities.system.seeding
 ======================================
 
 .. automodule:: draugr.torch_utilities.system.seeding
@@ -19,14 +19,6 @@
    
 
    
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-      :toctree:
-      :template: custom_autosummary/class.rst
-   
-      Seed
    
    
 

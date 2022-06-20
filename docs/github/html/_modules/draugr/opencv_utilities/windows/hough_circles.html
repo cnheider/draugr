@@ -12,6 +12,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/windows/hough_circles.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -46,7 +47,9 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;interactive_hough_circles&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="interactive_hough_circles"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.windows.hough_circles.interactive_hough_circles.html#draugr.opencv_utilities.windows.hough_circles.interactive_hough_circles">[docs]</a><span class="k">def</span> <span class="nf">interactive_hough_circles</span><span class="p">(</span><span class="n">ps</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">33</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="interactive_hough_circles"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.windows.hough_circles.interactive_hough_circles.html#draugr.opencv_utilities.windows.hough_circles.interactive_hough_circles">[docs]</a><span class="k">def</span> <span class="nf">interactive_hough_circles</span><span class="p">(</span>
+    <span class="n">ps</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">33</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    :param ps:</span>
@@ -75,7 +78,9 @@
     <span class="n">add_trackbar</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;maxRadius&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
     <span class="n">canny_t1</span> <span class="o">=</span> <span class="n">canny_t2</span> <span class="o">=</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">minDist</span> <span class="o">=</span> <span class="n">param1</span> <span class="o">=</span> <span class="n">param2</span> <span class="o">=</span> <span class="n">minRadius</span> <span class="o">=</span> <span class="n">maxRadius</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">pcanny_t1</span> <span class="o">=</span> <span class="n">pcanny_t2</span> <span class="o">=</span> <span class="n">pdp</span> <span class="o">=</span> <span class="n">pminDist</span> <span class="o">=</span> <span class="n">pparam1</span> <span class="o">=</span> <span class="n">pparam2</span> <span class="o">=</span> <span class="n">pminRadius</span> <span class="o">=</span> <span class="n">pmaxRadius</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">pcanny_t1</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">pcanny_t2</span>
+    <span class="p">)</span> <span class="o">=</span> <span class="n">pdp</span> <span class="o">=</span> <span class="n">pminDist</span> <span class="o">=</span> <span class="n">pparam1</span> <span class="o">=</span> <span class="n">pparam2</span> <span class="o">=</span> <span class="n">pminRadius</span> <span class="o">=</span> <span class="n">pmaxRadius</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -210,7 +215,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -227,7 +232,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

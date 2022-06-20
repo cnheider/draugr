@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.experimental.recurrent.RecurrentCategoricalMLP
+draugr.torch\_utilities.architectures.experimental.recurrent.RecurrentCategoricalMLP
 ====================================================================================
 
 .. currentmodule:: draugr.torch_utilities.architectures.experimental.recurrent
@@ -49,6 +49,7 @@
       ~RecurrentCategoricalMLP.register_forward_hook
       ~RecurrentCategoricalMLP.register_forward_pre_hook
       ~RecurrentCategoricalMLP.register_full_backward_hook
+      ~RecurrentCategoricalMLP.register_module
       ~RecurrentCategoricalMLP.register_parameter
       ~RecurrentCategoricalMLP.requires_grad_
       ~RecurrentCategoricalMLP.sample_input

@@ -13,11 +13,12 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.visualisation.pillow_utilities.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.visualisation.pillow_utilities.byte_array_to_pil_image" href="draugr.visualisation.pillow_utilities.byte_array_to_pil_image.html" />
+    <link rel="next" title="draugr.visualisation.pillow_utilities.pil_merge_images" href="draugr.visualisation.pillow_utilities.pil_merge_images.html" />
     <link rel="prev" title="draugr.visualisation.matplotlib_utilities.MatplotlibVerticalAlignment" href="draugr.visualisation.matplotlib_utilities.MatplotlibVerticalAlignment.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,45 +37,33 @@
           <div class="body" role="main">
             
   <section id="module-draugr.visualisation.pillow_utilities">
-<span id="draugr-visualisation-pillow-utilities"></span><h1>draugr.visualisation.pillow_utilities<a class="headerlink" href="#module-draugr.visualisation.pillow_utilities" title="Permalink to this headline">¶</a></h1>
+<span id="draugr-visualisation-pillow-utilities"></span><h1>draugr.visualisation.pillow_utilities<a class="headerlink" href="#module-draugr.visualisation.pillow_utilities" title="Permalink to this heading">¶</a></h1>
 <p>Created on 17/07/2020</p>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_merge_images.html#draugr.visualisation.pillow_utilities.pil_merge_images" title="draugr.visualisation.pillow_utilities.pil_merge_images"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pil_merge_images</span></code></a>(image1, image2)</p></td>
+<td><p>Merge two images into one, displayed side by side.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_img_to_np_array.html#draugr.visualisation.pillow_utilities.pil_img_to_np_array" title="draugr.visualisation.pillow_utilities.pil_img_to_np_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pil_img_to_np_array</span></code></a>(data_path, *[, ...])</p></td>
+<td><p>Util function for loading RGB image into a numpy array.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.np_array_to_pil_img.html#draugr.visualisation.pillow_utilities.np_array_to_pil_img" title="draugr.visualisation.pillow_utilities.np_array_to_pil_img"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np_array_to_pil_img</span></code></a>(x)</p></td>
+<td><p>Util function for converting a numpy array to a PIL img.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_image_to_byte_array.html#draugr.visualisation.pillow_utilities.pil_image_to_byte_array" title="draugr.visualisation.pillow_utilities.pil_image_to_byte_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pil_image_to_byte_array</span></code></a>(image, *[, coding])</p></td>
+<td><p>PNG encoded by default :param coding: :param image: :return:</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.byte_array_to_pil_image.html#draugr.visualisation.pillow_utilities.byte_array_to_pil_image" title="draugr.visualisation.pillow_utilities.byte_array_to_pil_image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">byte_array_to_pil_image</span></code></a>(byte_array)</p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">param byte_array</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.np_array_to_pil_img.html#draugr.visualisation.pillow_utilities.np_array_to_pil_img" title="draugr.visualisation.pillow_utilities.np_array_to_pil_img"><code class="xref py py-obj docutils literal notranslate"><span class="pre">np_array_to_pil_img</span></code></a>(x)</p></td>
-<td><p>Util function for converting a numpy array to a PIL img.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_image_to_byte_array.html#draugr.visualisation.pillow_utilities.pil_image_to_byte_array" title="draugr.visualisation.pillow_utilities.pil_image_to_byte_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pil_image_to_byte_array</span></code></a>(image, *[, coding])</p></td>
-<td><p>PNG encoded by default :param coding: :param image: :return:</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_img_to_np_array.html#draugr.visualisation.pillow_utilities.pil_img_to_np_array" title="draugr.visualisation.pillow_utilities.pil_img_to_np_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pil_img_to_np_array</span></code></a>(data_path, *[, …])</p></td>
-<td><p>Util function for loading RGB image into a numpy array.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_merge_images.html#draugr.visualisation.pillow_utilities.pil_merge_images" title="draugr.visualisation.pillow_utilities.pil_merge_images"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pil_merge_images</span></code></a>(image1, image2)</p></td>
-<td><p>Merge two images into one, displayed side by side.</p></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.visualisation.pillow_utilities.PilModesEnum.html#draugr.visualisation.pillow_utilities.PilModesEnum" title="draugr.visualisation.pillow_utilities.PilModesEnum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PilModesEnum</span></code></a>(value)</p></td>
-<td><p>PIL pixel formats:</p></td>
 </tr>
 </tbody>
 </table>
@@ -125,12 +114,11 @@
 <li class="toctree-l3"><a class="reference internal" href="draugr.visualisation.ggplot_utilities.html">draugr.visualisation.ggplot_utilities</a></li>
 <li class="toctree-l3"><a class="reference internal" href="draugr.visualisation.matplotlib_utilities.html">draugr.visualisation.matplotlib_utilities</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">draugr.visualisation.pillow_utilities</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.byte_array_to_pil_image.html">draugr.visualisation.pillow_utilities.byte_array_to_pil_image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_merge_images.html">draugr.visualisation.pillow_utilities.pil_merge_images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_img_to_np_array.html">draugr.visualisation.pillow_utilities.pil_img_to_np_array</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.np_array_to_pil_img.html">draugr.visualisation.pillow_utilities.np_array_to_pil_img</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_image_to_byte_array.html">draugr.visualisation.pillow_utilities.pil_image_to_byte_array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_img_to_np_array.html">draugr.visualisation.pillow_utilities.pil_img_to_np_array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.pil_merge_images.html">draugr.visualisation.pillow_utilities.pil_merge_images</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.PilModesEnum.html">draugr.visualisation.pillow_utilities.PilModesEnum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.visualisation.pillow_utilities.byte_array_to_pil_image.html">draugr.visualisation.pillow_utilities.byte_array_to_pil_image</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="draugr.visualisation.seaborn_utilities.html">draugr.visualisation.seaborn_utilities</a></li>
@@ -152,7 +140,7 @@
   <li><a href="draugr.html">draugr</a><ul>
   <li><a href="draugr.visualisation.html">draugr.visualisation</a><ul>
       <li>Previous: <a href="draugr.visualisation.matplotlib_utilities.MatplotlibVerticalAlignment.html" title="previous chapter">draugr.visualisation.matplotlib_utilities.MatplotlibVerticalAlignment</a></li>
-      <li>Next: <a href="draugr.visualisation.pillow_utilities.byte_array_to_pil_image.html" title="next chapter">draugr.visualisation.pillow_utilities.byte_array_to_pil_image</a></li>
+      <li>Next: <a href="draugr.visualisation.pillow_utilities.pil_merge_images.html" title="next chapter">draugr.visualisation.pillow_utilities.pil_merge_images</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -167,7 +155,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -184,7 +172,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

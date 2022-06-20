@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.persistence.model.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu" href="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu.html" />
-    <link rel="prev" title="draugr.torch_utilities.persistence.config.save_config" href="draugr.torch_utilities.persistence.config.save_config.html" />
+    <link rel="next" title="draugr.torch_utilities.persistence.model.load_model" href="draugr.torch_utilities.persistence.model.load_model.html" />
+    <link rel="prev" title="draugr.torch_utilities.persistence.config.ensure_directory_exist" href="draugr.torch_utilities.persistence.config.ensure_directory_exist.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,33 +37,33 @@
           <div class="body" role="main">
             
   <section id="module-draugr.torch_utilities.persistence.model">
-<span id="draugr-torch-utilities-persistence-model"></span><h1>draugr.torch_utilities.persistence.model<a class="headerlink" href="#module-draugr.torch_utilities.persistence.model" title="Permalink to this headline">¶</a></h1>
+<span id="draugr-torch-utilities-persistence-model"></span><h1>draugr.torch_utilities.persistence.model<a class="headerlink" href="#module-draugr.torch_utilities.persistence.model" title="Permalink to this heading">¶</a></h1>
 <p class="rubric">Functions</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu.html#draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu" title="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_saved_model_to_cpu</span></code></a>(path)</p></td>
-<td><p><dl class="field-list simple">
-<dt class="field-odd">param path</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.persistence.model.load_model.html#draugr.torch_utilities.persistence.model.load_model" title="draugr.torch_utilities.persistence.model.load_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_model</span></code></a>(*, model_name, model_directory[, ...])</p></td>
+<td><p>load model with the lastest time appendix or in this case creation time</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="draugr.torch_utilities.persistence.model.load_latest_model.html#draugr.torch_utilities.persistence.model.load_latest_model" title="draugr.torch_utilities.persistence.model.load_latest_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_latest_model</span></code></a>(*, model_name, model_directory)</p></td>
 <td><p>load model with the lastest time appendix or in this case creation time</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.persistence.model.load_model.html#draugr.torch_utilities.persistence.model.load_model" title="draugr.torch_utilities.persistence.model.load_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_model</span></code></a>(*, model_name, model_directory[, …])</p></td>
-<td><p>load model with the lastest time appendix or in this case creation time</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model_and_configuration.html#draugr.torch_utilities.persistence.model.save_model_and_configuration" title="draugr.torch_utilities.persistence.model.save_model_and_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model_and_configuration</span></code></a>(*, model, ...)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param raise_on_existing</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model.html#draugr.torch_utilities.persistence.model.save_model" title="draugr.torch_utilities.persistence.model.save_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model</span></code></a>(model, *, model_name, save_directory)</p></td>
 <td><p>save a model with a timestamp appendix to later to loaded</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model_and_configuration.html#draugr.torch_utilities.persistence.model.save_model_and_configuration" title="draugr.torch_utilities.persistence.model.save_model_and_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_model_and_configuration</span></code></a>(*, model, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu.html#draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu" title="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_saved_model_to_cpu</span></code></a>(path)</p></td>
 <td><p><dl class="field-list simple">
-<dt class="field-odd">param raise_on_existing</dt>
+<dt class="field-odd">param path</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </p></td>
@@ -125,11 +126,11 @@
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.persistence.checkpoint.html">draugr.torch_utilities.persistence.checkpoint</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.persistence.config.html">draugr.torch_utilities.persistence.config</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.torch_utilities.persistence.model</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu.html">draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu</a></li>
-<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.load_latest_model.html">draugr.torch_utilities.persistence.model.load_latest_model</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.load_model.html">draugr.torch_utilities.persistence.model.load_model</a></li>
-<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model.html">draugr.torch_utilities.persistence.model.save_model</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.load_latest_model.html">draugr.torch_utilities.persistence.model.load_latest_model</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model_and_configuration.html">draugr.torch_utilities.persistence.model.save_model_and_configuration</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.save_model.html">draugr.torch_utilities.persistence.model.save_model</a></li>
+<li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu.html">draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.torch_utilities.persistence.naming.html">draugr.torch_utilities.persistence.naming</a></li>
@@ -160,8 +161,8 @@
   <li><a href="draugr.html">draugr</a><ul>
   <li><a href="draugr.torch_utilities.html">draugr.torch_utilities</a><ul>
   <li><a href="draugr.torch_utilities.persistence.html">draugr.torch_utilities.persistence</a><ul>
-      <li>Previous: <a href="draugr.torch_utilities.persistence.config.save_config.html" title="previous chapter">draugr.torch_utilities.persistence.config.save_config</a></li>
-      <li>Next: <a href="draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu.html" title="next chapter">draugr.torch_utilities.persistence.model.convert_saved_model_to_cpu</a></li>
+      <li>Previous: <a href="draugr.torch_utilities.persistence.config.ensure_directory_exist.html" title="previous chapter">draugr.torch_utilities.persistence.config.ensure_directory_exist</a></li>
+      <li>Next: <a href="draugr.torch_utilities.persistence.model.load_model.html" title="next chapter">draugr.torch_utilities.persistence.model.load_model</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -177,7 +178,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -194,7 +195,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

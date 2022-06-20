@@ -13,6 +13,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.evaluation.cross_validation.cross_validation_generator.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="draugr-torch-utilities-evaluation-cross-validation-cross-validation-generator">
-<h1>draugr.torch_utilities.evaluation.cross_validation.cross_validation_generator<a class="headerlink" href="#draugr-torch-utilities-evaluation-cross-validation-cross-validation-generator" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.torch_utilities.evaluation.cross_validation.cross_validation_generator<a class="headerlink" href="#draugr-torch-utilities-evaluation-cross-validation-cross-validation-generator" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="draugr.torch_utilities.evaluation.cross_validation.cross_validation_generator">
-<span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.evaluation.cross_validation.</span></span><span class="sig-name descname"><span class="pre">cross_validation_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">datasets</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.utils.data.dataset.Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_splits</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">torch.utils.data.dataset.Subset</span><span class="p"><span class="pre">,</span> </span><span class="pre">torch.utils.data.dataset.Subset</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/evaluation/cross_validation.html#cross_validation_generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.evaluation.cross_validation.cross_validation_generator" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.evaluation.cross_validation.</span></span><span class="sig-name descname"><span class="pre">cross_validation_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">datasets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_splits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.10)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Subset</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Subset</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/evaluation/cross_validation.html#cross_validation_generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.evaluation.cross_validation.cross_validation_generator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learning the parameters of a prediction function and testing it on the same data is a methodological mistake: a model that would just repeat the labels of the samples that it has just seen would have a perfect score but would fail to predict anything useful on yet-unseen data. This situation is called overfitting. To avoid it, it is common practice when performing a (supervised) machine learning experiment to hold out part of the available data as a test set</p>
 </dd></dl>
 
@@ -146,7 +147,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -163,7 +164,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

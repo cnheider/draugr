@@ -13,6 +13,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.generators.batching.LimitedBatchResampler.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,26 +37,26 @@
           <div class="body" role="main">
             
   <section id="draugr-torch-utilities-generators-batching-limitedbatchresampler">
-<h1>draugr.torch_utilities.generators.batching.LimitedBatchResampler<a class="headerlink" href="#draugr-torch-utilities-generators-batching-limitedbatchresampler" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.torch_utilities.generators.batching.LimitedBatchResampler<a class="headerlink" href="#draugr-torch-utilities-generators-batching-limitedbatchresampler" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.torch_utilities.generators.batching.LimitedBatchResampler">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.generators.batching.</span></span><span class="sig-name descname"><span class="pre">LimitedBatchResampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_iter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/generators/batching.html#LimitedBatchResampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.generators.batching.LimitedBatchResampler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.sampler.Sampler</span></code>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.generators.batching.</span></span><span class="sig-name descname"><span class="pre">LimitedBatchResampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/generators/batching.html#LimitedBatchResampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.generators.batching.LimitedBatchResampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BatchSampler</span></code></p>
 <p>Wraps a BatchSampler, re-sampling from it until
 a specified number of iterations have been sampled</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.torch_utilities.generators.batching.LimitedBatchResampler.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_iter</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/generators/batching.html#LimitedBatchResampler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.generators.batching.LimitedBatchResampler.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iterations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/generators/batching.html#LimitedBatchResampler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.generators.batching.LimitedBatchResampler.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.generators.batching.LimitedBatchResampler.__init__" title="draugr.torch_utilities.generators.batching.LimitedBatchResampler.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(batch_sampler, num_iterations[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.generators.batching.LimitedBatchResampler.__init__" title="draugr.torch_utilities.generators.batching.LimitedBatchResampler.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(batch_sampler, num_iterations[, ...])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -165,7 +166,7 @@ a specified number of iterations have been sampled</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -182,7 +183,7 @@ a specified number of iterations have been sampled</p>
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -49,6 +49,7 @@ draugr.torch\_utilities.architectures.distributional.categorical.CategoricalMLP
       ~CategoricalMLP.register_forward_hook
       ~CategoricalMLP.register_forward_pre_hook
       ~CategoricalMLP.register_full_backward_hook
+      ~CategoricalMLP.register_module
       ~CategoricalMLP.register_parameter
       ~CategoricalMLP.requires_grad_
       ~CategoricalMLP.sample_input

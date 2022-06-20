@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.system.device
+draugr.torch\_utilities.system.device
 =====================================
 
 .. automodule:: draugr.torch_utilities.system.device
@@ -14,10 +14,10 @@
    .. autosummary::
       :toctree:
    
-      auto_select_available_cuda_device
-      get_gpu_usage_mb
       global_torch_device
       select_cuda_device
+      get_gpu_usage_mb
+      auto_select_available_cuda_device
       set_global_torch_device
       torch_clean_up
    

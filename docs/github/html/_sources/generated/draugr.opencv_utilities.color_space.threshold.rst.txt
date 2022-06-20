@@ -1,4 +1,4 @@
-﻿draugr.opencv\_utilities.color\_space.threshold
+draugr.opencv\_utilities.color\_space.threshold
 ===============================================
 
 .. automodule:: draugr.opencv_utilities.color_space.threshold
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      hsv_min_max_clip_mask
       threshold_channel
+      hsv_min_max_clip_mask
    
    
 

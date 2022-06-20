@@ -1,8 +1,15 @@
-"""A basic variational autoencoder (VAE) on binarized MNIST using Numpy and JAX.
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+__author__ = "Christian Heider Nielsen"
+__doc__ = r"""A basic variational autoencoder (VAE) on binarized MNIST using Numpy and JAX.
 
 This file uses the stax network definition library and the optimizers
 optimization library.
-"""
+
+           Created on 31-10-2020
+           """
+
 
 import os
 import time

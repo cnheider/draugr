@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.experimental.recurrent.ExposedRecurrentCategoricalMLP
+draugr.torch\_utilities.architectures.experimental.recurrent.ExposedRecurrentCategoricalMLP
 ===========================================================================================
 
 .. currentmodule:: draugr.torch_utilities.architectures.experimental.recurrent
@@ -49,6 +49,7 @@
       ~ExposedRecurrentCategoricalMLP.register_forward_hook
       ~ExposedRecurrentCategoricalMLP.register_forward_pre_hook
       ~ExposedRecurrentCategoricalMLP.register_full_backward_hook
+      ~ExposedRecurrentCategoricalMLP.register_module
       ~ExposedRecurrentCategoricalMLP.register_parameter
       ~ExposedRecurrentCategoricalMLP.requires_grad_
       ~ExposedRecurrentCategoricalMLP.sample_input

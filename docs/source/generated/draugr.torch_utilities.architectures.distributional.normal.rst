@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.distributional.normal
+draugr.torch\_utilities.architectures.distributional.normal
 ===========================================================
 
 .. automodule:: draugr.torch_utilities.architectures.distributional.normal
@@ -19,11 +19,10 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
+      ShallowStdNormalMLP
       MultiDimensionalNormalMLP
       MultiVariateNormalMLP
       MultipleNormalMLP
-      ShallowStdMultiVariateNormalMLP
-      ShallowStdNormalMLP
    
    
 

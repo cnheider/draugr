@@ -6,19 +6,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPytorchWriter &#8212; Draugr 1.0.0 documentation</title>
+    <title>draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter &#8212; Draugr 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPytorchWriter.html" />
+    <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardTorchWriter" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardTorchWriter.html" />
-    <link rel="prev" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPyTorchWriter" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPyTorchWriter.html" />
+    <link rel="next" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PTW" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PTW.html" />
+    <link rel="prev" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,11 +37,444 @@
           <div class="body" role="main">
             
   <section id="draugr-torch-utilities-writers-tensorboard-tensorboard-pytorch-writer-tensorboardpytorchwriter">
-<h1>draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPytorchWriter<a class="headerlink" href="#draugr-torch-utilities-writers-tensorboard-tensorboard-pytorch-writer-tensorboardpytorchwriter" title="Permalink to this headline">¶</a></h1>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPytorchWriter">
-<span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.</span></span><span class="sig-name descname"><span class="pre">TensorboardPytorchWriter</span></span><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPytorchWriter" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.html#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter</span></code></a></p>
+<h1>draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter<a class="headerlink" href="#draugr-torch-utilities-writers-tensorboard-tensorboard-pytorch-writer-tensorboardpytorchwriter" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.</span></span><span class="sig-name descname"><span class="pre">TensorBoardPytorchWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/mnt/win/Users/Christian/ProjectsWin/Github/Pything/draugr/docs/Logs')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary_writer_kws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.10)"><span class="pre">Iterable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="draugr.writers.writer.Writer.html#draugr.writers.writer.Writer" title="draugr.writers.writer.Writer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Writer</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.image_writer_mixin.ImageWriterMixin.html#draugr.writers.mixins.image_writer_mixin.ImageWriterMixin" title="draugr.writers.mixins.image_writer_mixin.ImageWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageWriterMixin</span></code></a>, <a class="reference internal" href="draugr.torch_utilities.writers.mixins.graph_writer_mixin.GraphWriterMixin.html#draugr.torch_utilities.writers.mixins.graph_writer_mixin.GraphWriterMixin" title="draugr.torch_utilities.writers.mixins.graph_writer_mixin.GraphWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.histogram_writer_mixin.HistogramWriterMixin.html#draugr.writers.mixins.histogram_writer_mixin.HistogramWriterMixin" title="draugr.writers.mixins.histogram_writer_mixin.HistogramWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">HistogramWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.bar_writer_mixin.BarWriterMixin.html#draugr.writers.mixins.bar_writer_mixin.BarWriterMixin" title="draugr.writers.mixins.bar_writer_mixin.BarWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">BarWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.line_writer_mixin.LineWriterMixin.html#draugr.writers.mixins.line_writer_mixin.LineWriterMixin" title="draugr.writers.mixins.line_writer_mixin.LineWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.spectrogram_writer_mixin.SpectrogramWriterMixin.html#draugr.writers.mixins.spectrogram_writer_mixin.SpectrogramWriterMixin" title="draugr.writers.mixins.spectrogram_writer_mixin.SpectrogramWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpectrogramWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.figure_writer_mixin.FigureWriterMixin.html#draugr.writers.mixins.figure_writer_mixin.FigureWriterMixin" title="draugr.writers.mixins.figure_writer_mixin.FigureWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">FigureWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.instantiation_writer_mixin.InstantiationWriterMixin.html#draugr.writers.mixins.instantiation_writer_mixin.InstantiationWriterMixin" title="draugr.writers.mixins.instantiation_writer_mixin.InstantiationWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstantiationWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.precision_recall_writer_mixin.PrecisionRecallCurveWriterMixin.html#draugr.writers.mixins.precision_recall_writer_mixin.PrecisionRecallCurveWriterMixin" title="draugr.writers.mixins.precision_recall_writer_mixin.PrecisionRecallCurveWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrecisionRecallCurveWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.embed_writer_mixin.EmbedWriterMixin.html#draugr.writers.mixins.embed_writer_mixin.EmbedWriterMixin" title="draugr.writers.mixins.embed_writer_mixin.EmbedWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmbedWriterMixin</span></code></a>, <a class="reference internal" href="draugr.torch_utilities.writers.torch_module_writer.module_parameter_writer_mixin.ModuleParameterWriterMixin.html#draugr.torch_utilities.writers.torch_module_writer.module_parameter_writer_mixin.ModuleParameterWriterMixin" title="draugr.torch_utilities.writers.torch_module_writer.module_parameter_writer_mixin.ModuleParameterWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModuleParameterWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.video_writer_mixin.VideoWriterMixin.html#draugr.writers.mixins.video_writer_mixin.VideoWriterMixin" title="draugr.writers.mixins.video_writer_mixin.VideoWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">VideoWriterMixin</span></code></a>, <a class="reference internal" href="draugr.writers.mixins.mesh_writer_mixin.MeshWriterMixin.html#draugr.writers.mixins.mesh_writer_mixin.MeshWriterMixin" title="draugr.writers.mixins.mesh_writer_mixin.MeshWriterMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">MeshWriterMixin</span></code></a></p>
+<p>Provides a pytorch-tensorboard-implementation writer interface</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">PosixPath('/mnt/win/Users/Christian/ProjectsWin/Github/Pything/draugr/docs/Logs')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary_writer_kws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.10)"><span class="pre">Iterable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – </p></li>
+<li><p><strong>summary_writer_kws</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.__init__" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([path, summary_writer_kws, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param path</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.bar" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.bar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bar</span></code></a>(tag, values, step[, value_error, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param x_label</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.blip" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.blip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">blip</span></code></a>(tag[, step_i])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param tag</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">close</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.embed" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.embed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embed</span></code></a>(tag, response[, metadata, label_img, ...])</p></td>
+<td><p>BORKED!</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.figure" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.figure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">figure</span></code></a>(tag, figure, step, *[, global_step, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param tag</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.filter" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code></a>(tag)</p></td>
+<td><p>returns a boolean  value, true if to be included, False if to be excluded</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.graph" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.graph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">graph</span></code></a>(model, input_to_model[, verbose, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param use_strict_trace</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.histogram" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.histogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">histogram</span></code></a>(tag, values, step[, bins, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param tag</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.image" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">image</span></code></a>(tag, data, step, *[, data_formats, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param self</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.instance" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.instance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">instance</span></code></a>(instance, metrics, **kwargs)</p></td>
+<td><p>TODO: Not finished!</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.line" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.line"><code class="xref py py-obj docutils literal notranslate"><span class="pre">line</span></code></a>(tag, values, step[, x_labels, y_label, ...])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param x_label</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.mesh" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mesh</span></code></a>(tag, data[, step])</p></td>
+<td><p>Data being vertices here.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">open</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.parameters" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a>(model, step[, tag])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param model</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.precision_recall_curve" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.precision_recall_curve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">precision_recall_curve</span></code></a>(tag, predictions, truths)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param tag</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.scalar" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.scalar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scalar</span></code></a>(tag, value[, step_i])</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param tag</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.spectrogram" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.spectrogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spectrogram</span></code></a>(tag, values, sample_rate, step)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">param sample_rate</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.video" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.video"><code class="xref py py-obj docutils literal notranslate"><span class="pre">video</span></code></a>(tag, data[, step, frame_rate, input_dims])</p></td>
+<td><p>Shape:</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.writer" title="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.writer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writer</span></code></a></p></td>
+<td><p>return: :rtype:</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.MultiChannelMethodEnum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultiChannelMethodEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.MultiChannelMethodEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a></p>
+<p>An enumeration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.bar">
+<span class="sig-name descname"><span class="pre">bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.10)"><span class="pre">Sequence</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Probabilities'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Distribution'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walltime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.bar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.bar" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_label</strong> – </p></li>
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>values</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>value_error</strong> – </p></li>
+<li><p><strong>x_labels</strong> – </p></li>
+<li><p><strong>y_label</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.blip">
+<span class="sig-name descname"><span class="pre">blip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.blip" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>step_i</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.embed">
+<span class="sig-name descname"><span class="pre">embed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.10)"><span class="pre">Sequence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_img</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.embed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.embed" title="Permalink to this definition">¶</a></dt>
+<dd><p>BORKED!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>response</strong> – </p></li>
+<li><p><strong>metadata</strong> – </p></li>
+<li><p><strong>label_img</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.figure">
+<span class="sig-name descname"><span class="pre">figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">figure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Figure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walltime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.figure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.figure" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>figure</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.filter" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>returns a boolean  value, true if to be included, False if to be excluded</p>
+<p>tag is in filter if not None
+and within interval for inclusion</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tag</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.graph">
+<span class="sig-name descname"><span class="pre">graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_to_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_strict_trace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.graph" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_strict_trace</strong> – </p></li>
+<li><p><strong>verbose</strong> – </p></li>
+<li><p><strong>model</strong> – </p></li>
+<li><p><strong>input_to_model</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.histogram">
+<span class="sig-name descname"><span class="pre">histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walltime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.histogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.histogram" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>values</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>bins</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.image">
+<span class="sig-name descname"><span class="pre">image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Image</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_formats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'NCHW'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_channel_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="draugr.writers.mixins.image_writer_mixin.ImageWriterMixin.html#draugr.writers.mixins.image_writer_mixin.ImageWriterMixin.MultiChannelMethodEnum" title="draugr.writers.mixins.image_writer_mixin.ImageWriterMixin.MultiChannelMethodEnum"><span class="pre">MultiChannelMethodEnum</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">MultiChannelMethodEnum.seperate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seperate_channel_postfix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'channel'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seperate_image_postfix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'image'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walltime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataformats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CHW'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.image" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – </p></li>
+<li><p><strong>multi_channel_method</strong> – </p></li>
+<li><p><strong>seperate_channel_postfix</strong> – </p></li>
+<li><p><strong>seperate_image_postfix</strong> – </p></li>
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>data</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>data_formats</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.instance">
+<span class="sig-name descname"><span class="pre">instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: Not finished!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> – </p></li>
+<li><p><strong>metrics</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.line">
+<span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.10)"><span class="pre">Sequence</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Magnitude'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Sequence'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_kws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walltime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.line" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_label</strong> – </p></li>
+<li><p><strong>plot_kws</strong> – </p></li>
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>values</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>x_labels</strong> – </p></li>
+<li><p><strong>y_label</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.mesh">
+<span class="sig-name descname"><span class="pre">mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Image</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data being vertices here.</p>
+<p>Shape: (B,N,3)
+data: (B,N,3). (batch, number_of_vertices, channels)
+colors: (B,N,3). The values should lie in [0, 255] for type uint8 or [0, 1] for type float.
+faces: (B,N,3). The values should lie in [0, number_of_vertices] for type uint8.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>data</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.precision_recall_curve">
+<span class="sig-name descname"><span class="pre">precision_recall_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.10)"><span class="pre">Iterable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">truths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.10)"><span class="pre">Iterable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_thresholds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">127</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walltime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.precision_recall_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.precision_recall_curve" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>predictions</strong> – </p></li>
+<li><p><strong>truths</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.scalar">
+<span class="sig-name descname"><span class="pre">scalar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.scalar" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>value</strong> – </p></li>
+<li><p><strong>step_i</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.spectrogram">
+<span class="sig-name descname"><span class="pre">spectrogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.10)"><span class="pre">Sequence</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Frequency</span> <span class="pre">[Hz]'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Time</span> <span class="pre">[sec]'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_kws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">close</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">walltime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.spectrogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.spectrogram" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sample_rate</strong> – </p></li>
+<li><p><strong>n_fft</strong> – </p></li>
+<li><p><strong>step_size</strong> – </p></li>
+<li><p><strong>tag</strong> – </p></li>
+<li><p><strong>values</strong> – </p></li>
+<li><p><strong>step</strong> – </p></li>
+<li><p><strong>x_labels</strong> – </p></li>
+<li><p><strong>y_label</strong> – </p></li>
+<li><p><strong>x_label</strong> – </p></li>
+<li><p><strong>plot_kws</strong> – </p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.video">
+<span class="sig-name descname"><span class="pre">video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Image</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">VideoInputDimsEnum.ntchw</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/writers/tensorboard/tensorboard_pytorch_writer.html#TensorBoardPytorchWriter.video"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.video" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shape:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>fastest expects vid_tensor: (N,T,C,H,W) .</dt><dd><p>The values should lie in [0, 255] for type uint8 or [0, 1] for type float.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.writer">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">writer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SummaryWriter</span></em><a class="headerlink" href="#draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.writer" title="Permalink to this definition">¶</a></dt>
+<dd><p>return:
+:rtype:</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -104,18 +538,8 @@
 <li class="toctree-l4 current"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.html">draugr.torch_utilities.writers.tensorboard</a><ul class="current">
 <li class="toctree-l5"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.launcher.html">draugr.torch_utilities.writers.tensorboard.launcher</a></li>
 <li class="toctree-l5 current"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer</a><ul class="current">
+<li class="toctree-l6 current"><a class="current reference internal" href="#">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter</a></li>
 <li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PTW.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PTW</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PyTorchTensorBoardWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PyTorchTensorBoardWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PyTorchTensorboardWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PyTorchTensorboardWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PytorchTensorboardWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PytorchTensorboardWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPyTorchWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPyTorchWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardTorchWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardTorchWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPyTorchWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPyTorchWriter</a></li>
-<li class="toctree-l6 current"><a class="current reference internal" href="#">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPytorchWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardTorchWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardTorchWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TorchTensorBoardWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TorchTensorBoardWriter</a></li>
-<li class="toctree-l6"><a class="reference internal" href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TorchTensorboardWriter.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TorchTensorboardWriter</a></li>
 </ul>
 </li>
 </ul>
@@ -146,8 +570,8 @@
   <li><a href="draugr.torch_utilities.writers.html">draugr.torch_utilities.writers</a><ul>
   <li><a href="draugr.torch_utilities.writers.tensorboard.html">draugr.torch_utilities.writers.tensorboard</a><ul>
   <li><a href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.html">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer</a><ul>
-      <li>Previous: <a href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPyTorchWriter.html" title="previous chapter">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPyTorchWriter</a></li>
-      <li>Next: <a href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardTorchWriter.html" title="next chapter">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardTorchWriter</a></li>
+      <li>Previous: <a href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.html" title="previous chapter">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer</a></li>
+      <li>Next: <a href="draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PTW.html" title="next chapter">draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.PTW</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -165,7 +589,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -182,11 +606,11 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/generated/draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorboardPytorchWriter.rst.txt"
+      <a href="../_sources/generated/draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer.TensorBoardPytorchWriter.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -49,6 +49,7 @@ draugr.torch\_utilities.architectures.distributional.normal.ShallowStdNormalMLP
       ~ShallowStdNormalMLP.register_forward_hook
       ~ShallowStdNormalMLP.register_forward_pre_hook
       ~ShallowStdNormalMLP.register_full_backward_hook
+      ~ShallowStdNormalMLP.register_module
       ~ShallowStdNormalMLP.register_parameter
       ~ShallowStdNormalMLP.requires_grad_
       ~ShallowStdNormalMLP.sample_input

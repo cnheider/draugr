@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.distributions.entropy
+draugr.torch\_utilities.distributions.entropy
 =============================================
 
 .. automodule:: draugr.torch_utilities.distributions.entropy
@@ -14,11 +14,11 @@
    .. autosummary::
       :toctree:
    
-      differential_entropy_gaussian
+      shannon_entropy
       log_shannon_entropy
       normal_entropy
+      differential_entropy_gaussian
       normal_log_density
-      shannon_entropy
    
    
 

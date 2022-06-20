@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.datasets.random\_dataset.RandomDataset
+draugr.torch\_utilities.datasets.random\_dataset.RandomDataset
 ==============================================================
 
 .. currentmodule:: draugr.torch_utilities.datasets.random_dataset
@@ -17,17 +17,9 @@
    .. autosummary::
    
       ~RandomDataset.__init__
-      ~RandomDataset.register_datapipe_as_function
-      ~RandomDataset.register_function
    
    
 
    
-   
-   .. rubric:: Attributes
-
-   .. autosummary::
-   
-      ~RandomDataset.functions
    
    

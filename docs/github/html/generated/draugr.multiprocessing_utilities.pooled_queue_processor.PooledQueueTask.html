@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.numpy_utilities" href="draugr.numpy_utilities.html" />
-    <link rel="prev" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html" />
+    <link rel="next" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html" />
+    <link rel="prev" title="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase" href="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,11 +37,11 @@
           <div class="body" role="main">
             
   <section id="draugr-multiprocessing-utilities-pooled-queue-processor-pooledqueuetask">
-<h1>draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask<a class="headerlink" href="#draugr-multiprocessing-utilities-pooled-queue-processor-pooledqueuetask" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask<a class="headerlink" href="#draugr-multiprocessing-utilities-pooled-queue-processor-pooledqueuetask" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.multiprocessing_utilities.pooled_queue_processor.</span></span><span class="sig-name descname"><span class="pre">PooledQueueTask</span></span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.multiprocessing_utilities.pooled_queue_processor.</span></span><span class="sig-name descname"><span class="pre">PooledQueueTask</span></span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
 <p>Pooled queue task interface</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.__init__">
@@ -48,7 +49,7 @@
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -68,7 +69,7 @@
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.call">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueTask.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.call" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a></span></span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueTask.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.call" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -114,8 +115,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="draugr.multiprocessing_utilities.html">draugr.multiprocessing_utilities</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.html">draugr.multiprocessing_utilities.pooled_queue_processor</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase.html">draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor</a></li>
 </ul>
 </li>
 </ul>
@@ -149,8 +150,8 @@
   <li><a href="draugr.html">draugr</a><ul>
   <li><a href="draugr.multiprocessing_utilities.html">draugr.multiprocessing_utilities</a><ul>
   <li><a href="draugr.multiprocessing_utilities.pooled_queue_processor.html">draugr.multiprocessing_utilities.pooled_queue_processor</a><ul>
-      <li>Previous: <a href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html" title="previous chapter">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor</a></li>
-      <li>Next: <a href="draugr.numpy_utilities.html" title="next chapter">draugr.numpy_utilities</a></li>
+      <li>Previous: <a href="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase.html" title="previous chapter">draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase</a></li>
+      <li>Next: <a href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html" title="next chapter">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -166,7 +167,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -183,7 +184,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

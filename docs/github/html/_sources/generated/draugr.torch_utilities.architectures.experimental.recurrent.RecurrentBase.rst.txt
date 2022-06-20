@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.experimental.recurrent.RecurrentBase
+draugr.torch\_utilities.architectures.experimental.recurrent.RecurrentBase
 ==========================================================================
 
 .. currentmodule:: draugr.torch_utilities.architectures.experimental.recurrent
@@ -46,6 +46,7 @@
       ~RecurrentBase.register_forward_hook
       ~RecurrentBase.register_forward_pre_hook
       ~RecurrentBase.register_full_backward_hook
+      ~RecurrentBase.register_module
       ~RecurrentBase.register_parameter
       ~RecurrentBase.requires_grad_
       ~RecurrentBase.set_extra_state

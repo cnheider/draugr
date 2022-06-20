@@ -13,6 +13,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,11 +37,11 @@
           <div class="body" role="main">
             
   <section id="draugr-torch-utilities-datasets-supervised-supervised-dataset-superviseddataset">
-<h1>draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset<a class="headerlink" href="#draugr-torch-utilities-datasets-supervised-supervised-dataset-superviseddataset" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset<a class="headerlink" href="#draugr-torch-utilities-datasets-supervised-supervised-dataset-superviseddataset" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.datasets.supervised.supervised_dataset.</span></span><span class="sig-name descname"><span class="pre">SupervisedDataset</span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/datasets/supervised/supervised_dataset.html#SupervisedDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Generic" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.utils.data.dataset.T_co</span></code>]</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.datasets.supervised.supervised_dataset.</span></span><span class="sig-name descname"><span class="pre">SupervisedDataset</span></span><a class="reference internal" href="../_modules/draugr/torch_utilities/datasets/supervised/supervised_dataset.html#SupervisedDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></p>
 <p>Supervised Dataset is comprised of separate Splits</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.__init__">
@@ -48,7 +49,7 @@
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -57,38 +58,29 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.__init__" title="draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_datapipe_as_function</span></code>(function_name, …)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_function</span></code>(function_name, function)</p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">functions</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predictor_shape</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predictor_shape</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">response_shape</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">response_shape</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.split_names" title="draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.split_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_names</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.split_names" title="draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.split_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_names</span></code></a></p></td>
 <td><p>return: :rtype:</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py property">
 <dt class="sig sig-object py" id="draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.split_names">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">split_names</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict[draugr.numpy_utilities.datasets.splitting.SplitEnum,</span> <span class="pre">str]</span></em><a class="headerlink" href="#draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.split_names" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">split_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.10)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="draugr.numpy_utilities.datasets.splitting.SplitEnum.html#draugr.numpy_utilities.datasets.splitting.SplitEnum" title="draugr.numpy_utilities.datasets.splitting.SplitEnum"><span class="pre">SplitEnum</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#draugr.torch_utilities.datasets.supervised.supervised_dataset.SupervisedDataset.split_names" title="Permalink to this definition">¶</a></dt>
 <dd><p>return:
 :rtype:</p>
 </dd></dl>
@@ -206,7 +198,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -223,7 +215,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -13,6 +13,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,14 +37,14 @@
           <div class="body" role="main">
             
   <section id="draugr-torch-utilities-optimisation-debugging-layer-fetching-intermediatelayergetter">
-<h1>draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter<a class="headerlink" href="#draugr-torch-utilities-optimisation-debugging-layer-fetching-intermediatelayergetter" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter<a class="headerlink" href="#draugr-torch-utilities-optimisation-debugging-layer-fetching-intermediatelayergetter" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.optimisation.debugging.layer_fetching.</span></span><span class="sig-name descname"><span class="pre">IntermediateLayerGetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.nn.modules.module.Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_layers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/debugging/layer_fetching.html#IntermediateLayerGetter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.torch_utilities.optimisation.debugging.layer_fetching.</span></span><span class="sig-name descname"><span class="pre">IntermediateLayerGetter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/debugging/layer_fetching.html#IntermediateLayerGetter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.nn.modules.module.Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_layers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/debugging/layer_fetching.html#IntermediateLayerGetter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/debugging/layer_fetching.html#IntermediateLayerGetter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wraps a Pytorch module to get intermediate values, eg for getting intermediate activations</p>
 <p>Arguments:
 model {nn.module} – The Pytorch module to call
@@ -59,7 +60,7 @@ stored in a list.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -69,13 +70,13 @@ stored in a list.</p>
 <td><p>Wraps a Pytorch module to get intermediate values, eg for getting intermediate activations</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.reduce_getattr" title="draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.reduce_getattr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduce_getattr</span></code></a>(obj, attr, *args)</p></td>
-<td><p># using wonder’s beautiful simplification: <a class="reference external" href="https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427">https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427</a></p></td>
+<td><p># using wonder's beautiful simplification: <a class="reference external" href="https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427">https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427</a></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.reduce_getattr">
-<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">reduce_getattr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/debugging/layer_fetching.html#IntermediateLayerGetter.reduce_getattr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.reduce_getattr" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reduce_getattr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/torch_utilities/optimisation/debugging/layer_fetching.html#IntermediateLayerGetter.reduce_getattr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.reduce_getattr" title="Permalink to this definition">¶</a></dt>
 <dd><p># using wonder’s beautiful simplification: <a class="reference external" href="https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427">https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -209,7 +210,7 @@ stored in a list.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -226,7 +227,7 @@ stored in a list.</p>
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -1,4 +1,4 @@
-﻿draugr.dlib\_utilities.dlib\_utilities
+draugr.dlib\_utilities.dlib\_utilities
 ======================================
 
 .. automodule:: draugr.dlib_utilities.dlib_utilities
@@ -14,10 +14,10 @@
    .. autosummary::
       :toctree:
    
-      eye_aspect_ratio
       mouth_aspect_ratio
       rect_to_bounding_box
       shape_to_ndarray
+      eye_aspect_ratio
    
    
 
@@ -29,9 +29,8 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
-      Dlib5faciallandmarksindices
       Dlib68faciallandmarksindices
-      ExtendTuple
+      Dlib5faciallandmarksindices
    
    
 

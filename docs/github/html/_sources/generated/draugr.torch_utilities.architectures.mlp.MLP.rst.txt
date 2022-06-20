@@ -1,4 +1,4 @@
-﻿draugr.torch\_utilities.architectures.mlp.MLP
+draugr.torch\_utilities.architectures.mlp.MLP
 =============================================
 
 .. currentmodule:: draugr.torch_utilities.architectures.mlp
@@ -49,6 +49,7 @@
       ~MLP.register_forward_hook
       ~MLP.register_forward_pre_hook
       ~MLP.register_full_backward_hook
+      ~MLP.register_module
       ~MLP.register_parameter
       ~MLP.requires_grad_
       ~MLP.sample_input

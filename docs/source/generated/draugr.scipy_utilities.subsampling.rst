@@ -1,4 +1,4 @@
-﻿draugr.scipy\_utilities.subsampling
+draugr.scipy\_utilities.subsampling
 ===================================
 
 .. automodule:: draugr.scipy_utilities.subsampling
@@ -14,12 +14,11 @@
    .. autosummary::
       :toctree:
    
-      fft_subsample
-      fir_subsample
-      grad_decimation_subsample
-      mag_decimation_subsample
       max_decimation_subsample
       min_decimation_subsample
+      mag_decimation_subsample
+      fir_subsample
+      fft_subsample
    
    
 

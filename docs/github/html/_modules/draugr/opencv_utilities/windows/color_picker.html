@@ -12,6 +12,7 @@
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/opencv_utilities/windows/color_picker.html" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
@@ -46,7 +47,9 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;interactive_hsv_color_picker&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="interactive_hsv_color_picker"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.windows.color_picker.interactive_hsv_color_picker.html#draugr.opencv_utilities.windows.color_picker.interactive_hsv_color_picker">[docs]</a><span class="k">def</span> <span class="nf">interactive_hsv_color_picker</span><span class="p">(</span><span class="n">ps</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">33</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="interactive_hsv_color_picker"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.windows.color_picker.interactive_hsv_color_picker.html#draugr.opencv_utilities.windows.color_picker.interactive_hsv_color_picker">[docs]</a><span class="k">def</span> <span class="nf">interactive_hsv_color_picker</span><span class="p">(</span>
+    <span class="n">ps</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">33</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    :param ps:</span>
@@ -58,7 +61,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">show_image</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">)),</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span>
 
-    <span class="n">add_trackbar</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;HMin&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">179</span><span class="p">)</span>  <span class="c1"># Hue is from 0-179 for Opencv</span>
+    <span class="n">add_trackbar</span><span class="p">(</span>
+        <span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;HMin&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">179</span>
+    <span class="p">)</span>  <span class="c1"># Hue is from 0-179 for Opencv</span>
     <span class="n">add_trackbar</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;HMax&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">179</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">179</span><span class="p">)</span>
 
     <span class="n">add_trackbar</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="s2">&quot;SMin&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -200,7 +205,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -217,7 +222,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

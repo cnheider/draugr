@@ -1,9 +1,9 @@
-draugr.torch\_utilities.writers.tensorboard.tensorboard\_pytorch\_writer.TensorboardPytorchWriter
+draugr.torch\_utilities.writers.tensorboard.tensorboard\_pytorch\_writer.TensorBoardPytorchWriter
 =================================================================================================
 
 .. currentmodule:: draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer
 
-.. autoclass:: TensorboardPytorchWriter
+.. autoclass:: TensorBoardPytorchWriter
    :members:
    :show-inheritance:
    :inherited-members:
@@ -16,25 +16,25 @@ draugr.torch\_utilities.writers.tensorboard.tensorboard\_pytorch\_writer.Tensorb
 
    .. autosummary::
    
-      ~TensorboardPytorchWriter.__init__
-      ~TensorboardPytorchWriter.bar
-      ~TensorboardPytorchWriter.blip
-      ~TensorboardPytorchWriter.close
-      ~TensorboardPytorchWriter.embed
-      ~TensorboardPytorchWriter.figure
-      ~TensorboardPytorchWriter.filter
-      ~TensorboardPytorchWriter.graph
-      ~TensorboardPytorchWriter.histogram
-      ~TensorboardPytorchWriter.image
-      ~TensorboardPytorchWriter.instance
-      ~TensorboardPytorchWriter.line
-      ~TensorboardPytorchWriter.mesh
-      ~TensorboardPytorchWriter.open
-      ~TensorboardPytorchWriter.parameters
-      ~TensorboardPytorchWriter.precision_recall_curve
-      ~TensorboardPytorchWriter.scalar
-      ~TensorboardPytorchWriter.spectrogram
-      ~TensorboardPytorchWriter.video
+      ~TensorBoardPytorchWriter.__init__
+      ~TensorBoardPytorchWriter.bar
+      ~TensorBoardPytorchWriter.blip
+      ~TensorBoardPytorchWriter.close
+      ~TensorBoardPytorchWriter.embed
+      ~TensorBoardPytorchWriter.figure
+      ~TensorBoardPytorchWriter.filter
+      ~TensorBoardPytorchWriter.graph
+      ~TensorBoardPytorchWriter.histogram
+      ~TensorBoardPytorchWriter.image
+      ~TensorBoardPytorchWriter.instance
+      ~TensorBoardPytorchWriter.line
+      ~TensorBoardPytorchWriter.mesh
+      ~TensorBoardPytorchWriter.open
+      ~TensorBoardPytorchWriter.parameters
+      ~TensorBoardPytorchWriter.precision_recall_curve
+      ~TensorBoardPytorchWriter.scalar
+      ~TensorBoardPytorchWriter.spectrogram
+      ~TensorBoardPytorchWriter.video
    
    
 
@@ -44,6 +44,6 @@ draugr.torch\_utilities.writers.tensorboard.tensorboard\_pytorch\_writer.Tensorb
 
    .. autosummary::
    
-      ~TensorboardPytorchWriter.writer
+      ~TensorBoardPytorchWriter.writer
    
    

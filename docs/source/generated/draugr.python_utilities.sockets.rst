@@ -1,4 +1,4 @@
-﻿draugr.python\_utilities.sockets
+draugr.python\_utilities.sockets
 ================================
 
 .. automodule:: draugr.python_utilities.sockets
@@ -14,8 +14,8 @@
    .. autosummary::
       :toctree:
    
-      find_unclaimed_port
       get_host_ip
+      find_unclaimed_port
       is_port_in_use
    
    

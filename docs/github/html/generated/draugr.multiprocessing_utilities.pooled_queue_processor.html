@@ -13,6 +13,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.multiprocessing_utilities.pooled_queue_processor.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -36,9 +37,9 @@
           <div class="body" role="main">
             
   <section id="module-draugr.multiprocessing_utilities.pooled_queue_processor">
-<span id="draugr-multiprocessing-utilities-pooled-queue-processor"></span><h1>draugr.multiprocessing_utilities.pooled_queue_processor<a class="headerlink" href="#module-draugr.multiprocessing_utilities.pooled_queue_processor" title="Permalink to this headline">¶</a></h1>
+<span id="draugr-multiprocessing-utilities-pooled-queue-processor"></span><h1>draugr.multiprocessing_utilities.pooled_queue_processor<a class="headerlink" href="#module-draugr.multiprocessing_utilities.pooled_queue_processor" title="Permalink to this heading">¶</a></h1>
 <p class="rubric">Classes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -47,11 +48,11 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase.html#draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase" title="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CloudPickleBase</span></code></a>(x)</p></td>
 <td><p>Uses cloudpickle to serialize contents (otherwise multiprocessing tries to use pickle) :param x: (Any) the variable you wish to wrap for pickling with cloudpickle</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PooledQueueProcessor</span></code></a>(func, args[, kwargs, …])</p></td>
-<td><p>This is a workaround of Pythons extremely slow interprocess communication pipes.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PooledQueueTask</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PooledQueueTask</span></code></a>()</p></td>
 <td><p>Pooled queue task interface</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PooledQueueProcessor</span></code></a>(func[, args, kwargs, ...])</p></td>
+<td><p>This is a workaround of Pythons extremely slow interprocess communication pipes.</p></td>
 </tr>
 </tbody>
 </table>
@@ -88,8 +89,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="draugr.multiprocessing_utilities.html">draugr.multiprocessing_utilities</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">draugr.multiprocessing_utilities.pooled_queue_processor</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase.html">draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask</a></li>
+<li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor</a></li>
 </ul>
 </li>
 </ul>
@@ -138,7 +139,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -155,7 +156,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

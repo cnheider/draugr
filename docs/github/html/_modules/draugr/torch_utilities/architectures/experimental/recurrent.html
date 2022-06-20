@@ -12,6 +12,7 @@
     <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/torch_utilities/architectures/experimental/recurrent.html" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
@@ -55,7 +56,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_r_hidden_layers</span> <span class="o">=</span> <span class="n">r_hidden_layers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_r_input_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_shape</span> <span class="o">+</span> <span class="n">r_hidden_layers</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_r_input_shape</span><span class="p">,</span> <span class="n">r_hidden_layers</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_bias</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_r_input_shape</span><span class="p">,</span> <span class="n">r_hidden_layers</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_bias</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_r_input_shape</span><span class="p">,</span> <span class="n">r_hidden_layers</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_bias</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_prev_hidden_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">r_hidden_layers</span><span class="p">)</span></div>
@@ -186,7 +189,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -203,7 +206,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

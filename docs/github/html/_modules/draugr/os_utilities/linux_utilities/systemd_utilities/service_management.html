@@ -12,6 +12,7 @@
     <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/os_utilities/linux_utilities/systemd_utilities/service_management.html" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
@@ -76,16 +77,16 @@
     <span class="n">user</span><span class="p">,</span> <span class="n">app_user</span><span class="p">,</span> <span class="n">root</span> <span class="o">=</span> <span class="n">assigned_names</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="target_service_path"><a class="viewcode-back" href="../../../../../generated/draugr.os_utilities.linux_utilities.systemd_utilities.service_management.target_service_path.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.target_service_path">[docs]</a><span class="k">def</span> <span class="nf">target_service_path</span><span class="p">(</span><span class="n">service_name</span><span class="p">,</span> <span class="n">run_as</span><span class="p">:</span> <span class="n">RunAsEnum</span> <span class="o">=</span> <span class="n">RunAsEnum</span><span class="o">.</span><span class="n">user</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">target_service_path</span><span class="p">(</span><span class="n">service_name</span><span class="p">,</span> <span class="n">run_as</span><span class="p">:</span> <span class="n">RunAsEnum</span> <span class="o">=</span> <span class="n">RunAsEnum</span><span class="o">.</span><span class="n">user</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">run_as</span> <span class="o">==</span> <span class="n">RunAsEnum</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;.config&quot;</span> <span class="o">/</span> <span class="s2">&quot;systemd&quot;</span> <span class="o">/</span> <span class="s2">&quot;user&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">service_name</span><span class="si">}</span><span class="s2">.service&quot;</span>
     <span class="k">elif</span> <span class="n">run_as</span> <span class="o">==</span> <span class="n">run_as</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;etc&quot;</span> <span class="o">/</span> <span class="s2">&quot;systemd&quot;</span> <span class="o">/</span> <span class="s2">&quot;system&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">service_name</span><span class="si">}</span><span class="s2">.service&quot;</span>
-    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;lib&quot;</span> <span class="o">/</span> <span class="s2">&quot;systemd&quot;</span> <span class="o">/</span> <span class="s2">&quot;system&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">service_name</span><span class="si">}</span><span class="s2">.service&quot;</span></div>
+    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;lib&quot;</span> <span class="o">/</span> <span class="s2">&quot;systemd&quot;</span> <span class="o">/</span> <span class="s2">&quot;system&quot;</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">service_name</span><span class="si">}</span><span class="s2">.service&quot;</span>
 
 
-<div class="viewcode-block" id="RestartServiceEnum"><a class="viewcode-back" href="../../../../../generated/draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RestartServiceEnum.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.RestartServiceEnum">[docs]</a><span class="k">class</span> <span class="nc">RestartServiceEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RestartServiceEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Restart settings\Exit causes	 no	  always      on-success	    on-failure	    on-abnormal	on-abort	on-watchdog</span>
 <span class="sd">    Clean exit code or signal	 	        X	          X</span>
@@ -100,10 +101,10 @@
     <span class="n">on_success</span> <span class="o">=</span> <span class="s2">&quot;on-success&quot;</span>
     <span class="n">on_abnormal</span> <span class="o">=</span> <span class="s2">&quot;on-abnormal&quot;</span>
     <span class="n">on_abort</span> <span class="o">=</span> <span class="s2">&quot;on-abort&quot;</span>
-    <span class="n">on_watchdog</span> <span class="o">=</span> <span class="s2">&quot;on-watchdog&quot;</span></div>
+    <span class="n">on_watchdog</span> <span class="o">=</span> <span class="s2">&quot;on-watchdog&quot;</span>
 
 
-<div class="viewcode-block" id="ServiceTargetEnum"><a class="viewcode-back" href="../../../../../generated/draugr.os_utilities.linux_utilities.systemd_utilities.service_management.ServiceTargetEnum.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.ServiceTargetEnum">[docs]</a><span class="k">class</span> <span class="nc">ServiceTargetEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>  <span class="c1"># TODO: UTILISE!</span>
+<span class="k">class</span> <span class="nc">ServiceTargetEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>  <span class="c1"># TODO: UTILISE!</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Default is default</span>
 
@@ -118,7 +119,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;default.target&quot;</span>
-    <span class="n">multi_user</span> <span class="o">=</span> <span class="s2">&quot;multi-user.target&quot;</span></div>
+    <span class="n">multi_user</span> <span class="o">=</span> <span class="s2">&quot;multi-user.target&quot;</span>
 
 
 <div class="viewcode-block" id="install_service"><a class="viewcode-back" href="../../../../../generated/draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service.html#draugr.os_utilities.linux_utilities.systemd_utilities.service_management.install_service">[docs]</a><span class="k">def</span> <span class="nf">install_service</span><span class="p">(</span>
@@ -534,7 +535,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -551,7 +552,7 @@
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

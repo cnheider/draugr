@@ -1,4 +1,4 @@
-﻿draugr.opencv\_utilities.namespaces.flags
+draugr.opencv\_utilities.namespaces.flags
 =========================================
 
 .. automodule:: draugr.opencv_utilities.namespaces.flags
@@ -19,11 +19,11 @@
       :toctree:
       :template: custom_autosummary/class.rst
    
+      ThresholdTypeFlag
+      WindowPropertyFlag
       DrawMatchesFlagEnum
       MouseEventFlag
       TermCriteriaFlag
-      ThresholdTypeFlag
-      WindowPropertyFlag
    
    
 

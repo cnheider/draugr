@@ -49,6 +49,7 @@ draugr.torch\_utilities.architectures.distributional.normal.MultipleNormalMLP
       ~MultipleNormalMLP.register_forward_hook
       ~MultipleNormalMLP.register_forward_pre_hook
       ~MultipleNormalMLP.register_full_backward_hook
+      ~MultipleNormalMLP.register_module
       ~MultipleNormalMLP.register_parameter
       ~MultipleNormalMLP.requires_grad_
       ~MultipleNormalMLP.sample_input

@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.opencv_utilities.drawing.draw_boxes.draw_bounding_boxes.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.opencv_utilities.drawing.draw_boxes.draw_single_box" href="draugr.opencv_utilities.drawing.draw_boxes.draw_single_box.html" />
-    <link rel="prev" title="draugr.opencv_utilities.drawing.draw_boxes" href="draugr.opencv_utilities.drawing.draw_boxes.html" />
+    <link rel="next" title="draugr.opencv_utilities.drawing.draw_boxes.draw_single_rect" href="draugr.opencv_utilities.drawing.draw_boxes.draw_single_rect.html" />
+    <link rel="prev" title="draugr.opencv_utilities.drawing.draw_boxes.draw_single_box" href="draugr.opencv_utilities.drawing.draw_boxes.draw_single_box.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="draugr-opencv-utilities-drawing-draw-boxes-draw-bounding-boxes">
-<h1>draugr.opencv_utilities.drawing.draw_boxes.draw_bounding_boxes<a class="headerlink" href="#draugr-opencv-utilities-drawing-draw-boxes-draw-bounding-boxes" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.opencv_utilities.drawing.draw_boxes.draw_bounding_boxes<a class="headerlink" href="#draugr-opencv-utilities-drawing-draw-boxes-draw-bounding-boxes" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="draugr.opencv_utilities.drawing.draw_boxes.draw_bounding_boxes">
-<span class="sig-prename descclassname"><span class="pre">draugr.opencv_utilities.drawing.draw_boxes.</span></span><span class="sig-name descname"><span class="pre">draw_bounding_boxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">image:</span> <span class="pre">Union[numpy.ndarray,</span> <span class="pre">PIL.Image.Image],</span> <span class="pre">boxes:</span> <span class="pre">numpy.ndarray,</span> <span class="pre">*,</span> <span class="pre">labels:</span> <span class="pre">Optional[numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">scores:</span> <span class="pre">Optional[numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">categories:</span> <span class="pre">Optional[Sequence[str]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">outline_width:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2,</span> <span class="pre">outline_alpha:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.5,</span> <span class="pre">score_color_fill:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">score_font:</span> <span class="pre">&lt;module</span> <span class="pre">'PIL.ImageFont'</span> <span class="pre">from</span> <span class="pre">'/home/heider/miniconda3/envs/py38/lib/python3.8/site-packages/PIL/ImageFont.py'&gt;</span> <span class="pre">=</span> <span class="pre">&lt;PIL.ImageFont.ImageFont</span> <span class="pre">object&gt;,</span> <span class="pre">score_format:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">':</span> <span class="pre">{:.2f}',</span> <span class="pre">mode='RGBA'</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">numpy.ndarray</span></a></span></span><a class="reference internal" href="../_modules/draugr/opencv_utilities/drawing/draw_boxes.html#draw_bounding_boxes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.opencv_utilities.drawing.draw_boxes.draw_bounding_boxes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">draugr.opencv_utilities.drawing.draw_boxes.</span></span><span class="sig-name descname"><span class="pre">draw_bounding_boxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">image:</span> <span class="pre">~typing.Union[~numpy.ndarray,</span> <span class="pre">~PIL.Image.Image],</span> <span class="pre">boxes:</span> <span class="pre">~numpy.ndarray,</span> <span class="pre">*,</span> <span class="pre">labels:</span> <span class="pre">~typing.Optional[~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">scores:</span> <span class="pre">~typing.Optional[~numpy.ndarray]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">categories:</span> <span class="pre">~typing.Optional[~typing.Sequence[str]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">outline_width:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2,</span> <span class="pre">outline_alpha:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.5,</span> <span class="pre">score_color_fill:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">score_font:</span> <span class="pre">&lt;module</span> <span class="pre">'PIL.ImageFont'</span> <span class="pre">from</span> <span class="pre">'/home/heider/miniconda3/envs/py38/lib/python3.8/site-packages/PIL/ImageFont.py'&gt;</span> <span class="pre">=</span> <span class="pre">&lt;PIL.ImageFont.ImageFont</span> <span class="pre">object&gt;,</span> <span class="pre">score_format:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">':</span> <span class="pre">{:.2f}',</span> <span class="pre">mode='RGBA'</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.22)"><span class="pre">ndarray</span></a></span></span><a class="reference internal" href="../_modules/draugr/opencv_utilities/drawing/draw_boxes.html#draw_bounding_boxes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.opencv_utilities.drawing.draw_boxes.draw_bounding_boxes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw bounding boxes(labels, scores) on image
 Args:
 image: numpy array image, shape should be (height, width, channel)
@@ -93,8 +94,8 @@ An image with information drawn on it.</p>
 <li class="toctree-l3"><a class="reference internal" href="draugr.opencv_utilities.color_space.html">draugr.opencv_utilities.color_space</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="draugr.opencv_utilities.drawing.html">draugr.opencv_utilities.drawing</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="draugr.opencv_utilities.drawing.draw_boxes.html">draugr.opencv_utilities.drawing.draw_boxes</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#">draugr.opencv_utilities.drawing.draw_boxes.draw_bounding_boxes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.opencv_utilities.drawing.draw_boxes.draw_single_box.html">draugr.opencv_utilities.drawing.draw_boxes.draw_single_box</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">draugr.opencv_utilities.drawing.draw_boxes.draw_bounding_boxes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="draugr.opencv_utilities.drawing.draw_boxes.draw_single_rect.html">draugr.opencv_utilities.drawing.draw_boxes.draw_single_rect</a></li>
 </ul>
 </li>
@@ -137,8 +138,8 @@ An image with information drawn on it.</p>
   <li><a href="draugr.opencv_utilities.html">draugr.opencv_utilities</a><ul>
   <li><a href="draugr.opencv_utilities.drawing.html">draugr.opencv_utilities.drawing</a><ul>
   <li><a href="draugr.opencv_utilities.drawing.draw_boxes.html">draugr.opencv_utilities.drawing.draw_boxes</a><ul>
-      <li>Previous: <a href="draugr.opencv_utilities.drawing.draw_boxes.html" title="previous chapter">draugr.opencv_utilities.drawing.draw_boxes</a></li>
-      <li>Next: <a href="draugr.opencv_utilities.drawing.draw_boxes.draw_single_box.html" title="next chapter">draugr.opencv_utilities.drawing.draw_boxes.draw_single_box</a></li>
+      <li>Previous: <a href="draugr.opencv_utilities.drawing.draw_boxes.draw_single_box.html" title="previous chapter">draugr.opencv_utilities.drawing.draw_boxes.draw_single_box</a></li>
+      <li>Next: <a href="draugr.opencv_utilities.drawing.draw_boxes.draw_single_rect.html" title="next chapter">draugr.opencv_utilities.drawing.draw_boxes.draw_single_rect</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -155,7 +156,7 @@ An image with information drawn on it.</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -172,7 +173,7 @@ An image with information drawn on it.</p>
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

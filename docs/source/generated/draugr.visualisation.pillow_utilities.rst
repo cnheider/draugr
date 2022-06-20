@@ -1,4 +1,4 @@
-﻿draugr.visualisation.pillow\_utilities
+draugr.visualisation.pillow\_utilities
 ======================================
 
 .. automodule:: draugr.visualisation.pillow_utilities
@@ -14,23 +14,15 @@
    .. autosummary::
       :toctree:
    
-      byte_array_to_pil_image
+      pil_merge_images
+      pil_img_to_np_array
       np_array_to_pil_img
       pil_image_to_byte_array
-      pil_img_to_np_array
-      pil_merge_images
+      byte_array_to_pil_image
    
    
 
    
-   
-   .. rubric:: Classes
-
-   .. autosummary::
-      :toctree:
-      :template: custom_autosummary/class.rst
-   
-      PilModesEnum
    
    
 

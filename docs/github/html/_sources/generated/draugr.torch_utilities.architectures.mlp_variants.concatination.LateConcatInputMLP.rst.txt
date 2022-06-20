@@ -49,6 +49,7 @@ draugr.torch\_utilities.architectures.mlp\_variants.concatination.LateConcatInpu
       ~LateConcatInputMLP.register_forward_hook
       ~LateConcatInputMLP.register_forward_pre_hook
       ~LateConcatInputMLP.register_full_backward_hook
+      ~LateConcatInputMLP.register_module
       ~LateConcatInputMLP.register_parameter
       ~LateConcatInputMLP.requires_grad_
       ~LateConcatInputMLP.sample_input

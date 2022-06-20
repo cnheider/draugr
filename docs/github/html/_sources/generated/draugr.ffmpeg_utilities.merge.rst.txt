@@ -1,4 +1,4 @@
-﻿draugr.ffmpeg\_utilities.merge
+draugr.ffmpeg\_utilities.merge
 ==============================
 
 .. automodule:: draugr.ffmpeg_utilities.merge
@@ -14,7 +14,6 @@
    .. autosummary::
       :toctree:
    
-      get_frame_format
       merge_video
    
    

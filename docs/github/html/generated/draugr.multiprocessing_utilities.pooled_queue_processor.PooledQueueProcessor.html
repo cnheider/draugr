@@ -13,12 +13,13 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="canonical" href="pything.github.io/draugr/generated/draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html" />
-    <link rel="prev" title="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase" href="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase.html" />
+    <link rel="next" title="draugr.numpy_utilities" href="draugr.numpy_utilities.html" />
+    <link rel="prev" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -36,10 +37,10 @@
           <div class="body" role="main">
             
   <section id="draugr-multiprocessing-utilities-pooled-queue-processor-pooledqueueprocessor">
-<h1>draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor<a class="headerlink" href="#draugr-multiprocessing-utilities-pooled-queue-processor-pooledqueueprocessor" title="Permalink to this headline">¶</a></h1>
+<h1>draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor<a class="headerlink" href="#draugr-multiprocessing-utilities-pooled-queue-processor-pooledqueueprocessor" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">draugr.multiprocessing_utilities.pooled_queue_processor.</span></span><span class="sig-name descname"><span class="pre">PooledQueueProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_queue_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tasks_per_child</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_at_construction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueProcessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">draugr.multiprocessing_utilities.pooled_queue_processor.</span></span><span class="sig-name descname"><span class="pre">PooledQueueProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.10)"><span class="pre">Iterable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_queue_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tasks_per_child</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_at_construction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueProcessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>This is a workaround of Pythons extremely slow interprocess communication pipes.
 The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
@@ -47,17 +48,17 @@ limited.
 This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_queue_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tasks_per_child</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_at_construction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueProcessor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.10)"><span class="pre">Iterable</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_queue_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tasks_per_child</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_at_construction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueProcessor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.__init__" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(func[, args, kwargs, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.__init__" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(func[, args, kwargs, ...])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.close" title="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close</span></code></a>()</p></td>
@@ -96,7 +97,7 @@ This solution has processes complete tasks (batches) and a thread add the result
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -121,7 +122,7 @@ This solution has processes complete tasks (batches) and a thread add the result
 
 <dl class="py method">
 <dt class="sig sig-object py" id="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueProcessor.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.get" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a></span></span><a class="reference internal" href="../_modules/draugr/multiprocessing_utilities/pooled_queue_processor.html#PooledQueueProcessor.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.get" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p></p>
@@ -147,7 +148,7 @@ This solution has processes complete tasks (batches) and a thread add the result
 
 <dl class="py property">
 <dt class="sig sig-object py" id="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.queue_size">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">queue_size</span></span><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.queue_size" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queue_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor.queue_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>return:
 :rtype:</p>
 </dd></dl>
@@ -203,8 +204,8 @@ This solution has processes complete tasks (batches) and a thread add the result
 <li class="toctree-l2 current"><a class="reference internal" href="draugr.multiprocessing_utilities.html">draugr.multiprocessing_utilities</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.html">draugr.multiprocessing_utilities.pooled_queue_processor</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase.html">draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueProcessor</a></li>
 </ul>
 </li>
 </ul>
@@ -238,8 +239,8 @@ This solution has processes complete tasks (batches) and a thread add the result
   <li><a href="draugr.html">draugr</a><ul>
   <li><a href="draugr.multiprocessing_utilities.html">draugr.multiprocessing_utilities</a><ul>
   <li><a href="draugr.multiprocessing_utilities.pooled_queue_processor.html">draugr.multiprocessing_utilities.pooled_queue_processor</a><ul>
-      <li>Previous: <a href="draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase.html" title="previous chapter">draugr.multiprocessing_utilities.pooled_queue_processor.CloudPickleBase</a></li>
-      <li>Next: <a href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html" title="next chapter">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask</a></li>
+      <li>Previous: <a href="draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask.html" title="previous chapter">draugr.multiprocessing_utilities.pooled_queue_processor.PooledQueueTask</a></li>
+      <li>Next: <a href="draugr.numpy_utilities.html" title="next chapter">draugr.numpy_utilities</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -255,7 +256,7 @@ This solution has processes complete tasks (batches) and a thread add the result
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -272,7 +273,7 @@ This solution has processes complete tasks (batches) and a thread add the result
       &copy;.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
