@@ -1,7 +1,7 @@
 if __name__ == "__main__":
 
     def aisjhd():
-        """ """
+        """description"""
         from matplotlib import pyplot
         import cv2
         from draugr.opencv_utilities import LineTypeEnum

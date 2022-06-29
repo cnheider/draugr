@@ -36,7 +36,7 @@ import subprocess
 
 
 class FigureSession(AlsoDecorator):
-    """ """
+    """description"""
 
     @passes_kws_to(pyplot.figure)
     def __init__(self, **kws):
@@ -52,7 +52,7 @@ class FigureSession(AlsoDecorator):
 
 
 class SubplotSession(AlsoDecorator):
-    """ """
+    """description"""
 
     @passes_kws_to(pyplot.subplots)
     def __init__(self, return_self: bool = False, **kws):
@@ -77,7 +77,7 @@ class SubplotSession(AlsoDecorator):
 
 
 class StyleSession(AlsoDecorator):
-    """ """
+    """description"""
 
     def __init__(
         self,
@@ -115,7 +115,7 @@ class StyleSession(AlsoDecorator):
 
 
 class MonoChromeStyleSession(StyleSession):
-    """ """
+    """description"""
 
     def __init__(
         self,
@@ -131,7 +131,7 @@ class MonoChromeStyleSession(StyleSession):
 
 
 class NoOutlineSession(AlsoDecorator):
-    """ """
+    """description"""
 
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()
@@ -151,7 +151,7 @@ class NoOutlineSession(AlsoDecorator):
 
 
 class OutlineSession(AlsoDecorator):
-    """ """
+    """description"""
 
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()

@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class TaskCreationEnum(Enum):
-    """ """
+    """description"""
 
     TASK_VALIDATE_ONLY = 1
     TASK_CREATE = 2

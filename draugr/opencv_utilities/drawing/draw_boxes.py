@@ -35,7 +35,7 @@ def draw_single_box(
     outline_alpha: float = 0.5,
     color_fill_score: bool = False,
 ) -> Image.Image:
-    """ """
+    """description"""
     if not isinstance(image, ImageDraw.ImageDraw):
         assert isinstance(image, Image.Image)
         if image.mode != "RGBA":

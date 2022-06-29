@@ -15,6 +15,6 @@ __all__ = ["ReductionMethodEnum"]
 
 
 class ReductionMethodEnum(Enum):
-    """ """
+    """description"""
 
     none, mean, sum = assigned_names()

@@ -58,13 +58,13 @@ from matplotlib.axes import Axes, ErrorbarContainer
 
 
 class MatplotlibHorizontalAlignment(Enum):
-    """ """
+    """description"""
 
     (center, right, left) = assigned_names()
 
 
 class MatplotlibVerticalAlignment(Enum):
-    """ """
+    """description"""
 
     (center, top, bottom, baseline, center_baseline) = assigned_names()
 
@@ -171,7 +171,7 @@ o.set_clip_box(clip_box)
 
 
 def remove_decoration(ax: Axes) -> None:
-    """ """
+    """description"""
     transparent = (1.0, 1.0, 1.0, 0.0)
 
     ax.w_xaxis.set_pane_color(transparent)
@@ -190,7 +190,7 @@ def remove_decoration(ax: Axes) -> None:
 def denormalise_minusoneone(
     t: Union[numpy.ndarray, Number], coordinates: Union[numpy.ndarray, Number]
 ) -> Union[numpy.ndarray, Number]:
-    """ """
+    """description"""
     return 0.5 * ((coordinates + 1.0) * t)
 
 
@@ -210,7 +210,7 @@ def decolorise_plot(ax_: Axes, inverted: bool = False) -> None:
 def matplotlib_bounding_box(
     x: Number, y: Number, size: Number, color: str = "w"
 ) -> Rectangle:
-    """ """
+    """description"""
     x = int(x - (size / 2))
     y = int(y - (size / 2))
     rect = patches.Rectangle(

@@ -19,7 +19,7 @@ from warg import drop_unused_kws, passes_kws_to
 
 
 class OpencvImageStream(Drawer):
-    """ """
+    """description"""
 
     @drop_unused_kws
     @passes_kws_to(Drawer.__init__)

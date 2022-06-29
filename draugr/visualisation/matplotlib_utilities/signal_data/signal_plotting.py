@@ -29,7 +29,7 @@ def overlay_channel_plot(
     max_resolution: int = 20000,
     color_func=pyplot.cm.rainbow,
 ) -> None:
-    """ """
+    """description"""
     n_channels = len(signal)
     sub_time, sub_signal = fft_subsample(signal, max_resolution, sampling_rate)
 
@@ -65,7 +65,7 @@ def dissected_channel_plot(
     max_resolution: int = 20000,
     color_func=pyplot.cm.rainbow,
 ) -> None:
-    """ """
+    """description"""
     n_channels = len(signal)
     f, axs = pyplot.subplots(
         n_channels, 1, sharex="all", sharey="all", figsize=(n_channels, col_size)
@@ -92,7 +92,7 @@ def orthogonal_stereo_channel_3d_plot(
     max_resolution: int = 20000,
     sampling_rate: int = 16000,
 ) -> None:
-    """ """
+    """description"""
     fig = pyplot.figure()
     ax = fig.add_subplot(111, projection="3d")
 
@@ -103,7 +103,7 @@ def orthogonal_stereo_channel_3d_plot(
 
 
 def deinterleaved_channel_plot_file(wav_file):
-    """ """
+    """description"""
     import wave
 
     with wave.open(wav_file, "r") as wav_file:

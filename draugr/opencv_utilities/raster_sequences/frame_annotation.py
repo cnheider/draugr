@@ -112,7 +112,7 @@ if __name__ == "__main__":
         base = ensure_existence(Path("exclude"))
 
         def gen():
-            """ """
+            """description"""
             for i, t in enumerate(numpy.linspace(0, numpy.pi, n_frames)):
                 pyplot.plot(x, numpy.cos(x + t))
                 pyplot.plot(x, numpy.sin(2 * x - t))
@@ -122,14 +122,14 @@ if __name__ == "__main__":
                 pyplot.clf()
 
         def asijsd():
-            """ """
+            """description"""
             files = [base / f"frame{yu}.png" for yu in range(n_frames)]
             frames = [imageio.imread(f) for f in files]
             frames = blit_numbering_raster_sequence(frames)
             imageio.mimsave(base / "output.gif", frames, fps=(n_frames / 2.0))
 
         def sadasf():
-            """ """
+            """description"""
             files = [base / f"frame{yu}.png" for yu in range(n_frames)]
             a = [imageio.imread(f) for f in files]
             frames = numpy.array([a, a])  # copy of itself, just for test

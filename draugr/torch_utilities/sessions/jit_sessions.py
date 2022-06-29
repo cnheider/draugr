@@ -65,14 +65,14 @@ if __name__ == "__main__":
 
         @torch.jit.script
         def scripted_fn(x: torch.Tensor):
-            """ """
+            """description"""
             for i in range(12):
                 x = x + x
 
             return x
 
         def fn(x):
-            """ """
+            """description"""
             x = torch.neg(x)
             # import pdb
             # pdb.set_trace()

@@ -113,17 +113,17 @@ if __name__ == "__main__":
         class DoubleDuplicate(Function):
             @staticmethod
             def forward(ctx, x):
-                """ """
+                """description"""
                 output = x * 2
                 return output, output
 
             @staticmethod
             def backward(ctx, grad1, grad2):
-                """ """
+                """description"""
                 return grad1 * 2 + grad2 * 2
 
         def fn(x):
-            """ """
+            """description"""
             a, b = DoubleDuplicate.apply(x)
             return a + b
 

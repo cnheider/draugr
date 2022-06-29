@@ -20,12 +20,12 @@ from draugr.numpy_utilities.signal_utilities.signal_statistics import mean_squar
 
 
 def normalise_signal_minmax(signal: numpy.ndarray) -> numpy.ndarray:
-    """ """
+    """description"""
     return numpy.interp(signal, (signal.min(), signal.max()), (-1, 1))
 
 
 def normalise_signal_max_abs(signal: numpy.ndarray) -> numpy.ndarray:
-    """ """
+    """description"""
     return signal / numpy.abs(signal).max()
 
 

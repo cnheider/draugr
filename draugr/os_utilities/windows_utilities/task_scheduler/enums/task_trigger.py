@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class TaskTriggerEnum(Enum):
-    """ """
+    """description"""
 
     TASK_TRIGGER_EVENT = 0
     TASK_TRIGGER_TIME = 1

@@ -13,7 +13,7 @@ from draugr.torch_utilities.architectures.mlp import MLP
 
 
 class RecurrentCategoricalMLP(MLP):
-    """ """
+    """description"""
 
     def __init__(self, r_hidden_layers=10, **kwargs):
         super().__init__(**kwargs)
@@ -66,7 +66,7 @@ class ExposedRecurrentCategoricalMLP(RecurrentCategoricalMLP):
 
 
 class RecurrentBase(nn.Module):
-    """ """
+    """description"""
 
     def __init__(self, recurrent, recurrent_input_size, hidden_size):
         super().__init__()

@@ -22,7 +22,7 @@ from warg import drop_unused_kws
 
 
 class Writer(ScalarWriterMixin, metaclass=ABCMeta):
-    """ """
+    """description"""
 
     @drop_unused_kws
     def __init__(
@@ -80,11 +80,11 @@ class Writer(ScalarWriterMixin, metaclass=ABCMeta):
         return self._close(exc_type, exc_val, exc_tb)
 
     def close(self) -> Any:
-        """ """
+        """description"""
         self._close()
 
     def open(self) -> Any:
-        """ """
+        """description"""
         self._open()
 
     @abstractmethod

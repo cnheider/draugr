@@ -109,15 +109,13 @@
 <span class="sd">        :return:</span>
 <span class="sd">        :rtype:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Categorical</span><span class="p">(</span>
-            <span class="n">logits</span><span class="o">=</span><span class="n">functional</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">Categorical</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">functional</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">multi_cat</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">MultipleCategoricalMLP</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
@@ -126,7 +124,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">inp</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">single_cat</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,)</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">CategoricalMLP</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>
@@ -136,7 +134,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">inp2</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">single_cat2</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,)</span>
         <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,)</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">CategoricalMLP</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="n">a</span><span class="p">)</span>

@@ -20,7 +20,7 @@ __all__ = ["DistributionPlot"]
 
 
 class DistributionPlot(MplDrawer):
-    """ """
+    """description"""
 
     @passes_kws_to(MplDrawer.__init__)
     @passes_kws_to(pyplot.hist)

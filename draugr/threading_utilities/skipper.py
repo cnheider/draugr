@@ -5,7 +5,7 @@ __all__ = ["Skipper"]
 
 
 class Skipper:
-    """ """
+    """description"""
 
     def __init__(self, fun):
         self.Q = queue.Queue(1)
@@ -15,7 +15,7 @@ class Skipper:
         self.thread.start()
 
     def loop(self):
-        """ """
+        """description"""
         while True:
             if self._stop:
                 break
@@ -25,7 +25,7 @@ class Skipper:
             self.fun(*args, **kwargs)
 
     def stop(self):
-        """ """
+        """description"""
         self._stop = True
         try:
             self.Q.put_nowait((None, None))
@@ -42,7 +42,7 @@ class Skipper:
 if __name__ == "__main__":
 
     def yhhgsady():
-        """ """
+        """description"""
         import time
 
         def worker(wid):
@@ -73,7 +73,7 @@ if __name__ == "__main__":
         S.stop()
 
     def yhhgsad2y():
-        """ """
+        """description"""
         import time
 
         def worker(wid):

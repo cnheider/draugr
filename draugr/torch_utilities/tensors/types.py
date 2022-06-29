@@ -39,12 +39,12 @@ torch_to_numpy_dtype_dict = {
 
 
 def numpy_to_torch_dtype(numpy_dtype: numpy.dtype) -> torch.dtype:
-    """ """
+    """description"""
     return numpy_to_torch_dtype_dict[numpy_dtype.type]
 
 
 def torch_to_numpy_dtype(torch_dtype: torch.dtype) -> numpy.dtype:
-    """ """
+    """description"""
     return torch_to_numpy_dtype_dict[torch_dtype]
 
 

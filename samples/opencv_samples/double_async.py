@@ -41,7 +41,7 @@ if __name__ == "__main__":
                 return next(g), next(i)
 
         async def run():
-            """ """
+            """description"""
             async for image, idd in AsyncIterator():
                 # await asyncio.sleep(0.1)
                 if show_image(image, idd, wait=1):
@@ -56,7 +56,7 @@ if __name__ == "__main__":
             loop.close()
 
     def variant1():
-        """ """
+        """description"""
         cameras = []
         print("open cam1")
         # cameras += frame_generator(cv2.VideoCapture(0)),
@@ -79,7 +79,7 @@ if __name__ == "__main__":
             cv2.waitKey(1)
 
     def variant1_2():
-        """ """
+        """description"""
         cameras = []
         print("open cam1")
         # cameras += frame_generator(cv2.VideoCapture(0)),
@@ -104,7 +104,7 @@ if __name__ == "__main__":
             cv2.waitKey(1)
 
     def variant2():
-        """ """
+        """description"""
         cameras = []
         print("open cam1")
         cameras += (frame_generator(cv2.VideoCapture(0)),)
@@ -128,7 +128,7 @@ if __name__ == "__main__":
                 cv2.waitKey(1)
 
     def variant3():
-        """ """
+        """description"""
         cameras = []
         print("open cam1")
         cameras += (frame_generator(cv2.VideoCapture(0)),)

@@ -20,7 +20,7 @@ from pathlib import Path
 
 
 class CSVWriter(Writer):
-    """ """
+    """description"""
 
     @staticmethod
     def get_csv_writer(path: Path = Path.home() / "Models") -> Tuple[TextIO, Any]:

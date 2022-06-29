@@ -40,7 +40,7 @@ def global_torch_dtype(
 
 
 def set_global_torch_dtype(dtype: torch.dtype) -> None:
-    """ """
+    """description"""
     global GLOBAL_DTYPE
     GLOBAL_DTYPE = dtype
     torch.set_default_dtype(GLOBAL_DTYPE)

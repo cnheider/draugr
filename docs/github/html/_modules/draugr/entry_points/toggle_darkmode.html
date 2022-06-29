@@ -45,13 +45,13 @@
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="kn">from</span> <span class="nn">draugr.os_utilities.linux_utilities.gtk_utilities</span> <span class="kn">import</span> <span class="n">GtkThemePreferences</span>
-
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../generated/draugr.entry_points.toggle_darkmode.main.html#draugr.entry_points.toggle_darkmode.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :rtype: None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">draugr.os_utilities.linux_utilities.gtk_utilities</span> <span class="kn">import</span> <span class="n">GtkThemePreferences</span>
+
     <span class="k">with</span> <span class="n">GtkThemePreferences</span><span class="p">()</span> <span class="k">as</span> <span class="n">a</span><span class="p">:</span>
         <span class="n">a</span><span class="o">.</span><span class="n">prefer_dark_mode</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">a</span><span class="o">.</span><span class="n">prefer_dark_mode</span></div>
 

@@ -21,7 +21,7 @@ from warg import passes_kws_to
 
 @passes_kws_to(PIL.Image.Image.resize)
 def resize_array(x: numpy.ndarray, size: Tuple[int, int], **kwargs) -> numpy.ndarray:
-    """ """
+    """description"""
     assert x.ndim in [3, 4], "Only 3D and 4D Tensors allowed!"
     if isinstance(size, int):
         size = (size, size)

@@ -12,7 +12,7 @@ __all__ = ["MetricAggregator", "save_metric"]
 
 
 class MetricAggregator(object):
-    """ """
+    """description"""
 
     def __init__(
         self,

@@ -85,37 +85,35 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">validation_percentage</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">testing_percentage</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalised_split</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">training_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">testing_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unnormalised</span><span class="p">(</span>
-            <span class="n">dataset_length</span>
-        <span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">testing_num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unnormalised</span><span class="p">(</span><span class="n">dataset_length</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">shuffled_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SplitIndexer.shuffled_indices"><a class="viewcode-back" href="../../../../generated/draugr.numpy_utilities.datasets.splitting.SplitIndexer.html#draugr.numpy_utilities.datasets.splitting.SplitIndexer.shuffled_indices">[docs]</a>    <span class="k">def</span> <span class="nf">shuffled_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="n">split_indices</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_num</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="p">{</span>
             <span class="n">SplitEnum</span><span class="o">.</span><span class="n">training</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_train_indices</span><span class="p">(</span><span class="n">split_indices</span><span class="p">),</span>
             <span class="n">SplitEnum</span><span class="o">.</span><span class="n">validation</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_validation_indices</span><span class="p">(</span><span class="n">split_indices</span><span class="p">),</span>
             <span class="n">SplitEnum</span><span class="o">.</span><span class="n">testing</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_testing_indices</span><span class="p">(</span><span class="n">split_indices</span><span class="p">),</span>
-        <span class="p">}</span>
+        <span class="p">}</span></div>
 
-    <span class="k">def</span> <span class="nf">select_train_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ind</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_num</span><span class="p">]</span>
+<div class="viewcode-block" id="SplitIndexer.select_train_indices"><a class="viewcode-back" href="../../../../generated/draugr.numpy_utilities.datasets.splitting.SplitIndexer.html#draugr.numpy_utilities.datasets.splitting.SplitIndexer.select_train_indices">[docs]</a>    <span class="k">def</span> <span class="nf">select_train_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ind</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_num</span><span class="p">]</span></div>
 
-    <span class="k">def</span> <span class="nf">select_validation_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SplitIndexer.select_validation_indices"><a class="viewcode-back" href="../../../../generated/draugr.numpy_utilities.datasets.splitting.SplitIndexer.html#draugr.numpy_utilities.datasets.splitting.SplitIndexer.select_validation_indices">[docs]</a>    <span class="k">def</span> <span class="nf">select_validation_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">validation_num</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">testing_num</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">ind</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">training_num</span> <span class="p">:</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">testing_num</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">ind</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">training_num</span> <span class="p">:]</span>
-        <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
 
-    <span class="k">def</span> <span class="nf">select_testing_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SplitIndexer.select_testing_indices"><a class="viewcode-back" href="../../../../generated/draugr.numpy_utilities.datasets.splitting.SplitIndexer.html#draugr.numpy_utilities.datasets.splitting.SplitIndexer.select_testing_indices">[docs]</a>    <span class="k">def</span> <span class="nf">select_testing_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ind</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">testing_num</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ind</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">testing_num</span> <span class="p">:]</span>
-        <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[]</span></div>
 
 <div class="viewcode-block" id="SplitIndexer.unnormalised"><a class="viewcode-back" href="../../../../generated/draugr.numpy_utilities.datasets.splitting.SplitIndexer.html#draugr.numpy_utilities.datasets.splitting.SplitIndexer.unnormalised">[docs]</a>    <span class="k">def</span> <span class="nf">unnormalised</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">floored</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -132,12 +130,10 @@
         <span class="k">return</span> <span class="n">unnorm</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span>
-            <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_split_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalised_split</span><span class="p">)}</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_split_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalised_split</span><span class="p">)})</span>
 
-    <span class="k">def</span> <span class="nf">select_shuffled_split_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">split</span><span class="p">:</span> <span class="n">SplitEnum</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SplitIndexer.select_shuffled_split_indices"><a class="viewcode-back" href="../../../../generated/draugr.numpy_utilities.datasets.splitting.SplitIndexer.html#draugr.numpy_utilities.datasets.splitting.SplitIndexer.select_shuffled_split_indices">[docs]</a>    <span class="k">def</span> <span class="nf">select_shuffled_split_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">split</span><span class="p">:</span> <span class="n">SplitEnum</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
         <span class="n">split_indices</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_num</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
@@ -149,7 +145,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_testing_indices</span><span class="p">(</span><span class="n">split_indices</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">split</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">split_indices</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 
 
 <div class="viewcode-block" id="train_valid_test_split"><a class="viewcode-back" href="../../../../generated/draugr.numpy_utilities.datasets.splitting.train_valid_test_split.html#draugr.numpy_utilities.datasets.splitting.train_valid_test_split">[docs]</a><span class="k">def</span> <span class="nf">train_valid_test_split</span><span class="p">(</span>
@@ -180,9 +176,9 @@
 
         <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">vs</span><span class="p">:</span>
             <span class="n">b_rep</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;_nohash_.*$&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">c</span><span class="si">}{</span><span class="n">file_name</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
-            <span class="n">percentage_hash</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="nb">int</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">b_rep</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">100.0</span> <span class="o">/</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span><span class="p">)</span>
+            <span class="n">percentage_hash</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">b_rep</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="mf">100.0</span> <span class="o">/</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span>
+            <span class="p">)</span>
             <span class="k">if</span> <span class="n">percentage_hash</span> <span class="o">&lt;</span> <span class="n">validation_percentage</span> <span class="o">+</span> <span class="n">testing_percentage</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">percentage_hash</span> <span class="o">&lt;</span> <span class="n">testing_percentage</span><span class="p">:</span>
                     <span class="n">testing_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
@@ -229,7 +225,7 @@
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">asd</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="n">split_by_p</span> <span class="o">=</span> <span class="n">SplitIndexer</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">split_by_p</span><span class="o">.</span><span class="n">default_split_names</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">split_by_p</span><span class="o">.</span><span class="n">shuffled_indices</span><span class="p">())</span>
@@ -238,7 +234,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">uihsad</span><span class="p">():</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="n">a</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">a</span><span class="p">:</span>
             <span class="n">a</span> <span class="o">=</span> <span class="n">SplitEnum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>

@@ -7,7 +7,7 @@ __all__ = ["ScalarWriterMixin"]
 
 
 class ScalarWriterMixin(ABC):
-    """ """
+    """description"""
 
     @abstractmethod
     def _scalar(self, tag: str, value: float, step: int):

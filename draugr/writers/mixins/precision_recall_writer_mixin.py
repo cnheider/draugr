@@ -26,5 +26,5 @@ class PrecisionRecallCurveWriterMixin(ABC):
         step: int,
         num_thresholds: int = 11,
     ) -> None:
-        """ """
+        """description"""
         raise NotImplementedError

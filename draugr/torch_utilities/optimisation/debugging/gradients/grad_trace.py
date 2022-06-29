@@ -127,7 +127,7 @@ def register_bad_grad_hooks(var: Any) -> callable:
 
 
 def print_grad_trace(var_grad_fn):
-    """ """
+    """description"""
     print(var_grad_fn)
     for n in var_grad_fn.next_functions:
         if n[0]:

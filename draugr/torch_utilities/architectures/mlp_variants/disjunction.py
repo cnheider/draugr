@@ -19,7 +19,7 @@ from draugr.torch_utilities.architectures.mlp import MLP
 
 
 class DisjunctMLP(MLP):
-    """ """
+    """description"""
 
     def __init__(
         self,

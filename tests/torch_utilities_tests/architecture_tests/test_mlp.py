@@ -55,7 +55,7 @@ def test_multi_dim():
 
 
 def test_single_dim2():
-    """ """
+    """description"""
     pos_size = (4,)
     a_size = (1,)
     model = MLP(input_shape=pos_size, output_shape=a_size)
@@ -67,7 +67,7 @@ def test_single_dim2():
 
 
 def test_hidden_dim2():
-    """ """
+    """description"""
     pos_size = (3,)
     hidden_size = list(range(6, 10))
     a_size = (4,)
@@ -119,7 +119,7 @@ def test_hidden_dim2():
 
 
 def test_multi_dim_in():
-    """ """
+    """description"""
     pos_size = (2, 3, 2)
     a_size = (2, 4, 5)
     model = MLP(input_shape=pos_size, output_shape=a_size)
@@ -139,7 +139,7 @@ def test_multi_dim_in():
 
 
 def test_multi_dim_out():
-    """ """
+    """description"""
     pos_size = (10,)
     a_size = (2, 1)
     model = MLP(input_shape=pos_size, hidden_layers=(100,), output_shape=a_size)
@@ -151,7 +151,7 @@ def test_multi_dim_out():
 
 
 def test_multi_dim_both():
-    """ """
+    """description"""
     pos_size = (2, 3)
     a_size = (2, 4, 5)
     model = MLP(input_shape=pos_size, output_shape=a_size)
@@ -168,7 +168,7 @@ def test_multi_dim_both():
 
 
 def test_auto():
-    """ """
+    """description"""
     pos_size = (4,)
     a_size = (2,)
     model = MLP(input_shape=pos_size, output_shape=a_size)

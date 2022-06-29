@@ -45,7 +45,7 @@ def build_flat_dataset(
     if extensions is not None:
 
         def is_valid_file(x: Union[Path, str]) -> bool:
-            """ """
+            """description"""
             return str(x) in extensions
 
     elif is_valid_file is None:

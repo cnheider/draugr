@@ -7,10 +7,8 @@ __doc__ = r"""
            Created on 14-02-2021
            """
 
-import matlab
-import numpy
 
-from draugr.matlab_utilities import dict_to_sparse, matlab_to_ndarray, ndarray_to_matlab
+import numpy
 
 
 def asiduj_test():
@@ -18,6 +16,13 @@ def asiduj_test():
     Test of the module
 
     It runs the doctest and create other tests with matlab engine calls."""
+    from draugr.matlab_utilities import (
+        dict_to_sparse,
+        matlab_to_ndarray,
+        ndarray_to_matlab,
+    )
+    import matlab
+
     import scipy.linalg as spl
 
     print("Run matlab engine...")

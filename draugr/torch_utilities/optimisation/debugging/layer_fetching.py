@@ -18,7 +18,7 @@ __all__ = ["IntermediateLayerGetter"]
 
 
 class IntermediateLayerGetter:
-    """ """
+    """description"""
 
     def __init__(
         self,
@@ -127,7 +127,7 @@ if __name__ == "__main__":
         """
 
         class Model(nn.Module):
-            """ """
+            """description"""
 
             def __init__(self):
                 super().__init__()
@@ -173,7 +173,7 @@ if __name__ == "__main__":
         """
 
         class Model(nn.Module):
-            """ """
+            """description"""
 
             def __init__(self):
                 super().__init__()

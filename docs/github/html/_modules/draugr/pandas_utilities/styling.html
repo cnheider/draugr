@@ -63,7 +63,7 @@
 
 
 <div class="viewcode-block" id="ColorEnum"><a class="viewcode-back" href="../../../generated/draugr.pandas_utilities.styling.ColorEnum.html#draugr.pandas_utilities.styling.ColorEnum">[docs]</a><span class="k">class</span> <span class="nc">ColorEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
     <span class="p">(</span>
         <span class="n">purple</span><span class="p">,</span>
@@ -81,14 +81,14 @@
 
 
 <div class="viewcode-block" id="NDFrameExtremeEnum"><a class="viewcode-back" href="../../../generated/draugr.pandas_utilities.styling.NDFrameExtremeEnum.html#draugr.pandas_utilities.styling.NDFrameExtremeEnum">[docs]</a><span class="k">class</span> <span class="nc">NDFrameExtremeEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
     <span class="nb">min</span> <span class="o">=</span> <span class="n">NDFrame</span><span class="o">.</span><span class="n">min</span>
     <span class="nb">max</span> <span class="o">=</span> <span class="n">NDFrame</span><span class="o">.</span><span class="n">max</span></div>
 
 
 <div class="viewcode-block" id="AttrEnum"><a class="viewcode-back" href="../../../generated/draugr.pandas_utilities.styling.AttrEnum.html#draugr.pandas_utilities.styling.AttrEnum">[docs]</a><span class="k">class</span> <span class="nc">AttrEnum</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
     <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;color: </span><span class="si">{}</span><span class="s2">&quot;</span>
     <span class="n">bg</span> <span class="o">=</span> <span class="s2">&quot;background-color: </span><span class="si">{}</span><span class="s2">&quot;</span></div>
@@ -104,9 +104,7 @@
 <span class="sd">    highlight the maximum in a Series yellow.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">ColorEnum</span><span class="p">):</span>
-        <span class="n">color</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">color</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-        <span class="p">)</span>  <span class="c1"># TODO: LOWER IN THE CURRENT CASE no matter assigned names</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># TODO: LOWER IN THE CURRENT CASE no matter assigned names</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr_template</span><span class="p">,</span> <span class="n">AttrEnum</span><span class="p">):</span>
         <span class="n">attr_template</span> <span class="o">=</span> <span class="n">attr_template</span><span class="o">.</span><span class="n">value</span>
 
@@ -146,16 +144,12 @@
 
     <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)})</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">df</span><span class="p">,</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;BCDE&quot;</span><span class="p">))],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
-    <span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;BCDE&quot;</span><span class="p">))],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nan</span>
     <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nan</span>
 
     <span class="n">cm</span> <span class="o">=</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">light_palette</span><span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="p">)</span><span class="o">.</span><span class="n">highlight_null</span><span class="p">(</span>
-        <span class="n">null_color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span>
-    <span class="p">)</span>  <span class="c1"># element wise</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="p">)</span><span class="o">.</span><span class="n">highlight_null</span><span class="p">(</span><span class="n">null_color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>  <span class="c1"># element wise</span>
     <span class="c1"># df.style.bar(subset=[&#39;A&#39;, &#39;B&#39;], color=&#39;#d65f5f&#39;)</span>
     <span class="c1"># df.style.bar(subset=[&#39;A&#39;, &#39;B&#39;], align=&#39;mid&#39;, color=[&#39;#d65f5f&#39;, &#39;#5fba7d&#39;])</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">color_highlight_extreme</span><span class="p">)</span>  <span class="c1"># .format(None, na_rep=&quot;-&quot;)</span>

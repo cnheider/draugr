@@ -52,7 +52,7 @@ def plot_img_array(
 def plot_side_by_side(
     img_arrays: numpy.ndarray, *, labels: Optional[Sequence] = None
 ) -> None:
-    """ """
+    """description"""
     flatten_list = reduce(lambda x, y: x + y, zip(*img_arrays))
 
     plot_img_array(numpy.array(flatten_list), n_col=len(img_arrays), labels=labels)

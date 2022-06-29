@@ -1,6 +1,6 @@
-draugr.os\_utilities.linux\_utilities.systemd\_utilities.service\_management.stop\_service
+﻿draugr.os\_utilities.linux\_utilities.systemd\_utilities.service\_management.stop\_service
 ==========================================================================================
 
 .. currentmodule:: draugr.os_utilities.linux_utilities.systemd_utilities.service_management
 
-.. autofunction:: stop_service
+.. autodata:: stop_service

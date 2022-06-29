@@ -81,7 +81,7 @@ class CategoricalMLP(MLP):
 if __name__ == "__main__":
 
     def multi_cat():
-        """ """
+        """description"""
         s = (2, 2)
         a = (2, 2)
         model = MultipleCategoricalMLP(input_shape=s, output_shape=a)
@@ -90,7 +90,7 @@ if __name__ == "__main__":
         print(model.sample(model(inp, inp)))
 
     def single_cat():
-        """ """
+        """description"""
         s = (1, 2)
         a = (2,)
         model = CategoricalMLP(input_shape=s, output_shape=a)
@@ -100,7 +100,7 @@ if __name__ == "__main__":
         print(model(inp, inp2).sample())
 
     def single_cat2():
-        """ """
+        """description"""
         s = (4,)
         a = (2,)
         model = CategoricalMLP(input_shape=s, output_shape=a)

@@ -66,7 +66,7 @@ def to_edge(img, method: ToEdgeMethodEnum = ToEdgeMethodEnum.canny, **kwargs):
 if __name__ == "__main__":
 
     def aushd():
-        """ """
+        """description"""
         import numpy
         from draugr.opencv_utilities import show_image
 

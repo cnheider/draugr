@@ -52,11 +52,9 @@
 
 
 <div class="viewcode-block" id="AsyncVideoStream"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream">[docs]</a><span class="k">class</span> <span class="nc">AsyncVideoStream</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AsyncVideoStream.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">thread_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">):</span>
+<div class="viewcode-block" id="AsyncVideoStream.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">thread_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        threaded async wrapper around opencv cv2.VideoCapture with alike interface</span>
 
@@ -67,9 +65,7 @@
         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grabbed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span>
-            <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">thread_name</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span>
-        <span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">thread_name</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AsyncVideoStream.start"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -80,27 +76,27 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AsyncVideoStream.update"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span><span class="p">:</span>  <span class="c1"># keep looping infinitely until the thread is stopped</span>
             <span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">grabbed</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">,</span>
-            <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># otherwise, read the next frame from the stream</span>
+            <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># otherwise, read the next frame from the stream</span></div>
 
-    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grabbed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span>  <span class="c1"># return the frame most recently read</span>
+<div class="viewcode-block" id="AsyncVideoStream.read"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grabbed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span>  <span class="c1"># return the frame most recently read</span></div>
 
-    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AsyncVideoStream.stop"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># indicate that the thread should be stopped</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># indicate that the thread should be stopped</span></div>
 
     <span class="c1"># noinspection PyPep8Naming</span>
-    <span class="k">def</span> <span class="nf">isOpened</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="n">isOpened</span><span class="p">()</span>
+<div class="viewcode-block" id="AsyncVideoStream.isOpened"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.isOpened">[docs]</a>    <span class="k">def</span> <span class="nf">isOpened</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="n">isOpened</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span>

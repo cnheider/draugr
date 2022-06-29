@@ -9,7 +9,7 @@ __all__ = ["MetricSummary"]
 
 
 class MetricSummary:
-    """ """
+    """description"""
 
     def __init__(self):
         self._values = []

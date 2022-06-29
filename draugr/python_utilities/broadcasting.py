@@ -15,7 +15,7 @@ from sorcery.core import FrameInfo
 
 
 class BroadcastNone(type(None).__class__):
-    """ """
+    """description"""
 
     @sorcery.spell
     def __new__(frame_info: FrameInfo, cls):

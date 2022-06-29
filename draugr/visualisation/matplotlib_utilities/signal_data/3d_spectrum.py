@@ -70,7 +70,7 @@ def spectral_plot3d(
 def spectrum_plot3d(
     signal: Sequence, sampling_rate: int, window_length_ms=(20 / 1000)
 ) -> pyplot.Figure:
-    """ """
+    """description"""
     n_per_seg = next_pow_2(
         sampling_rate * window_length_ms
     )  # 20 ms, next_pow_2 per seg == n_fft
@@ -109,19 +109,19 @@ if __name__ == "__main__":
         ax = axes3d.Axes3D(fig)
 
         def gen(n):
-            """ """
+            """description"""
             phi = 0
             while phi < 2 * numpy.pi:
                 yield numpy.array([numpy.cos(phi), numpy.sin(phi), phi])
                 phi += 2 * numpy.pi / n
 
         def update(num, data, line):
-            """ """
+            """description"""
             line.set_data(data[:2, :num])
             line.set_3d_properties(data[2, :num])
 
         def asudh():
-            """ """
+            """description"""
             N = 100
             data = numpy.array(list(gen(N))).T
             (line,) = ax.plot(data[0, 0:1], data[1, 0:1], data[2, 0:1])

@@ -55,7 +55,7 @@ class GuidedBackPropReLU(Function):
 
 
 class GuidedBackPropReLUModel:
-    """ """
+    """description"""
 
     def __init__(self, model, use_cuda):
         self._model = model

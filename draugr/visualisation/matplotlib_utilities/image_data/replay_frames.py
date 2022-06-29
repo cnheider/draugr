@@ -24,7 +24,7 @@ def replay_frames(
     pyplot.axis("off")
 
     def animate(start_episode):
-        """ """
+        """description"""
         patch.set_data(frames[start_episode])
 
     anim = animation.FuncAnimation(

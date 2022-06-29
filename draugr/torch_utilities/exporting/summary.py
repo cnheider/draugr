@@ -25,13 +25,13 @@ if __name__ == "__main__":
     from torch.nn import functional
 
     def aiasujd():
-        """
+        """description
 
         :return:
         """
 
         class Model(nn.Module):
-            """ """
+            """description"""
 
             def __init__(self):
                 super().__init__()
@@ -54,13 +54,13 @@ if __name__ == "__main__":
         print(to_latex_table(model))
 
     def uiahsduhaw():
-        """
+        """description
 
         :return:
         """
 
         class Model(nn.Module):
-            """ """
+            """description"""
 
             def __init__(self):
                 super().__init__()

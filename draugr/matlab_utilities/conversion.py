@@ -11,11 +11,16 @@ __all__ = ["ndarray_to_matlab", "matlab_to_ndarray", "dict_to_sparse"]
 
 from typing import Any
 
-import matlab
+try:
+
+    import matlab
+except ImportError:
+
+    raise ImportError("Matlab engine not installed")
 import numpy
 from scipy import sparse
 
-from draugr.matlab_utilities.matlab_conversion_utilities import (
+from .matlab_conversion_utilities import (
     get_strides_c,
     get_strides_f,
 )

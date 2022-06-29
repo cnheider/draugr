@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     # print(sh.systemctl('status', 'lightdm.service'))
 
-    from draugr.os_utilities.linux_utilities.systemd_utilities.service_management import (
+    from draugr.os_utilities.linux_utilities import (
         RunAsEnum,
         remove_service,
     )

@@ -106,7 +106,7 @@
 
 
 <div class="viewcode-block" id="TorchFrozenModelSession"><a class="viewcode-back" href="../../../../generated/draugr.torch_utilities.sessions.model_sessions.TorchFrozenModelSession.html#draugr.torch_utilities.sessions.model_sessions.TorchFrozenModelSession">[docs]</a><span class="k">class</span> <span class="nc">TorchFrozenModelSession</span><span class="p">(</span><span class="n">AlsoDecorator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="TorchFrozenModelSession.__init__"><a class="viewcode-back" href="../../../../generated/draugr.torch_utilities.sessions.model_sessions.TorchFrozenModelSession.html#draugr.torch_utilities.sessions.model_sessions.TorchFrozenModelSession.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">no_side_effect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
@@ -132,27 +132,25 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :rtype: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-            <span class="n">OrderedDict</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">l2</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-        <span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">l2</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
         <span class="n">p_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
         <span class="n">l1_w</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">p_iter</span><span class="p">)</span>
         <span class="n">l1_bias</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">p_iter</span><span class="p">)</span>
         <span class="n">l1_bias</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">initial</span><span class="p">():</span>
-            <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+            <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
 
         <span class="nd">@TorchFrozenModelSession</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">frozen</span><span class="p">():</span>
-            <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+            <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
             <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">frozen_session</span><span class="p">():</span>
-            <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+            <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
             <span class="k">with</span> <span class="n">TorchFrozenModelSession</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
                 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
                     <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>

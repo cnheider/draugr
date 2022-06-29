@@ -20,7 +20,7 @@ from pathlib import Path
 
 
 class LogWriter(Writer):
-    """ """
+    """description"""
 
     def _scalar(self, tag: str, value: float, step: int) -> None:
         self.logger.info(f"{step} [{tag}] {value}")

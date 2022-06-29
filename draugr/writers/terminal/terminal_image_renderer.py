@@ -9,14 +9,14 @@ from warg import color
 
 
 def get_pixel(col: Tuple) -> Any:
-    """ """
+    """description"""
     if isinstance(col, (float, int)) or len(col) == 1:
         col = (col, col, col)
     return color("  ", bg=f"rgb({int(col[0])}, {int(col[1])}, {int(col[2])})")
 
 
 def render_image(pixels: numpy.ndarray, scale: Tuple) -> List[List]:
-    """ """
+    """description"""
     # first of all scale the image to the scale 'tuple'
     image_size = pixels.shape[:2]
     block_size = (image_size[0] / scale[0], image_size[1] / scale[1])
@@ -50,7 +50,7 @@ def terminalise_image(output):
 
 
 def get_image(path: Path):
-    """ """
+    """description"""
     img = numpy.asarray(Image.open(path))
     if img.shape[2] > 3:
         return numpy.array([[pixel[:3] for pixel in row] for row in img])
@@ -58,7 +58,7 @@ def get_image(path: Path):
 
 
 def render_file(path: Path, scale=(60, 60)):
-    """ """
+    """description"""
     image = get_image(path)
     output = render_image(image, scale)
     print(terminalise_image(output))

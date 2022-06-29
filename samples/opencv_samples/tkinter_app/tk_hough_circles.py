@@ -27,7 +27,7 @@ to_be_saved = {}
 
 
 def init():
-    """ """
+    """description"""
     global config
     config = {
         "img_default_width": 600,
@@ -145,7 +145,7 @@ def load_config(directory, file):
 
 
 def load_next():
-    """ """
+    """description"""
     global to_be_saved
     if files:
         file_path = next(files)
@@ -220,7 +220,7 @@ def show_info(msg, remove_image=True):
 
 
 def save():
-    """ """
+    """description"""
     if (
         "circles" in to_be_saved
         and "file" in to_be_saved
@@ -287,13 +287,13 @@ def save():
 
 
 def save_and_load_next():
-    """ """
+    """description"""
     save()
     load_next()
 
 
 def reset():
-    """ """
+    """description"""
     init()
     sld_gaussian.set(config["gaussian_default"])
     sld_median.set(config["median_default"])

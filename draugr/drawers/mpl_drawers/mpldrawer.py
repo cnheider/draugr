@@ -74,7 +74,7 @@ self.fig = pyplot.figure(figsize=figure_size)
 """
 
     def draw(self, data: Any, delta: float = None):
-        """ """
+        """description"""
         if not self.fig:
             raise NotImplementedError(
                 "Figure was not instantiated check specialisation of MplDrawer"
@@ -113,7 +113,7 @@ self.fig = pyplot.figure(figsize=figure_size)
         return self
 
     def close(self):
-        """ """
+        """description"""
         if self._verbose:
             print("mlpdrawer close was called")
         if self.fig:

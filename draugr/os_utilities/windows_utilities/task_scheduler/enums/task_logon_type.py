@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class TaskLogonTypeEnum(Enum):
-    """ """
+    """description"""
 
     TASK_LOGON_NONE = 0
     TASK_LOGON_PASSWORD = 1

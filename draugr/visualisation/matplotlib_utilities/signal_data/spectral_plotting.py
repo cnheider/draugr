@@ -85,7 +85,7 @@ def spectrum_plot(
 
 
 def fft_plot(signal: Sequence, *, line_width: float = 0.2) -> pyplot.Figure:
-    """ """
+    """description"""
     n_per_seg = next_pow_2(len(signal))
     spectrum = numpy.fft.fft(signal, n_per_seg)[: n_per_seg // 2]
     frequencies = numpy.fft.fftfreq(n_per_seg)[: n_per_seg // 2]

@@ -105,7 +105,7 @@ if __name__ == "__main__":
     num_batches = num_complete_batches + bool(leftover)
 
     def data_stream():
-        """ """
+        """description"""
         rng = npr.RandomState(0)
         while True:
             perm = rng.permutation(num_train)

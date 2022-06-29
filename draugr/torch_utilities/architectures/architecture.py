@@ -17,7 +17,7 @@ from warg import indent_lines
 
 
 class Architecture(nn.Module, ABC):
-    """ """
+    """description"""
 
     @drop_unused_kws
     def __init__(self, input_shape: Sequence[int], output_shape: Sequence[int]):

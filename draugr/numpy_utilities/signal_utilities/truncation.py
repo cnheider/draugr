@@ -42,7 +42,7 @@ def last_dim_truncate(sequence: Sequence, min_length: int) -> Sequence:
 
 
 def truncate_to_power_2(signal: Sequence) -> Sequence:
-    """ """
+    """description"""
     return last_dim_truncate(signal, prev_pow_2(len(signal)))
 
 
