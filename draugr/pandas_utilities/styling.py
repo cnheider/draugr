@@ -27,7 +27,7 @@ __all__ = [
 
 
 class ColorEnum(Enum):
-    """ """
+    """description"""
 
     (
         purple,
@@ -45,14 +45,14 @@ class ColorEnum(Enum):
 
 
 class NDFrameExtremeEnum(Enum):
-    """ """
+    """description"""
 
     min = NDFrame.min
     max = NDFrame.max
 
 
 class AttrEnum(Enum):
-    """ """
+    """description"""
 
     color = "color: {}"
     bg = "background-color: {}"

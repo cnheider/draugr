@@ -60,9 +60,7 @@
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">positive_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_img</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">input_img</span><span class="p">)</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">addcmul</span><span class="p">(</span>
-            <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">input_img</span><span class="o">.</span><span class="n">size</span><span class="p">())</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">input_img</span><span class="p">),</span> <span class="n">input_img</span><span class="p">,</span> <span class="n">positive_mask</span>
-        <span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">addcmul</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">input_img</span><span class="o">.</span><span class="n">size</span><span class="p">())</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">input_img</span><span class="p">),</span> <span class="n">input_img</span><span class="p">,</span> <span class="n">positive_mask</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="n">input_img</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output</span></div>
 
@@ -91,7 +89,7 @@
 
 
 <div class="viewcode-block" id="GuidedBackPropReLUModel"><a class="viewcode-back" href="../../../../../../generated/draugr.torch_utilities.optimisation.debugging.gradients.guided.GuidedBackPropReLUModel.html#draugr.torch_utilities.optimisation.debugging.gradients.guided.GuidedBackPropReLUModel">[docs]</a><span class="k">class</span> <span class="nc">GuidedBackPropReLUModel</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="GuidedBackPropReLUModel.__init__"><a class="viewcode-back" href="../../../../../../generated/draugr.torch_utilities.optimisation.debugging.gradients.guided.GuidedBackPropReLUModel.html#draugr.torch_utilities.optimisation.debugging.gradients.guided.GuidedBackPropReLUModel.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">use_cuda</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span>

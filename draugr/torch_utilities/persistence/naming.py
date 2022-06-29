@@ -15,7 +15,7 @@ import torch
 
 
 def get_model_hash(model: torch.nn.Module) -> str:
-    """ """
+    """description"""
     model_repr = "".join([str(a) for a in model.named_children()])
     # print(model_repr)
     model_hash = hashlib.md5(model_repr.encode("utf-8")).hexdigest()

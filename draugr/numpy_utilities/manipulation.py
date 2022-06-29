@@ -15,7 +15,7 @@ import numpy
 
 
 def recursive_flatten_numpy(nested: Sequence) -> numpy.ndarray:
-    """ """
+    """description"""
     return numpy.array(nested).ravel()
 
 
@@ -26,7 +26,7 @@ class MyNdArray(numpy.ndarray):
 
     @property
     def conjugate_transpose(self):
-        """
+        """description
 
         :return:
         """

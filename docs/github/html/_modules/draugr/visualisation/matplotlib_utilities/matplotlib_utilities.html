@@ -94,13 +94,13 @@
 
 
 <div class="viewcode-block" id="MatplotlibHorizontalAlignment"><a class="viewcode-back" href="../../../../generated/draugr.visualisation.matplotlib_utilities.MatplotlibHorizontalAlignment.html#draugr.visualisation.matplotlib_utilities.MatplotlibHorizontalAlignment">[docs]</a><span class="k">class</span> <span class="nc">MatplotlibHorizontalAlignment</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
     <span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">left</span><span class="p">)</span> <span class="o">=</span> <span class="n">assigned_names</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="MatplotlibVerticalAlignment"><a class="viewcode-back" href="../../../../generated/draugr.visualisation.matplotlib_utilities.MatplotlibVerticalAlignment.html#draugr.visualisation.matplotlib_utilities.MatplotlibVerticalAlignment">[docs]</a><span class="k">class</span> <span class="nc">MatplotlibVerticalAlignment</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
     <span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">baseline</span><span class="p">,</span> <span class="n">center_baseline</span><span class="p">)</span> <span class="o">=</span> <span class="n">assigned_names</span><span class="p">()</span></div>
 
@@ -207,7 +207,7 @@
 
 
 <div class="viewcode-block" id="remove_decoration"><a class="viewcode-back" href="../../../../generated/draugr.visualisation.matplotlib_utilities.remove_decoration.html#draugr.visualisation.matplotlib_utilities.remove_decoration">[docs]</a><span class="k">def</span> <span class="nf">remove_decoration</span><span class="p">(</span><span class="n">ax</span><span class="p">:</span> <span class="n">Axes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
     <span class="n">transparent</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">w_xaxis</span><span class="o">.</span><span class="n">set_pane_color</span><span class="p">(</span><span class="n">transparent</span><span class="p">)</span>
@@ -226,7 +226,7 @@
 <div class="viewcode-block" id="denormalise_minusoneone"><a class="viewcode-back" href="../../../../generated/draugr.visualisation.matplotlib_utilities.denormalise_minusoneone.html#draugr.visualisation.matplotlib_utilities.denormalise_minusoneone">[docs]</a><span class="k">def</span> <span class="nf">denormalise_minusoneone</span><span class="p">(</span>
     <span class="n">t</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span> <span class="n">coordinates</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Number</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Number</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">coordinates</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span></div>
 
 
@@ -243,15 +243,11 @@
     <span class="n">pyplot</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax_</span><span class="o">.</span><span class="n">lines</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">edge_color</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="matplotlib_bounding_box"><a class="viewcode-back" href="../../../../generated/draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box.html#draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box">[docs]</a><span class="k">def</span> <span class="nf">matplotlib_bounding_box</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;w&quot;</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Rectangle</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="matplotlib_bounding_box"><a class="viewcode-back" href="../../../../generated/draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box.html#draugr.visualisation.matplotlib_utilities.matplotlib_bounding_box">[docs]</a><span class="k">def</span> <span class="nf">matplotlib_bounding_box</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Number</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Rectangle</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
     <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
-    <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">rect</span></div>
 
 

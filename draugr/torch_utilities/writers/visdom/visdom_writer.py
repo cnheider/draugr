@@ -23,7 +23,7 @@ if not START_VISDOM_SERVER:
 
 
 class VisdomWriter(Writer):
-    """ """
+    """description"""
 
     def __init__(self):
         super().__init__()

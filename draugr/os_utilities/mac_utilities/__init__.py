@@ -14,7 +14,7 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 # del Path
 
 try:
-    pass
+    from .dark_mode import *
 
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
@@ -23,7 +23,8 @@ except ImportError as ix:
         / "requirements"
         / f"requirements_{this_package_name}.txt"
     )
-    print(
-        f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
-    )  # TODO: PARSE WHAT is missing and print
+    if this_package_reqs.exists():
+        print(
+            f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
+        )  # TODO: PARSE WHAT is missing and print
     raise ix

@@ -317,7 +317,7 @@ def roc_plot(
     figure_size: Tuple[int, int] = (8, 8),
     num_decimals: int = 2,
 ) -> Figure:
-    """ """
+    """description"""
     fpr = dict()
     tpr = dict()
     roc_auc = dict()
@@ -511,7 +511,7 @@ if __name__ == "__main__":
         y_score = classifier.fit(X_train, y_train).decision_function(X_test)
 
         def sasasasgasgssiasjdijasagsaagdi():
-            """ """
+            """description"""
             confusion_matrix_plot(
                 numpy.argmax(y_test, axis=-1),
                 numpy.argmax(y_score, axis=-1),
@@ -520,22 +520,22 @@ if __name__ == "__main__":
             pyplot.show()
 
         def sasasasgasgssagsaagdi():
-            """ """
+            """description"""
             roc_plot(y_test, y_score, num_classes)
             pyplot.show()
 
         def sasasgssagsaagdi():
-            """ """
+            """description"""
             precision_recall_plot(y_test, y_score, num_classes)
             pyplot.show()
 
         def sasafgsagdi():
-            """ """
+            """description"""
             pca_biplot(x, y)
             pyplot.show()
 
         def sadi():
-            """ """
+            """description"""
             import pandas
 
             df = pandas.DataFrame(x, columns=iris.feature_names)

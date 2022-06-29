@@ -54,7 +54,7 @@ class SplitIndexer:
         )
 
     def shuffled_indices(self) -> dict:
-        """ """
+        """description"""
         split_indices = numpy.random.permutation(self.total_num).tolist()
 
         return {
@@ -64,11 +64,11 @@ class SplitIndexer:
         }
 
     def select_train_indices(self, ind: Sequence) -> Sequence:
-        """ """
+        """description"""
         return ind[: self.training_num]
 
     def select_validation_indices(self, ind: Sequence) -> Sequence:
-        """ """
+        """description"""
         if self.validation_num:
             if self.testing_num:
                 return ind[self.training_num : -self.testing_num]
@@ -76,7 +76,7 @@ class SplitIndexer:
         return []
 
     def select_testing_indices(self, ind: Sequence) -> Sequence:
-        """ """
+        """description"""
         if self.testing_num:
             return ind[-self.testing_num :]
         return []
@@ -101,7 +101,7 @@ class SplitIndexer:
         )
 
     def select_shuffled_split_indices(self, split: SplitEnum, seed: int = 0) -> object:
-        """ """
+        """description"""
         numpy.random.seed(seed)
         split_indices = numpy.random.permutation(self.total_num).tolist()
 
@@ -193,7 +193,7 @@ def select_split(
 if __name__ == "__main__":
 
     def asd():
-        """ """
+        """description"""
         split_by_p = SplitIndexer(100)
         print(split_by_p.default_split_names)
         print(split_by_p.shuffled_indices())
@@ -202,7 +202,7 @@ if __name__ == "__main__":
         print(a, len(a))
 
     def uihsad():
-        """ """
+        """description"""
         a = None
         if a:
             a = SplitEnum(a)

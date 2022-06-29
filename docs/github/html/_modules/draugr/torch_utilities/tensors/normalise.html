@@ -56,7 +56,7 @@
 <span class="k">def</span> <span class="nf">minus_one_one_unnormalise</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">low</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
     <span class="n">act_k</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
     <span class="n">act_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">+</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
     <span class="k">return</span> <span class="n">act_k</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">act_b</span>
@@ -65,7 +65,7 @@
 <span class="k">def</span> <span class="nf">minus_one_one_normalise</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">low</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
     <span class="n">act_k_inv</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span>
     <span class="n">act_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">high</span> <span class="o">+</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
     <span class="k">return</span> <span class="n">act_k_inv</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">act_b</span><span class="p">)</span>

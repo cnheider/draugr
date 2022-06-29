@@ -40,13 +40,13 @@ class SupervisedDataset(Dataset):
     @property
     @abstractmethod
     def response_shape(self) -> Tuple[int, ...]:
-        """ """
+        """description"""
         raise NotImplementedError
 
     @property
     @abstractmethod
     def predictor_shape(self) -> Tuple[int, ...]:
-        """ """
+        """description"""
         raise NotImplementedError
 
     @abstractmethod

@@ -21,7 +21,7 @@
 import sys
 from pathlib import Path
 
-from warg import cprint
+from warg import cprint, is_windows
 
 PACKAGE_ROOT = Path(__file__).parent.parent.parent  # / "draugr"
 cprint(PACKAGE_ROOT)
@@ -46,6 +46,13 @@ from draugr import (
     PROJECT_YEAR,
     __project__,
 )
+
+if is_windows():
+    autodoc_mock_imports = [
+        "draugr.os_utilities.linux_utilities",
+        "draugr.matlab_utilities",
+        "draugr.os_utilities.mac_utilities",
+    ]
 
 extensions = [
     "sphinxcontrib.programoutput",
@@ -233,7 +240,7 @@ from sphinx.util.docfields import TypedField
 
 
 def patched_make_field(self, types, domain, items, **kw) -> nodes.field:
-    """ """
+    """description"""
 
     # `kw` catches `env=None` needed for newer sphinx while maintaining
     #  backwards compatibility when passed along further down!
@@ -241,7 +248,7 @@ def patched_make_field(self, types, domain, items, **kw) -> nodes.field:
     ## type: (List, unicode, Tuple) -> nodes.field
 
     def handle_item(fieldarg, content):
-        """ """
+        """description"""
         par = nodes.paragraph()
         par += addnodes.literal_strong("", fieldarg)  # Patch: this line added
         # par.extend(self.make_xrefs(self.rolename, domain, fieldarg,

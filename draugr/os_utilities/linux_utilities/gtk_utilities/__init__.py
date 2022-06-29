@@ -17,7 +17,7 @@ if INCLUDE_PROJECT_READMES:
 
 
 try:
-    # from .gtk_settings import *
+    from .gtk_settings import *
     from .theme_preferences import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
@@ -26,7 +26,8 @@ except ImportError as ix:
         / "requirements"
         / f"requirements_{this_package_name}.txt"
     )
-    print(
-        f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
-    )  # TODO: PARSE WHAT is missing and print
+    if this_package_reqs.exists():
+        print(
+            f"Make sure requirements is installed for {this_package_name}, see {this_package_reqs}"
+        )  # TODO: PARSE WHAT is missing and print
     raise ix

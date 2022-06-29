@@ -63,7 +63,7 @@ def add_early_stopping_key_combination(
         )
 
     def on_press(key):
-        """ """
+        """description"""
         if any([key in COMBO for COMBO in combinations]):
             if verbose:
                 print(f"Adding key {key}")
@@ -75,7 +75,7 @@ def add_early_stopping_key_combination(
                     clbck()
 
     def on_release(key):
-        """ """
+        """description"""
         if any([key in combo for combo in combinations]):
             if key in current:
                 if verbose:
@@ -113,7 +113,7 @@ if __name__ == "__main__":
         RUN = True
 
         def stop_loop():
-            """ """
+            """description"""
             global RUN
             RUN = False
 
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         print("done")
 
     def b():  # DOES NOT WORK!
-        """ """
+        """description"""
         print("start2")
         with CaptureEarlyStop(GDKC(exit, code=0)) as _:
             while True:

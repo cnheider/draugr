@@ -23,7 +23,7 @@ from warg import passes_kws_to
 
 
 class ShallowStdNormalMLP(MLP):
-    """ """
+    """description"""
 
     def __init__(
         self,
@@ -73,7 +73,7 @@ class ShallowStdNormalMLP(MLP):
 
 
 class ShallowStdMultiVariateNormalMLP(MLP):
-    """ """
+    """description"""
 
     def __init__(
         self,
@@ -120,7 +120,7 @@ class ShallowStdMultiVariateNormalMLP(MLP):
 
 
 class MultiDimensionalNormalMLP(MLP):
-    """ """
+    """description"""
 
     def __init__(
         self,
@@ -160,7 +160,7 @@ class MultiDimensionalNormalMLP(MLP):
 
 
 class MultiVariateNormalMLP(MLP):
-    """ """
+    """description"""
 
     @passes_kws_to(MLP.__init__)
     def __init__(
@@ -201,7 +201,7 @@ class MultiVariateNormalMLP(MLP):
 
 
 class MultipleNormalMLP(MLP):
-    """ """
+    """description"""
 
     def __init__(
         self, output_shape: int = 2, mean_head_activation: callable = None, **kwargs
@@ -239,7 +239,7 @@ class MultipleNormalMLP(MLP):
 if __name__ == "__main__":
 
     def stest_normal():
-        """ """
+        """description"""
         s = (10,)
         a = 10
         model = MultipleNormalMLP(input_shape=s, output_shape=a)
@@ -252,7 +252,7 @@ if __name__ == "__main__":
         print(time.time() - s_, a_)
 
     def stest_multi_dim_normal():
-        """ """
+        """description"""
         s = (4,)
         a = (10,)
         model = MultiDimensionalNormalMLP(input_shape=s, output_shape=a)
@@ -265,7 +265,7 @@ if __name__ == "__main__":
         print(time.time() - s_, a_)
 
     def stest_multi_var_normal():
-        """ """
+        """description"""
         s = (10,)
         a = (10,)
         model = MultiVariateNormalMLP(input_shape=s, output_shape=a)
@@ -278,7 +278,7 @@ if __name__ == "__main__":
         print(time.time() - s_, a_)
 
     def stest_shallow():
-        """ """
+        """description"""
         s = (10,)
         a = (10,)
         model = ShallowStdNormalMLP(input_shape=s, output_shape=a)

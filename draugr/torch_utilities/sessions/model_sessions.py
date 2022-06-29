@@ -70,7 +70,7 @@ TorchTrainingSession = TorchTrainSession
 
 
 class TorchFrozenModelSession(AlsoDecorator):
-    """ """
+    """description"""
 
     def __init__(self, model: torch.nn.Module, no_side_effect: bool = True):
         self.model = model
@@ -105,18 +105,18 @@ if __name__ == "__main__":
         l1_bias.requires_grad_(False)
 
         def initial():
-            """ """
+            """description"""
             for p in a.parameters(True):
                 print(p.requires_grad)
 
         @TorchFrozenModelSession(a)
         def frozen():
-            """ """
+            """description"""
             for p in a.parameters(True):
                 print(p.requires_grad)
 
         def frozen_session():
-            """ """
+            """description"""
             with TorchFrozenModelSession(a):
                 for p in a.parameters(True):
                     print(p.requires_grad)

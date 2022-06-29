@@ -54,7 +54,7 @@
 
 
 <div class="viewcode-block" id="IntermediateLayerGetter"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.html#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter">[docs]</a><span class="k">class</span> <span class="nc">IntermediateLayerGetter</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="IntermediateLayerGetter.__init__"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.html#draugr.torch_utilities.optimisation.debugging.layer_fetching.IntermediateLayerGetter.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -163,19 +163,15 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+            <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
             <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                 <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nested</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-                    <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">interaction_idty</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
-                <span class="p">)</span>  <span class="c1"># Simple trick for operations not performed as modules</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nested</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">interaction_idty</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>  <span class="c1"># Simple trick for operations not performed as modules</span>
 
             <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
                 <span class="sd">&quot;&quot;&quot;</span>
@@ -209,19 +205,15 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+            <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
             <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                 <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nested</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-                    <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">interaction_idty</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
-                <span class="p">)</span>  <span class="c1"># Simple trick for operations not performed as modules</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nested</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">interaction_idty</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>  <span class="c1"># Simple trick for operations not performed as modules</span>
 
             <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
                 <span class="sd">&quot;&quot;&quot;</span>

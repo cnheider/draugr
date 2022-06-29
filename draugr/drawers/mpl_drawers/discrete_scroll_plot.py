@@ -149,7 +149,7 @@ def discrete_scroll_plot(
     reverse: bool = True,
     overwrite: bool = False,
 ):
-    """ """
+    """description"""
     d = vector_provider.__next__()
     num_actions = len(d)
     if not window_length:
@@ -169,7 +169,7 @@ def discrete_scroll_plot(
             array[-1] = d
 
     def update_fig(n):
-        """ """
+        """description"""
         data = vector_provider.__next__()
         array = im.get_array()
 
@@ -247,7 +247,7 @@ if __name__ == "__main__":
         import threading
 
         def ma():
-            """ """
+            """description"""
             data = queue.Queue(100)
 
             class QueueGen:
@@ -261,21 +261,21 @@ if __name__ == "__main__":
                     return self.__next__()
 
                 def add(self, a):
-                    """ """
+                    """description"""
                     return data.put(a)
 
                 def get(self):
-                    """ """
+                    """description"""
                     return data.get()
 
             def get_sample(num_actions=3):
-                """ """
+                """description"""
                 a = numpy.zeros(num_actions)
                 a[numpy.random.randint(0, num_actions)] = 1.0
                 return a
 
             class MyDataFetchClass(threading.Thread):
-                """ """
+                """description"""
 
                 def __init__(self, data):
                     threading.Thread.__init__(self)
@@ -283,7 +283,7 @@ if __name__ == "__main__":
                     self._data = data
 
                 def run(self):
-                    """ """
+                    """description"""
                     while True:
                         self._data.add(get_sample())
 
@@ -299,7 +299,7 @@ if __name__ == "__main__":
                 print("Plot Closed")
 
         def asda():
-            """ """
+            """description"""
             s = DiscreteScrollPlot(3, default_delta=None)
             for _ in range(100):
                 s.draw(numpy.random.rand(3))

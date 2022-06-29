@@ -13,7 +13,7 @@ __all__ = ["ConsoleWriter"]
 
 
 class ConsoleWriter(Writer):
-    """ """
+    """description"""
 
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
         pass

@@ -14,7 +14,7 @@ __doc__ = r"""
 if __name__ == "__main__":
 
     def alt():
-        """
+        """description
 
         :return:
         """
@@ -147,7 +147,7 @@ if __name__ == "__main__":
                 return fig
 
     def asda():
-        """
+        """description
 
         :return:
         """

@@ -13,7 +13,7 @@ __all__ = ["MetricCollection"]
 
 
 class MetricCollection(dict):
-    """ """
+    """description"""
 
     def __init__(
         self,

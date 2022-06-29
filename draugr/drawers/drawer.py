@@ -15,7 +15,7 @@ from warg import drop_unused_kws
 
 
 class Drawer(object):
-    """ """
+    """description"""
 
     @drop_unused_kws
     def __init__(self, verbose: bool = False):
@@ -23,7 +23,7 @@ class Drawer(object):
 
     @abstractmethod
     def draw(self, *args, **kwargs):
-        """ """
+        """description"""
         raise NotImplementedError
 
     def __enter__(self):

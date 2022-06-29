@@ -54,13 +54,11 @@
 
 
 <div class="viewcode-block" id="ImageStreamPlot"><a class="viewcode-back" href="../../../../generated/draugr.drawers.mpl_drawers.image_stream_plot.ImageStreamPlot.html#draugr.drawers.mpl_drawers.image_stream_plot.ImageStreamPlot">[docs]</a><span class="k">class</span> <span class="nc">ImageStreamPlot</span><span class="p">(</span><span class="n">MplDrawer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ImageStreamPlot.__init__"><a class="viewcode-back" href="../../../../generated/draugr.drawers.mpl_drawers.image_stream_plot.ImageStreamPlot.html#draugr.drawers.mpl_drawers.image_stream_plot.ImageStreamPlot.__init__">[docs]</a>    <span class="nd">@passes_kws_to</span><span class="p">(</span><span class="n">MplDrawer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span>
     <span class="nd">@passes_kws_to</span><span class="p">(</span><span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">)</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">render</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">):</span>  <span class="c1"># size:Tuple[int,...],</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">render</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># size:Tuple[int,...],</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">render</span><span class="o">=</span><span class="n">render</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">render</span><span class="p">:</span>
@@ -80,12 +78,12 @@
 <span class="sd">        :return:&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">im</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ImageStreamPlot.close"><a class="viewcode-back" href="../../../../generated/draugr.drawers.mpl_drawers.image_stream_plot.ImageStreamPlot.html#draugr.drawers.mpl_drawers.image_stream_plot.ImageStreamPlot.close">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;q&quot;</span><span class="p">:</span>
             <span class="n">pyplot</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">figure</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">StopIteration</span></div>
+            <span class="k">raise</span> <span class="ne">StopIteration</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
@@ -103,9 +101,7 @@
         <span class="k">with</span> <span class="n">AsyncVideoStream</span><span class="p">()</span> <span class="k">as</span> <span class="n">vc</span><span class="p">:</span>
             <span class="n">coder</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">ImageStreamPlot</span><span class="p">(</span><span class="n">coder</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">vc</span><span class="p">)))</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span>
-                    <span class="n">frame_generator</span><span class="p">(</span><span class="n">vc</span><span class="p">,</span> <span class="n">coder</span><span class="o">=</span><span class="n">coder</span><span class="p">),</span> <span class="n">auto_total_generator</span><span class="o">=</span><span class="kc">False</span>
-                <span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">progress_bar</span><span class="p">(</span><span class="n">frame_generator</span><span class="p">(</span><span class="n">vc</span><span class="p">,</span> <span class="n">coder</span><span class="o">=</span><span class="n">coder</span><span class="p">),</span> <span class="n">auto_total_generator</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
                     <span class="n">s</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
     <span class="n">asdasf</span><span class="p">()</span>

@@ -194,7 +194,7 @@ def test_d4():
     ).to(device)
 
     class RandomDataset(Dataset):
-        """ """
+        """description"""
 
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
@@ -263,7 +263,7 @@ def test_d5():
     batch_shape = torch.Size([batch_size, channels_in, 224, 224])
 
     class RandomDataset(Dataset):
-        """ """
+        """description"""
 
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
@@ -330,7 +330,7 @@ def test_d6():
     batch_shape = torch.Size([batch_size, channels_in, 224, 224])
 
     class RandomDataset(Dataset):
-        """ """
+        """description"""
 
         def __init__(self):
             self.d = numpy.random.sample(data_shape)
@@ -386,7 +386,7 @@ def test_d7():
     dtype = torch.float
 
     class RandomDataset(Dataset):
-        """ """
+        """description"""
 
         def __init__(self):
             self.d = numpy.random.sample(data_shape)

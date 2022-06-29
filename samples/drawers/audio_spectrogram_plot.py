@@ -31,14 +31,14 @@ if __name__ == "__main__":
         print(f"Audio length: {length_sec:.2f} seconds")
 
         def a():
-            """ """
+            """description"""
             n_fft = 32
             s = FastFourierTransformPlot(n_fft=n_fft, sampling_rate=sampling_rate)
             for sample in audio:
                 s.draw(sample)
 
         def b():
-            """ """
+            """description"""
             n_fft = 32
             delta = 1 / sampling_rate
             s = FastFourierTransformSpectrogramPlot(
@@ -50,7 +50,7 @@ if __name__ == "__main__":
                 s.draw(sample)
 
         def c():
-            """ """
+            """description"""
             f, ax = pyplot.subplots()
             ax.plot(numpy.arange(num_samples) / sampling_rate, audio)
             ax.set_xlabel("Time [s]")
@@ -58,7 +58,7 @@ if __name__ == "__main__":
             pyplot.show()
 
         def d():
-            """ """
+            """description"""
             from skimage import util
 
             M = 1024

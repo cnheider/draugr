@@ -42,7 +42,7 @@
 
 
 <div class="viewcode-block" id="ImprovementDetector"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.optimisation.stopping.overfitting.ImprovementDetector.html#draugr.torch_utilities.optimisation.stopping.overfitting.ImprovementDetector">[docs]</a><span class="k">class</span> <span class="nc">ImprovementDetector</span><span class="p">(</span><span class="n">contextlib</span><span class="o">.</span><span class="n">AbstractContextManager</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ImprovementDetector.__init__"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.optimisation.stopping.overfitting.ImprovementDetector.html#draugr.torch_utilities.optimisation.stopping.overfitting.ImprovementDetector.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -78,9 +78,7 @@
             <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_value</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_verbose</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;No improvement since last update: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&gt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_best_value</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No improvement since last update: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&gt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_best_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_best_value</span> <span class="o">=</span> <span class="n">value</span>
@@ -97,11 +95,11 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callback</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ImprovementDetector.reset"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.optimisation.stopping.overfitting.ImprovementDetector.html#draugr.torch_utilities.optimisation.stopping.overfitting.ImprovementDetector.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_best_value</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improvement detector reset&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improvement detector reset&quot;</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
@@ -111,7 +109,7 @@
 
 
 <div class="viewcode-block" id="OverfitDetector"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.html#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector">[docs]</a><span class="k">class</span> <span class="nc">OverfitDetector</span><span class="p">(</span><span class="n">contextlib</span><span class="o">.</span><span class="n">AbstractContextManager</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="OverfitDetector.__init__"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.html#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -170,11 +168,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_callback</span><span class="p">()</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="OverfitDetector.reset"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.html#draugr.torch_utilities.optimisation.stopping.overfitting.OverfitDetector.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_best_value</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overfit detector reset&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_writer</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overfit detector reset&quot;</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>

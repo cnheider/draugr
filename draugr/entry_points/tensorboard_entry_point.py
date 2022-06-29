@@ -63,7 +63,7 @@ def main(keep_alive: bool = True, use_asyncio: bool = True) -> str:
             import asyncio
 
             async def work():
-                """ """
+                """description"""
                 while True:
                     await asyncio.sleep(1)
                     # print("Task Executed")

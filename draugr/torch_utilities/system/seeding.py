@@ -92,7 +92,7 @@ class Seed:
     def __call__(self, function: Callable) -> callable:
         @functools.wraps(function)
         def decorated(*args, **kwargs) -> Any:
-            """ """
+            """description"""
             value = function(*args, **kwargs)
             self.__exit__()
             return value

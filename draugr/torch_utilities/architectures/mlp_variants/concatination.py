@@ -95,7 +95,7 @@ class LateConcatInputMLP(MLP):
 if __name__ == "__main__":
 
     def stest_normal():
-        """ """
+        """description"""
         s = (10,)
         a = (10,)
         model = PreConcatInputMLP(input_shape=s, output_shape=a)
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         print(model.forward(inp))
 
     def stest_multi_dim_normal():
-        """ """
+        """description"""
         s = (19,)
         s1 = (4,)
         batch_size = (100,)
@@ -116,7 +116,7 @@ if __name__ == "__main__":
         print(model.forward(inp, late_input))
 
     def stest_multi_dim_normal21():
-        """ """
+        """description"""
         s = (19,)
         s1 = (4,)
         batch_size = (100,)
@@ -128,7 +128,7 @@ if __name__ == "__main__":
         print(model.forward(inp, late_input))
 
     def stest_multi_dim_normal23121():
-        """ """
+        """description"""
         s = (19,)
         s1 = (4,)
         batch_size = (100,)
@@ -140,7 +140,7 @@ if __name__ == "__main__":
         print(model.forward(inp, late_input))
 
     def stest_multi_dim_normal2321412121():
-        """ """
+        """description"""
         s = (19,)
         s1 = (4,)
         batch_size = (100,)

@@ -134,7 +134,7 @@ if __name__ == "__main__":
         """
 
         def add(a, b, *c):
-            """ """
+            """description"""
             return a + b
 
         print(

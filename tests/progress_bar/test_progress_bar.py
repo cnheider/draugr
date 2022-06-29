@@ -24,7 +24,7 @@ def test_asudhweasijdq():
 
 def test_asudhwea213si23jdq():
     def sas(l):
-        """ """
+        """description"""
         yield from range(l)
 
     for a in progress_bar(sas(129), notifications=False):

@@ -6,7 +6,9 @@ __doc__ = r"""
 
            Created on 31-10-2020
            """
-from draugr.os_utilities.linux_utilities.gtk_utilities import GtkThemePreferences
+
 
 if __name__ == "__main__":
+    from draugr.os_utilities.linux_utilities.gtk_utilities import GtkThemePreferences
+
     GtkThemePreferences().prefer_dark_mode = False

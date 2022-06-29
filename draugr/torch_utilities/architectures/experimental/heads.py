@@ -10,7 +10,7 @@ from draugr.torch_utilities.architectures.mlp import MLP
 
 
 class MultiHeadedMLP(MLP):
-    """ """
+    """description"""
 
     def __init__(self, *, heads_hidden_sizes=(32, 64), heads=(2, 1), **kwargs):
         super().__init__(**kwargs)

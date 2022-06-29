@@ -1,5 +1,5 @@
 __author__ = "Christian Heider Nielsen"
-__doc__ = r""""""
+__doc__ = r"""description"""
 __all__ = ["make_user", "remove_user", "change_passwd", "change_home_dir"]
 
 from pathlib import Path
@@ -16,7 +16,7 @@ def make_user(
     allow_existing_user: bool = True,
     get_sudo: bool = True,
 ) -> None:
-    """ """
+    """description"""
     import crypt
     import sh
     import getpass
@@ -67,7 +67,7 @@ def make_user(
 def remove_user(
     username: str = "demo_user", *, remove_home: bool = True, get_sudo: bool = True
 ) -> None:
-    """ """
+    """description"""
     import sh
     import getpass
 

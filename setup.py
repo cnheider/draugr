@@ -4,7 +4,7 @@ from typing import IO, List, Sequence, Union
 
 
 def python_version_check(major: int = 3, minor: int = 7):
-    """ """
+    """description"""
     import sys
 
     assert sys.version_info.major == major and sys.version_info.minor >= minor, (
@@ -22,14 +22,14 @@ from setuptools import find_packages, setup
 
 
 def read_reqs(file: str, path: Path) -> List[str]:
-    """ """
+    """description"""
 
     def readlines_ignore_comments(f: IO):
-        """ """
+        """description"""
         return [a_ for a_ in f.readlines() if "#" not in a_ and a_]
 
     def recursive_flatten_ignore_str(seq: Sequence) -> Sequence:
-        """ """
+        """description"""
         if not seq:  # is empty Sequence
             return seq
         if isinstance(seq[0], str):
@@ -42,7 +42,7 @@ def read_reqs(file: str, path: Path) -> List[str]:
         return (*seq[:1], *recursive_flatten_ignore_str(seq[1:]))
 
     def unroll_nested_reqs(req_str: str, base_path: Path) -> Sequence:
-        """ """
+        """description"""
         if req_str.startswith("-r"):
             with open(base_path / req_str.strip("-r").strip()) as f:
                 return [
@@ -87,34 +87,34 @@ class DraugrPackage:
 
     @property
     def setup_dependencies(self) -> list:
-        """ """
+        """description"""
         return read_reqs(
             "requirements_setup.txt", Path(__file__).parent / "requirements"
         )
 
     @property
     def package_name(self) -> str:
-        """ """
+        """description"""
         return project_name
 
     @property
     def url(self) -> str:
-        """ """
+        """description"""
         return "https://github.com/pything/draugr"
 
     @property
     def download_url(self) -> str:
-        """ """
+        """description"""
         return f"{self.url}/releases"
 
     @property
     def readme_type(self) -> str:
-        """ """
+        """description"""
         return "text/markdown"
 
     @property
     def packages(self) -> List[Union[bytes, str]]:
-        """ """
+        """description"""
         return find_packages(
             exclude=[
                 # 'Path/To/Exclude'
@@ -123,33 +123,33 @@ class DraugrPackage:
 
     @property
     def author_name(self) -> str:
-        """ """
+        """description"""
         return author
 
     @property
     def author_email(self) -> str:
-        """ """
+        """description"""
         return "christian.heider@alexandra.dk"
 
     @property
     def maintainer_name(self) -> str:
-        """ """
+        """description"""
         return self.author_name
 
     @property
     def maintainer_email(self) -> str:
-        """ """
+        """description"""
         return self.author_email
 
     @property
     def package_data(self) -> dict:
-        """ """
+        """description"""
         emds = [str(p) for p in Path(__file__).parent.rglob(".md")]
         return {"draugr": [*emds]}
 
     @property
     def entry_points(self) -> dict:
-        """ """
+        """description"""
         return {
             "console_scripts": [
                 # "name_of_executable = module.with:function_to_execute"
@@ -162,7 +162,7 @@ class DraugrPackage:
 
     @property
     def extras(self) -> dict:
-        """ """
+        """description"""
         these_extras = {
             # 'ExtraName':['package-name; platform_system == "System(Linux,Windows)"'
         }
@@ -183,40 +183,40 @@ class DraugrPackage:
 
     @property
     def requirements(self) -> list:
-        """ """
+        """description"""
         return read_reqs("requirements.txt", Path(__file__).parent)
 
     @property
     def description(self) -> str:
-        """ """
+        """description"""
         return "A package for plotting directly in your terminal"
 
     @property
     def readme(self) -> str:
-        """ """
+        """description"""
         with open("README.md", encoding="utf8") as f:
             return f.read()
 
     @property
     def changelog(self) -> str:
-        """ """
+        """description"""
         with open("CHANGELOG.md") as f:
             return f.read()
 
     @property
     def keyword(self) -> str:
-        """ """
+        """description"""
         with open("KEYWORDS.md") as f:
             return f.read()
 
     @property
     def license(self) -> str:
-        """ """
+        """description"""
         return "Apache License, Version 2.0"
 
     @property
     def classifiers(self) -> List[str]:
-        """ """
+        """description"""
         return [
             "Development Status :: 4 - Beta",
             "Environment :: Console",
@@ -235,7 +235,7 @@ class DraugrPackage:
 
     @property
     def version(self) -> str:
-        """ """
+        """description"""
         return version
 
 

@@ -63,21 +63,15 @@
 
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Option for launching tensorboard&quot;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;App name to open AppPath for&quot;</span><span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--author&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;App author to open AppPath for&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;App version to open AppPath for&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span>
-    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--author&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;App author to open AppPath for&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;App version to open AppPath for&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--clean&quot;</span><span class="p">,</span>
         <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Adding --clean argument will wipe tensorboard logs&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--port&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">6006</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Which port should tensorboard be served on&quot;</span>
-    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--port&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">6006</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Which port should tensorboard be served on&quot;</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
     <span class="n">project_app_path</span> <span class="o">=</span> <span class="n">AppPath</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
@@ -99,7 +93,7 @@
             <span class="kn">import</span> <span class="nn">asyncio</span>
 
             <span class="k">async</span> <span class="k">def</span> <span class="nf">work</span><span class="p">():</span>
-                <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+                <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
                 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                     <span class="c1"># print(&quot;Task Executed&quot;)</span>

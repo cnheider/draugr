@@ -18,7 +18,7 @@ from warg import passes_kws_to
 
 
 class ImageStreamPlot(MplDrawer):
-    """ """
+    """description"""
 
     @passes_kws_to(MplDrawer.__init__)
     @passes_kws_to(pyplot.imshow)
@@ -46,7 +46,7 @@ class ImageStreamPlot(MplDrawer):
 
     @staticmethod
     def close(event):
-        """ """
+        """description"""
         if event.key == "q":
             pyplot.close(event.canvas.figure)
             raise StopIteration

@@ -74,14 +74,12 @@
     <span class="n">both_none</span> <span class="o">=</span> <span class="n">extensions</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="kc">None</span>
     <span class="n">both_something</span> <span class="o">=</span> <span class="n">extensions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">both_none</span> <span class="ow">or</span> <span class="n">both_something</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;Both extensions and is_valid_file cannot be None or not None at the same time&quot;</span>
-        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Both extensions and is_valid_file cannot be None or not None at the same time&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">extensions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="k">def</span> <span class="nf">is_valid_file</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-            <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+            <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="n">extensions</span>
 
     <span class="k">elif</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -112,9 +110,7 @@
 
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">total</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">SplitEnum</span><span class="o">.</span><span class="n">training</span><span class="p">])</span>
-                <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">SplitEnum</span><span class="o">.</span><span class="n">validation</span><span class="p">])</span>
-                <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">SplitEnum</span><span class="o">.</span><span class="n">testing</span><span class="p">])</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">SplitEnum</span><span class="o">.</span><span class="n">training</span><span class="p">])</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">SplitEnum</span><span class="o">.</span><span class="n">validation</span><span class="p">])</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">SplitEnum</span><span class="o">.</span><span class="n">testing</span><span class="p">])</span>
             <span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">indent_lines</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">SplitEnum</span><span class="o">.</span><span class="n">training</span><span class="p">])</span> <span class="o">/</span> <span class="n">total</span><span class="p">))</span>

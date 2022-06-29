@@ -106,7 +106,7 @@ def max_frequency(key: Any, min_interval: int = 100, verbose: bool = False) -> c
         _GLOBAL_COUNTERS[key] = min_interval
 
         def s() -> bool:
-            """ """
+            """description"""
             if verbose:
                 print(f"{key, _GLOBAL_COUNTERS[key], min_interval}")
             if _GLOBAL_COUNTERS[key] >= min_interval:
@@ -242,7 +242,7 @@ if __name__ == "__main__":
     # uhsud123()
 
     def iuhasd():
-        """ """
+        """description"""
         from random import random
 
         a = 0
@@ -253,7 +253,7 @@ if __name__ == "__main__":
                     print(i, a)
 
     def iuhasd2():
-        """ """
+        """description"""
         from random import random
 
         f = max_frequency("key2", 100)

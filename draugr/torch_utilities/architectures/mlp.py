@@ -228,7 +228,7 @@ if __name__ == "__main__":
     seed_stack(4)
 
     def stest_single_dim():
-        """ """
+        """description"""
         pos_size = (4,)
         a_size = (1,)
         model = MLP(input_shape=pos_size, output_shape=a_size)
@@ -239,7 +239,7 @@ if __name__ == "__main__":
         print(model(pos_1)[0].shape)
 
     def stest_hidden_dim():
-        """ """
+        """description"""
         pos_size = (3,)
         hidden_size = list(range(6, 10))
         a_size = (4,)
@@ -290,7 +290,7 @@ if __name__ == "__main__":
         print(model3(pos_1).shape)
 
     def stest_multi_dim_in():
-        """ """
+        """description"""
         pos_size = (2, 3, 2)
         a_size = (2, 4, 5)
         model = MLP(input_shape=pos_size, output_shape=a_size)
@@ -304,7 +304,7 @@ if __name__ == "__main__":
         print(model(pos_1, pos_2)[0].shape)
 
     def stest_multi_dim_out():
-        """ """
+        """description"""
         pos_size = (10,)
         a_size = (2, 1)
         model = MLP(input_shape=pos_size, hidden_layers=(100,), output_shape=a_size)
@@ -317,7 +317,7 @@ if __name__ == "__main__":
         print(len(res), res[0].shape, res[1].shape)
 
     def stest_multi_dim_both():
-        """ """
+        """description"""
         pos_size = (2, 3)
         a_size = (2, 4, 5)
         model = MLP(input_shape=pos_size, output_shape=a_size)
@@ -333,7 +333,7 @@ if __name__ == "__main__":
         print(len(res), res[0].shape, res[1].shape, res[2].shape)
 
     def stest_auto():
-        """ """
+        """description"""
         pos_size = (4,)
         a_size = (2,)
         model = MLP(input_shape=pos_size, output_shape=a_size)

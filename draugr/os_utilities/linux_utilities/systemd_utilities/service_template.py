@@ -1,5 +1,5 @@
 __author__ = "Christian Heider Nielsen"
-__doc__ = r""""""
+__doc__ = r"""description"""
 __all__ = [
     "SERVICE_TEMPLATE",
     "SERVICE_TEMPLATE_USER_SIMPLE",

@@ -4,7 +4,7 @@
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -71,7 +71,7 @@ else:
 
 
 def get_version(append_time: Any = DEVELOP) -> str:
-    """ """
+    """description"""
     version = __version__
     if not version:
         version = os.getenv("VERSION", "0.0.0")

@@ -49,16 +49,14 @@
 
 
 <div class="viewcode-block" id="RecurrentCategoricalMLP"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.architectures.experimental.recurrent.RecurrentCategoricalMLP.html#draugr.torch_utilities.architectures.experimental.recurrent.RecurrentCategoricalMLP">[docs]</a><span class="k">class</span> <span class="nc">RecurrentCategoricalMLP</span><span class="p">(</span><span class="n">MLP</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RecurrentCategoricalMLP.__init__"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.architectures.experimental.recurrent.RecurrentCategoricalMLP.html#draugr.torch_utilities.architectures.experimental.recurrent.RecurrentCategoricalMLP.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r_hidden_layers</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_r_hidden_layers</span> <span class="o">=</span> <span class="n">r_hidden_layers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_r_input_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_shape</span> <span class="o">+</span> <span class="n">r_hidden_layers</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_r_input_shape</span><span class="p">,</span> <span class="n">r_hidden_layers</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_bias</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_r_input_shape</span><span class="p">,</span> <span class="n">r_hidden_layers</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_bias</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_r_input_shape</span><span class="p">,</span> <span class="n">r_hidden_layers</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_use_bias</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_prev_hidden_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">r_hidden_layers</span><span class="p">)</span></div>
@@ -102,7 +100,7 @@
 
 
 <div class="viewcode-block" id="RecurrentBase"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.architectures.experimental.recurrent.RecurrentBase.html#draugr.torch_utilities.architectures.experimental.recurrent.RecurrentBase">[docs]</a><span class="k">class</span> <span class="nc">RecurrentBase</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RecurrentBase.__init__"><a class="viewcode-back" href="../../../../../generated/draugr.torch_utilities.architectures.experimental.recurrent.RecurrentBase.html#draugr.torch_utilities.architectures.experimental.recurrent.RecurrentBase.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recurrent</span><span class="p">,</span> <span class="n">recurrent_input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>

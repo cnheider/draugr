@@ -23,7 +23,7 @@ from warg import passes_kws_to
 
 
 class SeriesScrollPlot(MplDrawer):
-    """ """
+    """description"""
 
     @passes_kws_to(MplDrawer.__init__)
     def __init__(
@@ -151,7 +151,7 @@ if __name__ == "__main__":
         from math import cos, sin
 
         def multi_series():
-            """ """
+            """description"""
             s = SeriesScrollPlot(
                 window_length=200, reverse=False, overwrite=False, default_delta=None
             )
@@ -159,19 +159,19 @@ if __name__ == "__main__":
                 s.draw([sin(i / 100) * 2, cos(i / 10)])
 
         def single_series():
-            """ """
+            """description"""
             s = SeriesScrollPlot(window_length=200, reverse=False, overwrite=False)
             for i in range(1000):
                 s.draw([sin(i / 20)], 1.0 / 60.0)
 
         def single_series_no_wrap():
-            """ """
+            """description"""
             s = SeriesScrollPlot(window_length=200, reverse=True, overwrite=False)
             for i in range(1000):
                 s.draw(sin(i / 20), 1.0 / 60.0)
 
         def single_series_no_wrap_rescale():
-            """ """
+            """description"""
             s = SeriesScrollPlot(window_length=100, reverse=True, overwrite=False)
             for i in range(1000):
                 s.draw(sin(i / 100), 1.0 / 60.0)

@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class TaskActionTypeEnum(Enum):
-    """ """
+    """description"""
 
     TASK_ACTION_EXEC = 0
     TASK_ACTION_COM_HANDLER = 5

@@ -21,5 +21,5 @@ class InstantiationWriterMixin(ABC):
     @drop_unused_kws
     @abstractmethod
     def instance(self, instance: Mapping, metrics: Mapping) -> None:
-        """ """
+        """description"""
         raise NotImplementedError

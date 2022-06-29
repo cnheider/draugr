@@ -20,7 +20,7 @@ class Meter:
         self.reset()
 
     def reset(self):
-        """ """
+        """description"""
         self.val = 0
         self.sum = 0
         self.count = 0
@@ -45,7 +45,7 @@ class AverageMeter(Meter):
         self.avg = 0
 
     def reset(self):
-        """ """
+        """description"""
         super().reset()
 
     def update(self, val, n: int = 1):

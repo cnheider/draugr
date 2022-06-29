@@ -56,7 +56,7 @@
 
 
 <div class="viewcode-block" id="CSVWriter"><a class="viewcode-back" href="../../../generated/draugr.writers.csv_writer.CSVWriter.html#draugr.writers.csv_writer.CSVWriter">[docs]</a><span class="k">class</span> <span class="nc">CSVWriter</span><span class="p">(</span><span class="n">Writer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CSVWriter.get_csv_writer"><a class="viewcode-back" href="../../../generated/draugr.writers.csv_writer.CSVWriter.html#draugr.writers.csv_writer.CSVWriter.get_csv_writer">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_csv_writer</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;Models&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">TextIO</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -69,9 +69,7 @@
         <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span> <span class="ow">or</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">&quot;.csv&quot;</span><span class="p">:</span>
             <span class="n">path</span> <span class="o">/=</span> <span class="s2">&quot;log.csv&quot;</span>
         <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-            <span class="nb">str</span><span class="p">(</span>
-                <span class="n">ensure_existence</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">overwrite_on_wrong_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">declare_file</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="p">),</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">ensure_existence</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">overwrite_on_wrong_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">declare_file</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
             <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">csv_file</span><span class="p">,</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span></div>

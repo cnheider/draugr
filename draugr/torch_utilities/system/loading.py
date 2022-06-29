@@ -19,7 +19,7 @@ from draugr.torch_utilities.system.device import global_torch_device
 
 
 def default_worker_init_fn() -> None:
-    """ """
+    """description"""
     worker_seed = torch.initial_seed()
     torch.random.seed(worker_seed)
     random.seed(worker_seed)

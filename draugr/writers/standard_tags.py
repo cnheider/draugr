@@ -15,7 +15,7 @@ from sorcery import assigned_names
 
 
 class TrainingScalars(Enum):
-    """ """
+    """description"""
 
     (
         training_loss,
@@ -26,7 +26,7 @@ class TrainingScalars(Enum):
 
 
 class TrainingCurves(Enum):
-    """ """
+    """description"""
 
     (
         validation_precision_recall,
@@ -35,13 +35,13 @@ class TrainingCurves(Enum):
 
 
 class TrainingTables(Enum):
-    """ """
+    """description"""
 
     validation_confusion_matrix, validation_support = assigned_names()
 
 
 class TestingScalars(Enum):
-    """ """
+    """description"""
 
     (
         test_accuracy,
@@ -52,13 +52,13 @@ class TestingScalars(Enum):
 
 
 class TestingCurves(Enum):
-    """ """
+    """description"""
 
     test_precision_recall, test_receiver_operator_characteristic = assigned_names()
 
 
 class TestingTables(Enum):
-    """ """
+    """description"""
 
     test_confusion_matrix, test_support = assigned_names()
 

@@ -72,7 +72,7 @@ class ConvertFromInts(object):
 
 
 class SubtractMeans(object):
-    """ """
+    """description"""
 
     def __init__(self, mean: Tuple):
         self.mean = numpy.array(mean, dtype=numpy.float32)
@@ -111,7 +111,7 @@ class CV2ToPercentCoords(object):
 
 
 class CV2Resize(object):
-    """ """
+    """description"""
 
     def __init__(self, size: int = 300):
         self._size = size
@@ -127,7 +127,7 @@ class CV2Resize(object):
 
 
 class CV2RandomSaturation(object):
-    """ """
+    """description"""
 
     def __init__(self, lower: float = 0.5, upper: float = 1.5):
         self.lower = lower
@@ -148,7 +148,7 @@ class CV2RandomSaturation(object):
 
 
 class CV2RandomHue(object):
-    """ """
+    """description"""
 
     def __init__(self, delta: float = 18.0):
         assert 0.0 <= delta <= 360.0
@@ -168,7 +168,7 @@ class CV2RandomHue(object):
 
 
 class CV2RandomLightingNoise(object):
-    """ """
+    """description"""
 
     def __init__(self):
         self.perms = ((0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), (2, 1, 0))
@@ -187,7 +187,7 @@ class CV2RandomLightingNoise(object):
 
 
 class CV2ConvertColor(object):
-    """ """
+    """description"""
 
     def __init__(self, current, transform):
         self.transform = transform
@@ -215,7 +215,7 @@ class CV2ConvertColor(object):
 
 
 class CV2RandomContrast(object):
-    """ """
+    """description"""
 
     def __init__(self, lower: float = 0.5, upper: float = 1.5):
         self.lower = lower
@@ -237,7 +237,7 @@ class CV2RandomContrast(object):
 
 
 class CV2RandomBrightness(object):
-    """ """
+    """description"""
 
     def __init__(self, delta: float = 32):
         assert delta >= 0.0
@@ -366,7 +366,7 @@ class CV2RandomSampleCrop(object):
 
 
 class CV2Expand(object):
-    """ """
+    """description"""
 
     def __init__(self, mean: float):
         self.mean = mean
@@ -435,7 +435,7 @@ class CV2SwapChannels(object):
 
 
 class CV2PhotometricDistort(object):
-    """ """
+    """description"""
 
     def __init__(self):
         self.pd = [

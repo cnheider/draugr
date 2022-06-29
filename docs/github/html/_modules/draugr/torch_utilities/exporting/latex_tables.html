@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>draugr.torch_utilities.exporting.latex_tables &#8212; Draugr 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="canonical" href="pything.github.io/draugr/_modules/draugr/torch_utilities/exporting/latex_tables.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for draugr.torch_utilities.exporting.latex_tables</h1><div class="highlight"><pre>
+<span></span><span class="c1"># !/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Christian Heider Nielsen&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">           Created on 26-06-2021</span>
+<span class="s2">           &quot;&quot;&quot;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">table_row_name</span> <span class="o">=</span> <span class="s2">&quot;tablerow&quot;</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;Rocket&quot;</span><span class="p">,</span> <span class="s2">&quot;Organisation&quot;</span><span class="p">,</span> <span class="s2">&quot;LEO Payload (Tonnes)&quot;</span><span class="p">,</span> <span class="s2">&quot;Maiden Flight&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Saturn V&quot;</span><span class="p">,</span> <span class="s2">&quot;NASA&quot;</span><span class="p">,</span> <span class="s2">&quot;140&quot;</span><span class="p">,</span> <span class="s2">&quot;1967&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Space Shuttle&quot;</span><span class="p">,</span> <span class="s2">&quot;NASA&quot;</span><span class="p">,</span> <span class="s2">&quot;24.4&quot;</span><span class="p">,</span> <span class="s2">&quot;1981&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Falcon 9 FT-Expended&quot;</span><span class="p">,</span> <span class="s2">&quot;SpaceX&quot;</span><span class="p">,</span> <span class="s2">&quot;22.8&quot;</span><span class="p">,</span> <span class="s2">&quot;2017&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Ariane 5 ECA&quot;</span><span class="p">,</span> <span class="s2">&quot;ESA&quot;</span><span class="p">,</span> <span class="s2">&quot;21&quot;</span><span class="p">,</span> <span class="s2">&quot;2002&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="asijd"><a class="viewcode-back" href="../../../../generated/draugr.torch_utilities.exporting.latex_tables.asijd.html#draugr.torch_utilities.exporting.latex_tables.asijd">[docs]</a><span class="k">def</span> <span class="nf">asijd</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :rtype: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Tabulate Latex:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;firstrow&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;latex&quot;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="adasdassijd"><a class="viewcode-back" href="../../../../generated/draugr.torch_utilities.exporting.latex_tables.adasdassijd.html#draugr.torch_utilities.exporting.latex_tables.adasdassijd">[docs]</a><span class="k">def</span> <span class="nf">adasdassijd</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :rtype: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">texttable</span> <span class="kn">import</span> <span class="n">Texttable</span>
+
+    <span class="n">table</span> <span class="o">=</span> <span class="n">Texttable</span><span class="p">()</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">set_cols_align</span><span class="p">([</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">set_deco</span><span class="p">(</span><span class="n">Texttable</span><span class="o">.</span><span class="n">HEADER</span> <span class="o">|</span> <span class="n">Texttable</span><span class="o">.</span><span class="n">VLINES</span><span class="p">)</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">add_rows</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Texttable Table:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">draw</span><span class="p">())</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Texttable Latex:&quot;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">latextable</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">latextable</span><span class="o">.</span><span class="n">draw_latex</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;A comparison of rocket features.&quot;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="iasjduh"><a class="viewcode-back" href="../../../../generated/draugr.torch_utilities.exporting.latex_tables.iasjduh.html#draugr.torch_utilities.exporting.latex_tables.iasjduh">[docs]</a><span class="k">def</span> <span class="nf">iasjduh</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :rtype: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">texttable</span> <span class="kn">import</span> <span class="n">Texttable</span>
+
+    <span class="n">table</span> <span class="o">=</span> <span class="n">Texttable</span><span class="p">()</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">set_cols_align</span><span class="p">([</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">set_cols_valign</span><span class="p">([</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">add_rows</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="s2">&quot;Nickname&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;Mr</span><span class="se">\n</span><span class="s2">Xavier</span><span class="se">\n</span><span class="s2">Huon&quot;</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="s2">&quot;Xav&#39;&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;Mr</span><span class="se">\n</span><span class="s2">Baptiste</span><span class="se">\n</span><span class="s2">Clement&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Baby&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;Mme</span><span class="se">\n</span><span class="s2">Louise</span><span class="se">\n</span><span class="s2">Bourgeau&quot;</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="s2">&quot;Lou</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">Loue&quot;</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">latextable</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">latextable</span><span class="o">.</span><span class="n">draw_latex</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;An example table.&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">table</span> <span class="o">=</span> <span class="n">Texttable</span><span class="p">()</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">set_deco</span><span class="p">(</span><span class="n">Texttable</span><span class="o">.</span><span class="n">HEADER</span><span class="p">)</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">set_cols_dtype</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;t&quot;</span><span class="p">,</span>  <span class="c1"># text</span>
+            <span class="s2">&quot;f&quot;</span><span class="p">,</span>  <span class="c1"># float (decimal)</span>
+            <span class="s2">&quot;e&quot;</span><span class="p">,</span>  <span class="c1"># float (exponent)</span>
+            <span class="s2">&quot;i&quot;</span><span class="p">,</span>  <span class="c1"># integer</span>
+            <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>  <span class="c1"># automatic</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">set_cols_align</span><span class="p">([</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;l&quot;</span><span class="p">])</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">add_rows</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span> <span class="s2">&quot;exp&quot;</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;auto&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;abcd&quot;</span><span class="p">,</span> <span class="s2">&quot;67&quot;</span><span class="p">,</span> <span class="mi">654</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mf">128.001</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;efghijk&quot;</span><span class="p">,</span> <span class="mf">67.5434</span><span class="p">,</span> <span class="mf">0.654</span><span class="p">,</span> <span class="mf">89.6</span><span class="p">,</span> <span class="mf">12800000000000000000000.00023</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;lmn&quot;</span><span class="p">,</span> <span class="mf">5e-78</span><span class="p">,</span> <span class="mf">5e-78</span><span class="p">,</span> <span class="mf">89.4</span><span class="p">,</span> <span class="mf">0.000000000000128</span><span class="p">],</span>
+            <span class="p">[</span><span class="s2">&quot;opqrstu&quot;</span><span class="p">,</span> <span class="mf">0.023</span><span class="p">,</span> <span class="mf">5e78</span><span class="p">,</span> <span class="mf">92.0</span><span class="p">,</span> <span class="mi">12800000000000000000000</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">latextable</span><span class="o">.</span><span class="n">draw_latex</span><span class="p">(</span>
+            <span class="n">table</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;Another table.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;table:another_table&quot;</span>
+        <span class="p">)</span>
+        <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">latextable</span><span class="o">.</span><span class="n">draw_latex</span><span class="p">(</span>
+            <span class="n">table</span><span class="p">,</span>
+            <span class="n">caption</span><span class="o">=</span><span class="s2">&quot;A table with dropped columns.&quot;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;table:dropped_column_table&quot;</span><span class="p">,</span>
+            <span class="n">drop_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;exp&quot;</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<span class="n">adasdassijd</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Draugr</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../generated/draugr.html">draugr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  <li><a href="../../../draugr.html">draugr</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -11,7 +11,7 @@ __all__ = ["GtkThemePreferences"]
 
 from typing import Union
 
-from draugr.os_utilities.linux_utilities.gtk_utilities.gtk_settings import GtkSettings
+from .gtk_settings import GtkSettings
 
 
 class GtkThemePreferences(GtkSettings):
@@ -21,7 +21,7 @@ class GtkThemePreferences(GtkSettings):
 
     @property
     def theme(self) -> Union[str, bytes]:
-        """
+        """description
 
         :return:
         """
@@ -33,7 +33,7 @@ class GtkThemePreferences(GtkSettings):
 
     @property
     def prefer_dark_mode(self) -> bool:
-        """
+        """description
 
         :return:
         """

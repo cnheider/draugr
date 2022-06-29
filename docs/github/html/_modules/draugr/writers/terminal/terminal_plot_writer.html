@@ -65,9 +65,9 @@
 
 
 <div class="viewcode-block" id="TerminalPlotWriter"><a class="viewcode-back" href="../../../../generated/draugr.writers.terminal.terminal_plot_writer.TerminalPlotWriter.html#draugr.writers.terminal.terminal_plot_writer.TerminalPlotWriter">[docs]</a><span class="k">class</span> <span class="nc">TerminalPlotWriter</span><span class="p">(</span><span class="n">Writer</span><span class="p">,</span> <span class="n">ImageWriterMixin</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span>
+<div class="viewcode-block" id="TerminalPlotWriter.image"><a class="viewcode-back" href="../../../../generated/draugr.writers.terminal.terminal_plot_writer.TerminalPlotWriter.html#draugr.writers.terminal.terminal_plot_writer.TerminalPlotWriter.image">[docs]</a>    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">],</span>
@@ -76,8 +76,8 @@
         <span class="n">dataformats</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;NCHW&quot;</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">terminalise_image</span><span class="p">(</span><span class="n">render_image</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))))</span>
+        <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">terminalise_image</span><span class="p">(</span><span class="n">render_image</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))))</span></div>
 
     <span class="k">def</span> <span class="nf">_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">E</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">()</span>

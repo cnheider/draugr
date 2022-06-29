@@ -186,7 +186,7 @@ def eye_aspect_ratio(coordinates: Sequence[Sequence]) -> float:
 if __name__ == "__main__":
 
     def asud():
-        """ """
+        """description"""
         a = list(range(99))
         slices = (
             Dlib68faciallandmarksindices.left_eye
@@ -196,7 +196,7 @@ if __name__ == "__main__":
         print(Dlib68faciallandmarksindices.slice(a, slices))
 
     def as34ud():
-        """ """
+        """description"""
         a = list(range(99))
         print(
             Dlib68faciallandmarksindices.slice(a, Dlib68faciallandmarksindices.left_eye)

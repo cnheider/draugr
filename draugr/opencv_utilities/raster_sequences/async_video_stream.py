@@ -16,7 +16,7 @@ __all__ = ["AsyncVideoStream"]
 
 
 class AsyncVideoStream:
-    """ """
+    """description"""
 
     def __init__(
         self, src: Union[int, str] = 0, thread_name: str = None, group: Any = None
@@ -45,7 +45,7 @@ class AsyncVideoStream:
         return self
 
     def update(self):
-        """ """
+        """description"""
         while not self._stopped:  # keep looping infinitely until the thread is stopped
             (
                 self.grabbed,
@@ -53,17 +53,17 @@ class AsyncVideoStream:
             ) = self._stream.read()  # otherwise, read the next frame from the stream
 
     def read(self):
-        """ """
+        """description"""
         return self.grabbed, self.frame  # return the frame most recently read
 
     def stop(self):
-        """ """
+        """description"""
         self._stream.release()
         self._stopped = True  # indicate that the thread should be stopped
 
     # noinspection PyPep8Naming
     def isOpened(self):
-        """ """
+        """description"""
         return self._stream.isOpened()
 
     def __call__(self, *args, **kwargs):

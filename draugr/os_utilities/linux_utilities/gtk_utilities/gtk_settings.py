@@ -41,7 +41,7 @@ from warg import SingletonMeta
 
 
 class GtkSettings(metaclass=SingletonMeta):
-    """ """
+    """description"""
 
     def __init__(self):
         try:
@@ -66,7 +66,7 @@ class GtkSettings(metaclass=SingletonMeta):
 
     @property
     def all_settings(self):
-        """ """
+        """description"""
         for i in self.settings.list_properties():  # getting all existing properties
             yield i
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         a = GtkSettings()
 
         def ofgof():
-            """ """
+            """description"""
             for b in a.all_settings:
                 print(b)
 

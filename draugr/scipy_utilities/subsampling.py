@@ -27,7 +27,7 @@ def max_decimation_subsample(
     return_indices: bool = False,
     truncate_last_indivisible: bool = True,
 ) -> numpy.ndarray:
-    """ """
+    """description"""
     signal = numpy.array(signal)
     if truncate_last_indivisible:
         div = len(signal) // decimation_factor
@@ -48,7 +48,7 @@ def min_decimation_subsample(
     return_indices: bool = False,
     truncate_last_indivisible: bool = True,
 ) -> numpy.ndarray:
-    """ """
+    """description"""
     signal = numpy.array(signal)
     if truncate_last_indivisible:
         div = len(signal) // decimation_factor
@@ -103,7 +103,7 @@ def grad_decimation_subsample() -> None:
 def fir_subsample(
     signal: numpy.ndarray, max_resolution: int, sampling_rate: int
 ) -> Tuple[numpy.ndarray, numpy.ndarray]:
-    """ """
+    """description"""
     if signal.shape[-1] > max_resolution:
         sub_signal = decimate(signal, (signal.shape[-1] // max_resolution) + 1, axis=-1)
     else:
@@ -119,7 +119,7 @@ def fir_subsample(
 def fft_subsample(
     signal: numpy.ndarray, max_resolution: int, sampling_rate: int
 ) -> Tuple[numpy.ndarray, numpy.ndarray]:
-    """ """
+    """description"""
     if signal.shape[-1] > max_resolution:
         sub_signal = resample(signal, max_resolution, axis=-1)
     else:

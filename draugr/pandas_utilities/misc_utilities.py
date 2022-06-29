@@ -57,7 +57,7 @@ class ChainedAssignmentOptionEnum(enum.Enum):
 
 
 def duplicate_columns(frame: pandas.DataFrame) -> List[str]:
-    """ """
+    """description"""
     groups = frame.columns.to_series().groupby(frame.dtypes).groups
     duplicates = []
 

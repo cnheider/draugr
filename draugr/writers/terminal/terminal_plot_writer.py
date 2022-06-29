@@ -29,7 +29,7 @@ __all__ = ["TerminalPlotWriter"]
 
 
 class TerminalPlotWriter(Writer, ImageWriterMixin):
-    """ """
+    """description"""
 
     def image(
         self,
@@ -40,7 +40,7 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
         dataformats: str = "NCHW",
         **kwargs,
     ) -> None:
-        """ """
+        """description"""
         self.E.write(terminalise_image(render_image(data, scale=(28, 28))))
 
     def _open(self):

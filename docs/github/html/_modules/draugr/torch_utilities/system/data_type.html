@@ -49,9 +49,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;global_torch_dtype&quot;</span><span class="p">,</span> <span class="s2">&quot;set_global_torch_dtype&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="global_torch_dtype"><a class="viewcode-back" href="../../../../generated/draugr.torch_utilities.system.data_type.global_torch_dtype.html#draugr.torch_utilities.system.data_type.global_torch_dtype">[docs]</a><span class="k">def</span> <span class="nf">global_torch_dtype</span><span class="p">(</span>
-    <span class="n">override</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span><span class="p">:</span>
+<div class="viewcode-block" id="global_torch_dtype"><a class="viewcode-back" href="../../../../generated/draugr.torch_utilities.system.data_type.global_torch_dtype.html#draugr.torch_utilities.system.data_type.global_torch_dtype">[docs]</a><span class="k">def</span> <span class="nf">global_torch_dtype</span><span class="p">(</span><span class="n">override</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">    first time call stores to dtype for global reference, later call must manually override</span>
@@ -76,7 +74,7 @@
 
 
 <div class="viewcode-block" id="set_global_torch_dtype"><a class="viewcode-back" href="../../../../generated/draugr.torch_utilities.system.data_type.set_global_torch_dtype.html#draugr.torch_utilities.system.data_type.set_global_torch_dtype">[docs]</a><span class="k">def</span> <span class="nf">set_global_torch_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">GLOBAL_DTYPE</span>
     <span class="n">GLOBAL_DTYPE</span> <span class="o">=</span> <span class="n">dtype</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">set_default_dtype</span><span class="p">(</span><span class="n">GLOBAL_DTYPE</span><span class="p">)</span></div>

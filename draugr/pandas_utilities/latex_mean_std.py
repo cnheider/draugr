@@ -326,11 +326,11 @@ if __name__ == "__main__":
         ]
 
         def asodjiasj():
-            """ """
+            """description"""
             print(pandas_mean_std(df, "c_asd"))
 
         def asidj():
-            """ """
+            """description"""
             print(pandas_mean_std_latex_table(df, "c_asd", "some_table"))
 
         asodjiasj()
