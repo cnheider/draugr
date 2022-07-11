@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.flags.TermCriteriaFlag
 ==========================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.flags
 
 .. autoclass:: TermCriteriaFlag

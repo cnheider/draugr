@@ -1,6 +1,8 @@
 draugr.drawers.mpl\_drawers.series\_scroll\_plot.SeriesScrollPlot
 =================================================================
 
+
+
 .. currentmodule:: draugr.drawers.mpl_drawers.series_scroll_plot
 
 .. autoclass:: SeriesScrollPlot

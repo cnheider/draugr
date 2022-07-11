@@ -1,6 +1,8 @@
 draugr.python\_utilities.broadcasting.BroadcastNone
 ===================================================
 
+
+
 .. currentmodule:: draugr.python_utilities.broadcasting
 
 .. autoclass:: BroadcastNone

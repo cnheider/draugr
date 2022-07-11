@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.datasets.categorical
 ============================================
 
+
+
 .. automodule:: draugr.numpy_utilities.datasets.categorical
 
    

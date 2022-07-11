@@ -1,6 +1,8 @@
 draugr.torch\_utilities.optimisation.stopping.overfitting.ImprovementDetector
 =============================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.optimisation.stopping.overfitting
 
 .. autoclass:: ImprovementDetector

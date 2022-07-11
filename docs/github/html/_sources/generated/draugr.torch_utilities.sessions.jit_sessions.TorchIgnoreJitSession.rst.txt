@@ -1,6 +1,8 @@
 draugr.torch\_utilities.sessions.jit\_sessions.TorchIgnoreJitSession
 ====================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.sessions.jit_sessions
 
 .. autoclass:: TorchIgnoreJitSession

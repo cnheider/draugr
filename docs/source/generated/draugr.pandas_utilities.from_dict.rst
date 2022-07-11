@@ -1,6 +1,8 @@
 draugr.pandas\_utilities.from\_dict
 ===================================
 
+
+
 .. automodule:: draugr.pandas_utilities.from_dict
 
    

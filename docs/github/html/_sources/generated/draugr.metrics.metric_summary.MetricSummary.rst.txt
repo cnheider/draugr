@@ -1,6 +1,8 @@
 draugr.metrics.metric\_summary.MetricSummary
 ============================================
 
+
+
 .. currentmodule:: draugr.metrics.metric_summary
 
 .. autoclass:: MetricSummary

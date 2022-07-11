@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.MarkerTypeEnum
 ========================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: MarkerTypeEnum

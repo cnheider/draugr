@@ -1,6 +1,8 @@
 draugr.torch\_utilities.datasets.supervised.categorical\_dataset.CategoricalDataset
 ===================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.datasets.supervised.categorical_dataset
 
 .. autoclass:: CategoricalDataset

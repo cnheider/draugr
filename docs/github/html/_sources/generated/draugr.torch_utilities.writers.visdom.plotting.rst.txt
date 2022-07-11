@@ -1,6 +1,8 @@
 draugr.torch\_utilities.writers.visdom.plotting
 ===============================================
 
+
+
 .. automodule:: draugr.torch_utilities.writers.visdom.plotting
 
    

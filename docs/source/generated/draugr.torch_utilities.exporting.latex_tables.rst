@@ -1,5 +1,7 @@
-﻿draugr.torch\_utilities.exporting.latex\_tables
+draugr.torch\_utilities.exporting.latex\_tables
 ===============================================
+
+
 
 .. automodule:: draugr.torch_utilities.exporting.latex_tables
 

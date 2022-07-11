@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.transformation.cv2\_transforms.Lambda
 ==============================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.transformation.cv2_transforms
 
 .. autoclass:: Lambda

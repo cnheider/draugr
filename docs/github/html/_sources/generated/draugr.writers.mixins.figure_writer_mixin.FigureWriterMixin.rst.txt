@@ -1,6 +1,8 @@
 draugr.writers.mixins.figure\_writer\_mixin.FigureWriterMixin
 =============================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.figure_writer_mixin
 
 .. autoclass:: FigureWriterMixin

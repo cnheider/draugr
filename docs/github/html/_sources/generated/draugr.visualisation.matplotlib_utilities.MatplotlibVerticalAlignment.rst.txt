@@ -1,6 +1,8 @@
 draugr.visualisation.matplotlib\_utilities.MatplotlibVerticalAlignment
 ======================================================================
 
+
+
 .. currentmodule:: draugr.visualisation.matplotlib_utilities
 
 .. autoclass:: MatplotlibVerticalAlignment

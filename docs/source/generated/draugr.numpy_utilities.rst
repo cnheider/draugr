@@ -1,6 +1,8 @@
 draugr.numpy\_utilities
 =======================
 
+
+
 .. automodule:: draugr.numpy_utilities
 
    

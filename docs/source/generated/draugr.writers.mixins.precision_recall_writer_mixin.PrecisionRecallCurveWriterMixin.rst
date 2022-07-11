@@ -1,6 +1,8 @@
 draugr.writers.mixins.precision\_recall\_writer\_mixin.PrecisionRecallCurveWriterMixin
 ======================================================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.precision_recall_writer_mixin
 
 .. autoclass:: PrecisionRecallCurveWriterMixin

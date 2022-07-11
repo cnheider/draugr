@@ -1,6 +1,8 @@
 draugr.torch\_utilities.sessions.device\_sessions.TorchCudaSession
 ==================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.sessions.device_sessions
 
 .. autoclass:: TorchCudaSession

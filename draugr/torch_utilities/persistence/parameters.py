@@ -10,7 +10,7 @@ __doc__ = r"""
 import datetime
 import os
 from typing import Optional, Tuple, Union
-
+from torch import nn
 import torch
 from torch.nn.modules.module import Module
 from torch.optim import Optimizer
@@ -37,7 +37,7 @@ from pathlib import Path
 
 @drop_unused_kws
 def load_latest_model_parameters(
-    model: torch.nn.Module,
+    model: Union[torch.nn.Module, nn.Parameter],
     *,
     optimiser: Optimizer = None,
     model_name: str,
@@ -55,30 +55,34 @@ def load_latest_model_parameters(
     :return:"""
     model_loaded = False
     optimiser_loaded = False
-    if model:
-        model_path = model_directory / model_name
-        list_of_files = list(model_path.glob(f"*{parameter_extension}"))
-        if len(list_of_files) == 0:
-            print(
-                f"Found no previous models with extension {parameter_extension} in {model_path}"
-            )
-        else:
-            latest_model_parameter_file = max(list_of_files, key=os.path.getctime)
-            print(f"loading previous model parameters: {latest_model_parameter_file}")
+    model_path = model_directory / model_name
 
-            model.load_state_dict(torch.load(str(latest_model_parameter_file)))
-            model_loaded = True
+    list_of_files = list(model_path.glob(f"*{parameter_extension}"))
+    if len(list_of_files) == 0:
+        print(
+            f"Found no previous models with extension {parameter_extension} in {model_path}"
+        )
+    else:
+        latest_model_parameter_file = max(list_of_files, key=os.path.getctime)
+        print(f"loading previous model parameters: {latest_model_parameter_file}")
 
-            if optimiser:
-                opt_st_d_file = latest_model_parameter_file.with_suffix(
-                    optimiser_extension
-                )
-                if opt_st_d_file.exists():
-                    optimiser.load_state_dict(torch.load(str(opt_st_d_file)))
-                    print(f"loading previous optimiser state: {opt_st_d_file}")
-                    optimiser_loaded = True
+    if isinstance(model, torch.nn.Module):
+        model.load_state_dict(torch.load(str(latest_model_parameter_file)))
+        model_loaded = True
+    elif isinstance(model, nn.Parameter):
+        model.data = torch.load(str(latest_model_parameter_file))
+        model_loaded = True
+    else:
+        # print(f"model must be a torch.nn.Module or nn.Parameter")
+        raise TypeError(f"model must be a torch.nn.Module or nn.Parameter")
 
     if optimiser:
+        opt_st_d_file = latest_model_parameter_file.with_suffix(optimiser_extension)
+        if opt_st_d_file.exists():
+            optimiser.load_state_dict(torch.load(str(opt_st_d_file)))
+            print(f"loading previous optimiser state: {opt_st_d_file}")
+            optimiser_loaded = True
+
         return (model, optimiser), (model_loaded, optimiser_loaded)
     return model, model_loaded
 
@@ -89,7 +93,7 @@ load_model_parameters = load_latest_model_parameters
 # @passes_kws_to(save_config)
 def save_parameters_and_configuration(
     *,
-    model: Module,
+    model: Union[torch.nn.Module, nn.Parameter],
     model_save_path: Path,
     optimiser: Optional[Optimizer] = None,
     optimiser_save_path: Optional[Path] = None,
@@ -107,7 +111,12 @@ def save_parameters_and_configuration(
     :param config_save_path:
     :param loaded_config_file_path:
     :return:"""
-    torch.save(model.state_dict(), str(model_save_path))
+    if isinstance(model, torch.nn.Module):
+        torch.save(model.state_dict(), str(model_save_path))
+    elif isinstance(model, nn.Parameter):
+        torch.save(model.data, str(model_save_path))
+    else:
+        raise TypeError(f"model must be a torch.nn.Module or nn.Parameter")
     if optimiser:
         torch.save(optimiser.state_dict(), str(optimiser_save_path))
     if loaded_config_file_path:
@@ -122,6 +131,7 @@ def save_model_parameters(
     save_directory: Path,
     optimiser: Optional[Optimizer] = None,
     config_file_path: Optional[Path] = None,
+    verbose: bool = False,
 ) -> None:
     """
 
@@ -176,10 +186,10 @@ def save_model_parameters(
             except FileNotFoundError as e:
                 print(e)
                 saved = False
-
-    if saved:
-        print(
-            f"Successfully saved model parameters, optimiser state and configuration at names {[model_save_path.with_suffix(a) for a in (parameter_extension, optimiser_extension, config_extension)]}"
-        )
-    else:
-        print(f"Was unsuccessful at saving model or configuration")
+    if verbose:
+        if saved:
+            print(
+                f"Successfully saved model parameters, optimiser state and configuration at names {[model_save_path.with_suffix(a) for a in (parameter_extension, optimiser_extension, config_extension)]}"
+            )
+        else:
+            print(f"Was unsuccessful at saving model or configuration")

@@ -1,6 +1,8 @@
 draugr.tensorboard\_utilities.exporting.event\_export.TensorboardEventExporter
 ==============================================================================
 
+
+
 .. currentmodule:: draugr.tensorboard_utilities.exporting.event_export
 
 .. autoclass:: TensorboardEventExporter

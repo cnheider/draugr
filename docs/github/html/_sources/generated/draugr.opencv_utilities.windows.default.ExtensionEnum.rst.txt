@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.windows.default.ExtensionEnum
 ======================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.windows.default
 
 .. autoclass:: ExtensionEnum

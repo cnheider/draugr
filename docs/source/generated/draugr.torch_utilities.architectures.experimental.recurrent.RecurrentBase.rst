@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.experimental.recurrent.RecurrentBase
 ==========================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.experimental.recurrent
 
 .. autoclass:: RecurrentBase
@@ -34,6 +36,7 @@ draugr.torch\_utilities.architectures.experimental.recurrent.RecurrentBase
       ~RecurrentBase.get_parameter
       ~RecurrentBase.get_submodule
       ~RecurrentBase.half
+      ~RecurrentBase.ipu
       ~RecurrentBase.load_state_dict
       ~RecurrentBase.modules
       ~RecurrentBase.named_buffers
@@ -46,6 +49,7 @@ draugr.torch\_utilities.architectures.experimental.recurrent.RecurrentBase
       ~RecurrentBase.register_forward_hook
       ~RecurrentBase.register_forward_pre_hook
       ~RecurrentBase.register_full_backward_hook
+      ~RecurrentBase.register_load_state_dict_post_hook
       ~RecurrentBase.register_module
       ~RecurrentBase.register_parameter
       ~RecurrentBase.requires_grad_

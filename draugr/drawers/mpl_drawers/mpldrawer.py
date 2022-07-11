@@ -19,6 +19,14 @@ from matplotlib import pyplot
 from draugr.drawers.drawer import Drawer
 
 
+# TODO: implement a key for closing the plot
+# close figure with spacebar
+# fig.canvas.mpl_connect('key_press_event', lambda evt: if evt.key == ' ': plt.close())
+# global solution
+# fig.canvas.mpl_connect('key_press_event', lambda evt: print(repr(evt.key))) # print key pressed
+# plt.rcParams['keymap.quit'].append(' ')
+
+
 class MplDrawer(
     # metaclass=PostInit
     Drawer

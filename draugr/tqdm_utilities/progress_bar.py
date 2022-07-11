@@ -40,6 +40,7 @@ def progress_bar(
     disable: bool = False,
     verbose: bool = False,
     timestamp_mode: TimestampModeEnum = TimestampModeEnum.none,
+    monitor_interval: int = 0,
     **kwargs,
 ) -> Any:
     """
@@ -57,6 +58,9 @@ def progress_bar(
             total = len(list(ic))
             if total == 0:
                 print(f"WARNING zero length iterable - {description}:{iterable}")
+
+        if monitor_interval:
+            tqdm.monitor_interval = monitor_interval
 
         generator = tqdm.tqdm(
             iterable,

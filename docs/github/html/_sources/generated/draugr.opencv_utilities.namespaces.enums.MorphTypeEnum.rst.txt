@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.MorphTypeEnum
 =======================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: MorphTypeEnum

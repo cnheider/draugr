@@ -1,6 +1,8 @@
 draugr.torch\_utilities.writers.visdom.visdom\_writer.VisdomWriter
 ==================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.writers.visdom.visdom_writer
 
 .. autoclass:: VisdomWriter

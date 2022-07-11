@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.ContourRetrievalModeEnum
 ==================================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: ContourRetrievalModeEnum

@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.DistanceTransformLabelTypeEnum
 ========================================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: DistanceTransformLabelTypeEnum

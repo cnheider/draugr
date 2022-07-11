@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.BorderTypeEnum
 ========================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: BorderTypeEnum

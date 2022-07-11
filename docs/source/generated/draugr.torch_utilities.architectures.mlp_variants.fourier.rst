@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.mlp\_variants.fourier
 ===========================================================
 
+
+
 .. automodule:: draugr.torch_utilities.architectures.mlp_variants.fourier
 
    

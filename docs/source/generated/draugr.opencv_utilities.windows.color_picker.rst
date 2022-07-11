@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.windows.color\_picker
 ==============================================
 
+
+
 .. automodule:: draugr.opencv_utilities.windows.color_picker
 
    

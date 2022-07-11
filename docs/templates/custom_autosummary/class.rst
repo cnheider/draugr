@@ -1,5 +1,7 @@
 {{ fullname | escape | underline}}
 
+{{ release }}
+
 .. currentmodule:: {{ module }}
 
 .. autoclass:: {{ objname }}

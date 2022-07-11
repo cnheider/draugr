@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.FontEnum
 ==================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: FontEnum

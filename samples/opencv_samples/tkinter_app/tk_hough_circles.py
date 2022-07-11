@@ -19,12 +19,6 @@ import cv2
 import numpy
 from PIL import Image, ImageTk
 
-label = "circle"
-files = []
-data_path = ""
-config = {}
-to_be_saved = {}
-
 
 def init():
     """description"""
@@ -303,84 +297,89 @@ def reset():
     sld_threshold.set(config["threshold"])
 
 
-init()
-window = tk.Tk()
-window.title("cvLabels")
+if __name__ == "__main__":
+    label = "circle"
+    config = {}
+    to_be_saved = {}
 
-window.rowconfigure(3, minsize=800, weight=1)
-window.columnconfigure(0, minsize=800, weight=1)
+    init()
+    window = tk.Tk()
+    window.title("cvLabels")
 
-info_box = tk.Label(window)
-img_box = tk.Label(window)
-fr_buttons = tk.Frame(window)
-fr2_buttons = tk.Frame(window)
+    window.rowconfigure(3, minsize=800, weight=1)
+    window.columnconfigure(0, minsize=800, weight=1)
 
-lbl_directory = tk.Label(fr_buttons, text="Directory: Not set.")
-lbl_gaussian = tk.Label(fr_buttons, text="Gaussian: ")
-sld_gaussian = tk.Scale(
-    fr_buttons, from_=0, to=20, orient=tk.HORIZONTAL, command=scales_onchange
-)
-sld_gaussian.set(config["gaussian_default"])
-lbl_median = tk.Label(fr_buttons, text="Median: ")
-sld_median = tk.Scale(
-    fr_buttons, from_=0, to=20, orient=tk.HORIZONTAL, command=scales_onchange
-)
-sld_median.set(config["median_default"])
-btn_reset = tk.Button(fr_buttons, text="Reset", command=reset)
-btn_next = tk.Button(fr_buttons, text="Next", command=load_next)
-btn_open = tk.Button(fr_buttons, text="Save & Next", command=save_and_load_next)
+    info_box = tk.Label(window)
+    img_box = tk.Label(window)
+    fr_buttons = tk.Frame(window)
+    fr2_buttons = tk.Frame(window)
 
-lbl_minsize = tk.Label(fr2_buttons, text="Min size: ")
-sld_minsize = tk.Scale(
-    fr2_buttons, from_=0, to=100, orient=tk.HORIZONTAL, command=scales_onchange
-)
-sld_minsize.set(config["minRadius"])
-lbl_maxsize = tk.Label(fr2_buttons, text="Max size: ")
-sld_maxsize = tk.Scale(
-    fr2_buttons, from_=0, to=100, orient=tk.HORIZONTAL, command=scales_onchange
-)
-sld_maxsize.set(config["maxRadius"])
-lbl_mindist = tk.Label(fr2_buttons, text="Min dist.: ")
-sld_mindist = tk.Scale(
-    fr2_buttons, from_=0, to=400, orient=tk.HORIZONTAL, command=scales_onchange
-)
-sld_mindist.set(config["minDist"])
-lbl_threshold = tk.Label(fr2_buttons, text="Threshold.: ")
-sld_threshold = tk.Scale(
-    fr2_buttons, from_=-30, to=30, orient=tk.HORIZONTAL, command=scales_onchange
-)
-sld_threshold.set(config["threshold"])
+    lbl_directory = tk.Label(fr_buttons, text="Directory: Not set.")
+    lbl_gaussian = tk.Label(fr_buttons, text="Gaussian: ")
+    sld_gaussian = tk.Scale(
+        fr_buttons, from_=0, to=20, orient=tk.HORIZONTAL, command=scales_onchange
+    )
+    sld_gaussian.set(config["gaussian_default"])
+    lbl_median = tk.Label(fr_buttons, text="Median: ")
+    sld_median = tk.Scale(
+        fr_buttons, from_=0, to=20, orient=tk.HORIZONTAL, command=scales_onchange
+    )
+    sld_median.set(config["median_default"])
+    btn_reset = tk.Button(fr_buttons, text="Reset", command=reset)
+    btn_next = tk.Button(fr_buttons, text="Next", command=load_next)
+    btn_open = tk.Button(fr_buttons, text="Save & Next", command=save_and_load_next)
 
-lbl_minsize.grid(row=0, column=0, sticky="ew", padx=10, pady=5)
-sld_minsize.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
-lbl_maxsize.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
-sld_maxsize.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
-lbl_mindist.grid(row=0, column=4, sticky="ew", padx=5, pady=5)
-sld_mindist.grid(row=0, column=5, sticky="ew", padx=5, pady=5)
-lbl_threshold.grid(row=0, column=6, sticky="ew", padx=5, pady=5)
-sld_threshold.grid(row=0, column=7, sticky="ew", padx=5, pady=5)
+    lbl_minsize = tk.Label(fr2_buttons, text="Min size: ")
+    sld_minsize = tk.Scale(
+        fr2_buttons, from_=0, to=100, orient=tk.HORIZONTAL, command=scales_onchange
+    )
+    sld_minsize.set(config["minRadius"])
+    lbl_maxsize = tk.Label(fr2_buttons, text="Max size: ")
+    sld_maxsize = tk.Scale(
+        fr2_buttons, from_=0, to=100, orient=tk.HORIZONTAL, command=scales_onchange
+    )
+    sld_maxsize.set(config["maxRadius"])
+    lbl_mindist = tk.Label(fr2_buttons, text="Min dist.: ")
+    sld_mindist = tk.Scale(
+        fr2_buttons, from_=0, to=400, orient=tk.HORIZONTAL, command=scales_onchange
+    )
+    sld_mindist.set(config["minDist"])
+    lbl_threshold = tk.Label(fr2_buttons, text="Threshold.: ")
+    sld_threshold = tk.Scale(
+        fr2_buttons, from_=-30, to=30, orient=tk.HORIZONTAL, command=scales_onchange
+    )
+    sld_threshold.set(config["threshold"])
 
-lbl_directory.grid(row=0, column=0, sticky="ew", padx=10, pady=5)
-lbl_gaussian.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
-sld_gaussian.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
-lbl_median.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
-sld_median.grid(row=0, column=4, sticky="ew", padx=5, pady=5)
-btn_reset.grid(row=0, column=5, sticky="ew", padx=5, pady=5)
-btn_next.grid(row=0, column=6, sticky="ew", padx=5, pady=5)
-btn_open.grid(row=0, column=7, sticky="ew", padx=5, pady=5)
+    lbl_minsize.grid(row=0, column=0, sticky="ew", padx=10, pady=5)
+    sld_minsize.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+    lbl_maxsize.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
+    sld_maxsize.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
+    lbl_mindist.grid(row=0, column=4, sticky="ew", padx=5, pady=5)
+    sld_mindist.grid(row=0, column=5, sticky="ew", padx=5, pady=5)
+    lbl_threshold.grid(row=0, column=6, sticky="ew", padx=5, pady=5)
+    sld_threshold.grid(row=0, column=7, sticky="ew", padx=5, pady=5)
 
-fr_buttons.grid(row=0, column=0, sticky="ns")
-fr2_buttons.grid(row=1, column=0, sticky="ns")
-info_box.grid(row=2, column=0, sticky="nsew")
-img_box.grid(row=3, column=0, sticky="nsew")
+    lbl_directory.grid(row=0, column=0, sticky="ew", padx=10, pady=5)
+    lbl_gaussian.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+    sld_gaussian.grid(row=0, column=2, sticky="ew", padx=5, pady=5)
+    lbl_median.grid(row=0, column=3, sticky="ew", padx=5, pady=5)
+    sld_median.grid(row=0, column=4, sticky="ew", padx=5, pady=5)
+    btn_reset.grid(row=0, column=5, sticky="ew", padx=5, pady=5)
+    btn_next.grid(row=0, column=6, sticky="ew", padx=5, pady=5)
+    btn_open.grid(row=0, column=7, sticky="ew", padx=5, pady=5)
 
-data_path = askdirectory()
-lbl_directory.config(text=f"Directory: {data_path}")
-files = Path(data_path).glob("*.jpg")
+    fr_buttons.grid(row=0, column=0, sticky="ns")
+    fr2_buttons.grid(row=1, column=0, sticky="ns")
+    info_box.grid(row=2, column=0, sticky="nsew")
+    img_box.grid(row=3, column=0, sticky="nsew")
 
-load_next()
+    data_path = askdirectory()
+    lbl_directory.config(text=f"Directory: {data_path}")
+    files = Path(data_path2).glob("*.jpg")
 
-window.mainloop()
+    load_next()
 
-# https://www.programmersought.com/article/78194233146/
-# https://stackoverflow.com/questions/43841210/how-to-detect-circle-in-a-binary-image/43844556
+    window.mainloop()
+
+    # https://www.programmersought.com/article/78194233146/
+    # https://stackoverflow.com/questions/43841210/how-to-detect-circle-in-a-binary-image/43844556

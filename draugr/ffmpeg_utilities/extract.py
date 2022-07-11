@@ -82,17 +82,28 @@ def extract_frames(
 
 
 if __name__ == "__main__":
-    extract_frames(
+    # a = Path.home() / "DataWin" / "DeepFake" / "Frontier" / "Originals" / "thomas_old_high_res.mp4"
+
+    a = (
         Path.home()
-        / "DataWin"
-        / "DeepFake"
+        / "SynologyDrive"
         / "Frontier"
-        / "Originals"
-        / "thomas_old_high_res.mp4",
-        ffmpeg_path=Path.home()
-        / "OneDrive - Alexandra Instituttet"
-        / "Applications"
-        / "ffmpeg-5.0-essentials_build"
-        / "bin"
-        / "ffmpeg.exe",
+        / "Fra Frontier"
+        / "Personer"
+        / "Peter AG"
+        / "Peter AG 1983+1991.mp4"
+    )
+    ffmpeg_path = "ffmpeg"
+    if False:
+        ffmpeg_path = (
+            Path.home()
+            / "OneDrive - Alexandra Instituttet"
+            / "Applications"
+            / "ffmpeg-5.0-essentials_build"
+            / "bin"
+            / "ffmpeg.exe"
+        )
+    extract_frames(
+        a,
+        ffmpeg_path=ffmpeg_path,
     )

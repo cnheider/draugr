@@ -1,6 +1,8 @@
 draugr.writers.terminal.console\_writer
 =======================================
 
+
+
 .. automodule:: draugr.writers.terminal.console_writer
 
    

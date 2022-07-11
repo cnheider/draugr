@@ -144,7 +144,7 @@ def discrete_scroll_plot(
     labels: Sequence = None,
     title: str = "",
     time_label: str = "Time",
-    data_label: str = "Action Index",
+    data_label: str = "Index",
     vertical: bool = True,
     reverse: bool = True,
     overwrite: bool = False,

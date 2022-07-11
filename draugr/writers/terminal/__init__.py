@@ -13,6 +13,5 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
 # del Path
 
-from .terminal_plot import *
 from .terminal_plot_writer import *
 from .console_writer import *

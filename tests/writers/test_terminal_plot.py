@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from draugr.writers import terminal_plot
+from draugr.drawers.terminal import terminal_plot
 
 __author__ = "Christian Heider Nielsen"
 

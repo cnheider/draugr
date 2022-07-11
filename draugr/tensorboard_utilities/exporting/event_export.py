@@ -7,10 +7,10 @@ from typing import Iterable, Mapping, Tuple, TypeVar, Union
 
 import numpy
 import pandas
-import tensorflow
+
 from PIL.Image import Image
 from matplotlib import pyplot
-from tensorboard.backend.event_processing import event_accumulator
+
 
 from apppath import AppPath, ensure_existence
 
@@ -53,6 +53,8 @@ class TensorboardEventExporter:
         :param save_to_disk:"""
         if size_guidance is None:
             size_guidance = 0
+
+        from tensorboard.backend.event_processing import event_accumulator
 
         if isinstance(size_guidance, Mapping):
             pass
@@ -335,6 +337,7 @@ class TensorboardEventExporter:
         self.tag_test(*tags, type_str="tensors")
 
         out = []
+        import tensorflow
 
         numpy_rep = numpy.array(
             [
@@ -397,6 +400,8 @@ class TensorboardEventExporter:
         self.tag_test(*tags, type_str="tensors")
 
         out = []
+
+        import tensorflow
 
         numpy_rep = numpy.array(
             [

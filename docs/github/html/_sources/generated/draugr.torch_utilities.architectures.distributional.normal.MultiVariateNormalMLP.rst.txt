@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.distributional.normal.MultiVariateNormalMLP
 =================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.distributional.normal
 
 .. autoclass:: MultiVariateNormalMLP
@@ -37,6 +39,7 @@ draugr.torch\_utilities.architectures.distributional.normal.MultiVariateNormalML
       ~MultiVariateNormalMLP.half
       ~MultiVariateNormalMLP.infer_input_shape
       ~MultiVariateNormalMLP.infer_output_shape
+      ~MultiVariateNormalMLP.ipu
       ~MultiVariateNormalMLP.load_state_dict
       ~MultiVariateNormalMLP.modules
       ~MultiVariateNormalMLP.named_buffers
@@ -49,6 +52,7 @@ draugr.torch\_utilities.architectures.distributional.normal.MultiVariateNormalML
       ~MultiVariateNormalMLP.register_forward_hook
       ~MultiVariateNormalMLP.register_forward_pre_hook
       ~MultiVariateNormalMLP.register_full_backward_hook
+      ~MultiVariateNormalMLP.register_load_state_dict_post_hook
       ~MultiVariateNormalMLP.register_module
       ~MultiVariateNormalMLP.register_parameter
       ~MultiVariateNormalMLP.requires_grad_

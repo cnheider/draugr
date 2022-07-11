@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.transformation.resize
 ==============================================
 
+
+
 .. automodule:: draugr.opencv_utilities.transformation.resize
 
    

@@ -1,6 +1,8 @@
 draugr.writers.mixins.video\_writer\_mixin.VideoWriterMixin
 ===========================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.video_writer_mixin
 
 .. autoclass:: VideoWriterMixin

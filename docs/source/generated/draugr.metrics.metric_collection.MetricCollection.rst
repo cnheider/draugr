@@ -1,6 +1,8 @@
 draugr.metrics.metric\_collection.MetricCollection
 ==================================================
 
+
+
 .. currentmodule:: draugr.metrics.metric_collection
 
 .. autoclass:: MetricCollection

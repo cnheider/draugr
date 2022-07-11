@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>draugr.opencv_utilities.raster_sequences.async_video_stream &#8212; Draugr 1.0.0 documentation</title>
+    <title>draugr.opencv_utilities.raster_sequences.async_video_stream &#8212; Draugr 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
@@ -54,7 +54,9 @@
 <div class="viewcode-block" id="AsyncVideoStream"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream">[docs]</a><span class="k">class</span> <span class="nc">AsyncVideoStream</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AsyncVideoStream.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">thread_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="AsyncVideoStream.__init__"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">thread_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        threaded async wrapper around opencv cv2.VideoCapture with alike interface</span>
 
@@ -65,7 +67,9 @@
         <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grabbed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">thread_name</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">thread_name</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="AsyncVideoStream.start"><a class="viewcode-back" href="../../../../generated/draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.html#draugr.opencv_utilities.raster_sequences.async_video_stream.AsyncVideoStream.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -129,6 +133,9 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../../index.html">
+              <img class="logo" src="../../../../_static/valknut.svg" alt="Logo"/>
+            </a></p>
 <h1 class="logo"><a href="../../../../index.html">Draugr</a></h1>
 
 

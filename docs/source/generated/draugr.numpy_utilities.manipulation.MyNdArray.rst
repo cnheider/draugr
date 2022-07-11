@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.manipulation.MyNdArray
 ==============================================
 
+
+
 .. currentmodule:: draugr.numpy_utilities.manipulation
 
 .. autoclass:: MyNdArray

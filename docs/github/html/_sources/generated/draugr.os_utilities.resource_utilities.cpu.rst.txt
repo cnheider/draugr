@@ -1,6 +1,8 @@
 draugr.os\_utilities.resource\_utilities.cpu
 ============================================
 
+
+
 .. automodule:: draugr.os_utilities.resource_utilities.cpu
 
    

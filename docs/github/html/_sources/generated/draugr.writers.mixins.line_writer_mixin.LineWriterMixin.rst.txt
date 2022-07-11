@@ -1,6 +1,8 @@
 draugr.writers.mixins.line\_writer\_mixin.LineWriterMixin
 =========================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.line_writer_mixin
 
 .. autoclass:: LineWriterMixin

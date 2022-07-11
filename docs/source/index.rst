@@ -1,5 +1,10 @@
-Draugr Documentation
+|project| Documentation
 =====================
+
+Document version:
+|version|
+|today|
+
 
 ..  autosummary::
     :toctree: generated
@@ -7,7 +12,6 @@ Draugr Documentation
     :recursive:
 
     draugr
-
 
 .. toctree::
     :glob:

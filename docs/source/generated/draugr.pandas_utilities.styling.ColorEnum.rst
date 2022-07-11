@@ -1,6 +1,8 @@
 draugr.pandas\_utilities.styling.ColorEnum
 ==========================================
 
+
+
 .. currentmodule:: draugr.pandas_utilities.styling
 
 .. autoclass:: ColorEnum

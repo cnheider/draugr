@@ -55,6 +55,7 @@ def shuffled_batches(*args, size: int, batch_size: int) -> Sequence:
     :type batch_size:"""
     permutation = numpy.random.permutation(size)
     r = size // batch_size
+    assert r > 0, f"{size}/{batch_size}={r}"
     for i in range(r):
         perm = permutation[i * batch_size : (i + 1) * batch_size]
         yield [a[perm] for a in args]

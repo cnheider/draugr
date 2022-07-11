@@ -151,7 +151,7 @@ def save_model(
                 f"Successfully saved model and configuration respectively at {model_save_path} and {config_save_path}"
             )
         else:
-            print(f"Was unsuccesful at saving model or configuration")
+            print(f"Was unsuccessful at saving model or configuration")
 
 
 def convert_saved_model_to_cpu(path: Path) -> None:

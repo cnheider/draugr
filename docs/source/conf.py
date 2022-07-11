@@ -21,7 +21,7 @@
 import sys
 from pathlib import Path
 
-from warg import cprint, is_windows
+from warg import cprint, is_windows, is_linux, is_mac
 
 PACKAGE_ROOT = Path(__file__).parent.parent.parent  # / "draugr"
 cprint(PACKAGE_ROOT)
@@ -53,6 +53,22 @@ if is_windows():
         "draugr.matlab_utilities",
         "draugr.os_utilities.mac_utilities",
     ]
+elif is_linux():
+    autodoc_mock_imports = [
+        "draugr.os_utilities.windows_utilities",
+        "draugr.matlab_utilities",
+        "draugr.os_utilities.mac_utilities",
+    ]
+elif is_mac():
+    autodoc_mock_imports = [
+        "draugr.os_utilities.windows_utilities",
+        "draugr.matlab_utilities",
+        "draugr.os_utilities.linux_utilities",
+    ]
+else:
+    raise ValueError("Unknown OS")
+
+# autodoc_default_options = {"exclude-members": "exclude"}
 
 extensions = [
     "sphinxcontrib.programoutput",
@@ -68,6 +84,7 @@ extensions = [
     "sphinx.ext.githubpages",
     "sphinx.ext.graphviz",
 ]
+
 
 napoleon_use_ivar = True
 autosummary_generate = True
@@ -97,6 +114,11 @@ master_doc = "index"
 project = __project__  # PROJECT_NAME
 author = PROJECT_AUTHOR
 copyright_text = f"{PROJECT_YEAR}, {PROJECT_AUTHOR}"
+
+rst_prolog = f"""
+.. |project| replace:: {project}
+.. |PROJECT_NAME| replace:: {PROJECT_NAME}
+"""
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -128,6 +150,8 @@ todo_include_todos = True
 # a list of builtin themes.
 #
 html_theme = "alabaster"
+# html_theme = 'sphinx_rtd_theme'
+
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -139,8 +163,12 @@ html_theme = "alabaster"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named 'default.css' will overwrite the builtin 'default.css'.
 # html_static_path = ["_static"]
-html_static_path = []
-language = "en"
+html_static_path = ["../../.github/images"]
+html_logo = "../../.github/images/valknut.svg"
+html_theme_options = {
+    # "logo_only": True,
+    # "display_version": False,
+}
 
 html_baseurl = f"{PROJECT_ORGANISATION}.github.io/{PROJECT_NAME}"
 

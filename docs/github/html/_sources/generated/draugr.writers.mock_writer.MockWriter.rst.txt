@@ -1,6 +1,8 @@
 draugr.writers.mock\_writer.MockWriter
 ======================================
 
+
+
 .. currentmodule:: draugr.writers.mock_writer
 
 .. autoclass:: MockWriter

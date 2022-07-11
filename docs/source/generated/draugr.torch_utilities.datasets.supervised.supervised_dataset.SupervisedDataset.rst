@@ -1,6 +1,8 @@
 draugr.torch\_utilities.datasets.supervised.supervised\_dataset.SupervisedDataset
 =================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.datasets.supervised.supervised_dataset
 
 .. autoclass:: SupervisedDataset

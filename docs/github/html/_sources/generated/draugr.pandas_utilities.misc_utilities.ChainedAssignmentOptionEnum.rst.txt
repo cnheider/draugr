@@ -1,6 +1,8 @@
 draugr.pandas\_utilities.misc\_utilities.ChainedAssignmentOptionEnum
 ====================================================================
 
+
+
 .. currentmodule:: draugr.pandas_utilities.misc_utilities
 
 .. autoclass:: ChainedAssignmentOptionEnum

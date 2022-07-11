@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.mlp\_variants
 ===================================================
 
+
+
 .. automodule:: draugr.torch_utilities.architectures.mlp_variants
 
    

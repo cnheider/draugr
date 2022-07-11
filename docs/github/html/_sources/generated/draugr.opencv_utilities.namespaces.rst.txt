@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces
 ===================================
 
+
+
 .. automodule:: draugr.opencv_utilities.namespaces
 
    

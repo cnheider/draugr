@@ -1,6 +1,8 @@
 draugr.drawers.mpl\_drawers.distribution\_plot.DistributionPlot
 ===============================================================
 
+
+
 .. currentmodule:: draugr.drawers.mpl_drawers.distribution_plot
 
 .. autoclass:: DistributionPlot

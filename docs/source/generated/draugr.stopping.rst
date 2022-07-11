@@ -1,6 +1,8 @@
 draugr.stopping
 ===============
 
+
+
 .. automodule:: draugr.stopping
 
    

@@ -1,6 +1,8 @@
 draugr.torch\_utilities.sessions.model\_sessions.TorchTrainingSession
 =====================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.sessions.model_sessions
 
 .. autoclass:: TorchTrainingSession

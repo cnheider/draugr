@@ -1,6 +1,8 @@
 draugr.writers.mixins.scalar\_writer\_mixin.ScalarWriterMixin
 =============================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.scalar_writer_mixin
 
 .. autoclass:: ScalarWriterMixin
@@ -18,6 +20,7 @@ draugr.writers.mixins.scalar\_writer\_mixin.ScalarWriterMixin
    
       ~ScalarWriterMixin.__init__
       ~ScalarWriterMixin.blip
+      ~ScalarWriterMixin.filter
       ~ScalarWriterMixin.scalar
    
    

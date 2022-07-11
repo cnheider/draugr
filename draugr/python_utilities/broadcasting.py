@@ -22,7 +22,7 @@ class BroadcastNone(type(None).__class__):
         num_assignments = len(frame_info.assigned_names(allow_one=True)[0])
         if num_assignments > 1:
             return (None,) * num_assignments
-        return None
+        return
 
 
 if __name__ == "__main__":

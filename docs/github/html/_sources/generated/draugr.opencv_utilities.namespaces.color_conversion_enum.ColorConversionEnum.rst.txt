@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.color\_conversion\_enum.ColorConversionEnum
 ===============================================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.color_conversion_enum
 
 .. autoclass:: ColorConversionEnum

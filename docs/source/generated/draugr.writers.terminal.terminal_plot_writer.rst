@@ -1,6 +1,8 @@
 draugr.writers.terminal.terminal\_plot\_writer
 ==============================================
 
+
+
 .. automodule:: draugr.writers.terminal.terminal_plot_writer
 
    
@@ -19,7 +21,7 @@ draugr.writers.terminal.terminal\_plot\_writer
       :toctree:
       :template: custom_autosummary/class.rst
    
-      TerminalPlotWriter
+      TerminalWriter
    
    
 

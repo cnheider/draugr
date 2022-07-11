@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.windows.default
 ========================================
 
+
+
 .. automodule:: draugr.opencv_utilities.windows.default
 
    

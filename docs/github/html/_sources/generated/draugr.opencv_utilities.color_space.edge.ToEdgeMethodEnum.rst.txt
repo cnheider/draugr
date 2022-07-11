@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.color\_space.edge.ToEdgeMethodEnum
 ===========================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.color_space.edge
 
 .. autoclass:: ToEdgeMethodEnum

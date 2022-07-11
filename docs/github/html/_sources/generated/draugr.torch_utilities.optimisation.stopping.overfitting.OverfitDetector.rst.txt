@@ -1,6 +1,8 @@
 draugr.torch\_utilities.optimisation.stopping.overfitting.OverfitDetector
 =========================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.optimisation.stopping.overfitting
 
 .. autoclass:: OverfitDetector

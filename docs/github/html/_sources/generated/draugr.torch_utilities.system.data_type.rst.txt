@@ -1,6 +1,8 @@
 draugr.torch\_utilities.system.data\_type
 =========================================
 
+
+
 .. automodule:: draugr.torch_utilities.system.data_type
 
    

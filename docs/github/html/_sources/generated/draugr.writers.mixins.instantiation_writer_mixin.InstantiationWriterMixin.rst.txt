@@ -1,6 +1,8 @@
 draugr.writers.mixins.instantiation\_writer\_mixin.InstantiationWriterMixin
 ===========================================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.instantiation_writer_mixin
 
 .. autoclass:: InstantiationWriterMixin

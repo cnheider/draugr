@@ -109,4 +109,6 @@ def iasjduh() -> None:
     )
 
 
-adasdassijd()
+if __name__ == "__main__":
+
+    adasdassijd()

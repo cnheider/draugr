@@ -1,6 +1,8 @@
 draugr.drawers
 ==============
 
+
+
 .. automodule:: draugr.drawers
 
    
@@ -31,4 +33,5 @@ draugr.drawers
    draugr.drawers.drawer
    draugr.drawers.mpl_drawers
    draugr.drawers.opencv_drawers
+   draugr.drawers.terminal
 

@@ -1,6 +1,8 @@
 draugr.torch\_utilities.system.device.TorchDeviceEnum
 =====================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.system.device
 
 .. autoclass:: TorchDeviceEnum

@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.datasets.splitting.SplitIndexer
 =======================================================
 
+
+
 .. currentmodule:: draugr.numpy_utilities.datasets.splitting
 
 .. autoclass:: SplitIndexer

@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.datasets.splitting.SplitEnum
 ====================================================
 
+
+
 .. currentmodule:: draugr.numpy_utilities.datasets.splitting
 
 .. autoclass:: SplitEnum

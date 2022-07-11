@@ -1,6 +1,8 @@
 draugr.pandas\_utilities.styling.NDFrameExtremeEnum
 ===================================================
 
+
+
 .. currentmodule:: draugr.pandas_utilities.styling
 
 .. autoclass:: NDFrameExtremeEnum

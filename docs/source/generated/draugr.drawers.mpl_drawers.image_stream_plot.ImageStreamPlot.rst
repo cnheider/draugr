@@ -1,6 +1,8 @@
 draugr.drawers.mpl\_drawers.image\_stream\_plot.ImageStreamPlot
 ===============================================================
 
+
+
 .. currentmodule:: draugr.drawers.mpl_drawers.image_stream_plot
 
 .. autoclass:: ImageStreamPlot

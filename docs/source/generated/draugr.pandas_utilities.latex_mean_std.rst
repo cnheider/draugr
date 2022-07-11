@@ -1,6 +1,8 @@
 draugr.pandas\_utilities.latex\_mean\_std
 =========================================
 
+
+
 .. automodule:: draugr.pandas_utilities.latex_mean_std
 
    

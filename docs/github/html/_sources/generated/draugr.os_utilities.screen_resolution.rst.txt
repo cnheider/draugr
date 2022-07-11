@@ -1,6 +1,8 @@
 draugr.os\_utilities.screen\_resolution
 =======================================
 
+
+
 .. automodule:: draugr.os_utilities.screen_resolution
 
    

@@ -1,6 +1,8 @@
 draugr.writers.mixins.spectrogram\_writer\_mixin
 ================================================
 
+
+
 .. automodule:: draugr.writers.mixins.spectrogram_writer_mixin
 
    

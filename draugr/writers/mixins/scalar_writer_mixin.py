@@ -1,20 +1,25 @@
 from abc import ABC, abstractmethod
 from itertools import cycle
 
-from warg import Number
+from warg import Number, passes_kws_to, drop_unused_kws
+from draugr.python_utilities import CounterFilter
+
 
 __all__ = ["ScalarWriterMixin"]
 
 
-class ScalarWriterMixin(ABC):
+class ScalarWriterMixin(CounterFilter, ABC):
     """description"""
 
     @abstractmethod
     def _scalar(self, tag: str, value: float, step: int):
         raise NotImplementedError
 
-    def __init__(self):
-        self._blip_values = iter(cycle(range(2)))
+    @passes_kws_to(CounterFilter.__init__)
+    @drop_unused_kws
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._blip_iterators = {}
 
     def scalar(self, tag: str, value: Number, step_i: int = None) -> None:
         """
@@ -26,13 +31,12 @@ class ScalarWriterMixin(ABC):
         :param step_i:
         :type step_i:"""
         if step_i:
-            if self.filter(tag):
-                self._scalar(tag, value, self._counter[tag])
             self._counter[tag] = step_i
         else:
-            if self.filter(tag):
-                self._scalar(tag, value, self._counter[tag])
             self._counter[tag] += 1
+
+        if self.filter(tag):
+            self._scalar(tag, value, self._counter[tag])
 
     def blip(self, tag: str, step_i: int = None) -> None:
         """
@@ -41,9 +45,6 @@ class ScalarWriterMixin(ABC):
         :type tag:
         :param step_i:
         :type step_i:"""
-        if step_i:
-            self.scalar(tag, next(self._blip_values), step_i)
-            self.scalar(tag, next(self._blip_values), step_i)
-        else:
-            self.scalar(tag, next(self._blip_values))
-            self.scalar(tag, next(self._blip_values), self._counter[tag])
+        if tag not in self._blip_iterators:
+            self._blip_iterators[tag] = iter(cycle(range(2)))
+        self.scalar(tag, next(self._blip_iterators[tag]), step_i=step_i)

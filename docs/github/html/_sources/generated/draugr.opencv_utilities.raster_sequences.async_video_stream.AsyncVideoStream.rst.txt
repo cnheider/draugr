@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.raster\_sequences.async\_video\_stream.AsyncVideoStream
 ================================================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.raster_sequences.async_video_stream
 
 .. autoclass:: AsyncVideoStream

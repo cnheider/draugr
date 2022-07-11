@@ -1,6 +1,8 @@
 draugr.stopping.stopping\_key.CaptureEarlyStop
 ==============================================
 
+
+
 .. currentmodule:: draugr.stopping.stopping_key
 
 .. autoclass:: CaptureEarlyStop

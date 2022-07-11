@@ -1,6 +1,8 @@
 draugr.writers.databases.sqlite\_writer.SqliteWriter
 ====================================================
 
+
+
 .. currentmodule:: draugr.writers.databases.sqlite_writer
 
 .. autoclass:: SqliteWriter

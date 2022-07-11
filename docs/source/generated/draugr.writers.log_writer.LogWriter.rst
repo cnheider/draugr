@@ -1,6 +1,8 @@
 draugr.writers.log\_writer.LogWriter
 ====================================
 
+
+
 .. currentmodule:: draugr.writers.log_writer
 
 .. autoclass:: LogWriter

@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.flags.WindowPropertyFlag
 ============================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.flags
 
 .. autoclass:: WindowPropertyFlag

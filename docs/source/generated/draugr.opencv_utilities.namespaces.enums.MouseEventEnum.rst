@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.MouseEventEnum
 ========================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: MouseEventEnum

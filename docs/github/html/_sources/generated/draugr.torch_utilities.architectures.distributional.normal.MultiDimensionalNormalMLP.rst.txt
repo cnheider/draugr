@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.distributional.normal.MultiDimensionalNormalMLP
 =====================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.distributional.normal
 
 .. autoclass:: MultiDimensionalNormalMLP
@@ -37,6 +39,7 @@ draugr.torch\_utilities.architectures.distributional.normal.MultiDimensionalNorm
       ~MultiDimensionalNormalMLP.half
       ~MultiDimensionalNormalMLP.infer_input_shape
       ~MultiDimensionalNormalMLP.infer_output_shape
+      ~MultiDimensionalNormalMLP.ipu
       ~MultiDimensionalNormalMLP.load_state_dict
       ~MultiDimensionalNormalMLP.modules
       ~MultiDimensionalNormalMLP.named_buffers
@@ -49,6 +52,7 @@ draugr.torch\_utilities.architectures.distributional.normal.MultiDimensionalNorm
       ~MultiDimensionalNormalMLP.register_forward_hook
       ~MultiDimensionalNormalMLP.register_forward_pre_hook
       ~MultiDimensionalNormalMLP.register_full_backward_hook
+      ~MultiDimensionalNormalMLP.register_load_state_dict_post_hook
       ~MultiDimensionalNormalMLP.register_module
       ~MultiDimensionalNormalMLP.register_parameter
       ~MultiDimensionalNormalMLP.requires_grad_

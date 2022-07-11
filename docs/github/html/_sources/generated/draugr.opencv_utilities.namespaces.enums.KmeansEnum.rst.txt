@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.KmeansEnum
 ====================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: KmeansEnum

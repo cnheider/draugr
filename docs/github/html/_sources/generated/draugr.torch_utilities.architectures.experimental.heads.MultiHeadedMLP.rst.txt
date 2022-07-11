@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.experimental.heads.MultiHeadedMLP
 =======================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.experimental.heads
 
 .. autoclass:: MultiHeadedMLP
@@ -37,6 +39,7 @@ draugr.torch\_utilities.architectures.experimental.heads.MultiHeadedMLP
       ~MultiHeadedMLP.half
       ~MultiHeadedMLP.infer_input_shape
       ~MultiHeadedMLP.infer_output_shape
+      ~MultiHeadedMLP.ipu
       ~MultiHeadedMLP.load_state_dict
       ~MultiHeadedMLP.modules
       ~MultiHeadedMLP.named_buffers
@@ -49,6 +52,7 @@ draugr.torch\_utilities.architectures.experimental.heads.MultiHeadedMLP
       ~MultiHeadedMLP.register_forward_hook
       ~MultiHeadedMLP.register_forward_pre_hook
       ~MultiHeadedMLP.register_full_backward_hook
+      ~MultiHeadedMLP.register_load_state_dict_post_hook
       ~MultiHeadedMLP.register_module
       ~MultiHeadedMLP.register_parameter
       ~MultiHeadedMLP.requires_grad_

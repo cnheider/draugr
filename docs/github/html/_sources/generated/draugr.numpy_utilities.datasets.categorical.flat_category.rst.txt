@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.datasets.categorical.flat\_category
 ===========================================================
 
+
+
 .. automodule:: draugr.numpy_utilities.datasets.categorical.flat_category
 
    

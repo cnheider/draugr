@@ -1,6 +1,8 @@
 draugr.writers.mixins.histogram\_writer\_mixin.HistogramWriterMixin
 ===================================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.histogram_writer_mixin
 
 .. autoclass:: HistogramWriterMixin

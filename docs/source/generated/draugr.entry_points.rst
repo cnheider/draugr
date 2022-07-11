@@ -1,6 +1,8 @@
 draugr.entry\_points
 ====================
 
+
+
 .. automodule:: draugr.entry_points
 
    

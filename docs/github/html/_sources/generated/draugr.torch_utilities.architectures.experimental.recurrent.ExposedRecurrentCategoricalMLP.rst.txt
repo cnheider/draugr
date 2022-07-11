@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.experimental.recurrent.ExposedRecurrentCategoricalMLP
 ===========================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.experimental.recurrent
 
 .. autoclass:: ExposedRecurrentCategoricalMLP
@@ -37,6 +39,7 @@ draugr.torch\_utilities.architectures.experimental.recurrent.ExposedRecurrentCat
       ~ExposedRecurrentCategoricalMLP.half
       ~ExposedRecurrentCategoricalMLP.infer_input_shape
       ~ExposedRecurrentCategoricalMLP.infer_output_shape
+      ~ExposedRecurrentCategoricalMLP.ipu
       ~ExposedRecurrentCategoricalMLP.load_state_dict
       ~ExposedRecurrentCategoricalMLP.modules
       ~ExposedRecurrentCategoricalMLP.named_buffers
@@ -49,6 +52,7 @@ draugr.torch\_utilities.architectures.experimental.recurrent.ExposedRecurrentCat
       ~ExposedRecurrentCategoricalMLP.register_forward_hook
       ~ExposedRecurrentCategoricalMLP.register_forward_pre_hook
       ~ExposedRecurrentCategoricalMLP.register_full_backward_hook
+      ~ExposedRecurrentCategoricalMLP.register_load_state_dict_post_hook
       ~ExposedRecurrentCategoricalMLP.register_module
       ~ExposedRecurrentCategoricalMLP.register_parameter
       ~ExposedRecurrentCategoricalMLP.requires_grad_

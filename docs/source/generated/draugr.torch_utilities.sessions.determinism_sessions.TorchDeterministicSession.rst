@@ -1,6 +1,8 @@
 draugr.torch\_utilities.sessions.determinism\_sessions.TorchDeterministicSession
 ================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.sessions.determinism_sessions
 
 .. autoclass:: TorchDeterministicSession

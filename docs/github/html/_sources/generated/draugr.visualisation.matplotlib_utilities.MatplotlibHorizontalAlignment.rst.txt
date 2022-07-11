@@ -1,6 +1,8 @@
 draugr.visualisation.matplotlib\_utilities.MatplotlibHorizontalAlignment
 ========================================================================
 
+
+
 .. currentmodule:: draugr.visualisation.matplotlib_utilities
 
 .. autoclass:: MatplotlibHorizontalAlignment

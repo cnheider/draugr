@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.transformation.resize.InterpolationEnum
 ================================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.transformation.resize
 
 .. autoclass:: InterpolationEnum

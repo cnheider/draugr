@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.manipulation
 ====================================
 
+
+
 .. automodule:: draugr.numpy_utilities.manipulation
 
    

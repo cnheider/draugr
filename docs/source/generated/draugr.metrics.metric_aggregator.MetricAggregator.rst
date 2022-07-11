@@ -1,6 +1,8 @@
 draugr.metrics.metric\_aggregator.MetricAggregator
 ==================================================
 
+
+
 .. currentmodule:: draugr.metrics.metric_aggregator
 
 .. autoclass:: MetricAggregator

@@ -1,6 +1,8 @@
 draugr.os\_utilities.cuda\_device
 =================================
 
+
+
 .. automodule:: draugr.os_utilities.cuda_device
 
    

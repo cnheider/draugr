@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.mlp\_variants.disjunction
 ===============================================================
 
+
+
 .. automodule:: draugr.torch_utilities.architectures.mlp_variants.disjunction
 
    

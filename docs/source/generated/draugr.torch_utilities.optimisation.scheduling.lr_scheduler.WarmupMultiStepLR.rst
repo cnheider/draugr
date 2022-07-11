@@ -1,6 +1,8 @@
 draugr.torch\_utilities.optimisation.scheduling.lr\_scheduler.WarmupMultiStepLR
 ===============================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.optimisation.scheduling.lr_scheduler
 
 .. autoclass:: WarmupMultiStepLR

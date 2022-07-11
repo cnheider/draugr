@@ -1,6 +1,8 @@
 draugr.torch\_utilities.sessions.model\_sessions.TorchEvalSession
 =================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.sessions.model_sessions
 
 .. autoclass:: TorchEvalSession

@@ -1,6 +1,8 @@
 draugr.writers.writer.Writer
 ============================
 
+
+
 .. currentmodule:: draugr.writers.writer
 
 .. autoclass:: Writer

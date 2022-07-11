@@ -1,6 +1,8 @@
 draugr.writers.mixins.audio\_writer\_mixin.AudioWriterMixin
 ===========================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.audio_writer_mixin
 
 .. autoclass:: AudioWriterMixin

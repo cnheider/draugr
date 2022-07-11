@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums.DataTypeEnum
 ======================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.namespaces.enums
 
 .. autoclass:: DataTypeEnum

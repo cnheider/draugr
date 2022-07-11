@@ -1,6 +1,8 @@
 draugr.metrics.meters.AverageMeter
 ==================================
 
+
+
 .. currentmodule:: draugr.metrics.meters
 
 .. autoclass:: AverageMeter

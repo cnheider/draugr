@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.datasets.categorical.shallow\_category
 ==============================================================
 
+
+
 .. automodule:: draugr.numpy_utilities.datasets.categorical.shallow_category
 
    

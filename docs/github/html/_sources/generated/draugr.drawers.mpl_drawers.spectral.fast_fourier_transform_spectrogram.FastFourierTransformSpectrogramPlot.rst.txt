@@ -1,6 +1,8 @@
 draugr.drawers.mpl\_drawers.spectral.fast\_fourier\_transform\_spectrogram.FastFourierTransformSpectrogramPlot
 ==============================================================================================================
 
+
+
 .. currentmodule:: draugr.drawers.mpl_drawers.spectral.fast_fourier_transform_spectrogram
 
 .. autoclass:: FastFourierTransformSpectrogramPlot

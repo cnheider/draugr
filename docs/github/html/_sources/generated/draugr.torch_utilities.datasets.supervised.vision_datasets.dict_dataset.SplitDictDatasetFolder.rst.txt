@@ -1,6 +1,8 @@
 draugr.torch\_utilities.datasets.supervised.vision\_datasets.dict\_dataset.SplitDictDatasetFolder
 =================================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.datasets.supervised.vision_datasets.dict_dataset
 
 .. autoclass:: SplitDictDatasetFolder

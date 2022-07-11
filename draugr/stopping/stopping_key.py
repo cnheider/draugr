@@ -15,27 +15,12 @@ from pynput.keyboard import KeyCode
 
 from warg import GDKC, drop_unused_kws, passes_kws_to, sprint
 
-
 # import keyboard
 
-
-@drop_unused_kws
-def add_early_stopping_key_combination(
-    *callbacks: Callable, has_x_server: bool = True, verbose: bool = False
-):  # -> keyboard.Listener:
-
-    """
-
-    :param callbacks:
-    :param has_x_server:
-    :param verbose:
-    :return:"""
-    if not has_x_server:
-        return
-
+try:
     from pynput import keyboard
 
-    combinations = [
+    default_combinations = [
         {keyboard.Key.ctrl, keyboard.KeyCode(char="c")},
         {keyboard.Key.ctrl, keyboard.KeyCode(char="d")},
         {keyboard.Key.shift, keyboard.Key.alt, keyboard.KeyCode(char="s")},
@@ -48,6 +33,32 @@ def add_early_stopping_key_combination(
         {KeyCode.from_char("\x04")},  # ctrl+d on windows
         {KeyCode.from_char("\x03")},  # ctrl+d on windows
     ]
+except Exception as e:
+    default_combinations = []
+    print("pynput not installed, no early stopping, error:", e)
+
+
+@drop_unused_kws
+def add_early_stopping_key_combination(
+    *callbacks: Callable,
+    has_x_server: bool = True,
+    verbose: bool = False,
+    combinations: Iterable = default_combinations,
+):  # -> keyboard.Listener:
+
+    """
+
+    :param combinations:
+    :type combinations:
+    :param callbacks:
+    :param has_x_server:
+    :param verbose:
+    :return:"""
+    if not has_x_server:
+        return
+
+    if combinations is None:
+        combinations = default_combinations
 
     # The currently active modifiers
     current = set()
@@ -72,7 +83,7 @@ def add_early_stopping_key_combination(
                 for clbck in callbacks:
                     if verbose:
                         print(f"Calling {clbck}")
-                    clbck()
+                    clbck("User pressed a early stopping key")
 
     def on_release(key):
         """description"""
@@ -82,7 +93,11 @@ def add_early_stopping_key_combination(
                     print(f"Removing key {key}")
                 current.remove(key)
 
-    return keyboard.Listener(on_press=on_press, on_release=on_release)
+    try:
+        return keyboard.Listener(on_press=on_press, on_release=on_release)
+    except Exception as e1:
+        print("pynput not installed, no early stopping, error:", e1)
+        return
 
 
 class CaptureEarlyStop(contextlib.AbstractContextManager):

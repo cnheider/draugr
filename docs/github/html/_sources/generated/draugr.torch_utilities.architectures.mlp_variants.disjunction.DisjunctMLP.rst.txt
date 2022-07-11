@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.mlp\_variants.disjunction.DisjunctMLP
 ===========================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.mlp_variants.disjunction
 
 .. autoclass:: DisjunctMLP
@@ -37,6 +39,7 @@ draugr.torch\_utilities.architectures.mlp\_variants.disjunction.DisjunctMLP
       ~DisjunctMLP.half
       ~DisjunctMLP.infer_input_shape
       ~DisjunctMLP.infer_output_shape
+      ~DisjunctMLP.ipu
       ~DisjunctMLP.load_state_dict
       ~DisjunctMLP.modules
       ~DisjunctMLP.named_buffers
@@ -49,6 +52,7 @@ draugr.torch\_utilities.architectures.mlp\_variants.disjunction.DisjunctMLP
       ~DisjunctMLP.register_forward_hook
       ~DisjunctMLP.register_forward_pre_hook
       ~DisjunctMLP.register_full_backward_hook
+      ~DisjunctMLP.register_load_state_dict_post_hook
       ~DisjunctMLP.register_module
       ~DisjunctMLP.register_parameter
       ~DisjunctMLP.requires_grad_

@@ -1,6 +1,8 @@
 draugr.writers.mixins.image\_writer\_mixin.ImageWriterMixin
 ===========================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.image_writer_mixin
 
 .. autoclass:: ImageWriterMixin

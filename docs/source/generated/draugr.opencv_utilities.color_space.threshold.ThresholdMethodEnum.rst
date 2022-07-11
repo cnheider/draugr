@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.color\_space.threshold.ThresholdMethodEnum
 ===================================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.color_space.threshold
 
 .. autoclass:: ThresholdMethodEnum

@@ -1,6 +1,8 @@
 draugr.python\_utilities
 ========================
 
+
+
 .. automodule:: draugr.python_utilities
 
    
@@ -29,6 +31,7 @@ draugr.python\_utilities
    :recursive:
 
    draugr.python_utilities.broadcasting
+   draugr.python_utilities.counter_filter
    draugr.python_utilities.exclude
    draugr.python_utilities.function_wrappers
    draugr.python_utilities.generators

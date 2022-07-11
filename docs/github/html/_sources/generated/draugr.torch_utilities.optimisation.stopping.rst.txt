@@ -1,6 +1,8 @@
 draugr.torch\_utilities.optimisation.stopping
 =============================================
 
+
+
 .. automodule:: draugr.torch_utilities.optimisation.stopping
 
    

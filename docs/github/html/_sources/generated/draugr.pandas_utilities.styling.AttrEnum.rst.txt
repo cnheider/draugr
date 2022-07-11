@@ -1,6 +1,8 @@
 draugr.pandas\_utilities.styling.AttrEnum
 =========================================
 
+
+
 .. currentmodule:: draugr.pandas_utilities.styling
 
 .. autoclass:: AttrEnum

@@ -1,6 +1,8 @@
 draugr.torch\_utilities.operations.enums.ReductionMethodEnum
 ============================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.operations.enums
 
 .. autoclass:: ReductionMethodEnum

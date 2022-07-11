@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.architecture
 ==================================================
 
+
+
 .. automodule:: draugr.torch_utilities.architectures.architecture
 
    

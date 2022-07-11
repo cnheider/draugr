@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.drawing
 ================================
 
+
+
 .. automodule:: draugr.opencv_utilities.drawing
 
    

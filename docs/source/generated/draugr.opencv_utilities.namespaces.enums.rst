@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.namespaces.enums
 =========================================
 
+
+
 .. automodule:: draugr.opencv_utilities.namespaces.enums
 
    

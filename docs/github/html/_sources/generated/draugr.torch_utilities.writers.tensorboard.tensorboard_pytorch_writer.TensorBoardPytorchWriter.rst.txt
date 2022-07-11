@@ -1,6 +1,8 @@
 draugr.torch\_utilities.writers.tensorboard.tensorboard\_pytorch\_writer.TensorBoardPytorchWriter
 =================================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer
 
 .. autoclass:: TensorBoardPytorchWriter

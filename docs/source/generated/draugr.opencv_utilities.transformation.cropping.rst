@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.transformation.cropping
 ================================================
 
+
+
 .. automodule:: draugr.opencv_utilities.transformation.cropping
 
    

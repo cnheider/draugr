@@ -1,6 +1,8 @@
 draugr.torch\_utilities.writers.visdom
 ======================================
 
+
+
 .. automodule:: draugr.torch_utilities.writers.visdom
 
    

@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.datasets.categorical.deep\_category
 ===========================================================
 
+
+
 .. automodule:: draugr.numpy_utilities.datasets.categorical.deep_category
 
    

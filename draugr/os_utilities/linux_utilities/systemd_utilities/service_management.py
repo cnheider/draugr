@@ -95,7 +95,7 @@ def install_service(
     run_as: RunAsEnum = RunAsEnum.user,
     # get_sudo: bool = False,
     restart: RestartServiceEnum = RestartServiceEnum.on_failure,
-    template: str = SERVICE_TEMPLATE,  # Formatable string
+    template: str = SERVICE_TEMPLATE,  # Formattable string
 ) -> None:
     """
     Args:
@@ -171,7 +171,7 @@ def install_service(
 
         print("writing service file")
         if not description:
-            description = f"heimdallr service for {service_name}"
+            description = f"{PROJECT_NAME} service for {service_name}"
         with open(systemd_service_file_path, "w") as f:
             f.writelines(
                 template.format(

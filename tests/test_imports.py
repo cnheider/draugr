@@ -129,12 +129,6 @@ def test_import_stopping():
     print(draugr.stopping.__author__)
 
 
-def test_import_opencv_utilities():
-    import draugr.opencv_utilities
-
-    print(draugr.opencv_utilities.__author__)
-
-
 def test_import_tqdm_utilities():
     import draugr.tqdm_utilities
 

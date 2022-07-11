@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.mlp\_variants.concatination.LateConcatInputMLP
 ====================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.mlp_variants.concatination
 
 .. autoclass:: LateConcatInputMLP
@@ -37,6 +39,7 @@ draugr.torch\_utilities.architectures.mlp\_variants.concatination.LateConcatInpu
       ~LateConcatInputMLP.half
       ~LateConcatInputMLP.infer_input_shape
       ~LateConcatInputMLP.infer_output_shape
+      ~LateConcatInputMLP.ipu
       ~LateConcatInputMLP.load_state_dict
       ~LateConcatInputMLP.modules
       ~LateConcatInputMLP.named_buffers
@@ -49,6 +52,7 @@ draugr.torch\_utilities.architectures.mlp\_variants.concatination.LateConcatInpu
       ~LateConcatInputMLP.register_forward_hook
       ~LateConcatInputMLP.register_forward_pre_hook
       ~LateConcatInputMLP.register_full_backward_hook
+      ~LateConcatInputMLP.register_load_state_dict_post_hook
       ~LateConcatInputMLP.register_module
       ~LateConcatInputMLP.register_parameter
       ~LateConcatInputMLP.requires_grad_

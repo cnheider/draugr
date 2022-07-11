@@ -1,6 +1,8 @@
 draugr.torch\_utilities.distributions.entropy
 =============================================
 
+
+
 .. automodule:: draugr.torch_utilities.distributions.entropy
 
    

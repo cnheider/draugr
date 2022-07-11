@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>draugr.tqdm_utilities.pooled_progress_bar &#8212; Draugr 1.0.0 documentation</title>
+    <title>draugr.tqdm_utilities.pooled_progress_bar &#8212; Draugr 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -53,11 +53,16 @@
     <span class="s2">&quot;sequential_map&quot;</span><span class="p">,</span>
     <span class="s2">&quot;sequential_imap&quot;</span><span class="p">,</span>
 <span class="p">]</span>
-<span class="vm">__doc__</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;Map functions with tqdm progress bars for parallel and sequential processing.&quot;&quot;&quot;</span>
+<span class="vm">__doc__</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Map functions with tqdm progress bars for parallel and sequential processing.&quot;&quot;&quot;</span>
+<span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_sequential</span><span class="p">(</span>
-    <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">func_kws</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">iterables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
+    <span class="n">func_kws</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Returns a generator for a sequential map with a progress bar.</span>
 
@@ -112,7 +117,9 @@
     <span class="n">map_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">map_type</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
-        <span class="n">map_func</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">func_kws</span><span class="o">.</span><span class="n">values</span><span class="p">()),)</span> <span class="o">*</span> <span class="n">length</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="n">map_func</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">func_kws</span><span class="o">.</span><span class="n">values</span><span class="p">()),)</span> <span class="o">*</span> <span class="n">length</span><span class="p">),</span>
+        <span class="n">total</span><span class="o">=</span><span class="n">length</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
         <span class="k">yield</span> <span class="n">item</span>
 
@@ -129,7 +136,9 @@
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">parallel_imap</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="parallel_uimap"><a class="viewcode-back" href="../../../generated/draugr.tqdm_utilities.pooled_progress_bar.parallel_uimap.html#draugr.tqdm_utilities.pooled_progress_bar.parallel_uimap">[docs]</a><span class="k">def</span> <span class="nf">parallel_uimap</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">:</span>
+<div class="viewcode-block" id="parallel_uimap"><a class="viewcode-back" href="../../../generated/draugr.tqdm_utilities.pooled_progress_bar.parallel_uimap.html#draugr.tqdm_utilities.pooled_progress_bar.parallel_uimap">[docs]</a><span class="k">def</span> <span class="nf">parallel_uimap</span><span class="p">(</span>
+    <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Returns a generator for a parallel unordered map with a progress bar.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_parallel</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
@@ -139,12 +148,16 @@
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">parallel_uimap</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="sequential_imap"><a class="viewcode-back" href="../../../generated/draugr.tqdm_utilities.pooled_progress_bar.sequential_imap.html#draugr.tqdm_utilities.pooled_progress_bar.sequential_imap">[docs]</a><span class="k">def</span> <span class="nf">sequential_imap</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">:</span>
+<div class="viewcode-block" id="sequential_imap"><a class="viewcode-back" href="../../../generated/draugr.tqdm_utilities.pooled_progress_bar.sequential_imap.html#draugr.tqdm_utilities.pooled_progress_bar.sequential_imap">[docs]</a><span class="k">def</span> <span class="nf">sequential_imap</span><span class="p">(</span>
+    <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Returns a generator for a sequential map with a progress bar.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_sequential</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="sequential_map"><a class="viewcode-back" href="../../../generated/draugr.tqdm_utilities.pooled_progress_bar.sequential_map.html#draugr.tqdm_utilities.pooled_progress_bar.sequential_map">[docs]</a><span class="k">def</span> <span class="nf">sequential_map</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<div class="viewcode-block" id="sequential_map"><a class="viewcode-back" href="../../../generated/draugr.tqdm_utilities.pooled_progress_bar.sequential_map.html#draugr.tqdm_utilities.pooled_progress_bar.sequential_map">[docs]</a><span class="k">def</span> <span class="nf">sequential_map</span><span class="p">(</span>
+    <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Performs a sequential map with a progress bar.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequential_imap</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span></div>
 
@@ -160,7 +173,11 @@
             <span class="sd">&quot;&quot;&quot;description&quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="n">parallel_map</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">func_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;sdafasd&quot;</span><span class="p">}))</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="n">parallel_map</span><span class="p">(</span>
+                <span class="n">add</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">func_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;sdafasd&quot;</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
 
     <span class="n">asdasd</span><span class="p">()</span>
 </pre></div>
@@ -171,6 +188,9 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/valknut.svg" alt="Logo"/>
+            </a></p>
 <h1 class="logo"><a href="../../../index.html">Draugr</a></h1>
 
 

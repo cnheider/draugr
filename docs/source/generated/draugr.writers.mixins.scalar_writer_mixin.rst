@@ -1,6 +1,8 @@
 draugr.writers.mixins.scalar\_writer\_mixin
 ===========================================
 
+
+
 .. automodule:: draugr.writers.mixins.scalar_writer_mixin
 
    

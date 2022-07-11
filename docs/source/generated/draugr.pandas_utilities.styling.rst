@@ -1,6 +1,8 @@
 draugr.pandas\_utilities.styling
 ================================
 
+
+
 .. automodule:: draugr.pandas_utilities.styling
 
    

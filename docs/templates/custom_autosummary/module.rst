@@ -1,5 +1,7 @@
 {{ fullname | escape | underline}}
 
+{{ release }}
+
 .. automodule:: {{ fullname }}
 
    {% block attributes %}

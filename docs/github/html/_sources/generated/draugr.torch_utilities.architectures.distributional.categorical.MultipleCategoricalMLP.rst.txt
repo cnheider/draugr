@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.distributional.categorical.MultipleCategoricalMLP
 =======================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.distributional.categorical
 
 .. autoclass:: MultipleCategoricalMLP
@@ -38,6 +40,7 @@ draugr.torch\_utilities.architectures.distributional.categorical.MultipleCategor
       ~MultipleCategoricalMLP.half
       ~MultipleCategoricalMLP.infer_input_shape
       ~MultipleCategoricalMLP.infer_output_shape
+      ~MultipleCategoricalMLP.ipu
       ~MultipleCategoricalMLP.load_state_dict
       ~MultipleCategoricalMLP.modules
       ~MultipleCategoricalMLP.named_buffers
@@ -50,6 +53,7 @@ draugr.torch\_utilities.architectures.distributional.categorical.MultipleCategor
       ~MultipleCategoricalMLP.register_forward_hook
       ~MultipleCategoricalMLP.register_forward_pre_hook
       ~MultipleCategoricalMLP.register_full_backward_hook
+      ~MultipleCategoricalMLP.register_load_state_dict_post_hook
       ~MultipleCategoricalMLP.register_module
       ~MultipleCategoricalMLP.register_parameter
       ~MultipleCategoricalMLP.requires_grad_

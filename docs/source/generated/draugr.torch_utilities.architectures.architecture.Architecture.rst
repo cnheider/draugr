@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.architecture.Architecture
 ===============================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.architecture
 
 .. autoclass:: Architecture
@@ -34,6 +36,7 @@ draugr.torch\_utilities.architectures.architecture.Architecture
       ~Architecture.get_parameter
       ~Architecture.get_submodule
       ~Architecture.half
+      ~Architecture.ipu
       ~Architecture.load_state_dict
       ~Architecture.modules
       ~Architecture.named_buffers
@@ -46,6 +49,7 @@ draugr.torch\_utilities.architectures.architecture.Architecture
       ~Architecture.register_forward_hook
       ~Architecture.register_forward_pre_hook
       ~Architecture.register_full_backward_hook
+      ~Architecture.register_load_state_dict_post_hook
       ~Architecture.register_module
       ~Architecture.register_parameter
       ~Architecture.requires_grad_

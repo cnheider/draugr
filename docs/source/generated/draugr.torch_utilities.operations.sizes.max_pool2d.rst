@@ -1,6 +1,8 @@
 draugr.torch\_utilities.operations.sizes.max\_pool2d
 ====================================================
 
+
+
 .. automodule:: draugr.torch_utilities.operations.sizes.max_pool2d
 
    

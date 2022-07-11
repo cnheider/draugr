@@ -1,6 +1,8 @@
 draugr.writers.log\_writer
 ==========================
 
+
+
 .. automodule:: draugr.writers.log_writer
 
    

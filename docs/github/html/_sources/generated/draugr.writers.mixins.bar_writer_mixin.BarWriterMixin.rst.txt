@@ -1,6 +1,8 @@
 draugr.writers.mixins.bar\_writer\_mixin.BarWriterMixin
 =======================================================
 
+
+
 .. currentmodule:: draugr.writers.mixins.bar_writer_mixin
 
 .. autoclass:: BarWriterMixin

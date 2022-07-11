@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.distributional.categorical
 ================================================================
 
+
+
 .. automodule:: draugr.torch_utilities.architectures.distributional.categorical
 
    

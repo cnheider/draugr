@@ -3,4 +3,4 @@
 Getting Started
 ================
 
-pip install draugr -U
+pip install |PROJECT_NAME| -U

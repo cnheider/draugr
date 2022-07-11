@@ -1,6 +1,8 @@
 draugr.numpy\_utilities.powers
 ==============================
 
+
+
 .. automodule:: draugr.numpy_utilities.powers
 
    

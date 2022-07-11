@@ -140,7 +140,7 @@ class MetricAggregator(object):
                         return getattr(statistics, item)(self._values)
                     except statistics.StatisticsError as e:
                         warn(f"{e}")
-                        return None
+                        return
             else:
                 warn(
                     f'Length of statistical values are <=1, measure "{item}" maybe ill-defined'
@@ -149,7 +149,7 @@ class MetricAggregator(object):
                     return getattr(statistics, item)(self._values)
                 except statistics.StatisticsError as e:
                     warn(f"{e}")
-                    return None
+                    return
         elif item == self._running_value_key:
             return self._measures[item]
         else:

@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.color\_space.edge
 ==========================================
 
+
+
 .. automodule:: draugr.opencv_utilities.color_space.edge
 
    

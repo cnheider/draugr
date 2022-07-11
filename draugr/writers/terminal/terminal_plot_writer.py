@@ -9,11 +9,9 @@ from tqdm import tqdm
 
 from draugr.metrics import MetricCollection
 from draugr.writers.mixins import ImageWriterMixin
-from draugr.writers.terminal.terminal_image_renderer import (
-    render_image,
+from draugr.drawers.terminal import (
+    terminal_render_image,
     terminalise_image,
-)
-from draugr.writers.terminal.terminal_plot import (
     styled_terminal_plot_stats_shared_x,
     terminal_plot,
 )
@@ -25,10 +23,10 @@ Created on 27/04/2019
 
 @author: cnheider
 """
-__all__ = ["TerminalPlotWriter"]
+__all__ = ["TerminalWriter"]
 
 
-class TerminalPlotWriter(Writer, ImageWriterMixin):
+class TerminalWriter(Writer, ImageWriterMixin):
     """description"""
 
     def image(
@@ -41,7 +39,7 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
         **kwargs,
     ) -> None:
         """description"""
-        self.E.write(terminalise_image(render_image(data, scale=(28, 28))))
+        self.E.write(terminalise_image(terminal_render_image(data, scale=(28, 28))))
 
     def _open(self):
         self.E = tqdm()
@@ -88,7 +86,7 @@ class TerminalPlotWriter(Writer, ImageWriterMixin):
 
 
 if __name__ == "__main__":
-    with TerminalPlotWriter() as w:
+    with TerminalWriter() as w:
         w.scalar("What", 4)
         w.image("bro", numpy.random.randint(0, 255, (28, 28, 3)), 0)
 

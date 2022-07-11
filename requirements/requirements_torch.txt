@@ -1,6 +1,5 @@
-matplotlib
+matplotlib>=3.5.2
 opencv-python
-torch
-tensorboardX
+torch>=1.12.0
 tensorboard
-torchvision
+torchvision>=0.13.0

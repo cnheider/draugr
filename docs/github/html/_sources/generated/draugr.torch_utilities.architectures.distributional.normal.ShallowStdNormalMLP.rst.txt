@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.distributional.normal.ShallowStdNormalMLP
 ===============================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.distributional.normal
 
 .. autoclass:: ShallowStdNormalMLP
@@ -37,6 +39,7 @@ draugr.torch\_utilities.architectures.distributional.normal.ShallowStdNormalMLP
       ~ShallowStdNormalMLP.half
       ~ShallowStdNormalMLP.infer_input_shape
       ~ShallowStdNormalMLP.infer_output_shape
+      ~ShallowStdNormalMLP.ipu
       ~ShallowStdNormalMLP.load_state_dict
       ~ShallowStdNormalMLP.modules
       ~ShallowStdNormalMLP.named_buffers
@@ -49,6 +52,7 @@ draugr.torch\_utilities.architectures.distributional.normal.ShallowStdNormalMLP
       ~ShallowStdNormalMLP.register_forward_hook
       ~ShallowStdNormalMLP.register_forward_pre_hook
       ~ShallowStdNormalMLP.register_full_backward_hook
+      ~ShallowStdNormalMLP.register_load_state_dict_post_hook
       ~ShallowStdNormalMLP.register_module
       ~ShallowStdNormalMLP.register_parameter
       ~ShallowStdNormalMLP.requires_grad_

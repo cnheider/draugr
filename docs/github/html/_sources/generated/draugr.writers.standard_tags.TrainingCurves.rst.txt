@@ -1,6 +1,8 @@
 draugr.writers.standard\_tags.TrainingCurves
 ============================================
 
+
+
 .. currentmodule:: draugr.writers.standard_tags
 
 .. autoclass:: TrainingCurves

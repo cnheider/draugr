@@ -1,6 +1,8 @@
 draugr.writers.standard\_tags.TrainingTables
 ============================================
 
+
+
 .. currentmodule:: draugr.writers.standard_tags
 
 .. autoclass:: TrainingTables

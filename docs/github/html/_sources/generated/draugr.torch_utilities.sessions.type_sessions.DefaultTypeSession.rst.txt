@@ -1,6 +1,8 @@
 draugr.torch\_utilities.sessions.type\_sessions.DefaultTypeSession
 ==================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.sessions.type_sessions
 
 .. autoclass:: DefaultTypeSession

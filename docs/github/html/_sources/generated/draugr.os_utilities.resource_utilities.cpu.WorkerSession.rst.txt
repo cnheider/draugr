@@ -1,6 +1,8 @@
 draugr.os\_utilities.resource\_utilities.cpu.WorkerSession
 ==========================================================
 
+
+
 .. currentmodule:: draugr.os_utilities.resource_utilities.cpu
 
 .. autoclass:: WorkerSession

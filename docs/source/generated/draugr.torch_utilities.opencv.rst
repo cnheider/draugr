@@ -1,6 +1,8 @@
 draugr.torch\_utilities.opencv
 ==============================
 
+
+
 .. automodule:: draugr.torch_utilities.opencv
 
    

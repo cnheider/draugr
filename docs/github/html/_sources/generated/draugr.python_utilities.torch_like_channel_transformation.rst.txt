@@ -1,6 +1,8 @@
 draugr.python\_utilities.torch\_like\_channel\_transformation
 =============================================================
 
+
+
 .. automodule:: draugr.python_utilities.torch_like_channel_transformation
 
    

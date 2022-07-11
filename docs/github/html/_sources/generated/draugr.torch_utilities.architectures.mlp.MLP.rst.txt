@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.mlp.MLP
 =============================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.mlp
 
 .. autoclass:: MLP
@@ -37,6 +39,7 @@ draugr.torch\_utilities.architectures.mlp.MLP
       ~MLP.half
       ~MLP.infer_input_shape
       ~MLP.infer_output_shape
+      ~MLP.ipu
       ~MLP.load_state_dict
       ~MLP.modules
       ~MLP.named_buffers
@@ -49,6 +52,7 @@ draugr.torch\_utilities.architectures.mlp.MLP
       ~MLP.register_forward_hook
       ~MLP.register_forward_pre_hook
       ~MLP.register_full_backward_hook
+      ~MLP.register_load_state_dict_post_hook
       ~MLP.register_module
       ~MLP.register_parameter
       ~MLP.requires_grad_

@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.distributional.normal
 ===========================================================
 
+
+
 .. automodule:: draugr.torch_utilities.architectures.distributional.normal
 
    

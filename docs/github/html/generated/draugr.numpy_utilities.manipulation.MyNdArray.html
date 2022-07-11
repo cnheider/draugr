@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>draugr.numpy_utilities.manipulation.MyNdArray &#8212; Draugr 1.0.0 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>draugr.numpy_utilities.manipulation.MyNdArray &#8212; Draugr 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -35,7 +36,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="draugr-numpy-utilities-manipulation-myndarray">
+  <section id="draugr-numpy-utilities-manipulation-myndarray">
 <h1>draugr.numpy_utilities.manipulation.MyNdArray<a class="headerlink" href="#draugr-numpy-utilities-manipulation-myndarray" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray">
@@ -108,8 +109,8 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.diagonal" title="draugr.numpy_utilities.manipulation.MyNdArray.diagonal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">diagonal</span></code></a>([offset, axis1, axis2])</p></td>
 <td><p>Return specified diagonals.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.dot" title="draugr.numpy_utilities.manipulation.MyNdArray.dot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dot</span></code></a>(b[, out])</p></td>
+<td><p>Dot product of two arrays.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.dump" title="draugr.numpy_utilities.manipulation.MyNdArray.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump</span></code></a>(file)</p></td>
 <td><p>Dump a pickle of the array to the specified file.</p></td>
@@ -635,22 +636,14 @@ One of max or min must be given.</p>
 ‘F’ means F-order, ‘A’ means ‘F’ if <cite>a</cite> is Fortran contiguous,
 ‘C’ otherwise. ‘K’ means match the layout of <cite>a</cite> as closely
 as possible. (Note that this function and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.copy.html#numpy.copy" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.copy()</span></code></a> are very
-similar but have different default values for their order=
-arguments, and this function always passes sub-classes through.)</p>
+similar, but have different default values for their order=
+arguments.)</p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.copy.html#numpy.copy" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.copy</span></code></a></dt><dd><p>Similar function with different default behavior</p>
-</dd>
-</dl>
-<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.copyto.html#numpy.copyto" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.copyto</span></code></a></p>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.copy.html#numpy.copy" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.copy</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.copyto.html#numpy.copyto" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.copyto</span></code></a></p>
 </div>
-<p class="rubric">Notes</p>
-<p>This function is the preferred method for creating an array copy.  The
-function <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.copy.html#numpy.copy" title="(in NumPy v1.23)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.copy()</span></code></a> is similar, but it defaults to using order ‘K’,
-and will not pass sub-classes through by default.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
 </pre></div>
@@ -727,10 +720,10 @@ pointer to a deallocated array, and should be spelt
 <span class="sig-prename descclassname"><span class="pre">_ctypes.</span></span><span class="sig-name descname"><span class="pre">shape</span></span></dt>
 <dd><p>A ctypes array of length self.ndim where
 the basetype is the C-integer corresponding to <code class="docutils literal notranslate"><span class="pre">dtype('p')</span></code> on this
-platform (see <cite>~numpy.ctypeslib.c_intp</cite>). This base-type could be
-<cite>ctypes.c_int</cite>, <cite>ctypes.c_long</cite>, or <cite>ctypes.c_longlong</cite> depending on
-the platform. The ctypes array contains the shape of
-the underlying array.</p>
+platform. This base-type could be <cite>ctypes.c_int</cite>, <cite>ctypes.c_long</cite>, or
+<cite>ctypes.c_longlong</cite> depending on the platform.
+The c_intp type is defined accordingly in <cite>numpy.ctypeslib</cite>.
+The ctypes array contains the shape of the underlying array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>(c_intp*self.ndim)</p>
@@ -855,6 +848,34 @@ a future version the read-only restriction will be removed.</p>
 </div>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray.dot">
+<span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dot product of two arrays.</p>
+<p>Refer to <cite>numpy.dot</cite> for full documentation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dot.html#numpy.dot" title="(in NumPy v1.23)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.dot</span></code></a></dt><dd><p>equivalent function</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">array([[2.,  2.],</span>
+<span class="go">       [2.,  2.]])</span>
+</pre></div>
+</div>
+<p>This array method can be conveniently chained:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">array([[8.,  8.],</span>
+<span class="go">       [8.,  8.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray.dtype">
 <span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.dtype" title="Permalink to this definition">¶</a></dt>
@@ -906,7 +927,7 @@ The array can be read back with pickle.load or numpy.load.</p>
 <dt class="sig sig-object py" id="draugr.numpy_utilities.manipulation.MyNdArray.dumps">
 <span class="sig-name descname"><span class="pre">dumps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#draugr.numpy_utilities.manipulation.MyNdArray.dumps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the pickle of the array as a string.
-pickle.loads will convert the string back to an array.</p>
+pickle.loads or numpy.loads will convert the string back to an array.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>None</strong> – </p>
@@ -1336,7 +1357,7 @@ below. <cite>new_order</cite> codes can be any of:</p>
 <li><p>’S’ - swap dtype from current to opposite endian</p></li>
 <li><p>{‘&lt;’, ‘little’} - little endian</p></li>
 <li><p>{‘&gt;’, ‘big’} - big endian</p></li>
-<li><p>{‘=’, ‘native’} - native order, equivalent to <cite>sys.byteorder</cite></p></li>
+<li><p>’=’ - native order, equivalent to <cite>sys.byteorder</cite></p></li>
 <li><p>{‘|’, ‘I’} - ignore (no change to byte order)</p></li>
 </ul>
 <p>The default value (‘S’) results in swapping the current
@@ -1381,16 +1402,12 @@ the two partitions is undefined.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>kth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em> or </em><em>sequence of python:ints</em>) – <p>Element index to partition by. The kth element value will be in its
+<li><p><strong>kth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em> or </em><em>sequence of python:ints</em>) – Element index to partition by. The kth element value will be in its
 final sorted position and all smaller elements will be moved before it
 and all equal or greater elements behind it.
 The order of all elements in the partitions is undefined.
 If provided with a sequence of kth it will partition all elements
-indexed by kth of them into their sorted position at once.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.22.0: </span>Passing booleans as index is deprecated.</p>
-</div>
-</p></li>
+indexed by kth of them into their sorted position at once.</p></li>
 <li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) – Axis along which to sort. Default is -1, which means sort along the
 last axis.</p></li>
 <li><p><strong>kind</strong> (<em>{'python:introselect'}</em><em>, </em><em>optional</em>) – Selection algorithm. Default is ‘introselect’.</p></li>
@@ -1850,7 +1867,7 @@ and ‘mergesort’ use timsort under the covers and, in general, the
 actual implementation will vary with datatype. The ‘mergesort’ option
 is retained for backwards compatibility.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.15.0: </span>The ‘stable’ option was added.</p>
+<p><span class="versionmodified changed">Changed in version 1.15.0.: </span>The ‘stable’ option was added.</p>
 </div>
 </p></li>
 <li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>list of str</em><em>, </em><em>optional</em>) – When <cite>a</cite> is an array with fields defined, this argument specifies
@@ -2219,8 +2236,6 @@ intended simply as a “convenience” alternative to the tuple form)</p></li>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#draugr.numpy_utilities.manipulation.MyNdArray.transpose" title="draugr.numpy_utilities.manipulation.MyNdArray.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a></dt><dd><p>Equivalent function</p>
-</dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray.T</span></code></dt><dd><p>Array property returning the array transposed.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray.reshape</span></code></dt><dd><p>Give a new shape to an array without changing its data.</p>
@@ -2360,7 +2375,7 @@ avoided on arrays defined by slices, transposes, fortran-ordering, etc.:</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
           </div>
@@ -2369,6 +2384,9 @@ avoided on arrays defined by slices, transposes, fortran-ordering, etc.:</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/valknut.svg" alt="Logo"/>
+            </a></p>
 <h1 class="logo"><a href="../index.html">Draugr</a></h1>
 
 

@@ -65,7 +65,7 @@ class WindowsSettings(metaclass=SingletonMeta):
     @property
     def all_settings(self):
         """description"""
-        return None
+        return
         # for i in self.settings.list_properties():  # getting all existing properties
         #  yield i
 

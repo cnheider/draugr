@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
         :return:
         """
-        import tensorflow as tf
+        import tensorflow
         import numpy
 
         import textwrap
@@ -27,7 +27,7 @@ if __name__ == "__main__":
         import itertools
         import matplotlib
 
-        class SaverHook(tf.train.SessionRunHook):
+        class SaverHook(tensorflow.train.SessionRunHook):
             """
             Saves a confusion matrix as a Summary so that it can be shown in tensorboard
             """
@@ -51,12 +51,12 @@ if __name__ == "__main__":
                 :param session:
                 """
                 cm = (
-                    tf.get_default_graph()
+                    tensorflow.get_default_graph()
                     .get_tensor_by_name(self.confusion_matrix_tensor_name + ":0")
                     .eval(session=session)
                     .astype(int)
                 )
-                global_step = tf.train.get_global_step().eval(session=session)
+                global_step = tensorflow.train.get_global_step().eval(session=session)
                 figure = self._plot_confusion_matrix(cm)
                 summary = self._figure_to_summary(figure)
                 self._summary_writer.add_summary(summary, global_step)
@@ -83,15 +83,15 @@ if __name__ == "__main__":
                 png_encoded = png_buffer.getvalue()
                 png_buffer.close()
 
-                summary_image = tf.Summary.Image(
+                summary_image = tensorflow.Summary.Image(
                     height=h,
                     width=w,
                     colorspace=4,  # RGB-A
                     encoded_image_string=png_encoded,
                 )
-                summary = tf.Summary(
+                summary = tensorflow.Summary(
                     value=[
-                        tf.Summary.Value(
+                        tensorflow.Summary.Value(
                             tag=self.confusion_matrix_tensor_name, image=summary_image
                         )
                     ]
@@ -155,7 +155,7 @@ if __name__ == "__main__":
         import itertools
         from packaging import version
 
-        import tensorflow as tf
+        import tensorflow
 
         from matplotlib import pyplot
         import numpy
@@ -177,9 +177,9 @@ if __name__ == "__main__":
             pyplot.close(figure)
             buf.seek(0)
             # Convert PNG buffer to TF image
-            image = tf.image.decode_png(buf.getvalue(), channels=4)
+            image = tensorflow.image.decode_png(buf.getvalue(), channels=4)
             # Add the batch dimension
-            image = tf.expand_dims(image, 0)
+            image = tensorflow.expand_dims(image, 0)
             return image
 
         def image_grid():
@@ -243,5 +243,5 @@ cm_image = plot_to_image(figure)
 
 # Log the confusion matrix as an image summary.
 with file_writer_cm.as_default():
-tf.summary.image("Confusion Matrix", cm_image, step=epoch)
+tensorflow.summary.image("Confusion Matrix", cm_image, step=epoch)
 """

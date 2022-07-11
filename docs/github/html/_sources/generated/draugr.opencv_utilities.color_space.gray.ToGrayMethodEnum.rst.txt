@@ -1,6 +1,8 @@
 draugr.opencv\_utilities.color\_space.gray.ToGrayMethodEnum
 ===========================================================
 
+
+
 .. currentmodule:: draugr.opencv_utilities.color_space.gray
 
 .. autoclass:: ToGrayMethodEnum

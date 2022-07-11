@@ -1,6 +1,8 @@
 draugr.writers.standard\_tags.TrainingScalars
 =============================================
 
+
+
 .. currentmodule:: draugr.writers.standard_tags
 
 .. autoclass:: TrainingScalars

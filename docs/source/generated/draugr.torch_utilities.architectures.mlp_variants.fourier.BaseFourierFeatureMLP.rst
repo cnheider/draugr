@@ -1,6 +1,8 @@
 draugr.torch\_utilities.architectures.mlp\_variants.fourier.BaseFourierFeatureMLP
 =================================================================================
 
+
+
 .. currentmodule:: draugr.torch_utilities.architectures.mlp_variants.fourier
 
 .. autoclass:: BaseFourierFeatureMLP
@@ -34,6 +36,7 @@ draugr.torch\_utilities.architectures.mlp\_variants.fourier.BaseFourierFeatureML
       ~BaseFourierFeatureMLP.get_parameter
       ~BaseFourierFeatureMLP.get_submodule
       ~BaseFourierFeatureMLP.half
+      ~BaseFourierFeatureMLP.ipu
       ~BaseFourierFeatureMLP.load_state_dict
       ~BaseFourierFeatureMLP.modules
       ~BaseFourierFeatureMLP.named_buffers
@@ -46,6 +49,7 @@ draugr.torch\_utilities.architectures.mlp\_variants.fourier.BaseFourierFeatureML
       ~BaseFourierFeatureMLP.register_forward_hook
       ~BaseFourierFeatureMLP.register_forward_pre_hook
       ~BaseFourierFeatureMLP.register_full_backward_hook
+      ~BaseFourierFeatureMLP.register_load_state_dict_post_hook
       ~BaseFourierFeatureMLP.register_module
       ~BaseFourierFeatureMLP.register_parameter
       ~BaseFourierFeatureMLP.requires_grad_
