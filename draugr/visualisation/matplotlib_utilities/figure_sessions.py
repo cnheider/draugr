@@ -36,7 +36,10 @@ import subprocess
 
 
 class FigureSession(AlsoDecorator):
-    """description"""
+    """
+    maintains a figure session while in context
+
+    """
 
     @passes_kws_to(pyplot.figure)
     def __init__(self, **kws):
@@ -52,7 +55,10 @@ class FigureSession(AlsoDecorator):
 
 
 class SubplotSession(AlsoDecorator):
-    """description"""
+    """
+    maintains a subplot session while in context
+
+    """
 
     @passes_kws_to(pyplot.subplots)
     def __init__(self, return_self: bool = False, **kws):
@@ -77,7 +83,9 @@ class SubplotSession(AlsoDecorator):
 
 
 class StyleSession(AlsoDecorator):
-    """description"""
+    """
+    maintains a style session while in context
+    """
 
     def __init__(
         self,
@@ -115,7 +123,10 @@ class StyleSession(AlsoDecorator):
 
 
 class MonoChromeStyleSession(StyleSession):
-    """description"""
+    """
+    maintains a style session with monochrome style while in context
+
+    """
 
     def __init__(
         self,
@@ -131,7 +142,7 @@ class MonoChromeStyleSession(StyleSession):
 
 
 class NoOutlineSession(AlsoDecorator):
-    """description"""
+    """maintains a style session with no outline while in context"""
 
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()
@@ -151,7 +162,7 @@ class NoOutlineSession(AlsoDecorator):
 
 
 class OutlineSession(AlsoDecorator):
-    """description"""
+    """maintains a style session with outlines while in context"""
 
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()

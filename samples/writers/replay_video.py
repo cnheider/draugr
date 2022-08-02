@@ -10,6 +10,7 @@ __doc__ = r"""
 import time
 
 import numpy
+from trolls.render_mode import RenderModeEnum
 
 from draugr import PROJECT_APP_PATH
 from draugr.torch_utilities import (
@@ -31,7 +32,7 @@ if __name__ == "__main__":
         """
         import gym
 
-        env = gym.make("Pendulum-v0")
+        env = gym.make("Pendulum-v1")
         state = env.reset()
 
         with TensorBoardPytorchWriter(
@@ -42,12 +43,13 @@ if __name__ == "__main__":
 
             start = time.time()
             while not done:
-                frames.append(env.render("rgb_array"))
+                frames.append(env.render(mode=RenderModeEnum.rgb_array.value))
                 state, reward, done, info = env.step(env.action_space.sample())
             fps = len(frames) / (time.time() - start)
 
             env.close()
             video_array = numpy.array(frames)
+            print(video_array.shape)
             writer.video(
                 "replay05",
                 nhwc_to_nchw_tensor(to_tensor(video_array)).unsqueeze(0),

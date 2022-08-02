@@ -58,13 +58,19 @@ from matplotlib.axes import Axes, ErrorbarContainer
 
 
 class MatplotlibHorizontalAlignment(Enum):
-    """description"""
+    """
+    Horizontal alignment of text in matplotlib
+
+    """
 
     (center, right, left) = assigned_names()
 
 
 class MatplotlibVerticalAlignment(Enum):
-    """description"""
+    """
+    Vertical alignment of text in matplotlib
+
+    """
 
     (center, top, bottom, baseline, center_baseline) = assigned_names()
 
@@ -88,6 +94,8 @@ def make_errorbar_legend(ax: Axes = None) -> None:
 
 def annotate_point(ax: Axes, x: Sequence, y: Sequence, t: Any) -> None:
     """
+
+    Annotate point with text
 
     :param ax:
     :param x:
@@ -171,7 +179,14 @@ o.set_clip_box(clip_box)
 
 
 def remove_decoration(ax: Axes) -> None:
-    """description"""
+    """
+    removes decoration from axes
+
+    :param ax:
+    :type ax:
+    :return:
+    :rtype:
+    """
     transparent = (1.0, 1.0, 1.0, 0.0)
 
     ax.w_xaxis.set_pane_color(transparent)
@@ -190,7 +205,17 @@ def remove_decoration(ax: Axes) -> None:
 def denormalise_minusoneone(
     t: Union[numpy.ndarray, Number], coordinates: Union[numpy.ndarray, Number]
 ) -> Union[numpy.ndarray, Number]:
-    """description"""
+    """
+
+    #denormalise from -1 to 1 to 0 to 1
+
+    :param t:
+    :type t:
+    :param coordinates:
+    :type coordinates:
+    :return:
+    :rtype:
+    """
     return 0.5 * ((coordinates + 1.0) * t)
 
 
@@ -210,7 +235,21 @@ def decolorise_plot(ax_: Axes, inverted: bool = False) -> None:
 def matplotlib_bounding_box(
     x: Number, y: Number, size: Number, color: str = "w"
 ) -> Rectangle:
-    """description"""
+    """
+
+    Create a bounding box in matplotlib
+
+    :param x:
+    :type x:
+    :param y:
+    :type y:
+    :param size:
+    :type size:
+    :param color:
+    :type color:
+    :return:
+    :rtype:
+    """
     x = int(x - (size / 2))
     y = int(y - (size / 2))
     rect = patches.Rectangle(
@@ -224,6 +263,8 @@ def use_monochrome_style(
     # ONLY COLOR AND LINESTYLE MAKES SENSE FOR NOW, matplotlib seems very undone in this api atleast for bars
 ) -> None:
     """
+
+    Set matplotlib style to monochrome
 
     :param prop_cycler:
     """

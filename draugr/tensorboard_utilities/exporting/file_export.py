@@ -13,4 +13,18 @@ from draugr.tensorboard_utilities.exporting.event_export import TensorboardEvent
 
 
 class TensorboardEventExporterFile(TensorboardEventExporter):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.file = kwargs.get("file")
+        if self.file is not None:
+            self.file.write("")
+        else:
+            raise ValueError("No file provided")
+
+    def export(self):
+
+        self.file.write("")
+        super().export()
+
+    def close(self):
+        self.file.close()

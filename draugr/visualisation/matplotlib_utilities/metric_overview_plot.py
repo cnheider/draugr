@@ -49,6 +49,7 @@ def correlation_matrix_plot(
     cor: Sequence, labels: Sequence = None, title: str = "", **kwargs
 ) -> Figure:
     """
+    produces a correlation matrix plot.
 
     :param cor:
     :type cor:

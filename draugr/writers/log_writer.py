@@ -49,7 +49,7 @@ class LogWriter(Writer):
 
         return logging.getLogger()
 
-    def __init__(self, path, **kwargs):
+    def __init__(self, path: Path, **kwargs):
         super().__init__(**kwargs)
         self.log_path = path
         self.logger: logging.Logger = None

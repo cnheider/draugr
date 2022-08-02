@@ -1,12 +1,12 @@
 from enum import Enum
 
 __all__ = [
-    "TrainingScalars",
-    "TrainingCurves",
-    "TrainingTables",
-    "TestingScalars",
-    "TestingCurves",
-    "TestingTables",
+    "StandardTrainingScalarsEnum",
+    "StandardTrainingCurvesEnum",
+    "StandardTrainingTablesEnum",
+    "StandardTestingScalarsEnum",
+    "StandardTestingCurvesEnum",
+    "StandardTestingTablesEnum",
     "should_plot_y_log_scale",
     "should_smooth_series",
 ]
@@ -14,7 +14,7 @@ __all__ = [
 from sorcery import assigned_names
 
 
-class TrainingScalars(Enum):
+class StandardTrainingScalarsEnum(Enum):
     """description"""
 
     (
@@ -25,7 +25,7 @@ class TrainingScalars(Enum):
     ) = assigned_names()
 
 
-class TrainingCurves(Enum):
+class StandardTrainingCurvesEnum(Enum):
     """description"""
 
     (
@@ -34,13 +34,13 @@ class TrainingCurves(Enum):
     ) = assigned_names()
 
 
-class TrainingTables(Enum):
+class StandardTrainingTablesEnum(Enum):
     """description"""
 
     validation_confusion_matrix, validation_support = assigned_names()
 
 
-class TestingScalars(Enum):
+class StandardTestingScalarsEnum(Enum):
     """description"""
 
     (
@@ -51,13 +51,13 @@ class TestingScalars(Enum):
     ) = assigned_names()
 
 
-class TestingCurves(Enum):
+class StandardTestingCurvesEnum(Enum):
     """description"""
 
     test_precision_recall, test_receiver_operator_characteristic = assigned_names()
 
 
-class TestingTables(Enum):
+class StandardTestingTablesEnum(Enum):
     """description"""
 
     test_confusion_matrix, test_support = assigned_names()
@@ -69,9 +69,9 @@ def should_plot_y_log_scale(tag: Enum) -> bool:
     :param tag:
     :return:
     """
-    if tag is TrainingScalars.training_loss:
+    if tag is StandardTrainingScalarsEnum.training_loss:
         return True
-    elif tag is TrainingScalars.validation_loss:
+    elif tag is StandardTrainingScalarsEnum.validation_loss:
         return True
     return False
 
@@ -82,12 +82,12 @@ def should_smooth_series(tag: Enum) -> bool:
     :param tag:
     :return:
     """
-    if tag is TrainingScalars.training_loss:
+    if tag is StandardTrainingScalarsEnum.training_loss:
         return True
-    elif tag is TrainingScalars.validation_loss:
+    elif tag is StandardTrainingScalarsEnum.validation_loss:
         return True
     return False
 
 
 if __name__ == "__main__":
-    print(TrainingScalars.training_loss.value)
+    print(StandardTrainingScalarsEnum.training_loss.value)

@@ -14,7 +14,7 @@ from matplotlib import pyplot
 from apppath import ensure_existence
 from draugr import PROJECT_APP_PATH
 from draugr.tensorboard_utilities import TensorboardEventExporter
-from draugr.writers import TrainingScalars
+from draugr.writers import StandardTrainingScalarsEnum
 
 if __name__ == "__main__":
     save = False
@@ -28,7 +28,9 @@ if __name__ == "__main__":
                 _path_to_events_file.parent, save_to_disk=save
             )
             print(f"Available tags: {tee.tags_available}")
-            tee.export_line_plot(TrainingScalars.training_loss.value, out_dir=_out_dir)
+            tee.export_line_plot(
+                StandardTrainingScalarsEnum.training_loss.value, out_dir=_out_dir
+            )
             if not save:
                 pyplot.show()
     else:

@@ -27,7 +27,9 @@ def spectral_plot3d(
     time: numpy.ndarray, frequencies: numpy.ndarray, fxt: numpy.ndarray
 ) -> pyplot.Figure:
     """
-    return new figure"""
+    return new figure
+    of a 3d plot of the spectrogram of the signal
+    """
     assert fxt.shape == (*frequencies.shape, *time.shape)
     assert fxt.dtype == numpy.complex
 
@@ -70,7 +72,7 @@ def spectral_plot3d(
 def spectrum_plot3d(
     signal: Sequence, sampling_rate: int, window_length_ms=(20 / 1000)
 ) -> pyplot.Figure:
-    """description"""
+    """return new figure of a 3d plot of the spectrum of the signal"""
     n_per_seg = next_pow_2(
         sampling_rate * window_length_ms
     )  # 20 ms, next_pow_2 per seg == n_fft

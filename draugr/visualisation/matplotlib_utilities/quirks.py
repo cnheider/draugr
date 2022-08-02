@@ -7,6 +7,9 @@ __doc__ = r"""
            Created on 17-02-2021
            """
 
+from enum import Enum
+from typing import Sequence, Optional
+
 from matplotlib import cycler, pyplot, rcParams
 from matplotlib.axes import Axes
 
@@ -64,10 +67,31 @@ def auto_post_hatch(
         p.set_hatch(next(iter(d.values())))
 
 
+class FillStyleEnum(str, Enum):
+    """
+    Enum for fill styles
+    """
+
+    solid = "solid"
+    hatch = "hatch"
+    none = "none"
+
+
 @drop_unused_kws
 @passes_kws_to(pyplot.scatter)
-def scatter_auto_mark(x, y, c, ax=None, m=("|", "_"), fillstyle="none", **kw):
+def scatter_auto_mark(
+    x: Sequence,
+    y: Sequence,
+    c: Optional[Sequence],
+    ax=None,
+    m: Sequence = ("|", "_"),
+    fillstyle: FillStyleEnum = FillStyleEnum.none,
+    **kw
+):
     """
+
+    Scatter plot with auto-markers
+
     TODO:Quick hack, can be generalised further
     :param x:
     :param y:
@@ -83,12 +107,14 @@ def scatter_auto_mark(x, y, c, ax=None, m=("|", "_"), fillstyle="none", **kw):
     if not ax:
         ax = pyplot.gca()
     sc = ax.scatter(x, y, c=c, **kw)
+    fillstyle = FillStyleEnum(fillstyle)
     if m is not None and len(m) == len(x):
         paths = []
         for marker in m:
             if isinstance(marker, mmarkers.MarkerStyle):
                 marker_obj = marker
             else:
+
                 marker_obj = mmarkers.MarkerStyle(marker, fillstyle=fillstyle)
             path = marker_obj.get_path().transformed(marker_obj.get_transform())
             paths.append(path)

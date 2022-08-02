@@ -10,7 +10,7 @@ __doc__ = r"""
 
 from turtle import *
 
-from draugr import str_to_tuple, PlaybackShell
+from warg import PlaybackShell, str_to_tuple
 
 
 class TurtleShell(PlaybackShell):

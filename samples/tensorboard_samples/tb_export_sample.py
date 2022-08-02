@@ -14,10 +14,10 @@ from apppath import AppPath, ensure_existence
 from draugr.tensorboard_utilities import TensorboardEventExporter
 from draugr.tqdm_utilities import progress_bar
 from draugr.writers import (
-    TestingCurves,
-    TestingScalars,
-    TrainingCurves,
-    TrainingScalars,
+    StandardTestingCurvesEnum,
+    StandardTestingScalarsEnum,
+    StandardTrainingCurvesEnum,
+    StandardTrainingScalarsEnum,
 )
 
 __all__ = ["extract_scalars_as_csv", "extract_tensors_as_csv", "extract_metrics"]
@@ -74,7 +74,7 @@ def extract_scalars_as_csv(
             with TensorboardEventExporter(e, save_to_disk=True) as tee:
                 if export_test:
                     out_tags = []
-                    for tag in progress_bar(TestingScalars):
+                    for tag in progress_bar(StandardTestingScalarsEnum):
                         if tag.value in tee.available_scalars:
                             out_tags.append(tag.value)
 
@@ -91,12 +91,12 @@ def extract_scalars_as_csv(
                     else:
                         if verbose:
                             print(
-                                f"{e}, no requested tags found {TestingScalars.__members__.values()}, {tee.available_scalars}"
+                                f"{e}, no requested tags found {StandardTestingScalarsEnum.__members__.values()}, {tee.available_scalars}"
                             )
 
                 if export_train:
                     out_tags = []
-                    for tag in progress_bar(TrainingScalars):
+                    for tag in progress_bar(StandardTrainingScalarsEnum):
                         if tag.value in tee.available_scalars:
                             out_tags.append(tag.value)
 
@@ -112,7 +112,7 @@ def extract_scalars_as_csv(
                     else:
                         if verbose:
                             print(
-                                f"{e}, no requested tags found {TrainingScalars.__members__.values()}, {tee.available_scalars}"
+                                f"{e}, no requested tags found {StandardTrainingScalarsEnum.__members__.values()}, {tee.available_scalars}"
                             )
 
 
@@ -166,7 +166,7 @@ def extract_tensors_as_csv(
             with TensorboardEventExporter(e, save_to_disk=True) as tee:
                 if export_test:
                     out_tags = []
-                    for tag in progress_bar(TestingCurves):
+                    for tag in progress_bar(StandardTestingCurvesEnum):
                         if tag.value in tee.available_tensors:
                             out_tags.append(tag.value)
 
@@ -182,12 +182,12 @@ def extract_tensors_as_csv(
                     else:
                         if verbose:
                             print(
-                                f"{e}, no requested tags found {TestingCurves.__members__.values()}, {tee.available_tensors}"
+                                f"{e}, no requested tags found {StandardTestingCurvesEnum.__members__.values()}, {tee.available_tensors}"
                             )
 
                 if export_train:  # TODO: OUTPUT for all epoch steps, no support yet
                     out_tags = []
-                    for tag in progress_bar(TrainingCurves):
+                    for tag in progress_bar(StandardTrainingCurvesEnum):
                         if tag.value in tee.available_tensors:
                             out_tags.append(tag.value)
 
@@ -206,7 +206,7 @@ def extract_tensors_as_csv(
                     else:
                         if verbose:
                             print(
-                                f"{e}, no requested tags found {TrainingCurves.__members__.values()}, {tee.available_tensors}"
+                                f"{e}, no requested tags found {StandardTrainingCurvesEnum.__members__.values()}, {tee.available_tensors}"
                             )
 
 

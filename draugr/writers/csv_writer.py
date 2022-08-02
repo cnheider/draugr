@@ -29,7 +29,8 @@ class CSVWriter(Writer):
         :param path:
         :type path:
         :return:
-        :rtype:"""
+        :rtype:
+        """
         if path.is_dir() or path.suffix != ".csv":
             path /= "log.csv"
         csv_file = open(

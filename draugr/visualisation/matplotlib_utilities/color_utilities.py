@@ -7,6 +7,8 @@ __all__ = ["array_to_color"]
 
 def array_to_color(array: Any, cmap: str = "Oranges") -> object:
     """
+
+
     Args:
       array:
       cmap:

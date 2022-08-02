@@ -41,6 +41,7 @@ def annotate_lines(
     **kwargs,
 ) -> None:
     """
+    annotate lines on the plot
 
     :param ax_:
     :param num_lines:

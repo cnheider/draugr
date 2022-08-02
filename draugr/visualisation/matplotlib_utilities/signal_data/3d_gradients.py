@@ -14,7 +14,10 @@ __all__ = ["plot_gradients_3d"]
 
 
 def plot_gradients_3d() -> pyplot.Figure:
-    """description"""
+    """
+    return new figure
+    of a 3d plot of the gradients of the signal
+    """
     fig = pyplot.figure()
     ax = fig.gca(projection="3d")
     x = numpy.arange(-5, 5, 0.25)
