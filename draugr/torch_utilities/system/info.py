@@ -10,6 +10,8 @@ __all__ = ["system_info", "cuda_info"]
 def system_info() -> str:
     """
 
+    returns a string with system information
+
     :return:
     :rtype:"""
     return "\n".join(
@@ -28,6 +30,8 @@ def system_info() -> str:
 
 def cuda_info() -> str:
     """
+
+    returns a string with CUDA information
 
     :return:
     :rtype:"""

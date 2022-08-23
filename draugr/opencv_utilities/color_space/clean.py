@@ -2,7 +2,7 @@ from enum import Enum
 
 import cv2
 from sorcery import assigned_names
-
+from typing import MutableMapping
 from draugr.opencv_utilities.namespaces.enums import (
     MorphShapeEnum,
     MorphTypeEnum,
@@ -16,7 +16,7 @@ class CleanUpMethod(Enum):
     close, open, nclose, nopen, erode, dilate, none = assigned_names()
 
 
-def clean_up(img, method: CleanUpMethod = CleanUpMethod.open, **kwargs):
+def clean_up(img, method: CleanUpMethod = CleanUpMethod.open, **kwargs: MutableMapping):
     """
 
     :param img:

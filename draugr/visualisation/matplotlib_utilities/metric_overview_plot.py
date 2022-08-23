@@ -15,6 +15,7 @@ from matplotlib.pyplot import matshow, imshow
 from itertools import cycle
 
 from numpy import interp
+from typing import MutableMapping
 
 from warg import passes_kws_to
 from matplotlib import pyplot
@@ -46,7 +47,7 @@ __all__ = [
 
 @passes_kws_to(matshow)
 def correlation_matrix_plot(
-    cor: Sequence, labels: Sequence = None, title: str = "", **kwargs
+    cor: Sequence, labels: Sequence = None, title: str = "", **kwargs: MutableMapping
 ) -> Figure:
     """
     produces a correlation matrix plot.
@@ -85,7 +86,10 @@ def correlation_matrix_plot(
 
 @passes_kws_to(imshow)
 def horizontal_imshow(
-    images: Sequence, titles: Sequence = None, num_columns: int = 4, **kwargs
+    images: Sequence,
+    titles: Sequence = None,
+    num_columns: int = 4,
+    **kwargs: MutableMapping,
 ):
     """Small helper function for creating horizontal subplots with pyplot
 

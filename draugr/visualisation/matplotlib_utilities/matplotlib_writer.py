@@ -10,7 +10,7 @@ __doc__ = r"""
 __all__ = []
 
 from pathlib import Path
-from typing import Sequence, Mapping, Union
+from typing import Sequence, Mapping, Union, MutableMapping
 
 import numpy
 from PIL import Image
@@ -43,21 +43,21 @@ class MatPlotLibWriter(
     """
 
     @passes_kws_to(pyplot.savefig)
-    def __init__(self, path: Path, format_: str = "png", **kwargs):
+    def __init__(self, path: Path, format_: str = "png", **kwargs: MutableMapping):
         super().__init__()
         self._path = path
         self._format = format_
         self.kws = kwargs
         self._open()
 
-    def _close(self, exc_type=None, exc_val=None, exc_tb=None):
+    def _close(self, exc_type=None, exc_val=None, exc_tb=None) -> None:
         del self.scalars
 
     def _open(self):
         self.scalars = {}
         return self
 
-    def _scalar(self, tag: str, value: float, step: int):
+    def _scalar(self, tag: str, value: float, step: int) -> None:
         if tag not in self.scalars:
             self.scalars[tag] = []
         self.scalars[tag] += value
@@ -69,14 +69,15 @@ class MatPlotLibWriter(
         )
         fig.close()
 
+    @passes_kws_to(pyplot.imshow)
     def image(
         self,
         tag: str,
         data: Union[numpy.ndarray, Image.Image],
-        step,
+        step: int,
         *,
         dataformats: str = "NCHW",
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
         Plot an image in matplotlib.
@@ -92,7 +93,7 @@ class MatPlotLibWriter(
         :param kwargs:
         :type kwargs:
         """
-        fig = pyplot.imshow(data)
+        fig = pyplot.imshow(data, **kwargs)
         fig.savefig(
             (self._path / f"{tag}_{step}").with_suffix(self._format),
             format=self._format,
@@ -100,7 +101,10 @@ class MatPlotLibWriter(
         )
         fig.close()
 
-    def histogram(self, tag: str, values: list, step: int, **kwargs) -> None:
+    @passes_kws_to(pyplot.hist)
+    def histogram(
+        self, tag: str, values: list, step: int, **kwargs: MutableMapping
+    ) -> None:
         """
         Plot a histogram in matplotlib.
 
@@ -113,7 +117,7 @@ class MatPlotLibWriter(
         :param kwargs:
         :type kwargs:
         """
-        fig = pyplot.hist(values)
+        fig = pyplot.hist(values, **kwargs)
 
         fig.savefig(
             (self._path / f"{tag}_{step}").with_suffix(self._format),
@@ -131,7 +135,7 @@ class MatPlotLibWriter(
         x_labels=None,
         y_label="Probability",
         x_label="Action Categorical Distribution",
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
         Plot a bar chart in matplotlib.
@@ -170,7 +174,7 @@ class MatPlotLibWriter(
         y_label: str = "Magnitude",
         x_label: str = "Sequence",
         plot_kws: Mapping = None,
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
         Plot a line chart in matplotlib.
@@ -211,7 +215,7 @@ class MatPlotLibWriter(
         y_label: str = "Magnitude",
         x_label: str = "Sequence",
         plot_kws: Mapping = None,
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
         Plot a spectrogram in matplotlib.
@@ -245,7 +249,9 @@ class MatPlotLibWriter(
         )
         fig.close()
 
-    def figure(self, tag: str, figure: Figure, step: int, **kwargs) -> None:
+    def figure(
+        self, tag: str, figure: Figure, step: int, **kwargs: MutableMapping
+    ) -> None:
         """
         Plot a figure in matplotlib.
 

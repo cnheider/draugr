@@ -3,6 +3,7 @@
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
+               Image stream plot using matplotlib
 
            Created on 22-01-2021
            """
@@ -18,7 +19,9 @@ from warg import passes_kws_to
 
 
 class ImageStreamPlot(MplDrawer):
-    """description"""
+    """
+    Image stream plot using matplotlib
+    """
 
     @passes_kws_to(MplDrawer.__init__)
     @passes_kws_to(pyplot.imshow)

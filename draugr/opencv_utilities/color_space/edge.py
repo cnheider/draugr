@@ -2,7 +2,7 @@ from enum import Enum
 
 import cv2
 from sorcery import assigned_names
-
+from typing import MutableMapping
 from draugr.opencv_utilities.namespaces.enums import MorphShapeEnum, MorphTypeEnum
 from warg import next_odd
 
@@ -17,7 +17,9 @@ class CannyApertureSize(Enum):
     a3, a5, a7 = 3, 5, 7
 
 
-def to_edge(img, method: ToEdgeMethodEnum = ToEdgeMethodEnum.canny, **kwargs):
+def to_edge(
+    img, method: ToEdgeMethodEnum = ToEdgeMethodEnum.canny, **kwargs: MutableMapping
+):
     """
 
     :param img:

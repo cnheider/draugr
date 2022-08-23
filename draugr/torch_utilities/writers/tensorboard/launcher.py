@@ -15,6 +15,8 @@ from draugr.python_utilities.sockets import is_port_in_use
 def launch_tensorboard(log_dir: Path, port: int = 6006) -> str:
     """
 
+    launch tensorboard
+
     :param log_dir:
     :type log_dir:
     :param port:

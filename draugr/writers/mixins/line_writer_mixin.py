@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from abc import ABC, abstractmethod
-from typing import Mapping, Sequence
+
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
@@ -9,6 +8,8 @@ __doc__ = r"""
            Created on 09/10/2019
            """
 __all__ = ["LineWriterMixin"]
+from abc import ABC, abstractmethod
+from typing import Mapping, Sequence, MutableMapping
 
 
 class LineWriterMixin(ABC):
@@ -25,7 +26,7 @@ class LineWriterMixin(ABC):
         y_label: str = "Magnitude",
         x_label: str = "Sequence",
         plot_kws: Mapping = None,  # Separate as parameters name collisions might occur
-        **kwargs
+        **kwargs: MutableMapping
     ) -> None:
         """
 

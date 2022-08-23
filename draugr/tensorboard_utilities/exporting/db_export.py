@@ -4,16 +4,17 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-
+            TODO: Finish this off, only a placeholder for now
 
            Created on 17-03-2021
            """
 
 from draugr.tensorboard_utilities.exporting.event_export import TensorboardEventExporter
+from typing import Sequence, MutableMapping
 
 
 class TensorboardEventExporterDatabase(TensorboardEventExporter):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Sequence, **kwargs: MutableMapping):
         super().__init__(*args, **kwargs)
         postgres_db = kwargs.get("postgres_db")
         if postgres_db is not None:

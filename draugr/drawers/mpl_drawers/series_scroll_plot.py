@@ -9,7 +9,7 @@ __doc__ = r"""
 
            """
 
-from typing import Sequence, Union
+from typing import Sequence, Union, MutableMapping
 
 import numpy
 from matplotlib import pyplot
@@ -23,7 +23,9 @@ from warg import passes_kws_to
 
 
 class SeriesScrollPlot(MplDrawer):
-    """description"""
+    """
+    Series scroll plot using matplotlib
+    """
 
     @passes_kws_to(MplDrawer.__init__)
     def __init__(
@@ -35,7 +37,7 @@ class SeriesScrollPlot(MplDrawer):
         reverse: bool = False,
         overwrite: bool = False,
         render: bool = True,
-        **kws
+        **kwargs: MutableMapping
     ):
         """
 
@@ -48,7 +50,7 @@ class SeriesScrollPlot(MplDrawer):
         :param placement:
         :param render:"""
 
-        super().__init__(render=render, **kws)
+        super().__init__(render=render, **kwargs)
         if not render:
             return
 

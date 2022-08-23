@@ -7,7 +7,7 @@ import pickle
 import queue
 import time
 from abc import ABC, abstractmethod
-from typing import Any, Iterable
+from typing import Any, Iterable, Sequence, MutableMapping
 
 import cloudpickle
 
@@ -28,7 +28,7 @@ class CloudPickleBase(object):
     def __setstate__(self, x):
         self._x = pickle.loads(x)
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: Sequence, **kwargs: MutableMapping):
         return self._x(*args, **kwargs)
 
 
@@ -36,7 +36,7 @@ class PooledQueueTask(ABC):
     """
     Pooled queue task interface"""
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: Sequence, **kwargs: MutableMapping):
         return self.call(*args, **kwargs)
 
     @abstractmethod
@@ -183,7 +183,7 @@ class PooledQueueProcessor(object):
 if __name__ == "__main__":
 
     class Square(PooledQueueTask):
-        def call(self, i, *args, **kwargs):
+        def call(self, i, *args: Sequence, **kwargs: MutableMapping):
             """
 
             :param i:
@@ -197,7 +197,7 @@ if __name__ == "__main__":
             return i * 2
 
     class Exc(PooledQueueTask):
-        def call(self, *args, **kwargs):
+        def call(self, *args: Sequence, **kwargs: MutableMapping):
             """
 
             :param args:

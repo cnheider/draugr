@@ -16,7 +16,7 @@ from draugr.writers.mixins.scalar_writer_mixin import ScalarWriterMixin
 
 __all__ = ["Writer", "global_writer", "set_global_writer"]
 
-from typing import Any, Optional
+from typing import Any, Optional, Sequence, MutableMapping
 
 
 class Writer(ScalarWriterMixin, metaclass=ABCMeta):
@@ -56,7 +56,7 @@ class Writer(ScalarWriterMixin, metaclass=ABCMeta):
     def _open(self):
         return self
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: Sequence, **kwargs: MutableMapping):
         self.scalar(*args, *kwargs)
 
 

@@ -22,6 +22,9 @@ class GraphWriterMixin(ABC):
     ) -> None:
         """
 
+        Write graph
+
+
             :param model:
             :param input_to_model:
         :param kwargs:

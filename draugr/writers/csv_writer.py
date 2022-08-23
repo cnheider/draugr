@@ -17,6 +17,7 @@ Created on 27/04/2019
 __all__ = ["CSVWriter"]
 
 from pathlib import Path
+from typing import MutableMapping
 
 
 class CSVWriter(Writer):
@@ -44,7 +45,7 @@ class CSVWriter(Writer):
     def _scalar(self, tag: str, value: float, step: int) -> None:
         self._write(step, tag, value)
 
-    def __init__(self, path, **kwargs):
+    def __init__(self, path: Path, **kwargs: MutableMapping):
         super().__init__(**kwargs)
         self._path = path
         self._file = None

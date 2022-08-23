@@ -8,6 +8,8 @@ __doc__ = r"""
 
            """
 
+__all__ = ["DistributionPlot"]
+
 from typing import Sequence
 
 import numpy
@@ -16,11 +18,11 @@ from matplotlib import pyplot
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
 
-__all__ = ["DistributionPlot"]
-
 
 class DistributionPlot(MplDrawer):
-    """description"""
+    """
+    Distribution plot using matplotlib
+    """
 
     @passes_kws_to(MplDrawer.__init__)
     @passes_kws_to(pyplot.hist)

@@ -33,6 +33,7 @@ from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
     line_cycler,
 )
 import subprocess
+from typing import MutableMapping
 
 
 class FigureSession(AlsoDecorator):
@@ -42,8 +43,8 @@ class FigureSession(AlsoDecorator):
     """
 
     @passes_kws_to(pyplot.figure)
-    def __init__(self, **kws):
-        self.fig = pyplot.figure(**kws)
+    def __init__(self, **kwargs: MutableMapping):
+        self.fig = pyplot.figure(**kwargs)
 
     def __enter__(self) -> pyplot.Figure:
         return self.fig
@@ -61,8 +62,8 @@ class SubplotSession(AlsoDecorator):
     """
 
     @passes_kws_to(pyplot.subplots)
-    def __init__(self, return_self: bool = False, **kws):
-        self.fig, axs = pyplot.subplots(**kws)
+    def __init__(self, return_self: bool = False, **kwargs: MutableMapping):
+        self.fig, axs = pyplot.subplots(**kwargs)
         if not isinstance(axs, Iterable):
             axs = (axs,)
         self.axs = axs

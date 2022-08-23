@@ -27,6 +27,10 @@ __all__ = [
 
 
 class TorchDeviceEnum(Enum):
+    """
+    The torch device enum
+    """
+
     (cpu, cuda, vulkan) = assigned_names()
 
 
@@ -86,6 +90,7 @@ def global_torch_device(
 
 def set_global_torch_device(device: torch.device) -> None:
     """
+    Set the global torch device
 
     :param device:
     :return:"""
@@ -95,6 +100,7 @@ def set_global_torch_device(device: torch.device) -> None:
 
 def select_cuda_device(cuda_device_idx: int) -> torch.device:
     """
+    Select a cuda device by index
 
     :param cuda_device_idx:
     :type cuda_device_idx:
@@ -109,6 +115,7 @@ def select_cuda_device(cuda_device_idx: int) -> torch.device:
 
 def get_gpu_usage_mb():
     """
+    Get the gpu usage in MB
 
     :return:
     :rtype:"""

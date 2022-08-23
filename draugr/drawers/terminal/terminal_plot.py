@@ -15,14 +15,14 @@ __doc__ = r"""
 
 
 __author__ = "Christian Heider Nielsen"
+__all__ = ["terminal_plot", "styled_terminal_plot_stats_shared_x"]
 
-from typing import Sequence, Dict
+
+from typing import Sequence, Dict, MutableMapping
 
 import numpy
 
 # sys.stdout.write(generate_style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
-
-__all__ = ["terminal_plot", "styled_terminal_plot_stats_shared_x"]
 
 
 def terminal_plot(
@@ -115,7 +115,9 @@ def terminal_plot(
             printer(summary)
 
 
-def styled_terminal_plot_stats_shared_x(stats, *, styles=None, **kwargs):
+def styled_terminal_plot_stats_shared_x(
+    stats, *, styles=None, **kwargs: MutableMapping
+):
     """
 
     :param stats:

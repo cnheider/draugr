@@ -198,7 +198,7 @@ if __name__ == "__main__":
     wc = add2(*c(4, 3))
     print(wc)
 
-    def a(step_i, **kwargs):
+    def a(step_i, **kwargs: MutableMapping):
         """
 
         :param step_i:

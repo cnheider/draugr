@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 from threading import Thread
-from typing import Any, Union
+from typing import Any, Union, Sequence, MutableMapping
 
 import cv2
 
@@ -66,7 +66,7 @@ class AsyncVideoStream:
         """description"""
         return self._stream.isOpened()
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: Sequence, **kwargs: MutableMapping):
         return self.frame
 
     def __next__(self):

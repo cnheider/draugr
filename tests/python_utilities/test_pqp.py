@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import Sequence, MutableMapping
 
 import pytest
 
@@ -13,13 +14,13 @@ __author__ = "Christian Heider Nielsen"
 
 
 class Square(PooledQueueTask):
-    def call(self, i, *args, **kwargs):
+    def call(self, i, *args: Sequence, **kwargs: MutableMapping):
         """description"""
         return i * 2
 
 
 class Exc(PooledQueueTask):
-    def call(self, *args, **kwargs):
+    def call(self, *args: Sequence, **kwargs: MutableMapping):
         """description"""
         raise NotImplementedError
 

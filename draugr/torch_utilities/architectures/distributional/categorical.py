@@ -17,6 +17,8 @@ __all__ = ["MultipleCategoricalMLP", "CategoricalMLP"]
 
 
 class MultipleCategoricalMLP(MLP):
+    """ """
+
     @staticmethod
     def sample(distributions) -> Tuple:
         """

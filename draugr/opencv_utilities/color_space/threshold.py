@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import MutableMapping
 
 import cv2
 import numpy
@@ -17,7 +18,7 @@ class ThresholdMethodEnum(Enum):
 def threshold_channel(
     gray: numpy.ndarray,
     method: ThresholdMethodEnum = ThresholdMethodEnum.simple,
-    **kwargs
+    **kwargs: MutableMapping
 ) -> numpy.ndarray:
     """
 

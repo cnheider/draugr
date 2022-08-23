@@ -5,6 +5,8 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
+from typing import MutableMapping, Sequence, Tuple
+
 import torch
 from torch import nn
 from torch.nn import functional
@@ -13,9 +15,11 @@ from draugr.torch_utilities.architectures.mlp import MLP
 
 
 class RecurrentCategoricalMLP(MLP):
-    """description"""
+    """
+    Recurrent model base the MLP base model
+    """
 
-    def __init__(self, r_hidden_layers=10, **kwargs):
+    def __init__(self, r_hidden_layers=10, **kwargs: MutableMapping):
         super().__init__(**kwargs)
         self._r_hidden_layers = r_hidden_layers
         self._r_input_shape = self._output_shape + r_hidden_layers
@@ -27,7 +31,7 @@ class RecurrentCategoricalMLP(MLP):
 
         self._prev_hidden_x = torch.zeros(r_hidden_layers)
 
-    def forward(self, x, **kwargs):
+    def forward(self, x: Sequence, **kwargs: MutableMapping):
         """
 
         :param x:
@@ -47,7 +51,12 @@ class RecurrentCategoricalMLP(MLP):
 
 
 class ExposedRecurrentCategoricalMLP(RecurrentCategoricalMLP):
-    def forward(self, x, hidden_x, **kwargs):
+    """
+    Exposed Variant of Recurrent model base the MLP base model
+
+    """
+
+    def forward(self, x: Sequence, hidden_x: torch.Tensor, **kwargs: MutableMapping):
         """
 
         :param x:
@@ -60,15 +69,17 @@ class ExposedRecurrentCategoricalMLP(RecurrentCategoricalMLP):
         :rtype:
         """
         self._prev_hidden_x = hidden_x
-        out_x = super().forward(x, **kwargs)
+        out_x = super().forward(x, self._prev_hidden_x, **kwargs)
 
         return functional.log_softmax(out_x, dim=-1), self._prev_hidden_x
 
 
 class RecurrentBase(nn.Module):
-    """description"""
+    """
+    A base class for Recurrent models
+    """
 
-    def __init__(self, recurrent, recurrent_input_size, hidden_size):
+    def __init__(self, recurrent: bool, recurrent_input_size: int, hidden_size: int):
         super().__init__()
 
         self._hidden_size = hidden_size
@@ -81,7 +92,9 @@ class RecurrentBase(nn.Module):
             self.gru.bias_ih.data.fill_(0)
             self.gru.bias_hh.data.fill_(0)
 
-    def _forward_gru(self, x, hxs, masks):
+    def _forward_gru(
+        self: torch.Tensor, x, hxs: torch.Tensor, masks: torch.Tensor
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
         if x.size(0) == hxs.size(0):
             x = hxs = self.gru(x, hxs * masks)
         else:

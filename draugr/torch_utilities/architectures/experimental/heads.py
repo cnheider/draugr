@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import MutableMapping
 
 from torch import nn
 
@@ -12,7 +13,9 @@ from draugr.torch_utilities.architectures.mlp import MLP
 class MultiHeadedMLP(MLP):
     """description"""
 
-    def __init__(self, *, heads_hidden_sizes=(32, 64), heads=(2, 1), **kwargs):
+    def __init__(
+        self, *, heads_hidden_sizes=(32, 64), heads=(2, 1), **kwargs: MutableMapping
+    ):
         super().__init__(**kwargs)
 
         assert len(heads_hidden_sizes) == len(heads)
@@ -38,7 +41,7 @@ class MultiHeadedMLP(MLP):
         else:
             raise ValueError("Number of heads must be >0")
 
-    def forward(self, x, **kwargs):
+    def forward(self, x, **kwargs: MutableMapping):
         """
 
         :param x:

@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 04-03-2021
            """
 
-from typing import Tuple
+from typing import Tuple, MutableMapping
 
 from draugr.scipy_utilities import mag_decimation_subsample
 
@@ -38,7 +38,7 @@ def annotate_lines(
     ),  # TODO: NOT DONE! Where to place annotation, use 'axes fraction' for along axes'
     ha: str = "left",
     va: str = "center",
-    **kwargs,
+    **kwargs: MutableMapping,
 ) -> None:
     """
     annotate lines on the plot

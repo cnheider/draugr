@@ -11,7 +11,7 @@ __doc__ = r"""
 __all__ = ["MplDrawer", "MockDrawer"]
 
 from abc import abstractmethod
-from typing import Any, Sequence, Tuple
+from typing import Any, Sequence, Tuple, MutableMapping
 
 import matplotlib
 from matplotlib import pyplot
@@ -43,7 +43,7 @@ class MplDrawer(
         default_delta: float = 1 / 120,
         render: bool = True,
         placement: Tuple[int, int] = None,
-        **kwargs,
+        **kwargs: MutableMapping,
     ):
         """
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from contextlib import suppress
-from typing import Any, Iterable, Sequence, Union
+from typing import Any, Iterable, Sequence, Union, MutableMapping
 
 import PIL
 import numpy
@@ -163,7 +163,7 @@ class TensorBoardPytorchWriter(
         metadata: Any = None,
         label_img: Any = None,
         step: int = None,
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
 
@@ -194,7 +194,7 @@ class TensorBoardPytorchWriter(
         self,
         path: Union[str, Path] = Path.cwd() / "Logs",
         summary_writer_kws=None,
-        **kwargs,
+        **kwargs: MutableMapping,
     ):
         """
 
@@ -228,7 +228,7 @@ class TensorBoardPytorchWriter(
         predictions: Iterable,
         truths: Iterable,
         step: int = None,
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
 
@@ -247,7 +247,9 @@ class TensorBoardPytorchWriter(
 
     @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_figure)
-    def figure(self, tag: str, figure: Figure, step: int, **kwargs) -> None:
+    def figure(
+        self, tag: str, figure: Figure, step: int, **kwargs: MutableMapping
+    ) -> None:
         """
 
         :param tag:
@@ -274,7 +276,7 @@ class TensorBoardPytorchWriter(
         y_label: str = "Frequency [Hz]",
         x_label: str = "Time [sec]",
         plot_kws=None,
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
 
@@ -335,7 +337,7 @@ pyplot.title(tag)
         x_labels: Sequence = None,
         y_label: str = "Probabilities",
         x_label: str = "Distribution",
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
 
@@ -382,7 +384,7 @@ pyplot.title(tag)
         y_label: str = "Magnitude",
         x_label: str = "Sequence",
         plot_kws=None,  # Separate as parameters name collisions might occur
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
 
@@ -423,7 +425,12 @@ pyplot.title(tag)
     @drop_unused_kws
     @passes_kws_to(SummaryWriter.add_histogram)
     def histogram(
-        self, tag: str, values: list, step: int, bins: Any = "auto", **kwargs
+        self,
+        tag: str,
+        values: list,
+        step: int,
+        bins: Any = "auto",
+        **kwargs: MutableMapping,
     ) -> None:
         """
 
@@ -481,7 +488,7 @@ pyplot.title(tag)
         multi_channel_method: ImageWriterMixin.MultiChannelMethodEnum = ImageWriterMixin.MultiChannelMethodEnum.seperate,
         seperate_channel_postfix: str = "channel",
         seperate_image_postfix: str = "image",
-        **kwargs,
+        **kwargs: MutableMapping,
     ) -> None:
         """
 

@@ -9,7 +9,7 @@ __all__ = ["add_early_stopping_key_combination", "CaptureEarlyStop"]
 
 import contextlib
 from time import sleep
-from typing import Callable, Iterable
+from typing import Callable, Iterable, Sequence, MutableMapping
 
 from pynput.keyboard import KeyCode
 
@@ -105,7 +105,7 @@ class CaptureEarlyStop(contextlib.AbstractContextManager):
     Context for early stopping a loop"""
 
     @passes_kws_to(add_early_stopping_key_combination)
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Sequence, **kwargs: MutableMapping):
         self.listener = add_early_stopping_key_combination(*args, **kwargs)
 
     def __enter__(self):

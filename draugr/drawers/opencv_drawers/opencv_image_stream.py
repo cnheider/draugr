@@ -8,10 +8,9 @@ __doc__ = r"""
            """
 __all__ = ["OpencvImageStream"]
 
-from typing import Sequence
+from typing import Sequence, MutableMapping
 
 import cv2
-
 from draugr.drawers.drawer import Drawer
 from draugr.opencv_utilities import WindowFlagEnum
 from draugr.opencv_utilities.windows.default import match_return_code
@@ -19,11 +18,14 @@ from warg import drop_unused_kws, passes_kws_to
 
 
 class OpencvImageStream(Drawer):
-    """description"""
+    """
+    OpenCv Image Stream
+
+    """
 
     @drop_unused_kws
     @passes_kws_to(Drawer.__init__)
-    def __init__(self, title: str = "", render: bool = True, **kwargs):
+    def __init__(self, title: str = "", render: bool = True, **kwargs: MutableMapping):
 
         super().__init__(**kwargs)
         if not render:
