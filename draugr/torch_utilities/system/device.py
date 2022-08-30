@@ -23,7 +23,33 @@ __all__ = [
     "set_global_torch_device",
     "torch_clean_up",
     "TorchDeviceEnum",
+    "assume_model_device",
+    "assume_model_dtype",
 ]
+
+
+def assume_model_device(model: torch.nn.Module) -> torch.device:
+    """
+    Assume the 'device' of a model by the device of the first parameter
+
+    :param model:
+    :type model:
+    :return:
+    :rtype:
+    """
+    return next(model.parameters()).device
+
+
+def assume_model_dtype(model: torch.nn.Module) -> torch.dtype:
+    """
+    Assume the 'dtype' of a model by the dtype of the first parameter
+
+    :param model:
+    :type model:
+    :return:
+    :rtype:
+    """
+    return next(model.parameters()).dtype
 
 
 class TorchDeviceEnum(Enum):

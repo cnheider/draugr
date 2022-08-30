@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 30-12-2020
            """
 
-from draugr.tqdm_utilities import progress_bar
+from draugr.visualisation.progress import progress_bar
 
 
 def test_progress_bar():

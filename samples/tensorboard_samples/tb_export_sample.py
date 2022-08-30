@@ -12,7 +12,7 @@ from pathlib import Path
 
 from apppath import AppPath, ensure_existence
 from draugr.tensorboard_utilities import TensorboardEventExporter
-from draugr.tqdm_utilities import progress_bar
+from draugr.visualisation.progress import progress_bar
 from draugr.writers import (
     StandardTestingCurvesEnum,
     StandardTestingScalarsEnum,

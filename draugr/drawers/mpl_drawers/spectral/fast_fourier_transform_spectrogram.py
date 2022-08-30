@@ -18,7 +18,7 @@ from matplotlib import pyplot
 from matplotlib.gridspec import GridSpec
 
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
-from draugr.tqdm_utilities import progress_bar
+from draugr.visualisation.progress import progress_bar
 
 FLOAT_EPS = numpy.finfo(float).eps
 

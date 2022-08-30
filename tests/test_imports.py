@@ -129,12 +129,6 @@ def test_import_stopping():
     print(draugr.stopping.__author__)
 
 
-def test_import_tqdm_utilities():
-    import draugr.tqdm_utilities
-
-    print(draugr.tqdm_utilities.__author__)
-
-
 def test_import_visualisation():
     import draugr.visualisation
 

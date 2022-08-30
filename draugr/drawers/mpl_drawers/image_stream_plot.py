@@ -63,7 +63,7 @@ if __name__ == "__main__":
         """
         import cv2
         from draugr.opencv_utilities import frame_generator
-        from draugr.tqdm_utilities import progress_bar
+        from draugr.visualisation.progress import progress_bar
         from functools import partial
         from draugr.opencv_utilities import AsyncVideoStream
 
