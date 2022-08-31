@@ -16,6 +16,7 @@ try:
     from .matplotlib_utilities import *
     from .pillow_utilities import *
     from .seaborn_utilities import *
+    from .progress import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = (

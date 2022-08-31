@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
-from typing import Union
+from typing import Union, MutableMapping
 
 import numpy
 import torch
@@ -25,7 +25,7 @@ class MeshWriterMixin(ABC):
         tag: str,
         data: Union[numpy.ndarray, torch.Tensor, Image.Image],
         step,
-        **kwargs
+        **kwargs: MutableMapping
     ) -> None:
         """
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, Iterator, Tuple, Union
+from typing import Iterable, Iterator, Tuple, Union, MutableMapping
 
 import numpy
 import torch
@@ -19,7 +19,9 @@ __all__ = ["to_tensor_generator", "batch_generator_torch", "to_device_iterator"]
 
 
 @passes_kws_to(to_tensor)
-def to_tensor_generator(iterable: Iterable, preload_next: bool = False, **kwargs):
+def to_tensor_generator(
+    iterable: Iterable, preload_next: bool = False, **kwargs: MutableMapping
+):
     """
 
     :param iterable:
@@ -58,7 +60,10 @@ def to_device_iterator(
 
 @passes_kws_to(DataLoader)
 def batch_generator_torch(
-    sized: numpy.ndarray, mini_batches: int = 10, shuffle: bool = True, **kwargs
+    sized: numpy.ndarray,
+    mini_batches: int = 10,
+    shuffle: bool = True,
+    **kwargs: MutableMapping
 ) -> DataLoader:
     """
 

@@ -29,6 +29,8 @@ def weight_bias_histograms(
 ) -> None:
     """
 
+    writes weight and bias histograms for a model
+
     :param recurse:
     :param writer:
     :type writer:

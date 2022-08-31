@@ -9,7 +9,7 @@ __doc__ = r"""
 
 import functools
 from collections import OrderedDict
-from typing import Tuple
+from typing import Tuple, Sequence, MutableMapping
 
 import torch
 from torch import nn
@@ -48,7 +48,7 @@ class IntermediateLayerGetter:
             self.return_layers = {k: k for k, v in model.named_modules()}.items()
 
     @staticmethod
-    def reduce_getattr(obj, attr, *args):
+    def reduce_getattr(obj, attr, *args: Sequence):
         """
         # using wonder's beautiful simplification: https://stackoverflow.com/questions/31174295/getattr-and-setattr-on-nested-objects/31174427?noredirect=1#comment86638618_31174427
 
@@ -66,7 +66,7 @@ class IntermediateLayerGetter:
 
         return functools.reduce(_getattr, (obj, *attr.split(".")))
 
-    def __call__(self, *args, **kwargs) -> Tuple:
+    def __call__(self, *args: Sequence, **kwargs: MutableMapping) -> Tuple:
         ret = OrderedDict()
         handles = []
         for name, new_name in self.return_layers:

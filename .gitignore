@@ -103,6 +103,7 @@ ENV/
 
 # Spyder project settings
 .spyderproject
+*.out
 .spyproject
 
 # mkdocs documentation
@@ -126,7 +127,6 @@ logs/*.csv
 
 
 pip-wheel-metadata
-.pytest_cache
 build/
 
 .dccache

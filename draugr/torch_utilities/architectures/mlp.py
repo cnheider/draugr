@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import logging
-from typing import Sequence
+from typing import Sequence, MutableMapping
 
 import numpy
 import torch
@@ -55,7 +55,7 @@ class MLP(Architecture):
         output_multiplier: int = 16,
         default_init: callable = fan_in_init,
         # prefix:str=None, #TODO name sub networks
-        **kwargs,
+        **kwargs: MutableMapping,
     ):
         assert input_shape is not None
         assert output_shape is not None
@@ -196,7 +196,7 @@ class MLP(Architecture):
 
         return new_output_shape
 
-    def forward(self, *x, **kwargs):
+    def forward(self, *x: Sequence, **kwargs: MutableMapping):
         """
 
         :param x:

@@ -26,6 +26,7 @@ __all__ = [
 
 def despine_all(ax: Axes = None) -> None:
     """
+    Remove all spines from all axes in the figure
 
     :param ax:
     """
@@ -39,6 +40,8 @@ def despine_all(ax: Axes = None) -> None:
 
 def set_y_log_scale(ax: Axes = None) -> None:
     """
+
+    sets the y axis to log scale
 
     :param ax:
     """

@@ -9,7 +9,7 @@ __doc__ = r"""
 
 if __name__ == "__main__":
 
-    from draugr.tqdm_utilities import progress_bar
+    from draugr.visualisation.progress import progress_bar
 
     for a in progress_bar(range(100)):
         print(a)

@@ -19,6 +19,7 @@ class ModuleParameterWriterMixin(ABC):
     @abstractmethod
     def parameters(self, tag: str, model: torch.nn.Module, step: int, **kwargs) -> None:
         """
+        Write Module parameters
 
         :param tag:
         :type tag:

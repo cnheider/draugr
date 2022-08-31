@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from itertools import cycle
-
+from typing import MutableMapping
 from warg import Number, passes_kws_to, drop_unused_kws
 from draugr.python_utilities import CounterFilter
 
@@ -17,7 +17,7 @@ class ScalarWriterMixin(CounterFilter, ABC):
 
     @passes_kws_to(CounterFilter.__init__)
     @drop_unused_kws
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: MutableMapping):
         super().__init__(**kwargs)
         self._blip_iterators = {}
 

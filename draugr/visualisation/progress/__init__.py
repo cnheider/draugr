@@ -4,15 +4,18 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-           Created on 17-09-2020
+           Created on 08-12-2020
            """
-
 
 from pathlib import Path
 
+with open(Path(__file__).parent / "README.md", "r") as this_init_file:
+    __doc__ += this_init_file.read()
+# del Path
 try:
-    pass
-    # from .pooled_queue_processor import *
+    from .progress_bar import *
+    from .pooled_progress_bar import *
+    from .eta_bar import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = (

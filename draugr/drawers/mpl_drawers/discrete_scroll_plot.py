@@ -11,7 +11,7 @@ Created on 27/04/2019
 
 __all__ = ["DiscreteScrollPlot", "discrete_scroll_plot"]
 
-from typing import Iterator, Sequence, Tuple
+from typing import Iterator, Sequence, Tuple, MutableMapping
 
 import numpy
 from matplotlib import animation
@@ -257,7 +257,7 @@ if __name__ == "__main__":
                 def __next__(self):
                     return self.get()
 
-                def __call__(self, *args, **kwargs):
+                def __call__(self, *args: Sequence, **kwargs: MutableMapping):
                     return self.__next__()
 
                 def add(self, a):

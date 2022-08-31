@@ -10,19 +10,21 @@ __doc__ = r"""
 __all__ = ["Drawer"]
 
 from abc import abstractmethod
-
+from typing import Sequence, MutableMapping
 from warg import drop_unused_kws
 
 
 class Drawer(object):
-    """description"""
+    """
+    Abstract class for drawing representations of data
+    """
 
     @drop_unused_kws
     def __init__(self, verbose: bool = False):
         self._verbose = verbose
 
     @abstractmethod
-    def draw(self, *args, **kwargs):
+    def draw(self, *args: Sequence, **kwargs: MutableMapping):
         """description"""
         raise NotImplementedError
 

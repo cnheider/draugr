@@ -29,7 +29,26 @@ def overlay_channel_plot(
     max_resolution: int = 20000,
     color_func=pyplot.cm.rainbow,
 ) -> None:
-    """description"""
+    """
+    Plot a signal with overlaid channels
+
+    :param signal:
+    :type signal:
+    :param title:
+    :type title:
+    :param channel_names:
+    :type channel_names:
+    :param sampling_rate:
+    :type sampling_rate:
+    :param line_width:
+    :type line_width:
+    :param max_resolution:
+    :type max_resolution:
+    :param color_func:
+    :type color_func:
+    :return:
+    :rtype:
+    """
     n_channels = len(signal)
     sub_time, sub_signal = fft_subsample(signal, max_resolution, sampling_rate)
 
@@ -65,7 +84,28 @@ def dissected_channel_plot(
     max_resolution: int = 20000,
     color_func=pyplot.cm.rainbow,
 ) -> None:
-    """description"""
+    """
+    Plot a signal with channels in separate plots
+
+    :param signal:
+    :type signal:
+    :param title:
+    :type title:
+    :param channel_names:
+    :type channel_names:
+    :param sampling_rate:
+    :type sampling_rate:
+    :param line_width:
+    :type line_width:
+    :param col_size:
+    :type col_size:
+    :param max_resolution:
+    :type max_resolution:
+    :param color_func:
+    :type color_func:
+    :return:
+    :rtype:
+    """
     n_channels = len(signal)
     f, axs = pyplot.subplots(
         n_channels, 1, sharex="all", sharey="all", figsize=(n_channels, col_size)
@@ -92,7 +132,18 @@ def orthogonal_stereo_channel_3d_plot(
     max_resolution: int = 20000,
     sampling_rate: int = 16000,
 ) -> None:
-    """description"""
+    """
+    Orthogonal stereo channel 3d plot
+
+    :param signal:
+    :type signal:
+    :param max_resolution:
+    :type max_resolution:
+    :param sampling_rate:
+    :type sampling_rate:
+    :return:
+    :rtype:
+    """
     fig = pyplot.figure()
     ax = fig.add_subplot(111, projection="3d")
 
@@ -103,7 +154,14 @@ def orthogonal_stereo_channel_3d_plot(
 
 
 def deinterleaved_channel_plot_file(wav_file):
-    """description"""
+    """
+    Deinterleaved channel plot file
+
+    :param wav_file:
+    :type wav_file:
+    :return:
+    :rtype:
+    """
     import wave
 
     with wave.open(wav_file, "r") as wav_file:

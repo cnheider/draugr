@@ -3,7 +3,7 @@
 import csv
 from typing import Any, TextIO, Tuple
 
-from apppath import ensure_existence
+from warg import ensure_existence
 from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
 
@@ -17,6 +17,7 @@ Created on 27/04/2019
 __all__ = ["CSVWriter"]
 
 from pathlib import Path
+from typing import MutableMapping
 
 
 class CSVWriter(Writer):
@@ -29,7 +30,8 @@ class CSVWriter(Writer):
         :param path:
         :type path:
         :return:
-        :rtype:"""
+        :rtype:
+        """
         if path.is_dir() or path.suffix != ".csv":
             path /= "log.csv"
         csv_file = open(
@@ -43,7 +45,7 @@ class CSVWriter(Writer):
     def _scalar(self, tag: str, value: float, step: int) -> None:
         self._write(step, tag, value)
 
-    def __init__(self, path, **kwargs):
+    def __init__(self, path: Path, **kwargs: MutableMapping):
         super().__init__(**kwargs)
         self._path = path
         self._file = None

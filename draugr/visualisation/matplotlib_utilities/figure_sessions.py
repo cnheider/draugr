@@ -33,14 +33,18 @@ from draugr.visualisation.matplotlib_utilities.styles.cyclers import (
     line_cycler,
 )
 import subprocess
+from typing import MutableMapping
 
 
 class FigureSession(AlsoDecorator):
-    """description"""
+    """
+    maintains a figure session while in context
+
+    """
 
     @passes_kws_to(pyplot.figure)
-    def __init__(self, **kws):
-        self.fig = pyplot.figure(**kws)
+    def __init__(self, **kwargs: MutableMapping):
+        self.fig = pyplot.figure(**kwargs)
 
     def __enter__(self) -> pyplot.Figure:
         return self.fig
@@ -52,11 +56,14 @@ class FigureSession(AlsoDecorator):
 
 
 class SubplotSession(AlsoDecorator):
-    """description"""
+    """
+    maintains a subplot session while in context
+
+    """
 
     @passes_kws_to(pyplot.subplots)
-    def __init__(self, return_self: bool = False, **kws):
-        self.fig, axs = pyplot.subplots(**kws)
+    def __init__(self, return_self: bool = False, **kwargs: MutableMapping):
+        self.fig, axs = pyplot.subplots(**kwargs)
         if not isinstance(axs, Iterable):
             axs = (axs,)
         self.axs = axs
@@ -77,7 +84,9 @@ class SubplotSession(AlsoDecorator):
 
 
 class StyleSession(AlsoDecorator):
-    """description"""
+    """
+    maintains a style session while in context
+    """
 
     def __init__(
         self,
@@ -115,7 +124,10 @@ class StyleSession(AlsoDecorator):
 
 
 class MonoChromeStyleSession(StyleSession):
-    """description"""
+    """
+    maintains a style session with monochrome style while in context
+
+    """
 
     def __init__(
         self,
@@ -131,7 +143,7 @@ class MonoChromeStyleSession(StyleSession):
 
 
 class NoOutlineSession(AlsoDecorator):
-    """description"""
+    """maintains a style session with no outline while in context"""
 
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()
@@ -151,7 +163,7 @@ class NoOutlineSession(AlsoDecorator):
 
 
 class OutlineSession(AlsoDecorator):
-    """description"""
+    """maintains a style session with outlines while in context"""
 
     def __init__(self):
         self._rcParams_copy = pyplot.rcParams.copy()

@@ -7,6 +7,14 @@ __doc__ = r"""
            Created on 20/07/2020
            """
 
+__all__ = [
+    "load_model_parameters",
+    "load_latest_model_parameters",
+    "save_parameters_and_configuration",
+    "save_model_parameters",
+]
+
+from pathlib import Path
 import datetime
 import os
 from typing import Optional, Tuple, Union
@@ -21,18 +29,9 @@ from draugr.torch_utilities.persistence.config import (
 )
 from warg.decorators.kw_passing import drop_unused_kws
 
-parameter_extension = ".parameters"
-config_extension = ".py"
-optimiser_extension = ".optimiser"
-
-__all__ = [
-    "load_model_parameters",
-    "load_latest_model_parameters",
-    "save_parameters_and_configuration",
-    "save_model_parameters",
-]
-
-from pathlib import Path
+PARAMETER_EXTENSION = ".parameters"
+CONFIG_EXTENSION = ".py"
+OPTIMISER_EXTENSION = ".optimiser"
 
 
 @drop_unused_kws
@@ -57,10 +56,10 @@ def load_latest_model_parameters(
     optimiser_loaded = False
     model_path = model_directory / model_name
 
-    list_of_files = list(model_path.glob(f"*{parameter_extension}"))
+    list_of_files = list(model_path.glob(f"*{PARAMETER_EXTENSION}"))
     if len(list_of_files) == 0:
         print(
-            f"Found no previous models with extension {parameter_extension} in {model_path}"
+            f"Found no previous models with extension {PARAMETER_EXTENSION} in {model_path}"
         )
     else:
         latest_model_parameter_file = max(list_of_files, key=os.path.getctime)
@@ -77,7 +76,7 @@ def load_latest_model_parameters(
         raise TypeError(f"model must be a torch.nn.Module or nn.Parameter")
 
     if optimiser:
-        opt_st_d_file = latest_model_parameter_file.with_suffix(optimiser_extension)
+        opt_st_d_file = latest_model_parameter_file.with_suffix(OPTIMISER_EXTENSION)
         if opt_st_d_file.exists():
             optimiser.load_state_dict(torch.load(str(opt_st_d_file)))
             print(f"loading previous optimiser state: {opt_st_d_file}")
@@ -101,6 +100,8 @@ def save_parameters_and_configuration(
     loaded_config_file_path: Optional[Path] = None,
 ) -> None:
     """
+
+    save model parameters and configuration to disk
 
     :param optimiser:
     :type optimiser:
@@ -135,6 +136,10 @@ def save_model_parameters(
 ) -> None:
     """
 
+    save model parameters and optionally configuration file and optimiser state dict
+
+    :param verbose:
+    :type verbose:
     :param optimiser:
     :param model:
     :param save_directory:
@@ -151,14 +156,14 @@ def save_model_parameters(
     try:
         save_parameters_and_configuration(
             model=model,
-            model_save_path=model_save_path.with_suffix(parameter_extension),
+            model_save_path=model_save_path.with_suffix(PARAMETER_EXTENSION),
             optimiser=optimiser,
             optimiser_save_path=(
                 model_save_path.parent / f"{model_time_rep}"
-            ).with_suffix(optimiser_extension),
+            ).with_suffix(OPTIMISER_EXTENSION),
             loaded_config_file_path=config_file_path,
             config_save_path=(model_save_path.parent / f"{model_time_rep}").with_suffix(
-                config_extension
+                CONFIG_EXTENSION
             ),
         )
         saved = True
@@ -172,15 +177,15 @@ def save_model_parameters(
             try:
                 save_parameters_and_configuration(
                     model=model,
-                    model_save_path=model_save_path.endswith(parameter_extension),
+                    model_save_path=model_save_path.endswith(PARAMETER_EXTENSION),
                     optimiser=optimiser,
                     optimiser_save_path=(
                         model_save_path.parent / f"{model_time_rep}"
-                    ).with_suffix(optimiser_extension),
+                    ).with_suffix(OPTIMISER_EXTENSION),
                     loaded_config_file_path=config_file_path,
                     config_save_path=(
                         model_save_path.parent / f"{model_time_rep}"
-                    ).with_suffix(config_extension),
+                    ).with_suffix(CONFIG_EXTENSION),
                 )
                 saved = True
             except FileNotFoundError as e:
@@ -189,7 +194,7 @@ def save_model_parameters(
     if verbose:
         if saved:
             print(
-                f"Successfully saved model parameters, optimiser state and configuration at names {[model_save_path.with_suffix(a) for a in (parameter_extension, optimiser_extension, config_extension)]}"
+                f"Successfully saved model parameters, optimiser state and configuration at names {[model_save_path.with_suffix(a) for a in (PARAMETER_EXTENSION, OPTIMISER_EXTENSION, CONFIG_EXTENSION)]}"
             )
         else:
             print(f"Was unsuccessful at saving model or configuration")

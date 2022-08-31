@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 import logging
 import sys
-from typing import Any
+from typing import Any, MutableMapping
 
-from apppath import ensure_existence
+from warg import ensure_existence
 from draugr import PROJECT_APP_PATH
 from draugr.writers.writer import Writer
 
@@ -20,7 +20,10 @@ from pathlib import Path
 
 
 class LogWriter(Writer):
-    """description"""
+    """
+    A writer for writing to a log file
+
+    """
 
     def _scalar(self, tag: str, value: float, step: int) -> None:
         self.logger.info(f"{step} [{tag}] {value}")
@@ -49,7 +52,7 @@ class LogWriter(Writer):
 
         return logging.getLogger()
 
-    def __init__(self, path, **kwargs):
+    def __init__(self, path: Path, **kwargs: MutableMapping):
         super().__init__(**kwargs)
         self.log_path = path
         self.logger: logging.Logger = None

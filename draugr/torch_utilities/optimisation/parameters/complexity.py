@@ -14,6 +14,7 @@ import numpy
 import torch
 from torch import nn
 
+from draugr.torch_utilities import assume_model_dtype, assume_model_device
 from draugr.torch_utilities.optimisation.parameters.counting import get_num_parameters
 
 __all__ = ["get_model_complexity_info", "MODULES_MAPPING"]
@@ -55,8 +56,8 @@ def get_model_complexity_info(
         try:
             batch = torch.ones(()).new_empty(
                 (1, *input_res),
-                dtype=next(flops_model.parameters()).dtype,
-                device=next(flops_model.parameters()).device,
+                dtype=assume_model_dtype(flops_model),
+                device=assume_model_device(flops_model),
             )
         except StopIteration:
             batch = torch.ones(()).new_empty((1, *input_res))

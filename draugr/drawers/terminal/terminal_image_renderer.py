@@ -3,6 +3,7 @@
 
 __author__ = "heider"
 __doc__ = r"""
+           Render images on the command line
 
            Created on 7/5/22
            """
@@ -21,7 +22,10 @@ __all__ = ["render_file", "terminalise_image", "terminal_render_image"]
 
 
 def get_pixel(col: Tuple) -> Any:
-    """description"""
+    """
+    Get the pixel value for a given colour.
+
+    :param col:"""
     if isinstance(col, (float, int)) or len(col) == 1:
         col = (col, col, col)
     return color("  ", bg=f"rgb({int(col[0])}, {int(col[1])}, {int(col[2])})")
@@ -30,7 +34,8 @@ def get_pixel(col: Tuple) -> Any:
 def terminal_render_image(
     pixels: numpy.ndarray, scale: Tuple, max_val: Number = None
 ) -> List[List]:
-    """description"""
+    """
+    Render an image on the command line."""
     # first of all scale the image to the scale 'tuple'
     if len(pixels.shape) < 3:
         pixels = numpy.array([[pixel] for pixel in pixels])
@@ -79,7 +84,8 @@ def terminalise_image(output):
 
 
 def get_image(path: Path):
-    """description"""
+    """
+    Get an image from a path."""
     img = numpy.asarray(Image.open(path))
     if img.shape[2] > 3:
         return numpy.array([[pixel[:3] for pixel in row] for row in img])
@@ -87,7 +93,8 @@ def get_image(path: Path):
 
 
 def render_file(path: Path, scale=(60, 60)):
-    """description"""
+    """
+    Render an image file on the command line."""
     image = get_image(path)
     output = terminal_render_image(image, scale)
     print(terminalise_image(output))
@@ -95,6 +102,8 @@ def render_file(path: Path, scale=(60, 60)):
 
 def entry_point() -> None:
     """
+    Entry point for the command line interface.
+
     :rtype: None
     """
     parser = argparse.ArgumentParser(description="Render images on the command line")

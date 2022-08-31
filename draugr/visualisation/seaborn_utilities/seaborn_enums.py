@@ -25,6 +25,8 @@ from draugr.visualisation.matplotlib_utilities.styles.annotation import (
 
 
 class VisualisationErrorStyle(Enum):
+    """defines the style of the error bars"""
+
     band = "band"
     bar = "bars"
 
@@ -43,7 +45,7 @@ def plot_median_labels(
     va: str = "center",  # bottom
     bbox: Tuple = semi_opaque_round_tight_bbox,
 ) -> None:
-    """description"""
+    """plots the median value of the distribution on the plot"""
     lines = ax.get_lines()
     # depending on fliers, toggle between 5 and 6 lines per box
     lines_per_box = 5 + int(has_fliers)
@@ -79,7 +81,7 @@ def plot_median_labels(
 
 
 def show_values_on_bars(axs: pyplot.Axes, h_v: str = "v", space: float = 0.4) -> None:
-    """description"""
+    """show values on top of bars in a bar plot"""
 
     def _show_on_single_plot(ax):
         if h_v == "v":

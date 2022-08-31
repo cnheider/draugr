@@ -4,13 +4,13 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-            Small utilities to keep track of cores dedicated to workers threads
+            Small path_utilities to keep track of cores dedicated to workers threads
 
            Created on 07-12-2020
            """
 
 import os
-
+from typing import MutableMapping
 from warg import AlsoDecorator, passes_kws_to
 
 CORE_COUNT: int = os.cpu_count()
@@ -102,11 +102,11 @@ class WorkerSession(AlsoDecorator):
     """
 
     @passes_kws_to(request_worker_cores)
-    def __init__(self, percentage, **kwargs):
+    def __init__(self, percentage: float, **kwargs: MutableMapping):
         self.percentage = percentage
         self.kws = kwargs
 
-    def __enter__(self):
+    def __enter__(self) -> int:
         self.num = request_worker_cores(self.percentage, **self.kws)
         return self.num
 

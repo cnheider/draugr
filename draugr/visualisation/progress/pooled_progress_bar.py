@@ -2,8 +2,17 @@
 # -*- coding: utf-8 -*-
 
 
-from typing import Any, Callable, Generator, Iterable, List, Mapping, Optional, Sized
-
+from typing import (
+    Any,
+    Callable,
+    Generator,
+    Iterable,
+    List,
+    Mapping,
+    Optional,
+    Sized,
+    MutableMapping,
+)
 from pathos.helpers import cpu_count
 from pathos.multiprocessing import ProcessPool as Pool
 from tqdm.auto import tqdm
@@ -26,7 +35,7 @@ def _sequential(
     function: Callable,
     *iterables: Iterable,
     func_kws: Optional[Mapping] = None,
-    **kwargs: Any
+    **kwargs: MutableMapping
 ) -> Generator:
     """Returns a generator for a sequential map with a progress bar.
 
@@ -52,7 +61,7 @@ def _parallel(
     *iterables: Iterable,
     func_kws: Optional[Mapping] = None,
     num_cpus: Optional[int] = None,
-    **kwargs: Any
+    **kwargs: MutableMapping
 ) -> Generator:
     """Returns a generator for a parallel map with a progress bar.
 
@@ -90,37 +99,43 @@ def _parallel(
     pool.clear()
 
 
-def parallel_imap(function: Callable, *iterables: Iterable, **kwargs: Any) -> Generator:
+def parallel_imap(
+    function: Callable, *iterables: Iterable, **kwargs: MutableMapping
+) -> Generator:
     """Returns a generator for a parallel ordered map with a progress bar."""
     return _parallel(True, function, *iterables, **kwargs)
 
 
-def parallel_map(function: Callable, *iterables: Iterable, **kwargs: Any) -> List[Any]:
+def parallel_map(
+    function: Callable, *iterables: Iterable, **kwargs: MutableMapping
+) -> List[Any]:
     """Performs a parallel ordered map with a progress bar."""
     return list(parallel_imap(function, *iterables, **kwargs))
 
 
 def parallel_uimap(
-    function: Callable, *iterables: Iterable, **kwargs: Any
+    function: Callable, *iterables: Iterable, **kwargs: MutableMapping
 ) -> Generator:
     """Returns a generator for a parallel unordered map with a progress bar."""
     return _parallel(False, function, *iterables, **kwargs)
 
 
-def parallel_umap(function: Callable, *iterables: Iterable, **kwargs: Any) -> List[Any]:
+def parallel_umap(
+    function: Callable, *iterables: Iterable, **kwargs: MutableMapping
+) -> List[Any]:
     """Performs a parallel unordered map with a progress bar."""
     return list(parallel_uimap(function, *iterables, **kwargs))
 
 
 def sequential_imap(
-    function: Callable, *iterables: Iterable, **kwargs: Any
+    function: Callable, *iterables: Iterable, **kwargs: MutableMapping
 ) -> Generator:
     """Returns a generator for a sequential map with a progress bar."""
     return _sequential(function, *iterables, **kwargs)
 
 
 def sequential_map(
-    function: Callable, *iterables: Iterable, **kwargs: Any
+    function: Callable, *iterables: Iterable, **kwargs: MutableMapping
 ) -> List[Any]:
     """Performs a sequential map with a progress bar."""
     return list(sequential_imap(function, *iterables, **kwargs))

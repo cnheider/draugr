@@ -1,12 +1,14 @@
 __all__ = ["NamedTensorTuple"]
 
+from typing import Sequence, MutableMapping
+
 
 class NamedTensorTuple:
     """
     Help class for manage boxes, labels, etc...
     Not inherit dict due to `default_collate` will change dict's subclass to dict."""
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: MutableMapping):
         self._data_dict = kwargs
 
     def __setattr__(self, key, value):
@@ -21,7 +23,7 @@ class NamedTensorTuple:
     def __setitem__(self, key, value):
         self._data_dict[key] = value
 
-    def _call(self, name, *args, **kwargs):
+    def _call(self, name, *args: Sequence, **kwargs: MutableMapping):
         keys = list(self._data_dict.keys())
         for key in keys:
             value = self._data_dict[key]
@@ -29,7 +31,7 @@ class NamedTensorTuple:
                 self._data_dict[key] = getattr(value, name)(*args, **kwargs)
         return self
 
-    def to(self, *args, **kwargs):
+    def to(self, *args: Sequence, **kwargs: MutableMapping):
         """
 
         :param args:

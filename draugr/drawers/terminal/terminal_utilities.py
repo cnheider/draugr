@@ -6,7 +6,7 @@ __doc__ = r"""
 
            Created on 7/5/22
            """
-
+__all__ = ["scale"]
 
 from typing import Sequence, List
 

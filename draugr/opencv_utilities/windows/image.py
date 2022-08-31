@@ -6,7 +6,7 @@ os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
 import cv2
 import numpy
 
-from apppath import ensure_existence
+from warg import ensure_existence
 from draugr.opencv_utilities.namespaces.enums import WindowFlagEnum, FontEnum
 from draugr.opencv_utilities.windows.default import (
     ESC_CHAR,

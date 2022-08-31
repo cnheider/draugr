@@ -44,7 +44,7 @@ if __name__ == "__main__":
         :rtype: None
         """
         from draugr.opencv_utilities.windows.image import show_image
-        from draugr.tqdm_utilities import progress_bar
+        from draugr.visualisation.progress import progress_bar
 
         for image in progress_bar(frame_generator(cv2.VideoCapture(0))):
             if show_image(image, "frame", wait=1):

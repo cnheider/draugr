@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import IO, List, Sequence, Union
+from typing import TextIO, List, Sequence, Union
 
 
 def python_version_check(major: int = 3, minor: int = 7):
@@ -24,7 +24,7 @@ from setuptools import find_packages, setup
 def read_reqs(file: str, path: Path) -> List[str]:
     """description"""
 
-    def readlines_ignore_comments(f: IO):
+    def readlines_ignore_comments(f: TextIO):
         """description"""
         return [a_ for a_ in f.readlines() if "#" not in a_ and a_]
 

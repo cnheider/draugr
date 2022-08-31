@@ -2,7 +2,7 @@ import os
 import subprocess
 from pathlib import Path
 
-from apppath import ensure_existence
+from warg import ensure_existence
 
 __all__ = ["spilt_video"]
 

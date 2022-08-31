@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Union
+from typing import Union, MutableMapping
 
 import numpy
 import torch
@@ -27,7 +27,10 @@ __all__ = ["TerminalWriter"]
 
 
 class TerminalWriter(Writer, ImageWriterMixin):
-    """description"""
+    """
+    Class for writing plot, images and so on to terminal
+
+    """
 
     def image(
         self,
@@ -49,7 +52,7 @@ class TerminalWriter(Writer, ImageWriterMixin):
     def _close(self, exc_type=None, exc_val=None, exc_tb=None):
         return self.E.close()
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: MutableMapping):
         super().__init__(**kwargs)
 
         self._stats_tag = "stats"
@@ -68,7 +71,7 @@ class TerminalWriter(Writer, ImageWriterMixin):
                 self._stats(value, self._counter[self._stats_tag])
             self._counter[self._stats_tag] += 1
 
-    def _stats(self, stats: MetricCollection, step_i):
+    def _stats(self, stats: MetricCollection, step_i: int):
         styled_terminal_plot_stats_shared_x(stats, printer=self.E.write)
         self.E.set_description(
             f"Epi: {step_i}, "

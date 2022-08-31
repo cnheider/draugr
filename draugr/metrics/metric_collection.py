@@ -4,6 +4,7 @@
 __author__ = "Christian Heider Nielsen"
 
 import statistics
+from typing import Sequence, MutableMapping
 
 from draugr.metrics.metric_aggregator import MetricAggregator
 
@@ -44,7 +45,7 @@ class MetricCollection(dict):
             measures=self._measures, keep_measure_history=self._keep_measure_history
         )
 
-    def append(self, *args, **kwargs):
+    def append(self, *args: Sequence, **kwargs: MutableMapping):
         """
 
         :param args:
@@ -121,7 +122,7 @@ class MetricCollection(dict):
         :rtype:"""
         return self.metrics.items()
 
-    def save(self, **kwargs):
+    def save(self, **kwargs: MutableMapping):
         """
 
         :param kwargs:

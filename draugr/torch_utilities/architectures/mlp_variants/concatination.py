@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, List, Sequence
+from typing import Iterable, List, Sequence, MutableMapping
 
 import numpy
 import torch
@@ -21,7 +21,7 @@ class PreConcatInputMLP(MLP):
     Early fusion
     """
 
-    def __init__(self, input_shape: Sequence = (2,), **kwargs):
+    def __init__(self, input_shape: Sequence = (2,), **kwargs: MutableMapping):
         if isinstance(input_shape, Iterable):
             input_shape = sum(input_shape)
 
@@ -52,7 +52,7 @@ class LateConcatInputMLP(MLP):
         input_shape: Sequence = (2, 2),
         output_shape: Sequence = (2,),
         fusion_hidden_multiplier: int = 10,
-        **kwargs
+        **kwargs: MutableMapping
     ):
 
         forward_shape, *res = input_shape
@@ -76,7 +76,7 @@ class LateConcatInputMLP(MLP):
         )
 
     @passes_kws_to(MLP.forward)
-    def forward(self, *x, **kwargs) -> torch.tensor:
+    def forward(self, *x: Sequence, **kwargs: MutableMapping) -> torch.tensor:
         """
 
         :param x:

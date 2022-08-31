@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import time
-from typing import List, Sequence
+from typing import List, Sequence, MutableMapping
 
 import torch
 from torch import nn
@@ -80,7 +80,7 @@ class ShallowStdMultiVariateNormalMLP(MLP):
         output_shape: Sequence = (2,),
         mean_head_activation: callable = None,
         fixed_log_std: torch.Tensor = None,
-        **kwargs
+        **kwargs: MutableMapping
     ):
         super().__init__(
             output_shape=output_shape,
@@ -95,7 +95,7 @@ class ShallowStdMultiVariateNormalMLP(MLP):
             assert fixed_log_std.shape == output_shape
             self.log_std = fixed_log_std
 
-    def forward(self, *x, min_std=-20, max_std=2, **kwargs):
+    def forward(self, *x: Sequence, min_std=-20, max_std=2, **kwargs: MutableMapping):
         """
 
         :param x:
@@ -126,7 +126,7 @@ class MultiDimensionalNormalMLP(MLP):
         self,
         output_shape: Sequence = (2,),
         mean_head_activation: callable = None,
-        **kwargs
+        **kwargs: MutableMapping
     ):
         output_shape = (*output_shape, *output_shape)
         assert len(output_shape) == 2
@@ -167,7 +167,7 @@ class MultiVariateNormalMLP(MLP):
         self,
         output_shape: Sequence = (2,),
         mean_head_activation: callable = None,
-        **kwargs
+        **kwargs: MutableMapping
     ):
         output_shape = (*output_shape, *output_shape)
         assert len(output_shape) == 2
@@ -204,7 +204,10 @@ class MultipleNormalMLP(MLP):
     """description"""
 
     def __init__(
-        self, output_shape: int = 2, mean_head_activation: callable = None, **kwargs
+        self,
+        output_shape: int = 2,
+        mean_head_activation: callable = None,
+        **kwargs: MutableMapping
     ):
         output_shape = (2,) * output_shape
         super().__init__(output_shape=output_shape, **kwargs)
