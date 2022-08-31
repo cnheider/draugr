@@ -101,7 +101,7 @@ if __name__ == "__main__":
         :rtype: None
         """
         from pathlib import Path
-        from apppath import ensure_existence
+        from warg import ensure_existence
         from matplotlib import pyplot
         import numpy
         import imageio

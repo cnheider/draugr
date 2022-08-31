@@ -11,7 +11,7 @@ from pathlib import Path
 
 try:
     from .cuda_device import *
-    from .platform_selection import *
+    from warg.os.platform_selection import *
     from .resource_utilities import *
     from .screen_resolution import *
 except ImportError as ix:

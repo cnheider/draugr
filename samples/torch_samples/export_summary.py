@@ -11,7 +11,7 @@ from pathlib import Path
 
 from matplotlib import pyplot
 
-from apppath import ensure_existence
+from warg import ensure_existence
 from draugr import PROJECT_APP_PATH
 from draugr.tensorboard_utilities import TensorboardEventExporter
 from draugr.writers import StandardTrainingScalarsEnum

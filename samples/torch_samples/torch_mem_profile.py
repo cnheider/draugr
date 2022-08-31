@@ -12,7 +12,7 @@ from pathlib import Path
 import torch
 from pytorch_memlab import LineProfiler
 
-from apppath import ensure_existence
+from warg import ensure_existence
 
 if __name__ == "__main__":
 

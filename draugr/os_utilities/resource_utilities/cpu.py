@@ -4,7 +4,7 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
 
-            Small utilities to keep track of cores dedicated to workers threads
+            Small path_utilities to keep track of cores dedicated to workers threads
 
            Created on 07-12-2020
            """

@@ -113,7 +113,7 @@ def make_gradient_v2(width, height, h, k, a, b, theta):
 if __name__ == "__main__":
 
     from pathlib import Path
-    from apppath import ensure_existence
+    from warg import ensure_existence
     from draugr.opencv_utilities import show_image
 
     basep = ensure_existence(Path("exclude"))

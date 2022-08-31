@@ -14,7 +14,7 @@ from typing import List, Union
 from pandas.core.generic import NDFrame
 from sorcery import assigned_names
 
-from apppath import ensure_existence
+from warg import ensure_existence
 from warg import Number
 
 __all__ = [
