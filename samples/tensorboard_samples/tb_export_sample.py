@@ -10,7 +10,7 @@ __doc__ = r"""
 import os
 from pathlib import Path
 
-from apppath import AppPath, ensure_existence
+from apppath import AppPath
 from draugr.tensorboard_utilities import TensorboardEventExporter
 from draugr.visualisation.progress import progress_bar
 from draugr.writers import (
@@ -21,6 +21,8 @@ from draugr.writers import (
 )
 
 __all__ = ["extract_scalars_as_csv", "extract_tensors_as_csv", "extract_metrics"]
+
+from warg import ensure_existence
 
 EXPORT_RESULTS_PATH = Path.cwd()
 

@@ -3,7 +3,7 @@ from enum import Enum
 from itertools import zip_longest
 from pathlib import Path
 from pickle import dump
-from typing import Iterable, Mapping, Tuple, TypeVar, Union
+from typing import Iterable, Mapping, Tuple, TypeVar, Union, Sequence
 
 import numpy
 import pandas
@@ -12,11 +12,11 @@ from PIL.Image import Image
 from matplotlib import pyplot
 
 
-from apppath import AppPath, ensure_existence
+from apppath import AppPath
 
 __all__ = ["TensorboardEventExporter"]
 
-from warg import passes_kws_to
+from warg import passes_kws_to, ensure_existence
 
 # TODO: implement export options using ExportMethodEnum
 # TODO: MAJOR REFACTOR INCOMING
@@ -165,7 +165,7 @@ class TensorboardEventExporter:
         self, *tags: Iterable[str], out_dir: Path = Path.cwd()
     ) -> Iterable:
         """
-        if save to files it pickles tags values with file ending .pkl
+        if save to file it pickles tags values with file ending .pkl.
 
         :param tags:
         :param out_dir:
@@ -269,7 +269,7 @@ class TensorboardEventExporter:
     @passes_kws_to(pandas.DataFrame.to_csv)
     def scalar_export_csv(
         self,
-        *tags: Iterable[str],
+        *tags: Sequence[str],
         out_dir: Path = Path.cwd(),
         index_label: str = "epoch",
         **kwargs,

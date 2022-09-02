@@ -5,6 +5,7 @@ import time
 import numpy
 import torch
 from torch.utils.data import Dataset
+from warg import inner_map
 
 from draugr import batched_recycle
 from draugr.torch_utilities import to_tensor_generator
@@ -162,7 +163,6 @@ def test_d3():
 def test_d4():
     from torchvision.transforms import transforms
     import numpy
-    from draugr import inner_map
 
     a_transform = transforms.Compose(
         [
@@ -240,7 +240,6 @@ def test_d4():
 def test_d5():
     from torchvision.transforms import transforms
     import numpy
-    from draugr import inner_map
 
     a_transform = transforms.Compose(
         [
@@ -307,7 +306,6 @@ def test_d5():
 def test_d6():
     from torchvision.transforms import transforms
     import numpy
-    from draugr import inner_map
 
     a_transform = transforms.Compose(
         [

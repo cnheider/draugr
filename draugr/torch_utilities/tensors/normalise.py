@@ -12,9 +12,19 @@ from typing import Union
 import numpy
 import torch
 
-__all__ = ["standardise"]
+__all__ = [
+    "standardise",
+    "minus_one_one_unnormalise",
+    "minus_one_one_normalise",
+    "normalize_row",
+]
 
 from warg import Number
+
+
+def normalize_row(x):
+    """Normalizes a tensor per row."""
+    return x / numpy.linalg.norm(x, axis=-1, keepdims=True)
 
 
 def minus_one_one_unnormalise(

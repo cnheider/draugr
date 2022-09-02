@@ -9,13 +9,14 @@ __doc__ = r"""
 
 from typing import Sequence
 
+from draugr.python_utilities.platform_context import in_ipynb
 from matplotlib import animation, pyplot
 
 __all__ = ["replay_frames"]
 
 
 def replay_frames(
-    frames: Sequence, interval: int = 100, is_ipython: bool = False
+    frames: Sequence, interval: int = 100, is_ipython: bool = in_ipynb
 ) -> None:
     """
     Displays a list of frames as a gif, with controls

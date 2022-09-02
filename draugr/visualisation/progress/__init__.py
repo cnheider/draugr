@@ -16,6 +16,7 @@ try:
     from .progress_bar import *
     from .pooled_progress_bar import *
     from .eta_bar import *
+    from .pick import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = (

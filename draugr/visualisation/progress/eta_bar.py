@@ -14,15 +14,23 @@ __all__ = ["ETABar"]
 from draugr.python_utilities import in_ipynb
 from progress.bar import Bar
 
+from warg import passes_kws_to, drop_unused_kws
+
 
 class ETABar(Bar):
     """Progress bar that displays the estimated time of completion."""
 
-    suffix = "%(percent).1f%% - %(eta)ds"
+    default_suffix = "%(percent).1f%% - %(eta)ds"
+    suffix = default_suffix
     bar_prefix = " "
     bar_suffix = " "
     empty_fill = "∙"
     fill = "█"
+
+    @drop_unused_kws
+    @passes_kws_to(Bar.__init__)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def writeln(self, line: str):
         """Writes the line to the console.
@@ -50,4 +58,4 @@ class ETABar(Bar):
         Args:
             text (str): A status message for the progress bar.
         """
-        self.suffix = f"%(percent).1f%% - %(eta)ds {text}"
+        self.suffix = f"{ETABar.default_suffix} {text}"

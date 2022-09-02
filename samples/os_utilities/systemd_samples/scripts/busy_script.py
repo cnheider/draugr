@@ -7,14 +7,14 @@ __doc__ = r"""
            Created on 31-10-2020
            """
 
+from warg import IgnoreInterruptSignal, busy_indicator
+
 
 def asd() -> None:
     """
     :rtype: None
     """
     import time
-
-    from draugr import IgnoreInterruptSignal, busy_indicator
 
     next_reading = time.time()
     with IgnoreInterruptSignal():
