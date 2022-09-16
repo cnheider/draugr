@@ -7,10 +7,10 @@ from warg import ensure_existence
 from draugr.ffmpeg_utilities.extract import AUDIO_FORMAT
 from warg import Number, identity
 
-__all__ = ["merge_video"]
+__all__ = ["merge_frames"]
 
 
-def get_frame_format(frames_dir) -> str:
+def get_frame_format(frames_dir, formats=(".jpg", ".png")) -> str:
     """
 
     :param frames_dir:
@@ -18,20 +18,22 @@ def get_frame_format(frames_dir) -> str:
     :return:
     :rtype:
     """
-    for file_ in os.listdir(frames_dir):
-        if os.path.splitext(file_)[-1].lower() in [".jpg", ".png"]:
-            return os.path.splitext(file_)[-1].lower()
+    for file_ in frames_dir.iterdir():
+        if file_.is_file():
+            suffix = file_.suffix.lower()
+            if suffix in formats:
+                return suffix
 
 
-def merge_video(
+def merge_frames(
     frames_dir: Path,
     merge_audio: bool = True,
     audio_dir: Optional[Path] = None,
     merge_dir: Optional[Path] = None,
     merge_rate: Number = 25,
     ffmpeg_path: Path = "ffmpeg",
-):
-    """
+) -> None:
+    """merges frame in to video
 
     :param frames_dir:
     :type frames_dir:
@@ -61,10 +63,10 @@ def merge_video(
             str(ffmpeg_path),
             "-r",
             str(merge_rate),
-            # "-pattern_type",
-            # "glob",
+            "-pattern_type",
+            "glob",
             "-i",
-            str(frames_dir / f"%d{get_frame_format(frames_dir)}"),
+            str(frames_dir / f"*{get_frame_format(frames_dir)}"),
             "-y",
             "-c:v",
             "libx264",
@@ -100,7 +102,7 @@ def merge_video(
 
 
 if __name__ == "__main__":
-    merge_video(
+    merge_frames(
         Path.home()
         / "DataWin"
         / "DeepFake"

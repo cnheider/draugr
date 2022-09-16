@@ -11,7 +11,14 @@ __doc__ = r"""
 
 import numpy
 
-__all__ = ["sized_batch", "shuffled_batches", "random_batches", "batch_generator"]
+__all__ = [
+    "sized_batch",
+    "shuffled_batches",
+    "random_batches",
+    "batch_generator",
+    "shuffled_batch_index",
+    "linear_batch_index",
+]
 
 
 def sized_batch(sized: Iterable, n: int = 32, drop_not_full: bool = True) -> Any:
@@ -30,6 +37,11 @@ def sized_batch(sized: Iterable, n: int = 32, drop_not_full: bool = True) -> Any
         yield sized[ndx : min(ndx + n, l)]
 
 
+def linear_batch_index(size: int, batch_size: int) -> Sequence:
+    for ndx in range(0, size, batch_size):
+        yield range(ndx, min(ndx + batch_size, size))
+
+
 def random_batches(*args, size: int, batch_size: int) -> Sequence:
     r"""
 
@@ -42,6 +54,22 @@ def random_batches(*args, size: int, batch_size: int) -> Sequence:
     for _ in range(size // batch_size):
         rand_ids = numpy.random.randint(0, size, batch_size)
         yield [a[rand_ids] for a in args]
+
+
+def shuffled_batch_index(size: int, batch_size: int) -> Sequence:
+    r"""
+
+    :param args:
+    :type args:
+    :param size:
+    :type size:
+    :param batch_size:
+    :type batch_size:"""
+    permutation = numpy.random.permutation(size)
+    r = size // batch_size
+    assert r > 0, f"{size}/{batch_size}={r}"
+    for i in range(r):
+        yield permutation[i * batch_size : (i + 1) * batch_size]
 
 
 def shuffled_batches(*args, size: int, batch_size: int) -> Sequence:

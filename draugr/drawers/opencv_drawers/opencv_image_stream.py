@@ -25,7 +25,9 @@ class OpencvImageStream(Drawer):
 
     @drop_unused_kws
     @passes_kws_to(Drawer.__init__)
-    def __init__(self, title: str = "", render: bool = True, **kwargs: MutableMapping):
+    def __init__(
+        self, title: str = "NoName", render: bool = True, **kwargs: MutableMapping
+    ):
 
         super().__init__(**kwargs)
         if not render:
@@ -34,7 +36,7 @@ class OpencvImageStream(Drawer):
         self.window_id = title
         cv2.namedWindow(self.window_id, WindowFlagEnum.normal.value)
 
-    def draw(self, data: Sequence):
+    def draw(self, data: Sequence) -> None:
         """
 
         :param data:

@@ -28,8 +28,8 @@ def show_image(
     save_path: Path = None,
     exit_chars: Iterable[str] = ("q", ESC_CHAR),
     extension: ExtensionEnum = ExtensionEnum.exr,  # 'png'
-    min_default_size=200,
-    max_default_size=600,
+    min_default_size: int = 200,
+    max_default_size: int = 600,
 ) -> None:
     """
     ! if a title is not provided ( None) , title will be inferred. Caution in real time imshow / animations this will hurt performance.

@@ -39,7 +39,17 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 # with open(Path(__file__).parent.parent / "README.md", "r") as this_init_file:
 #    __doc__ += this_init_file.read()
 
-# __all__ = ["PROJECT_APP_PATH", "PROJECT_NAME", "PROJECT_VERSION", "get_version"]
+__all__ = [
+    "PROJECT_APP_PATH",
+    "PROJECT_NAME",
+    "PROJECT_VERSION",
+    "get_version",
+    "PROJECT_ORGANISATION",
+    "PROJECT_AUTHOR",
+    "PROJECT_YEAR",
+    "INCLUDE_PROJECT_READMES",
+    "PACKAGE_DATA_PATH",
+]
 
 
 def dist_is_editable(dist: Any) -> bool:
@@ -54,7 +64,7 @@ def dist_is_editable(dist: Any) -> bool:
     return False
 
 
-PROJECT_ORGANISATION = "pything"
+PROJECT_ORGANISATION = "Pything"
 PROJECT_NAME = __project__.lower().strip().replace(" ", "_")
 PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018

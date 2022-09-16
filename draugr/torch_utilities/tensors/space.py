@@ -24,10 +24,7 @@ def linspace(start: torch.Tensor, stop: torch.Tensor, num_samples: int) -> torch
         torch.Tensor: (D, num_samples) tensor of linearly interpolated
                       samples.
     """
-    return start.unsqueeze(-1) + torch.linspace(0, 1, num_samples).unsqueeze(
-        0
-    ) * (  # samples
-        stop - start
-    ).unsqueeze(
-        -1
-    )  # diff
+    return start.unsqueeze(-1) + (
+        torch.linspace(0, 1, num_samples).unsqueeze(0)  # samples
+        * (stop - start).unsqueeze(-1)  # diff
+    )

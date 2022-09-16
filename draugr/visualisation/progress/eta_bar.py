@@ -11,21 +11,44 @@ TODO: UNIFY PROGRESS BARs interfaces, base on system and python context
 
 __all__ = ["ETABar"]
 
+from typing import Iterator
+
+from progress.colors import color  # shit
+
 from draugr.python_utilities import in_ipynb
-from progress.bar import Bar
+from progress.bar import Bar  # IT is shit
 
 from warg import passes_kws_to, drop_unused_kws
 
 
-class ETABar(Bar):
-    """Progress bar that displays the estimated time of completion."""
+class ETABar(Bar, Iterator):
+    """Progress bar that displays the estimated time of completion.
+    TODO: REMOVE THIS PIECE OF SHIT!
+
+    """
+
+    def __next__(self):
+        return self.next()
 
     default_suffix = "%(percent).1f%% - %(eta)ds"
     suffix = default_suffix
+    message = "%(eta)"
     bar_prefix = " "
     bar_suffix = " "
     empty_fill = "∙"
     fill = "█"
+
+    def update(self, n: int) -> None:
+        """
+
+        :param n:
+        :type n:
+        :return:
+        :rtype:
+        """
+        rv = self.next(n)
+        super().update()
+        return rv
 
     @drop_unused_kws
     @passes_kws_to(Bar.__init__)
@@ -59,3 +82,15 @@ class ETABar(Bar):
             text (str): A status message for the progress bar.
         """
         self.suffix = f"{ETABar.default_suffix} {text}"
+
+    def update(self):
+        """ """
+        filled_length = int(self.width * self.progress)
+        empty_length = self.width - filled_length
+
+        message = self.message % self
+        bar = color(self.fill * filled_length, fg=self.color)
+        empty = self.empty_fill * empty_length
+        suffix = self.suffix % self
+        line = "".join([message, self.bar_prefix, bar, empty, self.bar_suffix, suffix])
+        self.writeln(line)
