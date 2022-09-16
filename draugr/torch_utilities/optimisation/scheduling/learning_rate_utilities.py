@@ -10,6 +10,7 @@ __doc__ = r"""
 __all__ = ["set_lr", "exponential_lr_decay"]
 
 import torch
+from torch.optim.optimizer import Optimizer
 
 
 def set_lr(optimizer: torch.optim.Optimizer, lr: float) -> None:
@@ -24,29 +25,34 @@ def set_lr(optimizer: torch.optim.Optimizer, lr: float) -> None:
 
 
 def exponential_lr_decay(
-    optim: torch.optim.Adam,
+    optim: Optimizer,
     *,
     initial_learning_rate: float,
     step: int,
     decay_rate: float,
     decay_steps: float,
 ) -> None:
-    """Keras-style per-step learning rate decay.
-
-    Description:
-        This method will decay the learning rate continuously for all
+    """
+    This method will decay the learning rate continuously for all
         parameter groups in the optimizer by the function:
 
         lr = lr_0 * decay^(step / decay_steps)
 
-    Args:
-        optim (torch.optim.Adam): The optimizer to modify
-        initial_learning_rate (float): The initial learning rate (lr_0)
-        step (int): The current step in training
-        decay_rate (float): The rate at which to decay the learning rate
-        decay_steps (float): The number of steps before the learning rate is
+    :param optim: The optimiser to modify
+    :type optim: Optimizer
+    :param initial_learning_rate: The initial learning rate (lr_0)
+    :type initial_learning_rate: float
+    :param step: The current step in training
+    :type step: int
+    :param decay_rate: The rate at which to decay the learning rate
+    :type decay_rate: float
+    :param decay_steps: The number of steps before the learning rate is
                              applied in full.
+    :type decay_steps: float
+    :return:
+    :rtype:
     """
+
     decay_rate = decay_rate ** (step / decay_steps)
     lr = initial_learning_rate * decay_rate
     for group in optim.param_groups:
