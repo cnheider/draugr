@@ -1,7 +1,14 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""description"""
-__all__ = ["make_user", "remove_user", "change_passwd", "change_home_dir"]
+__all__ = [
+    "make_user",
+    "remove_user",
+    "change_passwd",
+    "change_home_dir",
+    "get_username",
+]
 
+import os
 from pathlib import Path
 
 from warg import ContextWrapper
@@ -116,6 +123,19 @@ def change_home_dir(username: str = "demo_user", new_home: str = None) -> None:
     pass  # ./mkhomedir_helper username
 
 
+def get_username() -> str:
+    # getpwuid(os.getuid())[0]
+    # getpass.getuser() # import getpass
+    # os.environ.get('USER', os.environ.get('USERNAME'))
+    # win32api.GetUserName()
+    #  commands.getoutput("whoami") # import commands
+
+    # os.cmd("whoami") #    import os
+    # os.path.split(os.path.expanduser('~'))[-1]
+    return os.getlogin()
+
+
 if __name__ == "__main__":
-    make_user()
-    remove_user()
+    # make_user()
+    # remove_user()
+    print(get_username())

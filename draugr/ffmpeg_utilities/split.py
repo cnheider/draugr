@@ -4,17 +4,17 @@ from pathlib import Path
 
 from warg import ensure_existence
 
-__all__ = ["spilt_video"]
+__all__ = ["split_video"]
 
 
-def spilt_video(
+def split_video(
     video_path: Path,
-    start_time="01:40:00",
+    start_time="01:40:00",  # TODO: Find sane defaults or None
     stop_time="01:50:00",
     split_dir: Path = None,
     ffmpeg_path: Path = "ffmpeg",
 ) -> None:
-    """
+    """Splits video into frames
 
     :param video_path:
     :type video_path:
@@ -62,7 +62,7 @@ def spilt_video(
 
 
 if __name__ == "__main__":
-    spilt_video(
+    split_video(
         Path.home() / "DataWin" / "DeepFake" / "Frontier" / "brandt.mp4",
         ffmpeg_path=Path.home()
         / "OneDrive - Alexandra Instituttet"

@@ -19,7 +19,7 @@ def extract_frames(
     frame_format: str = "jpg",
     extract_sound: bool = True,
     ffmpeg_path: Path = "ffmpeg",
-):
+) -> None:
     """
 
     :param file_path:

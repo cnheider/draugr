@@ -24,7 +24,7 @@ class Drawer(object):
         self._verbose = verbose
 
     @abstractmethod
-    def draw(self, *args: Sequence, **kwargs: MutableMapping):
+    def draw(self, *args: Sequence, **kwargs: MutableMapping) -> None:
         """description"""
         raise NotImplementedError
 
