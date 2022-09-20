@@ -20,6 +20,7 @@ try:
     from .tensors import *
     from .writers import *
     from .sessions import *
+    from .exporting import *
     from .evaluation import *
     from .opencv import *
     from .architectures import *
