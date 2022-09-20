@@ -4,3 +4,6 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = r"""
            """
+
+from .summary import *
+from .latex_tables import *
