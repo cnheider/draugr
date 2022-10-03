@@ -56,8 +56,3 @@ class SupervisedDataset(Dataset):
     @abstractmethod
     def __getitem__(self, index: int):
         raise NotImplementedError
-
-
-if __name__ == "__main__":
-    print(SplitIndexer(521))
-    print(SplitIndexer(2512).unnormalised(123))

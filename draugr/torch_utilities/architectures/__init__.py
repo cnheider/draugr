@@ -6,3 +6,4 @@ from .architecture import *
 from .distributional import *
 from .mlp import *
 from .mlp_variants import *
+from .vae import *
