@@ -44,8 +44,38 @@ def progress_bar(
     **kwargs,
 ) -> Any:
     """
-    hint:
+
+        hint:
     use next first and then later use send instead of next to set a new tqdm description if desired.
+
+    :param iterable:
+    :type iterable:
+    :param description:
+    :type description:
+    :param leave:
+    :type leave:
+    :param notifications:
+    :type notifications:
+    :param total:
+    :type total:
+    :param auto_total_generator:
+    :type auto_total_generator:
+    :param auto_describe_iterator:
+    :type auto_describe_iterator:
+    :param alias:
+    :type alias:
+    :param disable:
+    :type disable:
+    :param verbose:
+    :type verbose:
+    :param timestamp_mode:
+    :type timestamp_mode:
+    :param monitor_interval:
+    :type monitor_interval:
+    :param kwargs:
+    :type kwargs:
+    :return:
+    :rtype:
     """
     if not disable:
         if description is None and auto_describe_iterator:

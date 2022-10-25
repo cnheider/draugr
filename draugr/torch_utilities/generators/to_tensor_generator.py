@@ -83,7 +83,7 @@ if __name__ == "__main__":
     from torchvision.transforms import transforms
     import numpy
     from draugr.python_utilities.generators import batched_recycle
-    from draugr import inner_map
+    from draugr.torch_utilities import inner_map
 
     def s() -> None:
         """
