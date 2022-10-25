@@ -7,3 +7,5 @@ from .distributional import *
 from .mlp import *
 from .mlp_variants import *
 from .vae import *
+from .experimental import *
+from .recurrent import *

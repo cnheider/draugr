@@ -29,8 +29,8 @@ from pathlib import Path
 # from .stopping import *
 # from .numpy_utilities import *
 # from .visualisation import *
-from .metrics import *
-from .python_utilities import *
+# from .metrics import *
+# from .python_utilities import *
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
