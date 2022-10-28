@@ -15,3 +15,4 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 
 from .classification import *
 from .cross_validation import *
+from .archetypes import *

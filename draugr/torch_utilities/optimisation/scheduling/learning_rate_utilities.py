@@ -7,9 +7,12 @@ __doc__ = r"""
            Created on 20/10/2019
            """
 
-__all__ = ["set_lr", "exponential_lr_decay"]
+__all__ = ["set_lr", "exponential_lr_decay", "average_learning_rate"]
+
+from statistics import mean
 
 import torch
+
 from torch.optim.optimizer import Optimizer
 
 
@@ -22,6 +25,20 @@ def set_lr(optimizer: torch.optim.Optimizer, lr: float) -> None:
     :type lr:"""
     for param_group in optimizer.param_groups:
         param_group["lr"] = lr
+
+
+def average_learning_rate(optimizer: torch.optim.Optimizer) -> float:
+    """
+
+    :param optimizer:
+    :type optimizer:
+    :return:
+    :rtype:
+    """
+    learning_rates = []
+    for param_group in optimizer.param_groups:
+        learning_rates.append(param_group["lr"])
+    return mean(learning_rates)
 
 
 def exponential_lr_decay(
@@ -57,3 +74,17 @@ def exponential_lr_decay(
     lr = initial_learning_rate * decay_rate
     for group in optim.param_groups:
         group["lr"] = lr
+
+
+if __name__ == "__main__":
+
+    def _main():
+        from torch.nn import Parameter
+
+        s = (Parameter(torch.ones(1, 2)),)
+        from torch.optim import Adam
+
+        optim = Adam(s)
+        print(average_learning_rate(optim))
+
+    _main()

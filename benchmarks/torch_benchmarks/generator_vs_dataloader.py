@@ -7,7 +7,7 @@ import torch
 from torch.utils.data import Dataset
 from warg import inner_map
 
-from draugr import batched_recycle
+from draugr.python_utilities import batched_recycle
 from draugr.torch_utilities import to_tensor_generator
 
 __author__ = "Christian Heider Nielsen"

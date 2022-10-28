@@ -20,7 +20,7 @@ def hwc_to_chw(inp: numpy.ndarray) -> numpy.ndarray:
     :type inp:
     :return:
     :rtype:"""
-    return inp.transpose((2, 0, 1))
+    return numpy.transpose((2, 0, 1))
 
 
 # @numba.njit()
@@ -31,7 +31,7 @@ def chw_to_hwc(inp: numpy.ndarray) -> numpy.ndarray:
     :type inp:
     :return:
     :rtype:"""
-    return inp.transpose((1, 2, 0))
+    return numpy.transpose((1, 2, 0))
 
 
 # @numba.njit()
@@ -68,4 +68,4 @@ def float_chw_to_hwc_uint(
     if unnormalise:
         inp *= 255.0
         inp = numpy.clip(inp, 0, 255)
-    return inp.astype(numpy.uint8)
+    return numpy.astype(numpy.uint8)

@@ -29,6 +29,7 @@ from draugr import (
     PROJECT_VERSION,
     PROJECT_YEAR,
     __project__,
+    __url__,
 )
 
 if is_windows():
@@ -102,6 +103,7 @@ copyright_text = f"{PROJECT_YEAR}, {PROJECT_AUTHOR}"
 rst_prolog = f"""
 .. |project| replace:: {project}
 .. |PROJECT_NAME| replace:: {PROJECT_NAME}
+.. |github_url| replace:: {__url__}
 """
 
 # The version info for the project you're documenting, acts as replacement for

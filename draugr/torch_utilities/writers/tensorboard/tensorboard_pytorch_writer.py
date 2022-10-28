@@ -2,15 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from contextlib import suppress
-from typing import Any, Iterable, Sequence, Union, MutableMapping
+from typing import Any, Iterable, MutableMapping, Sequence, Union
 
 import PIL
 import numpy
 import torch
 from PIL import Image
-from matplotlib import pyplot
-from matplotlib.figure import Figure
-
 from draugr import PROJECT_APP_PATH
 from draugr.numpy_utilities.mixing import mix_channels
 from draugr.opencv_utilities import draw_masks
@@ -43,8 +40,9 @@ from draugr.writers.mixins.precision_recall_writer_mixin import (
 )
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
 from draugr.writers.writer import Writer
-from warg import drop_unused_kws, passes_kws_to
-from warg import sprint
+from matplotlib import pyplot
+from matplotlib.figure import Figure
+from warg import drop_unused_kws, passes_kws_to, sprint
 
 with suppress(FutureWarning):
     from torch.utils.tensorboard import SummaryWriter
@@ -55,7 +53,20 @@ Created on 27/04/2019
 
 @author: cnheider
 """
-__all__ = ["TensorBoardPytorchWriter", "PTW"]
+__all__ = [
+    "TensorBoardPytorchWriter",
+    "PTW",
+    "PytorchTensorboardWriter",
+    "PyTorchTensorBoardWriter",
+    "PyTorchTensorboardWriter",
+    "TensorboardPyTorchWriter",
+    "TensorBoardPyTorchWriter",
+    "TensorboardPytorchWriter",
+    "TorchTensorboardWriter",
+    "TensorboardTorchWriter",
+    "TensorBoardTorchWriter",
+    "TorchTensorBoardWriter",
+]
 
 from pathlib import Path
 

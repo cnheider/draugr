@@ -209,3 +209,7 @@ if __name__ == "__main__":
         print(a)
 
     uihsad()
+
+    def iajsd():
+        print(SplitIndexer(521))
+        print(SplitIndexer(2512).unnormalised(123))

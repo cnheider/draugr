@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
-
+from typing import Union, Sequence
 import torch
 
 __author__ = "Christian Heider Nielsen"
@@ -18,7 +18,10 @@ class GraphWriterMixin(ABC):
 
     @abstractmethod
     def graph(
-        self, model: torch.nn.Module, input_to_model: torch.Tensor, **kwargs
+        self,
+        model: torch.nn.Module,
+        input_to_model: Union[torch.Tensor, Sequence[torch.Tensor]],
+        **kwargs
     ) -> None:
         """
 

@@ -12,7 +12,7 @@ if __name__ == "__main__":
     import numpy
     import pytest
 
-    from draugr import IgnoreInterruptSignal
+    from draugr.python_utilities import IgnoreInterruptSignal
     from draugr.drawers import DiscreteScrollPlot
     from draugr.stopping import CaptureEarlyStop
 

@@ -4,7 +4,7 @@
 
 __project__ = "Draugr"
 __author__ = "Christian Heider Nielsen"
-__version__ = "1.0.4"
+__version__ = "1.0.5"
 __doc__ = r"""
 Created on 27/04/2019
 
@@ -29,8 +29,8 @@ from pathlib import Path
 # from .stopping import *
 # from .numpy_utilities import *
 # from .visualisation import *
-from .metrics import *
-from .python_utilities import *
+# from .metrics import *
+# from .python_utilities import *
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
@@ -72,6 +72,8 @@ PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
 PACKAGE_DATA_PATH = Path(pkg_resources.resource_filename(PROJECT_NAME, "data"))
 INCLUDE_PROJECT_READMES = False
+
+__url__ = f"https://github.com/{PROJECT_ORGANISATION.lower()}/{PROJECT_NAME}"
 
 distributions = {v.key: v for v in pkg_resources.working_set}
 if PROJECT_NAME in distributions:
