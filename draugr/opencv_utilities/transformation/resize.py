@@ -16,6 +16,8 @@ __all__ = ["cv2_resize", "InterpolationEnum"]
 
 
 class InterpolationEnum(Enum):
+    """ """
+
     nearest = cv2.INTER_NEAREST  # a nearest-neighbor interpolation
     linear = cv2.INTER_LINEAR  # a bilinear interpolation (used by default)
     area = (

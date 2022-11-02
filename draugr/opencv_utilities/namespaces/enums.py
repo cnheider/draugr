@@ -28,6 +28,7 @@ __all__ = [
     "RectanglesIntersectTypes",
     "BorderTypeEnum",
     "VideoCaptureAPIEnum",
+    "ButtonTypeEnum",
 ]
 
 from enum import Enum
@@ -36,12 +37,30 @@ import cv2
 
 
 class ComparisonEnum(Enum):
-    eq = cv2.CMP_EQ  # equal
+    """
+    comparison types
+    https://docs.opencv.org/3.4/d2/de8/group__core__array.html#ga0cc47ff833d40b58ecbe1d609a53d784
+    """
+
+    eq = cv2.CMP_EQ  # equal,  src1 is equal to src2
     gt = cv2.CMP_GT  # greater than
     ge = cv2.CMP_GE  # # greater equal
     lt = cv2.CMP_LT  # less than
     le = cv2.CMP_LE  # less equal
     ne = cv2.CMP_NE  # unequal
+
+
+class ButtonTypeEnum(Enum):
+    """
+    Qt "button" type.
+
+    https://docs.opencv.org/3.4/dc/d46/group__highgui__qt.html#gad15c7adb377e778dc907c0e318be193e
+    """
+
+    push_button = cv2.QT_PUSH_BUTTON  # Push button.
+    check_box = cv2.QT_CHECKBOX  # Checkbox button.
+    radio_box = cv2.QT_RADIOBOX  # Radiobox button.
+    button_bar = cv2.QT_NEW_BUTTONBAR  # Button should create a new buttonbar.
 
 
 class DataTypeEnum(Enum):

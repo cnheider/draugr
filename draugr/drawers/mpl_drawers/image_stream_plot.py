@@ -13,9 +13,11 @@ __all__ = ["ImageStreamPlot"]
 from typing import Sequence
 
 from matplotlib import pyplot
-
+import matplotlib
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
+
+# pyplot.switch_backend("QtAgg")  # MacOSX, QtAgg, GTK4Agg, Gtk3Agg, TkAgg, WxAgg, Agg
 
 
 class ImageStreamPlot(MplDrawer):
@@ -48,11 +50,12 @@ class ImageStreamPlot(MplDrawer):
         self.im.set_data(data)
 
     @staticmethod
-    def close(event):
+    def close(event: matplotlib.backend_bases.Event):
         """description"""
-        if event.key == "q":
+        if event.key == "q" or event.key == "escape":
             pyplot.close(event.canvas.figure)
-            raise StopIteration
+            raise GeneratorExit
+            # raise StopIteration
 
 
 if __name__ == "__main__":
@@ -70,9 +73,7 @@ if __name__ == "__main__":
         with AsyncVideoStream() as vc:
             coder = partial(cv2.cvtColor, code=cv2.COLOR_BGR2RGB)
             with ImageStreamPlot(coder(next(vc))) as s:
-                for i in progress_bar(
-                    frame_generator(vc, coder=coder), auto_total_generator=False
-                ):
+                for i in progress_bar(frame_generator(vc, coder=coder)):
                     s.draw(i)
 
     asdasf()

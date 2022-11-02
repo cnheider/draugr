@@ -2,7 +2,7 @@ from typing import Optional
 
 import cv2
 
-from warg import sink
+from warg import sink, Number
 
 __all__ = ["add_trackbar"]
 
@@ -10,10 +10,10 @@ __all__ = ["add_trackbar"]
 def add_trackbar(
     window_name: str,
     trackbar_name: str,
-    default: Optional[int] = None,
+    default: Optional[Number] = None,
     *,
-    min_val: int = 0,
-    max_val: int = 255,
+    min_val: Number = 0,
+    max_val: Number = 255,
     callback: callable = sink
 ) -> None:
     """

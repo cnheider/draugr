@@ -24,6 +24,7 @@ def frame_generator(
     coder: Optional[Callable] = identity,
 ) -> Iterable:
     """
+    A generator of frames from stream
 
     :param video_stream:
     :param coder:"""
