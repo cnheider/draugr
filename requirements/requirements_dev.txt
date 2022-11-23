@@ -36,3 +36,4 @@ matplotlib>=3.5.2
 -r requirements_multiprocessing.txt
 -r requirements_pygame.txt
 # full install
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
