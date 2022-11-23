@@ -16,3 +16,4 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 from .frames import *
 from .frame_annotation import *
 from .async_video_stream import *
+from .video_sources import *

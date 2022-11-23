@@ -8,6 +8,7 @@ __all__ = ["circle_crop"]
 
 def circle_crop(image: numpy.ndarray, center: Sequence, radius: int) -> numpy.ndarray:
     """
+    Return a circle crop of the image at given center with given radius
 
     :param image:
     :type image:
