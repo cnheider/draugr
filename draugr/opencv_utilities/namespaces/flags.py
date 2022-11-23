@@ -21,6 +21,8 @@ import cv2
 
 
 class TermCriteriaFlag(Flag):
+    """ """
+
     count = (
         cv2.TERM_CRITERIA_COUNT
     )  # the maximum number of iterations or elements to compute
@@ -31,6 +33,8 @@ class TermCriteriaFlag(Flag):
 
 
 class DrawMatchesFlagEnum(Flag):
+    """ """
+
     default = cv2.DRAW_MATCHES_FLAGS_DEFAULT
     # Output image matrix will be created (Mat::create), i.e. existing memory of output image may be reused. Two source image, matches and single keypoints will be drawn. For each keypoint only the center point will be drawn (without the circle around keypoint with keypoint size and orientation).
 
@@ -45,6 +49,8 @@ class DrawMatchesFlagEnum(Flag):
 
 
 class ThresholdTypeFlag(Flag):
+    """ """
+
     binary = cv2.THRESH_BINARY  # dst(x,y)={maxval0if src(x,y)>threshotherwise
     inverse_binary = (
         cv2.THRESH_BINARY_INV
@@ -66,6 +72,8 @@ class ThresholdTypeFlag(Flag):
 
 
 class WindowPropertyFlag(Flag):
+    """ """
+
     fullscreen = (
         cv2.WND_PROP_FULLSCREEN
     )  # fullscreen property (can be WINDOW_NORMAL or WINDOW_FULLSCREEN).
@@ -83,6 +91,8 @@ class WindowPropertyFlag(Flag):
 
 
 class MouseEventFlag(Flag):
+    """ """
+
     ctrl_down = cv2.EVENT_FLAG_CTRLKEY  # indicates that CTRL Key is pressed.
     shift_down = cv2.EVENT_FLAG_SHIFTKEY  # indicates that SHIFT Key is pressed.
     alt_down = cv2.EVENT_FLAG_ALTKEY  # indicates that ALT Key is pressed.

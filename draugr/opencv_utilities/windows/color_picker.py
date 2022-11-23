@@ -23,18 +23,27 @@ def interactive_hsv_color_picker(
     :param verbose:
     :type verbose:
     """
-    show_image(numpy.zeros((600, 600)), "image")
+    window_label = "image"
+
+    show_image(numpy.zeros((600, 600)), window_label)
+
+    hmin_label = "HMin"
+    hmax_label = "HMax"
+    smin_label = "SMin"
+    smax_label = "SMax"
+    vmin_label = "VMin"
+    vmax_label = "VMax"
 
     add_trackbar(
-        "image", "HMin", default=0, max_val=179
+        window_label, hmin_label, default=0, max_val=179
     )  # Hue is from 0-179 for Opencv
-    add_trackbar("image", "HMax", default=179, max_val=179)
+    add_trackbar(window_label, hmax_label, default=179, max_val=179)
 
-    add_trackbar("image", "SMin", default=0)
-    add_trackbar("image", "SMax", default=255)
+    add_trackbar(window_label, smin_label, default=0)
+    add_trackbar(window_label, smax_label, default=255)
 
-    add_trackbar("image", "VMin", default=0)
-    add_trackbar("image", "VMax", default=255)
+    add_trackbar(window_label, vmin_label, default=0)
+    add_trackbar(window_label, vmax_label, default=255)
 
     # Initialize to check if HSV min/max value changes
     h_min = s_min = v_min = h_max = s_max = v_max = 0
@@ -48,14 +57,14 @@ def interactive_hsv_color_picker(
         output = img
         while 1:
 
-            h_min = cv2.getTrackbarPos("HMin", "image")
-            h_max = cv2.getTrackbarPos("HMax", "image")
+            h_min = cv2.getTrackbarPos(hmin_label, window_label)
+            h_max = cv2.getTrackbarPos(hmax_label, window_label)
 
-            s_min = cv2.getTrackbarPos("SMin", "image")
-            s_max = cv2.getTrackbarPos("SMax", "image")
+            s_min = cv2.getTrackbarPos(smin_label, window_label)
+            s_max = cv2.getTrackbarPos(smax_label, window_label)
 
-            v_min = cv2.getTrackbarPos("VMin", "image")
-            v_max = cv2.getTrackbarPos("VMax", "image")
+            v_min = cv2.getTrackbarPos(vmin_label, window_label)
+            v_max = cv2.getTrackbarPos(vmax_label, window_label)
 
             output = cv2.bitwise_and(
                 img,
@@ -92,12 +101,12 @@ def interactive_hsv_color_picker(
                 s_min = ts_min
                 v_min = tv_min
 
-                cv2.setTrackbarPos("HMin", "image", h_min)
-                cv2.setTrackbarPos("HMax", "image", h_max)
-                cv2.setTrackbarPos("SMin", "image", s_min)
-                cv2.setTrackbarPos("SMax", "image", s_max)
-                cv2.setTrackbarPos("VMin", "image", v_min)
-                cv2.setTrackbarPos("VMax", "image", v_max)
+                cv2.setTrackbarPos(hmin_label, window_label, h_min)
+                cv2.setTrackbarPos(hmax_label, window_label, h_max)
+                cv2.setTrackbarPos(smin_label, window_label, s_min)
+                cv2.setTrackbarPos(smax_label, window_label, s_max)
+                cv2.setTrackbarPos(vmin_label, window_label, v_min)
+                cv2.setTrackbarPos(vmax_label, window_label, v_max)
 
                 ph_min = h_min
                 ps_min = s_min
@@ -106,7 +115,7 @@ def interactive_hsv_color_picker(
                 ps_max = s_max
                 pv_max = v_max
 
-            if show_image(output, "image", wait=wait_time):
+            if show_image(output, window_label, wait=wait_time):
                 break
 
     cv2.destroyAllWindows()

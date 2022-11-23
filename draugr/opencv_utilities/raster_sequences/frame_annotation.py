@@ -29,6 +29,7 @@ def blit_numbering_raster_sequence(
     font: int = cv2.FONT_HERSHEY_COMPLEX,
 ) -> numpy.ndarray:
     """
+    Annotate the raster sequence with a numbering
 
     :param seq:
     :param placement:
