@@ -15,7 +15,8 @@ with open(Path(__file__).parent / "README.md", "r") as this_init_file:
 try:
     from .progress_bar import *
     from .pooled_progress_bar import *
-    from .eta_bar import *
+
+    # from .eta_bar import # IT is super shit
     from .pick import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name

@@ -9,7 +9,7 @@ __doc__ = r"""
 
 __all__ = []
 
-from warg.os.os_platform import has_x_server
+from warg.os_utilities.os_platform import has_x_server
 
 
 def windows_display_test():

@@ -11,7 +11,7 @@ from typing import Iterable, Sequence
 
 __all__ = ["last_dim_truncate", "min_length_truncate_batch", "truncate_to_power_2"]
 
-from warg.math.powers import prev_pow_2
+from warg.math_utilities.powers import prev_pow_2
 
 
 def min_length_truncate_batch(batch: Iterable[Sequence]) -> Iterable:
