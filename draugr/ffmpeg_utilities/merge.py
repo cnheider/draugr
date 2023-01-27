@@ -24,6 +24,10 @@ def get_frame_format(frames_dir, formats=(".jpg", ".png")) -> str:
             if suffix in formats:
                 return suffix
 
+def get_frame_format(frames_dir) -> str:
+    for file_ in os.listdir(frames_dir):
+        if os.path.splitext(file_)[-1].lower() in [".jpg", ".png"]:
+            return os.path.splitext(file_)[-1].lower()
 
 def merge_frames(
     frames_dir: Path,
@@ -57,6 +61,11 @@ def merge_frames(
     if merge_dir is None:
         merge_dir = ensure_existence(vid_dir / "merge", sanitisation_func=identity)
 
+    shortname = get_short_name(frames_dir)
+
+    # a = f"{shortname}-%05d{postfix}{get_frame_format(frames_dir)}"  # 05d is for 5 digits in ids
+    # a = "brandt.mp4-%*_00.png"
+    a = f"%05d{get_frame_format(frames_dir)}"
     temp_out = str(merge_dir / "temp.mp4")
     subprocess.call(
         [
@@ -77,9 +86,9 @@ def merge_frames(
     )
 
     a = []
-    shortname = frames_dir.parent.name
+
     if merge_audio:
-        sound_dir = audio_dir / ("track" + AUDIO_FORMAT)
+        sound_dir = (audio_dir / "track").with_suffix(f'.{AUDIO_FORMAT.lstrip('.')})
         if sound_dir.exists():
             a.extend(["-i", str(sound_dir)])
         else:
@@ -96,7 +105,7 @@ def merge_frames(
             "-acodec",
             "copy",
             "-y",
-            str(merge_dir / f"out.mp4"),
+            str((merge_dir / 'out').with_suffix(f'.{'mp4'.lstrip('.')})),
         ]
     )
 
@@ -105,10 +114,6 @@ if __name__ == "__main__":
     merge_frames(
         Path.home()
         / "DataWin"
-        / "DeepFake"
-        / "Frontier"
-        / "Originals"
-        / "thomas_old_high_res"
         / "frames",
         ffmpeg_path=Path.home()
         / "OneDrive - Alexandra Instituttet"
