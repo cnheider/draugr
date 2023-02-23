@@ -114,7 +114,6 @@ def scatter_auto_mark(
             if isinstance(marker, mmarkers.MarkerStyle):
                 marker_obj = marker
             else:
-
                 marker_obj = mmarkers.MarkerStyle(marker, fillstyle=fillstyle)
             path = marker_obj.get_path().transformed(marker_obj.get_transform())
             paths.append(path)

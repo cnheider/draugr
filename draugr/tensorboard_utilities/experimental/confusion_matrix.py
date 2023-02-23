@@ -168,7 +168,8 @@ if __name__ == "__main__":
 
         def plot_to_image(figure):
             """Converts the matplotlib plot specified by 'figure' to a PNG image and
-            returns it. The supplied figure is closed and inaccessible after this call."""
+            returns it. The supplied figure is closed and inaccessible after this call.
+            """
             # Save the plot to a PNG in memory.
             buf = io.BytesIO()
             pyplot.savefig(buf, format="png")

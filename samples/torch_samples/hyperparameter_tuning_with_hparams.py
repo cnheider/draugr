@@ -114,6 +114,7 @@ with tf.summary.create_file_writer("logs/hparam_tuning").as_default():
 #
 # The model will be quite simple: two dense layers with a dropout layer between them. The training code will look familiar, although the hyperparameters are no longer hardcoded. Instead, the hyperparameters are provided in an `hparams` dictionary and used throughout the training function:
 
+
 # %%
 def train_test_model(hparams):
     """description"""
@@ -140,6 +141,7 @@ def train_test_model(hparams):
 
 # %% [markdown]
 # For each run, log an hparams summary with the hyperparameters and final accuracy:
+
 
 # %%
 def run(run_dir, hparams):

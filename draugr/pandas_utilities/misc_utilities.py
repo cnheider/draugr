@@ -62,7 +62,6 @@ def duplicate_columns(frame: pandas.DataFrame) -> List[str]:
     duplicates = []
 
     for t, v in groups.items():
-
         cs = frame[v].columns
         vs = frame[v]
         lcs = len(cs)

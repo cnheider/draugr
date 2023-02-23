@@ -26,5 +26,4 @@ def asdasf() -> None:
 
 
 if __name__ == "__main__":
-
     asdasf()

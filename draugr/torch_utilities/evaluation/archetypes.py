@@ -31,7 +31,7 @@ def get_num_samples(
     with torch.no_grad():
         ones = torch.ones_like(targets, dtype=dtype)
         num_samples = ones.new_zeros((batch_size, num_classes))
-        num_samples.scatter_add_(1, targets, ones)
+        num_samples.scatter_add_(1, targets.type(torch.int64), ones)
     return num_samples
 
 
@@ -67,7 +67,7 @@ def get_archetypes(
     num_samples = torch.max(num_samples, torch.ones_like(num_samples))
 
     prototypes = embeddings.new_zeros((batch_size, num_classes, embedding_size))
-    indices = targets.unsqueeze(-1).expand_as(embeddings)
+    indices = targets.unsqueeze(-1).expand_as(embeddings).type(torch.int64)
     prototypes.scatter_add_(1, indices, embeddings).div_(num_samples)
 
     return prototypes

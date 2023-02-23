@@ -6,7 +6,12 @@ __doc__ = r"""
 
            Created on 08-12-2020
            """
+from pathlib import Path
 
+
+from warg import ensure_in_sys_path, find_nearest_ancestral_relative
+
+ensure_in_sys_path(find_nearest_ancestral_relative("draugr").parent)
 from draugr.torch_utilities import global_pin_memory
 
 

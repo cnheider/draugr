@@ -162,7 +162,6 @@ def str_to_bool(s: str, preds: Tuple[str, ...] = ("true", "1")) -> bool:
 str2bool = str_to_bool
 
 if __name__ == "__main__":
-
     c = namedtuple("C", ("a", "b"))
 
     @wrap_args(c)

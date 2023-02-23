@@ -6,7 +6,12 @@ __doc__ = r"""
 
            Created on 04/12/2019
            """
+from pathlib import Path
 
+
+from warg import ensure_in_sys_path
+
+ensure_in_sys_path(Path(__file__).parent.parent.parent.parent)
 from draugr.torch_utilities import to_tensor, PreConcatInputMLP
 
 

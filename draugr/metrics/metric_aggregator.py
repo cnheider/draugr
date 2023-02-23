@@ -3,12 +3,23 @@
 from pathlib import Path
 from typing import List
 from warnings import warn
+import statistics
+
 
 __author__ = "Christian Heider Nielsen"
 
-import statistics
 
 __all__ = ["MetricAggregator", "save_metric"]
+
+MEASURES = {*statistics.__all__} - {
+    "correlation",  # x,y args
+    "StatisticsError",  # is an exception
+    "covariance",  # x,y args
+    "linear_regression",  # x,y args
+    "NormalDist",  # returns list, not number
+    #'geometric_mean' # always None?
+}
+# Check if statistics takes only one arg. TODO: Automatic function def args inspection?
 
 
 class MetricAggregator(object):
@@ -16,10 +27,13 @@ class MetricAggregator(object):
 
     def __init__(
         self,
-        measures=statistics.__all__[1:],
+        measures=None,
         keep_measure_history=False,
         use_disk_cache=True,
     ):
+        if measures is None:
+            measures = MEASURES
+
         self._values = []
         self._length = 0
 
@@ -275,8 +289,9 @@ def save_metric(
 if __name__ == "__main__":
     signals = MetricAggregator(keep_measure_history=False)
 
-    for i in range(10):
-        signals.append(i)
+    for _ in range(5):
+        for i in range(10):
+            signals.append(i)
 
     print(signals)
     print(signals.measures)

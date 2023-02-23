@@ -43,7 +43,6 @@ def to_edge(
 
     ksize = kwargs.get("ksize", max(next_odd(max(*(img.shape)) // 100), 5))
     if method == ToEdgeMethodEnum.morph_gradient:
-
         return cv2.morphologyEx(
             img,
             MorphTypeEnum.gradient.value,
