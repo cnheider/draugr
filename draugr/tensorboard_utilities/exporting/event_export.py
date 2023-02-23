@@ -289,20 +289,41 @@ class TensorboardEventExporter:
 
         out = []
 
-        df = pandas.DataFrame(
-            list(
-                zip_longest(
-                    *[
-                        list(zip_longest(*self.event_acc.Scalars(t), fillvalue=None))[
-                            -1
-                        ]
-                        for t in tags
-                    ],
-                    fillvalue=None,
-                )
-            ),
-            columns=tags,
-        )
+        old = False
+        if old:
+            a = [
+                list(zip_longest(*self.event_acc.Scalars(t), fillvalue=None))[-1]
+                for t in tags
+            ]
+
+            df = pandas.DataFrame(
+                list(
+                    zip_longest(
+                        *a,
+                        fillvalue=None,
+                    )
+                ),
+                columns=tags,
+            )
+        else:
+            a = [self.event_acc.Scalars(t) for t in tags]
+            t = []
+            for se in a:
+                ent = []
+                for e in se:
+                    ent.append(e.value)
+                t.append(ent)
+
+            df = pandas.DataFrame(
+                list(
+                    zip_longest(
+                        *t,
+                        fillvalue=None,
+                    )
+                ),
+                columns=tags,
+            )
+
         if self.save_to_disk:
             df.to_csv(
                 str(out_dir / f'scalars_{"_".join(tags) if len(tags) else "none"}.csv'),

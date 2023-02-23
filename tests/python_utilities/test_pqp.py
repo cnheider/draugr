@@ -3,7 +3,12 @@
 from typing import Sequence, MutableMapping
 
 import pytest
+from pathlib import Path
 
+
+from warg import ensure_in_sys_path, find_nearest_ancestral_relative
+
+ensure_in_sys_path(find_nearest_ancestral_relative("draugr").parent)
 from draugr.multiprocessing_utilities.pooled_queue_processor import (
     PooledQueueProcessor,
     PooledQueueTask,

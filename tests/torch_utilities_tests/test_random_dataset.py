@@ -6,7 +6,12 @@ __doc__ = r"""
 
            Created on 04/12/2019
            """
+from pathlib import Path
 
+
+from warg import ensure_in_sys_path, find_nearest_ancestral_relative
+
+ensure_in_sys_path(find_nearest_ancestral_relative("draugr").parent)
 from draugr.torch_utilities import RandomDataset
 
 

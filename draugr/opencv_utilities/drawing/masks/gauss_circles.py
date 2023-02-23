@@ -39,6 +39,7 @@ def ellipse_bbox(h, k, a, b, theta):
 
 # ----------------------------------------------------------------------------
 
+
 # Rotated elliptical gradient - slow, Python-only approach
 def make_gradient_v1(width, height, h, k, a, b, theta):
     """
@@ -76,6 +77,7 @@ def make_gradient_v1(width, height, h, k, a, b, theta):
 
 # ----------------------------------------------------------------------------
 
+
 # Rotated elliptical gradient - faster, vectorized numpy approach
 def make_gradient_v2(width, height, h, k, a, b, theta):
     """
@@ -111,7 +113,6 @@ def make_gradient_v2(width, height, h, k, a, b, theta):
 
 # ============================================================================
 if __name__ == "__main__":
-
     from pathlib import Path
     from warg import ensure_existence
     from draugr.opencv_utilities import show_image

@@ -122,13 +122,11 @@ def load_config(directory, file):
     """
     global config
     try:
-
         xml_file = f"{directory}/{os.path.splitext(file)[0]}.xml"
         if os.path.exists(xml_file):
             root = ET.parse(xml_file).getroot()
             settings = root.find("config")
             if settings:
-
                 for setting in settings:
                     config[setting.tag] = int(setting.text)
             else:

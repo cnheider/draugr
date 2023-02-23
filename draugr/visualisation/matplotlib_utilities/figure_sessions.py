@@ -92,6 +92,10 @@ class StyleSession(AlsoDecorator):
         self,
         style_path: Path = Path(__file__).parent / "styles" / "publish_color.mplstyle",
         prop_cycler: Optional[Cycler] = line_cycler + color_cycler,
+        latex_path: Path = Path(
+            r"C:\Users\deter\AppData\Local\Programs\MiKTeX\miktex\bin\x64\latex.exe"
+        )
+        # Path('latex')
     ):
         """
         Set styling for context
@@ -101,12 +105,16 @@ class StyleSession(AlsoDecorator):
         """
         self.ctx = pyplot.style.context(style_path)
         self.prop_cycler = prop_cycler
+        self.latex_path = latex_path
 
     def __enter__(self) -> pyplot.Figure:
         a = self.ctx.__enter__()
         if pyplot.rcParams["text.usetex"]:
             try:
-                report = subprocess.check_output("latex -v", stderr=subprocess.STDOUT)
+                version_command = "--version"  # -v
+                report = subprocess.check_output(
+                    f"{self.latex_path} {version_command}", stderr=subprocess.STDOUT
+                )
             except FileNotFoundError as exc:
                 msg = f'No tex: {"latex"}'
                 # raise RuntimeError(msg)

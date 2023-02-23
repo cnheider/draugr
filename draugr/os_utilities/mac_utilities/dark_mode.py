@@ -12,11 +12,9 @@ import ctypes
 import ctypes.util
 
 try:  # macOS Big Sur+ use "a built-in dynamic linker cache of all system-provided libraries"
-
     appkit = ctypes.cdll.LoadLibrary("AppKit.framework/AppKit")
     objc = ctypes.cdll.LoadLibrary("libobjc.dylib")
 except OSError:  # revert to full path for older OS versions and hardened programs
-
     appkit = ctypes.cdll.LoadLibrary(ctypes.util.find_library("AppKit"))
     objc = ctypes.cdll.LoadLibrary(ctypes.util.find_library("objc"))
 

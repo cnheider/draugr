@@ -9,6 +9,12 @@ __doc__ = r"""
 
 
 import numpy
+from pathlib import Path
+
+
+from warg import ensure_in_sys_path, find_nearest_ancestral_relative
+
+ensure_in_sys_path(find_nearest_ancestral_relative("draugr").parent)
 
 
 def asiduj_test():

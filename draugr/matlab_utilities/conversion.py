@@ -12,10 +12,8 @@ __all__ = ["ndarray_to_matlab", "matlab_to_ndarray", "dict_to_sparse"]
 from typing import Any
 
 try:
-
     import matlab
 except ImportError:
-
     raise ImportError("Matlab engine not installed")
 import numpy
 from scipy import sparse
@@ -181,7 +179,6 @@ def ndarray_to_matlab(numpy_array):
         order = "C"
 
     if numpy.iscomplexobj(numpy_array):  # complex case
-
         matlab_array = matlab.double(
             initializer=None, size=(1, num_elements), is_complex=True
         )  # create empty matlab.mlarray

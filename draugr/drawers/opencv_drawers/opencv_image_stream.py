@@ -28,7 +28,6 @@ class OpencvImageStream(Drawer):
     def __init__(
         self, title: str = "NoName", render: bool = True, **kwargs: MutableMapping
     ):
-
         super().__init__(**kwargs)
         if not render:
             return

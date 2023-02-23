@@ -564,7 +564,6 @@ pyplot.title(tag)
                             **kwargs,
                         )
                 else:
-
                     raise NotImplementedError(
                         f"{multi_channel_method} is not implemented"
                     )
@@ -607,7 +606,6 @@ TorchTensorBoardWriter = TensorBoardPytorchWriter
 PTW = TensorBoardPytorchWriter
 
 if __name__ == "__main__":
-
     with TensorBoardPytorchWriter(PROJECT_APP_PATH.user_log / "test") as writer:
         writer.scalar("What", 4)
 

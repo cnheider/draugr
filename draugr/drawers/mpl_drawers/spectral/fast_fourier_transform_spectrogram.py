@@ -26,7 +26,8 @@ FLOAT_EPS = numpy.finfo(float).eps
 class FastFourierTransformSpectrogramPlot(MplDrawer):
     """
     TODO: CENTER Align fft maybe, to mimick librosa stft
-    Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_fft, and no window function ( TODO: Hanning Smoothing)"""
+    Short Time Fourier Transform (STFT), with step size of 1 and window lenght of n_fft, and no window function ( TODO: Hanning Smoothing)
+    """
 
     def __init__(
         self,

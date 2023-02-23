@@ -41,7 +41,8 @@ class BatchNormalize:
     std (sequence): Sequence of standard deviations for each channel.
     inplace(bool,optional): Bool to make this operation in-place.
     dtype (torch.dtype,optional): The data type of tensors to which the transform will be applied.
-    device (torch.device,optional): The device of tensors to which the transform will be applied."""
+    device (torch.device,optional): The device of tensors to which the transform will be applied.
+    """
 
     def __init__(self, mean, std, inplace=False, dtype=torch.float, device="cpu"):
         self.mean = torch.as_tensor(mean, dtype=dtype, device=device)[
@@ -96,7 +97,8 @@ class BatchRandomCrop:
     padding (int, optional): Optional padding on each border of the image.
         Default is None, i.e no padding.
     dtype (torch.dtype,optional): The data type of tensors to which the transform will be applied.
-    device (torch.device,optional): The device of tensors to which the transform will be applied."""
+    device (torch.device,optional): The device of tensors to which the transform will be applied.
+    """
 
     def __init__(self, size, padding=None, dtype=torch.float, device="cpu"):
         self.size = size

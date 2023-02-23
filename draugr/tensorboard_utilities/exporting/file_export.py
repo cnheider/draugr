@@ -23,7 +23,6 @@ class TensorboardEventExporterFile(TensorboardEventExporter):
             raise ValueError("No file provided")
 
     def export(self):
-
         self.file.write("")
         super().export()
 

@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 import pytest
 
+from pathlib import Path
+
+
+from warg import ensure_in_sys_path, find_nearest_ancestral_relative
+
+ensure_in_sys_path(find_nearest_ancestral_relative("draugr").parent)
+
 from draugr.writers import MockWriter, global_writer, set_global_writer
 
 __author__ = "Christian Heider Nielsen"

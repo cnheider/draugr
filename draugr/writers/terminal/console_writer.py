@@ -26,7 +26,6 @@ class ConsoleWriter(Writer):
 
 
 if __name__ == "__main__":
-
     with ConsoleWriter() as w:
         for i in range(10):
             w.scalar("lol", i)

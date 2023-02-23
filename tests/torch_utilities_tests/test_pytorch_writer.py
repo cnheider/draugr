@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pytest
+from pathlib import Path
 
+
+from warg import ensure_in_sys_path, find_nearest_ancestral_relative
+
+ensure_in_sys_path(find_nearest_ancestral_relative("draugr").parent)
 from draugr import PROJECT_APP_PATH
 from draugr.torch_utilities import TensorBoardPytorchWriter
 

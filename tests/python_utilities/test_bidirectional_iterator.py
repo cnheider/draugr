@@ -8,7 +8,12 @@ __doc__ = r"""
            """
 
 __all__ = []
+from pathlib import Path
 
+
+from warg import ensure_in_sys_path, find_nearest_ancestral_relative
+
+ensure_in_sys_path(find_nearest_ancestral_relative("draugr").parent)
 from draugr.python_utilities.iterators import BidirectionalIterator, prev
 
 

@@ -29,7 +29,6 @@ def asd() -> None:
 
 
 if __name__ == "__main__":
-
     if False:
         from pathlib import Path
 

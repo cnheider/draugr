@@ -28,7 +28,6 @@ def surface_to_numpy(surface) -> numpy.ndarray:
 
 
 if __name__ == "__main__":
-
     # Screen settings
     SCREEN = [640, 360]
 
@@ -43,7 +42,6 @@ if __name__ == "__main__":
     cam.start()
 
     while 1:  # Ze loop
-
         time.sleep(1 / 120)  # 60 frames per second
 
         image = cam.get_image()  # Get current webcam image

@@ -54,7 +54,6 @@ class LateConcatInputMLP(MLP):
         fusion_hidden_multiplier: int = 10,
         **kwargs: MutableMapping
     ):
-
         forward_shape, *res = input_shape
         self._residual_shape = res
 

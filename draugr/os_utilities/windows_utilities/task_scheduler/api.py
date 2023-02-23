@@ -207,7 +207,6 @@ def set_task_activity(
 
 
 if __name__ == "__main__":
-
     print(f"{socket.gethostname()}\{getpass.getuser()}")
 
     if True:

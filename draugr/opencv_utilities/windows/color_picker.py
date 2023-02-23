@@ -56,7 +56,6 @@ def interactive_hsv_color_picker(
         img = cv2.imread(str(p))
         output = img
         while 1:
-
             h_min = cv2.getTrackbarPos(hmin_label, window_label)
             h_max = cv2.getTrackbarPos(hmax_label, window_label)
 

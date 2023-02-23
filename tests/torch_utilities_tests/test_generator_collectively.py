@@ -6,6 +6,13 @@ import numpy
 import pytest
 import torch
 
+from pathlib import Path
+
+
+from warg import ensure_in_sys_path, find_nearest_ancestral_relative
+
+ensure_in_sys_path(find_nearest_ancestral_relative("draugr").parent)
+
 from draugr.python_utilities import batched_recycle
 from draugr.torch_utilities import to_tensor_generator
 

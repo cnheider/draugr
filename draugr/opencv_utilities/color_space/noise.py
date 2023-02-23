@@ -45,7 +45,6 @@ def noise_filter(
             sigmaSpace=kwargs.get("sigmaSpace", 17),
         )
     elif method == NoiseFilterMethodEnum.gaussian_blur:
-
         return cv2.GaussianBlur(
             img,
             ksize=(ksize, ksize),
