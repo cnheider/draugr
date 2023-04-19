@@ -56,10 +56,9 @@ else:
 # autodoc_default_options = {"exclude-members": "exclude"}
 
 extensions = [
-    "sphinxcontrib.programoutput",
+    "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
-    "sphinx.ext.napoleon",
     "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",

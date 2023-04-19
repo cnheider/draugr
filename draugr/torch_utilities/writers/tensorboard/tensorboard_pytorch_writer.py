@@ -220,7 +220,7 @@ class TensorBoardPytorchWriter(
         self._log_dir = path
         self._summary_writer_kws = summary_writer_kws
 
-    # @passes_kws_to(SummaryWriter.add_hparams)
+    @passes_kws_to(SummaryWriter.add_hparams)
     def instance(self, instance: dict, metrics: dict, **kwargs) -> None:
         """
 

@@ -27,7 +27,7 @@ from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
-from warg.decorators.kw_passing import drop_unused_kws
+from warg import drop_unused_kws, passes_kws_to
 
 PARAMETER_EXTENSION = ".parameters"
 CONFIG_EXTENSION = ".py"
@@ -89,7 +89,7 @@ def load_latest_model_parameters(
 load_model_parameters = load_latest_model_parameters
 
 
-# @passes_kws_to(save_config)
+@passes_kws_to(save_config)
 def save_parameters_and_configuration(
     *,
     model: Union[torch.nn.Module, nn.Parameter],
