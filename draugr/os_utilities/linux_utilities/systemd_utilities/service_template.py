@@ -43,6 +43,42 @@ ExecStart={app_path}
 WantedBy=default.target
 """
 
+SERVICE_TEMPLATE_USER_ONESHOT = """
+[Unit]
+Description={app} Service
+After=docker.service app.target
+Upholds=app.target
+
+
+[Service]
+Type=oneshot
+RemainAfterExit=false
+ExecStart={app_path}
+
+[Install]
+WantedBy={app}.target
+"""
+
+TARGET_TEMPLATE_USER_ONESHOT = """
+[Unit]
+Description={app} target unit
+StopWhenUnneeded=true
+"""
+
+TIMER_TEMPLATE_USER = """
+[Unit]
+Description=Try to run {app} everyday at 00:00:00
+
+[Timer]
+#every 10 minutes
+OnCalendar=*:0/10
+
+Unit={app}.target
+
+[Install]
+WantedBy=timers.target
+"""
+
 SERVICE_TEMPLATE_SIMPLE = """
 [Unit]
 Description={service_name} Service

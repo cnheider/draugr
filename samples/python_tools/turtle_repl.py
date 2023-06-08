@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 31-10-2020
            """
 
-
 from turtle import *
 
 from warg import PlaybackShell, str_to_tuple

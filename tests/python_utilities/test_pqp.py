@@ -3,8 +3,6 @@
 from typing import Sequence, MutableMapping
 
 import pytest
-from pathlib import Path
-
 
 from warg import ensure_in_sys_path, find_nearest_ancestral_relative
 

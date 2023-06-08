@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import statistics
 from pathlib import Path
 from typing import List
 from warnings import warn
-import statistics
-
 
 __author__ = "Christian Heider Nielsen"
-
 
 __all__ = ["MetricAggregator", "save_metric"]
 
@@ -17,8 +15,10 @@ MEASURES = {*statistics.__all__} - {
     "covariance",  # x,y args
     "linear_regression",  # x,y args
     "NormalDist",  # returns list, not number
-    #'geometric_mean' # always None?
+    # 'geometric_mean' # always None?
 }
+
+
 # Check if statistics takes only one arg. TODO: Automatic function def args inspection?
 
 

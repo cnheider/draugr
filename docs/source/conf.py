@@ -69,7 +69,6 @@ extensions = [
     "sphinx.ext.graphviz",
 ]
 
-
 napoleon_use_ivar = True
 autosummary_generate = True
 # autosummary_imported_members = False

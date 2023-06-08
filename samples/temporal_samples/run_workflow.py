@@ -1,4 +1,5 @@
 import asyncio
+
 from temporalio.client import Client
 
 # Import the workflow from the previous code

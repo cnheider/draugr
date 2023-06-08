@@ -6,8 +6,6 @@ __doc__ = r"""
 
            Created on 17-12-2020
            """
-from pathlib import Path
-
 
 from warg import ensure_in_sys_path, find_nearest_ancestral_relative
 

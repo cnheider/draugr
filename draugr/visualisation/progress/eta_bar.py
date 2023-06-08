@@ -13,11 +13,10 @@ __all__ = ["ETABar"]
 
 from typing import Iterator
 
+from progress.bar import Bar  # IT is shit
 from progress.colors import color  # shit
 
 from draugr.python_utilities import in_ipynb
-from progress.bar import Bar  # IT is shit
-
 from warg import passes_kws_to, drop_unused_kws
 
 

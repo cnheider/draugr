@@ -10,7 +10,6 @@ __doc__ = r"""
 
 __all__ = []
 
-
 if __name__ == "__main__":
     from draugr.os_utilities.linux_utilities.gtk_utilities import GtkThemePreferences
 

@@ -7,10 +7,8 @@ from typing import Iterable, Mapping, Tuple, TypeVar, Union, Sequence
 
 import numpy
 import pandas
-
 from PIL.Image import Image
 from matplotlib import pyplot
-
 
 from apppath import AppPath
 

@@ -14,12 +14,13 @@ __all__ = [
     "save_model_parameters",
 ]
 
-from pathlib import Path
 import datetime
 import os
+from pathlib import Path
 from typing import Optional, Tuple, Union
-from torch import nn
+
 import torch
+from torch import nn
 from torch.nn.modules.module import Module
 from torch.optim import Optimizer
 

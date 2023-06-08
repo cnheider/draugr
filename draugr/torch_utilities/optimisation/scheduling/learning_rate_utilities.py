@@ -12,7 +12,6 @@ __all__ = ["set_lr", "exponential_lr_decay", "average_learning_rate"]
 from statistics import mean
 
 import torch
-
 from torch.optim.optimizer import Optimizer
 
 

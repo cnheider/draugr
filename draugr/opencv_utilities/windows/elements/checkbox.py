@@ -1,9 +1,7 @@
-from typing import Optional
-
 import cv2
 
-from warg import sink
 from draugr.opencv_utilities import ButtonTypeEnum
+from warg import sink
 
 __all__ = ["add_checkbox"]
 

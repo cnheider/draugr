@@ -2,8 +2,8 @@ import subprocess
 from pathlib import Path
 from typing import Optional
 
-from warg import ensure_existence
 from warg import Number
+from warg import ensure_existence
 
 FORMAT_LIST = [".mp4", ".avi", ".mkv", ".flv", ".mov"]
 AUDIO_FORMAT = ".aac"

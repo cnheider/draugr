@@ -9,8 +9,7 @@ __doc__ = r"""
 
 __all__ = []
 
-
-from typing import MutableMapping, Sequence, Tuple
+from typing import MutableMapping, Sequence
 
 import torch
 from torch import nn

@@ -6,8 +6,8 @@ __doc__ = r"""
 
            Created on 04/12/2019
            """
-from pathlib import Path
 
+from pathlib import Path
 
 from warg import ensure_in_sys_path
 

@@ -3,11 +3,9 @@
 
 __author__ = "Christian Heider Nielsen"
 
-import statistics
 from typing import Sequence, MutableMapping
 
 from draugr.metrics.metric_aggregator import MetricAggregator, MEASURES
-
 
 __all__ = ["MetricCollection"]
 

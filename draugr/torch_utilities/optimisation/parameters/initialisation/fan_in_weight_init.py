@@ -14,10 +14,6 @@ from torch.nn import (
     Tanh,
     ReLU,
     LeakyReLU,
-    BatchNorm2d,
-    BatchNorm1d,
-    BatchNorm3d,
-    Dropout,
     Softmax,
     Softplus,
     SiLU,
@@ -27,8 +23,6 @@ from torch.nn import (
     Conv3d,
 )
 from torch.nn.init import calculate_gain, constant_, uniform_, xavier_uniform_
-from enum import Enum
-
 
 __all__ = ["fan_in_init", "xavier_init", "constant_init", "normal_init", "ortho_init"]
 

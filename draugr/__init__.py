@@ -15,12 +15,12 @@ Created on 27/04/2019
 import datetime
 import os
 from logging import warning
+from pathlib import Path
 from typing import Any
 
 import pkg_resources
 
 from apppath import AppPath
-from pathlib import Path
 
 # from .drawers import *
 # from .writers import *
@@ -34,7 +34,6 @@ from pathlib import Path
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
     __doc__ += this_init_file.read()
-
 
 # with open(Path(__file__).parent.parent / "README.md", "r") as this_init_file:
 #    __doc__ += this_init_file.read()

@@ -9,8 +9,9 @@ __doc__ = r"""
            Created on 17-03-2021
            """
 
-from draugr.tensorboard_utilities.exporting.event_export import TensorboardEventExporter
 from typing import Sequence, MutableMapping
+
+from draugr.tensorboard_utilities.exporting.event_export import TensorboardEventExporter
 
 
 class TensorboardEventExporterDatabase(TensorboardEventExporter):

@@ -18,5 +18,4 @@ from .tensorboard import *
 from .torch_module_writer import *
 from .mixins import *
 
-
 # from .visdom import *

@@ -11,6 +11,7 @@ __doc__ = r"""
 
 import os
 from typing import MutableMapping
+
 from warg import AlsoDecorator, passes_kws_to
 
 CORE_COUNT: int = os.cpu_count()

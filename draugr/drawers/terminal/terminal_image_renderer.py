@@ -8,7 +8,6 @@ __doc__ = r"""
            Created on 7/5/22
            """
 
-
 import argparse
 from pathlib import Path
 from typing import Any, List, Tuple

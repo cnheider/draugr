@@ -9,9 +9,9 @@ __doc__ = r"""
 
 __all__ = []
 
+import time
 
 import schedule
-import time
 
 
 def job():

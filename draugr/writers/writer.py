@@ -11,7 +11,6 @@ Created on 27/04/2019
 from abc import ABCMeta, abstractmethod
 from collections import deque
 
-from draugr.python_utilities.counter_filter import CounterFilter
 from draugr.writers.mixins.scalar_writer_mixin import ScalarWriterMixin
 
 __all__ = ["Writer", "global_writer", "set_global_writer"]

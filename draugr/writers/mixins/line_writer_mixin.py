@@ -8,6 +8,7 @@ __doc__ = r"""
            Created on 09/10/2019
            """
 __all__ = ["LineWriterMixin"]
+
 from abc import ABC, abstractmethod
 from typing import Mapping, Sequence, MutableMapping
 

@@ -4,7 +4,6 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
-
 from pathlib import Path
 
 with open(Path(__file__).parent / "README.md", "r") as this_init_file:
