@@ -12,10 +12,9 @@ from typing import Sequence, TextIO, Tuple, Union
 
 import numpy
 import torch
-from torch import nn
-
 from draugr.torch_utilities import assume_model_dtype, assume_model_device
 from draugr.torch_utilities.optimisation.parameters.counting import get_num_parameters
+from torch import nn
 
 __all__ = ["get_model_complexity_info", "MODULES_MAPPING"]
 

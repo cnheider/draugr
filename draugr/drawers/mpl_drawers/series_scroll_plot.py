@@ -12,10 +12,9 @@ __doc__ = r"""
 from typing import Sequence, Union, MutableMapping
 
 import numpy
-from matplotlib import pyplot
-
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from draugr.numpy_utilities import recursive_flatten_numpy
+from matplotlib import pyplot
 
 __all__ = ["SeriesScrollPlot"]
 

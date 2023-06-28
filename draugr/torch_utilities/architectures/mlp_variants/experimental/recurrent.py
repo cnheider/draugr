@@ -12,10 +12,9 @@ __all__ = []
 from typing import MutableMapping, Sequence
 
 import torch
+from draugr.torch_utilities.architectures.mlp import MLP
 from torch import nn
 from torch.nn import functional
-
-from draugr.torch_utilities.architectures.mlp import MLP
 
 
 class RecurrentCategoricalMLP(MLP):

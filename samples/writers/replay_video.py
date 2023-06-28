@@ -10,8 +10,6 @@ __doc__ = r"""
 import time
 
 import numpy
-from trolls.render_mode import RenderModeEnum
-
 from draugr import PROJECT_APP_PATH
 from draugr.torch_utilities import (
     TensorBoardPytorchWriter,
@@ -23,6 +21,7 @@ from draugr.torch_utilities.tensors.dimension_order import (
 from draugr.torch_utilities.writers.tensorboard.tensorboard_pytorch_writer import (
     VideoInputDimsEnum,
 )
+from trolls.render_mode import RenderModeEnum
 
 if __name__ == "__main__":
 

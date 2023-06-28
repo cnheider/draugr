@@ -14,11 +14,10 @@ __all__ = ["FastFourierTransformPlot"]
 import math
 
 import numpy
-from matplotlib import pyplot
-from matplotlib.gridspec import GridSpec
-
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from draugr.visualisation.progress import progress_bar
+from matplotlib import pyplot
+from matplotlib.gridspec import GridSpec
 
 FLOAT_EPS = numpy.finfo(float).eps
 

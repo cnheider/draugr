@@ -4,10 +4,10 @@ import time
 
 import numpy
 import torch
-from torch.utils.data import Dataset
-
 from draugr.python_utilities import batched_recycle
 from draugr.torch_utilities import to_tensor_generator
+from torch.utils.data import Dataset
+
 from warg import inner_map
 
 __author__ = "Christian Heider Nielsen"

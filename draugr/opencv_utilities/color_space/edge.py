@@ -2,9 +2,9 @@ from enum import Enum
 from typing import MutableMapping
 
 import cv2
+from draugr.opencv_utilities.namespaces.enums import MorphShapeEnum, MorphTypeEnum
 from sorcery import assigned_names
 
-from draugr.opencv_utilities.namespaces.enums import MorphShapeEnum, MorphTypeEnum
 from warg import next_odd
 
 __all__ = ["to_edge", "ToEdgeMethodEnum", "CannyApertureSize"]

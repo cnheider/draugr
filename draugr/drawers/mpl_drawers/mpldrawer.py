@@ -14,9 +14,8 @@ from abc import abstractmethod
 from typing import Any, Sequence, Tuple, MutableMapping
 
 import matplotlib
-from matplotlib import pyplot
-
 from draugr.drawers.drawer import Drawer
+from matplotlib import pyplot
 
 
 # TODO: implement a key for closing the plot

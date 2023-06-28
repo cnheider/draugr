@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any
 
 import pkg_resources
-
+from warg import dist_is_editable
 from apppath import AppPath
 
 # from .drawers import *
@@ -49,19 +49,6 @@ __all__ = [
     "INCLUDE_PROJECT_READMES",
     "PACKAGE_DATA_PATH",
 ]
-
-
-def dist_is_editable(dist: Any) -> bool:
-    """
-    Return True if given Distribution is an editable installation."""
-    import sys
-
-    for path_item in sys.path:
-        egg_link = Path(path_item) / f"{dist.project_name}.egg-link"
-        if egg_link.is_file():
-            return True
-    return False
-
 
 PROJECT_ORGANISATION = "Pything"
 PROJECT_NAME = __project__.lower().strip().replace(" ", "_")

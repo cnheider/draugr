@@ -20,14 +20,14 @@ from pathlib import Path
 from typing import Optional, Tuple, Union
 
 import torch
-from torch import nn
-from torch.nn.modules.module import Module
-from torch.optim import Optimizer
-
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
+from torch import nn
+from torch.nn.modules.module import Module
+from torch.optim import Optimizer
+
 from warg import drop_unused_kws, passes_kws_to
 
 PARAMETER_EXTENSION = ".parameters"

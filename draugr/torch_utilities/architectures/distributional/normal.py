@@ -4,11 +4,10 @@ import time
 from typing import List, Sequence, MutableMapping
 
 import torch
-from torch import nn
-from torch.distributions import MultivariateNormal, Normal
-
 from draugr.torch_utilities.architectures.mlp import MLP
 from draugr.torch_utilities.optimisation.parameters.initialisation import fan_in_init
+from torch import nn
+from torch.distributions import MultivariateNormal, Normal
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""

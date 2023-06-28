@@ -5,8 +5,6 @@ from typing import Union, MutableMapping
 import numpy
 import torch
 from PIL import Image
-from tqdm import tqdm
-
 from draugr.drawers.terminal import (
     terminal_render_image,
     terminalise_image,
@@ -16,6 +14,7 @@ from draugr.drawers.terminal import (
 from draugr.metrics import MetricCollection
 from draugr.writers.mixins import ImageWriterMixin
 from draugr.writers.writer import Writer
+from tqdm import tqdm
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """

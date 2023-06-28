@@ -7,9 +7,8 @@ __all__ = ["launch_tensorboard"]
 
 from pathlib import Path
 
-from tensorboard import program  # IMPORT OUT HERE; POSSIBLE RAISE CONDITIONS
-
 from draugr.python_utilities.sockets import is_port_in_use
+from tensorboard import program  # IMPORT OUT HERE; POSSIBLE RAISE CONDITIONS
 
 
 def launch_tensorboard(log_dir: Path, port: int = 6006) -> str:

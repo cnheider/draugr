@@ -1,6 +1,6 @@
 import argparse
-import json
 import ast
+import json
 
 parser = argparse.ArgumentParser(prog="run_tiles")
 parser.add_argument("-m", "--mapping", type=json.loads)

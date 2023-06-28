@@ -8,9 +8,6 @@ import PIL
 import numpy
 import torch
 from PIL import Image
-from matplotlib import pyplot
-from matplotlib.figure import Figure
-
 from draugr import PROJECT_APP_PATH
 from draugr.numpy_utilities.mixing import mix_channels
 from draugr.opencv_utilities import draw_masks
@@ -43,6 +40,9 @@ from draugr.writers.mixins.precision_recall_writer_mixin import (
 )
 from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixin
 from draugr.writers.writer import Writer
+from matplotlib import pyplot
+from matplotlib.figure import Figure
+
 from warg import drop_unused_kws, passes_kws_to, sprint
 
 with suppress(FutureWarning):

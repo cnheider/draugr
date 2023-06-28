@@ -12,11 +12,11 @@ from typing import Sequence, Tuple, Union
 import cv2
 import numpy
 from PIL import Image
-
 from draugr.opencv_utilities.namespaces.enums import (
     LineTypeEnum,
     ContourRetrievalModeEnum,
 )
+
 from warg import RGB, compute_color_for_labels
 
 __all__ = ["find_contours", "draw_masks"]

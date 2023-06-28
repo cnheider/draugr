@@ -11,7 +11,6 @@ import time
 
 import numpy
 import torch
-
 from draugr.os_utilities import WorkerSession
 from draugr.python_utilities import batched_recycle
 from draugr.torch_utilities import to_tensor_generator

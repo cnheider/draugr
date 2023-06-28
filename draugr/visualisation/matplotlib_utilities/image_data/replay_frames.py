@@ -9,9 +9,8 @@ __doc__ = r"""
 
 from typing import Sequence
 
-from matplotlib import animation, pyplot
-
 from draugr.python_utilities.platform_context import in_ipynb
+from matplotlib import animation, pyplot
 
 __all__ = ["replay_frames"]
 

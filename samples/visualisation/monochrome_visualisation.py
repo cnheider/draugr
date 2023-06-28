@@ -12,9 +12,6 @@ __doc__ = r"""
            """
 
 import numpy
-from matplotlib import pyplot
-from matplotlib.pyplot import legend
-
 from draugr.visualisation import (
     MonoChromeStyleSession,
     auto_post_hatch,
@@ -22,6 +19,8 @@ from draugr.visualisation import (
     simple_hatch_cycler,
     use_monochrome_style,
 )
+from matplotlib import pyplot
+from matplotlib.pyplot import legend
 
 
 def line_plot() -> None:

@@ -13,9 +13,9 @@ __all__ = ["ImageStreamPlot"]
 from typing import Sequence
 
 import matplotlib
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from matplotlib import pyplot
 
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
 
 

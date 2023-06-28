@@ -4,7 +4,6 @@ from typing import Union
 
 import numpy
 import torch
-
 from draugr.torch_utilities.tensors import to_tensor
 
 __author__ = "Christian Heider Nielsen"

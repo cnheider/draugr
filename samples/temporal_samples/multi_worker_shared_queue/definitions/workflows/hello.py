@@ -2,9 +2,9 @@ from datetime import timedelta
 
 from temporalio import workflow
 
-# Import our activity, passing it through the sandbox
-with workflow.unsafe.imports_passed_through():
-    from .activities import say_hello
+
+with workflow.unsafe.imports_passed_through():  # Import our activity, passing it through the sandbox
+    from ..activities.hello import say_hello
 
 
 @workflow.defn

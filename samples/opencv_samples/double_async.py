@@ -10,7 +10,6 @@ __doc__ = r"""
 from itertools import cycle
 
 import cv2
-
 from draugr.opencv_utilities import frame_generator
 from draugr.opencv_utilities.windows.image import show_image
 

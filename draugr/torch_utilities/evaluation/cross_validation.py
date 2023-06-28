@@ -12,10 +12,9 @@ __all__ = ["cross_validation_generator"]
 from typing import Tuple
 
 import torch
+from draugr.torch_utilities.tensors.to_tensor import to_tensor
 from sklearn.model_selection import KFold
 from torch.utils.data import ConcatDataset, Dataset, Subset, TensorDataset
-
-from draugr.torch_utilities.tensors.to_tensor import to_tensor
 
 
 def cross_validation_generator(

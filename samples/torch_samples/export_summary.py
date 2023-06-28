@@ -9,11 +9,11 @@ __doc__ = r"""
 
 from pathlib import Path
 
-from matplotlib import pyplot
-
 from draugr import PROJECT_APP_PATH
 from draugr.tensorboard_utilities import TensorboardEventExporter
 from draugr.writers import StandardTrainingScalarsEnum
+from matplotlib import pyplot
+
 from warg import ensure_existence
 
 if __name__ == "__main__":

@@ -14,9 +14,6 @@ from typing import Sequence, Mapping, Union, MutableMapping
 
 import numpy
 from PIL import Image
-from matplotlib import pyplot
-from matplotlib.figure import Figure
-
 from draugr.writers import (
     Writer,
     ImageWriterMixin,
@@ -26,6 +23,9 @@ from draugr.writers import (
     SpectrogramWriterMixin,
     FigureWriterMixin,
 )
+from matplotlib import pyplot
+from matplotlib.figure import Figure
+
 from warg import passes_kws_to
 
 

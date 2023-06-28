@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from draugr.drawers.terminal.terminal_utilities import scale
+
 from warg import (
     COLORS,
     PrintStyle,

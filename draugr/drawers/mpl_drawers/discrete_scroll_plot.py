@@ -14,11 +14,11 @@ __all__ = ["DiscreteScrollPlot", "discrete_scroll_plot"]
 from typing import Iterator, Sequence, Tuple, MutableMapping
 
 import numpy
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
+from draugr.numpy_utilities import recursive_flatten_numpy
 from matplotlib import animation
 from matplotlib import pyplot
 
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
-from draugr.numpy_utilities import recursive_flatten_numpy
 from warg import passes_kws_to
 
 

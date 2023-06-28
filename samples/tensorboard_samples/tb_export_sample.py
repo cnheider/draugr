@@ -10,7 +10,6 @@ __doc__ = r"""
 import os
 from pathlib import Path
 
-from apppath import AppPath
 from draugr.tensorboard_utilities import TensorboardEventExporter
 from draugr.visualisation.progress import progress_bar
 from draugr.writers import (
@@ -19,6 +18,8 @@ from draugr.writers import (
     StandardTrainingCurvesEnum,
     StandardTrainingScalarsEnum,
 )
+
+from apppath import AppPath
 
 __all__ = ["extract_scalars_as_csv", "extract_tensors_as_csv", "extract_metrics"]
 
