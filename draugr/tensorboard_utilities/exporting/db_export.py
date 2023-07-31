@@ -9,13 +9,13 @@ __doc__ = r"""
            Created on 17-03-2021
            """
 
-from typing import Sequence, MutableMapping
+from typing import Sequence, MutableMapping, Any
 
 from draugr.tensorboard_utilities.exporting.event_export import TensorboardEventExporter
 
 
 class TensorboardEventExporterDatabase(TensorboardEventExporter):
-    def __init__(self, *args: Sequence, **kwargs: MutableMapping):
+    def __init__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         super().__init__(*args, **kwargs)
         postgres_db = kwargs.get("postgres_db")
         if postgres_db is not None:

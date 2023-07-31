@@ -8,14 +8,6 @@ repos:
         language_version: python3.10
   - repo: local
     hooks:
-      - id: pytest-check
-        name: pytest-check
-        entry: pytest
-        language: system
-        pass_filenames: false
-        always_run: true
-  - repo: local
-    hooks:
       - id: flake8-check1 # stop the build if there are Python syntax errors or undefined names
         name: flake8-check1
         entry: flake8 draugr --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=*exclude*
@@ -30,6 +22,14 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.902
+    hooks:
+      - id: mypy
+        verbose: true
+        #exclude: ^tests/
+        entry: bash -c 'mypy "$@" || true' -- # only print
+        #args: [ --strict ]
 #  - repo: local
 #    hooks:
 #      - id: sphinx-check
@@ -38,3 +38,11 @@ repos:
 #        language: script
 #        types: [ python ]
 #        pass_filenames: false
+  - repo: local
+    hooks:
+      - id: pytest-check
+        name: pytest-check
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true

@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 
 import sys
-from typing import Sequence, TextIO, Tuple, Union
+from typing import Sequence, TextIO, Tuple, Union, Callable
 
 import numpy
 import torch
@@ -24,7 +24,7 @@ def get_model_complexity_info(
     input_res: Tuple,
     print_per_layer_stat: bool = True,
     as_strings: bool = True,
-    input_constructor: callable = None,
+    input_constructor: Callable = None,
     ost: TextIO = sys.stdout,
 ) -> Union[Tuple[int, int], Tuple[str, str]]:
     """

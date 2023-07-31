@@ -8,7 +8,7 @@ __doc__ = r"""
            """
 __all__ = ["OpencvImageStream"]
 
-from typing import Sequence, MutableMapping
+from typing import Sequence, MutableMapping, Any
 
 import cv2
 from draugr.drawers.drawer import Drawer

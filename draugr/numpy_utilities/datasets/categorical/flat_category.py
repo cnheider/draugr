@@ -9,7 +9,7 @@ __doc__ = r"""
 
 import os
 from pathlib import Path
-from typing import Iterable, Union
+from typing import Iterable, Union, Callable
 
 __all__ = ["build_flat_dataset"]
 
@@ -20,7 +20,7 @@ def build_flat_dataset(
     validation_percentage: float = 15,
     testing_percentage: float = 0,
     extensions: Iterable = None,
-    is_valid_file: callable = None,
+    is_valid_file: Callable = None,
 ) -> dict:
     """
 

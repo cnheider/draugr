@@ -7,6 +7,8 @@ __doc__ = r"""
            Created on 02-12-2020
            """
 
+from typing import Callable
+
 import torch
 from draugr.torch_utilities.sessions.model_sessions import TorchEvalSession
 from draugr.torch_utilities.system.device import global_torch_device
@@ -22,7 +24,7 @@ def find_n_misclassified(
     model: torch.nn.Module,
     evaluation_loader: DataLoader,
     *,
-    mapper: callable = kws_sink,
+    mapper: Callable = kws_sink,
     n: int = 10,
     device: torch.device = global_torch_device(),
 ) -> None:

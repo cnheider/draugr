@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import math
-from typing import Iterable, Iterator, Sequence, Tuple
+from typing import Iterable, Iterator, Sequence, Tuple, Any
 
 __author__ = "Christian Heider Nielsen"
 __doc__ = """
@@ -128,7 +128,7 @@ def horizontal_imshow(
 def biplot(
     scores: Sequence,
     coefficients: numpy.ndarray,
-    categories: Iterable = None,
+    categories: Iterable[Any] = None,
     labels: Sequence = None,
     label_multiplier: float = 1.06,
 ) -> pyplot.Figure:

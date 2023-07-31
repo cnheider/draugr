@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import time
-from typing import List, Sequence, MutableMapping
+from typing import List, Sequence, MutableMapping, Callable
 
 import torch
 from draugr.torch_utilities.architectures.mlp import MLP
@@ -27,7 +27,7 @@ class ShallowStdNormalMLP(MLP):
     def __init__(
         self,
         output_shape: Sequence = (2,),
-        mean_head_activation: callable = None,
+        mean_head_activation: Callable = None,
         fixed_log_std: torch.Tensor = None,
         **kwargs
     ):
@@ -77,7 +77,7 @@ class ShallowStdMultiVariateNormalMLP(MLP):
     def __init__(
         self,
         output_shape: Sequence = (2,),
-        mean_head_activation: callable = None,
+        mean_head_activation: Callable = None,
         fixed_log_std: torch.Tensor = None,
         **kwargs: MutableMapping
     ):
@@ -124,7 +124,7 @@ class MultiDimensionalNormalMLP(MLP):
     def __init__(
         self,
         output_shape: Sequence = (2,),
-        mean_head_activation: callable = None,
+        mean_head_activation: Callable = None,
         **kwargs: MutableMapping
     ):
         output_shape = (*output_shape, *output_shape)
@@ -165,7 +165,7 @@ class MultiVariateNormalMLP(MLP):
     def __init__(
         self,
         output_shape: Sequence = (2,),
-        mean_head_activation: callable = None,
+        mean_head_activation: Callable = None,
         **kwargs: MutableMapping
     ):
         output_shape = (*output_shape, *output_shape)
@@ -205,7 +205,7 @@ class MultipleNormalMLP(MLP):
     def __init__(
         self,
         output_shape: int = 2,
-        mean_head_activation: callable = None,
+        mean_head_activation: Callable = None,
         **kwargs: MutableMapping
     ):
         output_shape = (2,) * output_shape

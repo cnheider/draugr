@@ -7,7 +7,7 @@ __doc__ = r"""
            Created on 04-03-2021
            """
 
-from typing import Tuple, MutableMapping
+from typing import Tuple, MutableMapping, Callable
 
 from draugr.scipy_utilities import mag_decimation_subsample
 
@@ -29,7 +29,7 @@ default_index_decimator = GDKC(
 def annotate_lines(
     ax_: Axes,
     num_lines: int = 1,  # None for all
-    index_decimator: callable = default_index_decimator,
+    index_decimator: Callable = default_index_decimator,
     color: str = "k",  # None for auto color
     xycoords: Tuple[str, str] = (
         "data",

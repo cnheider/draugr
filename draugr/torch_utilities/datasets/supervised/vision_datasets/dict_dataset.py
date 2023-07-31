@@ -9,7 +9,7 @@ __doc__ = r"""
 
 import random
 from pathlib import Path
-from typing import Iterable, Tuple
+from typing import Iterable, Tuple, Callable
 
 from torch.utils.data import DataLoader
 from torchvision.datasets import VisionDataset  # TODO: Do not need to be images
@@ -60,12 +60,12 @@ class SplitDictDatasetFolder(VisionDataset):
         root: Path,
         loader: DataLoader,
         extensions: Iterable = None,
-        transform: callable = None,
-        target_transform: callable = None,
+        transform: Callable = None,
+        target_transform: Callable = None,
         split: SplitEnum = SplitEnum.training,
         valid_percentage: float = 15,
         test_percentage: float = 0,
-        is_valid_file: callable = has_file_allowed_extension,
+        is_valid_file: Callable = has_file_allowed_extension,
     ):
         super().__init__(
             str(root), transform=transform, target_transform=target_transform
@@ -158,9 +158,9 @@ class DictDatasetFolder(VisionDataset):
         root: Path,
         loader: DataLoader,
         extensions: Iterable = None,
-        transform: callable = None,
-        target_transform: callable = None,
-        is_valid_file: callable = has_file_allowed_extension,
+        transform: Callable = None,
+        target_transform: Callable = None,
+        is_valid_file: Callable = has_file_allowed_extension,
     ):
         super().__init__(
             str(root), transform=transform, target_transform=target_transform

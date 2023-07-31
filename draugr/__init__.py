@@ -17,8 +17,10 @@ import os
 from logging import warning
 from pathlib import Path
 from typing import Any
+from importlib import resources
+from importlib.metadata import PackageNotFoundError
+from warg import package_is_editable
 
-import pkg_resources
 from warg import dist_is_editable
 from apppath import AppPath
 
@@ -56,16 +58,15 @@ PROJECT_VERSION = __version__
 PROJECT_YEAR = 2018
 PROJECT_AUTHOR = __author__.lower().strip().replace(" ", "_")
 PROJECT_APP_PATH = AppPath(app_name=PROJECT_NAME, app_author=PROJECT_AUTHOR)
-PACKAGE_DATA_PATH = Path(pkg_resources.resource_filename(PROJECT_NAME, "data"))
 INCLUDE_PROJECT_READMES = False
 
 __url__ = f"https://github.com/{PROJECT_ORGANISATION.lower()}/{PROJECT_NAME}"
 
-distributions = {v.key: v for v in pkg_resources.working_set}
-if PROJECT_NAME in distributions:
-    distribution = distributions[PROJECT_NAME]
-    DEVELOP = dist_is_editable(distribution)
-else:
+PACKAGE_DATA_PATH = resources.files(PROJECT_NAME) / "data"
+
+try:
+    DEVELOP = package_is_editable(PROJECT_NAME)
+except PackageNotFoundError as e:
     DEVELOP = True
 
 

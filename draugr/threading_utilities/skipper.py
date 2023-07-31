@@ -1,6 +1,6 @@
 import queue
 import threading
-from typing import Sequence, MutableMapping
+from typing import Sequence, MutableMapping, Any
 
 __all__ = ["Skipper"]
 
@@ -34,7 +34,7 @@ class Skipper:
             pass
         self.thread.join()
 
-    def __call__(self, *args: Sequence, **kwargs: MutableMapping):
+    def __call__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         while not self.Q.empty():
             self.Q.get_nowait()
         self.Q.put((args, kwargs))

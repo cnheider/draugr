@@ -55,7 +55,7 @@ class Writer(ScalarWriterMixin, metaclass=ABCMeta):
     def _open(self):
         return self
 
-    def __call__(self, *args: Sequence, **kwargs: MutableMapping):
+    def __call__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         self.scalar(*args, *kwargs)
 
 

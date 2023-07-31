@@ -1,3 +1,5 @@
+from typing import Callable
+
 import cv2
 from draugr.opencv_utilities import ButtonTypeEnum
 
@@ -10,7 +12,7 @@ def add_checkbox(
     checkbox_name: str,
     *,
     initial_button_state: bool = False,
-    callback: callable = sink,
+    callback: Callable = sink,
     new_line: bool = True
 ) -> None:
     """

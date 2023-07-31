@@ -1,6 +1,6 @@
 __all__ = ["NamedTensorTuple"]
 
-from typing import Sequence, MutableMapping
+from typing import Sequence, MutableMapping, Any
 
 
 class NamedTensorTuple:
@@ -23,7 +23,7 @@ class NamedTensorTuple:
     def __setitem__(self, key, value):
         self._data_dict[key] = value
 
-    def _call(self, name, *args: Sequence, **kwargs: MutableMapping):
+    def _call(self, name, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         keys = list(self._data_dict.keys())
         for key in keys:
             value = self._data_dict[key]
@@ -31,7 +31,7 @@ class NamedTensorTuple:
                 self._data_dict[key] = getattr(value, name)(*args, **kwargs)
         return self
 
-    def to(self, *args: Sequence, **kwargs: MutableMapping):
+    def to(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         """
 
         :param args:

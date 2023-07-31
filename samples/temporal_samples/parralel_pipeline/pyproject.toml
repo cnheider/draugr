@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "HackerNews"
+version = "0.1.0"
+description = ""
+authors = ["Patrick Rachford <prachford@icloud.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8, <4"
+temporalio = "^1.1.0"
+pandas = "^2.0.1"
+aiohttp = "^3.8.4"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+format = [{ cmd = "black ." }, { cmd = "isort ." }]
+lint = [{ cmd = "black --check ." }, { cmd = "isort --check-only ." }]
+
+
+[tool.isort]
+profile = "black"
+skip_gitignore = true

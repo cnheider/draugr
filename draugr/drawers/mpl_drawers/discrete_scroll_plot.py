@@ -11,7 +11,7 @@ Created on 27/04/2019
 
 __all__ = ["DiscreteScrollPlot", "discrete_scroll_plot"]
 
-from typing import Iterator, Sequence, Tuple, MutableMapping
+from typing import Iterator, Sequence, Tuple, MutableMapping, Any
 
 import numpy
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
@@ -257,7 +257,9 @@ if __name__ == "__main__":
                 def __next__(self):
                     return self.get()
 
-                def __call__(self, *args: Sequence, **kwargs: MutableMapping):
+                def __call__(
+                    self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]
+                ):
                     return self.__next__()
 
                 def add(self, a):

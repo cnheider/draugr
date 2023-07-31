@@ -169,7 +169,7 @@ class MetricAggregator(object):
         else:
             raise AttributeError
 
-    # def __call__(self, *args: Sequence, **kwargs: MutableMapping):
+    # def __call__(self, *args: Sequence[Any], **kwargs: MutableMapping[str,Any]):
     #  return self._values
 
     def __repr__(self):

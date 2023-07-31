@@ -11,6 +11,7 @@ __all__ = []
 
 import copy
 import math
+from typing import Callable
 
 import torch
 from draugr.torch_utilities.optimisation.parameters import (
@@ -25,14 +26,14 @@ from warg import ContextWrapper
 
 def loss_grad_check(
     model: torch.nn.Module,
-    loss_fn: callable,
+    loss_fn: Callable,
     iinput: torch.Tensor,
     target: torch.Tensor,
     epsilon: float = 1e-6,
     error_tolerance: float = 1e-5,
 ) -> None:
     """
-    two sided gradient numerical approximation
+    Two sided gradient numerical approximation
     DOES not work, please refer to torch/autograd/gradcheck.py
 
     :param iinput:
