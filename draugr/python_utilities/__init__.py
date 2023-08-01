@@ -11,13 +11,13 @@ __doc__ = r"""
 #    __doc__ += this_init_file.read()  # .replace("#", "")  # .encode("ascii", "ignore")
 
 
+from .counter_filter import *
+from .display import *
 from .function_wrappers import *
 from .generators import *
 from .http import *
+from .iterators import *
+from .matrix import *
+from .platform_context import *
 from .sockets import *
 from .torch_like_channel_transformation import *
-from .counter_filter import *
-from .matrix import *
-from .iterators import *
-from .display import *
-from .platform_context import *

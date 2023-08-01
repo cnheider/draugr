@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 9/22/22
            """
 
-
 __all__ = ["VariationalAutoEncoder"]
 
 from abc import abstractmethod

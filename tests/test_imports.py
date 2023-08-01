@@ -8,8 +8,8 @@ __doc__ = r"""
            """
 
 __all__ = []
-import pytest
 
+import pytest
 
 from warg import ensure_in_sys_path, find_nearest_ancestral_relative
 

@@ -5,12 +5,12 @@ import sys
 from typing import Optional
 
 import torch
-from torch.nn.modules.module import Module
-
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
+from torch.nn.modules.module import Module
+
 from warg import latest_file
 from warg import passes_kws_to
 from warg.decorators.kw_passing import drop_unused_kws

@@ -1,11 +1,11 @@
 import cv2
 import numpy
-
 from draugr.dlib_utilities.dlib_utilities import (
     Dlib5faciallandmarksindices,
     Dlib68faciallandmarksindices,
     shape_to_ndarray,
 )
+
 from warg import Number
 
 __all__ = ["align_face"]

@@ -6,10 +6,10 @@ __doc__ = r"""
 
            Created on 31-10-2020
            """
-import torch
-from torch.utils.data import TensorDataset
 
+import torch
 from draugr.torch_utilities import cross_validation_generator, to_tensor
+from torch.utils.data import TensorDataset
 
 
 def asdasidoj() -> None:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from typing import Iterable, Sequence, Union
+from typing import Iterable, Sequence, Union, Callable
 
 import numpy
 import torch
@@ -16,7 +16,7 @@ from warg import Number
 def to_scalar(
     obj: Union[torch.Tensor, numpy.ndarray, Iterable, Sequence, int, float],
     device: Union[str, torch.device] = "cpu",
-    aggregation: callable = torch.mean,
+    aggregation: Callable = torch.mean,
 ) -> Number:
     """
     Always detaches from computation graph

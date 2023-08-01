@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from abc import ABC, abstractmethod
 from typing import Union, Sequence
+
 import torch
 
 __author__ = "Christian Heider Nielsen"

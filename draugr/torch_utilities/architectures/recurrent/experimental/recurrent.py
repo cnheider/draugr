@@ -5,13 +5,10 @@
 __author__ = "Christian Heider Nielsen"
 __doc__ = ""
 
-from typing import MutableMapping, Sequence, Tuple
+from typing import Tuple
 
 import torch
 from torch import nn
-from torch.nn import functional
-
-from draugr.torch_utilities.architectures.mlp import MLP
 
 
 class RecurrentBase(nn.Module):

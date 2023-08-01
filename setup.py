@@ -3,7 +3,7 @@
 from typing import TextIO, List, Sequence, Union
 
 
-def python_version_check(major: int = 3, minor: int = 7):
+def python_version_check(major: int = 3, minor: int = 8):
     """description"""
     import sys
 

@@ -10,10 +10,9 @@ __doc__ = r"""
 from enum import Enum
 from typing import Sequence, Optional
 
+from draugr.visualisation.matplotlib_utilities.styles.cyclers import simple_hatch_cycler
 from matplotlib import cycler, pyplot, rcParams
 from matplotlib.axes import Axes
-
-from draugr.visualisation.matplotlib_utilities.styles.cyclers import simple_hatch_cycler
 
 __all__ = [
     "fix_edge_gridlines",

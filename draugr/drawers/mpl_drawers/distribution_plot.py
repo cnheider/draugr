@@ -13,9 +13,9 @@ __all__ = ["DistributionPlot"]
 from typing import Sequence
 
 import numpy
+from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from matplotlib import pyplot
 
-from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
 from warg import passes_kws_to
 
 

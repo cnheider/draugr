@@ -14,20 +14,21 @@ __all__ = [
     "save_model_parameters",
 ]
 
-from pathlib import Path
 import datetime
 import os
+from pathlib import Path
 from typing import Optional, Tuple, Union
-from torch import nn
-import torch
-from torch.nn.modules.module import Module
-from torch.optim import Optimizer
 
+import torch
 from draugr.torch_utilities.persistence.config import (
     ensure_directory_exist,
     save_config,
 )
-from warg.decorators.kw_passing import drop_unused_kws
+from torch import nn
+from torch.nn.modules.module import Module
+from torch.optim import Optimizer
+
+from warg import drop_unused_kws, passes_kws_to
 
 PARAMETER_EXTENSION = ".parameters"
 CONFIG_EXTENSION = ".py"
@@ -89,7 +90,7 @@ def load_latest_model_parameters(
 load_model_parameters = load_latest_model_parameters
 
 
-# @passes_kws_to(save_config)
+@passes_kws_to(save_config)
 def save_parameters_and_configuration(
     *,
     model: Union[torch.nn.Module, nn.Parameter],

@@ -9,7 +9,6 @@ __doc__ = r"""
 
 __all__ = ["BidirectionalIterator", "prev"]
 
-
 from typing import Iterator, Any
 
 

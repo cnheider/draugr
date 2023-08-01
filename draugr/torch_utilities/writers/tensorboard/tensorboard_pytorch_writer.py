@@ -42,6 +42,7 @@ from draugr.writers.mixins.spectrogram_writer_mixin import SpectrogramWriterMixi
 from draugr.writers.writer import Writer
 from matplotlib import pyplot
 from matplotlib.figure import Figure
+
 from warg import drop_unused_kws, passes_kws_to, sprint
 
 with suppress(FutureWarning):
@@ -220,7 +221,7 @@ class TensorBoardPytorchWriter(
         self._log_dir = path
         self._summary_writer_kws = summary_writer_kws
 
-    # @passes_kws_to(SummaryWriter.add_hparams)
+    @passes_kws_to(SummaryWriter.add_hparams)
     def instance(self, instance: dict, metrics: dict, **kwargs) -> None:
         """
 

@@ -23,7 +23,7 @@ from warg import drop_unused_kws
 
 class SupervisedDataset(Dataset):
     """
-    Supervised Dataset is comprised of separate Splits"""
+    Supervised Dataset comprises separate Splits"""
 
     @drop_unused_kws
     def __init__(self):

@@ -8,14 +8,13 @@ __doc__ = r"""
            """
 
 import sys
-from typing import Sequence, TextIO, Tuple, Union
+from typing import Sequence, TextIO, Tuple, Union, Callable
 
 import numpy
 import torch
-from torch import nn
-
 from draugr.torch_utilities import assume_model_dtype, assume_model_device
 from draugr.torch_utilities.optimisation.parameters.counting import get_num_parameters
+from torch import nn
 
 __all__ = ["get_model_complexity_info", "MODULES_MAPPING"]
 
@@ -25,7 +24,7 @@ def get_model_complexity_info(
     input_res: Tuple,
     print_per_layer_stat: bool = True,
     as_strings: bool = True,
-    input_constructor: callable = None,
+    input_constructor: Callable = None,
     ost: TextIO = sys.stdout,
 ) -> Union[Tuple[int, int], Tuple[str, str]]:
     """

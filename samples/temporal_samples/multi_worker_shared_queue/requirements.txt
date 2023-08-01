@@ -1,0 +1,3 @@
+temporalio
+pytest
+pytest_asyncio

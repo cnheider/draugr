@@ -15,12 +15,12 @@ __all__ = [
 ]
 
 from collections import namedtuple
-from typing import MutableMapping, Tuple, Any
+from typing import MutableMapping, Tuple, Any, Callable
 
 import wrapt
 
 
-def min_interval_wrapper(f: callable, min_interval: int = 100) -> callable:
+def min_interval_wrapper(f: Callable, min_interval: int = 100) -> callable:
     """
     to ensure that a function is now being called more often than max_freq, TODO: use proper naming for the interval
     :param f:
@@ -54,7 +54,7 @@ max_frequency_wrapper = min_interval_wrapper
 _GLOBAL_COUNTERS = {}
 
 
-def min_interval_wrapper_global(f: callable, min_interval: int = 100) -> callable:
+def min_interval_wrapper_global(f: Callable, min_interval: int = 100) -> callable:
     """
     to ensure that a function is now being called more often than max_freq, TODO: use proper naming for the interval
     :param f:

@@ -1,5 +1,5 @@
 import types
-from typing import Any, List, Tuple
+from typing import Any, List, Tuple, Callable
 
 import cv2
 import numpy
@@ -58,7 +58,7 @@ class CV2Compose(object):
 class Lambda(object):
     """Applies a lambda as a transform."""
 
-    def __init__(self, lambd: callable):
+    def __init__(self, lambd: Callable):
         assert isinstance(lambd, types.LambdaType)
         self.lambd = lambd
 

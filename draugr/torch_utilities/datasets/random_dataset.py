@@ -15,7 +15,7 @@ __all__ = ["RandomDataset"]
 
 
 class RandomDataset(Dataset):
-    """description"""
+    """Random dataset on instantiation"""
 
     def __init__(self, nd_size: Sequence, length: int):
         self.len = length

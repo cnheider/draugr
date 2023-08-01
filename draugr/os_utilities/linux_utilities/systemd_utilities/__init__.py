@@ -18,6 +18,7 @@ if INCLUDE_PROJECT_READMES:
 try:
     from .service_management import *
     from .service_template import *
+    from .timer_template import *
 except ImportError as ix:
     this_package_name = Path(__file__).parent.name
     this_package_reqs = (

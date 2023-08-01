@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Callable
 
 import cv2
 
@@ -14,7 +14,7 @@ def add_trackbar(
     *,
     min_val: Number = 0,
     max_val: Number = 255,
-    callback: callable = sink
+    callback: Callable = sink
 ) -> None:
     """
     Adds a trackbar to a window.

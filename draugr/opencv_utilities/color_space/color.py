@@ -1,7 +1,6 @@
 import warnings
 
 import cv2
-
 from draugr.opencv_utilities.namespaces.color_conversion_enum import (
     ColorConversionEnum,
 )

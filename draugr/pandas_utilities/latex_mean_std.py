@@ -12,8 +12,8 @@ from functools import partial
 
 import numpy
 import pandas
-
 from draugr.pandas_utilities.formatting import pandas_mean_std_bold_formatter
+
 from warg import Number, drop_unused_kws, passes_kws_to
 from warg import indent_lines
 
@@ -227,7 +227,7 @@ names=entry_provider_df.columns.names
         header = True
 
     with pandas.option_context("max_colwidth", max_colwidth):
-        return entry_provider_df.to_latex(
+        return entry_provider_df.to_latex(  # TODO: change to DataFrame.style.to_latex
             index=True,
             index_names=[*entry_provider_df.index.names],
             escape=False,

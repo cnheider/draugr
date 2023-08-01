@@ -25,14 +25,14 @@ from enum import Enum
 from pathlib import Path
 
 import sh  # pip install sh
+from draugr import PROJECT_NAME
+from draugr.os_utilities.linux_utilities.user_utilities import make_user, remove_user
 from sorcery import assigned_names
 
-from draugr import PROJECT_NAME
+from warg import ContextWrapper
 from .service_template import (
     SERVICE_TEMPLATE,
 )
-from draugr.os_utilities.linux_utilities.user_utilities import make_user, remove_user
-from warg import ContextWrapper
 
 
 class RunAsEnum(Enum):

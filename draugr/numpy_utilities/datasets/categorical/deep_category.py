@@ -9,7 +9,7 @@ from pathlib import Path
 
 from draugr.numpy_utilities.datasets.splitting import train_valid_test_split
 from draugr.numpy_utilities.datasets.defaults import DEFAULT_ACCEPTED_FILE_FORMATS
-from typing import Iterable, Union
+from typing import Iterable, Union, Callable
 from warg import drop_unused_kws
 
 __all__ = ["build_deep_categorical_dataset"]
@@ -22,7 +22,7 @@ def build_deep_categorical_dataset(
     validation_percentage: float = 15,
     testing_percentage: float = 0,
     extensions: Iterable = DEFAULT_ACCEPTED_FILE_FORMATS,
-    is_valid_file: callable = None,
+    is_valid_file: Callable = None,
 ) -> dict:
     """
     Builds a list of training images from the file system.

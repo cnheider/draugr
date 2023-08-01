@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 03-05-2021
            """
 
-
 from pathlib import Path
 
 try:

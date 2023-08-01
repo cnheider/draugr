@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import logging
-from typing import Sequence, MutableMapping
+from typing import Sequence, MutableMapping, Any, Callable, Iterable
 
 import numpy
 import torch
-from numpy import prod
-from torch import nn
-from torch.nn import Module
-
 from draugr.random_utilities import seed_stack
 from draugr.torch_utilities.architectures.architecture import Architecture
 from draugr.torch_utilities.optimisation.parameters.initialisation import (
@@ -16,6 +12,10 @@ from draugr.torch_utilities.optimisation.parameters.initialisation import (
     fan_in_init,
 )
 from draugr.torch_utilities.tensors.to_tensor import to_tensor
+from numpy import prod
+from torch import nn
+from torch.nn import Module
+
 from warg import NOD
 
 __author__ = "Christian Heider Nielsen"
@@ -51,9 +51,9 @@ class MLP(Architecture):
         dropout_prob: float = 0.2,
         auto_build_hidden_layers_if_none=True,
         input_multiplier: int = 32,
-        max_layer_width=1000,
+        max_layer_width: int = 1000,
         output_multiplier: int = 16,
-        default_init: callable = fan_in_init,
+        default_init: Callable = fan_in_init,
         # prefix:str=None, #TODO name sub networks
         **kwargs: MutableMapping,
     ):
@@ -125,8 +125,8 @@ class MLP(Architecture):
 
     @staticmethod
     def construct_progressive_hidden_layers(
-        _input_shape,
-        _output_shape,
+        _input_shape: Iterable,
+        _output_shape: Iterable,
         input_multiplier: float = 32,
         output_multiplier: float = 16,
         max_layer_width: int = 1000,

@@ -10,11 +10,11 @@ __doc__ = r"""
 from typing import Sequence
 
 import numpy
-
-from warg import ensure_existence
 from draugr.numpy_utilities.datasets.splitting import SplitEnum
 from draugr.numpy_utilities.signal_utilities.signal_statistics import root_mean_square
 from draugr.numpy_utilities.signal_utilities.truncation import min_length_truncate_batch
+
+from warg import ensure_existence
 
 LOG_MAGNITUDE_MULTIPLIER = 20
 LOG_POWER_MULTIPLIER = 10

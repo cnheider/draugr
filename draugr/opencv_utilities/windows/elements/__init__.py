@@ -1,3 +1,3 @@
-from .trackbar import *
 from .button import *
 from .checkbox import *
+from .trackbar import *

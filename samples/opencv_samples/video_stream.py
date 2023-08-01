@@ -7,7 +7,6 @@ __doc__ = r"""
            Created on 31-10-2020
            """
 
-
 import cv2
 
 from draugr.opencv_utilities import frame_generator, to_gray

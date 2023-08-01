@@ -1,11 +1,11 @@
-import os
 import subprocess
 from pathlib import Path
 from typing import Optional
 
-from warg import ensure_existence
 from draugr.ffmpeg_utilities.extract import AUDIO_FORMAT
+
 from warg import Number, identity
+from warg import ensure_existence
 
 __all__ = ["merge_frames"]
 

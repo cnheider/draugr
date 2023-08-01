@@ -1,4 +1,5 @@
 import contextlib
+from typing import Callable
 
 from warg import sink, Number
 
@@ -11,9 +12,9 @@ class ImprovementDetector(contextlib.AbstractContextManager):
     def __init__(
         self,
         patience: int,
-        writer: callable = print,
+        writer: Callable = print,
         minimization: bool = True,
-        callback: callable = None,
+        callback: Callable = None,
     ):
         """
         NOTE: strictly greater or less than is considered as improvement
@@ -80,9 +81,9 @@ class OverfitDetector(contextlib.AbstractContextManager):
     def __init__(
         self,
         patience: int,
-        writer: callable = print,
+        writer: Callable = print,
         minimization: bool = True,
-        callback: callable = None,
+        callback: Callable = None,
         verbose: bool = False,
     ):
         """

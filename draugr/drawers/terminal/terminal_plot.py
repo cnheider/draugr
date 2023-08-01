@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from draugr.drawers.terminal.terminal_utilities import scale
+
 from warg import (
     COLORS,
     PrintStyle,
@@ -13,14 +14,13 @@ __doc__ = r"""
            Created on 7/5/22
            """
 
-
 __author__ = "Christian Heider Nielsen"
 __all__ = ["terminal_plot", "styled_terminal_plot_stats_shared_x"]
-
 
 from typing import Sequence, Dict, MutableMapping
 
 import numpy
+
 
 # sys.stdout.write(generate_style(u'Draugr Ûnicöde Probe\n', underline=True, italic=True))
 

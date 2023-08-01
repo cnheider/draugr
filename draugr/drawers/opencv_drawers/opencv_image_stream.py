@@ -8,12 +8,13 @@ __doc__ = r"""
            """
 __all__ = ["OpencvImageStream"]
 
-from typing import Sequence, MutableMapping
+from typing import Sequence, MutableMapping, Any
 
 import cv2
 from draugr.drawers.drawer import Drawer
 from draugr.opencv_utilities import WindowFlagEnum
 from draugr.opencv_utilities.windows.default import match_return_code
+
 from warg import drop_unused_kws, passes_kws_to
 
 

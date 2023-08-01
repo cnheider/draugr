@@ -1,13 +1,13 @@
 from enum import Enum
+from typing import MutableMapping
 
 import cv2
-from sorcery import assigned_names
-from typing import MutableMapping
 from draugr.opencv_utilities.namespaces.enums import (
     MorphShapeEnum,
     MorphTypeEnum,
     BorderTypeEnum,
 )
+from sorcery import assigned_names
 
 __all__ = ["clean_up", "CleanUpMethod"]
 

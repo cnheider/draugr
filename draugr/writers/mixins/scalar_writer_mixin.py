@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
 from itertools import cycle
 from typing import MutableMapping
-from warg import Number, passes_kws_to, drop_unused_kws
+
 from draugr.python_utilities import CounterFilter
 
+from warg import Number, passes_kws_to, drop_unused_kws
 
 __all__ = ["ScalarWriterMixin"]
 

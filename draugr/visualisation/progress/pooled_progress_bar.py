@@ -13,6 +13,7 @@ from typing import (
     Sized,
     MutableMapping,
 )
+
 from pathos.helpers import cpu_count
 from pathos.multiprocessing import ProcessPool as Pool
 from tqdm.auto import tqdm

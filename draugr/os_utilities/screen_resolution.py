@@ -8,7 +8,6 @@ __all__ = [
     "screen_res_win",
 ]
 
-
 import sys
 
 

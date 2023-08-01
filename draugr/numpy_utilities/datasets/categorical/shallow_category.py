@@ -6,7 +6,7 @@ import os
 __author__ = "Christian Heider Nielsen"
 
 from pathlib import Path
-from typing import Dict, Sequence, Iterable, Union
+from typing import Dict, Sequence, Iterable, Union, Callable
 
 from draugr.numpy_utilities.datasets.splitting import (
     SplitEnum,
@@ -25,7 +25,7 @@ def build_shallow_categorical_dataset(
     validation_percentage: float = 15,
     testing_percentage: float = 0,
     extensions: Iterable = DEFAULT_ACCEPTED_FILE_FORMATS,
-    is_valid_file: callable = None,
+    is_valid_file: Callable = None,
     verbose: bool = False,
 ) -> Dict[str, Dict[SplitEnum, Sequence]]:
     """

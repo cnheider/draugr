@@ -9,12 +9,13 @@ __doc__ = r"""
            Created on 17-03-2021
            """
 
+from typing import Sequence, MutableMapping, Any
+
 from draugr.tensorboard_utilities.exporting.event_export import TensorboardEventExporter
-from typing import Sequence, MutableMapping
 
 
 class TensorboardEventExporterFile(TensorboardEventExporter):
-    def __init__(self, *args: Sequence, **kwargs: MutableMapping):
+    def __init__(self, *args: Sequence[Any], **kwargs: MutableMapping[str, Any]):
         super().__init__(*args, **kwargs)
         self.file = kwargs.get("file")
         if self.file is not None:

@@ -2,7 +2,6 @@ import math
 
 import cv2
 import numpy
-
 from draugr.opencv_utilities import LineTypeEnum
 
 

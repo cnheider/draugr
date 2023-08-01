@@ -13,9 +13,9 @@ from itertools import tee
 from typing import Any, Generator, Iterable
 
 import tqdm
+from notus.notification import JobNotificationSession
 from sorcery import assigned_names
 
-from notus.notification import JobNotificationSession
 from warg import drop_unused_kws, passes_kws_to, empty_str
 
 __all__ = ["progress_bar"]

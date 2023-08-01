@@ -12,10 +12,12 @@ __all__ = ["ImageStreamPlot"]
 
 from typing import Sequence
 
-from matplotlib import pyplot
 import matplotlib
 from draugr.drawers.mpl_drawers.mpldrawer import MplDrawer
+from matplotlib import pyplot
+
 from warg import passes_kws_to
+
 
 # pyplot.switch_backend("QtAgg")  # MacOSX, QtAgg, GTK4Agg, Gtk3Agg, TkAgg, WxAgg, Agg
 
