@@ -49,11 +49,11 @@ def make_user(
         with ContextWrapper(
             sh.contrib.sudo,
             construction_kwargs=dict(
-                password=getpass.getpass(
-                    prompt=f"[sudo] password for {getpass.getuser()}: "
-                )
-                if get_sudo
-                else None,
+                password=(
+                    getpass.getpass(prompt=f"[sudo] password for {getpass.getuser()}: ")
+                    if get_sudo
+                    else None
+                ),
                 _with=True,
             ),
             enabled=get_sudo,
@@ -85,11 +85,13 @@ def remove_user(
             with ContextWrapper(
                 sh.contrib.sudo,
                 construction_kwargs=dict(
-                    password=getpass.getpass(
-                        prompt=f"[sudo] password for {getpass.getuser()}: "
-                    )
-                    if get_sudo
-                    else None,
+                    password=(
+                        getpass.getpass(
+                            prompt=f"[sudo] password for {getpass.getuser()}: "
+                        )
+                        if get_sudo
+                        else None
+                    ),
                     _with=True,
                 ),
                 enabled=get_sudo,

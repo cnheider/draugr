@@ -55,7 +55,8 @@ class PooledQueueProcessor(object):
     This is a workaround of Pythons extremely slow interprocess communication pipes.
     The ideal solution would be to use a multiprocessing.queue, but it apparently communication is band
     limited.
-    This solution has processes complete tasks (batches) and a thread add the results to a queue.queue."""
+    This solution has processes complete tasks (batches) and a thread add the results to a queue.queue.
+    """
 
     def __init__(
         self,

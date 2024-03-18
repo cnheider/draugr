@@ -45,7 +45,6 @@ def add_early_stopping_key_combination(
     verbose: bool = False,
     combinations: Iterable = default_combinations,
 ):  # -> keyboard.Listener:
-
     """
 
     :param combinations:

@@ -25,7 +25,8 @@ from warg import passes_kws_to
 class DiscreteScrollPlot(MplDrawer):
     """
     Waterfall plot
-    only supports a single trajectory at a time, do not supply parallel trajectories to draw method, will get truncated to num actions, effectively dropping actions for other envs than the first."""
+    only supports a single trajectory at a time, do not supply parallel trajectories to draw method, will get truncated to num actions, effectively dropping actions for other envs than the first.
+    """
 
     @passes_kws_to(MplDrawer.__init__)
     def __init__(

@@ -590,6 +590,7 @@ def remove_flops_counter_hook_function(module) -> None:
 
 # --- Masked flops counting
 
+
 # Also being run in the initialization
 def add_flops_mask_variable_or_reset(module) -> None:
     """
