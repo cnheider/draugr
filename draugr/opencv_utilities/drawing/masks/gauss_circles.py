@@ -39,6 +39,7 @@ def ellipse_bbox(h, k, a, b, theta):
 
 # ----------------------------------------------------------------------------
 
+
 # Rotated elliptical gradient - slow, Python-only approach
 def make_gradient_v1(width, height, h, k, a, b, theta):
     """
@@ -75,6 +76,7 @@ def make_gradient_v1(width, height, h, k, a, b, theta):
 
 
 # ----------------------------------------------------------------------------
+
 
 # Rotated elliptical gradient - faster, vectorized numpy approach
 def make_gradient_v2(width, height, h, k, a, b, theta):
@@ -156,7 +158,7 @@ if __name__ == "__main__":
         if save_intermediate:
             show_image(
                 transparency,
-                wait=True
+                wait=True,
                 # save_path = basep/"eligrad-t.png"
             )
 
@@ -167,7 +169,7 @@ if __name__ == "__main__":
         if save_intermediate:
             show_image(
                 intensity,
-                wait=True
+                wait=True,
                 # save_path =  str(basep / "eligrad-i1.png")
             )
 
@@ -192,7 +194,7 @@ if __name__ == "__main__":
 
     show_image(
         draw_image(a, b, theta, inner_scale, True),
-        wait=True
+        wait=True,
         # save_path = str(basep/"eligrad.png")
     )
 

@@ -22,7 +22,8 @@ def cross_validation_generator(
     *datasets: Dataset, n_splits: int = 10
 ) -> Tuple[Subset, Subset]:
     """
-    Learning the parameters of a prediction function and testing it on the same data is a methodological mistake: a model that would just repeat the labels of the samples that it has just seen would have a perfect score but would fail to predict anything useful on yet-unseen data. This situation is called overfitting. To avoid it, it is common practice when performing a (supervised) machine learning experiment to hold out part of the available data as a test set"""
+    Learning the parameters of a prediction function and testing it on the same data is a methodological mistake: a model that would just repeat the labels of the samples that it has just seen would have a perfect score but would fail to predict anything useful on yet-unseen data. This situation is called overfitting. To avoid it, it is common practice when performing a (supervised) machine learning experiment to hold out part of the available data as a test set
+    """
 
     cum = ConcatDataset(datasets)
     for train_index, val_index in KFold(n_splits=n_splits).split(cum):

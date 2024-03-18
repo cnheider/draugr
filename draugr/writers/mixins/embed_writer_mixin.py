@@ -14,7 +14,8 @@ from typing import Any, Sequence
 
 class EmbedWriterMixin(ABC):
     """
-    Writer mixin that provides an interface for 'writing' embeds/projections(2d,3d) for interactive visualisation"""
+    Writer mixin that provides an interface for 'writing' embeds/projections(2d,3d) for interactive visualisation
+    """
 
     @abstractmethod
     def embed(

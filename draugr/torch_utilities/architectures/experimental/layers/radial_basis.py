@@ -63,7 +63,6 @@ class RBFLayer(nn.Module):
 
 if __name__ == "__main__":
 
-    def _main():
-        ...
+    def _main(): ...
 
     _main()
