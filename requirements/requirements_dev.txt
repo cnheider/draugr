@@ -17,7 +17,7 @@ doc8>=0.11.2
 #mccabe>=0.7.0
 flake8>=4.0.1
 bandit>=1.7.4
-matplotlib>=3.5.2
+matplotlib>=3.9.4
 
 -r ../requirements.txt
 -r requirements_docs.txt
